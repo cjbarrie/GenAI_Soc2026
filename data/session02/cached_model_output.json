@@ -1,0 +1,24 @@
+{
+  "record_metadata": {
+    "status": "synthetic_cached_demo",
+    "created_for": "GenAI in Sociology 2026 Session 2",
+    "model": "demo/cached-classifier-v1",
+    "provider": "none-live-output-is-instructor-authored",
+    "temperature": 0,
+    "schema_version": "1.0"
+  },
+  "annotations": [
+    {"id": 1, "label": "SUPPORT", "evidence": "I support the proposal"},
+    {"id": 2, "label": "OPPOSE", "evidence": "the council should vote it down"},
+    {"id": 3, "label": "SUPPORT", "evidence": "I want lower rents"},
+    {"id": 4, "label": "SUPPORT", "evidence": "Please approve it"},
+    {"id": 5, "label": "SUPPORT", "evidence": "I support the rezoning"},
+    {"id": 6, "label": "UNCLEAR", "evidence": "I am not ready to say"},
+    {"id": 7, "label": "OPPOSE", "evidence": "should reject the rezoning"},
+    {"id": 8, "label": "SUPPORT", "evidence": "I urge you to pass it"},
+    {"id": 9, "label": "OPPOSE", "evidence": "the plan should not proceed"},
+    {"id": 10, "label": "UNCLEAR", "evidence": "have not formed a view"},
+    {"id": 11, "label": "SUPPORT", "evidence": "I could accept additional housing"},
+    {"id": 12, "label": "OPPOSE", "evidence": "Reject this proposal"}
+  ]
+}

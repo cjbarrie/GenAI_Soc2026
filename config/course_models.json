@@ -1,0 +1,16 @@
+{
+  "hosted": {
+    "provider": "OpenRouter",
+    "model": "openai/gpt-5.2",
+    "environment_variable": "COURSE_HOSTED_MODEL"
+  },
+  "local": {
+    "runtime": "Ollama",
+    "model": "gemma4",
+    "environment_variable": "COURSE_LOCAL_MODEL",
+    "base_url": "http://localhost:11434/api"
+  },
+  "checked": "2026-08-18",
+  "note": "Names are defaults for demonstrations, never scientific constants. Record the resolved identifier on every live run."
+}
+

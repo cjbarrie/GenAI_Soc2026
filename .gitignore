@@ -1,0 +1,12 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+_build/
+*_files/
+slides/session*/session*.html
+slides/session*/session*.pdf
+workbook/session*/session*.html

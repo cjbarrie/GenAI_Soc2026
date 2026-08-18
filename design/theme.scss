@@ -1,0 +1,461 @@
+/*-- scss:defaults --*/
+
+$body-bg: #F5F1E8;
+$body-color: #182026;
+$link-color: #2457A6;
+$selection-bg: #DCE6F5;
+$selection-color: #182026;
+
+$presentation-font-size-root: 29px;
+$presentation-font-smaller: 0.78;
+$presentation-line-height: 1.28;
+$presentation-heading-font: "Source Sans 3", Arial, sans-serif;
+$presentation-heading-color: #182026;
+$presentation-heading-font-weight: 650;
+$presentation-heading-line-height: 1.08;
+$presentation-heading-letter-spacing: -0.018em;
+$presentation-h1-font-size: 2.35em;
+$presentation-h2-font-size: 1.45em;
+$presentation-h3-font-size: 1.08em;
+$presentation-block-margin: 24px;
+
+$code-block-font-size: 0.79em;
+$code-color: #182026;
+$code-bg: #ECE8DE;
+$code-block-bg: #ECE8DE;
+$code-block-border-color: transparent;
+
+$tab-block-margin: 0;
+
+/*-- scss:rules --*/
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/Users/christopherbarrie/Dropbox/nyu_teaching/GenAI_Soc2026/design/fonts/SourceSans3-Variable.ttf") format("truetype");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/Users/christopherbarrie/Dropbox/nyu_teaching/GenAI_Soc2026/design/fonts/SourceSerif4-Variable.ttf") format("truetype");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/Users/christopherbarrie/Dropbox/nyu_teaching/GenAI_Soc2026/design/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/Users/christopherbarrie/Dropbox/nyu_teaching/GenAI_Soc2026/design/fonts/IBMPlexMono-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #F5F1E8;
+  --clear-paper: #FFFCF5;
+  --ink: #182026;
+  --slate: #5F6B72;
+  --cobalt: #2457A6;
+  --vermilion: #D5573B;
+  --moss: #5F7355;
+  --pale-cobalt: #DCE6F5;
+  --pale-vermilion: #F4DDD5;
+  --pale-moss: #DFE7DB;
+}
+
+.reveal {
+  font-family: "Source Sans 3", Arial, sans-serif;
+  color: var(--ink);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  padding: 52px 72px 42px 72px;
+}
+
+.reveal .slides section > h2 {
+  margin: 0 0 32px 0;
+  max-width: 1136px;
+  font-size: 42px;
+}
+
+.reveal .slides section > h3 {
+  margin-top: 0;
+  color: var(--cobalt);
+}
+
+.reveal p,
+.reveal li {
+  line-height: 1.28;
+}
+
+.reveal ul,
+.reveal ol {
+  margin-left: 1.05em;
+}
+
+.reveal li + li {
+  margin-top: 0.38em;
+}
+
+.reveal strong {
+  font-weight: 650;
+}
+
+.reveal em {
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+.reveal code,
+.reveal pre code {
+  font-family: "IBM Plex Mono", Menlo, monospace;
+}
+
+.reveal pre {
+  width: 100%;
+  margin: 0;
+  padding: 22px 26px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: #ECE8DE;
+  box-sizing: border-box;
+}
+
+.reveal pre code {
+  max-height: 470px;
+  line-height: 1.35;
+}
+
+.reveal .compact-code pre code {
+  max-height: 410px;
+  font-size: 0.68em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.reveal .code-with-filename .code-with-filename-file {
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  border-radius: 0;
+  font-family: "IBM Plex Mono", Menlo, monospace;
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+.reveal a {
+  color: var(--cobalt);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.reveal .slide-number {
+  right: 32px !important;
+  bottom: 24px !important;
+  color: var(--ink) !important;
+  background: transparent !important;
+  font-family: "Source Sans 3", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+#title-slide {
+  text-align: left;
+  padding: 88px 96px 60px 96px;
+}
+
+#title-slide .title {
+  max-width: 1000px;
+  margin: 0 0 28px 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 68px;
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.026em;
+}
+
+#title-slide .subtitle {
+  margin: 0 0 120px 0;
+  color: var(--cobalt);
+  font-size: 28px;
+  font-weight: 650;
+}
+
+#title-slide .author,
+#title-slide .date {
+  margin: 0;
+  color: var(--slate);
+  font-size: 19px;
+}
+
+.lead {
+  max-width: 1020px;
+  font-size: 34px;
+  line-height: 1.22;
+  font-weight: 500;
+}
+
+.serif,
+.major-question {
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+.major-question {
+  max-width: 1050px;
+  margin-top: 88px;
+  font-size: 54px;
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.question-slide h2,
+.section-slide h2 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 52px !important;
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.section-slide {
+  color: var(--paper);
+}
+
+.section-slide h2 {
+  margin-top: 145px !important;
+  color: var(--paper);
+  max-width: 1040px !important;
+}
+
+.section-slide::after {
+  content: "";
+  display: block;
+  width: 180px;
+  height: 6px;
+  margin-top: 38px;
+  background: var(--cobalt);
+}
+
+.source-line {
+  position: absolute;
+  left: 72px;
+  bottom: 24px;
+  max-width: 1050px;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #4A545A;
+}
+
+.caption {
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 1.22;
+}
+
+.kicker {
+  margin-bottom: 14px;
+  color: var(--cobalt);
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.course-map {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 112px;
+  border-top: 2px solid var(--ink);
+}
+
+.course-map > div {
+  padding-top: 18px;
+  font-size: 25px;
+}
+
+.course-map .active {
+  border-top: 8px solid var(--cobalt);
+  margin-top: -5px;
+  color: var(--cobalt);
+  font-weight: 650;
+}
+
+.course-map small {
+  display: block;
+  margin-top: 8px;
+  color: var(--slate);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.evidence-number {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 118px;
+  line-height: 0.9;
+  color: var(--cobalt);
+  font-weight: 600;
+}
+
+.evidence-label {
+  margin-top: 18px;
+  max-width: 460px;
+  font-size: 28px;
+  line-height: 1.18;
+}
+
+.plain-rule {
+  height: 2px;
+  margin: 22px 0;
+  background: var(--ink);
+}
+
+.semantic-line {
+  padding: 14px 0 14px 22px;
+  border-left: 5px solid var(--cobalt);
+}
+
+.semantic-line.validation {
+  border-left-color: var(--moss);
+  background: var(--pale-moss);
+}
+
+.semantic-line.warning {
+  border-left-color: var(--vermilion);
+  background: var(--pale-vermilion);
+}
+
+.label {
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.label.human { color: var(--ink); }
+.label.model { color: var(--cobalt); }
+.label.failure { color: var(--vermilion); }
+.label.validation { color: var(--moss); }
+
+.object-type {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: "IBM Plex Mono", Menlo, monospace;
+  font-size: 18px;
+  color: var(--cobalt);
+}
+
+.object-view {
+  padding: 22px 26px;
+  background: #ECE8DE;
+  font-family: "IBM Plex Mono", Menlo, monospace;
+  font-size: 22px;
+  line-height: 1.34;
+  white-space: pre-wrap;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid #B7B3AA;
+}
+
+.metric-row .value {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 48px;
+  color: var(--cobalt);
+}
+
+.comparison-band {
+  padding: 20px 0;
+  border-top: 2px solid var(--ink);
+}
+
+.comparison-band + .comparison-band {
+  margin-top: 18px;
+}
+
+.comparison-band strong {
+  display: inline-block;
+  min-width: 230px;
+}
+
+.reveal table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 22px;
+}
+
+.reveal table th {
+  padding: 10px 12px 12px 12px;
+  border-bottom: 2px solid var(--ink);
+  font-weight: 650;
+}
+
+.reveal table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #C9C4BA;
+}
+
+.reveal table th:first-child,
+.reveal table td:first-child {
+  text-align: left;
+}
+
+.reveal blockquote {
+  width: 92%;
+  margin: 72px 0 0 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 42px;
+  line-height: 1.16;
+  font-style: normal;
+}
+
+.reveal blockquote + p {
+  margin-top: 26px;
+  font-size: 20px;
+  color: var(--slate);
+}
+
+.fragment.highlight-current-cobalt.current-fragment {
+  color: var(--cobalt);
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section,
+  .reveal .fragment {
+    transition: none !important;
+  }
+}
+
+@media print {
+  .source-line {
+    color: var(--ink);
+  }
+}

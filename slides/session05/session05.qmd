@@ -1,0 +1,187 @@
+---
+title: "Can generated media isolate a causal construct?"
+subtitle: "Session 5 · Treatment and stimulus generation"
+author: "Generative AI in Sociology"
+date: "September 30, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to intervene
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class="active"><strong>Intervene</strong><small>generate and converse</small></div>
+<div class=""><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## Can generated media isolate a causal construct?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Construct a treatment set whose accepted variants satisfy a predeclared fidelity rule.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">Condition labels are randomized correctly, but tone or length changes alongside the causal construct.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Dafoe:** methodological opportunity
+- **Evsyukova:** validation or counterclaim
+- **Bai et al. (2025):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Dafoe, Zhang & Caughey (2018), information equivalence | Source: https://doi.org/10.1017/pan.2018.9 | Accessed: 2026-08-18
+- Evsyukova, Rusche & Mill (2025), LinkedOut | Source: https://doi.org/10.1093/qje/qjae035 | Accessed: 2026-08-18
+- Bai et al. (2025), LLM-generated policy messages | Source: https://doi.org/10.1038/s41467-025-61345-5 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The papers disagree about what success licenses
+
+<div class="lead">AI-generated profiles and messages enable scale; information equivalence asks whether conditions differ only in the information the design intends to manipulate.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Dafoe, Zhang & Caughey (2018), information equivalence | Source: https://doi.org/10.1017/pan.2018.9 | Accessed: 2026-08-18
+- Evsyukova, Rusche & Mill (2025), LinkedOut | Source: https://doi.org/10.1093/qje/qjae035 | Accessed: 2026-08-18
+- Bai et al. (2025), LLM-generated policy messages | Source: https://doi.org/10.1038/s41467-025-61345-5 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">Generating many stimuli increases design capacity only if intended and nuisance variation are inspected separately.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Construct factorial treatment records and filter variants that violate a fidelity bound.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def construct_treatments(frames, tones, length_by_variant, max_words):
+    # return one documented result
+```
+
+**Return value:** Return accepted factorial treatments and rejected condition names.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def construct_treatments(frames, tones, length_by_variant, max_words):
+    accepted = []
+    rejected = []
+    for frame in frames:
+        for tone in tones:
+            condition = f"{frame}_{tone}"
+            words = length_by_variant[condition]
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+            record = {"condition": condition, "frame": frame, "tone": tone, "words": words}
+            if words <= max_words:
+                accepted.append(record)
+            else:
+                rejected.append(condition)
+    return accepted, rejected
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. The outer loop chooses one frame; the inner loop pairs it with every tone.
+2. The f-string creates a stable condition name used to retrieve its word count.
+3. Each dictionary is one treatment record, not the treatment text itself.
+4. The conditional applies the rule declared before looking at outcomes.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert accepted[0]["condition"] == "gain_neutral"
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">Condition labels are randomized correctly, but tone or length changes alongside the causal construct.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `construct_treatments`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Dafoe, Zhang & Caughey (2018), information equivalence | Source: https://doi.org/10.1017/pan.2018.9 | Accessed: 2026-08-18
+- Evsyukova, Rusche & Mill (2025), LinkedOut | Source: https://doi.org/10.1093/qje/qjae035 | Accessed: 2026-08-18
+- Bai et al. (2025), LLM-generated policy messages | Source: https://doi.org/10.1038/s41467-025-61345-5 | Accessed: 2026-08-18
+[/Sources]
+:::

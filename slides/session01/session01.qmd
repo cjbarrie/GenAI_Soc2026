@@ -1,0 +1,179 @@
+---
+title: "What kind of research technology is an LLM?"
+subtitle: "Session 1 · Foundations, Python data, and course map"
+author: "Generative AI in Sociology"
+date: "September 2, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to observe
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class=""><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## What kind of research technology is an LLM?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Describe one model-assisted operation without mistaking its output for evidence.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">A persuasive answer is copied into an analysis while the model, settings, prompt, raw response, and validation decision remain unknown.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Davidson & Karell (2025):** methodological opportunity
+- **Alvero et al. (2026):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Davidson & Karell (2025), integrating GenAI into social science | Source: https://doi.org/10.1177/00491241251339184 | Accessed: 2026-08-18
+- Alvero et al. (2026), GenAI in sociological research | Source: https://doi.org/10.15195/v13.a3 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The papers disagree about what success licenses
+
+<div class="lead">Capability maps show where models enter research; disciplinary evidence asks what becomes easier, what becomes hidden, and who bears the checking work.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Davidson & Karell (2025), integrating GenAI into social science | Source: https://doi.org/10.1177/00491241251339184 | Accessed: 2026-08-18
+- Alvero et al. (2026), GenAI in sociological research | Source: https://doi.org/10.15195/v13.a3 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">An LLM becomes a research technology only when its input, transformation, output, and validation record are visible.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Build one complete research record from a prompt, settings, and cached response.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def build_research_record(prompt, settings, cached_response):
+    # return one documented result
+```
+
+**Return value:** Return a nested dictionary that preserves the input, configuration, raw output, and an empty validation field.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def build_research_record(prompt, settings, cached_response):
+    return {
+        "input": {"prompt": prompt, "type": type(prompt).__name__},
+        "configuration": settings.copy(),
+        "raw_output": cached_response,
+        "validation": None,
+    }
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+# The full function is visible in the workbook.
+# Now inspect the returned object and the checks.
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. The three arguments are existing Python objects: two strings and one dictionary.
+2. `settings.copy()` makes a new dictionary so later edits do not silently alter the saved record.
+3. The returned dictionary nests related fields under names a researcher can inspect.
+4. `None` means validation has not happened; it does not mean the output is valid.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert record["validation"] is None
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">A persuasive answer is copied into an analysis while the model, settings, prompt, raw response, and validation decision remain unknown.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `build_research_record`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Davidson & Karell (2025), integrating GenAI into social science | Source: https://doi.org/10.1177/00491241251339184 | Accessed: 2026-08-18
+- Alvero et al. (2026), GenAI in sociological research | Source: https://doi.org/10.15195/v13.a3 | Accessed: 2026-08-18
+[/Sources]
+:::

@@ -1,0 +1,624 @@
+---
+title: "What can an LLM output<br>validly measure?"
+subtitle: "Session 2 · Annotation and measurement"
+author: "Generative AI in Sociology"
+date: "September 9, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    center: false
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    background-transition: none
+    incremental: false
+    code-line-numbers: false
+    code-overflow: wrap
+    embed-resources: true
+    pdf-separate-fragments: false
+    hash: true
+    history: true
+    preview-links: auto
+lang: en
+---
+
+## We begin by observing {.question-slide}
+
+<div class="course-map" role="list" aria-label="Four movements through the course">
+  <div class="active" role="listitem">Observe<small>measure and interpret</small></div>
+  <div role="listitem">Intervene<small>generate and converse</small></div>
+  <div role="listitem">Simulate<small>populations and agents</small></div>
+  <div role="listitem">Delegate & audit<small>tools, provenance, power</small></div>
+</div>
+
+::: {.notes}
+Ask one student to locate last week and another to predict what skill from today will recur in later movements.
+:::
+
+---
+
+## Ten of twelve labels are correct. Is that good enough? {.question-slide}
+
+<div class="major-question">
+What would you need to know before answering?
+</div>
+
+::: {.notes}
+Do not reveal the downstream support-rate estimate yet. Collect criteria: prevalence, type of error, subgroup, inferential target, cost, human benchmark.
+:::
+
+---
+
+## Four different jobs hide inside “coding text”
+
+:::: {.columns}
+::: {.column width="45%"}
+<div class="comparison-band"><strong>Classification</strong> Assign a category</div>
+<div class="comparison-band"><strong>Extraction</strong> Retrieve a field</div>
+:::
+::: {.column width="45%"}
+<div class="comparison-band"><strong>Measurement</strong> Represent a construct</div>
+<div class="comparison-band"><strong>Inference</strong> Support a claim beyond the coded cases</div>
+:::
+::::
+
+<div class="semantic-line warning" style="margin-top: 42px;">A structured output completes the first two jobs—not automatically the last two.</div>
+
+<div class="source-line">Barrie, Argyle, Bisbee et al., 2026 · “AI and Research Methods,” §10.2</div>
+
+::: {.notes}
+[Sources]
+- Claim: Annotation produces categorical or numerical variables for downstream analysis and requires validation matched to use | Source: course chapter §§10.2.1–10.2.5 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The readings relocate the methodological burden
+
+:::: {.columns}
+::: {.column width="48%"}
+<div class="kicker">Stuhler, Dang Ton & Ollion</div>
+
+The model makes custom information extraction accessible.
+
+**Burden:** articulate the tacit codebook, expose the promptbook, and study patterned error.
+:::
+::: {.column width="48%"}
+<div class="kicker">Chae & Davidson</div>
+
+Several training regimes can make classification effective.
+
+**Burden:** choose among scale, examples, fine-tuning, task complexity, and cost.
+:::
+::::
+
+<div class="source-line">Stuhler et al., 2025 · Chae & Davidson, 2026 · *Sociological Methods & Research*</div>
+
+::: {.notes}
+[Sources]
+- Claim: Promptbooks make custom information-extraction tasks accessible while exposing non-random error | Source: https://doi.org/10.1177/00491241251336794 | Accessed: 2026-08-18
+- Claim: Chae and Davidson compare ten models and four training regimes for stance classification | Source: https://doi.org/10.1177/00491241251325243 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## A promptbook must state what humans often leave tacit
+
+:::: {.columns}
+::: {.column width="46%"}
+<div class="label human">Codebook</div>
+
+- construct definition
+- valid categories
+- inclusion and exclusion rules
+- edge cases
+- human examples
+:::
+::: {.column width="50%"}
+<div class="label model">Promptbook adds</div>
+
+- exact message text and order
+- output schema and missing-value rule
+- model/runtime and parameters
+- formatting and parsing instructions
+- preserved prompts and outputs
+:::
+::::
+
+<div class="semantic-line" style="margin-top: 34px;">Writing the promptbook can reveal that the original measure was underspecified.</div>
+
+<div class="source-line">Stuhler, Dang Ton & Ollion, 2025 · DOI 10.1177/00491241251336794</div>
+
+::: {.notes}
+[Sources]
+- Claim: Prompts require greater explicitness than many practical human codebooks and add formatting instructions | Source: https://doi.org/10.1177/00491241251336794 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## One obituary corpus contains several different task types
+
+| Variable | What the system must do | Signal |
+|---|---|---|
+| Age | Find a usually explicit number | Formulaic and early |
+| Military service | Search for a sparse fact | Needle in a haystack |
+| Education | Apply categories and limited inference | Sparse + interpretive |
+| Occupation | Summarize emphasized work | Distributed + semantic |
+
+<div class="semantic-line validation" style="margin-top: 24px;">The correct method can vary within one dataset because the variables pose different information problems.</div>
+
+<div class="source-line">Stuhler, Dang Ton & Ollion, 2025 · Obituary information-extraction study</div>
+
+::: {.notes}
+[Sources]
+- Claim: The obituary project codes twelve variables with task properties ranging from direct extraction to sparse search and summarization | Source: https://oscarstuhler.org/wp-content/uploads/2025/03/Stuhler_Ton_Ollion_ArXiv_preprint.pdf, Table 1 and discussion | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## Larger generative models help most when the signal is sparse
+
+| Variable | Llama 70B | Llama 8B | Conventional baseline |
+|---|---:|---:|---:|
+| Gender · macro F1 | .92 | .79 | .99 |
+| Military · macro F1 | .98 | .75 | .72 |
+| Education · macro F1 | .78 | .40 | .29 |
+| Age · accuracy | .99 | .99 | .95 |
+| Cause of death · accuracy | .97 | .96 | .76 |
+
+<div class="caption">Selected averages across prompting scenarios; baseline type differs by variable.</div>
+<div class="source-line">Stuhler, Dang Ton & Ollion, 2025 · Table 7</div>
+
+::: {.notes}
+[Sources]
+- Data: Selected values from Table 7 comparing 70B/8B generative models with Longformer, Naive Bayes, or regex baselines | Source: https://oscarstuhler.org/wp-content/uploads/2025/03/Stuhler_Ton_Ollion_ArXiv_preprint.pdf | Accessed: 2026-08-18
+[/Sources]
+Emphasize that the last column is not one common model. The point is task-method fit, not a model leaderboard.
+:::
+
+---
+
+## A two-digit rule nearly matches the LLM for age
+
+:::: {.columns}
+::: {.column width="43%"}
+<div class="evidence-number">.95</div>
+<div class="evidence-label">accuracy from extracting the first plausible two- or three-digit number</div>
+:::
+::: {.column width="12%"}
+<div style="font-size: 58px; margin-top: 72px; text-align: center;">≈</div>
+:::
+::: {.column width="43%"}
+<div class="evidence-number">.99</div>
+<div class="evidence-label">accuracy from the 70B and 8B generative models</div>
+:::
+::::
+
+<div class="semantic-line warning" style="margin-top: 34px;">An LLM is not automatically the most defensible tool just because it can perform the task.</div>
+
+<div class="source-line">Stuhler, Dang Ton & Ollion, 2025 · Baseline comparison</div>
+
+::: {.notes}
+[Sources]
+- Claim: A simple first-number regex achieves .95 age accuracy versus .99 for both generative models | Source: https://oscarstuhler.org/wp-content/uploads/2025/03/Stuhler_Ton_Ollion_ArXiv_preprint.pdf, Table 7 and p. 30 discussion | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## Aggregate accuracy does not make error random
+
+> Errors correlated with identity, time, text form, or a theoretical variable can bias the analysis that uses the labels.
+
+<div class="semantic-line warning" style="margin-top: 54px;">The validation sample must reveal *which cases* fail—not merely how many.</div>
+
+<div class="source-line">Stuhler, Dang Ton & Ollion, 2025 · Barrie, Argyle, Bisbee et al., 2026</div>
+
+::: {.notes}
+[Sources]
+- Claim: Non-random prediction error can bias downstream estimates even when aggregate accuracy is high | Source: https://doi.org/10.1177/00491241251336794 and course chapter §10.2.5 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## Chae and Davidson vary more than model size
+
+<div class="comparison-band"><strong>10 models</strong> tens of millions → hundreds of billions of parameters</div>
+<div class="comparison-band"><strong>4 regimes</strong> zero-shot · few-shot · fine-tuning · instruction-tuning</div>
+<div class="comparison-band"><strong>Task</strong> stance toward a target—not generic positive or negative sentiment</div>
+
+<div class="source-line">Chae & Davidson, 2026 · DOI 10.1177/00491241251325243</div>
+
+::: {.notes}
+[Sources]
+- Study design: ten models and four training regimes applied to stance classification | Source: https://doi.org/10.1177/00491241251325243 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## “Best model” is a decision about evidence and resources
+
+:::: {.columns}
+::: {.column width="45%"}
+<div class="label model">Large prompted model</div>
+
+- strong performance with few or no examples
+- low setup burden
+- recurring API cost and version dependence
+:::
+::: {.column width="45%"}
+<div class="label human">Smaller fine-tuned model</div>
+
+- requires labeled training data and compute
+- can remain competitive
+- lower inference cost and greater control
+:::
+::::
+
+<div class="semantic-line" style="margin-top: 34px;">Choose for the exact task and inferential threshold—not for general benchmark prestige.</div>
+
+<div class="source-line">Chae & Davidson, 2026 · Barrie, Argyle, Bisbee et al., 2026</div>
+
+::: {.notes}
+[Sources]
+- Claim: The largest models generally perform best with little training data, while smaller fine-tuned models can be competitive and cheaper | Source: https://doi.org/10.1177/00491241251325243 | Accessed: 2026-08-18
+- Claim: Researchers should empirically compare cost and performance for their exact task | Source: course chapter §10.2.3 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## Sentiment is not stance
+
+<div class="object-view">“I want lower rents, but I cannot support this proposal
+unless the affordability rules become much stronger.”</div>
+
+:::: {.columns style="margin-top: 38px;"}
+::: {.column width="48%"}
+<div class="label">Issue sentiment</div>
+
+Positive toward lower rents
+:::
+::: {.column width="48%"}
+<div class="label failure">Proposal stance</div>
+
+Conditional—no unqualified support
+:::
+::::
+
+::: {.notes}
+[Sources]
+- Claim: Stance detection identifies attitude toward a target and should not be collapsed into generic sentiment | Source: https://doi.org/10.1177/00491241251325243 | Accessed: 2026-08-18
+[/Sources]
+The excerpt is synthetic course material.
+:::
+
+---
+
+## Which category would your codebook assign? {.question-slide}
+
+<div class="major-question">
+SUPPORT · OPPOSE · UNCLEAR
+</div>
+
+<div class="lead" style="margin-top: 54px;">What rule settles the conditional case—and does that rule represent the construct you care about?</div>
+
+::: {.notes}
+Take a vote, then ask students to write the rule that would make their answer reproducible. This slide also functions as the transition into the worked example.
+:::
+
+---
+
+## Our toy corpus contains twelve synthetic public comments
+
+:::: {.columns}
+::: {.column width="56%"}
+<div class="object-type">list[dict]</div>
+<div class="object-view">{
+  "id": 3,
+  "speaker_role": "renter",
+  "text": "I want lower rents, but…",
+  "human_label": "UNCLEAR"
+}</div>
+:::
+::: {.column width="40%"}
+<div class="kicker">Inferential target</div>
+
+Estimate the share of speakers who **explicitly support** the rezoning proposal.
+
+<div class="semantic-line warning" style="margin-top: 34px;">Conditional approval is not explicit support.</div>
+:::
+::::
+
+::: {.notes}
+All comments and labels are synthetic course materials. Ask what a list contributes and what each dictionary represents.
+:::
+
+---
+
+## The codebook is a Python dictionary before it is a prompt
+
+```{.python code-line-numbers="1-8"}
+CODEBOOK = {
+    "SUPPORT": "explicit, unqualified endorsement",
+    "OPPOSE": "explicit rejection or vote against",
+    "UNCLEAR": "no stance, mixed, or conditional only",
+}
+
+valid_labels = list(CODEBOOK.keys())
+```
+
+<div class="semantic-line validation" style="margin-top: 26px;">Input: one dictionary → transformation: request its keys → output: one list of valid labels.</div>
+
+::: {.notes}
+Ask students to predict `type(CODEBOOK)`, `type(valid_labels)`, and the order/content of the list.
+:::
+
+---
+
+## Messages separate stable measurement rules from each case
+
+```{.python code-line-numbers="1-10"}
+messages = [
+    {"role": "system", "content": SYSTEM_RULES},
+    {
+        "role": "user",
+        "content": f"Classify this comment: {comment['text']}",
+    },
+]
+
+print(type(messages), type(messages[0]))
+```
+
+<div class="semantic-line" style="margin-top: 24px;">The API receives a list. Each message inside it is a dictionary.</div>
+
+::: {.notes}
+Ask a student to point to the string inside the nested structure. Explain that message roles are part of the recorded input, not invisible chat magic.
+:::
+
+---
+
+## The hosted call is one replaceable transformation
+
+```{.python code-line-numbers="1-9"}
+from openrouter import OpenRouter
+
+with OpenRouter(api_key=os.getenv("OPENROUTER_API_KEY")) as client:
+    response = client.chat.send(
+        model=COURSE_MODEL,
+        messages=messages,
+        temperature=0,
+    )
+raw_text = response.choices[0].message.content
+```
+
+<div class="semantic-line warning" style="margin-top: 24px;">The required exercise uses cached output. No key is needed to inspect, parse, or validate it.</div>
+
+<div class="source-line">OpenRouter Python SDK documentation · checked August 18, 2026</div>
+
+::: {.notes}
+[Sources]
+- Code syntax: Official OpenRouter Python SDK, `OpenRouter` client and `client.chat.send` | Source: https://openrouter.ai/docs/client-sdks/python/overview | Accessed: 2026-08-18
+[/Sources]
+Do not run the live call unless demonstrating. Explain what enters and what exits; do not dwell on API syntax.
+:::
+
+---
+
+## Inspect raw output before trusting the parsed label
+
+<div class="object-type">str</div>
+<div class="object-view">{
+  "id": 3,
+  "label": "SUPPORT",
+  "evidence": "I want lower rents"
+}</div>
+
+<div class="semantic-line warning" style="margin-top: 32px;">The JSON is well formed. The evidence is real. The measurement is still wrong under our codebook.</div>
+
+::: {.notes}
+The output is instructor-authored cached material. Ask why valid JSON and verbatim evidence are insufficient validation.
+:::
+
+---
+
+## Parsing changes the type—not the truth status
+
+```{.python code-line-numbers="1-7"}
+import json
+
+parsed = json.loads(raw_text)
+model_label = parsed["label"]
+
+print(type(raw_text))   # str
+print(type(parsed))     # dict
+```
+
+<div class="semantic-line" style="margin-top: 30px;">A parser can guarantee structure. It cannot guarantee construct validity.</div>
+
+::: {.notes}
+Ask students to predict both printed types. Connect “structure” to the role of a schema and “validity” to comparison with the reference/codebook.
+:::
+
+---
+
+## The model changes the estimated prevalence
+
+:::: {.columns}
+::: {.column width="48%"}
+<div class="label human">Human reference</div>
+<div class="evidence-number" style="color: var(--ink);">4/12</div>
+<div class="evidence-label">33% explicitly support</div>
+:::
+::: {.column width="48%"}
+<div class="label model">Cached model labels</div>
+<div class="evidence-number">6/12</div>
+<div class="evidence-label">50% classified as support</div>
+:::
+::::
+
+<div class="semantic-line warning" style="margin-top: 34px;">Two labels move the substantive estimate by 17 percentage points.</div>
+
+::: {.notes}
+All numbers derive from synthetic course data. Ask students to predict the direction of bias before showing the second column.
+:::
+
+---
+
+## An 83% accuracy rate coexists with a biased estimate
+
+:::: {.columns}
+::: {.column width="42%"}
+<div class="evidence-number">10/12</div>
+<div class="evidence-label">labels match the human reference</div>
+:::
+::: {.column width="54%"}
+<div class="semantic-line warning" style="margin-top: 30px;">Both errors convert **conditional** statements into support.</div>
+
+The error mechanism is substantively coherent, not a random sprinkling of mistakes.
+:::
+::::
+
+::: {.notes}
+All numbers derive from synthetic course data. Return to the opening question and ask who would now accept the classifier for prevalence estimation.
+:::
+
+---
+
+## Count outcomes by following four mutually exclusive branches
+
+```{.python code-line-numbers="1-10"}
+if human_support and model_support:
+    counts["tp"] += 1
+elif not human_support and model_support:
+    counts["fp"] += 1
+elif human_support and not model_support:
+    counts["fn"] += 1
+else:
+    counts["tn"] += 1
+```
+
+<div class="semantic-line validation" style="margin-top: 26px;">Every record enters exactly one branch. Predict which branch comment 3 enters.</div>
+
+::: {.notes}
+Have the less experienced partner explain the Boolean expressions. Comment 3 is human not-support/model-support, hence false positive.
+:::
+
+---
+
+## Each metric answers a different question
+
+<div class="metric-row"><strong>Precision</strong><span class="value">.67</span><span>Of predicted support, how much is reference support?</span></div>
+<div class="metric-row"><strong>Recall</strong><span class="value">1.00</span><span>Of reference support, how much did the model recover?</span></div>
+<div class="metric-row"><strong>F1</strong><span class="value">.80</span><span>How strong is their harmonic balance?</span></div>
+
+<div class="semantic-line warning" style="margin-top: 22px;">High recall does not rescue a prevalence estimate inflated by false positives.</div>
+
+<div class="source-line">Barrie, Argyle, Bisbee et al., 2026 · §10.2.5</div>
+
+::: {.notes}
+[Sources]
+- Claim: Balanced metrics such as F1 and direct inspection of the confusion matrix are preferable to agreement alone, especially for rare categories | Source: course chapter §10.2.5 | Accessed: 2026-08-18
+[/Sources]
+Metrics are computed from synthetic data: TP=4, FP=2, FN=0, TN=6.
+:::
+
+---
+
+## The two errors share the same boundary condition
+
+:::: {.columns}
+::: {.column width="48%"}
+<div class="label failure">Comment 3</div>
+
+“I want lower rents, **but I cannot support** the proposal unless…”
+
+Model evidence: “I want lower rents”
+:::
+::: {.column width="48%"}
+<div class="label failure">Comment 11</div>
+
+“I **could accept** additional housing **if** the city first guarantees…”
+
+Model evidence: “I could accept additional housing”
+:::
+::::
+
+<div class="semantic-line warning" style="margin-top: 30px;">The model detects favorable language and underweights the condition governing stance.</div>
+
+::: {.notes}
+Synthetic course material. Ask whether prompt revision, human adjudication, a new category, or a different inferential target is the best response.
+:::
+
+---
+
+## Error inspection can force a theoretical decision
+
+<div class="comparison-band"><strong>Option 1</strong> Keep UNCLEAR and strengthen the conditional-case rule</div>
+<div class="comparison-band"><strong>Option 2</strong> Add CONDITIONAL as a theoretically meaningful category</div>
+<div class="comparison-band"><strong>Option 3</strong> Change the target from explicit support to openness under conditions</div>
+
+<div class="semantic-line validation" style="margin-top: 30px;">Validation is not only model checking. It can refine the measure and the question.</div>
+
+::: {.notes}
+Have students choose an option and say what downstream quantity it would produce. There is no universally correct answer; the research question governs.
+:::
+
+---
+
+## A defensible workflow stacks several checks
+
+1. **Construct:** labels and boundary cases represent the concept.
+2. **Reference:** humans code a held-out, strategically sampled subset.
+3. **Performance:** inspect confusion, class metrics, and substantive quantities.
+4. **Pattern:** test error by text type, subgroup, period, and theoretical variables.
+5. **Dependence:** vary prompt, model/runtime, and collection date.
+6. **Inference:** revise the claim or correct downstream estimation.
+
+<div class="source-line">Barrie, Argyle, Bisbee et al., 2026 · Stuhler et al., 2025 · Chae & Davidson, 2026</div>
+
+::: {.notes}
+[Sources]
+- Validation principles: held-out human comparison, balanced metrics, non-random error, model/version revalidation, cost/performance comparison | Source: course chapter §10.2.5; https://doi.org/10.1177/00491241251336794; https://doi.org/10.1177/00491241251325243 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## Completion task: make the error visible
+
+1. Write the four-way outcome-counting function.
+2. Calculate precision, recall, and F1 for SUPPORT.
+3. Run the supplied checks.
+4. Explain why the two false positives matter for the support estimate.
+5. Connect the pattern to one required reading in 100–150 words.
+
+<div class="semantic-line" style="margin-top: 34px;">Complete means: prediction · working code · interpreted check · reading-linked claim.</div>
+
+::: {.notes}
+Point students to `assessments/weekly_coding/session02_task.py`. Do not show the reference solution during class.
+:::
+
+---
+
+## Revise the claim to match the evidence {.question-slide}
+
+<div class="major-question" style="margin-top: 46px;">
+This promptbook produces useful provisional labels—but it does not yet support an unbiased estimate of explicit support.
+</div>
+
+<div class="lead" style="margin-top: 48px;">What new evidence would let you strengthen that sentence?</div>
+
+::: {.notes}
+Exit record: claim → target → evidence → failure mode → revised claim. Ask students to name one validation sample or design change, not simply “more data.”
+:::

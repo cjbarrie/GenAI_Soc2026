@@ -1,0 +1,182 @@
+---
+title: "What counts as evidence across text, image, and audio?"
+subtitle: "Session 4 · Multimodal measurement"
+author: "Generative AI in Sociology"
+date: "September 23, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to observe
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class=""><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## What counts as evidence across text, image, and audio?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Create comparable records while preserving what must be checked differently for text, image, and audio.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">A missing transcript, image source, or audio duration disappears when all modalities are squeezed into one generic `content` field.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Law & Roberto (2025):** methodological opportunity
+- **Maranca et al. (2025):** validation or counterclaim
+- **Arminio et al. (2026):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Law & Roberto (2025), generative multimodal models | Source: https://doi.org/10.1177/00491241251339673 | Accessed: 2026-08-18
+- Maranca et al. (2025), correcting image-label errors | Source: https://doi.org/10.1177/00491241251333372 | Accessed: 2026-08-18
+- Arminio et al. (2026), visual clustering with VLLMs | Source: https://doi.org/10.1177/08944393251376703 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The papers disagree about what success licenses
+
+<div class="lead">Multimodal models can make images searchable and interpretable; design-based correction shows why annotation error still enters downstream estimates.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Law & Roberto (2025), generative multimodal models | Source: https://doi.org/10.1177/00491241251339673 | Accessed: 2026-08-18
+- Maranca et al. (2025), correcting image-label errors | Source: https://doi.org/10.1177/00491241251333372 | Accessed: 2026-08-18
+- Arminio et al. (2026), visual clustering with VLLMs | Source: https://doi.org/10.1177/08944393251376703 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">A common data schema aids comparison but cannot erase modality-specific evidence and error.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Normalize three modality records and report missing modality-specific fields.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def normalize_multimodal_records(records):
+    # return one documented result
+```
+
+**Return value:** Return normalized records with a list of missing required fields for each modality.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def normalize_multimodal_records(records):
+    required = {"text": ["text"], "image": ["path", "source"], "audio": ["path", "duration_seconds"]}
+    normalized = []
+    for record in records:
+        modality = record["modality"]
+        missing = [field for field in required[modality] if record.get(field) in (None, "")]
+        normalized.append({"id": record["id"], "modality": modality, "content": record.get("text") or record.get("path"), "missing": missing})
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+    return normalized
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. `required` is a dictionary whose values are lists of fields needed for each modality.
+2. The loop reads the modality before choosing its validation rule.
+3. The list comprehension keeps only required fields whose value is missing.
+4. The output keeps a common surface schema plus an explicit record of what modality-specific evidence is absent.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert normalized[2]["missing"] == ["duration_seconds"]
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">A missing transcript, image source, or audio duration disappears when all modalities are squeezed into one generic `content` field.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `normalize_multimodal_records`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Law & Roberto (2025), generative multimodal models | Source: https://doi.org/10.1177/00491241251339673 | Accessed: 2026-08-18
+- Maranca et al. (2025), correcting image-label errors | Source: https://doi.org/10.1177/00491241251333372 | Accessed: 2026-08-18
+- Arminio et al. (2026), visual clustering with VLLMs | Source: https://doi.org/10.1177/08944393251376703 | Accessed: 2026-08-18
+[/Sources]
+:::

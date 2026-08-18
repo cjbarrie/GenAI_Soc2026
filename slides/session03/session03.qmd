@@ -1,0 +1,186 @@
+---
+title: "What does interpretation mean when an LLM assists qualitative research?"
+subtitle: "Session 3 · Qualitative analysis"
+author: "Generative AI in Sociology"
+date: "September 16, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to observe
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class=""><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## What does interpretation mean when an LLM assists qualitative research?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Produce provisional themes while retaining the quotation that warrants each theme assignment.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">A fluent memo names a theme but fabricates, paraphrases, or loses the source passage on which the interpretation depends.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Than et al. (2025):** methodological opportunity
+- **Ibrahim & Voyer (2026):** validation or counterclaim
+- **Nguyen & Welch (2026):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Than et al. (2025), qualitative coding with generative LLMs | Source: https://doi.org/10.1177/00491241251339188 | Accessed: 2026-08-18
+- Ibrahim & Voyer (2026), technological reflexivity | Source: https://doi.org/10.1177/14687941251390794 | Accessed: 2026-08-18
+- Nguyen & Welch (2026), analyzing—or just chatting? | Source: https://doi.org/10.1177/10944281251377154 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The papers disagree about what success licenses
+
+<div class="lead">Workflow accounts emphasize assisted coding; reflexive and critical accounts disagree about whether ambiguity is a defect, a resource, or evidence of epistemic limits.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Than et al. (2025), qualitative coding with generative LLMs | Source: https://doi.org/10.1177/00491241251339188 | Accessed: 2026-08-18
+- Ibrahim & Voyer (2026), technological reflexivity | Source: https://doi.org/10.1177/14687941251390794 | Accessed: 2026-08-18
+- Nguyen & Welch (2026), analyzing—or just chatting? | Source: https://doi.org/10.1177/10944281251377154 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">A theme is auditable only when it remains linked to source evidence and an interpretive decision.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Link proposed qualitative themes to exact supporting excerpts and reject unsupported labels.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def link_themes_to_evidence(excerpts, proposals):
+    # return one documented result
+```
+
+**Return value:** Return accepted theme records and a list of rejected proposal IDs.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def link_themes_to_evidence(excerpts, proposals):
+    excerpt_by_id = {item["id"]: item["text"] for item in excerpts}
+    accepted = []
+    rejected = []
+    for proposal in proposals:
+        source_text = excerpt_by_id.get(proposal["excerpt_id"])
+        quote = proposal.get("quote")
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+        if source_text is None or not quote or quote not in source_text:
+            rejected.append(proposal["excerpt_id"])
+        else:
+            accepted.append({"theme": proposal["theme"], "quote": quote, "excerpt_id": proposal["excerpt_id"]})
+    return accepted, rejected
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. The first dictionary comprehension builds a lookup: excerpt ID → full source text.
+2. The loop considers one proposed interpretation at a time.
+3. The `if` branch rejects missing excerpts, empty quotations, and quotations not found verbatim in the source.
+4. The output separates auditable proposals from records that require human review.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert rejected == [2]
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">A fluent memo names a theme but fabricates, paraphrases, or loses the source passage on which the interpretation depends.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `link_themes_to_evidence`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Than et al. (2025), qualitative coding with generative LLMs | Source: https://doi.org/10.1177/00491241251339188 | Accessed: 2026-08-18
+- Ibrahim & Voyer (2026), technological reflexivity | Source: https://doi.org/10.1177/14687941251390794 | Accessed: 2026-08-18
+- Nguyen & Welch (2026), analyzing—or just chatting? | Source: https://doi.org/10.1177/10944281251377154 | Accessed: 2026-08-18
+[/Sources]
+:::
