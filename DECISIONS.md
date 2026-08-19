@@ -142,3 +142,10 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - **Rationale:** Students need to be able to narrate the code, not merely run it. A small cohort and the approved oral component make spoken explanation an enforceable course norm.
 - **Implementation:** Workbooks include prediction pauses, worked traces, assertions explained in ordinary language, reading-linked limitations, and oral rehearsal prompts. Projected code is split across slides when necessary; complete code remains in the workbook. All required exercises can run from cached or synthetic data without spending model credits.
 - **Decision:** The supported hybrid environment is now implemented with canonical local Jupyter notebooks, a Colab fallback, OpenRouter for hosted calls, and Ollama as the default local runtime, with a separate extensive local-LLM guide.
+
+## 2026-08-19 — Phase 7 release standard
+
+- **Decision:** Treat line-by-line comprehensibility as a release requirement, not an optional annotation layer. Every generated workbook now includes a Python-mechanics guide, actual argument values and types immediately before the worked function call, a printed return value, an interpreted check, and an optional extension clearly separated from the completion task.
+- **Decision:** Keep `openai/gpt-5.2` as the centrally configured hosted model and Ollama `gemma4` as the documented local example after checking their official listings on August 19, 2026. Model availability must be rechecked before teaching.
+- **Decision:** Use the Sociological Science article page for Alvero et al. in student-facing links because the correct DOI currently redirects through a broken journal route; retain the DOI in the bibliography.
+- **Decision:** A course release requires all notebooks to execute, all tests and integration scripts to pass, every deck to render and pass geometry/visual review, rendered HTML to pass desktop/mobile checks, bibliography records to match Crossref where available, and all student-facing links to resolve or be explicitly classified as access-restricted.

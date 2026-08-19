@@ -28,6 +28,12 @@ def precision_recall_f1(counts):
     raise NotImplementedError("Complete precision_recall_f1")
 
 
+# OPTIONAL EXTENSION (not required for completion):
+# Add one conditionally supportive comment that the model labels SUPPORT but the
+# human codebook labels UNCLEAR. Predict which count changes, run the functions,
+# and explain why accuracy alone can hide the resulting prevalence error.
+
+
 # Run these checks after completing both functions.
 if __name__ == "__main__":
     example = [
@@ -48,4 +54,3 @@ if __name__ == "__main__":
     assert empty == {"precision": 0.0, "recall": 0.0, "f1": 0.0}
 
     print("All checks passed.")
-

@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Cross-national and creator-geography comparisons identify patterned outputs; causal triangulation and the provisional consciousness study raise different evidentiary thresholds for explaining those patterns.</div>
 
@@ -126,7 +126,12 @@ def factorial_audit(models, languages, frames, responses):
 ::: {.compact-code}
 ```python
                 if key in responses:
-                    conditions.append({"model": model, "language": language, "frame": frame, "response": responses[key]})
+                    conditions.append({
+                        "model": model,
+                        "language": language,
+                        "frame": frame,
+                        "response": responses[key],
+                    })
                 else:
                     missing.append(key)
     return conditions, missing

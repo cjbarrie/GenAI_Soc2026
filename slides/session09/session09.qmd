@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Classic ABM explanation emphasizes transparent rules; generative agents add memory, reflection, and language policies whose model tendencies may shape the macro result.</div>
 

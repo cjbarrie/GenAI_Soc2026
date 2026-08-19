@@ -17,7 +17,11 @@ Required exercises always work from cached or synthetic data. A live OpenRouter 
 uv sync
 uv run python -m pytest -q
 uv run python scripts/check_course.py
+uv run python scripts/integration_check.py
+uv run python scripts/check_links.py
+uv run python scripts/check_citations.py
 ```
 
 Render a deck with `quarto render slides/session02/session02.qmd`. API keys belong in the environment, never in notebooks or repository files.
 
+Before a release, also run the live variants of the link and citation checks. The exact maintenance and rendering sequence is in `docs/MAINTENANCE.md`; the completed Phase 7 record is in `docs/PHASE7_VERIFICATION.md`.

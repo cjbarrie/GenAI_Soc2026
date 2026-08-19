@@ -56,7 +56,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Reporting checklists make workflows inspectable; model/provider dependence means even apparently deterministic reruns may not recreate an earlier transformation.</div>
 

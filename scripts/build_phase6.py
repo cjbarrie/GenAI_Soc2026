@@ -6,6 +6,7 @@ an LLM. All prose, code, examples, and source links below are instructor-authore
 
 from __future__ import annotations
 
+import ast
 import json
 import re
 from hashlib import sha1
@@ -23,7 +24,7 @@ SESSIONS = [
         "movement": "Observe", "anchor": "§§10.1 and 10.9",
         "papers": [
             ("Davidson & Karell (2025), integrating GenAI into social science", "https://doi.org/10.1177/00491241251339184"),
-            ("Alvero et al. (2026), GenAI in sociological research", "https://doi.org/10.15195/v13.a3"),
+            ("Alvero et al. (2026), GenAI in sociological research", "https://sociologicalscience.com/articles-v13-3-45/"),
         ],
         "thesis": "An LLM becomes a research technology only when its input, transformation, output, and validation record are visible.",
         "tension": "Capability maps show where models enter research; disciplinary evidence asks what becomes easier, what becomes hidden, and who bears the checking work.",
@@ -75,7 +76,11 @@ print(record)''',
         if source_text is None or not quote or quote not in source_text:
             rejected.append(proposal["excerpt_id"])
         else:
-            accepted.append({"theme": proposal["theme"], "quote": quote, "excerpt_id": proposal["excerpt_id"]})
+            accepted.append({
+                "theme": proposal["theme"],
+                "quote": quote,
+                "excerpt_id": proposal["excerpt_id"],
+            })
     return accepted, rejected''',
         "checks": '''excerpts = [{"id": 1, "text": "Neighbors shared childcare when shifts changed."}, {"id": 2, "text": "I stopped attending after the fee increased."}]
 proposals = [{"excerpt_id": 1, "theme": "mutual aid", "quote": "shared childcare"}, {"excerpt_id": 2, "theme": "trust", "quote": "everyone trusted staff"}]
@@ -111,7 +116,12 @@ print("rejected:", rejected)''',
     for record in records:
         modality = record["modality"]
         missing = [field for field in required[modality] if record.get(field) in (None, "")]
-        normalized.append({"id": record["id"], "modality": modality, "content": record.get("text") or record.get("path"), "missing": missing})
+        normalized.append({
+            "id": record["id"],
+            "modality": modality,
+            "content": record.get("text") or record.get("path"),
+            "missing": missing,
+        })
     return normalized''',
         "checks": '''records = [{"id": 1, "modality": "text", "text": "A caption"}, {"id": 2, "modality": "image", "path": "block.jpg", "source": "city archive"}, {"id": 3, "modality": "audio", "path": "meeting.wav", "duration_seconds": None}]
 normalized = normalize_multimodal_records(records)
@@ -439,7 +449,12 @@ print(compare_replication_records(original, rerun))''',
             for frame in frames:
                 key = (model, language, frame)
                 if key in responses:
-                    conditions.append({"model": model, "language": language, "frame": frame, "response": responses[key]})
+                    conditions.append({
+                        "model": model,
+                        "language": language,
+                        "frame": frame,
+                        "response": responses[key],
+                    })
                 else:
                     missing.append(key)
     return conditions, missing''',
@@ -468,12 +483,22 @@ print("missing:", missing)''',
         "task": "Return a missing-evidence checklist and a bounded revision prompt for one project claim.",
         "function": "audit_project_claim", "signature": "project",
         "doc": "Check six required research-design fields and return missing names plus a revision prompt.",
-        "body": '''required = ["claim", "inferential_target", "input", "transformation", "validation", "replication_record"]
+        "body": '''required = [
+        "claim",
+        "inferential_target",
+        "input",
+        "transformation",
+        "validation",
+        "replication_record",
+    ]
     missing = [field for field in required if project.get(field) in (None, "", [], {})]
     if missing:
         revision = "Bound the claim until these fields are supplied: " + ", ".join(missing)
     else:
-        revision = "State the population, setting, model/runtime, and validation evidence directly in the claim."
+        revision = (
+            "State the population, setting, model/runtime, "
+            "and validation evidence directly in the claim."
+        )
     return {"missing": missing, "revision": revision}''',
         "checks": '''partial = {"claim": "The model measures trust", "inferential_target": "meeting-level trust", "input": ["synthetic excerpt"], "transformation": "classification", "validation": None, "replication_record": {}}
 audit = audit_project_claim(partial)
@@ -500,6 +525,70 @@ def safe_id(text: str) -> str:
 def normalize_code_block(text: str) -> str:
     """Give a triple-quoted block a common baseline, including its first line."""
     return dedent("    " + text)
+
+
+def explain_python_line(line: str) -> str:
+    """Return a beginner-facing explanation of one line's Python mechanics."""
+    code = line.strip()
+    if code.startswith("def "):
+        return "`def` creates a reusable function. The names inside parentheses are the input names; the colon starts its indented body."
+    if code.startswith('"""'):
+        return "The triple-quoted text documents what the function promises to return; Python does not execute it as an instruction."
+    if code.startswith("for "):
+        return "`for` repeats the indented block once for each item on the right of `in`; the name after `for` holds the current item."
+    if code.startswith("if ") or code.startswith("elif "):
+        return "This is a Boolean test. Python runs the indented block only when the expression before the colon is `True`."
+    if code == "else:":
+        return "`else` handles the remaining cases for which the preceding test was `False`."
+    if code.startswith("return ") or code == "return {":
+        return "`return` ends the function and sends this value back to the line that called it."
+    if code in {"}", "]", ")"}:
+        return "This closing bracket ends the collection or function call opened above."
+    if ".append(" in code:
+        return "`.append(...)` adds one new item to the end of the named list; the list itself changes."
+    if ".setdefault(" in code:
+        return "`.setdefault(key, value)` creates the key only when it is absent, then returns the value stored under that key."
+    if "+=" in code:
+        return "`+=` reads the current value, adds the value on the right, and stores the result back under the same name."
+    if " = " in code:
+        left, right = code.split(" = ", 1)
+        if " for " in right and right[:1] in "[{":
+            return f"This comprehension repeats the expression before `for` and stores the resulting collection under `{left}`; read it as a compact loop."
+        return f"`=` evaluates the expression on the right, then gives that value the name `{left}`. It does not test equality."
+    if code.startswith(('"', "'")) and ":" in code:
+        return "This is one dictionary entry: the quoted text is the key and the expression after the colon supplies its value."
+    return "Read the brackets and function calls from the inside out; this line contributes one value or action to the surrounding block."
+
+
+def line_guide(function_code: str) -> str:
+    rows = []
+    for number, line in enumerate(function_code.splitlines(), start=1):
+        visible = line.strip().replace("`", "\\`")
+        if visible:
+            rows.append(f"{number}. `{visible}`  \n   {explain_python_line(line)}")
+    return "\n".join(rows)
+
+
+def traced_example(session: dict) -> str:
+    """Insert explicit input/type displays immediately before the function call."""
+    example = session["example"]
+    lines = example.splitlines()
+    tree = ast.parse(example)
+    call = next(
+        node
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Name)
+        and node.func.id == session["function"]
+    )
+    call_index = call.lineno - 1
+    argument_names = [argument.strip() for argument in session["signature"].split(",")]
+    argument_expressions = [ast.get_source_segment(example, argument) for argument in call.args]
+    type_lines = [
+        f'print("input {name}:", type({expression}).__name__, repr({expression}))'
+        for name, expression in zip(argument_names, argument_expressions, strict=True)
+    ]
+    return "\n".join(lines[:call_index] + type_lines + lines[call_index:])
 
 
 def solution_code(session: dict) -> str:
@@ -548,6 +637,12 @@ def run_checks():
 {indent(session['checks'], '    ')}
 
 
+# OPTIONAL EXTENSION (not required for completion):
+# Add one small synthetic case designed to trigger the characteristic failure.
+# Predict the result before running it, then explain whether the existing output
+# makes that failure visible or whether the research record needs another field.
+
+
 if __name__ == "__main__":
     run_checks()
     print("All checks passed. Now interpret one success or failure.")
@@ -566,20 +661,23 @@ def make_notebook(session: dict) -> dict:
     function_only = f"def {session['function']}({session['signature']}):\n    \"\"\"{session['doc']}\"\"\"\n" + indent(normalize_code_block(session["body"]), "    ")
     papers = "\n".join(f"- [{name}]({url})" for name, url in session["papers"])
     walk = "\n".join(f"{i + 1}. {line}" for i, line in enumerate(session["plain"]))
+    detailed_guide = line_guide(function_only)
+    example_with_types = traced_example(session)
     cells = [
         md(f"# Session {session['n']} — {session['title']}\n\n**Research target:** {session['target']}\n\nThis notebook follows **question → input → type → transformation → raw output → check → research meaning**. Before each code cell, predict what Python object will come out. After it runs, explain it without relying on syntax jargon."),
         md(f"## Why the code is here\n\n**Course claim:** {session['thesis']}\n\n**Characteristic failure:** {session['failure']}\n\nThe code is a deliberately small research algorithm. It is not evidence that an LLM is valid."),
         md("## 1. Meet the input objects\n\nRead brackets first: `[]` marks a list; `{}` marks a dictionary; quotation marks mark a string. `type(...)` asks Python what kind of object a value is. The cell below uses no live model."),
         code(session["example"].split("\n")[0] + "\nprint(type(" + session["example"].split(" = ")[0] + "))"),
-        md(f"## 2. Name the algorithm before running it\n\n**Input:** the small objects created below.\n\n**Transformation:** `{session['function']}`.\n\n**Output:** an inspectable Python object.\n\n**Check:** the explicit assertions in Section 5.\n\n**Plain-language walkthrough**\n\n{walk}"),
+        md(f"## 2. Name the algorithm before running it\n\n**Input names:** `{session['signature']}`. The trace below prints the exact value and Python type for every input before calling the function.\n\n**Operation:** `{session['function']}`.\n\n**Output:** an inspectable Python object. Read the `return` line to identify its type and contents.\n\n**Check:** the explicit assertions in Section 5.\n\n**Research meaning, in four steps**\n\n{walk}\n\n### Read every line of Python\n\n{detailed_guide}\n\nThe numbered guide explains Python mechanics. The four-step walkthrough explains why those mechanics belong in this research design; neither substitutes for the other."),
         code(function_only),
         md("### Pause and say it aloud\n\nPoint to each argument in the function header. Say what value enters it, what type that value has, what changes inside the function, and what `return` sends back. If you cannot do that yet, reread the four numbered sentences before editing code."),
         md("## 3. Run one trace\n\nThe next cell creates tiny synthetic inputs and prints the complete returned object. Printing before summarizing makes unexpected fields and values visible."),
-        code(session["example"]),
+        code(example_with_types),
         md("## 4. Connect the output to the research question\n\nA correct Python result means the declared transformation ran. It does **not** establish construct validity, representativeness, causality, emergence, or reproducibility. Interpret the output beside the inferential target and failure mode above."),
         md("## 5. Run executable checks\n\nAn `assert` states an expectation. If the statement after `assert` is `True`, Python continues silently. If it is `False`, Python stops at that exact expectation. Read the left and right sides before running."),
         code(session["checks"] + "\nprint('All worked-example checks passed.')"),
         md(f"## 6. Your completion task\n\nOpen `assessments/weekly_coding/session{session['n']:02d}_task.py`. {session['task']} Submit: (1) your prediction, (2) working code, (3) passing checks plus an interpreted diagnostic, and (4) a 100–150 word connection to one required reading."),
+        md("## Optional extension\n\nAdd one small synthetic case designed to trigger the characteristic failure named at the start of this notebook. Predict the returned object before running it. Then explain whether the current output makes the failure visible or whether the research record needs another field. This is optional and is not part of the completion mark."),
         md(f"## Required readings speak to this code\n\n{papers}\n\nWrite one sentence beginning: **This algorithm makes ___ visible, but the reading shows it cannot by itself establish ___.**"),
         md("## Oral-assessment rehearsal\n\nChoose four consecutive lines from the function. Explain every name and bracket, predict the returned value, then change one input and predict exactly what changes. Accurate plain language is better than unexplained technical vocabulary."),
         md("## AI-use disclosure\n\nIf a tool materially assisted you, record: tool/model; what you used it for; what you incorporated; and how you checked it. You remain responsible for every claim and line of code."),
@@ -704,7 +802,10 @@ If environment setup fails, pair students around the rendered notebook and have 
 
 
 def deck(session: dict) -> str:
-    source_notes = "\n".join(f"- {name} | Source: {url} | Accessed: 2026-08-18" for name, url in session["papers"])
+    source_notes = "\n".join(
+        f"- {name} | Source: {('../' + url) if url.startswith('../') else url} | Accessed: 2026-08-18"
+        for name, url in session["papers"]
+    )
     reading_lines = "\n".join(f"- **{name.split(',')[0]}:** {('methodological opportunity' if i == 0 else 'validation or counterclaim')}" for i, (name, _) in enumerate(session["papers"]))
     code_lines = function_only = f"def {session['function']}({session['signature']}):\n" + indent(normalize_code_block(session["body"]), "    ")
     code_line_list = code_lines.splitlines()
@@ -767,7 +868,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">{session['tension']}</div>
 

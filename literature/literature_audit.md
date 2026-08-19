@@ -33,7 +33,7 @@ The computational link states what students should be able to inspect or reprodu
 **Required**
 
 - Davidson, Thomas, and Daniel Karell. 2025. “Integrating Generative Artificial Intelligence into Social Science Research: Measurement, Prompting, and Simulation.” *Sociological Methods & Research* 54(3):775–793. [DOI](https://doi.org/10.1177/00491241251339184). **Role:** supplies the sociology-first map of research uses and makes validation central.
-- Alvero, AJ, Dustin S. Stoltz, Oscar Stuhler, and Marshall A. Taylor. 2026. “Generative AI in Sociological Research: State of the Discipline.” *Sociological Science* 13:45–62. [DOI](https://doi.org/10.15195/v13.a3). **Role:** shows how sociologists actually use and understand GenAI, connecting the tool to the discipline rather than to speculative capability claims.
+- Alvero, AJ, Dustin S. Stoltz, Oscar Stuhler, and Marshall A. Taylor. 2026. “Generative AI in Sociological Research: State of the Discipline.” *Sociological Science* 13:45–62. [Article](https://sociologicalscience.com/articles-v13-3-45/); DOI `10.15195/v13.a3`. **Role:** shows how sociologists actually use and understand GenAI, connecting the tool to the discipline rather than to speculative capability claims.
 
 **Optional:** Bail (2024) for a concise opportunity/risk essay; Bender et al. (2021) for training-data, scale, and political-economy critique; Davidson (2024) for a practical sociology overview.
 

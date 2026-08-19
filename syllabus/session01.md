@@ -22,7 +22,7 @@ By the end, students should be able to:
 ## Required readings
 
 - [Davidson & Karell (2025), integrating GenAI into social science](https://doi.org/10.1177/00491241251339184)
-- [Alvero et al. (2026), GenAI in sociological research](https://doi.org/10.15195/v13.a3)
+- [Alvero et al. (2026), GenAI in sociological research](https://sociologicalscience.com/articles-v13-3-45/)
 
 ## Lecture argument
 

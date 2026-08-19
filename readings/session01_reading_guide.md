@@ -9,7 +9,7 @@ Do not summarize the papers serially. Compare the inferential target, the role a
 | Reading | Ask while reading | Bring to the code |
 |---|---|---|
 | [Davidson & Karell (2025), integrating GenAI into social science](https://doi.org/10.1177/00491241251339184) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Alvero et al. (2026), GenAI in sociological research](https://doi.org/10.15195/v13.a3) | What inference does the paper seek? | What evidence could disconfirm it? |
+| [Alvero et al. (2026), GenAI in sociological research](https://sociologicalscience.com/articles-v13-3-45/) | What inference does the paper seek? | What evidence could disconfirm it? |
 
 ## Before class
 

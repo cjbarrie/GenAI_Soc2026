@@ -26,6 +26,12 @@ def run_checks():
     assert accepted[0]["url"] == "https://example.org/a"
 
 
+# OPTIONAL EXTENSION (not required for completion):
+# Add one small synthetic case designed to trigger the characteristic failure.
+# Predict the result before running it, then explain whether the existing output
+# makes that failure visible or whether the research record needs another field.
+
+
 if __name__ == "__main__":
     run_checks()
     print("All checks passed. Now interpret one success or failure.")

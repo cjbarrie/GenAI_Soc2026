@@ -50,13 +50,13 @@ format:
 ::: {.notes}
 [Sources]
 - Davidson & Karell (2025), integrating GenAI into social science | Source: https://doi.org/10.1177/00491241251339184 | Accessed: 2026-08-18
-- Alvero et al. (2026), GenAI in sociological research | Source: https://doi.org/10.15195/v13.a3 | Accessed: 2026-08-18
+- Alvero et al. (2026), GenAI in sociological research | Source: https://sociologicalscience.com/articles-v13-3-45/ | Accessed: 2026-08-18
 [/Sources]
 :::
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Capability maps show where models enter research; disciplinary evidence asks what becomes easier, what becomes hidden, and who bears the checking work.</div>
 
@@ -65,7 +65,7 @@ format:
 ::: {.notes}
 [Sources]
 - Davidson & Karell (2025), integrating GenAI into social science | Source: https://doi.org/10.1177/00491241251339184 | Accessed: 2026-08-18
-- Alvero et al. (2026), GenAI in sociological research | Source: https://doi.org/10.15195/v13.a3 | Accessed: 2026-08-18
+- Alvero et al. (2026), GenAI in sociological research | Source: https://sociologicalscience.com/articles-v13-3-45/ | Accessed: 2026-08-18
 [/Sources]
 :::
 
@@ -174,6 +174,6 @@ assert record["validation"] is None
 ::: {.notes}
 [Sources]
 - Davidson & Karell (2025), integrating GenAI into social science | Source: https://doi.org/10.1177/00491241251339184 | Accessed: 2026-08-18
-- Alvero et al. (2026), GenAI in sociological research | Source: https://doi.org/10.15195/v13.a3 | Accessed: 2026-08-18
+- Alvero et al. (2026), GenAI in sociological research | Source: https://sociologicalscience.com/articles-v13-3-45/ | Accessed: 2026-08-18
 [/Sources]
 :::

@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">AI-generated profiles and messages enable scale; information equivalence asks whether conditions differ only in the information the design intends to manipulate.</div>
 

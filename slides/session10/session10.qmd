@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Population experiments and societies-of-thought studies attribute collective outcomes to interaction; the leakage critique shows that the same observation can have a non-emergent explanation.</div>
 

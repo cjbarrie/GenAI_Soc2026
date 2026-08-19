@@ -56,7 +56,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">End-to-end systems automate search, code, analysis, and writing; transparency arguments ask whether multiplying agents adds justified capability or merely obscures responsibility.</div>
 

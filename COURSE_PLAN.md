@@ -10,8 +10,8 @@ This is the evolving single source of truth for the redesign. Detailed weekly co
 - **Phase 3 — Assessment and coding progression:** Completed and approved. The design is recorded in `assessment/PHASE3_PROPOSAL.md`, `workbook/PROGRESSION.md`, and `syllabus/AI_USE_POLICY.md`.
 - **Phase 4 — Visual system:** Completed. Direction A — Evidence & Society is approved and specified in `design/DESIGN_SYSTEM.md`.
 - **Phase 5 — Pilot week:** Completed and approved for scaling through the instructor's decision to proceed to Phase 6.
-- **Phase 6 — Scale:** Implemented across all 14 sessions. Workbooks, tasks, solutions, tests, reading guides, instructor notes, and decks are built; final technical and projection QA is in progress.
-- **Phase 7 — Integration testing:** Not started.
+- **Phase 6 — Scale:** Completed. Across all 14 sessions, workbooks, tasks, solutions, tests, reading guides, instructor notes, and decks are built and executed.
+- **Phase 7 — Integration testing:** Completed August 19, 2026. The release passed notebook execution, tests, structural integration, citation and link checks, secret scanning, slide capture, visual review, and desktop/mobile HTML QA. See `docs/PHASE7_VERIFICATION.md`.
 
 ## Confirmed constraints
 

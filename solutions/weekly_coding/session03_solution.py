@@ -16,7 +16,11 @@ def link_themes_to_evidence(excerpts, proposals):
         if source_text is None or not quote or quote not in source_text:
             rejected.append(proposal["excerpt_id"])
         else:
-            accepted.append({"theme": proposal["theme"], "quote": quote, "excerpt_id": proposal["excerpt_id"]})
+            accepted.append({
+                "theme": proposal["theme"],
+                "quote": quote,
+                "excerpt_id": proposal["excerpt_id"],
+            })
     return accepted, rejected
 
 

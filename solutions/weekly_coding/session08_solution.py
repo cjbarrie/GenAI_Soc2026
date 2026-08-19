@@ -18,7 +18,11 @@ def score_inferential_targets(records):
             means[(source, group)] = sum(values) / len(values)
     human_gap = means[("human", "A")] - means[("human", "B")]
     synthetic_gap = means[("synthetic", "A")] - means[("synthetic", "B")]
-    return {"individual_mae": individual_mae, "aggregate_error": abs(human_mean - synthetic_mean), "group_gap_error": abs(human_gap - synthetic_gap)}
+    return {
+        "individual_mae": individual_mae,
+        "aggregate_error": abs(human_mean - synthetic_mean),
+        "group_gap_error": abs(human_gap - synthetic_gap),
+    }
 
 
 def run_checks():

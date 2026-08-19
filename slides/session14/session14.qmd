@@ -48,13 +48,13 @@ format:
 
 ::: {.notes}
 [Sources]
-- Course synthesis: revisit one earlier empirical claim | Source: ../literature/literature_audit.md | Accessed: 2026-08-18
+- Course synthesis: revisit one earlier empirical claim | Source: ../../literature/literature_audit.md | Accessed: 2026-08-18
 [/Sources]
 :::
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Across the semester, models make new transformations feasible while repeatedly moving validation and responsibility downstream to the researcher.</div>
 
@@ -62,7 +62,7 @@ format:
 
 ::: {.notes}
 [Sources]
-- Course synthesis: revisit one earlier empirical claim | Source: ../literature/literature_audit.md | Accessed: 2026-08-18
+- Course synthesis: revisit one earlier empirical claim | Source: ../../literature/literature_audit.md | Accessed: 2026-08-18
 [/Sources]
 :::
 
@@ -104,12 +104,12 @@ def audit_project_claim(project):
 ::: {.compact-code}
 ```python
 def audit_project_claim(project):
-    required = ["claim", "inferential_target", "input", "transformation", "validation", "replication_record"]
-    missing = [field for field in required if project.get(field) in (None, "", [], {})]
-    if missing:
-        revision = "Bound the claim until these fields are supplied: " + ", ".join(missing)
-    else:
-        revision = "State the population, setting, model/runtime, and validation evidence directly in the claim."
+    required = [
+        "claim",
+        "inferential_target",
+        "input",
+        "transformation",
+        "validation",
 ```
 :::
 
@@ -119,6 +119,16 @@ def audit_project_claim(project):
 
 ::: {.compact-code}
 ```python
+        "replication_record",
+    ]
+    missing = [field for field in required if project.get(field) in (None, "", [], {})]
+    if missing:
+        revision = "Bound the claim until these fields are supplied: " + ", ".join(missing)
+    else:
+        revision = (
+            "State the population, setting, model/runtime, "
+            "and validation evidence directly in the claim."
+        )
     return {"missing": missing, "revision": revision}
 ```
 :::
@@ -169,6 +179,6 @@ assert audit_project_claim(complete)["missing"] == []
 
 ::: {.notes}
 [Sources]
-- Course synthesis: revisit one earlier empirical claim | Source: ../literature/literature_audit.md | Accessed: 2026-08-18
+- Course synthesis: revisit one earlier empirical claim | Source: ../../literature/literature_audit.md | Accessed: 2026-08-18
 [/Sources]
 :::

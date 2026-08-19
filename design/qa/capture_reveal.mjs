@@ -30,6 +30,8 @@ for (let index = 0; index < slideCount; index += 1) {
       .filter((element) => {
         const box = element.getBoundingClientRect();
         return (
+          box.left < slideBox.left - 2 ||
+          box.top < slideBox.top - 2 ||
           box.right > slideBox.right + 2 ||
           box.bottom > slideBox.bottom + 2 ||
           (["PRE", "TABLE"].includes(element.tagName) &&
@@ -38,6 +40,19 @@ for (let index = 0; index < slideCount; index += 1) {
         );
       })
       .map((element) => element.tagName + ":" + element.textContent.trim().slice(0, 50));
+    for (const line of slide.querySelectorAll("pre code > span[id]")) {
+      const lineBox = line.getBoundingClientRect();
+      const preBox = line.closest("pre").getBoundingClientRect();
+      const lineHeight = Number.parseFloat(window.getComputedStyle(line).lineHeight);
+      const wraps = Number.isFinite(lineHeight) && lineBox.height > lineHeight * 1.5;
+      // Quarto's line-number gutter deliberately begins inside the pre element's
+      // left padding, so a left-edge comparison produces false positives. A real
+      // long-line problem either wraps to a second visual line or crosses the
+      // right edge of the code block.
+      if (wraps || lineBox.right > preBox.right + 2) {
+        offenders.push("CODE-LINE:" + line.textContent.trim().slice(0, 50));
+      }
+    }
     return {
       title: slide.querySelector("h1,h2")?.textContent?.trim() ?? "",
       offenders,

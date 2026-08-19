@@ -12,7 +12,12 @@ def normalize_multimodal_records(records):
     for record in records:
         modality = record["modality"]
         missing = [field for field in required[modality] if record.get(field) in (None, "")]
-        normalized.append({"id": record["id"], "modality": modality, "content": record.get("text") or record.get("path"), "missing": missing})
+        normalized.append({
+            "id": record["id"],
+            "modality": modality,
+            "content": record.get("text") or record.get("path"),
+            "missing": missing,
+        })
     return normalized
 
 

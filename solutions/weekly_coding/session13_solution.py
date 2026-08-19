@@ -14,7 +14,12 @@ def factorial_audit(models, languages, frames, responses):
             for frame in frames:
                 key = (model, language, frame)
                 if key in responses:
-                    conditions.append({"model": model, "language": language, "frame": frame, "response": responses[key]})
+                    conditions.append({
+                        "model": model,
+                        "language": language,
+                        "frame": frame,
+                        "response": responses[key],
+                    })
                 else:
                     missing.append(key)
     return conditions, missing

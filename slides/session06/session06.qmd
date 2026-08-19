@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Persuasion studies isolate model and dialogue levers; relational studies show that disclosure and perceived authorship can change the treatment itself.</div>
 

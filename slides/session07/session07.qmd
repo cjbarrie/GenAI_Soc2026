@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Simulated subjects promise collective representation; polling and identity studies show topic-specific bias and compressed within-group variation.</div>
 

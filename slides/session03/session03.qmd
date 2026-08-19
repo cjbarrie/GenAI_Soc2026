@@ -58,7 +58,7 @@ format:
 
 ---
 
-## The papers disagree about what success licenses
+## The readings disagree about success
 
 <div class="lead">Workflow accounts emphasize assisted coding; reflexive and critical accounts disagree about whether ambiguity is a defect, a resource, or evidence of epistemic limits.</div>
 
@@ -128,7 +128,11 @@ def link_themes_to_evidence(excerpts, proposals):
         if source_text is None or not quote or quote not in source_text:
             rejected.append(proposal["excerpt_id"])
         else:
-            accepted.append({"theme": proposal["theme"], "quote": quote, "excerpt_id": proposal["excerpt_id"]})
+            accepted.append({
+                "theme": proposal["theme"],
+                "quote": quote,
+                "excerpt_id": proposal["excerpt_id"],
+            })
     return accepted, rejected
 ```
 :::
