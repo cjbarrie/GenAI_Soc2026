@@ -1,0 +1,54 @@
+---
+title: "Week 7 — Whose attitudes do synthetic respondents represent?"
+description: "Survey populations, silicon sampling and distributional validation"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">What kind of evidence is produced when a model answers a survey question as if it were a person?</div>
+
+## Connection to the preceding material
+
+Week 6 kept human respondents but changed the interviewer. Week 7 changes the source of the answer. That makes the relationship between a record and a target population the central problem.
+
+## Learning outcomes
+
+You should be able to distinguish a human respondent, aggregate prediction, demographic persona and interview-grounded agent; explain why probability sampling matters; compare means, distributions and within-group variation; trace one structured OpenRouter request; and state what a schema validates.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie et al. (2026), “AI and Research Methods,” §10.3.** Distinguishes silicon-sampling purposes and the validation target appropriate to each one. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Kozlowski and Evans (2025), “Simulating Subjects,” *Sociological Methods & Research*.** Frames the promise and peril of AI stand-ins for social agents. [DOI](https://doi.org/10.1177/00491241251337316). [@KozlowskiEvans2025]
+- **Boelaert et al. (2025), “Machine Bias,” *Sociological Methods & Research*.** Tests how language models answer opinion polls and compares their response patterns with people. [DOI](https://doi.org/10.1177/00491241251330582). [@BoelaertEtAl2025]
+:::
+
+## Additional readings grouped by purpose
+
+- **For identity flattening:** Wang, Morgenstern and Dickerson (2025), *Nature Machine Intelligence* 7: 400–411. [DOI](https://doi.org/10.1038/s42256-025-00986-z). [@WangMorgensternDickerson2025]
+- **For survey augmentation rather than replacement:** Kim and Lee (2026), “AI-Augmented Surveys.” [Preprint](https://arxiv.org/abs/2305.09620). [@KimLee2026]
+
+## Sociological and methodological background
+
+Survey inference depends on more than asking a question. Probability sampling links observed respondents to a target population; questionnaire design shapes the answers; total survey error directs attention to coverage, sampling, nonresponse, measurement and processing. Simulmatics provides an instructive prehistory: in 1960 the company used survey segments and computational models to advise the Kennedy campaign. The ambition to model an electorate is older than LLMs, as are the problems created by missing and poorly measured groups.
+
+Public opinion theory adds another caution. Zaller treats a survey response as something assembled at the time from accessible considerations, not a stable value stored unchanged in a person. A demographic persona such as “a 42-year-old Black woman in Georgia” therefore does not reproduce the experiences, networks and information environment through which a human answer is formed.
+
+## Synthesis of the current LLM literature
+
+The literature now contains several distinct designs. A model can predict an aggregate distribution, answer once per persona, predict a held-out answer for a real respondent, or act through an interview-grounded record. These are not interchangeable. Matching the modal response does not recover the distribution; matching the distribution does not recover individual pairings; aggregate resemblance can coexist with flattened subgroup heterogeneity. Validation must name the target before calculating the score.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 7 lecture slides" src="../_generated/slides/session07.html"></iframe></div>
+[Open the Week 7 slides full screen](../_generated/slides/session07.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 7 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session07.html).
+:::
+[Continue to the Week 7 Python work](../python/session07.qmd).
+
+## Summary and preparation for next week
+
+A synthetic response is conditioned model output, not a sampled person. Week 8 asks a narrower but still ambitious question: can observed human information help predict answers or results that were not observed?

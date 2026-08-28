@@ -1,0 +1,22 @@
+---
+title: "Week 12 Python — Rerunning and auditing an agent trajectory"
+description: "Provisional coding plan"
+---
+
+[Return to the Week 12 readings outline](../weeks/session12.qmd).
+
+This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+
+## Planned code trace
+
+**Research task:** Rerun a three-stage research routine and compare its saved events with an earlier record.
+
+**Python sequence:** JSON files, bounded loops, stopping after three calls and field-by-field discrepancy records. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+
+## Planned completion recording
+
+Show the saved three-event rerun, make the temperature change and explain which fields were fixed, which changed and which causal explanation remains unsupported. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+
+## Development status
+
+The page is deliberately provisional. It does not yet publish an assessed notebook or task.

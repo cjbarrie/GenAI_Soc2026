@@ -1,0 +1,56 @@
+---
+title: "Week 6 — What changes when a model starts asking the questions?"
+description: "Interview traditions, adaptive probes, voice and realized interview paths"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">What kind of evidence does an interview produce, and what changes when a model can choose or write the next probe?</div>
+
+## Connection to the preceding material
+
+Week 5 generated fixed candidates before participants encountered them. In an adaptive interview, the participant’s answer changes what comes next. The experimental treatment, data-collection instrument and interaction are now entangled.
+
+## Learning outcomes
+
+You should be able to distinguish interview purposes and survey modes; explain specificity, range, depth and personal context in the focused interview; distinguish speech-to-text, a text interviewer and text-to-speech; compare an assigned protocol with the path a participant actually received; and audit the source and target of every adaptive probe.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie et al. (2026), “AI and Research Methods,” selected §§10.2 and 10.5.** Places adaptive interviewing between generated interventions and tool-augmented data collection. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Merton and Kendall (1946), “The Focused Interview,” *American Journal of Sociology* 51(6): 541–557.** Supplies the foundational criteria used to evaluate what a probe elicits. [DOI](https://doi.org/10.1086/219886). [@MertonKendall1946]
+- **Geiecke and Jaravel (2026), “The Rise of AI-Led Interviews in Social Science.”** A large contemporary text-and-voice implementation with explicit validation. [Paper](https://benjamin.geiecke.com/files/ai_interviews.pdf). [@GeieckeJaravel2026]
+:::
+
+## Additional readings grouped by purpose
+
+- **For a qualitative chatbot case:** Jack, Cooper and Flower (2026), *Methodological Innovations*. [DOI](https://doi.org/10.1177/20597991261448157). [@JackCooperFlower2026]
+- **For comparison with adaptive survey selection:** Velez (2025), *Political Analysis*. [DOI](https://doi.org/10.1017/pan.2024.34). [@Velez2025]
+
+## Sociological and methodological background
+
+Interviews have never been neutral containers into which respondents deposit attitudes. Merton and Kendall’s focused interview sought detailed responses to a known situation while allowing unanticipated meanings to emerge. Later feminist and reflexive work made power, reciprocity and the interviewer’s social position part of the method. Standardized survey interviewing pursued comparability; CAPI moved administration onto an interviewer’s computer; CASI allowed self-administration; audio-CASI added recorded speech for accessibility and privacy. These modes change what respondents hear, disclose and understand.
+
+An LLM interviewer redistributes familiar decisions. A protocol can set topic boundaries and fixed questions. After an answer, a model can select a prepared follow-up or compose a new one. The second option can pursue specificity, but it can also lead, presuppose a cause, repeat itself or create incomparable paths across participants.
+
+## Synthesis of the current LLM literature
+
+Geiecke and Jaravel use text and voice, so their system includes speech-to-text before the language model and text-to-speech after it. Jack and colleagues use a web chatbot built around Gemini Flash 1.5 and study both the interview data and researchers’ experience of the system. These implementations make privacy, retention and data ownership design questions: which service receives audio, where transcripts are stored, and whether data are reused. A local stack can reduce external transfer, but it demands hardware, model files, maintenance and usually slower inference.
+
+The evaluation target also matters. Completion rate and conversational fluency do not establish qualitative richness. A controlled design can compare fixed questions, dynamic probing and member checking, but the concepts must be defined: a dynamic prober generates a follow-up from the answer; a member checker asks whether the interviewer’s understanding is accurate.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 6 lecture slides" src="../_generated/slides/session06.html"></iframe></div>
+[Open the Week 6 slides full screen](../_generated/slides/session06.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 6 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session06.html).
+:::
+[Continue to the Week 6 Python work](../python/session06.qmd).
+
+## Summary and preparation for next week
+
+An adaptive interviewer produces different question paths from the same protocol. After the midterm break, Week 7 moves from asking people questions to asking a model to answer as if it were a person.

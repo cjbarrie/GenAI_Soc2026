@@ -1,0 +1,22 @@
+---
+title: "Week 11 Python — A transparent research-agent tool call"
+description: "Provisional coding plan"
+---
+
+[Return to the Week 11 readings outline](../weeks/session11.qmd).
+
+This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+
+## Planned code trace
+
+**Research task:** Let a model request one search of a supplied course corpus, then preserve the tool request, source return and drafted claim.
+
+**Python sequence:** functions as tools, arguments, returned dictionaries, conditional dispatch and provenance records. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+
+## Planned completion recording
+
+Change the question and trace question → raw tool request → function argument → returned source record → raw claim → trajectory. Reject an unresolved or unsupported claim. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+
+## Development status
+
+The page is deliberately provisional. It does not yet publish an assessed notebook or task.

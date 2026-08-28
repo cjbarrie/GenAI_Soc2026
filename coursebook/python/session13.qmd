@@ -1,0 +1,22 @@
+---
+title: "Week 13 Python — A small model audit"
+description: "Provisional coding plan"
+---
+
+[Return to the Week 13 readings outline](../weeks/session13.qmd).
+
+This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+
+## Planned code trace
+
+**Research task:** Compare two prompt frames across hosted and local models while preserving every condition and avoiding unsupported cultural explanations.
+
+**Python sequence:** nested loops, parameter grids, lists of records and a table created only after the plain records are understood. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+
+## Planned completion recording
+
+Trace one cell through both loops, make the role-word change, present one bounded observed difference and name at least two unresolved explanations. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+
+## Development status
+
+The page is deliberately provisional. It does not yet publish an assessed notebook or task.

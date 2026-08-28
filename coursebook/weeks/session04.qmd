@@ -1,0 +1,58 @@
+---
+title: "Week 4 — What part of social experience becomes evidence?"
+description: "Observation, professional vision and multimodal sequence analysis"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">What happens within a confrontation that allows violence to begin—or enables it to remain nonviolent—and what can a recording actually show?</div>
+
+## Connection to the preceding material
+
+Weeks 1–3 assumed that a text or excerpt already existed. This week moves back one stage. Camera position, transcription, synchronization, selection and professional ways of seeing all shape the record before a model receives it.
+
+## Learning outcomes
+
+You should be able to separate observable conduct, interpretation and unobserved intention; explain Goodwin’s account of professional vision; use Collins’s situational theory to formulate a sequence question; reconstruct transitions across aligned sources; and identify what a multimodal model adds or obscures.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie et al. (2026), “AI and Research Methods,” §§10.1.1 and 10.1.5.** Treats text, images and video as unstructured material that can be labelled or measured, and asks what validation is needed. The sociological account of observation comes from the other readings this week. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Goodwin (1994), “Professional Vision,” *American Anthropologist* 96(3): 606–633.** Shows how coding, highlighting and material representations organize what members of a profession see. [DOI](https://doi.org/10.1525/aa.1994.96.3.02a00100). [@Goodwin1994]
+- **Collins (2013), “Entering and Leaving the Tunnel of Violence,” *Current Sociology* 61(2): 132–151.** Provides the central situational account of confrontation, tension and entrainment. [DOI](https://doi.org/10.1177/0011392112456500). [@Collins2013]
+:::
+
+## Additional readings grouped by purpose
+
+- **For video as sociological data:** Nassauer and Legewie (2021), “Video Data Analysis,” *Sociological Methods & Research* 50(1): 135–174. [DOI](https://doi.org/10.1177/0049124118769093). [@NassauerLegewie2021]
+- **For the technical grounding debate:** Bisk et al. (2020), “Experience Grounds Language,” *EMNLP*. [Paper](https://aclanthology.org/2020.emnlp-main.703/). [@BiskEtAl2020]
+
+## Sociological and methodological background
+
+Simmel’s sociology of the senses and Goffman’s interaction order make perception and situated conduct sociological topics. Goodwin goes further: relevant objects do not simply announce themselves. Practitioners learn to code a field of activity, highlight selected features and use material representations that make a judgment possible. His examples show that seeing is socially organized.
+
+Collins’s theory of violent situations redirects attention from violent people to sequences of interaction. Confrontational tension and fear often inhibit violence; particular configurations allow participants to move through that barrier and sometimes enter a “tunnel” of emotional entrainment. This is a claim about timing and relation. A still image of contact cannot show the full sequence that preceded it.
+
+Our empirical illustration is the Zidane–Materazzi confrontation in the 2006 World Cup final. Broadcast video supplies multiple views and a public chronology, but it does not give direct access to inner intention. The example allows us to distinguish what is visible—the turn, approach and headbutt—from Collins’s situational interpretation and from later biographical accounts.
+
+## Synthesis of the current LLM literature
+
+Multimodal models can describe frames, transcribe audio and compare moments. They also arrive with pretrained recognition that may identify famous people or retrieve a culturally familiar narrative. That can be useful, but it can contaminate a task designed to inspect only visible conduct. World-model research asks whether models can learn predictive representations of physical environments; sociology asks an additional question: which social experiences, relations and professional categories have been made legible to the model at all?
+
+The defensible workflow constrains the first pass to observable features, preserves time and source, and records later theoretical interpretation separately. We can then deliberately compare a frame-only call, a sequence call and a context-rich call.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 4 lecture slides" src="../_generated/slides/session04.html"></iframe></div>
+[Open the Week 4 slides full screen](../_generated/slides/session04.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 4 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session04.html).
+:::
+[Continue to the Week 4 Python work](../python/session04.qmd).
+
+## Summary and preparation for next week
+
+Recorded data are selective, aligned and interpreted rather than transparent windows onto action. Week 5 changes the researcher’s role: instead of observing a record, we generate candidate materials intended to alter what participants encounter.

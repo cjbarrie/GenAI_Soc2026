@@ -1,0 +1,29 @@
+---
+title: "Week 8 — Can LLMs recover missing or unobserved social worlds?"
+description: "Provisional outline"
+---
+
+## Question
+
+<div class="chapter-question">When a model predicts an unobserved answer or study result, what exactly has been recovered?</div>
+
+## Why this week belongs here
+
+Week 7 introduces synthetic respondents and distributional validation. Week 8 will separate individual prediction, aggregate prediction, group differences and experimental-result forecasting rather than treating them as one achievement.
+
+## Provisional core readings
+
+- Barrie et al. (2026), §§10.3.4–10.3.6 and §10.7. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
+- Kim and Lee (2026), “AI-Augmented Surveys.” [@KimLee2026]
+- Xie et al. (2026), “Evaluating the Statistical Realism of LLM-Generated Social Science Data.” [@XieEtAl2026]
+- Further comparison: Ashokkumar et al. (2026) and Wang, Morgenstern and Dickerson (2025). [@AshokkumarEtAl2026; @WangMorgensternDickerson2025]
+
+## Planned chapter and class arc
+
+Begin with established approaches to missing data and prediction; distinguish the four inferential targets; compare the designs and validation evidence in the core papers; then build a matched-record example in which aggregate error is small despite large individual errors.
+
+[See the provisional Week 8 Python plan](../python/session08.qmd).
+
+## Development status
+
+This is a planning page, not the finished weekly guide. The literature review, synthesis, slides, worked notebook and take-home exercise will be completed together in a later literature-led build.

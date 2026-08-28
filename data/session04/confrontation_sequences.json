@@ -1,0 +1,145 @@
+{
+  "study": {
+    "title": "Two endings to one short confrontation",
+    "provenance": "Instructor-authored synthetic reconstruction for teaching. It is not a record of a real protest, police unit, participant, injury, or testimony.",
+    "purpose": "To compare how an unfolding situation becomes positioned visual, audio, transcript, fieldnote, participant, and model records.",
+    "limits": [
+      "The paired endings are constructed and are not an experiment.",
+      "The records cannot establish intention, blame, fear, or responsibility.",
+      "The example cannot validate Collins's theory or support population generalization."
+    ]
+  },
+  "common_moments": [
+    {
+      "time": 0,
+      "distance": "separated",
+      "police_action": "line remains in place",
+      "protester_action": "front group remains in place",
+      "audible_events": ["chant", "background crowd"],
+      "source_record": "ANGLE_A_00_00_00_02",
+      "visual_description": "Two groups face one another across a clear gap in a generic public square."
+    },
+    {
+      "time": 2,
+      "distance": "separated",
+      "police_action": "one officer raises an open hand",
+      "protester_action": "front group remains in place",
+      "audible_events": ["chant", "move-back instruction begins"],
+      "source_record": "ANGLE_A_00_02_00_04",
+      "visual_description": "An officer raises an open hand while the people opposite remain in place."
+    },
+    {
+      "time": 4,
+      "distance": "narrowing",
+      "police_action": "line advances one step",
+      "protester_action": "front group remains in place",
+      "audible_events": ["chant", "move-back instruction", "overlap"],
+      "source_record": "ANGLE_A_00_04_00_06",
+      "visual_description": "The police line moves one step forward and the visible gap becomes smaller."
+    },
+    {
+      "time": 6,
+      "distance": "compressed",
+      "police_action": "line holds new position",
+      "protester_action": "one front person loses balance",
+      "audible_events": ["volume rises", "words unclear"],
+      "source_record": "ANGLE_A_00_06_00_08",
+      "visual_description": "Bodies are closer together and one person briefly loses balance; no injury is shown."
+    }
+  ],
+  "deescalation_ending": [
+    {
+      "time": 8,
+      "distance": "widening",
+      "police_action": "line steps back",
+      "protester_action": "front group steps back",
+      "audible_events": ["chant resumes", "volume falls"],
+      "source_record": "ANGLE_A_DEESC_00_08_00_10",
+      "visual_description": "People on both sides step back and a gap reappears."
+    },
+    {
+      "time": 10,
+      "distance": "restored",
+      "police_action": "line remains in place",
+      "protester_action": "front group remains in place",
+      "audible_events": ["lower-volume chant"],
+      "source_record": "ANGLE_A_DEESC_00_10_00_12",
+      "visual_description": "The groups remain separated and no contact occurs."
+    }
+  ],
+  "escalation_ending": [
+    {
+      "time": 8,
+      "distance": "closed",
+      "police_action": "one officer shifts toward opened space",
+      "protester_action": "one person advances into opened space",
+      "audible_events": ["shouts", "overlap"],
+      "source_record": "ANGLE_A_ESC_00_08_00_10",
+      "visual_description": "One person advances into the space between the groups as an officer shifts position."
+    },
+    {
+      "time": 10,
+      "distance": "contact",
+      "police_action": "arms extend during brief contact",
+      "protester_action": "brief shove occurs",
+      "audible_events": ["single shout", "crowd noise"],
+      "source_record": "ANGLE_A_ESC_00_10_00_12",
+      "visual_description": "A brief shove occurs; the reconstruction stops immediately and shows no injury."
+    }
+  ],
+  "positioned_records": {
+    "camera_a": {
+      "position": "elevated oblique view facing both groups",
+      "starts_at": 0,
+      "ends_at": 12,
+      "visible_limit": "faces and the space behind each front line are not visible"
+    },
+    "camera_b": {
+      "position": "side view behind the protester group",
+      "starts_at": 5,
+      "ends_at": 12,
+      "visible_limit": "does not record the raised hand or the first police step"
+    }
+  },
+  "automatic_transcript": [
+    {"start": 0.0, "end": 3.8, "speaker": "crowd", "text": "[chanting]"},
+    {"start": 3.8, "end": 6.4, "speaker": "unknown", "text": "move ... back"},
+    {"start": 6.4, "end": 9.1, "speaker": "multiple", "text": "[overlapping speech]"},
+    {"start": 9.1, "end": 11.8, "speaker": "crowd", "text": "[shouting]"}
+  ],
+  "human_transcript": [
+    {"start": 0.0, "end": 2.0, "speaker": "crowd", "text": "rhythmic chant; words not transcribed"},
+    {"start": 2.1, "end": 5.5, "speaker": "officer", "text": "move back", "overlap": "chant continues"},
+    {"start": 5.5, "end": 7.6, "speaker": "multiple", "text": "voices rise; no complete turn is intelligible"},
+    {"start": 8.0, "end": 10.0, "speaker": "multiple", "text": "branch-specific sound; see ending record"}
+  ],
+  "observation_note": "From Camera A, the first clearly visible reduction in distance occurs when the police line advances at approximately four seconds. At six seconds the front ranks compress and one person loses balance. The footage does not show what participants heard, understood, or intended.",
+  "participant_recollections": [
+    {
+      "record_id": "RECOLLECTION_P1",
+      "speaker_position": "synthetic protest participant",
+      "text": "I remember the line moving toward us while the chant made it hard to hear the instruction.",
+      "limit": "Instructor-authored recollection; not testimony from a real person."
+    },
+    {
+      "record_id": "RECOLLECTION_O1",
+      "speaker_position": "synthetic police participant",
+      "text": "I remember the instruction being repeated before the distance closed.",
+      "limit": "Instructor-authored recollection; not testimony from a real person."
+    }
+  ],
+  "cached_model_outputs": {
+    "whole_event_summary": "Aggressive protesters approached police and caused the confrontation to become violent.",
+    "moment_descriptions": [
+      {"time": 0, "description": "Two groups face one another."},
+      {"time": 2, "description": "An officer raises a hand."},
+      {"time": 4, "description": "The groups move closer."},
+      {"time": 6, "description": "The crowd becomes agitated."}
+    ],
+    "next_state_prediction_at_6": {
+      "prediction": "Physical contact is likely in the next few seconds.",
+      "access_route": "cached instructor-authored model-style output",
+      "warning": "A plausible next-state prediction is not an explanation of the observed sequence."
+    }
+  }
+}

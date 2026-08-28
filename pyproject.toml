@@ -1,0 +1,23 @@
+[project]
+name = "genai-sociology-2026"
+version = "0.1.0"
+description = "Teaching environment for Generative AI in Sociology"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "jupyterlab>=4.4,<5",
+  "nbclient>=0.10,<1",
+  "nbformat>=5.10,<6",
+  "openrouter>=0.6,<1",
+  "ollama>=0.6,<1",
+  "pydantic>=2.9,<3",
+  "pandas>=2.3,<3",
+  "matplotlib>=3.10,<4",
+  "requests>=2.32,<3",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.4,<10"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

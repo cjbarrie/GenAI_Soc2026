@@ -1,0 +1,183 @@
+---
+title: "How can micro-level interactions generate macro-level order?"
+subtitle: "Session 9 · Generative agent-based models I"
+author: "Generative AI in Sociology"
+date: "November 4, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to simulate
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class="active"><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## How can micro-level interactions generate macro-level order?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Implement one synchronous update so every agent responds to the same prior state.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">Updating a dictionary in place lets later agents observe a future state, creating an accidental order effect.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Macy & Willer (2002):** methodological opportunity
+- **Park et al. (2023):** validation or counterclaim
+- **Chuang et al. (2024):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Macy & Willer (2002), from factors to actors | Source: https://doi.org/10.1146/annurev.soc.28.110601.141117 | Accessed: 2026-08-18
+- Park et al. (2023), generative agents | Source: https://doi.org/10.1145/3586183.3606763 | Accessed: 2026-08-18
+- Chuang et al. (2024), LLM opinion dynamics | Source: https://doi.org/10.18653/v1/2024.findings-naacl.211 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The readings disagree about success
+
+<div class="lead">Classic ABM explanation emphasizes transparent rules; generative agents add memory, reflection, and language policies whose model tendencies may shape the macro result.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Macy & Willer (2002), from factors to actors | Source: https://doi.org/10.1146/annurev.soc.28.110601.141117 | Accessed: 2026-08-18
+- Park et al. (2023), generative agents | Source: https://doi.org/10.1145/3586183.3606763 | Accessed: 2026-08-18
+- Chuang et al. (2024), LLM opinion dynamics | Source: https://doi.org/10.18653/v1/2024.findings-naacl.211 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">An emergent pattern is interpretable only when actor state, observation, policy, update timing, and stopping rules are explicit.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Write and test one synchronous threshold-update step for a small network.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def synchronous_update(states, neighbors, threshold):
+    # return one documented result
+```
+
+**Return value:** Return a new state dictionary; adopt 1 when the prior-state neighbor mean reaches the threshold.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def synchronous_update(states, neighbors, threshold):
+    next_states = states.copy()
+    for agent, neighbor_ids in neighbors.items():
+        neighbor_values = [states[neighbor] for neighbor in neighbor_ids]
+        neighbor_mean = sum(neighbor_values) / len(neighbor_values)
+        next_states[agent] = 1 if neighbor_mean >= threshold else 0
+    return next_states
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+# The full function is visible in the workbook.
+# Now inspect the returned object and the checks.
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. `states.copy()` creates the future state without changing the prior state.
+2. The loop visits each agent and retrieves the IDs of its neighbors.
+3. The list comprehension looks every neighbor up in the old `states` dictionary.
+4. Only after computing from prior state does the function assign the agent's next value.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert updated is not states
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">Updating a dictionary in place lets later agents observe a future state, creating an accidental order effect.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `synchronous_update`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Macy & Willer (2002), from factors to actors | Source: https://doi.org/10.1146/annurev.soc.28.110601.141117 | Accessed: 2026-08-18
+- Park et al. (2023), generative agents | Source: https://doi.org/10.1145/3586183.3606763 | Accessed: 2026-08-18
+- Chuang et al. (2024), LLM opinion dynamics | Source: https://doi.org/10.18653/v1/2024.findings-naacl.211 | Accessed: 2026-08-18
+[/Sources]
+:::

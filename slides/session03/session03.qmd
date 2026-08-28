@@ -1,0 +1,796 @@
+---
+title: "What can an LLM contribute to<br>qualitative interpretation?"
+subtitle: "Session 3 · Qualitative analysis"
+author: "Christopher Barrie · NYU Sociology"
+date: "September 16, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    css: session03.css
+    width: 1280
+    height: 720
+    margin: 0
+    center: false
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    background-transition: none
+    incremental: false
+    code-line-numbers: true
+    code-overflow: wrap
+    embed-resources: true
+    hash: true
+    history: true
+lang: en
+---
+
+## We begin with an interview, not an AI tool
+
+<div class="opening-study"><div class="quote-large"><small>T01_A · first interview segment</small>“The grocery deliveries got us through the last week of the month. At that point I did not know who organized them.”</div><div class="study-brief"><b>Study</b><p>Interviews with tenants involved in mutual-aid networks after a period of rent increases.</p><b>Research question</b><p>How do residents distinguish emergency help from political solidarity?</p><b>Today's problem</b><p>How could we move from this account to a defensible interpretation?</p></div></div>
+
+<p class="citation">All tenant interviews in this class are instructor-authored synthetic material.</p>
+
+---
+
+## The source record tells us how to read the passage
+
+<div class="source-layout"><div class="source-meta"><b>Source information</b><span>Participant: T01</span><span>Excerpt: T01_A</span><span>Position: early in interview</span><span>Before: discussion of a rent increase</span><span>After: later account of childcare exchanges and tenant meetings</span></div><div class="source-text">“The grocery deliveries got us through the last week of the month. At that point I did not know who organized them.”</div></div>
+
+<div class="plain-note">The speaker received practical help before knowing the people behind it. Whether this later became solidarity is still an open question.</div>
+
+---
+
+## Qualitative analysis connects accounts, contexts, and concepts
+
+<div class="anchor-strip"><div><b>Meaning in context</b><p>What does the passage mean within this interview and social setting?</p></div><div><b>Comparison</b><p>How does this case resemble or differ from other cases and moments?</p></div><div><b>Explanation</b><p>What process or relationship does the comparison help us understand?</p></div></div>
+
+<div class="plain-note">Coding helps organize the material. The larger aim is a sociological account that remains grounded in what participants said and did.</div>
+
+<p class="citation">Deterding and Waters (2021); Timmermans and Tavory (2012, 2022); Stuart and Laryea (2026).</p>
+
+::: {.notes}
+[Sources]
+- Deterding, N. M., and M. C. Waters. 2021. “Flexible Coding of In-depth Interviews.” Sociological Methods & Research 50(2):708–739. https://doi.org/10.1177/0049124118799377.
+- Timmermans, S., and I. Tavory. 2012. “Theory Construction in Qualitative Research.” Sociological Theory 30(3):167–186. https://doi.org/10.1177/0735275112457914.
+- Stuart, F., and K. Laryea. 2026. “What Do I Do with All of These Data?” Qualitative Sociology 49:241–268. https://doi.org/10.1007/s11133-025-09625-w.
+[/Sources]
+:::
+
+---
+
+## Flexible coding separates broad indexing from analytic coding
+
+<table class="closed-table"><thead><tr><th>First pass: index coding</th><th>Second pass: analytic coding</th></tr></thead><tbody><tr><td>Organize material by broad topics connected to the interview guide.</td><td>Compare indexed passages to develop more interpretive categories.</td></tr><tr><td>Applied across the full interview in a relatively consistent way.</td><td>Can change as researchers compare cases and refine the argument.</td></tr><tr><td>Example: <code>RECEIVING_HELP</code></td><td>Example: <code>HELP_BEFORE_RELATIONSHIP</code></td></tr></tbody></table>
+
+<div class="plain-note">Deterding and Waters developed this approach for large in-depth interview projects in which teams need both consistency and room for interpretation.</div>
+
+<p class="citation">Deterding, N. M., and M. C. Waters. (2021). “Flexible Coding of In-depth Interviews: A Twenty-first-century Approach.” <em>Sociological Methods & Research</em> 50(2):708–739. https://doi.org/10.1177/0049124118799377.</p>
+
+---
+
+## Index coding gives us a reliable route back to the material
+
+<div class="coding-example"><div><div class="quote-large"><small>T01_A</small>“The grocery deliveries got us through the last week of the month.”</div></div><div><span class="code-tag">RECEIVING_HELP</span><p>This broad code gathers passages about receiving food, childcare, repairs, or emergency funds.</p><p>It answers: <b>where should we look?</b></p></div></div>
+
+<div class="plain-note warning-note">The index code does not yet tell us what receiving help meant to this participant.</div>
+
+---
+
+## Analytic coding asks what is happening across cases
+
+<table class="closed-table"><thead><tr><th>Excerpt</th><th>What happens?</th><th>Developing analytic code</th></tr></thead><tbody><tr><td><code>T01_A</code></td><td>Help arrives before the recipient knows the organizers.</td><td><code>HELP_BEFORE_RELATIONSHIP</code></td></tr><tr><td><code>T01_B</code></td><td>Repeated childcare exchanges precede meeting attendance.</td><td><code>REPEATED_EXCHANGE_TO_PARTICIPATION</code></td></tr><tr><td><code>T02_A</code></td><td>Emergency support is kept separate from politics.</td><td><code>HELP_WITHOUT_IDENTIFICATION</code></td></tr></tbody></table>
+
+<div class="plain-note">The code changes because the comparison changes what the researcher notices.</div>
+
+---
+
+## Tavory and Timmermans treat surprise as analytically useful
+
+<div class="book-layout"><img src="images/source_pages/timmermans_tavory_book.jpg" alt="Cover of Data Analysis in Qualitative Research by Timmermans and Tavory"><div><p>Abductive analysis begins when an observation does not fit what the researcher expected.</p><p>The researcher revisits the material, asks what assumptions made the case surprising, and compares alternative ways of understanding it.</p><p>For our study, the useful case may be the tenant who accepts help but explicitly rejects political identification.</p></div></div>
+
+<p class="citation">Timmermans, S., and I. Tavory. (2022). <em>Data Analysis in Qualitative Research: Theorizing with Abductive Analysis</em>. University of Chicago Press.</p>
+
+::: {.notes}
+[Sources]
+- University of Chicago Press book page and official cover: https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html.
+- Timmermans and Tavory (2012), official journal abstract and methods discussion.
+[/Sources]
+:::
+
+---
+
+## Abductive analysis gives us three concrete moves
+
+<div class="abductive-moves"><div><b>Revisit</b><p>Return to earlier passages after a later case changes the question.</p></div><div><b>Defamiliarize</b><p>Question the concepts that made one interpretation seem obvious.</p></div><div><b>Compare alternatives</b><p>Ask what else could explain the same material.</p></div></div>
+
+<div class="plain-note">These moves are drawn from Timmermans and Tavory's account of abductive theory construction, not a generic checklist for using AI.</div>
+
+<p class="citation">Timmermans and Tavory (2012), pp. 179–182; Timmermans and Tavory (2022), chapters 1, 5–9.</p>
+
+---
+
+## Stuart and Laryea ask how coding becomes explanation
+
+<div class="paper-layout"><img src="images/source_pages/stuart_title.png" alt="Published first page of Stuart and Laryea in Qualitative Sociology"><div><p><b>Problem:</b> researchers can finish with categories that describe recurring content but do not explain action.</p><p><b>Their framework:</b> examine actors' goals, obstacles, strategies, and the implications that follow.</p><p><b>Why it matters here:</b> “mutual aid” is a topic. We still need to explain how practical exchange relates to identification, obligation, or withdrawal.</p></div></div>
+
+<p class="citation">Stuart, F., and K. Laryea. (2026). “What Do I Do with All of These Data? A New Pragmatist Framework for Coding and Analysis.” <em>Qualitative Sociology</em> 49:241–268. https://doi.org/10.1007/s11133-025-09625-w.</p>
+
+::: {.notes}
+[Sources]
+- Published open-access PDF: `literature/source_pdfs/session03/stuart_laryea_2026.pdf`.
+[/Sources]
+:::
+
+---
+
+## The same passage can support description or explanation
+
+<table class="closed-table"><thead><tr><th>Analytic move</th><th>What we could say about T03_A</th></tr></thead><tbody><tr><td>Topic</td><td>The participant discusses mutual aid.</td></tr><tr><td>Code</td><td><code>WITHDRAWAL_AFTER_OBLIGATION</code></td></tr><tr><td>Pattern</td><td>Some exchanges create participation; others produce distance.</td></tr><tr><td>Process explanation</td><td>When help becomes an enforceable obligation, preserving autonomy may become more important than remaining in the group.</td></tr></tbody></table>
+
+<div class="plain-note">The final row makes a stronger claim and therefore requires comparison with more passages, cases, and alternatives.</div>
+
+---
+
+## Qualitative analysis repeatedly returns to earlier material
+
+<div class="analysis-loop"><div><b>Read and index</b><p>Locate passages relevant to the question.</p></div><div><b>Compare and code</b><p>Ask what varies within and across cases.</p></div><div><b>Write a memo</b><p>Develop a possible relationship or explanation.</p></div><div><b>Test the account</b><p>Seek contrary cases and other explanations.</p></div></div>
+
+<div class="return-band">A later passage can change an earlier code, memo, or interpretation.</div>
+
+<p class="citation">Deterding and Waters (2021); Timmermans and Tavory (2022); Stuart and Laryea (2026).</p>
+
+---
+
+## An LLM can assist with parts of this work
+
+<table class="closed-table loss-table"><thead><tr><th>Research activity</th><th>Possible model contribution</th><th>What the workflow must preserve</th></tr></thead><tbody><tr><td>Finding passages</td><td>Retrieve likely relevant excerpts.</td><td>Speaker, sequence, and surrounding text.</td></tr><tr><td>Applying a defined code</td><td>Suggest codes under explicit rules.</td><td>The code definition and cases where it fails.</td></tr><tr><td>Comparing cases</td><td>Place similarities and differences side by side.</td><td>Which cases were included or omitted.</td></tr><tr><td>Developing an account</td><td>Propose a candidate relationship or alternative.</td><td>Researcher memos, counterevidence, and revision history.</td></tr></tbody></table>
+
+<div class="plain-note">Fluent themes are easy to produce. The methodological question is whether the researcher preserves the source material, comparisons, memos, and revisions needed to assess them.</div>
+
+---
+
+## A context window is not the same as analytic memory
+
+<div class="memory-layout"><div><b>Context window</b><p>The text included in one model call: instructions, excerpts, and earlier messages that the application sends again.</p><p>A separate API call does not automatically contain material from an earlier call.</p></div><div><b>Memory system</b><p>An application stores earlier material, selects what seems relevant, and places it back into a later context.</p><p>What is indexed, summarized, retrieved, or dropped is a methodological decision.</p></div></div>
+
+<p class="citation">Liu et al. (2024); Wu et al. (2025).</p>
+
+---
+
+## Long context does not guarantee equal attention to every passage
+
+<div class="paper-full short"><img src="images/source_pages/liu_lost_middle_figure.png" alt="Figure from Lost in the Middle showing weaker performance when relevant evidence is placed in the middle of long contexts"></div>
+
+<div class="plain-note">Liu and colleagues found that answer-relevant information was often used less reliably when it appeared in the middle of a long input. Supplying the full corpus is not evidence that every passage influenced the response equally.</div>
+
+<p class="citation">Liu, N. F., K. Lin, J. Hewitt, et al. (2024). “Lost in the Middle: How Language Models Use Long Contexts.” <em>TACL</em> 12:157–173, selected Figure 5. https://doi.org/10.1162/tacl_a_00638.</p>
+
+::: {.notes}
+[Sources]
+- Published paper: `literature/source_pdfs/session03/liu_et_al_2024_lost_in_middle.pdf`.
+[/Sources]
+:::
+
+---
+
+## Long-term memory systems decide what the model sees again
+
+<div class="paper-full short"><img src="images/source_pages/longmemeval_memory_figure.png" alt="LongMemEval Figure 4 showing indexing, retrieval and reading in a memory-augmented assistant"></div>
+
+<div class="plain-note">LongMemEval separates memory into indexing, retrieval, and reading. Each stage can omit or compress material. In qualitative analysis, those choices can determine which case appears relevant later.</div>
+
+<p class="citation">Wu, D., H. Wang, W. Yu, et al. (2025). “LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory.” ICLR, Figure 4.</p>
+
+::: {.notes}
+[Sources]
+- ICLR 2025 paper: `literature/source_pdfs/session03/wu_et_al_2025_longmemeval.pdf`.
+[/Sources]
+:::
+
+---
+
+## Our worked example keeps the corpus deliberately small
+
+<table class="closed-table"><thead><tr><th>Study element</th><th>Course example</th></tr></thead><tbody><tr><td>Setting</td><td>Tenants involved in neighbourhood mutual-aid networks after rent increases.</td></tr><tr><td>Material</td><td>Eight short interview excerpts from six participants.</td></tr><tr><td>Research question</td><td>How do residents distinguish emergency help from political solidarity?</td></tr><tr><td>Stored context</td><td>Participant ID, sequence, surrounding event, and excerpt text.</td></tr></tbody></table>
+
+<div class="plain-note warning-note">The data are synthetic. The purpose is to inspect the full analytical process, not make claims about real tenants.</div>
+
+---
+
+## We give the model a specific and limited task
+
+<div class="task-box"><b>INPUT</b><p>The research question and all eight labelled excerpts.</p><b>REQUEST</b><p>Propose one candidate pattern. Cite the excerpt IDs that led to it. Return JSON containing <code>candidate_theme</code>, <code>supporting_excerpt_ids</code>, and <code>reasoning</code>.</p><b>OUTPUT STATUS</b><p>A suggestion for the researcher to investigate—not the study's finding.</p></div>
+
+---
+
+## The model proposes a relationship among the excerpts
+
+<div class="model-output"><b>CACHED SYNTHETIC MODEL OUTPUT</b><p>“Mutual aid transforms practical dependence into political solidarity.”</p></div>
+
+<div class="plain-note">The output cites <code>T01_B</code>, <code>T04_A</code>, and <code>T06_A</code>. We will check the passages, compare other cases, and decide whether the claim should be revised.</div>
+
+---
+
+## Two of the cited passages make the proposal plausible
+
+<div class="two-excerpts"><div><small>T01_B · months after T01_A</small>“After a few months of taking turns with childcare, I started going to the tenants' meetings. The first time I spoke was about the broken elevator.”</div><div><small>T04_A · repair exchanges</small>“Fixing things together meant we already trusted one another when the eviction notices arrived. Six of us wrote the petition and delivered it together.”</div></div>
+
+<div class="plain-note">These passages support a possible link between repeated exchange and collective action. They do not show that the transformation occurs across the corpus.</div>
+
+---
+
+## Mehta and colleagues provide a simple empirical warning
+
+<div class="paper-layout"><img src="images/source_pages/mehta_title.png" alt="Published first page of Mehta and colleagues in Scientific Reports"><div><p><b>Material:</b> focus groups on sexual and reproductive health during COVID-19 in rural western Kenya.</p><p><b>Comparison:</b> human thematic analysis and GPT-4o output.</p><p><b>Finding:</b> broad subthemes were often relevant, but selected quotations were unreliable and sometimes altered.</p><p><b>Why it comes first:</b> before debating interpretation, we can check whether the evidence was reproduced correctly.</p></div></div>
+
+<p class="citation">Mehta, S. D., S. Paul, E. Awiti, et al. (2025). “Evaluation of Large Language Models within GenAI in Qualitative Research.” <em>Scientific Reports</em> 15:34993. https://doi.org/10.1038/s41598-025-18969-w.</p>
+
+::: {.notes}
+[Sources]
+- Published open-access PDF: `literature/source_pdfs/session03/mehta_et_al_2025_scientific_reports.pdf`.
+[/Sources]
+:::
+
+---
+
+## Their published examples show why quotations must be checked
+
+<div class="paper-full short"><img src="images/source_pages/mehta_hallucinations.png" alt="Mehta Figure 2 comparing generated quotations with the original transcript"></div>
+
+<div class="plain-note">The generated quotations changed or truncated wording in ways that altered meaning. An exact-source check is therefore an essential first step.</div>
+
+<p class="citation">Mehta et al. (2025), Figure 2.</p>
+
+---
+
+## A correct quotation still leaves interpretive questions
+
+<table class="closed-table"><thead><tr><th>Question</th><th>What a passing check establishes</th><th>What remains open</th></tr></thead><tbody><tr><td>Does the excerpt ID exist?</td><td>The cited record is in the corpus.</td><td>Whether it supports the claim.</td></tr><tr><td>Is the wording exact?</td><td>The quotation was not altered.</td><td>Whether surrounding context changes its meaning.</td></tr><tr><td>Were all eight excerpts supplied?</td><td>The model could receive the full small corpus.</td><td>Whether it used the cases evenly.</td></tr></tbody></table>
+
+<div class="plain-note">We will perform the source check in Python, then return to the qualitative work of comparison and revision.</div>
+
+---
+
+## Than and colleagues test a bounded coding workflow
+
+<div class="paper-layout"><img src="images/source_pages/than_title.png" alt="Published first page of Than and colleagues in Sociological Methods and Research"><div><p><b>Material:</b> 1,253 U.S. newsweekly articles published between 1980 and 2012.</p><p><b>Task:</b> decide whether inequality is substantively central to each complete article.</p><p><b>Models:</b> GPT-4 and three open models, compared with existing hand coding.</p><p><b>Scope:</b> the study evaluates contextual classification inside a researcher-led qualitative coding workflow.</p></div></div>
+
+<p class="citation">Than, N., L. Fan, T. Law, L. K. Nelson, and L. McCall. (2025). “Updating ‘The Future of Coding’: Qualitative Coding with Generative Large Language Models.” <em>Sociological Methods & Research</em> 54(3):849–888. https://doi.org/10.1177/00491241251339188.</p>
+
+::: {.notes}
+[Sources]
+- Published PDF supplied by instructor: `literature/source_pdfs/session03/than_et_al_2025_published.pdf`.
+[/Sources]
+:::
+
+---
+
+## Their example requires reading beyond a keyword
+
+<div class="paper-layout"><img src="images/source_pages/than_article_example.png" alt="Than Figure 2 showing a news article about inequality without the word inequality"><div><p>The article never uses the word <em>inequality</em>.</p><p>Human coders classified it as implicitly about inequality because it discusses tax enforcement, welfare policy, and economic distribution.</p><p>The model must apply a defined concept to a whole document—not merely retrieve a word.</p></div></div>
+
+<p class="citation">Than et al. (2025), Figure 2.</p>
+
+---
+
+## Than et al. retain researcher judgment at several points
+
+<div class="paper-full workflow-figure"><img src="images/source_pages/than_workflow.png" alt="Than Figure 1 researcher LLM researcher workflow"></div>
+
+<p class="citation">Than et al. (2025), Figure 1.</p>
+
+---
+
+## Their workflow uses disagreement to target review
+
+<div class="comparison-flow"><div><b>Researchers</b><p>Define and refine the coding task from substantive reading and an existing guide.</p></div><div class="decision"><b>Models classify</b><p>Agreement can pass to validation. Disagreement identifies ambiguous cases.</p></div><div><b>Researchers return</b><p>Inspect cases, validate output, and revise the task or coding guide where needed.</p></div></div>
+
+<div class="plain-note">Our worked example borrows this division of labour but asks for a candidate pattern rather than a final classification.</div>
+
+---
+
+## The worked example follows five visible steps
+
+<div class="analysis-loop"><div><b>1 · Ask</b><p>Send the research question and eight excerpts.</p></div><div><b>2 · Save</b><p>Store the proposed pattern and cited IDs.</p></div><div><b>3 · Check</b><p>Retrieve each cited passage from the corpus.</p></div><div><b>4 · Compare</b><p>Read support, countercases, and sequence.</p></div><div><b>5 · Revise</b><p>Write a narrower account and record why.</p></div></div>
+
+<div class="return-band">If a countercase changes the account, the researcher returns to the excerpts and the working codes.</div>
+
+---
+
+## The model output gives us three inspectable fields
+
+~~~json
+{
+  "candidate_theme": "Mutual aid transforms practical dependence into political solidarity.",
+  "supporting_excerpt_ids": ["T01_B", "T04_A", "T06_A"],
+  "reasoning": "Repeated exchange is followed by meeting attendance and petitioning."
+}
+~~~
+
+<div class="io-summary"><div><b>Theme</b><span>A proposed relationship to test.</span></div><div><b>Source IDs</b><span>A route back to the cited passages.</span></div><div><b>Reasoning</b><span>A claim about why those passages were selected.</span></div></div>
+
+<p class="citation">The output is instructor-authored synthetic material.</p>
+
+---
+
+## The corpus contains evidence that does not fit
+
+<div class="two-excerpts"><div><small>T02_A · emergency rent support</small>“I was grateful for the emergency fund, but I kept it separate from politics. I did not attend meetings and I still do not think of myself as an organizer.”</div><div><small>T03_A · after initially helping</small>“Once the delivery rota became a requirement, it stopped feeling like help. I missed two shifts, people kept messaging me, and I left the group.”</div></div>
+
+<div class="plain-note warning-note">One participant rejects political identification; another withdraws when help feels like obligation.</div>
+
+---
+
+## Sequence changes what the first case can support
+
+<div class="two-excerpts"><div><small>T01_A · first encounter</small>“The grocery deliveries got us through the last week of the month. At that point I did not know who organized them.”</div><div><small>T01_B · several months later</small>“After a few months of taking turns with childcare, I started going to the tenants' meetings.”</div></div>
+
+<div class="plain-note">The shift follows repeated interaction. A single delivery is not enough to support the transformation claim.</div>
+
+---
+
+## The evidence supports a narrower working interpretation
+
+<div class="before-after"><div><b>Model proposal</b><p>Mutual aid transforms practical dependence into political solidarity.</p></div><div class="revised"><b>Researcher revision</b><p>Repeated mutual-aid exchanges sometimes created opportunities for political identification. Practical reliance could also remain separate from politics or produce withdrawal when help was experienced as obligation.</p></div></div>
+
+<div class="plain-note">The wording changes because the countercases and chronology change what the evidence can support.</div>
+
+---
+
+## Ibrahim and Voyer make the interaction part of the method
+
+<div class="paper-layout"><img src="images/source_pages/ibrahim_title.png" alt="Published first page of Ibrahim and Voyer in Qualitative Research"><div><p><b>Examples:</b> deductive coding of Twitter bios and inductive analysis of etiquette texts.</p><p><b>Argument:</b> prompts express researchers' assumptions, while model responses can redirect subsequent analysis.</p><p><b>Proposal:</b> technological reflexivity should cover model bias, researcher–algorithm interaction, evaluation, transparency, epistemic reflection, and ethics.</p></div></div>
+
+<p class="citation">Ibrahim, E. I., and A. Voyer. (2026). “Qualitative Research with LLM Chatbots: Technological Reflexivity for Interpretative Technology.” <em>Qualitative Research</em> 26(1):133–159. https://doi.org/10.1177/14687941251390794.</p>
+
+::: {.notes}
+[Sources]
+- Published PDF supplied by instructor: `literature/source_pdfs/session03/ibrahim_voyer_2026_published.pdf`.
+[/Sources]
+:::
+
+---
+
+## Their checklist specifies what reflexivity covers
+
+<div class="paper-full"><img src="images/source_pages/ibrahim_checklist.png" alt="Ibrahim and Voyer Figure 1 checklist of six elements of technological reflexivity"></div>
+
+<p class="citation">Ibrahim and Voyer (2026), Figure 1.</p>
+
+---
+
+## They ask researchers to analyse the chat as a timeline
+
+<div class="paper-layout"><img src="images/source_pages/ibrahim_interaction_text.png" alt="Published section on researcher algorithm interaction from Ibrahim and Voyer"><div><p>The prompt reflects the researcher's definitions and assumptions.</p><p>The response may make some patterns easier to notice and others easier to ignore.</p><p>Saving the chat preserves the exchange. A researcher memo is still needed to explain how it affected the next analytic decision.</p></div></div>
+
+<p class="citation">Ibrahim and Voyer (2026), pp. 142–143.</p>
+
+---
+
+## Their first prompt exposed an unstated coding rule
+
+<div class="paper-layout"><img src="images/source_pages/ibrahim_prompt_example.png" alt="Ibrahim and Voyer Figure 2 initial lifestyle coding prompt and output"><div><p>The model treated offices, locations, and status words as “lifestyle” because the researchers had not supplied their fuller definition.</p><p>Comparing the output with hand coding made the implicit rule visible.</p><p>The researchers then expanded the definition and updated the codebook.</p></div></div>
+
+<p class="citation">Ibrahim and Voyer (2026), Figure 2 and accompanying text.</p>
+
+---
+
+## Their inductive example uses a continuing chat
+
+<div class="paper-layout"><img src="images/source_pages/ibrahim_inductive_prompt.png" alt="Ibrahim and Voyer Figure 5 inductive prompt about smoking etiquette"><div><p>The model receives a substantive question and the relevant etiquette-book text.</p><p>Follow-up questions occur in the same chat, so earlier prompts and outputs remain part of the immediate context.</p><p>The researchers retain or reject suggestions using their own reading and expertise.</p></div></div>
+
+<p class="citation">Ibrahim and Voyer (2026), Figure 5 and pp. 145–146.</p>
+
+---
+
+## This is the interaction we will record in the example
+
+<div class="interaction-timeline"><div><b>Before the model</b><p>Researcher memo: practical help and political identity may remain separate.</p></div><div><b>Model request</b><p>Research question plus eight labelled excerpts.</p></div><div><b>Model proposal</b><p>Mutual aid transforms dependence into solidarity.</p></div><div><b>Researcher response</b><p>Check sources, inspect countercases, and revise the claim.</p></div></div>
+
+<div class="plain-note">The research record should preserve all four stages, including what the researcher had already noticed.</div>
+
+---
+
+## There are no settled standards for this work yet
+
+<div class="anchor-strip"><div><b>Tasks vary</b><p>Studies use LLMs for retrieval, coding, theme proposals, quotation selection, and interpretation.</p></div><div><b>Evidence varies</b><p>Some compare with human coding; others document an iterative collaboration.</p></div><div><b>Models change</b><p>Access routes, context limits, and underlying models can change during a project.</p></div></div>
+
+<div class="plain-note">This is a fast-moving methodological area. Researchers need to state exactly what the model did, what it saw, how output was checked, and which decisions remained human.</div>
+
+<p class="citation">Than et al. (2025); Mehta et al. (2025); Ibrahim and Voyer (2026).</p>
+
+---
+
+## After the break, we will follow one analysis record in Python {.section-slide}
+
+The code reproduces the same sequence: excerpts → model request → saved proposal → source check → researcher comparison → revised claim.
+
+---
+
+## First see the complete program in ordinary language
+
+<div class="workflow-overview"><pre>1. Store the research question and interview excerpts.
+2. Build one request containing those exact inputs.
+3. Send the request, or load the cached response.
+4. Parse the returned JSON into a Python dictionary.
+5. Retrieve every excerpt cited by the model.
+6. Add counterexamples, context and an alternative interpretation.
+7. Save what the researcher decided and why.</pre></div>
+
+<div class="plain-note">Every following slide advances this same record by one operation.</div>
+
+---
+
+## The setup creates a client but does not contact a model
+
+<div class="code-with-output"><div>
+
+~~~python
+import json
+import os
+from openrouter import OpenRouter
+
+api_key = os.environ["OPENROUTER_API_KEY"]
+client = OpenRouter(api_key=api_key)
+~~~
+
+</div><div class="output-panel"><b>Objects now available</b><pre>json
+module for reading JSON text
+
+api_key
+string read from the environment
+
+client
+OpenRouter client object</pre></div></div>
+
+<div class="plain-note">No interview text has left the computer. The network request occurs later, when the program calls <code>client.chat.send(...)</code>.</div>
+
+---
+
+## The starting inputs are the research question and excerpt records
+
+<div class="code-with-output"><div>
+
+~~~python
+research_question = (
+    "How do residents distinguish emergency help "
+    "from political solidarity?"
+)
+
+excerpts = [
+    {
+        "excerpt_id": "T01_A",
+        "participant_id": "T01",
+        "sequence": 1,
+        "text": "The grocery deliveries got us through..."
+    },
+    # seven more records
+]
+~~~
+
+</div><div class="output-panel"><b>Objects created</b><pre>research_question
+type: str
+
+excerpts
+type: list
+
+excerpts[0]
+type: dict</pre></div></div>
+
+---
+
+## One dictionary keeps a passage with its source context
+
+<div class="code-with-output"><div>
+
+~~~python
+excerpt = excerpts[0]
+
+print(excerpt["excerpt_id"])
+print(excerpt["text"])
+~~~
+
+</div><div class="output-panel"><b>Output</b><pre>T01_A
+The grocery deliveries got us
+through the last week...</pre></div></div>
+
+<div class="io-summary"><div><b>Input</b><span><code>excerpt</code>, one dictionary.</span></div><div><b>Operation</b><span>Retrieve two values by their keys.</span></div><div><b>Research meaning</b><span>The quoted text remains tied to a stable source ID.</span></div></div>
+
+---
+
+## The prompt contains the question, task, and excerpts
+
+<div class="code-with-output"><div>
+
+~~~python
+prompt = f"""
+Research question:
+{research_question}
+
+Task:
+Propose one candidate pattern.
+Cite supporting excerpt IDs.
+Return JSON.
+
+Excerpts:
+{json.dumps(excerpts)}
+"""
+~~~
+
+</div><div class="output-panel"><b>Output</b><pre>one string containing:
+
+• the research question
+• the bounded request
+• all eight source records
+• the required response format</pre></div></div>
+
+<div class="plain-note">The prompt shows exactly what the model receives. It does not include earlier researcher memos unless we deliberately add them.</div>
+
+---
+
+## The messages list assigns a role to each string
+
+~~~python
+messages = [
+    {
+        "role": "system",
+        "content": "You assist a sociologist with qualitative analysis."
+    },
+    {
+        "role": "user",
+        "content": prompt
+    }
+]
+~~~
+
+<div class="io-summary"><div><b>Input</b><span>Two strings.</span></div><div><b>Output</b><span>One list containing two dictionaries.</span></div><div><b>Why</b><span>The SDK sends this structured conversation to the model.</span></div></div>
+
+---
+
+## The model call returns one response object
+
+<div class="code-with-output"><div>
+
+~~~python
+response = client.chat.send(
+    model="openai/gpt-5.2",
+    messages=messages,
+    temperature=0.2,
+    max_tokens=300
+)
+~~~
+
+</div><div class="output-panel"><b>What each argument does</b><pre>model
+selects the hosted model
+
+messages
+supplies the inputs above
+
+temperature, max_tokens
+set generation conditions
+
+response
+stores the returned SDK object</pre></div></div>
+
+<div class="plain-note">The workbook can load a cached response with the same structure when a key or network connection is unavailable.</div>
+
+---
+
+## We retrieve the returned text and parse its JSON
+
+<div class="code-with-output"><div>
+
+~~~python
+raw_output = response.choices[0].message.content
+proposal = json.loads(raw_output)
+
+print(type(raw_output))
+print(type(proposal))
+~~~
+
+</div><div class="output-panel"><b>Output</b><pre>&lt;class 'str'&gt;
+&lt;class 'dict'&gt;</pre></div></div>
+
+<div class="plain-note">Parsing changes the Python representation from one string to named fields. It does not establish that the proposed theme is sound.</div>
+
+---
+
+## The proposal dictionary stores exactly what the model suggested
+
+<div class="code-with-output"><div>
+
+~~~python
+print(proposal["candidate_theme"])
+print(proposal["supporting_excerpt_ids"])
+~~~
+
+</div><div class="output-panel"><b>Output</b><pre>Mutual aid transforms practical
+dependence into political solidarity.
+
+["T01_B", "T04_A", "T06_A"]</pre></div></div>
+
+<div class="plain-note">The theme is a string. The citations are a list of strings that can be matched to the source records.</div>
+
+---
+
+## An index lets us retrieve any cited passage by ID
+
+<div class="code-with-output"><div>
+
+~~~python
+excerpt_by_id = {}
+
+for excerpt in excerpts:
+    excerpt_id = excerpt["excerpt_id"]
+    excerpt_by_id[excerpt_id] = excerpt
+~~~
+
+</div><div class="output-panel"><b>After the first pass</b><pre>{
+  "T01_A": {
+    "excerpt_id": "T01_A",
+    "participant_id": "T01",
+    "sequence": 1,
+    "text": "The grocery..."
+  }
+}</pre></div></div>
+
+<div class="plain-note">The loop reorganizes records already stored in Python. It does not call the model.</div>
+
+---
+
+## The source check follows each cited ID back to the corpus
+
+~~~python
+found_excerpts = []
+missing_ids = []
+
+for excerpt_id in proposal["supporting_excerpt_ids"]:
+    if excerpt_id in excerpt_by_id:
+        found_excerpts.append(excerpt_by_id[excerpt_id])
+    else:
+        missing_ids.append(excerpt_id)
+~~~
+
+<div class="io-summary"><div><b>Input</b><span>A list of three cited IDs and the source index.</span></div><div><b>Operation</b><span>Test whether each ID is a dictionary key.</span></div><div><b>Output</b><span>Found records and any missing IDs.</span></div></div>
+
+---
+
+## The first loop iteration retrieves T01_B
+
+<div class="record-fields"><div><code>excerpt_id</code><span><code>"T01_B"</code></span></div><div><code>excerpt_id in excerpt_by_id</code><span><code>True</code></span></div><div><code>operation</code><span>Append the complete <code>T01_B</code> dictionary to <code>found_excerpts</code>.</span></div><div><code>research meaning</code><span>The cited passage exists and can now be read with its participant and sequence fields.</span></div></div>
+
+---
+
+## A successful source check has a narrow result
+
+<div class="code-with-output"><div>
+
+~~~python
+source_check = {
+    "source_traceable": len(missing_ids) == 0,
+    "found_excerpts": found_excerpts,
+    "missing_ids": missing_ids
+}
+~~~
+
+</div><div class="output-panel"><b>Output</b><pre>{
+  "source_traceable": true,
+  "found_excerpts": [
+    "T01_B", "T04_A", "T06_A"
+  ],
+  "missing_ids": []
+}</pre></div></div>
+
+<div class="plain-note warning-note">All three citations exist. We still need to decide whether they represent the corpus and support the proposed relationship.</div>
+
+---
+
+## The researcher adds the comparisons that changed the claim
+
+~~~python
+review = {
+    "supporting_excerpt_ids": ["T01_B", "T04_A"],
+    "counterexample_ids": ["T02_A", "T03_A"],
+    "sequence_note": (
+        "T01_B follows months of repeated exchange; "
+        "T01_A alone does not show political identification."
+    ),
+    "alternative_interpretation": (
+        "Mutual aid creates opportunities for political "
+        "identification without reliably producing it."
+    )
+}
+~~~
+
+<div class="plain-note">These values come from the researcher's comparison of the stored passages, not from the source-checking loop.</div>
+
+---
+
+## We also record how the model affected the analysis
+
+~~~python
+interaction_log = {
+    "pre_model_memo": (
+        "Practical help and political identity may remain separate."
+    ),
+    "model_proposal": proposal["candidate_theme"],
+    "researcher_response": (
+        "The proposal directed attention to conversion stories. "
+        "I then searched explicitly for refusal and withdrawal."
+    )
+}
+~~~
+
+<div class="plain-note">This is the classroom implementation of Ibrahim and Voyer's researcher–algorithm interaction: what the researcher thought before, what the model proposed, and what changed next.</div>
+
+---
+
+## The final record joins the source check and researcher review
+
+~~~python
+analysis_record = {
+    "research_question": research_question,
+    "model_request": prompt,
+    "raw_model_output": raw_output,
+    "source_check": source_check,
+    "researcher_review": review,
+    "interaction_log": interaction_log,
+    "revised_claim": (
+        "Repeated exchanges sometimes created opportunities "
+        "for political identification, but reliance could remain "
+        "separate from politics or produce withdrawal."
+    )
+}
+~~~
+
+<div class="plain-note">Another reader can see the inputs, generated proposal, cited evidence, countercases, analytic response, and revised wording.</div>
+
+---
+
+## A short check reports which parts of the record are missing
+
+<div class="code-with-output"><div>
+
+~~~python
+required_fields = [
+    "research_question",
+    "model_request",
+    "raw_model_output",
+    "source_check",
+    "researcher_review",
+    "interaction_log",
+    "revised_claim"
+]
+
+missing = [
+    name for name in required_fields
+    if not analysis_record.get(name)
+]
+~~~
+
+</div><div class="output-panel"><b>Output</b><pre>missing = []</pre></div></div>
+
+<div class="plain-note">The output means that the seven expected fields are present. It says nothing about whether the researcher made the best interpretation.</div>
+
+---
+
+## The Python workflow now matches the methodological argument
+
+<table class="closed-table"><thead><tr><th>Operation</th><th>What Python returns</th><th>What the researcher still decides</th></tr></thead><tbody><tr><td>Build the request</td><td>The exact text supplied to the model</td><td>Whether the question and material are appropriate</td></tr><tr><td>Parse the response</td><td>Named fields in a dictionary</td><td>Whether the proposed relationship is useful</td></tr><tr><td>Trace cited IDs</td><td>Found records and missing IDs</td><td>Whether the passages support the claim</td></tr><tr><td>Save the review</td><td>Countercases, alternatives, memo, and revision</td><td>What interpretation best explains the material</td></tr></tbody></table>
+
+---
+
+## The three empirical papers answer different questions
+
+<table class="closed-table"><thead><tr><th>Paper</th><th>Contribution to this class</th></tr></thead><tbody><tr><td>Mehta et al. (2025)</td><td>Check that quotations and source support have not been altered.</td></tr><tr><td>Than et al. (2025)</td><td>Give the model a defined task inside a researcher-led coding and validation workflow.</td></tr><tr><td>Ibrahim and Voyer (2026)</td><td>Document how researchers shape the model and how its output redirects the analysis.</td></tr></tbody></table>
+
+<div class="plain-note">Together they provide a usable starting point, not a settled standard for every qualitative tradition.</div>
+
+---
+
+## We can now explain exactly why the claim changed
+
+<div class="final-layout"><div class="quote-large"><small>INITIAL MODEL PROPOSAL</small>“Mutual aid transforms practical dependence into political solidarity.”</div><div class="final-checks"><p><b>Source check:</b> the cited passages exist.</p><p><b>Comparison:</b> T02_A separates help from politics.</p><p><b>Sequence:</b> T01_B follows repeated exchange, not one delivery.</p><p><b>Counterprocess:</b> T03_A links obligation to withdrawal.</p><p><b>Revision:</b> mutual aid can create opportunities for identification without reliably producing it.</p></div></div>
+
+<div class="plain-note">The LLM supplied a candidate relationship. The analysis comes from checking it against cases, context, sequence, alternatives, and the researcher's developing account.</div>

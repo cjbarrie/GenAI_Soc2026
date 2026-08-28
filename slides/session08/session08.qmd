@@ -1,0 +1,191 @@
+---
+title: "Can LLMs recover missing or unobserved social worlds?"
+subtitle: "Session 8 · Opinion prediction, validation, and limits"
+author: "Generative AI in Sociology"
+date: "October 28, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to simulate
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class="active"><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## Can LLMs recover missing or unobserved social worlds?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Score individual error, aggregate error, and group-gap error separately.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">A strong aggregate correlation is presented as evidence that individual opinions or causal effects have been recovered.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Kim & Lee (2026):** methodological opportunity
+- **Xie et al. (2026):** validation or counterclaim
+- **Ashokkumar et al. (2026):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Kim & Lee (2026), AI-augmented surveys | Source: https://arxiv.org/abs/2305.09620 | Accessed: 2026-08-18
+- Xie et al. (2026), statistical realism | Source: https://doi.org/10.1073/pnas.2538145123 | Accessed: 2026-08-18
+- Ashokkumar et al. (2026), predicting experiment results | Source: https://doi.org/10.1038/s41586-026-10742-x | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The readings disagree about success
+
+<div class="lead">AI-augmented surveys seek unasked opinions; population realism and experiment forecasting show that success on one statistical target need not transfer to another.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Kim & Lee (2026), AI-augmented surveys | Source: https://arxiv.org/abs/2305.09620 | Accessed: 2026-08-18
+- Xie et al. (2026), statistical realism | Source: https://doi.org/10.1073/pnas.2538145123 | Accessed: 2026-08-18
+- Ashokkumar et al. (2026), predicting experiment results | Source: https://doi.org/10.1038/s41586-026-10742-x | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">Validation must be chosen for the inferential target: individuals, aggregates, associations, and effects are different achievements.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Calculate three target-specific errors from matched human and synthetic records.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def score_inferential_targets(records):
+    # return one documented result
+```
+
+**Return value:** Return individual MAE, aggregate mean error, and absolute error in the A–B group gap.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def score_inferential_targets(records):
+    individual_errors = [abs(row["human"] - row["synthetic"]) for row in records]
+    individual_mae = sum(individual_errors) / len(individual_errors)
+    human_mean = sum(row["human"] for row in records) / len(records)
+    synthetic_mean = sum(row["synthetic"] for row in records) / len(records)
+    means = {}
+    for source in ("human", "synthetic"):
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+        for group in ("A", "B"):
+            values = [row[source] for row in records if row["group"] == group]
+            means[(source, group)] = sum(values) / len(values)
+    human_gap = means[("human", "A")] - means[("human", "B")]
+    synthetic_gap = means[("synthetic", "A")] - means[("synthetic", "B")]
+    return {
+        "individual_mae": individual_mae,
+        "aggregate_error": abs(human_mean - synthetic_mean),
+        "group_gap_error": abs(human_gap - synthetic_gap),
+    }
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. The first list contains one absolute individual error per matched record.
+2. Two means are computed across the whole dataset for the aggregate target.
+3. The nested loops compute separate source-by-group means before constructing each group gap.
+4. The returned dictionary prevents one score from silently standing in for all inferential targets.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert scores["group_gap_error"] == 0
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">A strong aggregate correlation is presented as evidence that individual opinions or causal effects have been recovered.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `score_inferential_targets`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Kim & Lee (2026), AI-augmented surveys | Source: https://arxiv.org/abs/2305.09620 | Accessed: 2026-08-18
+- Xie et al. (2026), statistical realism | Source: https://doi.org/10.1073/pnas.2538145123 | Accessed: 2026-08-18
+- Ashokkumar et al. (2026), predicting experiment results | Source: https://doi.org/10.1038/s41586-026-10742-x | Accessed: 2026-08-18
+[/Sources]
+:::

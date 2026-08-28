@@ -1,0 +1,157 @@
+---
+title: "Week 3 Python — Qualitative suggestions in JSON"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 3 readings and slides](../weeks/session03.qmd).
+
+## Python walkthrough: ask for a qualitative suggestion in json
+
+**Research task:** Ask for a provisional theme, a source excerpt ID and a question for the researcher, then return to the cited passage.
+
+**Python introduced:** a route selector, `if/else`, lists of dictionaries, `json.dumps(...)` and `json.loads(...)`.
+
+The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+
+### Load the course settings and SDKs
+
+This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+
+```python
+import json
+import os
+from getpass import getpass
+from pathlib import Path
+
+import ollama
+from openrouter import OpenRouter
+
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
+
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
+```
+
+::: {.callout-note title="Read this setup cell"}
+**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+:::
+
+### Choose one route and store two identified excerpts
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+ROUTE = "ollama"  # change to "openrouter" if preferred
+excerpts = [
+    {"id": "e01", "text": "After several exchanges, I attended the tenants' meeting."},
+    {"id": "e02", "text": "I accepted help but did not attend political meetings."},
+]
+print("Route:", ROUTE)
+print("First excerpt:", excerpts[0])
+```
+
+::: {.callout-note title="Route and source records"}
+`ROUTE` is a string controlling which later branch runs. `excerpts` is a list containing two dictionaries; every dictionary keeps an excerpt ID beside its text. Keeping IDs with passages makes it possible to test whether a model's cited evidence actually exists.
+:::
+
+### Convert the excerpts into prompt text and construct messages
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+prompt = (
+    "Suggest one provisional theme. Return JSON with exactly theme, evidence_id, "
+    "and question_for_researcher. Excerpts: " + json.dumps(excerpts)
+)
+messages = [{"role": "user", "content": prompt}]
+print(prompt)
+```
+
+::: {.callout-note title="Preparing the qualitative input"}
+`json.dumps(excerpts)` converts the list of source dictionaries to text without discarding their IDs. The prompt states the three required output fields. The result is placed in the familiar one-message list. Its output is model input, not a theme or finding.
+:::
+
+### Make the selected route's call without hiding either branch
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+    raw_output = response.choices[0].message.content
+else:
+    response = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=messages,
+        format="json",
+        options={"temperature": 0},
+    )
+    raw_output = response.message.content
+
+print("Raw JSON text:", raw_output)
+```
+
+::: {.callout-note title="Reading the branch"}
+`if ROUTE == "openrouter"` runs only when that comparison is true; otherwise `else` runs the Ollama code. Both complete calls remain visible. Each branch assigns returned text to the same name, `raw_json`, so the parsing step below is identical whichever route was chosen.
+:::
+
+### Parse the JSON string and return to its cited source
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+suggestion = json.loads(raw_output)
+evidence_id = suggestion["evidence_id"]
+cited_excerpt = None
+for excerpt in excerpts:
+    if excerpt["id"] == evidence_id:
+        cited_excerpt = excerpt
+
+print("Theme:", suggestion["theme"])
+print("Cited excerpt:", cited_excerpt)
+print("Question:", suggestion["question_for_researcher"])
+
+# ONE CHANGE: change e02 to
+# "The food deliveries helped, but I avoided the group because meetings felt hostile."
+```
+
+::: {.callout-note title="Text becomes a dictionary"}
+`json.loads(raw_json)` parses the returned string into a Python dictionary. Square brackets retrieve the theme and cited ID. The `for` loop checks each source record until its ID matches; it then saves the actual excerpt. The output to assess is the pair `theme` plus `cited_excerpt`, not the theme alone.
+:::
+
+### Methodological check
+
+Well-formed JSON makes the fields retrievable. The researcher must still decide whether the cited excerpt supports the theme and what contrary evidence changes it.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 3 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session03/session03_qualitative_interpretation.ipynb) · [Download the notebook](../_generated/downloads/session03/session03_qualitative_interpretation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session03/session03_task.py) · [Download the runnable offline bundle](../_generated/downloads/session03/session03_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 30–45 minutes.
+
+Use one chosen route, change only e02 and rerun. Explain `ROUTE`, both `if/else` branches, `json.dumps`, the raw returned string, `json.loads` and the source lookup. Say whether the cited passage supports the proposed theme.
+
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+:::

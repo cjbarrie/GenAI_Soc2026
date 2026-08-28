@@ -1,0 +1,786 @@
+[
+  {
+    "profile_id": "teaching_001",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 24,
+      "gender": "woman",
+      "education": "high school",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "5",
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_001",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 24,
+      "gender": "woman",
+      "education": "high school",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.15, \"4\": 0.30, \"5\": 0.40, \"6\": 0.10, \"7\": 0.00}",
+    "probabilities": {
+      "1": 0.009900990099009901,
+      "2": 0.04950495049504951,
+      "3": 0.1485148514851485,
+      "4": 0.297029702970297,
+      "5": 0.39603960396039606,
+      "6": 0.09900990099009901,
+      "7": 0.0
+    },
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_002",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 24,
+      "gender": "man",
+      "education": "bachelor's degree",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_002",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 24,
+      "gender": "man",
+      "education": "bachelor's degree",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.15, \"4\": 0.30, \"5\": 0.20, \"6\": 0.08, \"7\": 0.01}",
+    "probabilities": {
+      "1": 0.012499999999999999,
+      "2": 0.0625,
+      "3": 0.18749999999999997,
+      "4": 0.37499999999999994,
+      "5": 0.25,
+      "6": 0.09999999999999999,
+      "7": 0.012499999999999999
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_003",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 29,
+      "gender": "woman",
+      "education": "some college",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "5",
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_003",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 29,
+      "gender": "woman",
+      "education": "some college",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.15, \"4\": 0.30, \"5\": 0.20, \"6\": 0.05, \"7\": 0.04}",
+    "probabilities": {
+      "1": 0.012499999999999999,
+      "2": 0.0625,
+      "3": 0.18749999999999997,
+      "4": 0.37499999999999994,
+      "5": 0.25,
+      "6": 0.0625,
+      "7": 0.049999999999999996
+    },
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_004",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 29,
+      "gender": "man",
+      "education": "graduate degree",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_004",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 29,
+      "gender": "man",
+      "education": "graduate degree",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.20, \"4\": 0.30, \"5\": 0.20, \"6\": 0.03, \"7\": 0.01}",
+    "probabilities": {
+      "1": 0.012499999999999999,
+      "2": 0.0625,
+      "3": 0.25,
+      "4": 0.37499999999999994,
+      "5": 0.25,
+      "6": 0.0375,
+      "7": 0.012499999999999999
+    },
+    "parsed_response": 1,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_005",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 34,
+      "gender": "woman",
+      "education": "bachelor's degree",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "5",
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_005",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 34,
+      "gender": "woman",
+      "education": "bachelor's degree",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.15, \"4\": 0.30, \"5\": 0.40, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.009433962264150943,
+      "2": 0.04716981132075472,
+      "3": 0.14150943396226415,
+      "4": 0.2830188679245283,
+      "5": 0.37735849056603776,
+      "6": 0.09433962264150944,
+      "7": 0.04716981132075472
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_006",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 34,
+      "gender": "man",
+      "education": "high school",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_006",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 34,
+      "gender": "man",
+      "education": "high school",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 3,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_007",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 41,
+      "gender": "woman",
+      "education": "graduate degree",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_007",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 41,
+      "gender": "woman",
+      "education": "graduate degree",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.20, \"4\": 0.30, \"5\": 0.20, \"6\": 0.03, \"7\": 0.01}",
+    "probabilities": {
+      "1": 0.012499999999999999,
+      "2": 0.0625,
+      "3": 0.25,
+      "4": 0.37499999999999994,
+      "5": 0.25,
+      "6": 0.0375,
+      "7": 0.012499999999999999
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_008",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 41,
+      "gender": "man",
+      "education": "some college",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_008",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 41,
+      "gender": "man",
+      "education": "some college",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.01, \"2\": 0.05, \"3\": 0.20, \"4\": 0.30, \"5\": 0.20, \"6\": 0.03, \"7\": 0.01}",
+    "probabilities": {
+      "1": 0.012499999999999999,
+      "2": 0.0625,
+      "3": 0.25,
+      "4": 0.37499999999999994,
+      "5": 0.25,
+      "6": 0.0375,
+      "7": 0.012499999999999999
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_009",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 49,
+      "gender": "woman",
+      "education": "high school",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "5",
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_009",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 49,
+      "gender": "woman",
+      "education": "high school",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_010",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 49,
+      "gender": "man",
+      "education": "bachelor's degree",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_010",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 49,
+      "gender": "man",
+      "education": "bachelor's degree",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 6,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_011",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 57,
+      "gender": "woman",
+      "education": "some college",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_011",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 57,
+      "gender": "woman",
+      "education": "some college",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 1,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_012",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 57,
+      "gender": "man",
+      "education": "graduate degree",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "5",
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_012",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 57,
+      "gender": "man",
+      "education": "graduate degree",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_013",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 66,
+      "gender": "woman",
+      "education": "bachelor's degree",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_013",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 66,
+      "gender": "woman",
+      "education": "bachelor's degree",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_014",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 66,
+      "gender": "man",
+      "education": "high school",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_014",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 66,
+      "gender": "man",
+      "education": "high school",
+      "party_id": "Democrat"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 2,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_015",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 74,
+      "gender": "woman",
+      "education": "graduate degree",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "5",
+    "parsed_response": 5,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_015",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 74,
+      "gender": "woman",
+      "education": "graduate degree",
+      "party_id": "independent"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.20, \"4\": 0.25, \"5\": 0.20, \"6\": 0.10, \"7\": 0.05}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.2,
+      "4": 0.25,
+      "5": 0.2,
+      "6": 0.1,
+      "7": 0.05
+    },
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_016",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 74,
+      "gender": "man",
+      "education": "some college",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_forced_v1",
+    "elicitation": "forced_choice",
+    "query_date": "2026-08-25",
+    "raw_response": "4",
+    "parsed_response": 4,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  },
+  {
+    "profile_id": "teaching_016",
+    "profile_source": "instructor_authored_balanced_teaching_set",
+    "profile": {
+      "age": 74,
+      "gender": "man",
+      "education": "some college",
+      "party_id": "Republican"
+    },
+    "question_id": "EQWLTH",
+    "model": "llama3.2:3b",
+    "access_route": "ollama_local",
+    "prompt_id": "eqwlth_probabilities_v1",
+    "elicitation": "reported_probabilities",
+    "query_date": "2026-08-25",
+    "raw_response": "{\"1\": 0.05, \"2\": 0.15, \"3\": 0.30, \"4\": 0.20, \"5\": 0.10, \"6\": 0.05, \"7\": 0.15}",
+    "probabilities": {
+      "1": 0.05,
+      "2": 0.15,
+      "3": 0.3,
+      "4": 0.2,
+      "5": 0.1,
+      "6": 0.05,
+      "7": 0.15
+    },
+    "parsed_response": 2,
+    "parser_status": "ok",
+    "random_seed": 20261021
+  }
+]

@@ -1,0 +1,13 @@
+id,speaker_role,text,human_label
+1,tenant,"More apartments near the subway would help families like mine stay in the neighborhood, so I support the proposal.",SUPPORT
+2,homeowner,"This plan would overwhelm our block, and the council should vote it down.",OPPOSE
+3,renter,"I want lower rents, but I cannot support the proposal unless the affordability rules become much stronger.",UNCLEAR
+4,student,"Building homes beside reliable public transport is exactly what the city should do. Please approve it.",SUPPORT
+5,business_owner,"More neighbors would mean more customers for local shops, and I support the rezoning.",SUPPORT
+6,tenant,"Without protections against displacement, I am not ready to say whether this plan helps tenants.",UNCLEAR
+7,homeowner,"The council should reject the rezoning and preserve the current height limit.",OPPOSE
+8,renter,"The proposal finally adds homes ordinary renters might afford. I urge you to pass it.",SUPPORT
+9,business_owner,"No—the proposed towers are too tall and the plan should not proceed.",OPPOSE
+10,tenant,"I came tonight to learn more and have not formed a view on the proposal.",UNCLEAR
+11,homeowner,"I could accept additional housing if the city first guarantees a new school and more transit service.",UNCLEAR
+12,student,"Reject this proposal; its affordability promises are far too weak.",OPPOSE

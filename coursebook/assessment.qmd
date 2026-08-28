@@ -1,0 +1,43 @@
+---
+title: "Assessment and marking"
+---
+
+| Component | Weight |
+|---|---:|
+| Weekly completion tasks: ten best submissions | 20% |
+| Midterm project proposal | 20% |
+| Individual oral code walkthrough | 5% |
+| Final-project milestones | 10% |
+| Final research-design package | 25% |
+| Final presentation | 10% |
+| Participation and reading preparation | 10% |
+
+## Weekly completion tasks
+
+Ten best submissions from Weeks 1–13 count. Week 12 is deliberately low-stakes and may replace a missed task. The submission is a brief narrated screen recording uploaded to the dedicated NYU Box folder. **Box submission link: to be provided by the instructor.**
+
+In the recording, students run the complete block supplied on the week's Python page, explain the input and output of every operation, change one named input or parameter, and explain what the model return means for the week's methodological question. From Week 2, the normal route is a live call through OpenRouter or a supported local model; a supplied cached response may be used when access fails. Students are not graded for editing quality, code elegance or efficient abstraction.
+
+A task is complete when the recording makes the student's understanding audible: the relevant Python values and types are identified, the model call and returned object are explained, the requested change is shown, one limit is stated and the connection to a reading is made. Weekly tasks do not receive numerical quality grades. Missing elements may be supplied within one week.
+
+## Midterm project proposal
+
+The proposal is released after Week 6 and submitted before Week 7. In 1,200–1,500 words, you set out a sociological question, locate it in a focused body of literature, specify the evidence and research design, and explain exactly where an LLM would enter the study. Include one concrete input → operation → expected output → researcher check, along with a validation plan, likely failures, ethical issues, the records you would preserve and the next steps toward the final project.
+
+This is the first substantial version of the final project. It is not a Python test, and it does not require a completed empirical study or an exhaustive literature review.
+
+## Individual oral code walkthrough
+
+Shortly afterwards, each student completes a separate 10–12 minute individual walkthrough. With a short extract from a weekly task or suitable proposal example visible, you identify the inputs and Python types, explain every line or small block, predict the output and one modification, and connect the computation to its sociological meaning. This is an understanding assessment, not a syntax quiz. No live generative assistance is used during it.
+
+## Final project
+
+The final project is a self-designed, LLM-related sociological research design and class presentation. A minimal input/output trace or proof of concept is expected where feasible, but you are not required to complete a full empirical paper or obtain definitive findings.
+
+After receiving feedback on the proposal, submit a short revision note on 28 October explaining what you will change. The 11 November design clinic tests the revised validation plan and minimal trace; the 25 November studio produces a recoverable discrepancy or progress record. The project presentation takes place on 9 December. During the examination period, submit the final package: sociological motivation, inferential target, data and sampling plan, proposed LLM workflow, prototype where feasible, validation strategy, failure modes and ethics, reproducibility record, AI-use disclosure, and a brief account of how the proposal changed.
+
+The final package is assessed for sociological importance, fit between claim and design, transparent implementation, validation, substantive interpretation, reproducibility and communication. Code sophistication is not an independent virtue.
+
+## Participation and reading preparation
+
+Participation can take the form of a reading question, explanation of a code block, validation critique, project feedback or a short written contribution. Speaking frequency alone does not determine the mark.

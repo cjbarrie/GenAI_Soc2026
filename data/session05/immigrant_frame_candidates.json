@@ -1,0 +1,156 @@
+{
+  "study": {
+    "title": "Immigrant-rights framing-contest construction",
+    "research_question": "How does a rights, economics, or family framing contest affect support for offering permanent legal status to undocumented immigrants?",
+    "provenance": "Synthetic course materials based on the three framing domains in Bloemraad, Silva, and Voss (2016). Candidate texts are cached course outputs created with an LLM and lightly edited by the instructor. Ratings and flags are instructor-authored mock annotations. Word counts are calculated from the displayed text. These materials are not evidence from a real pretest or experiment.",
+    "outcome": "Choice among no legal change, permanent residency without citizenship, or permanent residency with a path to citizenship"
+  },
+  "frame_definitions": {
+    "rights": "Present competing claims about universal human rights and rights attached to US citizenship.",
+    "economics": "Present competing claims about immigrants' economic contributions and possible economic costs.",
+    "family": "Present competing claims about family unity and immigration enforcement involving parents."
+  },
+  "field_provenance": {
+    "candidate_id_condition_source_prompt_version_text": "Saved by the researcher when the candidate was generated and edited.",
+    "intended_frame_competing_frame_warmth_emotionality_factual_density_readability": "Instructor-authored mock ratings on a 1 to 5 scale for teaching; not LLM judgments and not human pretest data.",
+    "unsupported_claim_stigmatizing_language": "Instructor-authored mock screening flags for teaching.",
+    "word_count": "Calculated by Python from text.split(); not supplied by a rater or an LLM.",
+    "rules": "Thresholds chosen by the researcher before screening the candidates."
+  },
+  "mock_rating_instrument": {
+    "scale": "1 to 5",
+    "warmth_question": "How warm and sympathetic does this framing contest sound?",
+    "warmth_anchors": {"1": "not at all warm", "3": "moderately warm", "5": "extremely warm"},
+    "warning": "The stored scores are single instructor-authored mock values. A real pretest would collect separate responses from sampled participants and report their distribution."
+  },
+  "rules": {
+    "min_intended_frame_score": 4.0,
+    "max_competing_frame_score": 2.0,
+    "max_word_count": 55,
+    "allow_unsupported_claim": false,
+    "allow_stigmatizing_language": false,
+    "max_pool_mean_difference": 1.0
+  },
+  "candidates": [
+    {
+      "candidate_id": "rights_01",
+      "condition": "rights",
+      "text": "Some people argue that basic human rights should apply to everyone, regardless of immigration status. Others argue that decisions about legal status should give priority to the rights and responsibilities attached to US citizenship.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.7, "competing_frame_score": 1.2,
+      "warmth_score": 3.0, "emotionality_score": 2.5,
+      "factual_density_score": 2.8, "readability_score": 4.4,
+      "word_count": 34, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "rights_02",
+      "condition": "rights",
+      "text": "Human rights law guarantees that every undocumented immigrant must receive permanent residence in every case without exception, and decades of research prove that legalization always strengthens democracy. Others maintain that citizenship must remain the decisive basis for political membership and that extending status to people who entered without authorization would weaken the rights of citizens who followed the rules.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.8, "competing_frame_score": 1.5,
+      "warmth_score": 2.6, "emotionality_score": 3.4,
+      "factual_density_score": 4.8, "readability_score": 3.5,
+      "word_count": 59, "unsupported_claim": true, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "rights_03",
+      "condition": "rights",
+      "text": "One view is that equal human dignity supports giving undocumented residents a secure legal status. Another is that the government has a special obligation to protect the claims of citizens before extending membership to noncitizens.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.5, "competing_frame_score": 1.3,
+      "warmth_score": 3.1, "emotionality_score": 2.7,
+      "factual_density_score": 2.7, "readability_score": 4.5,
+      "word_count": 35, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "rights_04",
+      "condition": "rights",
+      "text": "Supporters say that fundamental rights should not depend entirely on birthplace or documentation. Opponents say that immigration rules express the rights of citizens to decide who may become a permanent member of the country.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.4, "competing_frame_score": 1.5,
+      "warmth_score": 2.9, "emotionality_score": 2.4,
+      "factual_density_score": 2.9, "readability_score": 4.6,
+      "word_count": 34, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "econ_01",
+      "condition": "economics",
+      "text": "Some people say undocumented immigrants contribute through work, spending, and taxes. Others say that granting permanent legal status could increase competition for jobs and place additional demands on public resources.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.7, "competing_frame_score": 1.1,
+      "warmth_score": 2.1, "emotionality_score": 1.9,
+      "factual_density_score": 4.3, "readability_score": 4.4,
+      "word_count": 30, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "econ_02",
+      "condition": "economics",
+      "text": "Legal status would help hardworking families remain together while allowing employers to retain experienced workers. Critics argue that legalization could increase public costs and make it harder for citizens to find stable employment.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 3.6, "competing_frame_score": 3.1,
+      "warmth_score": 3.7, "emotionality_score": 3.0,
+      "factual_density_score": 3.7, "readability_score": 4.3,
+      "word_count": 33, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "econ_03",
+      "condition": "economics",
+      "text": "Advocates argue that regularizing undocumented workers would make employment and tax contributions more transparent. Critics argue that permanent status could create new fiscal obligations and affect competition in parts of the labour market.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.5, "competing_frame_score": 1.2,
+      "warmth_score": 2.0, "emotionality_score": 1.7,
+      "factual_density_score": 4.4, "readability_score": 4.2,
+      "word_count": 33, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "econ_04",
+      "condition": "economics",
+      "text": "One side emphasizes the businesses, wages, purchases, and tax payments connected to undocumented residents. The other emphasizes possible costs to public programmes and possible pressure on workers competing for similar jobs.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.4, "competing_frame_score": 1.4,
+      "warmth_score": 2.2, "emotionality_score": 1.8,
+      "factual_density_score": 4.2, "readability_score": 4.1,
+      "word_count": 31, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "family_01",
+      "condition": "family",
+      "text": "Some people say permanent legal status would keep parents and children from being separated. Others say that family circumstances should not prevent the government from enforcing immigration law.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.7, "competing_frame_score": 1.1,
+      "warmth_score": 4.4, "emotionality_score": 4.0,
+      "factual_density_score": 2.3, "readability_score": 4.7,
+      "word_count": 28, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "family_02",
+      "condition": "family",
+      "text": "Supporters say illegal immigrant parents should be allowed to stay so their children can grow up with them. Opponents say parents who broke immigration rules should face deportation even when that separates a family.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.6, "competing_frame_score": 1.4,
+      "warmth_score": 4.2, "emotionality_score": 4.4,
+      "factual_density_score": 2.4, "readability_score": 4.5,
+      "word_count": 34, "unsupported_claim": false, "stigmatizing_language": true
+    },
+    {
+      "candidate_id": "family_03",
+      "condition": "family",
+      "text": "Advocates argue that a route to permanent status would protect family unity and reduce uncertainty for children. Critics argue that having family ties should not exempt someone from the consequences of immigration rules.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.5, "competing_frame_score": 1.3,
+      "warmth_score": 4.3, "emotionality_score": 3.8,
+      "factual_density_score": 2.5, "readability_score": 4.5,
+      "word_count": 33, "unsupported_claim": false, "stigmatizing_language": false
+    },
+    {
+      "candidate_id": "family_04",
+      "condition": "family",
+      "text": "One view is that immigration policy should avoid separating settled parents from their children. Another is that consistent enforcement sometimes requires removal even when relatives would prefer to remain together.",
+      "source": "cached_course_generation", "prompt_version": "v3",
+      "intended_frame_score": 4.3, "competing_frame_score": 1.4,
+      "warmth_score": 4.5, "emotionality_score": 3.7,
+      "factual_density_score": 2.2, "readability_score": 4.6,
+      "word_count": 30, "unsupported_claim": false, "stigmatizing_language": false
+    }
+  ]
+}

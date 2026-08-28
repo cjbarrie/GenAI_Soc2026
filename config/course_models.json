@@ -1,0 +1,15 @@
+{
+  "hosted": {
+    "provider": "OpenRouter",
+    "model": "openai/gpt-5.2",
+    "environment_variable": "COURSE_HOSTED_MODEL"
+  },
+  "local": {
+    "runtime": "Ollama",
+    "model": "gemma4:e2b-it-qat",
+    "environment_variable": "COURSE_LOCAL_MODEL",
+    "base_url": "http://localhost:11434/api"
+  },
+  "checked": "2026-08-27",
+  "note": "Freeze and retest these teaching defaults two weeks before term. Record the requested and resolved identifiers on every live run."
+}

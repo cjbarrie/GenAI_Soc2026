@@ -1,0 +1,169 @@
+---
+title: "Week 4 Python — Multimodal evidence"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 4 readings and slides](../weeks/session04.qmd).
+
+## Python walkthrough: give a multimodal model visual evidence
+
+**Research task:** Ask a vision-capable model to describe change across two supplied interaction frames while separating visible evidence from interpretation.
+
+**Python introduced:** file paths, ordered image lists, nested message content and structured visual descriptions.
+
+The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+
+### Load the course settings and SDKs
+
+This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+
+```python
+import json
+import os
+from getpass import getpass
+from pathlib import Path
+
+import ollama
+from openrouter import OpenRouter
+
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
+
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
+```
+
+::: {.callout-note title="Read this setup cell"}
+**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+:::
+
+### Load the supplied image transport utility and identify two frames
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+from src.genai_soc.media import image_to_data_url
+
+ROUTE = "ollama"  # change to "openrouter" if preferred
+frame_1 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_168.png"
+frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_169.png"
+timestamps = ["00:00", "00:01"]
+print(frame_1)
+print(frame_2)
+print("Both files exist:", frame_1.exists() and frame_2.exists())
+```
+
+::: {.callout-note title="Files are inputs too"}
+Each `Path` stores a location, not the image pixels themselves. `display(Image(...))` lets the researcher inspect the frames before asking a model about them. The supplied transport utility later converts a file to the data-URL representation OpenRouter accepts; students need to explain its file input and transport output, not binary encoding.
+:::
+
+### State the evidentiary boundary and the required JSON fields
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+prompt = (
+    "Compare these ordered frames. Describe only visible change. Do not name people, "
+    "infer motive, or use remembered event knowledge. Return JSON with exactly "
+    "observable_change, visible_evidence, and interpretation_withheld."
+)
+schema = {
+    "type": "object",
+    "properties": {
+        "observable_change": {"type": "string"},
+        "visible_evidence": {"type": "array", "items": {"type": "string"}},
+        "interpretation_withheld": {"type": "string"},
+    },
+    "required": ["observable_change", "visible_evidence", "interpretation_withheld"],
+    "additionalProperties": False,
+}
+```
+
+::: {.callout-note title="Constraint and schema"}
+`instruction` tells the model to report visible change and withhold identity, motive and cause. `schema` is a nested dictionary describing the required fields and their types. It can constrain the form of a return; it cannot guarantee that a supposedly visible claim is actually present in a frame.
+:::
+
+### Send the images through the selected route
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+if ROUTE == "openrouter":
+    content = [
+        {"type": "text", "text": prompt},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_1)}},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_2)}},
+    ]
+    messages = [{"role": "user", "content": content}]
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL, messages=messages, temperature=0,
+            response_format={"type": "json_schema", "json_schema": {
+                "name": "visible_sequence", "strict": True, "schema": schema,
+            }},
+        )
+    raw_output = response.choices[0].message.content
+else:
+    messages = [{
+        "role": "user", "content": prompt,
+        "images": [str(frame_1), str(frame_2)],
+    }]
+    response = ollama.chat(
+        model=LOCAL_MODEL, messages=messages, format=schema,
+        options={"temperature": 0},
+    )
+    raw_output = response.message.content
+
+print("Raw JSON text:", raw_output)
+```
+
+::: {.callout-note title="Multimodal message and return"}
+The message contains ordered text and image parts. The OpenRouter branch converts each path to a data URL; the Ollama branch supplies local path strings in its `images` field. Each branch requests the same schema and stores the returned JSON text in `raw_json`. Route-specific transport differs even though the research question is held fixed.
+:::
+
+### Parse the three fields and compare them with the images
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+description = json.loads(raw_output)
+print("Observable change:", description["observable_change"])
+print("Visible evidence:", description["visible_evidence"])
+print("Interpretation withheld:", description["interpretation_withheld"])
+
+# ONE CHANGE: replace frame_2 with zidane_fine2_170.png and rerun.
+```
+
+::: {.callout-note title="The substantive check"}
+`json.loads(...)` creates a dictionary, then three key lookups retrieve the model's description, claimed visible evidence and withheld interpretation. Printing those values makes them available for frame-by-frame checking. A well-formed list of visible evidence is not proof that each item is visible.
+:::
+
+### Methodological check
+
+The model can still recognize a famous event or import a motive despite the constraint. Each returned claim must be checked against pixels in the two displayed frames.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 4 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session04/session04_multimodal_evidence.ipynb) · [Download the notebook](../_generated/downloads/session04/session04_multimodal_evidence.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session04/session04_task.py) · [Download the runnable offline bundle](../_generated/downloads/session04/session04_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 30–45 minutes.
+
+Use one route, replace the second frame with `zidane_fine2_170.png` and rerun. Explain each path, the image representation used by your route, the raw JSON and all three fields. Identify anything not visibly supported.
+
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+:::

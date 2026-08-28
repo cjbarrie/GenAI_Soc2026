@@ -1,0 +1,22 @@
+---
+title: "Week 9 Python — Putting a model call inside a function"
+description: "Provisional coding plan"
+---
+
+[Return to the Week 9 readings outline](../weeks/session09.qmd).
+
+This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+
+## Planned code trace
+
+**Research task:** Ask one simulated actor to choose its next action after observing another actor.
+
+**Python sequence:** `def`, explicit parameters, local variables, `return` and calling one function with changed arguments. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+
+## Planned completion recording
+
+Explain what enters each of the four function parameters, what remains local inside the function and what the returned dictionary contains. Compare the two calls without treating the model's reason as observed motivation. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+
+## Development status
+
+The page is deliberately provisional. It does not yet publish an assessed notebook or task.

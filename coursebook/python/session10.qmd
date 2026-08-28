@@ -1,0 +1,22 @@
+---
+title: "Week 10 Python — Running a small interaction repeatedly"
+description: "Provisional coding plan"
+---
+
+[Return to the Week 10 readings outline](../weeks/session10.qmd).
+
+This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+
+## Planned code trace
+
+**Research task:** Compare a no-interaction baseline with a condition in which each simulated actor sees the preceding action.
+
+**Python sequence:** repeated function calls, `range(...)`, accumulated run lists, conditions and small outcome summaries. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+
+## Planned completion recording
+
+Explain one actor update, one full group run and how `range(3)` creates repeated evidence. Reverse actor order and discuss what the changed or unchanged outcomes establish. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+
+## Development status
+
+The page is deliberately provisional. It does not yet publish an assessed notebook or task.

@@ -1,0 +1,99 @@
+project:
+  type: book
+  output-dir: _book
+  pre-render:
+    - python ../scripts/build_coursebook.py --prepare
+  post-render:
+    - python ../scripts/check_coursebook.py
+  resources:
+    - _generated/**
+    - downloads/**
+
+book:
+  title: "Generative AI in Sociology"
+  subtitle: "Evidence, inference, and research design"
+  author: "Christopher Barrie"
+  date: "2026-09-02"
+  date-format: "[Fall] YYYY"
+  site-url: "https://cjbarrie.github.io/GenAI_Soc2026"
+  repo-url: "https://github.com/cjbarrie/GenAI_Soc2026"
+  search: true
+  downloads: [pdf]
+  sharing: [twitter, linkedin]
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - course-structure.qmd
+    - how-to-use.qmd
+    - computing.qmd
+    - ai-policy.qmd
+    - assessment.qmd
+    - part: "Evidence, measurement and interpretation"
+      chapters:
+        - weeks/session01.qmd
+        - python/session01.qmd
+        - weeks/session02.qmd
+        - python/session02.qmd
+        - weeks/session03.qmd
+        - python/session03.qmd
+        - weeks/session04.qmd
+        - python/session04.qmd
+    - part: "Experiments and research encounters"
+      chapters:
+        - weeks/session05.qmd
+        - python/session05.qmd
+        - weeks/session06.qmd
+        - python/session06.qmd
+    - part: "Synthetic populations and social simulation"
+      chapters:
+        - weeks/session07.qmd
+        - python/session07.qmd
+        - weeks/session08.qmd
+        - python/session08.qmd
+        - weeks/session09.qmd
+        - python/session09.qmd
+        - weeks/session10.qmd
+        - python/session10.qmd
+    - part: "Research agents, replication and model audits"
+      chapters:
+        - weeks/session11.qmd
+        - python/session11.qmd
+        - weeks/session12.qmd
+        - python/session12.qmd
+        - weeks/session13.qmd
+        - python/session13.qmd
+        - weeks/session14.qmd
+    - references.qmd
+
+bibliography: ../references.bib
+link-citations: true
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    anchor-sections: true
+    smooth-scroll: true
+  pdf:
+    documentclass: scrreprt
+    papersize: letter
+    fontsize: 10.5pt
+    code-overflow: wrap
+    geometry:
+      - margin=1in
+    toc: true
+    colorlinks: true
+    keep-tex: false
+
+execute:
+  enabled: false
+  freeze: auto
+
+language:
+  title-block-published: "Term"

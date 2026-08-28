@@ -1,0 +1,334 @@
+---
+title: "Setting up Python, OpenRouter and Ollama"
+---
+
+The course uses real model calls from Week 1. Everyone configures both supported routes during the first two weeks. After that, you normally choose either OpenRouter or Ollama; Week 8 returns to a direct comparison.
+
+This chapter separates several things that are easy to conflate: Python, a notebook, an SDK, an API, a server and a model. They work together, but they are not interchangeable names for the same thing.
+
+## Six pieces of the setup
+
+| Piece | What it is | What it does in this course |
+|---|---|---|
+| Python | a programming language and runtime | stores research material, constructs a request and handles the return |
+| JupyterLab or VS Code | an interface for running Python | lets us execute the routine in short, inspectable steps |
+| SDK or client library | an installed Python package | converts ordinary Python objects into an API request and converts the reply into a Python response object |
+| API | a documented way for software to send requests to a service | specifies the endpoint, authentication, request fields and response fields |
+| server | the program that receives the API request | OpenRouter operates remote servers; Ollama operates a server on the local computer |
+| model | the trained system that generates the return | selected by a hosted model slug or a downloaded Ollama tag |
+
+Installing `openrouter` or `ollama` does not install Python, Jupyter or—in the OpenRouter case—the model. The packages are relatively small pieces of client software. Their job is to connect our Python code to a service.
+
+## What runs where?
+
+| Route | What your Python contacts | Where inference runs | What you need |
+|---|---|---|---|
+| OpenRouter | OpenRouter's hosted API | a remote provider selected through OpenRouter | internet access and the privately supplied course key |
+| Ollama | a server at `localhost` | your computer | the Ollama application and downloaded model |
+| Cached contingency | a saved response file | nowhere during the exercise | only when a live route is genuinely unavailable |
+
+Local JupyterLab or VS Code is the normal environment because it can reach both routes. Colab remains an OpenRouter fallback; it cannot normally run Ollama on your computer.
+
+## What OpenRouter is
+
+OpenRouter is a hosted routing service. We send one request to OpenRouter's API and name a model using a string such as `"openai/gpt-5.2"`. OpenRouter then selects an available provider endpoint for that model, forwards the request and returns the result. The model name and the provider that actually serves a request are therefore related but distinct pieces of the research record.
+
+The course uses OpenRouter because one SDK and one key let us work with hosted models without learning a different provider library for every model. That convenience does not remove the need to record routing information, cost, data policy or the resolved model/provider when the service supplies it.
+
+### What happens during an OpenRouter call
+
+1. Python stores the prompt and messages in memory on the student's computer.
+2. The `openrouter` SDK turns those Python objects into an HTTPS request.
+3. The key is sent in an authorization header. It tells OpenRouter which account may make the request; it is not part of the prompt.
+4. The request leaves the computer and reaches OpenRouter.
+5. OpenRouter routes it to a provider serving the requested model.
+6. The provider runs the model and sends a response back through OpenRouter.
+7. The SDK turns the response into a Python object such as `hosted_response`.
+8. Our code retrieves the returned message text from that object.
+
+The network path is:
+
+```text
+notebook → openrouter SDK → internet → OpenRouter → model provider
+notebook ← Python response object ← internet ← OpenRouter ← model provider
+```
+
+The official OpenRouter SDK is a thin client for its REST API: it handles authentication, validates request fields and provides typed response objects. See the [OpenRouter Python SDK](https://openrouter.ai/docs/client-sdks/python/overview) and [provider-routing documentation](https://openrouter.ai/docs/guides/routing/provider-selection).
+
+## What Ollama is
+
+Ollama is an application and local model server. `ollama pull ...` downloads a named model artifact. When Ollama is running, it normally serves an API at `http://localhost:11434/api`. `localhost` means this same computer; it is not a website elsewhere on the internet.
+
+The Python package named `ollama` is the client. It sends a request to the Ollama server. The server loads the requested model onto the available CPU/GPU and memory, runs inference and returns a response. No OpenRouter key is needed for this local API. Model download is a separate earlier network operation.
+
+### What happens during an Ollama call
+
+1. Python stores the same prompt and messages in memory.
+2. The `ollama` package turns those Python objects into an HTTP request.
+3. The request goes to the Ollama server at `localhost`, normally on port `11434`.
+4. Ollama finds the downloaded model named by `LOCAL_MODEL`.
+5. Ollama loads or reuses the model and performs inference on the computer.
+6. Ollama returns JSON to the Python client.
+7. The client gives us a Python response object such as `local_response`.
+8. Our code retrieves the returned message text from that object.
+
+The local path is:
+
+```text
+notebook → ollama Python client → localhost:11434 → downloaded model
+notebook ← Python response object ← localhost:11434 ← downloaded model
+```
+
+The local server normally requires no authentication because it listens on the same machine. Do not expose it to a network for this course. See Ollama's official [API introduction](https://docs.ollama.com/api/introduction), [chat endpoint](https://docs.ollama.com/api/chat) and [Python client](https://github.com/ollama/ollama-python).
+
+## What is the same, and what differs?
+
+| Part of the routine | OpenRouter | Ollama |
+|---|---|---|
+| Research text | same | same |
+| Python `messages` list | same broad structure | same broad structure |
+| Client call | `client.chat.send(...)` | `ollama.chat(...)` |
+| Destination | remote hosted API | local API at `localhost` |
+| Authentication | OpenRouter key | none for the local API |
+| Model identifier | hosted model slug | downloaded model tag |
+| Where inference occurs | external provider hardware | local CPU/GPU and memory |
+| Return shape | response with `choices[0].message.content` | response with `message.content` |
+| Main constraints | internet, account limits, cost and provider availability | disk, memory, compute speed and installed artifact |
+
+Using the same research prompt through both routes holds the requested task relatively stable. It does not make the underlying models equivalent.
+
+## What is actually sent?
+
+An API request has a destination, headers and a body. The SDK handles the HTTP details, but the body is built from values we can inspect. A simplified hosted request body looks like this:
+
+```python
+import json
+
+hosted_request_body = {
+    "model": "openai/gpt-5.2",
+    "messages": [
+        {"role": "user", "content": "Score this statement from 0 to 2."}
+    ],
+    "temperature": 0,
+}
+
+print(json.dumps(hosted_request_body, indent=2))
+```
+
+Python first holds a dictionary containing a string, a list, another dictionary and an integer. The SDK serializes that structure as JSON and sends it to the API. JSON is a text format for exchanging structured data; it is not the model itself.
+
+The key belongs in the authorization header rather than in this body. That is why it should never be concatenated into the prompt or saved in the research material. The response travels back as JSON, and the SDK converts it into a typed response object.
+
+::: {.content-visible when-format="pdf"}
+\newpage
+:::
+
+The Ollama request has the same broad pieces but a local destination and route-specific options:
+
+```python
+local_request_body = {
+    "model": "gemma4:e2b-it-qat",
+    "messages": hosted_request_body["messages"],
+    "options": {"temperature": 0},
+}
+
+print(json.dumps(local_request_body, indent=2))
+```
+
+The model string, message list and settings are data supplied to the server. `client.chat.send(...)` and `ollama.chat(...)` are Python calls that perform the transport and return an object. Keeping these layers separate makes both debugging and methodological reporting easier.
+
+## Complete this before Week 1
+
+Follow the repository's [platform-specific setup guide](https://github.com/cjbarrie/GenAI_Soc2026/blob/main/docs/ENVIRONMENT_SETUP.md). In outline:
+
+1. install `uv`;
+2. download the repository;
+3. run `uv sync`;
+4. install Ollama;
+5. run `ollama pull gemma4:e2b-it-qat`;
+6. receive the OpenRouter key privately;
+7. run `uv run python scripts/preflight_models.py --live`;
+8. or complete the [dual-route preflight notebook](https://github.com/cjbarrie/GenAI_Soc2026/blob/main/workbook/00_setup/dual_route_preflight.ipynb).
+
+The preflight should show successful OpenRouter and Ollama calls without displaying the key. If the local model cannot run on your machine, complete those initial calls on a paired or instructor machine. Hardware ownership does not affect the mark.
+
+## Starting JupyterLab
+
+Open a terminal in the repository and run:
+
+```bash
+uv run jupyter lab
+```
+
+This starts Jupyter with the packages installed in the course environment. Opening a notebook through an unrelated Python installation is a common cause of `No module named ...` errors.
+
+## Check the Ollama server before opening Python
+
+These terminal commands test three different layers:
+
+```bash
+ollama --version
+ollama list
+curl http://localhost:11434/api/version
+```
+
+- `ollama --version` checks that the command-line application is installed.
+- `ollama list` asks the running service which model artifacts are available.
+- `curl .../api/version` sends a direct HTTP request to the local API. A small JSON reply means the server is reachable.
+
+If the command exists but the API request fails, Ollama is installed but its server is not currently reachable. If the API works but the course tag is absent from `ollama list`, the server is running but the model still needs to be downloaded.
+
+## Entering the OpenRouter key safely
+
+The instructor supplies one capped key through a private channel. A setup cell asks for it without displaying what you type:
+
+```python
+import os
+from getpass import getpass
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print(bool(os.getenv("OPENROUTER_API_KEY")))
+```
+
+The final line prints only `True` or `False`. Never paste the key into a saved string, print it, read it aloud, or include its entry cell in a recording.
+
+## The same research request through both routes
+
+Both calls begin with the same Python list:
+
+```python
+text = "Most people can be trusted."
+instruction = "Score the statement for generalized social trust from 0 to 2. Return one integer."
+prompt = instruction + "\n\nStatement: " + text
+messages = [{"role": "user", "content": prompt}]
+```
+
+`text`, `instruction` and `prompt` are strings. `messages` is a list containing one dictionary. The list is the input supplied to both SDKs.
+
+The list and dictionary are not special LLM syntax. They are ordinary Python objects arranged in the form expected by the APIs. This is where the course begins teaching Python: first we construct a real model request; after the two calls, we inspect the objects we just used.
+
+### OpenRouter
+
+```python
+from openrouter import OpenRouter
+
+HOSTED_MODEL = "openai/gpt-5.2"
+
+with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+    hosted_response = client.chat.send(
+        model=HOSTED_MODEL,
+        messages=messages,
+        temperature=0,
+    )
+
+hosted_choice = hosted_response.choices[0]
+hosted_message = hosted_choice.message
+hosted_answer = hosted_message.content.strip()
+print(hosted_answer)
+```
+
+The call sends `messages` to a hosted model. The three following assignments unpack the first returned choice, its message and its text. They are kept separate in Weeks 1–2 so the response path is visible.
+
+### Ollama
+
+```python
+import ollama
+
+LOCAL_MODEL = "gemma4:e2b-it-qat"
+
+local_response = ollama.chat(
+    model=LOCAL_MODEL,
+    messages=messages,
+    options={"temperature": 0},
+)
+
+local_message = local_response.message
+local_answer = local_message.content.strip()
+print(local_answer)
+```
+
+Ollama receives the same message list, but inference runs on the local server. Its generation settings are placed inside `options`, and its response text is reached through `response.message.content`.
+
+## Use the model routine to learn Python objects
+
+After both calls have run, Week 1 pauses to inspect what Python now holds:
+
+```python
+first_message = messages[0]
+routes_match = hosted_answer == local_answer
+hosted_character_count = len(hosted_answer)
+
+print(type(text))                    # str
+print(type(messages))                # list
+print(type(first_message))           # dict
+print(type(hosted_character_count))  # int
+print(type(routes_match))            # bool
+```
+
+These types have immediate roles in the model routine:
+
+- a **string** stores text, including the prompt, model name and returned answer;
+- a **list** stores ordered items, such as conversation messages or returned choices;
+- a **dictionary** stores named fields, such as `role` and `content`;
+- an **integer** stores a whole-number quantity, such as a character count;
+- a **Boolean** stores `True` or `False`, such as whether two returned strings match.
+
+The SDK also returns objects defined by its own package. We often retrieve their fields with dot notation:
+
+```python
+hosted_choices = hosted_response.choices
+hosted_message = hosted_choices[0].message
+hosted_answer = hosted_message.content
+
+local_message = local_response.message
+local_answer = local_message.content
+```
+
+Compare three ways of retrieving something:
+
+```python
+messages[0]                    # position 0 in a list
+first_message["content"]      # field named "content" in a dictionary
+hosted_message.content         # attribute named content on an SDK object
+```
+
+The square brackets do two different jobs because the object on their left differs. A list uses a numeric position. A dictionary uses a key. Dot notation retrieves an attribute supplied by the SDK's response class. We inspect the object with `type(...)` before assuming how to access it.
+
+## Choosing a route from Week 3
+
+```python
+ROUTE = "ollama"  # change to "openrouter" if required
+```
+
+Until functions are introduced in Week 9, notebooks show both branches explicitly:
+
+```python
+if ROUTE == "openrouter":
+    # the complete OpenRouter call appears here
+    raw_output = hosted_response.choices[0].message.content
+else:
+    # the complete Ollama call appears here
+    raw_output = local_response.message.content
+```
+
+This repeats a few lines, but it lets you see which SDK is doing what. The course does not hide the model call inside a helper before you can explain it.
+
+## Cached outputs are contingencies
+
+The repository keeps one clearly labelled teaching return for each route and week in [`data/dual_route_recorded_outputs.json`](https://github.com/cjbarrie/GenAI_Soc2026/blob/main/data/dual_route_recorded_outputs.json). These are instructor-authored or previously recorded contingencies, not claimed current model outputs. The instructor supplies the relevant string when a live route fails; it occupies the same point in the routine:
+
+```python
+raw_output = cached_raw_output
+```
+
+If you use it, name that substitution in the recording. A cache lets the Python and validation work continue; it is not evidence about what a live model would return now.
+
+## Safety and access rules
+
+- Use only synthetic, public or instructor-authored material with the shared key.
+- Do not expose Ollama outside `localhost` for this course.
+- Record the route, requested model, prompt/messages, settings, raw output and date.
+- Local operation does not automatically establish privacy, quality or reproducibility.
+- The instructor will retest the configured models, budget and provider access two weeks before term.

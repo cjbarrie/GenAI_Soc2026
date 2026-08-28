@@ -1,0 +1,14 @@
+# AI Use Statement — Approved Working Text
+
+There are a large number of competing policies when it comes to AI. Here is just a selection of several hundred from colleges in the United States: [AI policies across universities](https://docs.google.com/spreadsheets/d/1lM6g4yveQMyWeUbEwBM6FZVxEWCLfvWDh1aWUErWWbQ/edit?gid=0#gid=0). You will find that they all differ—sometimes drastically. This is a reasonable, though selective, representation of where we stand at this moment in academia. Some will say you cannot use AI; others will say you cannot do without it. I am sure I would agree with elements of what both sides are saying. In fact, that is basically where I stand.
+
+I will flesh this out with you in Week 1, but here is the thing: you are graduate students at one of the top Sociology programmes in the world. To excel in this field, you will need to understand the field. You will need to think hard—sometimes until your head is spinning. You will need to work hard—it is only this way that you really *understand* something. Or you could rely 100% of the time on some commercial language model to do the hard work for you. If you do that, you will notice that the muscles you require to operate in this world fail to develop. You will notice that others around you are able to speak about the social world and research design with a fluency you have not developed.
+
+I am not here to discipline and punish. I am not interested in doing so. I think language models and modern-day AI software are some of the most exciting technologies around. We can use them to conduct research at a pace and scale previously not possible. But we can also use them as a substitute for thinking. So ask yourself: am I using this as a *tool* to augment my learning and enhance my research? Or am I using this as a *substitute* for myself? Only you can answer that question.
+
+Use of generative AI is permitted in this course, with responsibility and disclosure. If AI materially assists submitted work, include a brief note naming the tool or model, explaining what you used it for, what you incorporated, and how you checked it. When an LLM is itself part of the research method, prompts, outputs, settings, dates, provider or local runtime, and validation decisions belong in the research record. You remain responsible for every claim and every line of code you submit.
+
+Finally, the assignments for this course are principally based on class work and explanation. We will go through notebooks together, check one another's work, and ask you to explain code in full. The individual oral code walkthrough requires you to explain the code yourself without live AI assistance. You may use AI to help you learn, debug, and develop your work, but you must still understand what the work does—so do not outsource your learning.
+
+Sermon over. Let’s get to work!
+

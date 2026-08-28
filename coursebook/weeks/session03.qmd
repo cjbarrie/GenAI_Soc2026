@@ -1,0 +1,54 @@
+---
+title: "Week 3 — What can an LLM contribute to qualitative interpretation?"
+description: "Iterative coding, source tracing and technological reflexivity"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">Where can a model assist an iterative qualitative analysis without replacing the researcher’s engagement with cases, context and counterevidence?</div>
+
+## Connection to the preceding material
+
+Week 2 began with a construct and a predefined label set. Qualitative analysis often begins less settled. Codes develop, comparisons redirect attention and memos connect passages to emerging ideas. The problem is not only whether a model applies a rule correctly, but how its suggestions reorganize the researcher’s attention.
+
+## Learning outcomes
+
+You should be able to distinguish retrieval, coding, theming and interpretation; describe familiarization, focused coding, constant comparison and memo-writing; assign an LLM a bounded role; trace a proposed theme to source passages and negative cases; and explain what a source-complete record still cannot establish.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie et al. (2026), “AI and Research Methods,” §§10.1.4–10.1.5.** Defines the validation problem for LLM annotation. We use it as a boundary case: qualitative interpretation requires more than assigning or evaluating predefined labels. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Timmermans and Tavory (2022), *Data Analysis in Qualitative Research*.** Selected material on open and focused coding and analytic memo-writing; the foundation for the worked process. [Publisher](https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html). [@TimmermansTavory2022]
+- **Than et al. (2025), “Updating ‘The Future of Coding’,” *Sociological Methods & Research*.** A researcher–LLM–researcher workflow and empirical comparison. [DOI](https://doi.org/10.1177/00491241251339188). [@ThanEtAl2025]
+:::
+
+## Additional readings grouped by purpose
+
+- **For reflexivity about the model interaction:** Ibrahim and Voyer (2026), “Qualitative Research with LLM Chatbots,” *Qualitative Research*. [DOI](https://doi.org/10.1177/14687941251390794). [@IbrahimVoyer2026]
+- **For a recent empirical implementation:** Jack, Cooper and Flower (2026), “Automating the Qualitative Interview?” *Methodological Innovations*. [DOI](https://doi.org/10.1177/20597991261448157). [@JackCooperFlower2026]
+
+## Sociological and methodological background
+
+Qualitative analysis is not a single request for “the themes.” Researchers read and re-read material, write provisional codes, compare passages and cases, record hunches, search for exceptions and revise the relationship between data and theory. Timmermans and Tavory emphasize abduction: an unexpected observation becomes productive when it is developed against alternative theoretical accounts. A list of frequent topics is therefore not equivalent to an interpretation.
+
+Our worked corpus consists of short interview excerpts about tenant mutual-aid networks. Each excerpt has an ID, speaker, question, preceding context and text. The research question asks how participants describe the relationship between mutual aid and formal housing organizations. Giving the listener this setup matters: the same sentence could support a different interpretation in a study of friendship, political mobilization or service provision.
+
+## Synthesis of the current LLM literature
+
+Than and colleagues show that models can contribute useful code suggestions while researchers retain decisions about meaning and iteration. Ibrahim and Voyer ask researchers to document how the chatbot’s categories and conversational affordances enter the analysis. Both point away from one-shot automation. Context windows are large but finite; calls may not preserve cumulative analytic memory; summaries can smooth over contradictions; and a model can cite genuine passages while overstating what they show. The most defensible role in our example is proposal and retrieval: suggest a possible pattern, return the passages, then make the researcher compare support, variation and counterexamples.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 3 lecture slides" src="../_generated/slides/session03.html"></iframe></div>
+[Open the Week 3 slides full screen](../_generated/slides/session03.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 3 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session03.html).
+:::
+[Continue to the Week 3 Python work](../python/session03.qmd).
+
+## Summary and preparation for next week
+
+An LLM can widen the set of possible codes or retrieve passages quickly. The analysis still depends on context, comparison, cumulative memo-writing and the researcher’s account of why an interpretation changed. Week 4 asks how the source record itself is produced when the evidence is visual, auditory and sequential.

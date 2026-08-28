@@ -1,0 +1,16 @@
+{
+  "notice": "Instructor-authored recorded returns for outage rehearsal and automated tests. They are not evidence from a live model run.",
+  "session01": {"openrouter": "2", "ollama": "2"},
+  "session02": {"openrouter": "UNCLEAR", "ollama": "UNCLEAR"},
+  "session03": {"openrouter": "{\"theme\":\"conditional belonging\",\"evidence_id\":\"e02\",\"question\":\"When does the speaker feel included?\"}", "ollama": "{\"theme\":\"conditional belonging\",\"evidence_id\":\"e02\",\"question\":\"What produces the contrast?\"}"},
+  "session04": {"openrouter": "{\"observable_change\":\"The two players move from standing apart to physical contact.\",\"visible_evidence\":[\"distance closes\",\"upper bodies make contact\"],\"interpretation_withheld\":\"motive\"}", "ollama": "{\"observable_change\":\"The players move closer and one bends backward.\",\"visible_evidence\":[\"reduced distance\",\"changed posture\"],\"interpretation_withheld\":\"intent\"}"},
+  "session05": {"openrouter": "People have a right to build a life with legal security under the stated policy.", "ollama": "The policy should protect the right to legal security while keeping the stated facts unchanged."},
+  "session06": {"openrouter": "Can you describe a particular occasion when that happened?", "ollama": "What happened on one specific occasion?"},
+  "session07": {"openrouter": "{\"predicted_category\":4,\"probabilities\":[0.05,0.10,0.15,0.35,0.20,0.10,0.05]}", "ollama": "{\"predicted_category\":4,\"probabilities\":[0.04,0.09,0.17,0.36,0.19,0.10,0.05]}"},
+  "session08": {"openrouter": [2,4,6,3,6], "ollama": [3,4,6,3,5]},
+  "session09": {"openrouter": "{\"action\":\"revise\",\"reason\":\"the observation provides contrary evidence\"}", "ollama": "{\"action\":\"revise\",\"reason\":\"the observed action differs from the current state\"}"},
+  "session10": {"openrouter": ["A","A","B"], "ollama": ["A","B","B"]},
+  "session11": {"openrouter": "{\"query\":\"LLM annotation validity\"}", "ollama": "{\"query\":\"validation of LLM labels\"}"},
+  "session12": {"openrouter": "The rerun retained the source but changed the wording of the bounded claim.", "ollama": "The same source was retrieved, while the claim wording differed."},
+  "session13": {"openrouter": "{\"approval_score\":62}", "ollama": "{\"approval_score\":57}"}
+}

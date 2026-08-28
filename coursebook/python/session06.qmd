@@ -1,0 +1,161 @@
+---
+title: "Week 6 Python — Adaptive interview turns"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 6 readings and slides](../weeks/session06.qmd).
+
+## Python walkthrough: build one adaptive interview turn
+
+**Research task:** Use a participant answer to generate and record a follow-up question without introducing a cause the participant did not name.
+
+**Python introduced:** conversation lists, roles, `.append(...)`, ordered state and repeated model calls.
+
+The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+
+### Load the course settings and SDKs
+
+This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+
+```python
+import json
+import os
+from getpass import getpass
+from pathlib import Path
+
+import ollama
+from openrouter import OpenRouter
+
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
+
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
+```
+
+::: {.callout-note title="Read this setup cell"}
+**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+:::
+
+### Choose a route and construct the opening interview history
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+ROUTE = "ollama"  # change to "openrouter" if preferred
+interview_messages = [
+    {"role": "system", "content": (
+        "Conduct a sociological interview. Ask one short follow-up about a concrete "
+        "episode. Do not suggest a cause or put words in the participant's mouth."
+    )},
+    {"role": "user", "content": (
+        "Participant: I spoke after the professor invited me to respond."
+    )},
+]
+print(interview_messages)
+```
+
+::: {.callout-note title="Conversation as ordered state"}
+`history` is a list of dictionaries in chronological order. Roles say whether an item is an interviewing instruction or participant speech. This complete list becomes the input to the first call. Reordering or omitting an item would change what the model can use.
+:::
+
+### Make the first call through the selected route
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        first_response = client.chat.send(
+            model=HOSTED_MODEL, messages=interview_messages, temperature=0,
+        )
+    first_raw = first_response.choices[0].message.content
+else:
+    first_response = ollama.chat(
+        model=LOCAL_MODEL, messages=interview_messages,
+        options={"temperature": 0},
+    )
+    first_raw = first_response.message.content
+print("First raw return:", first_raw)
+first_probe = first_raw.strip()
+print("First probe:", first_probe)
+```
+
+::: {.callout-note title="The first adaptive probe"}
+The `if/else` branch sends the same history through the chosen route. Both branches store returned text in `probe_one`. That string is the model's proposed next interviewer turn; the later check asks whether it follows the participant's answer without supplying a cause.
+:::
+
+### Append the realized probe and a second participant answer
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+interview_messages.append({"role": "assistant", "content": first_probe})
+second_answer = "Participant: I felt safer because she made room for me to speak."
+interview_messages.append({"role": "user", "content": second_answer})
+print("Messages before second call:", len(interview_messages))
+print(interview_messages)
+```
+
+::: {.callout-note title="What append changes"}
+`.append(...)` mutates the existing list by adding one dictionary at its end. The first append records what the model asked; the second records the participant's next answer. Printing the history shows the new ordered input that the second call will receive.
+:::
+
+### Make the second call with the expanded history
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        second_response = client.chat.send(
+            model=HOSTED_MODEL, messages=interview_messages, temperature=0,
+        )
+    second_raw = second_response.choices[0].message.content
+else:
+    second_response = ollama.chat(
+        model=LOCAL_MODEL, messages=interview_messages,
+        options={"temperature": 0},
+    )
+    second_raw = second_response.message.content
+print("Second raw return:", second_raw)
+second_probe = second_raw.strip()
+print("Second probe:", second_probe)
+
+# ONE CHANGE: replace second_answer with
+# "Participant: I spoke when there was a pause." and rerun from append onward.
+```
+
+::: {.callout-note title="Why the second call differs"}
+The call syntax is unchanged, but `history` now contains two additional turns. The returned `probe_two` can therefore respond to the new answer. Comparing the two probes checks continuity, leading language and repetition; it does not by itself establish interview quality.
+:::
+
+### Methodological check
+
+Inspect whether each probe follows the participant's words, asks for a concrete episode, avoids repetition and does not name a cause in advance.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 6 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session06/session06_conversational_treatments.ipynb) · [Download the notebook](../_generated/downloads/session06/session06_conversational_treatments.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session06/session06_task.py) · [Download the runnable offline bundle](../_generated/downloads/session06/session06_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 30–45 minutes.
+
+Use one route, make both calls, then change only the second participant answer. Explain the history before each call, both `.append()` operations and why the second call has more context than the first.
+
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+:::

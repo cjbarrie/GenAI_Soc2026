@@ -1,0 +1,56 @@
+---
+title: "Week 1 — What kind of research technology is an LLM?"
+description: "From a model answer to an inspectable research record"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">When does a model response become part of a defensible research process rather than a piece of plausible text?</div>
+
+## Connection to the preceding material
+
+This is the starting point for the semester. We begin with a familiar action—asking a model to do something—and slow it down. The rest of the course depends on being able to distinguish the request, the model operation, the returned object, the researcher’s transformation and the later claim.
+
+## Learning outcomes
+
+By the end of the week, you should be able to distinguish a chat interface, an API, a routing service and a local runtime; identify strings, lists and dictionaries in a model request; explain why prompts, settings and raw outputs belong in the research record; and state what a saved record does and does not establish.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie, Argyle, Bisbee, Heseltine, Lucas, Mellon, Palmer, Roberts and Spirling (2026), “AI and Research Methods,” introduction and §10.7; PDF pp. 1–2 and 34–35.** The introduction names the chapter's six LLM applications. Section 10.7 explains why exact replay and replication of a substantive claim are different standards, then specifies the records every LLM workflow should preserve. The chapter appears on pp. 313–364 of the edited volume. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Davidson and Karell (2025), “Integrating Generative Artificial Intelligence into Social Science Research,” *Sociological Methods & Research*.** A framework organized around measurement, prompting and simulation. [DOI](https://doi.org/10.1177/00491241251339184). [@DavidsonKarell2025]
+- **Alvero, Stoltz, Stuhler and Taylor (2026), “Generative AI in Sociological Research,” *Sociological Science*.** A discipline-specific account of where generative AI is appearing and which judgments cannot be delegated. [Article](https://sociologicalscience.com/articles-v13-3-45/). [@AlveroEtAl2026]
+:::
+
+## Additional readings grouped by purpose
+
+- **For a concrete reporting standard:** Feuerriegel et al. (2026), “A Reporting Checklist for Large Language Models in Behavioural Science,” *Nature Human Behaviour*. [DOI](https://doi.org/10.1038/s41562-026-02492-7). [@FeuerriegelEtAl2026]
+- **For the replication problem:** Barrie, Palmer and Spirling (2025), “Replication for Language Models.” [Paper](https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf). [@BarriePalmerSpirling2025]
+
+## Sociological and methodological background
+
+Social scientists have always relied on research technologies: questionnaires, recording devices, codebooks, statistical packages and archives. Each makes some work easier while standardizing or hiding other decisions. LLMs extend that pattern. They can turn a natural-language instruction into a classification, summary, interview probe or simulated response, but the fluency of the return makes it unusually easy to forget the chain of decisions that produced it.
+
+Reproducibility is therefore introduced at the beginning, not saved for the end. A model name may point to a changing service; a provider may route the same request to different infrastructure; a prompt may be edited without versioning; and a polished answer may be copied without its raw response. The Week 1 question is modest: can another researcher see what was asked, what answered and what you did next?
+
+## Synthesis of the current LLM literature
+
+The three essential readings make different kinds of claim. Davidson and Karell offer a broad methodological framework. Alvero and colleagues ask what generative AI means for sociology as a discipline. The course chapter inventories specific operations and argues that familiar standards must be reconsidered when the transformation is prompt-sensitive and the model is proprietary. Messeri and Crockett’s broader warning about an “illusion of understanding” is relevant here: faster production can encourage broader claims without improving the evidence underneath them. The practical response is not to reject the technology. It is to make the operation visible and keep validation separate from generation.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 1 lecture slides" src="../_generated/slides/session01.html"></iframe></div>
+
+[Open the Week 1 slides full screen](../_generated/slides/session01.html).
+:::
+
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 1 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session01.html).
+:::
+[Continue to the Week 1 Python work](../python/session01.qmd).
+
+## Summary and preparation for next week
+
+An inspectable record does not validate a model answer. It preserves the objects needed to ask a better question about validity. Next week, we use that distinction when a model’s answer becomes a label in a dataset.

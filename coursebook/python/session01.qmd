@@ -1,0 +1,226 @@
+---
+title: "Week 1 Python — First calls and Python objects"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 1 readings and slides](../weeks/session01.qmd).
+
+## Python walkthrough: make the first two model calls
+
+**Research task:** Ask a hosted model and a model running on this computer to score the same synthetic statement for generalized social trust.
+
+**Python introduced:** notebook cells, strings, variables, functions we call, lists, dictionaries, indexing, SDK objects, attributes, methods, integers, Booleans and a first research record.
+
+The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+
+### Load the course settings and SDKs
+
+This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+
+```python
+import json
+import os
+from getpass import getpass
+from pathlib import Path
+
+import ollama
+from openrouter import OpenRouter
+
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
+
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
+```
+
+::: {.callout-note title="Read this setup cell"}
+**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+:::
+
+### Store the research material and construct one shared message list
+
+The research material begins as strings. The list named `messages` is the exact shared input to both SDKs.
+
+```python
+text = "Most people can be trusted."
+instruction = (
+    "Score the statement for generalized social trust from 0 to 2. "
+    "Return one integer."
+)
+prompt = instruction + "\n\nStatement: " + text
+messages = [{"role": "user", "content": prompt}]
+
+print("text:", text)
+print("type(text):", type(text))
+print("messages:", messages)
+print("type(messages):", type(messages))
+```
+
+::: {.callout-note title="Input and output"}
+`text` and `instruction` are strings. `+` joins those strings with the labelled statement to create `prompt`; `\n` means start a new line. The braces create one dictionary with two named fields, and the brackets place that dictionary in a list called `messages`. Both clients will receive this same list. `type(...)` reports the kind of Python object without changing it.
+:::
+
+### Send the message list through OpenRouter and unpack its return
+
+Inference occurs remotely. The response path is unpacked one object at a time before the returned text is printed.
+
+```python
+with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+    hosted_response = client.chat.send(
+        model=HOSTED_MODEL,
+        messages=messages,
+        temperature=0,
+    )
+
+hosted_choice = hosted_response.choices[0]
+hosted_message = hosted_choice.message
+hosted_answer = hosted_message.content.strip()
+print("OpenRouter raw text:", hosted_answer)
+```
+
+::: {.callout-note title="What the hosted call does"}
+The call receives three named inputs: the hosted model string, the message list and `temperature=0`. `with ... as client` opens the SDK client and closes it after the indented call. The service returns a response object containing a list named `choices`; `[0]` selects the first choice. `.message` retrieves its message and `.content` retrieves the returned text. `.strip()` removes surrounding whitespace but does not change the score itself.
+:::
+
+### Send the same message list through Ollama and unpack its return
+
+Inference occurs through the Ollama server on this computer. The same messages enter, but the call and response path differ.
+
+```python
+local_response = ollama.chat(
+    model=LOCAL_MODEL,
+    messages=messages,
+    options={"temperature": 0},
+)
+local_message = local_response.message
+local_answer = local_message.content.strip()
+print("Ollama raw text:", local_answer)
+```
+
+::: {.callout-note title="What the local call does"}
+`ollama.chat(...)` sends the same model-facing message list to the Ollama server on this computer. The local model name and temperature are separate named inputs. Ollama's response shape differs: the message is available as `.message`, without a `choices` list. The output is again a string. A local route changes where inference occurs; it does not validate the score.
+:::
+
+### Use the request to learn strings, lists and dictionaries
+
+Both calls have now run. We can use the objects involved in those calls to learn Python rather than switching to an unrelated example.
+
+```python
+first_message = messages[0]
+
+print("text value:", text)
+print("text type:", type(text))
+print("messages value:", messages)
+print("messages type:", type(messages))
+print("number of messages:", len(messages))
+print("first message:", first_message)
+print("first message type:", type(first_message))
+print("role field:", first_message["role"])
+print("content field:", first_message["content"])
+```
+
+::: {.callout-note title="Read the objects from left to right"}
+`text` is a string: one text value. `messages` is a list: an ordered collection whose first position is numbered `0`. `messages[0]` therefore retrieves the first item and `=` assigns it to the new variable `first_message`. That item is a dictionary: a collection of named fields. `first_message["role"]` retrieves the value stored under the key `"role"`; `first_message["content"]` retrieves the actual prompt. `len(messages)` calls a built-in function and returns the integer `1`. Parentheses contain the value passed to a function; commas separate multiple inputs. We call `print`, `type` and `len`, but students do not define a function until Week 9. None of these operations contacts a model. They inspect the input already held by Python.
+:::
+
+### Use the returns to learn objects, attributes and methods
+
+The two SDKs returned objects defined by their packages. They are not plain strings, lists or dictionaries, even though they contain some of those types.
+
+```python
+hosted_choices = hosted_response.choices
+
+print("hosted response type:", type(hosted_response))
+print("hosted choices type:", type(hosted_choices))
+print("first hosted choice type:", type(hosted_choice))
+print("hosted message type:", type(hosted_message))
+print("hosted answer type:", type(hosted_answer))
+
+print("local response type:", type(local_response))
+print("local message type:", type(local_message))
+print("local answer type:", type(local_answer))
+```
+
+::: {.callout-note title="Why some fields use dots and others use brackets"}
+`hosted_response.choices` uses dot notation to retrieve an attribute supplied by the OpenRouter response class. Because `choices` is a list, `[0]` then retrieves its first item. `.message` and `.content` retrieve further attributes. By contrast, `first_message["content"]` uses a dictionary key. Finally, `.strip()` is a string method: it returns a new string without surrounding whitespace. A useful beginner question is therefore not simply “what does this line do?” but “what type of object is on the left of the dot or brackets?”
+:::
+
+### Derive an integer and a Boolean from the returned strings
+
+```python
+hosted_character_count = len(hosted_answer)
+local_character_count = len(local_answer)
+routes_match = hosted_answer == local_answer
+
+print("hosted character count:", hosted_character_count)
+print("count type:", type(hosted_character_count))
+print("routes returned identical text:", routes_match)
+print("comparison type:", type(routes_match))
+```
+
+::: {.callout-note title="Two more built-in Python types"}
+`len(hosted_answer)` counts the characters in a returned string and produces an integer. `==` compares two values and produces the Boolean `True` or `False`. Identical returned strings would show agreement on this run. They would not show that either answer measures social trust validly.
+:::
+
+### Preserve the two runs as separate research records
+
+Each dictionary keeps route, requested model, input and raw output together. This makes the comparison inspectable.
+
+```python
+hosted_record = {
+    "route": "openrouter",
+    "model": HOSTED_MODEL,
+    "input": text,
+    "raw_output": hosted_answer,
+}
+local_record = {
+    "route": "ollama",
+    "model": LOCAL_MODEL,
+    "input": text,
+    "raw_output": local_answer,
+}
+
+research_records = [hosted_record, local_record]
+
+print(hosted_record)
+print(local_record)
+print("record collection type:", type(research_records))
+print("first recorded route:", research_records[0]["route"])
+
+# ONE CHANGE: replace text with "You cannot be too careful in dealing with people."
+# Then rerun every cell from the shared message list onward.
+```
+
+::: {.callout-note title="Why these dictionaries matter"}
+Each pair of braces creates a dictionary. Text before a colon is a field name; the value after it is what the record stores. The brackets around the two records create a list. `research_records[0]["route"]` first selects item `0` from that list and then selects the `"route"` field from the chosen dictionary. The two outputs are not averaged or declared correct. They remain attached to route, requested model and input so a later reviewer can see what produced each proposed score.
+:::
+
+### Methodological check
+
+The two scores are proposed measurements. Neither route establishes that the score matches the intended construct or a defensible human codebook.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 1 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session01/session01_research_technology.ipynb) · [Download the notebook](../_generated/downloads/session01/session01_research_technology.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session01/session01_task.py) · [Download the runnable offline bundle](../_generated/downloads/session01/session01_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 30–45 minutes.
+
+Run both routes on the original statement and on `You cannot be too careful in dealing with people.` In the narrated recording, explain every string, the message list, where each inference runs, each returned object and each research record. Finish by explaining why either score still needs validation.
+
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+:::

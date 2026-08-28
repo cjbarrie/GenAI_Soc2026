@@ -1,0 +1,54 @@
+---
+title: "Week 5 — Can generated media isolate a causal construct?"
+description: "Sociological experiments, generated candidates and treatment validity"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">When an LLM drafts experimental material, how do we know that the candidates vary the intended construct rather than several things at once?</div>
+
+## Connection to the preceding material
+
+Week 4 examined how an unfolding situation becomes evidence. Week 5 examines the other side of the research encounter: how sociologists construct a situation, vignette, message or profile so that a comparison can support a causal claim.
+
+## Learning outcomes
+
+You should be able to distinguish a vignette, audit study, confederate design and field experiment; explain factorial survey logic; identify semantic differences that act as treatment confounds; distinguish a generated candidate pool from a validated treatment set; and trace a candidate through explicit review rules.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie et al. (2026), “AI and Research Methods,” §10.2.** Introduces generated treatments, their methodological lineage, construct fidelity and bundled variation. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Wallander (2009), “25 Years of Factorial Surveys in Sociology,” *Social Science Research* 38(3): 505–520.** Establishes how sociologists combine experimentally varied vignette dimensions. [DOI](https://doi.org/10.1016/j.ssresearch.2009.03.004). [@Wallander2009]
+- **Dafoe, Zhang and Caughey (2018), “Information Equivalence in Survey Experiments,” *Political Analysis* 26(4): 399–416.** Gives us the language for asking whether alternative wordings convey the same non-focal information. [DOI](https://doi.org/10.1017/pan.2018.9). [@DafoeZhangCaughey2018]
+:::
+
+## Additional readings grouped by purpose
+
+- **For generated policy messages tested with people:** Bai et al. (2025), “LLM-Generated Messages Can Persuade Humans on Policy Issues,” *Nature Communications*. [DOI](https://doi.org/10.1038/s41467-025-61345-5). [@BaiEtAl2025]
+- **For adaptive candidate selection:** Velez (2025), “Crowdsourced Adaptive Surveys,” *Political Analysis*. [DOI](https://doi.org/10.1017/pan.2024.34). [@Velez2025]
+
+## Sociological and methodological background
+
+Sociologists intervene in several ways. A vignette describes a situation and asks for a judgment; a factorial survey varies several attributes across vignettes; an audit study sends matched applications that differ on a focal signal; a confederate enacts a standardized role in a social setting. The concrete objects differ, but each design depends on controlling which feature changes and what comparison that change licenses.
+
+Wallander’s review matters because generated text does not make this design logic obsolete. An LLM can produce a larger candidate pool, but every candidate still embeds word choice, tone, plausibility and social assumptions. If one paid-leave frame mentions “hard-working families” and another mentions “national productivity,” the conditions differ in more than a short label. Those semantic differences are potential confounds.
+
+## Synthesis of the current LLM literature
+
+Recent work shows the value of generation without equating it with treatment readiness. Bai and colleagues generate and test policy messages on human participants. Velez separates an adaptive selection process from the population in which questions are evaluated. Dafoe and colleagues offer a precise standard for our review: non-focal information should be held equivalent across conditions. The LLM is useful upstream, where it can widen the pool. Human pretests and design checks remain necessary downstream.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 5 lecture slides" src="../_generated/slides/session05.html"></iframe></div>
+[Open the Week 5 slides full screen](../_generated/slides/session05.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 5 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session05.html).
+:::
+[Continue to the Week 5 Python work](../python/session05.qmd).
+
+## Summary and preparation for next week
+
+Generation expands a design space. It does not decide which distinctions are causal, plausible or ethical. Week 6 makes the treatment path dynamic: the model chooses or composes the next question after seeing a participant’s answer.

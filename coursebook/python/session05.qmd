@@ -1,0 +1,163 @@
+---
+title: "Week 5 Python — Generating experimental materials"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 5 readings and slides](../weeks/session05.qmd).
+
+## Python walkthrough: generate experimental materials
+
+**Research task:** Generate two framings from fixed policy facts and inspect semantic differences that could become causal confounds.
+
+**Python introduced:** f-strings, named call arguments, integers, floats, temperature, output limits, latency and token metadata.
+
+The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+
+### Load the course settings and SDKs
+
+This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+
+```python
+import json
+import os
+from getpass import getpass
+from pathlib import Path
+
+import ollama
+from openrouter import OpenRouter
+
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
+
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
+```
+
+::: {.callout-note title="Read this setup cell"}
+**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+:::
+
+### Choose a route and store the fixed facts and changing frame
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+import time
+
+ROUTE = "ollama"  # change to "openrouter" if preferred
+shared_facts = (
+    "The proposal would create a pathway to permanent legal status for undocumented "
+    "immigrants who meet residency and background-check requirements."
+)
+frame = "rights"
+temperature = 0.7
+max_tokens = 140
+```
+
+::: {.callout-note title="Separate what stays fixed"}
+The facts and frame are separate strings so the exercise can change one while holding the other constant. `temperature` is a float and `maximum_output_tokens` is an integer. They are recorded as model-call inputs, not treated as substantive properties of the message.
+:::
+
+### Construct the prompt with an f-string
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+prompt = (
+    f"Write one 70–90 word survey message using a {frame} frame. "
+    f"Use only these facts and return only the message:\n\n{shared_facts}"
+)
+messages = [{"role": "user", "content": prompt}]
+print(prompt)
+```
+
+::: {.callout-note title="How the f-string works"}
+The leading `f` allows values inside braces to be inserted into a string. `{frame}` and `{facts}` are replaced by their current values. The output is one complete prompt; printing it is how we check that the intended frame changed and the factual material did not.
+:::
+
+### Make one timed call and preserve route-specific metadata
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+started = time.perf_counter()
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL, messages=messages,
+            temperature=temperature, max_tokens=max_tokens,
+        )
+    raw_output = response.choices[0].message.content
+    input_tokens = getattr(response.usage, "prompt_tokens", None)
+    output_tokens = getattr(response.usage, "completion_tokens", None)
+else:
+    response = ollama.chat(
+        model=LOCAL_MODEL, messages=messages,
+        options={"temperature": temperature, "num_predict": max_tokens},
+    )
+    raw_output = response.message.content
+    input_tokens = response.prompt_eval_count
+    output_tokens = response.eval_count
+latency_seconds = round(time.perf_counter() - started, 2)
+
+print("Raw candidate:", raw_output.strip())
+print("Input tokens:", input_tokens)
+print("Output tokens:", output_tokens)
+print("Latency seconds:", latency_seconds)
+```
+
+::: {.callout-note title="Call inputs and observed outputs"}
+`time.perf_counter()` records a clock value before and after the call; subtraction gives elapsed seconds. The selected branch supplies model, messages, temperature and output limit. It then retrieves the candidate text and, where available, token-use metadata. Latency and token counts describe this run, not the candidate's validity.
+:::
+
+### Save the design settings beside the candidate
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+candidate_record = {
+    "route": ROUTE,
+    "frame": frame,
+    "shared_facts": shared_facts,
+    "temperature": temperature,
+    "max_tokens": max_tokens,
+    "raw_output": raw_output.strip(),
+}
+print(candidate_record)
+
+# ONE CHANGE: change frame from "rights" to "economics" and nothing else.
+```
+
+::: {.callout-note title="The candidate record"}
+The dictionary stores the changing frame, fixed facts, route, model, settings, elapsed time and generated text together. This is the output needed for the later causal-design review. The named change asks for a second candidate; comparison should isolate intended framing from other semantic differences.
+:::
+
+### Methodological check
+
+Holding the prompt variables fixed does not guarantee that the generated messages differ only in framing. Compare facts, certainty, tone, length and implied beneficiaries before treating them as experimental stimuli.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 5 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session05/session05_treatment_generation.ipynb) · [Download the notebook](../_generated/downloads/session05/session05_treatment_generation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session05/session05_task.py) · [Download the runnable offline bundle](../_generated/downloads/session05/session05_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 30–45 minutes.
+
+Run the rights and economics frames through one chosen route. Explain the f-string and every named call argument, then compare the candidates for semantic confounds and state what a human pretest must establish.
+
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+:::

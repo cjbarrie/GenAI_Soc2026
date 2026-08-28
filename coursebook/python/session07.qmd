@@ -1,0 +1,171 @@
+---
+title: "Week 7 Python — Structured synthetic responses"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 7 readings and slides](../weeks/session07.qmd).
+
+## Python walkthrough: request a structured synthetic response
+
+**Research task:** Predict one held-out `POLVIEWS` answer for a deidentified teaching profile, then separate schema validity from predictive evidence.
+
+**Python introduced:** JSON Schema, required fields, numeric lists, `len(...)`, `sum(...)` and Boolean checks.
+
+The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+
+### Load the course settings and SDKs
+
+This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+
+```python
+import json
+import os
+from getpass import getpass
+from pathlib import Path
+
+import ollama
+from openrouter import OpenRouter
+
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
+
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
+```
+
+::: {.callout-note title="Read this setup cell"}
+**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+:::
+
+### Choose a route and store one deidentified profile and survey item
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+ROUTE = "ollama"  # change to "openrouter" if preferred
+profile = {
+    "age_group": "30–44",
+    "education": "bachelor's degree",
+    "region": "South",
+    "party_identification": "independent",
+}
+question = (
+    "On a scale from 1 (very liberal) to 7 (very conservative), "
+    "where would you place yourself?"
+)
+held_out_human_answer = 4
+print(profile)
+print(question)
+```
+
+::: {.callout-note title="Profile, question and held-out answer"}
+`profile` is a dictionary containing public-use teaching attributes; `survey_item` is the exact question string. `held_out_human_answer` is stored separately and is not included in the prompt. This separation prevents the model from seeing the answer it is meant to predict.
+:::
+
+### Define the exact output structure
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+schema = {
+    "type": "object",
+    "properties": {
+        "predicted_category": {"type": "integer", "minimum": 1, "maximum": 7},
+        "probabilities": {
+            "type": "array", "items": {"type": "number"},
+            "minItems": 7, "maxItems": 7,
+        },
+    },
+    "required": ["predicted_category", "probabilities"],
+    "additionalProperties": False,
+}
+prompt = (
+    "Predict this deidentified respondent's answer. Return seven probabilities in "
+    "order from 1 to 7. Profile: " + json.dumps(profile) + " Item: " + question
+)
+messages = [{"role": "user", "content": prompt}]
+```
+
+::: {.callout-note title="Reading the JSON Schema"}
+The schema requires an integer category from 1 to 7 and a seven-number probability list. `required` says both fields must appear; `additionalProperties: False` prohibits extra fields. These rules concern readable structure and numeric bounds, not whether the prediction represents people well.
+:::
+
+### Make the selected structured-output call
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL, messages=messages, temperature=0,
+            response_format={"type": "json_schema", "json_schema": {
+                "name": "polviews_prediction", "strict": True, "schema": schema,
+            }},
+        )
+    raw_output = response.choices[0].message.content
+else:
+    response = ollama.chat(
+        model=LOCAL_MODEL, messages=messages, format=schema,
+        options={"temperature": 0},
+    )
+    raw_output = response.message.content
+print("Raw JSON text:", raw_output)
+```
+
+::: {.callout-note title="Two ways to request the same structure"}
+The prompt joins the profile and exact item into one message. OpenRouter places the schema in `response_format`; Ollama receives it through `format`. Both branches preserve the returned JSON text in `raw_json` before any field is extracted.
+:::
+
+### Parse, check structure and only then compare with the held-out answer
+
+Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+
+```python
+prediction = json.loads(raw_output)
+probabilities = prediction["probabilities"]
+seven_values = len(probabilities) == 7
+sum_is_close = abs(sum(probabilities) - 1.0) < 0.02
+matches_human = prediction["predicted_category"] == held_out_human_answer
+print("Predicted category:", prediction["predicted_category"])
+print("Seven probabilities:", seven_values)
+print("Sum close to one:", sum_is_close)
+print("Held-out human answer:", held_out_human_answer)
+print("Exact match:", matches_human)
+
+# ONE CHANGE: change age_group to "18–29" and rerun.
+```
+
+::: {.callout-note title="Structure check versus evidence check"}
+Parsing creates a dictionary. `len(probabilities)` counts entries and `sum(probabilities)` adds them; comparisons produce Booleans checking seven values, an approximate total of one and values between zero and one. Only after those mechanical checks is `predicted_category` compared with the held-out human answer. One match is not population validation.
+:::
+
+### Methodological check
+
+A valid schema means Python can retrieve the required fields. One exact match does not establish individual accuracy, group fidelity or population representation.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 7 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session07/session07_synthetic_representation.ipynb) · [Download the notebook](../_generated/downloads/session07/session07_synthetic_representation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session07/session07_task.py) · [Download the runnable offline bundle](../_generated/downloads/session07/session07_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 30–45 minutes.
+
+Use one route, run the original profile, change only `age_group` and rerun. Explain every schema field, the raw JSON, the parsed list and all three checks. State why neither prediction establishes representativeness.
+
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+:::

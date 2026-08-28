@@ -1,0 +1,55 @@
+---
+title: "Course structure and schedule"
+---
+
+The seminar meets on Wednesdays from 9:30 a.m. to 12:15 p.m. The sequence is cumulative, but it is not a ladder of model capability. Each week introduces a different kind of sociological claim and asks what an LLM changes in the production of evidence.
+
+| Week | Date | Question |
+|---:|---|---|
+| 1 | 2 September | What kind of research technology is an LLM? |
+| 2 | 9 September | When can an LLM label count as a measure? |
+| 3 | 16 September | What can an LLM contribute to qualitative interpretation? |
+| 4 | 23 September | What part of social experience becomes evidence? |
+| 5 | 30 September | Can generated media isolate a causal construct? |
+| 6 | 7 October | What changes when a model starts asking the questions? |
+| — | 14 October | No Wednesday meeting; midterm project-proposal period |
+| 7 | 21 October | Whose attitudes do synthetic respondents represent? |
+| 8 | 28 October | Can LLMs recover missing or unobserved social worlds? |
+| 9 | 4 November | How can micro-level interactions generate macro-level order? |
+| 10 | 11 November | When can agent diversity and debate produce collective intelligence? |
+| 11 | 18 November | Who—or what—produces research data in an agentic workflow? |
+| 12 | 25 November | What can we reproduce, and what remains opaque? |
+| 13 | 2 December | What culture, ideology and hierarchy are encoded in models? |
+| 14 | 9 December | Project presentations; no new reading, lecture or weekly task |
+
+## A typical week
+
+Before class, read the essential material with the chapter question in mind. The additional readings are routes into a debate, not an undifferentiated list.
+
+The normal 165-minute meeting has three clearly different parts:
+
+| Time | What we do |
+|---|---|
+| 9:30–10:00 | The instructor introduces the sociological problem, relevant methodological background and the question connecting the readings. |
+| 10:00–10:50 | **Class discussion of the readings.** We compare arguments, evidence and disagreements rather than hearing a second lecture summarizing each text. Come ready to identify one claim, one piece of evidence and one question. |
+| 10:50–11:00 | Break. |
+| 11:00–12:05 | **Guided walkthrough of the weekly coding exercise.** We build the LLM routine in short blocks, predict each result, run it, inspect the model return and explain the input and output of every operation. |
+| 12:05–12:15 | Questions, recording/submission reminder and preparation for the following week. |
+
+The exact timing can move slightly when discussion is especially productive, but the middle of the class is reserved for collective discussion and the final part is reserved for working through the code together.
+
+The coding strand teaches Python through actual LLM routines. Week 1 introduces values, strings and the anatomy of a call. From Week 2, students send a prompt to a model through OpenRouter or a supported local runtime. Later weeks add message lists, structured outputs, parsing, generation parameters, loops and, only after those are familiar, small functions with explicit parameters. Cached responses remain available when a service is unavailable, but they are the contingency rather than the main route.
+
+### Weekly coding submission
+
+The weekly completion task is submitted as a short **screen recording with audio**. Record your screen while you run the exercise and explain aloud:
+
+1. the input to each operation and its Python type;
+2. what the operation does;
+3. the output it produces and its Python type;
+4. what changed when you modified the named input or parameter;
+5. what the returned model output does—and does not—show for the week's research question.
+
+Upload the recording to the dedicated NYU Box folder. **Box submission link: to be provided by the instructor.** A polished video is not expected; a clear, continuous walkthrough is enough.
+
+The book uses *AI and Research Methods* as a recurring map. It is not a substitute for the empirical papers. The chapter tells you which section to read and what question it helps answer. [Download the chapter PDF](downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) or consult the [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk).

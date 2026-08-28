@@ -1,0 +1,183 @@
+---
+title: "Who—or what—produces research data in an agentic workflow?"
+subtitle: "Session 11 · Research agents, tools, and provenance"
+author: "Generative AI in Sociology"
+date: "November 18, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to delegate and audit
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class=""><strong>Simulate</strong><small>populations and agents</small></div>
+<div class="active"><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## Who—or what—produces research data in an agentic workflow?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Produce a deduplicated claim/source table that a human can verify without rerunning the agent.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">Several agents repeat the same unsupported claim, creating apparent corroboration without independent evidence.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Lu et al. (2026):** methodological opportunity
+- **Nature Machine Intelligence (2026):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Lu et al. (2026), end-to-end automation of AI research | Source: https://doi.org/10.1038/s41586-026-10265-5 | Accessed: 2026-08-18
+- Nature Machine Intelligence (2026), multi-agent systems need transparency | Source: https://www.nature.com/articles/s42256-026-01183-2 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The readings disagree about success
+
+<div class="lead">End-to-end systems automate search, code, analysis, and writing; transparency arguments ask whether multiplying agents adds justified capability or merely obscures responsibility.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Lu et al. (2026), end-to-end automation of AI research | Source: https://doi.org/10.1038/s41586-026-10265-5 | Accessed: 2026-08-18
+- Nature Machine Intelligence (2026), multi-agent systems need transparency | Source: https://www.nature.com/articles/s42256-026-01183-2 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">Delegation is scientifically useful only when every claim can be traced backward to a resolvable source and recorded transformation.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Deduplicate collected sources while rejecting claims without a URL and exact excerpt.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def build_provenance_table(records):
+    # return one documented result
+```
+
+**Return value:** Keep the first complete record for each claim-and-URL pair and return rejected record IDs.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def build_provenance_table(records):
+    seen = set()
+    accepted = []
+    rejected = []
+    for record in records:
+        if not record.get("url") or not record.get("excerpt"):
+            rejected.append(record["id"])
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+            continue
+        key = (record["claim"], record["url"])
+        if key not in seen:
+            seen.add(key)
+            accepted.append(record)
+    return accepted, rejected
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. A set named `seen` stores claim-and-URL pairs already accepted.
+2. The first conditional rejects a record whose source cannot be resolved or checked.
+3. `continue` skips the rest of the current loop iteration after recording the rejection.
+4. A duplicate is ignored only after its provenance key is compared, not because its wording looks similar.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert accepted[0]["url"] == "https://example.org/a"
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">Several agents repeat the same unsupported claim, creating apparent corroboration without independent evidence.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `build_provenance_table`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Lu et al. (2026), end-to-end automation of AI research | Source: https://doi.org/10.1038/s41586-026-10265-5 | Accessed: 2026-08-18
+- Nature Machine Intelligence (2026), multi-agent systems need transparency | Source: https://www.nature.com/articles/s42256-026-01183-2 | Accessed: 2026-08-18
+[/Sources]
+:::

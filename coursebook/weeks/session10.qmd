@@ -1,0 +1,29 @@
+---
+title: "Week 10 — When can agent diversity and debate produce collective intelligence?"
+description: "Provisional outline"
+---
+
+## Question
+
+<div class="chapter-question">If a group of agents converges on a good answer, what evidence shows that interaction produced the result?</div>
+
+## Why this week belongs here
+
+Week 9 specifies interaction. Week 10 asks how to attribute a collective result when the same endpoint might come from shared model priors, leakage, prompting or selection of a favorable run.
+
+## Provisional core readings
+
+- Barrie et al. (2026), §§10.4.4–10.4.5. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
+- Ashery, Aiello and Baronchelli (2025), “Emergent Social Conventions and Collective Bias in LLM Populations.” [@AsheryAielloBaronchelli2025]
+- Barrie and Törnberg (2025), “Emergent LLM Behaviors Are Observationally Equivalent to Data Leakage.” [@BarrieTornberg2025]
+- Further comparison: Kim et al. (2026) and Chuang et al. (2024). [@KimEtAlSocieties2026; @ChuangEtAl2024]
+
+## Planned chapter and class arc
+
+Distinguish convergence from correctness; compare repeated runs and no-interaction baselines; introduce observational equivalence; evaluate contamination probes and alternative explanations for collective performance.
+
+[See the provisional Week 10 Python plan](../python/session10.qmd).
+
+## Development status
+
+This is a planning page. The two-session simulation arc will be finalized before slides and student tasks are published.

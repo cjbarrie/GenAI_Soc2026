@@ -1,0 +1,30 @@
+---
+title: "Generative AI in Sociology"
+subtitle: "Evidence, inference, and research design"
+description: "The student course book for NYU Sociology, Fall 2026"
+---
+
+## The question behind the course
+
+<div class="chapter-question">
+What inference is the researcher trying to make, and what evidence would validate the use of an LLM for that inference?
+</div>
+
+Large language models can classify text, suggest interpretations, generate treatments, conduct interviews, imitate survey respondents, take part in simulations, search for evidence and write code. None of those abilities tells us, on its own, whether a sociological claim is warranted. That is the problem this course takes seriously.
+
+The course is about 60 per cent method and 40 per cent substantive sociology of AI. We use LLMs as research tools, but also study the social assumptions, institutions and inequalities that become visible through them. The aim is not to turn sociologists into software engineers. It is to make the technical steps understandable enough that you can decide what the output means, what it does not mean, and what should be checked next.
+
+No prior programming course is required. We introduce Python gradually through actual research tasks. Each example names its input, shows the operation, displays the output and then asks what evidence would validate the resulting claim. You will be expected to explain the code in plain language. Remembering package syntax is much less important than understanding what a value represents and how it changes.
+
+## Four parts of the semester
+
+1. **Evidence, measurement and interpretation (Weeks 1–4).** We begin with research records, text annotation, qualitative analysis and multimodal observation.
+2. **Experiments and research encounters (Weeks 5–6).** We examine generated treatments and interviews in which the next question depends on the preceding answer.
+3. **Synthetic populations and social simulation (Weeks 7–10).** We ask what model-generated respondents and interacting agents can represent.
+4. **Research agents, replication and model audits (Weeks 11–14).** We examine long-horizon research systems, reproducibility and LLMs as objects of sociological study.
+
+The final project returns to the opening question. You will propose an LLM-related sociological study and show that its claims, data, model operations and validation plan fit together.
+
+## What this book contains
+
+Each week is divided into two pages. The first gives you the sociological question, the readings and why they matter, the methodological background and the lecture slides. A separate Python page then gives you the worked input-to-output trace, complete workbook and take-home completion task. Week 14 is reserved for presentations and therefore has no Python page. The HTML edition is the canonical version: it is searchable and contains the live slide decks and downloads. The PDF is provided for reading and annotation away from the site.

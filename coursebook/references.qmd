@@ -1,0 +1,8 @@
+---
+title: "References"
+nocite: |
+  @*
+---
+
+This bibliography consolidates works cited across the book. Weekly chapters link directly to the assigned DOI, publisher or stable author page.
+

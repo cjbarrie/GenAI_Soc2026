@@ -1,0 +1,29 @@
+---
+title: "Week 13 — What culture, ideology and hierarchy are encoded in models?"
+description: "Provisional outline"
+---
+
+## Question
+
+<div class="chapter-question">How can we identify patterned differences in model output without immediately assigning them a social cause?</div>
+
+## Why this week belongs here
+
+After treating models as research infrastructure, the course turns them into objects of sociological inquiry. The same measurement and causal-design standards still apply.
+
+## Provisional core readings
+
+- Barrie et al. (2026), §10.6, especially §§10.6.1–10.6.4. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
+- Waight et al. (2026), “State Media Control Influences Large Language Models.” [@WaightEtAl2026]
+- Buyl et al. (2026), “Large Language Models Reflect the Ideology of Their Creators.” [@BuylEtAl2026]
+- Further cases: Kim et al. (2026) and Boelaert et al. (2025). [@KimEtAlConsciousness2026; @BoelaertEtAl2025]
+
+## Planned chapter and class arc
+
+Connect model audits to established audit studies; reconstruct the central papers; distinguish output patterns from explanations about training, culture or alignment; design a factorial audit with predeclared alternatives.
+
+[See the provisional Week 13 Python plan](../python/session13.qmd).
+
+## Development status
+
+This is a planning page. Readings and examples remain provisional until the literature-led build and slide review are complete.

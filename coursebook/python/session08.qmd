@@ -1,0 +1,22 @@
+---
+title: "Week 8 Python — Repeated predictions and route comparison"
+description: "Provisional coding plan"
+---
+
+[Return to the Week 8 readings outline](../weeks/session08.qmd).
+
+This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+
+## Planned code trace
+
+**Research task:** Run the same held-out opinion-prediction routine across five deidentified profiles through both routes.
+
+**Python sequence:** the first `for` loop around a model call, empty result lists, `.append(...)`, loop variables and separate individual and aggregate checks. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+
+## Planned completion recording
+
+Trace p02 through one complete iteration for each route, make the named education change, and explain why the exact-match counts and means answer different questions. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+
+## Development status
+
+The page is deliberately provisional. It does not yet publish an assessed notebook or task.

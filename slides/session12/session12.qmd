@@ -1,0 +1,181 @@
+---
+title: "What can we reproduce, and what remains opaque?"
+subtitle: "Session 12 · Low-stakes replication and project studio"
+author: "Generative AI in Sociology"
+date: "November 25, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to delegate and audit
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class=""><strong>Simulate</strong><small>populations and agents</small></div>
+<div class="active"><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## What can we reproduce, and what remains opaque?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Compare two replication records and classify the visible sources of dependence.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">A changed answer is called randomness even though the model identifier, provider route, or prompt also changed.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Feuerriegel et al. (2026):** methodological opportunity
+- **Barrie:** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Feuerriegel et al. (2026), GUIDE-LLM reporting checklist | Source: https://doi.org/10.1038/s41562-026-02492-7 | Accessed: 2026-08-18
+- Barrie, Palmer & Spirling (2025), replication for language models | Source: https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The readings disagree about success
+
+<div class="lead">Reporting checklists make workflows inspectable; model/provider dependence means even apparently deterministic reruns may not recreate an earlier transformation.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Feuerriegel et al. (2026), GUIDE-LLM reporting checklist | Source: https://doi.org/10.1038/s41562-026-02492-7 | Accessed: 2026-08-18
+- Barrie, Palmer & Spirling (2025), replication for language models | Source: https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">A discrepancy is useful evidence when the changed configuration fields are isolated rather than hidden by the word replication.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Produce a discrepancy report from cached and rerun configurations.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def compare_replication_records(original, rerun):
+    # return one documented result
+```
+
+**Return value:** Return changed configuration fields, whether output changed, and an interpretable dependence label.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def compare_replication_records(original, rerun):
+    fields = ["model", "provider", "prompt", "temperature", "date"]
+    changed_fields = [field for field in fields if original.get(field) != rerun.get(field)]
+    output_changed = original.get("output") != rerun.get("output")
+    if not output_changed:
+        label = "same recorded output"
+    elif any(field in changed_fields for field in ["model", "provider", "prompt"]):
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+        label = "workflow dependence"
+    else:
+        label = "unresolved run dependence"
+    return {"changed_fields": changed_fields, "output_changed": output_changed, "label": label}
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. `fields` declares in advance which configuration elements will be compared.
+2. The list comprehension retains only fields whose values differ across the two dictionaries.
+3. Output difference is calculated separately from configuration difference.
+4. The final condition labels visible workflow dependence before invoking unexplained stochasticity.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert changed["label"] == "workflow dependence"
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">A changed answer is called randomness even though the model identifier, provider route, or prompt also changed.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `compare_replication_records`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Feuerriegel et al. (2026), GUIDE-LLM reporting checklist | Source: https://doi.org/10.1038/s41562-026-02492-7 | Accessed: 2026-08-18
+- Barrie, Palmer & Spirling (2025), replication for language models | Source: https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf | Accessed: 2026-08-18
+[/Sources]
+:::

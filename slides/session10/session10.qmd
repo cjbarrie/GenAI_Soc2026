@@ -1,0 +1,185 @@
+---
+title: "When can agent diversity and debate produce collective intelligence?"
+subtitle: "Session 10 · Generative ABMs II and sociology of AI"
+author: "Generative AI in Sociology"
+date: "November 11, 2026"
+format:
+  revealjs:
+    theme: [default, ../../design/theme.scss]
+    width: 1280
+    height: 720
+    margin: 0
+    controls: false
+    progress: false
+    slide-number: c/t
+    transition: fade
+    center: false
+    embed-resources: true
+---
+
+## We are learning to simulate
+
+<div class="course-map">
+<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
+<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
+<div class="active"><strong>Simulate</strong><small>populations and agents</small></div>
+<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+</div>
+
+---
+
+## When can agent diversity and debate produce collective intelligence?
+
+<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
+
+---
+
+## The inferential target comes before the metric
+
+<div class="semantic-line">Compare repeated outcomes across interaction structures and a predeclared contamination probe.</div>
+
+<div class="semantic-line warning" style="margin-top: 42px;">One compelling trajectory is interpreted as collective intelligence without repeated runs or a no-interaction baseline.</div>
+
+---
+
+## The readings make the methodological burden visible
+
+- **Ashery et al. (2025):** methodological opportunity
+- **Barrie & Törnberg (2025):** validation or counterclaim
+- **Kim et al. (2026):** validation or counterclaim
+
+::: {.notes}
+[Sources]
+- Ashery et al. (2025), conventions and collective bias | Source: https://doi.org/10.1126/sciadv.adu9368 | Accessed: 2026-08-18
+- Barrie & Törnberg (2025), observational equivalence to leakage | Source: https://arxiv.org/abs/2505.23796 | Accessed: 2026-08-18
+- Kim et al. (2026), societies of thought | Source: https://arxiv.org/abs/2601.10825 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The readings disagree about success
+
+<div class="lead">Population experiments and societies-of-thought studies attribute collective outcomes to interaction; the leakage critique shows that the same observation can have a non-emergent explanation.</div>
+
+<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
+
+::: {.notes}
+[Sources]
+- Ashery et al. (2025), conventions and collective bias | Source: https://doi.org/10.1126/sciadv.adu9368 | Accessed: 2026-08-18
+- Barrie & Törnberg (2025), observational equivalence to leakage | Source: https://arxiv.org/abs/2505.23796 | Accessed: 2026-08-18
+- Kim et al. (2026), societies of thought | Source: https://arxiv.org/abs/2601.10825 | Accessed: 2026-08-18
+[/Sources]
+:::
+
+---
+
+## The session's bounded claim
+
+<div class="major-question">Convergence becomes evidence of emergence only after plausible inherited or leaked solutions are probed.</div>
+
+---
+
+## One small algorithm makes the design inspectable
+
+**Task:** Summarize repeated group outcomes and flag a contamination probe that matches the target answer.
+
+1. show exact input objects;
+2. name their Python types;
+3. apply one visible transformation;
+4. print the returned object;
+5. interpret a check.
+
+---
+
+## Read the function header before the body
+
+```python
+def compare_interaction_runs(runs, target_answer):
+    # return one documented result
+```
+
+**Return value:** Return structure means, run counts, and IDs whose probe answer already equals the target.
+
+<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+
+---
+
+## Trace the first block with actual values
+
+::: {.compact-code}
+```python
+def compare_interaction_runs(runs, target_answer):
+    values_by_structure = {}
+    contaminated = []
+    for run in runs:
+        values_by_structure.setdefault(run["structure"], []).append(run["outcome"])
+        if run.get("probe_answer") == target_answer:
+            contaminated.append(run["id"])
+```
+:::
+
+---
+
+## Trace the next block before running it
+
+::: {.compact-code}
+```python
+    summary = {}
+    for structure, values in values_by_structure.items():
+        summary[structure] = {"n": len(values), "mean": sum(values) / len(values)}
+    return summary, contaminated
+```
+:::
+
+<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
+
+---
+
+## Four sentences explain the code
+
+1. The first dictionary groups outcomes by interaction structure.
+2. The same loop performs a separate contamination check; it does not remove cases silently.
+3. The second loop summarizes repeated runs rather than selecting the most impressive trajectory.
+4. The function returns performance and probe evidence separately so the researcher must interpret both.
+
+---
+
+## A software check states one exact expectation
+
+```python
+# after the worked example in the notebook
+assert contaminated == [2]
+```
+
+<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+
+---
+
+## The characteristic failure is substantive
+
+<div class="major-question">One compelling trajectory is interpreted as collective intelligence without repeated runs or a no-interaction baseline.</div>
+
+---
+
+## Completion task: predict, implement, interpret
+
+1. Predict one output before execution.
+2. Complete `compare_interaction_runs`.
+3. Run all supplied checks.
+4. Explain one diagnostic in plain language.
+5. Connect it to one required reading in 100–150 words.
+
+---
+
+## Revise the claim to match the evidence
+
+<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+
+::: {.notes}
+[Sources]
+- Ashery et al. (2025), conventions and collective bias | Source: https://doi.org/10.1126/sciadv.adu9368 | Accessed: 2026-08-18
+- Barrie & Törnberg (2025), observational equivalence to leakage | Source: https://arxiv.org/abs/2505.23796 | Accessed: 2026-08-18
+- Kim et al. (2026), societies of thought | Source: https://arxiv.org/abs/2601.10825 | Accessed: 2026-08-18
+[/Sources]
+:::

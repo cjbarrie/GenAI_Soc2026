@@ -1,0 +1,39 @@
+---
+title: "How to use the book"
+---
+
+## Readings
+
+Start with the short description beneath each essential reading. It tells you why the reading is there and what to look for. Read the assigned section rather than assuming that every page is equally important. Additional readings are grouped by purpose—for example, historical background, a competing result or a technical extension.
+
+The site links to DOI records, publishers or stable author copies. It does not redistribute copyrighted PDFs. If NYU access is required, use the library link resolver in a separate tab.
+
+## Slides
+
+The full Reveal.js deck appears inside each HTML chapter and can be opened full screen. The deck is a teaching aid, while the chapter supplies the argument and transitions that should remain understandable away from the room. In the PDF edition, a link replaces the embedded deck.
+
+## Workbooks and code
+
+The course assumes no prior Python knowledge. Each week has a separate **Python work** page immediately after its readings-and-slides page in the book navigation. Every required coding exercise is printed there in full. The code is divided into short blocks, and each block includes its exact input, a line-by-line explanation, the expected output and the research meaning of that output. This keeps the main weekly page focused on the readings and lecture while giving the code enough space to be explained properly.
+
+The downloadable `.py` task file repeats the Python-page exercise exactly and provides a convenient place to run it. It does not contain an extra or more difficult assignment. The notebook is optional and provides further examples. Neither download substitutes for the explanation on the Python page. For every required block, be able to answer five questions:
+
+1. What value enters, and what does it represent?
+2. What is its Python type?
+3. What operation is performed?
+4. What value comes out?
+5. What sociological claim could that output support, and what would still need checking?
+
+Weeks 1–2 send the same synthetic or public teaching material through OpenRouter and Ollama. Students choose either route in Weeks 3–7 and compare both again in Week 8. A clearly labelled recorded return is supplied as a contingency if the hosted service, network or local runtime is unavailable; using that contingency does not reduce the completion mark.
+
+Each developed week also has an **Open in Google Colab** link. Colab opens the notebook in a browser and supplies a temporary Python environment. Run the first setup cell once: it downloads the public course repository and moves to the correct weekly folder so that the notebook can find its accompanying data. To keep your changes, use Colab's **File → Save a copy in Drive**; the temporary runtime itself is not permanent.
+
+## Exercises
+
+Weekly tasks receive completion marks. Each task begins with complete, runnable code and asks you to change one clearly identified input or parameter. The Python page explains the possible outputs and what to inspect; a live model response may not be identical across students or runs.
+
+Submit a short screen recording with audio. Your recording should show the code running and explain the input, operation and output of each block in ordinary language. Show the original run and the named change, then explain the methodological meaning and one limit of the output. Upload the recording to the dedicated NYU Box folder. **Box submission link: to be provided by the instructor.**
+
+You do not need to edit the recording or produce a polished presentation. The assessment is whether you understand the routine. If AI materially assists your preparation, say so briefly at the end of the recording using the disclosure described in the policy chapter.
+
+In the developed early weeks, you will not be asked to define a Python function, interpret a test harness or make code more efficient. Those are useful programming skills, but they are not the purpose of these completion tasks.

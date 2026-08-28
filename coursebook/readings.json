@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "weeks": {
+    "session01": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Introduction and Section 10.7; PDF pages 1–2 and 34–35", "purpose": "Names the six LLM research applications and distinguishes exact replay from claim-level replication while specifying a minimum research record.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "DavidsonKarell2025", "status": "essential", "section": "Introduction and framework", "purpose": "Provides a social-science framework for measurement, prompting and simulation.", "url": "https://doi.org/10.1177/00491241251339184"},
+      {"key": "AlveroEtAl2026", "status": "essential", "section": "Full article", "purpose": "Shows how generative AI is entering sociological research and where disciplinary judgment remains necessary.", "url": "https://sociologicalscience.com/articles-v13-3-45/"},
+      {"key": "FeuerriegelEtAl2026", "status": "additional", "section": "Checklist and reporting table", "purpose": "Turns general transparency concerns into fields a researcher can actually save.", "url": "https://doi.org/10.1038/s41562-026-02492-7"},
+      {"key": "BarriePalmerSpirling2025", "status": "additional", "section": "Introduction", "purpose": "Explains why model access and versioning complicate conventional replication.", "url": "https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf"}
+    ],
+    "session02": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.1.1–10.1.5", "purpose": "Introduces annotation, validation and the weakening of an unquestioned human gold standard.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "StuhlerDangTonOllion2025", "status": "essential", "section": "Codebooks, promptbooks and validation", "purpose": "Connects established coding decisions to prompt design.", "url": "https://doi.org/10.1177/00491241251336794"},
+      {"key": "BarriePalaiologouTornberg2026", "status": "essential", "section": "Framework and recommendations", "purpose": "Treats semantically similar prompt variants as a reliability problem.", "url": "https://doi.org/10.48550/arXiv.2407.02039"},
+      {"key": "ChaeDavidson2026", "status": "additional", "section": "Task comparison", "purpose": "Locates zero-shot classification among other ways of adapting a model.", "url": "https://doi.org/10.1177/00491241251325243"},
+      {"key": "DavidsonKarell2025", "status": "additional", "section": "Measurement section", "purpose": "Connects annotation performance to downstream social-science use.", "url": "https://doi.org/10.1177/00491241251339184"}
+    ],
+    "session03": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.1.4–10.1.5", "purpose": "Defines the validation problem for annotation, providing a boundary case against which qualitative interpretation can be distinguished.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "TimmermansTavory2022", "status": "essential", "section": "Open coding, focused coding and memo-writing", "purpose": "Establishes qualitative analysis as iterative movement between data and theoretical ideas.", "url": "https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html"},
+      {"key": "ThanEtAl2025", "status": "essential", "section": "Workflow and findings", "purpose": "Shows a researcher–LLM–researcher process for qualitative coding.", "url": "https://doi.org/10.1177/00491241251339188"},
+      {"key": "IbrahimVoyer2026", "status": "additional", "section": "Technological reflexivity", "purpose": "Makes the chatbot interaction itself part of the methodological account.", "url": "https://doi.org/10.1177/14687941251390794"},
+      {"key": "JackCooperFlower2026", "status": "additional", "section": "Analysis discussion", "purpose": "Provides a recent empirical case in which humans retained the interpretive analysis.", "url": "https://doi.org/10.1177/20597991261448157"}
+    ],
+    "session04": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.1.1 and 10.1.5", "purpose": "Treats text, images and video as annotatable material and states the corresponding validation problem.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "Goodwin1994", "status": "essential", "section": "Coding, highlighting and material representations", "purpose": "Shows how professional communities organize what becomes visible as evidence.", "url": "https://doi.org/10.1525/aa.1994.96.3.02a00100"},
+      {"key": "Collins2013", "status": "essential", "section": "Tunnel of violence", "purpose": "Supplies a sociological account of sequence and emotional entrainment in violent situations.", "url": "https://doi.org/10.1177/0011392112456500"},
+      {"key": "NassauerLegewie2021", "status": "additional", "section": "Methodological frame", "purpose": "Explains how video sequence analysis turns recorded action into analyzable data.", "url": "https://doi.org/10.1177/0049124118769093"},
+      {"key": "BiskEtAl2020", "status": "additional", "section": "Grounding argument", "purpose": "Introduces the technical debate over what text-only models lack about embodied experience.", "url": "https://aclanthology.org/2020.emnlp-main.703/"}
+    ],
+    "session05": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Section 10.2", "purpose": "Connects generated treatments to construct validity and experimental control.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "Wallander2009", "status": "essential", "section": "Design and validity sections", "purpose": "Places generated vignettes within the sociology of factorial survey design.", "url": "https://doi.org/10.1016/j.ssresearch.2009.03.004"},
+      {"key": "DafoeZhangCaughey2018", "status": "essential", "section": "Information equivalence", "purpose": "Explains why two differently worded treatments may change more than the intended construct.", "url": "https://doi.org/10.1017/pan.2018.9"},
+      {"key": "BaiEtAl2025", "status": "additional", "section": "Design and message evaluation", "purpose": "Provides a published example of generated policy messages tested on human participants.", "url": "https://doi.org/10.1038/s41467-025-61345-5"},
+      {"key": "Velez2025", "status": "additional", "section": "Adaptive survey design", "purpose": "Shows how candidate questions can be selected adaptively without treating generation as validation.", "url": "https://doi.org/10.1017/pan.2024.34"}
+    ],
+    "session06": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Selected Sections 10.2 and 10.5", "purpose": "Locates adaptive interviewing between treatment generation and tool-augmented data collection.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "MertonKendall1946", "status": "essential", "section": "Criteria for the focused interview", "purpose": "Supplies foundational criteria for specificity, range, depth and personal context.", "url": "https://doi.org/10.1086/219886"},
+      {"key": "GeieckeJaravel2026", "status": "essential", "section": "Design, text/voice system and validation", "purpose": "Provides a major contemporary implementation of AI-led interviews.", "url": "https://benjamin.geiecke.com/files/ai_interviews.pdf"},
+      {"key": "JackCooperFlower2026", "status": "additional", "section": "Chatbot design and participant responses", "purpose": "Shows how a qualitative chatbot was built and how researchers experienced it.", "url": "https://doi.org/10.1177/20597991261448157"},
+      {"key": "Velez2025", "status": "additional", "section": "Adaptive selection logic", "purpose": "Provides a comparison between adapting a survey and composing a qualitative probe.", "url": "https://doi.org/10.1017/pan.2024.34"}
+    ],
+    "session07": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Section 10.3", "purpose": "Distinguishes uses of silicon sampling and their validation targets.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "KozlowskiEvans2025", "status": "essential", "section": "Promise, peril and validation", "purpose": "Frames artificial stand-ins as representations with specific inferential limits.", "url": "https://doi.org/10.1177/00491241251337316"},
+      {"key": "BoelaertEtAl2025", "status": "essential", "section": "Opinion-poll experiments", "purpose": "Tests how generative models answer survey questions and where their distributions differ.", "url": "https://doi.org/10.1177/00491241251330582"},
+      {"key": "WangMorgensternDickerson2025", "status": "additional", "section": "Identity-group comparisons", "purpose": "Shows how synthetic substitutes can flatten within-group heterogeneity.", "url": "https://doi.org/10.1038/s42256-025-00986-z"},
+      {"key": "KimLee2026", "status": "additional", "section": "Survey augmentation design", "purpose": "Previews a different target: predicting unasked opinions for observed respondents.", "url": "https://arxiv.org/abs/2305.09620"}
+    ],
+    "session08": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.3.4–10.3.6 and 10.7", "purpose": "Links different synthetic-data uses to different standards of validation and replication.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "KimLee2026", "status": "essential", "section": "Design and validation", "purpose": "Uses observed survey answers to predict missing responses for actual respondents.", "url": "https://arxiv.org/abs/2305.09620"},
+      {"key": "XieEtAl2026", "status": "essential", "section": "Statistical realism tests", "purpose": "Separates resemblance on one statistic from broader population realism.", "url": "https://doi.org/10.1073/pnas.2538145123"},
+      {"key": "AshokkumarEtAl2026", "status": "additional", "section": "Forecast design and held-out evaluation", "purpose": "Tests prediction of experimental results rather than replacement of individual participants.", "url": "https://doi.org/10.1038/s41586-026-10742-x"},
+      {"key": "WangMorgensternDickerson2025", "status": "additional", "section": "Group flattening", "purpose": "Provides a hard case for claims that missing social worlds have been recovered.", "url": "https://doi.org/10.1038/s42256-025-00986-z"}
+    ],
+    "session09": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.4.1–10.4.3", "purpose": "Introduces generative agent-based models and their specification problems.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "MacyWiller2002", "status": "essential", "section": "Full article", "purpose": "Establishes the explanatory logic of moving from actor rules to macro patterns.", "url": "https://doi.org/10.1146/annurev.soc.28.110601.141117"},
+      {"key": "ParkEtAl2023", "status": "essential", "section": "Architecture and evaluation", "purpose": "Adds memory, reflection and planning to language-model agents.", "url": "https://doi.org/10.1145/3586183.3606763"},
+      {"key": "ChuangEtAl2024", "status": "additional", "section": "Network experiment", "purpose": "Shows how interaction structure and model policies jointly shape opinion dynamics.", "url": "https://aclanthology.org/2024.findings-naacl.211/"},
+      {"key": "AsheryAielloBaronchelli2025", "status": "additional", "section": "Repeated population experiments", "purpose": "Provides an empirical bridge to convention formation in Week 10.", "url": "https://doi.org/10.1126/sciadv.adu9368"}
+    ],
+    "session10": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.4.4–10.4.5", "purpose": "Frames emergence and validation in generative simulations.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "AsheryAielloBaronchelli2025", "status": "essential", "section": "Design and repeated outcomes", "purpose": "Tests social convention formation in populations of language-model agents.", "url": "https://doi.org/10.1126/sciadv.adu9368"},
+      {"key": "BarrieTornberg2025", "status": "essential", "section": "Observational-equivalence argument", "purpose": "Shows why apparently emergent behavior can be indistinguishable from inherited or leaked solutions.", "url": "https://arxiv.org/abs/2505.23796"},
+      {"key": "KimEtAlSocieties2026", "status": "additional", "section": "Societies-of-thought experiments", "purpose": "Examines whether debate among reasoning agents improves collective outcomes.", "url": "https://arxiv.org/abs/2601.10825"},
+      {"key": "ChuangEtAl2024", "status": "additional", "section": "Baselines and network conditions", "purpose": "Provides an alternative design for attributing macro outcomes to interaction.", "url": "https://aclanthology.org/2024.findings-naacl.211/"}
+    ],
+    "session11": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Section 10.5", "purpose": "Defines tool-augmented data collection and the centrality of provenance.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "LuEtAl2026AIScientist", "status": "essential", "section": "System design and evaluation", "purpose": "Provides an end-to-end research automation case and a demanding long-horizon benchmark.", "url": "https://doi.org/10.1038/s41586-026-10265-5"},
+      {"key": "NatureMITransparency2026", "status": "essential", "section": "Full editorial", "purpose": "Makes responsibility and transparency explicit when multiple agents contribute.", "url": "https://doi.org/10.1038/s42256-026-01183-2"},
+      {"key": "FeuerriegelEtAl2026", "status": "additional", "section": "Reporting fields", "purpose": "Provides concrete fields that can be carried into an agent provenance record.", "url": "https://doi.org/10.1038/s41562-026-02492-7"}
+    ],
+    "session12": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Section 10.7", "purpose": "Summarizes the new replication problem created by changing models and services.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "FeuerriegelEtAl2026", "status": "essential", "section": "Checklist and examples", "purpose": "Specifies what behavioral-science articles should report about LLM use.", "url": "https://doi.org/10.1038/s41562-026-02492-7"},
+      {"key": "BarriePalmerSpirling2025", "status": "essential", "section": "Problems, principles and recommendations", "purpose": "Distinguishes rerunning a workflow from reproducing a model-mediated result.", "url": "https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf"},
+      {"key": "NatureMITransparency2026", "status": "additional", "section": "Full editorial", "purpose": "Extends replication questions to multi-agent ownership and responsibility.", "url": "https://doi.org/10.1038/s42256-026-01183-2"}
+    ],
+    "session13": [
+      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Section 10.6, especially 10.6.1–10.6.4", "purpose": "Treats LLMs as socially consequential objects rather than neutral research instruments.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
+      {"key": "WaightEtAl2026", "status": "essential", "section": "Design and cross-model findings", "purpose": "Shows how state media environments are associated with patterned model outputs.", "url": "https://doi.org/10.1038/s41586-026-10506-7"},
+      {"key": "BuylEtAl2026", "status": "essential", "section": "Ideology measures and comparison", "purpose": "Examines the relationship between model outputs and creator geography or ideology.", "url": "https://doi.org/10.1038/s44387-025-00048-0"},
+      {"key": "KimEtAlConsciousness2026", "status": "additional", "section": "Experimental design", "purpose": "Raises a higher evidentiary threshold for claims about model self-reports and human values.", "url": "https://arxiv.org/abs/2607.28607"},
+      {"key": "BoelaertEtAl2025", "status": "additional", "section": "Cross-question model comparisons", "purpose": "Provides a survey-based audit whose claims can be compared with cultural explanations.", "url": "https://doi.org/10.1177/00491241251330582"}
+    ],
+    "session14": []
+  }
+}
