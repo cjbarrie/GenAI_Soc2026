@@ -20,6 +20,9 @@ jobs:
     env:
       COURSE_HOSTED_MODEL: openai/gpt-5.2
       COURSE_LOCAL_MODEL: gemma4:e2b-it-qat
+      # Quarto requires every name in .env.example to exist. The book does not
+      # execute live model calls during a build, so this is deliberately inert.
+      OPENROUTER_API_KEY: not-used-during-build
     steps:
       - uses: actions/checkout@v4
 
