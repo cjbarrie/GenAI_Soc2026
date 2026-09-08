@@ -130,6 +130,7 @@ You can instead open `workbook/00_setup/dual_route_preflight.ipynb` and run its 
 | `command not found: uv` | the terminal has not picked up the installation | restart the terminal and run `uv --version` |
 | `No module named ...` in local Jupyter | the notebook is using the wrong Python environment | close Jupyter, run `uv sync`, then start it with `uv run jupyter lab` |
 | `No module named ...` in Colab | the setup cell at the top was not run, or its installation failed | restart the runtime and run the setup cell before any imports |
+| `No module named src...` in Colab | an older notebook did not add the cloned repository root to Python's import path | reopen the current public notebook and run its setup cell first |
 | Ollama connection refused | the local application/server is not running | start Ollama and run `ollama list` |
 | model not found | the exact tag is not installed | run `ollama pull gemma4:e2b-it-qat` |
 | out of memory or very slow | the model does not fit comfortably | stop other applications and bring the diagnostic to class |

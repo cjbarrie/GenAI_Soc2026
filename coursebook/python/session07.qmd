@@ -19,7 +19,9 @@ The routine begins with the model input. It does not postpone the live call unti
 
 ### Load the course settings and SDKs
 
-This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+Run the notebook's **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local `uv` environment, adds the repository root to Python's import path and sets `IN_COLAB`. Colab uses OpenRouter because it cannot reach the Ollama server on your computer.
+
+This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
 
 ```python
 import json
@@ -54,7 +56,7 @@ print("Local model:", LOCAL_MODEL)
 Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
 
 ```python
-ROUTE = "ollama"  # change to "openrouter" if preferred
+ROUTE = "openrouter" if IN_COLAB else "ollama"  # Ollama is the local default
 profile = {
     "age_group": "30–44",
     "education": "bachelor's degree",

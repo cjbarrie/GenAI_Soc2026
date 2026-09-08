@@ -509,3 +509,10 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - Local notebooks do not install packages silently. A missing `openrouter` or `ollama` import now produces an actionable instruction to restart from `uv sync` and `uv run jupyter lab`, with the VS Code interpreter alternative documented separately.
 - Colab may import the Ollama Python client, but it cannot reach the Ollama service running on a student's laptop. Week 1 and Week 2 therefore skip the local call explicitly in Colab, store `None`, and explain that `None` means “not run,” not a model return or model disagreement.
 - Release tests must check setup-before-import ordering, package installation commands, the public repository URL, actionable local instructions and the guarded Ollama branch. Both notebooks must execute completely under controlled local and Colab-style model returns before publication.
+## 2026-09-08 — Colab audit extended through Weeks 3–13
+
+- Every student notebook now uses the same setup contract: detect Colab directly, install missing notebook packages before imports, shallow-clone the public repository, enter the correct weekly folder, and add the repository root to `sys.path` for course utilities.
+- Weeks 3–7 and 9–12 select OpenRouter automatically in Colab and retain Ollama as the local default. This prevents an apparently valid Colab notebook from failing later when it reaches a local-server call.
+- Week 8 preserves the required two-route comparison without pretending Ollama ran in Colab: hosted results are produced there, local summaries are `None`, and the local half is completed outside Colab. Week 13 similarly limits its Colab grid to hosted rows.
+- Week 13's setup checks and, if necessary, installs `pandas` before its final table cell.
+- Future release checks cover all Weeks 1–13, including setup-before-import order, package declarations, public repository URLs, repository import paths, Colab route selection and the special dual-route behavior in Weeks 8 and 13.

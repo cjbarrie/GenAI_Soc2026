@@ -10,4 +10,6 @@ Colab is supported as an access route, not maintained as a second curriculum.
 6. Enter the shared key with the hidden-input cell or store it in Colab Secrets as `OPENROUTER_API_KEY`; never type, print or read it aloud in the recording.
 7. Download the completed notebook before the runtime expires if you did not save a copy in Drive.
 
+From Week 3 onward, the notebook selects `ROUTE = "openrouter"` automatically when it detects Colab and retains Ollama as the local default. Week 8 runs the hosted half of the route comparison in Colab and prints `None` for the local summaries; Week 13 constructs the hosted audit rows only. In both cases, `None` means “not run in this runtime.” Complete the required local rows later in local JupyterLab or on the in-class machine.
+
 The completion standard is the same in every environment: a narrated screen recording showing both runs and explaining each operation's input and output, the methodological limit and the reading connection. Upload it by 5:00 p.m. Eastern on the Tuesday before the next class, using the Box link and platform guidance in `coursebook/recording-and-submission.qmd`.
