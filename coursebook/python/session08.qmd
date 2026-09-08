@@ -15,7 +15,7 @@ This page records the coding direction only. The full walkthrough, notebook and 
 
 ## Planned completion recording
 
-Trace p02 through one complete iteration for each route, make the named education change, and explain why the exact-match counts and means answer different questions. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+Trace p02 through one complete iteration for each route, make the named education change, and explain why the exact-match counts and means answer different questions. Submit one narrated screen recording using the [recording instructions and Box folder](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. The key must not appear.
 
 ## Development status
 

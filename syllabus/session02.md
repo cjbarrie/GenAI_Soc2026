@@ -39,7 +39,7 @@ Before class, bring one annotation problem from your own research interests. Wri
 
 ## Completion task
 
-Run the same annotation request through both OpenRouter and Ollama. Change only the comment, rerun both routes and submit a narrated screen recording explaining the codebook, message list, each return shape and the three comparisons. Upload to the dedicated Box folder; the instructor will provide the link.
+Run the same annotation request through both OpenRouter and Ollama. Change only the comment, rerun both routes and submit a narrated screen recording explaining the codebook, message list, each return shape and the three comparisons. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 Weekly work receives completion marks. Code elegance and video editing are not assessed. You may use AI with responsibility and disclosure, but you must be able to explain every submitted line and output without assistance.
 

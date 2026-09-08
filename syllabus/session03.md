@@ -43,7 +43,7 @@ Students send two identified excerpts to a model and request a provisional sugge
 
 ## Weekly completion task
 
-Run the supplied structured-output call, change one excerpt and run it again. Submit a narrated screen recording explaining `json.dumps`, the model call, raw output, `json.loads` and field retrieval. Check the cited source and connect one interpretive limit to a reading. Upload to the Box folder supplied by the instructor.
+Run the supplied structured-output call, change one excerpt and run it again. Submit a narrated screen recording explaining `json.dumps`, the model call, raw output, `json.loads` and field retrieval. Check the cited source and connect one interpretive limit to a reading. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 The task receives a completion mark. Code elegance is not assessed, and missing elements may be supplied within one week.
 

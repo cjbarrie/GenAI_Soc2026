@@ -32,7 +32,7 @@ Each developed week also has an **Open in Google Colab** link. Colab opens the n
 
 Weekly tasks receive completion marks. Each task begins with complete, runnable code and asks you to change one clearly identified input or parameter. The Python page explains the possible outputs and what to inspect; a live model response may not be identical across students or runs.
 
-Submit a short screen recording with audio. Your recording should show the code running and explain the input, operation and output of each block in ordinary language. Show the original run and the named change, then explain the methodological meaning and one limit of the output. Upload the recording to the dedicated NYU Box folder. **Box submission link: to be provided by the instructor.**
+Submit a short screen recording with audio. Your recording should show the code running and explain the input, operation and output of each block in ordinary language. Show the original run and the named change, then explain the methodological meaning and one limit of the output. It is due by **5:00 p.m. Eastern on the Tuesday before the next class**. The [recording and submission guide](recording-and-submission.qmd) explains how to record on macOS, Windows and ChromeOS and links to the Box upload folder.
 
 You do not need to edit the recording or produce a polished presentation. The assessment is whether you understand the routine. If AI materially assists your preparation, say so briefly at the end of the recording using the disclosure described in the policy chapter.
 

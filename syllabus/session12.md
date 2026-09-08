@@ -34,7 +34,7 @@ Planned: students load the Week 11 trajectory, rerun the same question with at m
 
 ## Weekly completion task
 
-Planned: submit a narrated screen recording explaining which inputs were held fixed, which fields changed and what the discrepancy can establish. Upload to the Box folder supplied by the instructor. This remains a low-stakes holiday-week task.
+Planned: submit a narrated screen recording explaining which inputs were held fixed, which fields changed and what the discrepancy can establish. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class. This remains a low-stakes holiday-week task.
 
 ## Validation focus
 

@@ -35,7 +35,7 @@ Planned: students use the course's first small function, `choose_action(state, o
 
 ## Weekly completion task
 
-Planned: change one observation and submit a narrated screen recording explaining the function call, each parameter, the model return and the updated state. Upload to the Box folder supplied by the instructor.
+Planned: change one observation and submit a narrated screen recording explaining the function call, each parameter, the model return and the updated state. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

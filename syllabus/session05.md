@@ -48,7 +48,7 @@ The code creates an audit trail. It does not determine whether the theoretical d
 
 ## Weekly completion task
 
-Run the model call once with a rights frame and once with an economics frame while holding the facts and call settings fixed. Submit a narrated screen recording explaining the strings, each named call parameter, the returned text and semantic differences that could act as causal confounds. Connect the review to one reading and upload to the Box folder supplied by the instructor.
+Run the model call once with a rights frame and once with an economics frame while holding the facts and call settings fixed. Submit a narrated screen recording explaining the strings, each named call parameter, the returned text and semantic differences that could act as causal confounds. Connect the review to one reading and upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 The task receives a completion mark. Syntax elegance and video editing are not assessed. AI use is permitted with responsibility and disclosure, but each student must be able to explain every submitted line and output without AI assistance.
 

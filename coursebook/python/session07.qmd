@@ -167,5 +167,5 @@ This page, the notebook and the `.py` download contain the same assessed routine
 
 Use one route, run the original profile, change only `age_group` and rerun. Explain every schema field, the raw JSON, the parsed list and all three checks. State why neither prediction establishes representativeness.
 
-Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload to the dedicated Box folder. **Box submission link: to be provided by the instructor.** Never show or read the shared key. If a cached contingency was necessary, identify it.
+Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload it using the [recording instructions and Box folder](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
 :::

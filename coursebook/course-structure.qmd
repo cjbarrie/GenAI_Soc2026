@@ -50,6 +50,6 @@ The weekly completion task is submitted as a short **screen recording with audio
 4. what changed when you modified the named input or parameter;
 5. what the returned model output does—and does not—show for the week's research question.
 
-Upload the recording to the dedicated NYU Box folder. **Box submission link: to be provided by the instructor.** A polished video is not expected; a clear, continuous walkthrough is enough.
+Upload the recording by **5:00 p.m. Eastern on the Tuesday before the next class**. The [recording and submission guide](recording-and-submission.qmd) gives the Box link and instructions for macOS, Windows and ChromeOS. A polished video is not expected; a clear, continuous walkthrough is enough.
 
 The book uses *AI and Research Methods* as a recurring map. It is not a substitute for the empirical papers. The chapter tells you which section to read and what question it helps answer. [Download the chapter PDF](downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) or consult the [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk).

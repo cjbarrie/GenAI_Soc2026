@@ -25,6 +25,7 @@ book:
     - index.qmd
     - course-structure.qmd
     - how-to-use.qmd
+    - recording-and-submission.qmd
     - computing.qmd
     - ai-policy.qmd
     - assessment.qmd

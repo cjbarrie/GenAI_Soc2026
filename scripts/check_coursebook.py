@@ -19,6 +19,8 @@ PYTHON_DIR = BOOK / "python"
 MANIFEST = BOOK / "readings.json"
 BIB = ROOT / "references.bib"
 LOCAL_ANCHOR_PDF = BOOK / "downloads" / "readings" / "ai-and-research-methods-barrie-et-al-2026.pdf"
+SUBMISSION_PAGE = BOOK / "recording-and-submission.qmd"
+BOX_URL = "https://nyu.box.com/s/3oylc29m569ack3jv79rk22chk5r90dp"
 COLAB_REPO = "https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main"
 
 REQUIRED_SECTIONS = [
@@ -137,6 +139,22 @@ def validate_sources(rendered: bool) -> list[str]:
     if not LOCAL_ANCHOR_PDF.exists():
         fail(errors, f"Missing local course anchor PDF: {LOCAL_ANCHOR_PDF}")
 
+    if not SUBMISSION_PAGE.exists():
+        fail(errors, f"Missing recording and submission guide: {SUBMISSION_PAGE}")
+    else:
+        submission_text = SUBMISSION_PAGE.read_text(encoding="utf-8")
+        required_submission_text = [
+            BOX_URL,
+            "5:00 p.m. Eastern on the Tuesday before the next class",
+            "## Record on a Mac",
+            "## Record on Windows",
+            "## Record on a Chromebook",
+            "screen recording",
+        ]
+        for required_text in required_submission_text:
+            if required_text not in submission_text:
+                fail(errors, f"recording-and-submission.qmd: missing {required_text!r}")
+
     for obsolete_path in OBSOLETE_SESSION14_MATERIALS:
         if obsolete_path.exists():
             fail(errors, f"Presentation week must not contain course content: {obsolete_path}")
@@ -199,10 +217,16 @@ def validate_sources(rendered: bool) -> list[str]:
                 fail(errors, f"{python_page.name}: missing task download")
             if f"{session}_offline_bundle.zip" not in python_text:
                 fail(errors, f"{python_page.name}: missing offline bundle download")
-            if "screen recording" not in python_text or "Box submission link: to be provided by the instructor." not in python_text:
-                fail(errors, f"{python_page.name}: missing narrated screen-recording or Box submission instructions")
+            if "screen recording" not in python_text:
+                fail(errors, f"{python_page.name}: missing narrated screen-recording instructions")
         elif "_generated/slides" in text or ".ipynb" in text or ".ipynb" in python_text:
             fail(errors, f"{session}: provisional pages must not publish unfinished materials")
+
+        if number <= 13:
+            if "../recording-and-submission.qmd" not in python_text:
+                fail(errors, f"{python_page.name}: missing link to the canonical submission guide")
+            if "5:00 p.m. Eastern on the Tuesday before the next class" not in python_text:
+                fail(errors, f"{python_page.name}: missing weekly recording deadline")
 
         entries = weeks.get(session, [])
         if number == 14:

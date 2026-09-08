@@ -97,5 +97,5 @@ Never put the shared OpenRouter key in a notebook, slide, task, solution, shell 
 - Weeks 1–2 use both live routes. Weeks 3–7 use either route. Week 8 introduces a short dual-route loop. Week 9 introduces the first small student-edited function and explains every parameter.
 - Every task changes one named input or parameter and runs the same routine again. Compactness and code elegance are not assessed.
 - The submission is a narrated screen recording showing both runs and explaining every operation's input and output, one methodological limit and the reading connection.
-- Recordings go to the dedicated NYU Box folder. Keep the public text `Box submission link: to be provided by the instructor.` until the instructor supplies the URL.
+- Recordings are due by 5:00 p.m. Eastern on the Tuesday before the next class. Keep the Box URL and platform-specific recording instructions in `coursebook/recording-and-submission.qmd`; weekly pages should link there rather than copy the URL.
 - Never ask students to display the shared key. They should enter it before recording or use a local model.

@@ -34,7 +34,7 @@ Planned: a deliberately short-horizon agent chooses one supplied search tool, re
 
 ## Weekly completion task
 
-Planned: change one query and submit a narrated screen recording tracing question, tool call, source record and claim while identifying where error could enter. Upload to the Box folder supplied by the instructor.
+Planned: change one query and submit a narrated screen recording tracing question, tool call, source record and claim while identifying where error could enter. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

@@ -51,7 +51,7 @@ The code prepares a sequence for human interpretation. It does not discover the 
 
 ## Weekly completion task
 
-Run the supplied call, change one visible action and run it again. Submit a narrated screen recording explaining every input and output, comparing both descriptions and identifying any identity, motive or remembered context absent from the input. Link the limit to Collins or Nassauer and upload to the Box folder supplied by the instructor.
+Run the supplied call, change one visible action and run it again. Submit a narrated screen recording explaining every input and output, comparing both descriptions and identifying any identity, motive or remembered context absent from the input. Link the limit to Collins or Nassauer and upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 The task receives a completion mark. Syntax elegance is not assessed. AI use is permitted with responsibility and disclosure, but each student must be able to explain every submitted line and output without AI assistance.
 

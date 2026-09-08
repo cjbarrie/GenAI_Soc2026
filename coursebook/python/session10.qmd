@@ -15,7 +15,7 @@ This page records the coding direction only. The full walkthrough, notebook and 
 
 ## Planned completion recording
 
-Explain one actor update, one full group run and how `range(3)` creates repeated evidence. Reverse actor order and discuss what the changed or unchanged outcomes establish. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+Explain one actor update, one full group run and how `range(3)` creates repeated evidence. Reverse actor order and discuss what the changed or unchanged outcomes establish. Submit one narrated screen recording using the [recording instructions and Box folder](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. The key must not appear.
 
 ## Development status
 

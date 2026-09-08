@@ -23,4 +23,4 @@ LLMs redistribute decisions sociologists have long debated: when to probe, how t
 
 ## Computational trace and completion task
 
-Students pass a participant answer and interviewing instruction to a hosted or local model, retrieve one adaptive probe and append it to the conversation record. They change the answer and repeat the call. The completion submission is a narrated screen recording explaining the messages, call, return and appended record, plus one reading-based limit. Upload to the Box folder supplied by the instructor.
+Students pass a participant answer and interviewing instruction to a hosted or local model, retrieve one adaptive probe and append it to the conversation record. They change the answer and repeat the call. The completion submission is a narrated screen recording explaining the messages, call, return and appended record, plus one reading-based limit. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.

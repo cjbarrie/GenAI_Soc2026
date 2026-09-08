@@ -480,6 +480,13 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - `data/dual_route_recorded_outputs.json` supplies clearly labelled outage fixtures. Live calls remain normal; fixtures do not masquerade as current model evidence.
 - Weekly completion remains a narrated screen recording in which the student explains every operation's input and output, the named change and one methodological limit.
 
+## Weekly recording deadline and submission guide (2026-09-08)
+
+- Weekly recordings are due by 5:00 p.m. Eastern on the Tuesday before the next class.
+- `coursebook/recording-and-submission.qmd` is the single source for the Box upload URL, filename guidance and instructions for macOS, Windows and ChromeOS.
+- Weekly chapters and Python pages link to that guide rather than repeating the Box URL. This keeps the destination and instructions consistent if they change.
+- Students submit one continuous recording with audible narration. Camera video and editing are not required. They must check the saved file's audio before uploading and must never display the shared OpenRouter key.
+
 ## Setup and Week 1 Python pivot expanded (2026-08-28)
 
 - Introduce Python, notebook, SDK, API, server and model as six distinct pieces before asking students to run a call.

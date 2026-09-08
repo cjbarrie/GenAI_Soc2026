@@ -98,7 +98,7 @@ Weeks 1–2 use both OpenRouter and Ollama with synthetic, public or instructor-
 
 The Python arc follows the LLM routine: strings and messages; JSON and structured outputs; generation parameters; conversation state; a first loop in Week 8; and the first small student-edited function, with every parameter explained, in Week 9. Later weeks reuse loops and functions for interaction, tool records, reruns and audits.
 
-Every weekly task is submitted as a narrated screen recording. Students show the original run and one named change and explain each operation's input and output, a methodological limit and the reading connection. Upload is through the dedicated Box folder whose link the instructor supplies.
+Every weekly task is submitted as a narrated screen recording by 5:00 p.m. Eastern on the Tuesday before the next class. Students show the original run and one named change and explain each operation's input and output, a methodological limit and the reading connection. Link to `coursebook/recording-and-submission.qmd` for the current Box folder and platform instructions; do not duplicate the URL across weekly pages.
 
 Before the first syntax slide, state the program's narrow research task and list important operations it does not perform. A sequence can be locally well explained while its overall purpose remains vague; both levels are required.
 

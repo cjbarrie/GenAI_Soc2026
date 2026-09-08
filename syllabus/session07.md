@@ -35,7 +35,7 @@ Students give a deidentified public-use profile and exact `POLVIEWS` item to a h
 
 ## Weekly completion task
 
-Change one profile field, rerun with the chosen route and submit a narrated screen recording explaining every input, schema field, call argument and returned value. Explain why valid structure is not evidence of representativeness. Upload to the Box folder supplied by the instructor. Completion marks only.
+Change one profile field, rerun with the chosen route and submit a narrated screen recording explaining every input, schema field, call argument and returned value. Explain why valid structure is not evidence of representativeness. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class. Completion marks only.
 
 ## Validation focus
 

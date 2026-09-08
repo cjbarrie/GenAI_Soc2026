@@ -35,7 +35,7 @@ Planned: students use the first short `for` loop around the familiar model call 
 
 ## Weekly completion task
 
-Planned: trace one profile through one iteration for each route and submit a narrated screen recording explaining why aggregate agreement can coexist with individual error. Upload to the Box folder supplied by the instructor.
+Planned: trace one profile through one iteration for each route and submit a narrated screen recording explaining why aggregate agreement can coexist with individual error. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

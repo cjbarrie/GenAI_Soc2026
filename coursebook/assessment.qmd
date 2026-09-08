@@ -14,7 +14,7 @@ title: "Assessment and marking"
 
 ## Weekly completion tasks
 
-Ten best submissions from Weeks 1–13 count. Week 12 is deliberately low-stakes and may replace a missed task. The submission is a brief narrated screen recording uploaded to the dedicated NYU Box folder. **Box submission link: to be provided by the instructor.**
+Ten best submissions from Weeks 1–13 count. Week 12 is deliberately low-stakes and may replace a missed task. Each narrated screen recording is due by **5:00 p.m. Eastern on the Tuesday before the next class**. Use the [recording instructions and Box upload folder](recording-and-submission.qmd).
 
 In the recording, students run the complete block supplied on the week's Python page, explain the input and output of every operation, change one named input or parameter, and explain what the model return means for the week's methodological question. From Week 2, the normal route is a live call through OpenRouter or a supported local model; a supplied cached response may be used when access fails. Students are not graded for editing quality, code elegance or efficient abstraction.
 

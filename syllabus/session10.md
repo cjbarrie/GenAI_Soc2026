@@ -35,7 +35,7 @@ Planned: students call one supplied interaction function repeatedly, save outcom
 
 ## Weekly completion task
 
-Planned: change one declared parameter and submit a narrated screen recording explaining one run, the repetition loop, both outcome lists and the comparison. Upload to the Box folder supplied by the instructor.
+Planned: change one declared parameter and submit a narrated screen recording explaining one run, the repetition loop, both outcome lists and the comparison. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

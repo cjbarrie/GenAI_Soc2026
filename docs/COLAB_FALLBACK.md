@@ -9,4 +9,4 @@ Colab is supported as an access route, not maintained as a second curriculum.
 5. Enter the shared key with the hidden-input cell or store it in Colab Secrets as `OPENROUTER_API_KEY`; never type, print or read it aloud in the recording.
 6. Download the completed notebook before the runtime expires.
 
-The completion standard is the same in every environment: a narrated screen recording showing both runs and explaining each operation's input and output, the methodological limit and the reading connection. Upload it to the dedicated Box folder whose link the instructor provides.
+The completion standard is the same in every environment: a narrated screen recording showing both runs and explaining each operation's input and output, the methodological limit and the reading connection. Upload it by 5:00 p.m. Eastern on the Tuesday before the next class, using the Box link and platform guidance in `coursebook/recording-and-submission.qmd`.

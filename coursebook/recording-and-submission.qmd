@@ -1,0 +1,70 @@
+---
+title: "Recording and submitting weekly work"
+---
+
+## Deadline
+
+Upload each weekly coding recording by **5:00 p.m. Eastern on the Tuesday before the next class**. For example, the Week 1 recording from Wednesday 2 September is due on Tuesday 8 September at 5:00 p.m.
+
+If the class schedule changes, a dated instruction on the weekly page or in an NYU announcement takes priority. Missing elements may be supplied within one week, as described in the [assessment policy](assessment.qmd).
+
+## Box upload folder
+
+[Upload your recording to the dedicated NYU Box folder](https://nyu.box.com/s/3oylc29m569ack3jv79rk22chk5r90dp){.btn .btn-primary}
+
+Name the file `lastname_weekNN.mp4`, replacing `lastname` and `NN` with your surname and the two-digit week number. Files ending in `.mov` or `.webm` are also accepted.
+
+After choosing the file in Box, wait until the upload finishes and confirm that the filename appears in the folder. Do not put the shared OpenRouter key in the filename, recording, notebook or Box comments.
+
+## What the recording should show
+
+Make one short, continuous screen recording. Editing and camera video are not required. Your screen and voice should make it possible to follow:
+
+1. the supplied code running on the original input;
+2. the one input or parameter the task asks you to change;
+3. the input and Python type used by each operation;
+4. what each operation does and what it returns;
+5. whether the model is reached through OpenRouter or Ollama;
+6. what the output means for the week's research question;
+7. one important limit, connected to an essential reading.
+
+Enter the OpenRouter key **before** recording, or use Ollama, so the key never appears on screen. Before uploading, play the first and last few seconds of the file and check that your voice is audible.
+
+## Record on a Mac
+
+1. Press **Shift–Command–5**.
+2. Choose **Record Entire Screen** or **Record Selected Portion**. Recording only the notebook or terminal area helps keep other information private.
+3. Select **Options**, then choose the microphone you want to use.
+4. Select **Record** and talk through the exercise while it runs.
+5. Use the stop button in the menu bar when you finish. Open the saved file and check the sound before uploading it.
+
+These controls are part of macOS; no additional software is needed. See [Apple's screen-recording instructions](https://support.apple.com/guide/mac-help/take-a-screenshot-mh26782/mac).
+
+## Record on Windows
+
+The recommended route is **Clipchamp**, which is included with Windows 11:
+
+1. Open Clipchamp and choose **Record & create**, then **Screen**.
+2. Allow microphone access when asked and select the correct microphone.
+3. Choose the notebook window, browser tab or screen you want to share.
+4. Start recording and talk through the exercise.
+5. Stop the recording, preview it with the sound on and export or save the video.
+
+You do not need to use the camera or edit the result. If Clipchamp is unavailable, Windows 11's Snipping Tool can record a selected part of the screen, but check that your version also captures your microphone before completing the exercise. See [Microsoft's Clipchamp screen-recording instructions](https://support.microsoft.com/en-us/clipchamp/how-to-make-a-screen-recording) and its [overview of Windows recording tools](https://support.microsoft.com/en-us/windows/apps/steps-recorder-deprecation).
+
+## Record on a Chromebook
+
+1. Press **Shift–Ctrl–Show windows**. If the keyboard has no Show windows key, press **Ctrl–Shift–F5**.
+2. Select **Screen record**, then choose the full screen, a window or a selected area.
+3. Open **Settings** in the recording controls and turn on **Microphone**.
+4. Start recording and talk through the exercise.
+5. Select **Stop recording** at the bottom right. The `.webm` file is normally saved in Downloads.
+6. Open the file and check the sound before uploading it.
+
+See [Google's Chromebook screen-recording instructions](https://support.google.com/chromebook/answer/10474268).
+
+## If your machine is different
+
+Use its built-in screen recorder or a private Zoom meeting if your NYU account permits local recording. The requirements remain the same: the code must be visible and your explanation must be audible. Test a ten-second recording before doing the exercise. Ask before the deadline if the available tools do not produce a usable file.
+
+Your camera is not required. If spoken narration presents an accessibility problem, contact the instructor to arrange an equivalent submission format.

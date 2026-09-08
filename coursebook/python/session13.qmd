@@ -15,7 +15,7 @@ This page records the coding direction only. The full walkthrough, notebook and 
 
 ## Planned completion recording
 
-Trace one cell through both loops, make the role-word change, present one bounded observed difference and name at least two unresolved explanations. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+Trace one cell through both loops, make the role-word change, present one bounded observed difference and name at least two unresolved explanations. Submit one narrated screen recording using the [recording instructions and Box folder](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. The key must not appear.
 
 ## Development status
 

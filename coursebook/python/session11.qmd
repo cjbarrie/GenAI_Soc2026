@@ -15,7 +15,7 @@ This page records the coding direction only. The full walkthrough, notebook and 
 
 ## Planned completion recording
 
-Change the question and trace question → raw tool request → function argument → returned source record → raw claim → trajectory. Reject an unresolved or unsupported claim. Submission remains one narrated screen recording uploaded to the dedicated Box folder. The key must not appear.
+Change the question and trace question → raw tool request → function argument → returned source record → raw claim → trajectory. Reject an unresolved or unsupported claim. Submit one narrated screen recording using the [recording instructions and Box folder](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. The key must not appear.
 
 ## Development status
 
