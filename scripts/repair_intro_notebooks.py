@@ -20,12 +20,15 @@ SETUP_MARKDOWN = """
 Run the next cell before any other code. In Colab it installs the two small Python SDKs and downloads the public course repository. On a local machine it does not install anything silently: it checks that this notebook is using the course environment and gives the exact repair command if it is not.
 
 **What this cell does not do:** Colab cannot run the Ollama server on your laptop. The Ollama call is therefore skipped in Colab and must be completed later in local JupyterLab or on the in-class machine.
+
+For local work, download the complete repository rather than this notebook alone, start it with `uv run jupyter lab`, and follow any `NEXT STEP` printed by the setup cell. The full instructions are in `docs/ENVIRONMENT_SETUP.md` and in the course book's computing chapter.
 """
 
 
 SETUP_CODE = r'''
 # Run this cell first. It prepares Colab or checks the local Python environment.
 import importlib as setup_importlib
+import importlib.util as setup_importlib_util
 import os as setup_os
 import subprocess as setup_subprocess
 import sys as setup_sys
@@ -44,7 +47,7 @@ course_packages = {
 missing_packages = [
     package_name
     for package_name in course_packages
-    if setup_importlib.util.find_spec(package_name) is None
+    if setup_importlib_util.find_spec(package_name) is None
 ]
 
 if IN_COLAB:
@@ -79,21 +82,36 @@ if IN_COLAB:
             ],
             check=True,
         )
-    setup_os.chdir(setup_repo / "workbook" / SESSION)
-elif missing_packages:
-    missing_text = ", ".join(missing_packages)
-    raise ModuleNotFoundError(
-        f"This notebook is using a Python environment without: {missing_text}.\n\n"
-        "Close Jupyter. Open a terminal in the GenAI_Soc2026 repository and run:\n"
-        "    uv sync\n"
-        "    uv run jupyter lab\n\n"
-        "In VS Code, select the Python interpreter inside the repository's .venv folder."
-    )
+    COURSE_ROOT = setup_repo
+    setup_os.chdir(COURSE_ROOT / "workbook" / SESSION)
+else:
+    COURSE_ROOT = SetupPath.cwd()
+    while not (COURSE_ROOT / "config" / "course_models.json").exists() and COURSE_ROOT != COURSE_ROOT.parent:
+        COURSE_ROOT = COURSE_ROOT.parent
+    if missing_packages:
+        missing_text = ", ".join(missing_packages)
+        raise ModuleNotFoundError(
+            f"This notebook is using a Python environment without: {missing_text}.\n\n"
+            "Close Jupyter. Open a terminal in the GenAI_Soc2026 repository and run:\n"
+            "    uv sync\n"
+            "    uv run jupyter lab\n\n"
+            "In VS Code, select the Python interpreter inside the repository's .venv folder."
+        )
+    if not (COURSE_ROOT / "config" / "course_models.json").exists():
+        raise FileNotFoundError(
+            "The complete GenAI_Soc2026 repository could not be found. A notebook "
+            "downloaded by itself is not enough for local work. Download or clone the "
+            "repository, open a terminal in that folder, and run: uv run jupyter lab"
+        )
+
+course_root_text = str(COURSE_ROOT)
+if course_root_text not in setup_sys.path:
+    setup_sys.path.insert(0, course_root_text)
 
 still_missing = [
     package_name
     for package_name in course_packages
-    if setup_importlib.util.find_spec(package_name) is None
+    if setup_importlib_util.find_spec(package_name) is None
 ]
 if still_missing:
     raise ModuleNotFoundError(
@@ -101,11 +119,37 @@ if still_missing:
     )
 
 print("Environment:", "Google Colab" if IN_COLAB else "local course environment")
+print("Python executable:", setup_sys.executable)
+print("Course root:", COURSE_ROOT)
 print("Working folder:", SetupPath.cwd())
 print("OpenRouter SDK: ready")
 print("Ollama Python SDK: ready")
 if IN_COLAB:
     print("Ollama model call: skipped here; run it from local JupyterLab")
+else:
+    import json as setup_json
+    import ollama as setup_ollama
+
+    setup_config = setup_json.loads(
+        (COURSE_ROOT / "config" / "course_models.json").read_text()
+    )
+    setup_local_model = setup_config["local"]["model"]
+    try:
+        setup_models = setup_ollama.list().models
+        setup_model_names = [
+            getattr(item, "model", None) or getattr(item, "name", None)
+            for item in setup_models
+        ]
+        print("Ollama server: reachable at localhost:11434")
+        if setup_local_model in setup_model_names:
+            print("Course local model: ready —", setup_local_model)
+        else:
+            print("Course local model: NOT INSTALLED —", setup_local_model)
+            print("NEXT STEP: open a terminal and run: ollama pull " + setup_local_model)
+    except Exception as setup_error:
+        print("Ollama server: NOT REACHABLE")
+        print("NEXT STEP: start the Ollama application, then run: ollama list")
+        print("Diagnostic:", str(setup_error).splitlines()[0])
 '''
 
 
@@ -114,6 +158,13 @@ def load_notebook(path: Path) -> dict:
 
 
 def save_notebook(path: Path, notebook: dict) -> None:
+    for cell in notebook["cells"]:
+        if cell["cell_type"] == "code":
+            source = "".join(cell["source"])
+            if "ollama.chat(" in source and "ollama.chat(think=False," not in source:
+                cell["source"] = lines(
+                    source.replace("ollama.chat(", "ollama.chat(think=False, ")
+                )
     path.write_text(json.dumps(notebook, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
 
 

@@ -29,12 +29,25 @@ import os
 from getpass import getpass
 from pathlib import Path
 
-import ollama
-from openrouter import OpenRouter
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
 ROOT = Path.cwd()
 while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
     ROOT = ROOT.parent
+
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
 
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
@@ -107,7 +120,7 @@ if IN_COLAB:
     local_answer = None
     print("Ollama was not called: Colab cannot reach the local Ollama server.")
 else:
-    local_response = ollama.chat(
+    local_response = ollama.chat(think=False, 
         model=LOCAL_MODEL,
         messages=messages,
         options={"temperature": 0},
@@ -118,7 +131,7 @@ else:
 ```
 
 ::: {.callout-note title="What the local call does"}
-`if IN_COLAB` checks the Boolean created by the setup cell. In Colab, the three local values become `None`, Python's marker for “no value,” and no local request is attempted. Locally, `ollama.chat(...)` sends the same message list to the Ollama server on this computer. Ollama's response shape differs: the message is available as `.message`, without a `choices` list. A local route changes where inference occurs; it does not validate the score.
+`if IN_COLAB` checks the Boolean created by the setup cell. In Colab, the three local values become `None`, Python's marker for “no value,” and no local request is attempted. Locally, `ollama.chat(think=False, ...)` sends the same message list to the Ollama server on this computer. Ollama's response shape differs: the message is available as `.message`, without a `choices` list. A local route changes where inference occurs; it does not validate the score.
 :::
 
 ### Use the request to learn strings, lists and dictionaries

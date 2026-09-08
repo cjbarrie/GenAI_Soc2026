@@ -142,8 +142,8 @@ The model string, message list and settings are data supplied to the server. `cl
 Follow the repository's [platform-specific setup guide](https://github.com/cjbarrie/GenAI_Soc2026/blob/main/docs/ENVIRONMENT_SETUP.md). In outline:
 
 1. install `uv`;
-2. download the repository;
-3. run `uv sync`;
+2. clone the complete repository or download and extract its ZIP;
+3. open a terminal in that folder and run `uv sync --frozen`;
 4. install Ollama;
 5. run `ollama pull gemma4:e2b-it-qat`;
 6. receive the OpenRouter key privately;
@@ -151,6 +151,8 @@ Follow the repository's [platform-specific setup guide](https://github.com/cjbar
 8. or complete the [dual-route preflight notebook](https://github.com/cjbarrie/GenAI_Soc2026/blob/main/workbook/00_setup/dual_route_preflight.ipynb).
 
 The preflight should show successful OpenRouter and Ollama calls without displaying the key. If the local model cannot run on your machine, complete those initial calls on a paired or instructor machine. Hardware ownership does not affect the mark.
+
+Do not download a weekly `.ipynb` file by itself for local work. The notebooks also use the course configuration and, in some weeks, supplied images or data. The [setup guide](https://github.com/cjbarrie/GenAI_Soc2026/blob/main/docs/ENVIRONMENT_SETUP.md) gives copyable Git and ZIP instructions for macOS, Windows and Linux.
 
 ## Starting JupyterLab
 
@@ -161,6 +163,8 @@ uv run jupyter lab
 ```
 
 This starts Jupyter with the packages installed in the course environment. Opening a notebook through an unrelated Python installation is a common cause of `No module named ...` errors.
+
+The first notebook cell prints the exact Python executable and course root it found. A healthy local run will show a path inside the repository's `.venv` folder and the full `GenAI_Soc2026` directory. It then checks the Ollama server and exact course model before the first research call. If either is unavailable, follow the printed `NEXT STEP` and rerun the setup cell.
 
 ## Check the Ollama server before opening Python
 
@@ -178,6 +182,8 @@ curl http://localhost:11434/api/version
 
 If the command exists but the API request fails, Ollama is installed but its server is not currently reachable. If the API works but the course tag is absent from `ollama list`, the server is running but the model still needs to be downloaded.
 
+These are separate installations: the small Python package named `ollama` can import successfully even when the Ollama application is closed or the 4.3 GB course model has not been downloaded.
+
 ## Entering the OpenRouter key safely
 
 The instructor supplies one capped key through a private channel. A setup cell asks for it without displaying what you type:
@@ -193,6 +199,8 @@ print(bool(os.getenv("OPENROUTER_API_KEY")))
 ```
 
 The final line prints only `True` or `False`. Never paste the key into a saved string, print it, read it aloud, or include its entry cell in a recording.
+
+If a live request says `User not found`, the SDK itself is working but the key is invalid, expired or no longer associated with an active OpenRouter account. Re-enter it once. If the message persists, ask the instructor for a replacement course key rather than reinstalling Python.
 
 ## The same research request through both routes
 
@@ -239,6 +247,7 @@ import ollama
 LOCAL_MODEL = "gemma4:e2b-it-qat"
 
 local_response = ollama.chat(
+    think=False,
     model=LOCAL_MODEL,
     messages=messages,
     options={"temperature": 0},
@@ -249,7 +258,7 @@ local_answer = local_message.content.strip()
 print(local_answer)
 ```
 
-Ollama receives the same message list, but inference runs on the local server. Its generation settings are placed inside `options`, and its response text is reached through `response.message.content`.
+Ollama receives the same message list, but inference runs on the local server. `think=False` asks the course model to return the requested answer directly; otherwise a short output allowance can be consumed by a separate reasoning field before visible answer text is produced. Its generation settings are placed inside `options`, and its response text is reached through `response.message.content`.
 
 ## Use the model routine to learn Python objects
 

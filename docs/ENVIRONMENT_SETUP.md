@@ -53,14 +53,37 @@ Do not install a separate system Python unless the diagnostic says it is necessa
 
 ## 2. Download the repository and install its Python packages
 
-Download or clone the course repository, open a terminal in its top-level folder, and run:
+The weekly notebook download is not a complete local installation: later weeks also use configuration, images and teaching data from the repository. Use one of these two routes.
+
+### Route A: clone with Git
+
+In Terminal on macOS/Linux or PowerShell on Windows, run:
 
 ```bash
-uv sync
+git clone https://github.com/cjbarrie/GenAI_Soc2026.git
+cd GenAI_Soc2026
+uv sync --frozen
 uv run jupyter lab
 ```
 
-`uv sync` creates an isolated `.venv` and installs JupyterLab, OpenRouter, Ollama and the other course packages. Do not upload or submit `.venv`.
+`git clone` downloads the course folder. `cd GenAI_Soc2026` moves the terminal into it. `uv sync --frozen` installs the exact tested package versions from `uv.lock`. The final command starts Jupyter with that environment.
+
+### Route B: download a ZIP
+
+1. Open the [public course repository](https://github.com/cjbarrie/GenAI_Soc2026).
+2. Choose **Code → Download ZIP**.
+3. Extract the ZIP; do not run a notebook from inside the ZIP preview.
+4. Open Terminal or PowerShell in the extracted `GenAI_Soc2026-main` folder.
+5. Run:
+
+```bash
+uv sync --frozen
+uv run jupyter lab
+```
+
+`uv sync --frozen` creates an isolated `.venv` and installs JupyterLab, OpenRouter, Ollama and the other course packages at the versions already tested for the course. Do not upload or submit `.venv`.
+
+When Jupyter opens in the browser, navigate to `workbook`, then the relevant `sessionXX` folder, and open its `.ipynb` file. Do not start Jupyter by double-clicking an unrelated system installation: that is the most common cause of `ModuleNotFoundError` locally.
 
 ## 3. Install Ollama
 
@@ -112,13 +135,22 @@ uv run python scripts/preflight_models.py --live
 
 The live test sends one very short synthetic request through each route. It prints only status and the model replies. The key is never printed.
 
+Read each line separately. These checks refer to different layers:
+
+- **SDK installed** means Python can import the small client package.
+- **Ollama server reachable** means the local application is running.
+- **Course local model installed** means the exact several-gigabyte model artifact is available to that server.
+- **OpenRouter key present** means Python can see some key; only the live call establishes that the key is currently accepted.
+
+The script prints a `NEXT STEP` immediately after a failed layer. Complete that step and run the preflight again. Do not repeatedly reinstall everything when only one layer failed.
+
 You can instead open `workbook/00_setup/dual_route_preflight.ipynb` and run its cells in order.
 
 ## 6. Start work each week
 
 1. Start Ollama if you plan to use the local route.
 2. Open a terminal in the repository.
-3. Run `uv sync` after the instructor announces an environment update.
+3. Run `uv sync --frozen` after the instructor announces an environment update.
 4. Run `uv run jupyter lab`.
 5. Open the weekly notebook.
 6. Set `ROUTE` to `"ollama"` or `"openrouter"` when the notebook asks.
@@ -135,7 +167,19 @@ You can instead open `workbook/00_setup/dual_route_preflight.ipynb` and run its 
 | model not found | the exact tag is not installed | run `ollama pull gemma4:e2b-it-qat` |
 | out of memory or very slow | the model does not fit comfortably | stop other applications and bring the diagnostic to class |
 | OpenRouter unauthorized | the key is absent, mistyped or expired | re-enter the privately supplied key without displaying it |
+| OpenRouter `User not found` | the supplied key is invalid, expired, or no longer attached to an active OpenRouter account | re-enter it once; then ask the instructor to replace or reactivate the course key |
 | rate limited | the shared class quota is temporarily busy | wait, use Ollama, or use the clearly labelled cached contingency |
+
+## If you need to ask for help
+
+Send the instructor:
+
+1. your operating system;
+2. the command you ran;
+3. the complete error text or a screenshot;
+4. the output of `uv run python scripts/preflight_models.py`.
+
+Do **not** send the OpenRouter key, a screenshot of the hidden-input cell while typing, or identifiable research data.
 
 Only synthetic, public or instructor-authored teaching data may be sent through the shared course key.
 

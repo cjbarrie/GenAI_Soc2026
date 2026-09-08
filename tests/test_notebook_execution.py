@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import runpy
+import shutil
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -105,6 +107,15 @@ def test_followup_notebook_executes_without_live_services(
     ]
 
     namespace: dict[str, object] = {"__name__": "__main__"}
+    import ollama
+
+    monkeypatch.setattr(
+        ollama,
+        "list",
+        lambda: SimpleNamespace(
+            models=[SimpleNamespace(model="gemma4:e2b-it-qat")]
+        ),
+    )
     exec(code_cells[0], namespace)
     exec(code_cells[1], namespace)
     namespace["OpenRouter"] = FakeOpenRouter
@@ -124,3 +135,65 @@ def test_followup_notebook_executes_without_live_services(
     if week == 13:
         expected_routes = ["openrouter"] if runtime == "colab" else ["openrouter", "ollama"]
         assert namespace["routes"] == expected_routes
+
+
+@pytest.mark.parametrize("week", [1, 2])
+def test_intro_notebook_executes_on_local_route(
+    week: int, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Execute the complete Week 1–2 local path with both SDK response shapes."""
+    monkeypatch.chdir(ROOT)
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only-key")
+    import ollama
+
+    monkeypatch.setattr(
+        ollama,
+        "list",
+        lambda: SimpleNamespace(
+            models=[SimpleNamespace(model="gemma4:e2b-it-qat")]
+        ),
+    )
+    files = list((ROOT / "workbook" / f"session{week:02d}").glob("*.ipynb"))
+    notebook = json.loads(files[0].read_text())
+    code_cells = [
+        "".join(cell["source"])
+        for cell in notebook["cells"]
+        if cell["cell_type"] == "code"
+    ]
+
+    namespace: dict[str, object] = {"__name__": "__main__"}
+    exec(code_cells[0], namespace)
+    exec(code_cells[1], namespace)
+    namespace["OpenRouter"] = FakeOpenRouter
+    namespace["ollama"].chat = fake_ollama
+    namespace["IN_COLAB"] = False
+    for source in code_cells[2:]:
+        exec(source, namespace)
+
+    assert namespace["local_response"] is not None
+    assert namespace["hosted_response"] is not None
+
+
+@pytest.mark.parametrize("week", range(1, 14))
+def test_downloadable_task_executes_on_local_route(
+    week: int, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Execute every downloadable .py task rather than merely compiling it."""
+    (tmp_path / "config").mkdir()
+    shutil.copy(ROOT / "config" / "course_models.json", tmp_path / "config")
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only-key")
+
+    import ollama
+    import openrouter
+
+    monkeypatch.setattr(ollama, "chat", fake_ollama)
+    monkeypatch.setattr(openrouter, "OpenRouter", FakeOpenRouter)
+
+    namespace = runpy.run_path(
+        str(ROOT / "assessments" / "weekly_coding" / f"session{week:02d}_task.py")
+    )
+    assert namespace["HOSTED_MODEL"]
+    assert namespace["LOCAL_MODEL"]
+    if week == 12:
+        assert (tmp_path / "student_outputs" / "week12_rerun.json").exists()

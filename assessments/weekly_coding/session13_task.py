@@ -6,12 +6,25 @@ import os
 from getpass import getpass
 from pathlib import Path
 
-import ollama
-from openrouter import OpenRouter
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
 ROOT = Path.cwd()
 while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
     ROOT = ROOT.parent
+
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
@@ -39,7 +52,7 @@ for route in routes:
             raw_output = response.choices[0].message.content
             requested_model = HOSTED_MODEL
         else:
-            response = ollama.chat(model=LOCAL_MODEL,messages=messages,format=schema,options={"temperature":0})
+            response = ollama.chat(think=False, model=LOCAL_MODEL,messages=messages,format=schema,options={"temperature":0})
             raw_output = response.message.content
             requested_model = LOCAL_MODEL
         parsed = json.loads(raw_output)

@@ -21,12 +21,15 @@ SETUP_MARKDOWN = """
 Run the next cell before any other code. In Colab it installs the Python SDKs used by this notebook, downloads the public course repository and selects OpenRouter because Colab cannot reach the Ollama server on your computer. On a local machine it installs nothing silently: it checks that the notebook is using the course environment and gives the exact repair command if it is not.
 
 The setup also adds the repository root to Python's import path. This is necessary for Week 4's supplied image utility and prevents a second kind of `ModuleNotFoundError` after the repository has been cloned.
+
+For local work, download the complete repository rather than this notebook alone, start it with `uv run jupyter lab`, and follow any `NEXT STEP` printed by the setup cell. The full instructions are in `docs/ENVIRONMENT_SETUP.md` and in the course book's computing chapter.
 """
 
 
 SETUP_CODE = r'''
 # Run this cell first. It prepares Colab or checks the local Python environment.
 import importlib as setup_importlib
+import importlib.util as setup_importlib_util
 import os as setup_os
 import subprocess as setup_subprocess
 import sys as setup_sys
@@ -48,7 +51,7 @@ if SESSION == "session13":
 missing_packages = [
     package_name
     for package_name in course_packages
-    if setup_importlib.util.find_spec(package_name) is None
+    if setup_importlib_util.find_spec(package_name) is None
 ]
 
 if IN_COLAB:
@@ -99,8 +102,9 @@ else:
         )
     if not (COURSE_ROOT / "config" / "course_models.json").exists():
         raise FileNotFoundError(
-            "The course repository root could not be found. Start Jupyter from the "
-            "GenAI_Soc2026 folder with: uv run jupyter lab"
+            "The complete GenAI_Soc2026 repository could not be found. A notebook "
+            "downloaded by itself is not enough for local work. Download or clone the "
+            "repository, open a terminal in that folder, and run: uv run jupyter lab"
         )
 
 course_root_text = str(COURSE_ROOT)
@@ -110,7 +114,7 @@ if course_root_text not in setup_sys.path:
 still_missing = [
     package_name
     for package_name in course_packages
-    if setup_importlib.util.find_spec(package_name) is None
+    if setup_importlib_util.find_spec(package_name) is None
 ]
 if still_missing:
     raise ModuleNotFoundError(
@@ -118,12 +122,37 @@ if still_missing:
     )
 
 print("Environment:", "Google Colab" if IN_COLAB else "local course environment")
+print("Python executable:", setup_sys.executable)
 print("Course root:", COURSE_ROOT)
 print("Working folder:", SetupPath.cwd())
 print("Python SDKs: ready")
 if IN_COLAB:
     print("Route for this runtime: OpenRouter")
     print("Ollama work: complete later in local JupyterLab or on the in-class machine")
+else:
+    import json as setup_json
+    import ollama as setup_ollama
+
+    setup_config = setup_json.loads(
+        (COURSE_ROOT / "config" / "course_models.json").read_text()
+    )
+    setup_local_model = setup_config["local"]["model"]
+    try:
+        setup_models = setup_ollama.list().models
+        setup_model_names = [
+            getattr(item, "model", None) or getattr(item, "name", None)
+            for item in setup_models
+        ]
+        print("Ollama server: reachable at localhost:11434")
+        if setup_local_model in setup_model_names:
+            print("Course local model: ready —", setup_local_model)
+        else:
+            print("Course local model: NOT INSTALLED —", setup_local_model)
+            print("NEXT STEP: open a terminal and run: ollama pull " + setup_local_model)
+    except Exception as setup_error:
+        print("Ollama server: NOT REACHABLE")
+        print("NEXT STEP: start the Ollama application, then run: ollama list")
+        print("Diagnostic:", str(setup_error).splitlines()[0])
 '''
 
 
@@ -308,6 +337,13 @@ def repair() -> None:
             repair_week8(notebook)
         if week == 13:
             repair_week13(notebook)
+        for cell in notebook["cells"]:
+            if cell["cell_type"] == "code":
+                source = "".join(cell["source"])
+                if "ollama.chat(" in source and "ollama.chat(think=False," not in source:
+                    cell["source"] = lines(
+                        source.replace("ollama.chat(", "ollama.chat(think=False, ")
+                    )
         path.write_text(json.dumps(notebook, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"Repaired Week {week}: {path.name}")
 

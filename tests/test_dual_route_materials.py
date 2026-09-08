@@ -1,5 +1,6 @@
 import ast
 import json
+import re
 from pathlib import Path
 
 
@@ -57,9 +58,11 @@ def test_all_student_notebooks_prepare_colab_before_importing_sdks() -> None:
         assert setup_index < import_index
         assert "setup_sys.executable" in setup
         assert "import importlib as setup_importlib" in setup
-        assert "setup_importlib.util.find_spec" in setup
+        assert "import importlib.util as setup_importlib_util" in setup
+        assert "setup_importlib_util.find_spec" in setup
         assert "setup_importlib.invalidate_caches()" in setup
         assert "setup_importlib.find_spec" not in setup
+        assert "setup_importlib.util.find_spec" not in setup
         assert '"-m",\n                "pip",\n                "install"' in setup
         assert '"openrouter>=0.6,<1"' in setup
         assert '"ollama>=0.6,<1"' in setup
@@ -108,3 +111,14 @@ def test_dual_route_weeks_degrade_explicitly_in_colab() -> None:
     week13 = "\n".join(notebook_sources(13))
     assert 'routes = ["openrouter"] if IN_COLAB else ["openrouter", "ollama"]' in week13
     assert "Ollama rows" in week13
+
+
+def test_student_ollama_calls_return_visible_content() -> None:
+    """Gemma 4 should not spend a short output allowance only on reasoning text."""
+    for week in range(1, 14):
+        notebook = "\n".join(notebook_sources(week))
+        task = task_source(week)
+        chapter = (ROOT / "coursebook" / "python" / f"session{week:02d}.qmd").read_text()
+        for source in (notebook, task, chapter):
+            unsafe_calls = re.findall(r"ollama\.chat\((?!think=False,|\.\.\.)", source)
+            assert unsafe_calls == []

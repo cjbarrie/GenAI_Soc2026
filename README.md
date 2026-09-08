@@ -4,10 +4,11 @@ NYU graduate seminar, Wednesdays 9:30 a.m.–12:15 p.m. The course moves from ob
 
 ## Start here
 
-1. Read `docs/ENVIRONMENT_SETUP.md`.
+1. Read the [local setup guide](docs/ENVIRONMENT_SETUP.md); do not download a weekly notebook by itself for local work.
 2. Complete or diagnose yourself with `workbook/00_python_foundations/python_foundations.ipynb`.
-3. Open the numbered session notebook.
-4. For every code cell, name the **input**, **Python type**, **operation**, **output**, and **research meaning** before changing it.
+3. From the repository root, run `uv sync --frozen`, then `uv run python scripts/preflight_models.py`, then `uv run jupyter lab`.
+4. Open the numbered session notebook and run its setup cell first.
+5. For every code cell, name the **input**, **Python type**, **operation**, **output**, and **research meaning** before changing it.
 
 Weeks 1–2 make live calls through both OpenRouter and Ollama using only synthetic or public teaching material. Students choose either route in Weeks 3–7 and compare both again in Week 8. Recorded returns remain available as an access contingency.
 

@@ -522,3 +522,12 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - `invalidate_caches()` belongs to the top-level `importlib` module, not `importlib.util`. Notebook setup cells therefore import `importlib` and use `importlib.util.find_spec(...)` for package discovery.
 - Warm-kernel tests are insufficient because they skip the installation branch once dependencies are present. Release tests must simulate a fresh Colab runtime with missing packages, intercept the install step, execute cache invalidation and then execute the following package-import cell.
 - The cold-start regression test now runs against every Week 1–13 notebook, so the exact Week 2 failure cannot silently return through either notebook generator.
+
+## 2026-09-08 — Local setup and execution audit
+
+- A setup cell must import both `importlib` and `importlib.util` explicitly. A warm Python process may already expose `importlib.util`, so package-discovery tests now also run in isolated fresh interpreters.
+- Every Week 1–13 local setup cell reports the Python executable and repository root, distinguishes the Python SDK from the Ollama server and model artifact, and prints one concrete `NEXT STEP` when the server is stopped or the course model is absent.
+- A notebook or task downloaded by itself is not treated as a complete local installation. Student guidance now gives Git-clone and ZIP routes and tells students to start Jupyter with `uv run jupyter lab` from the complete repository.
+- Downloadable weekly task files are executed end to end with controlled OpenRouter and Ollama responses during release testing; syntax-only validation is not sufficient.
+- Local course calls explicitly set `think=False`. The configured Gemma 4 model can otherwise spend a short `num_predict` allowance on its separate reasoning field and return empty visible content.
+- The documented reproducible installation command is `uv sync --frozen`. Course model defaults remain in `config/course_models.json`, so `.env.example` does not require redundant model variables that can block local Quarto rendering.
