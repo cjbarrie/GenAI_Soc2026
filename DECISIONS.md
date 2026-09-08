@@ -503,3 +503,9 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - In Week 1, make both real calls before expanding the Python lesson. Use the resulting request and response objects—not an unrelated toy exercise—to introduce strings, lists, dictionaries, list indexing, dictionary keys, SDK attributes, string methods, integers, Booleans, `print`, `type` and `len`.
 - Explicitly contrast `messages[0]`, `first_message["content"]` and `hosted_message.content`. The type of the object on the left determines whether a position, dictionary key or SDK attribute is being accessed.
 - Preserve the no-student-defined-functions rule until Week 9. Week 1 calls supplied functions but does not ask students to define one.
+## 2026-09-08 — Colab and local-kernel repair for Weeks 1–2
+
+- Every introductory Colab notebook must install its required Python SDKs before the first package import; cloning the repository alone does not install packages into the Colab runtime.
+- Local notebooks do not install packages silently. A missing `openrouter` or `ollama` import now produces an actionable instruction to restart from `uv sync` and `uv run jupyter lab`, with the VS Code interpreter alternative documented separately.
+- Colab may import the Ollama Python client, but it cannot reach the Ollama service running on a student's laptop. Week 1 and Week 2 therefore skip the local call explicitly in Colab, store `None`, and explain that `None` means “not run,” not a model return or model disagreement.
+- Release tests must check setup-before-import ordering, package installation commands, the public repository URL, actionable local instructions and the guarded Ollama branch. Both notebooks must execute completely under controlled local and Colab-style model returns before publication.

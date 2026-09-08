@@ -19,7 +19,9 @@ The routine begins with the model input. It does not postpone the live call unti
 
 ### Load the course settings and SDKs
 
-This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+Run the notebook's **Prepare the notebook environment** cell first. In Colab, that cell installs the two Python SDKs and sets `IN_COLAB = True`. Locally, it checks that Jupyter was started from the course environment; if packages are missing, close Jupyter and run `uv sync` followed by `uv run jupyter lab` from the repository root.
+
+This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
 
 ```python
 import json
@@ -99,18 +101,24 @@ The call receives three named inputs: the hosted model string, the message list 
 Inference occurs through the Ollama server on this computer. The same messages enter, but the call and response path differ.
 
 ```python
-local_response = ollama.chat(
-    model=LOCAL_MODEL,
-    messages=messages,
-    options={"temperature": 0},
-)
-local_message = local_response.message
-local_answer = local_message.content.strip()
-print("Ollama raw text:", local_answer)
+if IN_COLAB:
+    local_response = None
+    local_message = None
+    local_answer = None
+    print("Ollama was not called: Colab cannot reach the local Ollama server.")
+else:
+    local_response = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=messages,
+        options={"temperature": 0},
+    )
+    local_message = local_response.message
+    local_answer = local_message.content.strip()
+    print("Ollama raw text:", local_answer)
 ```
 
 ::: {.callout-note title="What the local call does"}
-`ollama.chat(...)` sends the same model-facing message list to the Ollama server on this computer. The local model name and temperature are separate named inputs. Ollama's response shape differs: the message is available as `.message`, without a `choices` list. The output is again a string. A local route changes where inference occurs; it does not validate the score.
+`if IN_COLAB` checks the Boolean created by the setup cell. In Colab, the three local values become `None`, Python's marker for “no value,” and no local request is attempted. Locally, `ollama.chat(...)` sends the same message list to the Ollama server on this computer. Ollama's response shape differs: the message is available as `.message`, without a `choices` list. A local route changes where inference occurs; it does not validate the score.
 :::
 
 ### Use the request to learn strings, lists and dictionaries
@@ -161,8 +169,8 @@ print("local answer type:", type(local_answer))
 
 ```python
 hosted_character_count = len(hosted_answer)
-local_character_count = len(local_answer)
-routes_match = hosted_answer == local_answer
+local_character_count = None if local_answer is None else len(local_answer)
+routes_match = None if local_answer is None else hosted_answer == local_answer
 
 print("hosted character count:", hosted_character_count)
 print("count type:", type(hosted_character_count))
@@ -171,7 +179,7 @@ print("comparison type:", type(routes_match))
 ```
 
 ::: {.callout-note title="Two more built-in Python types"}
-`len(hosted_answer)` counts the characters in a returned string and produces an integer. `==` compares two values and produces the Boolean `True` or `False`. Identical returned strings would show agreement on this run. They would not show that either answer measures social trust validly.
+`len(hosted_answer)` counts the characters in a returned string and produces an integer. The short `if ... else ...` expression first checks whether an Ollama result exists. In Colab it returns `None`; locally, `==` compares the two strings and produces the Boolean `True` or `False`. `None` here means “not run,” not model disagreement. Identical returned strings would show agreement on this run, but would not show that either answer measures social trust validly.
 :::
 
 ### Preserve the two runs as separate research records
@@ -209,7 +217,7 @@ Each pair of braces creates a dictionary. Text before a colon is a field name; t
 
 ### Methodological check
 
-The two scores are proposed measurements. Neither route establishes that the score matches the intended construct or a defensible human codebook.
+The two scores are proposed measurements. Neither route establishes that the score matches the intended construct or a defensible human codebook. If `local_answer` is `None`, the local route was deliberately skipped in Colab; it is not a model response.
 
 ## Workbook and environment links
 

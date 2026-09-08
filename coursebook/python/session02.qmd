@@ -19,7 +19,9 @@ The routine begins with the model input. It does not postpone the live call unti
 
 ### Load the course settings and SDKs
 
-This setup cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+Run the notebook's **Prepare the notebook environment** cell first. In Colab, that cell installs the two Python SDKs and sets `IN_COLAB = True`. Locally, it checks that Jupyter was started from the course environment; if packages are missing, close Jupyter and run `uv sync` followed by `uv run jupyter lab` from the repository root.
+
+This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
 
 ```python
 import json
@@ -111,17 +113,23 @@ The inputs are the hosted model, the shared message list and zero temperature. `
 Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
 
 ```python
-local_response = ollama.chat(
-    model=LOCAL_MODEL, messages=messages, options={"temperature": 0},
-)
-local_raw = local_response.message.content
-print("Ollama raw return:", local_raw)
-local_label = local_raw.strip().upper()
-print("Ollama label:", local_label)
+if IN_COLAB:
+    local_response = None
+    local_raw = None
+    local_label = None
+    print("Ollama was not called: Colab cannot reach the local Ollama server.")
+else:
+    local_response = ollama.chat(
+        model=LOCAL_MODEL, messages=messages, options={"temperature": 0},
+    )
+    local_raw = local_response.message.content
+    print("Ollama raw return:", local_raw)
+    local_label = local_raw.strip().upper()
+    print("Ollama label:", local_label)
 ```
 
 ::: {.callout-note title="Local label"}
-The same messages enter Ollama. Its temperature sits inside an `options` dictionary and its returned text is found at `local_response.message.content`. Standardizing case makes the two strings easier to compare; it does not repair a substantively wrong label.
+`if IN_COLAB` checks the Boolean created by the setup cell. In Colab, no local request is attempted and the local values become `None`. Locally, the same messages enter Ollama. Its temperature sits inside an `options` dictionary and its returned text is found at `local_response.message.content`. Standardizing case makes the two strings easier to compare; it does not repair a substantively wrong label.
 :::
 
 ### Compare route agreement and human-reference agreement
@@ -129,9 +137,9 @@ The same messages enter Ollama. Its temperature sits inside an `options` diction
 Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
 
 ```python
-routes_agree = hosted_label == local_label
+routes_agree = None if local_label is None else hosted_label == local_label
 hosted_matches_human = hosted_label == human_label
-local_matches_human = local_label == human_label
+local_matches_human = None if local_label is None else local_label == human_label
 print("Routes agree:", routes_agree)
 print("OpenRouter matches human label:", hosted_matches_human)
 print("Ollama matches human label:", local_matches_human)
@@ -142,12 +150,12 @@ print("Ollama matches human label:", local_matches_human)
 ```
 
 ::: {.callout-note title="Three Boolean outputs"}
-Each `==` asks whether two strings are equal and returns `True` or `False`. `routes_agree` compares the two models. The other two values compare each model with the independently supplied human reference. These are three distinct questions, so they are stored and printed separately.
+Each `==` asks whether two strings are equal and returns `True` or `False`. The short `if ... else ...` expressions first check whether Ollama ran. In Colab the local comparisons return `None`, which means “not run,” not disagreement. `routes_agree` compares the two models; the other two values compare each model with the independently supplied human reference.
 :::
 
 ### Methodological check
 
-Agreement between the routes is a reproducibility observation. Agreement with one human label is criterion evidence. Neither alone proves that the codebook measures the construct well.
+Agreement between the routes is a reproducibility observation. Agreement with one human label is criterion evidence. Neither alone proves that the codebook measures the construct well. If an Ollama comparison prints `None`, the local route was deliberately skipped in Colab.
 
 ## Workbook and environment links
 
