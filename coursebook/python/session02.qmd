@@ -7,9 +7,13 @@ description: "Worked code, notebook and completion task"
 
 ## Python walkthrough: use an llm as an annotator
 
-**Research task:** Apply the same housing-opinion codebook through OpenRouter and Ollama, then distinguish route agreement from agreement with a human reference.
+::: {.routine-summary}
+**Today's routine:** One housing comment → one codebook prompt → two model labels → three comparisons.
 
 **Python introduced:** lists, dictionaries, indexing, dictionary keys and equality comparisons.
+
+**Your change:** replace the conditional comment with an opposition comment and rerun both routes.
+:::
 
 The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
 
@@ -148,7 +152,7 @@ Agreement between the routes is a reproducibility observation. Agreement with on
 ## Workbook and environment links
 
 ::: {.resource-card}
-[Open the Week 2 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session02/session02_annotation_measurement.ipynb) · [Download the notebook](../_generated/downloads/session02/session02_annotation_measurement.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session02/session02_task.py) · [Download the runnable offline bundle](../_generated/downloads/session02/session02_offline_bundle.zip)
+[Open the Week 2 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session02/session02_annotation_measurement.ipynb) · [Download the notebook](../_generated/downloads/session02/session02_annotation_measurement.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session02/session02_task.py) · [Download the runnable offline bundle](../_generated/downloads/session02/session02_offline_bundle.zip)
 :::
 
 This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.

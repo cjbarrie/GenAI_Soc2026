@@ -1,0 +1,10 @@
+body-classes: python-page
+
+format:
+  html:
+    toc-depth: 2
+    grid:
+      sidebar-width: 220px
+      body-width: 920px
+      margin-width: 180px
+      gutter-width: 2rem

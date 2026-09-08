@@ -7,9 +7,13 @@ description: "Worked code, notebook and completion task"
 
 ## Python walkthrough: generate experimental materials
 
-**Research task:** Generate two framings from fixed policy facts and inspect semantic differences that could become causal confounds.
+::: {.routine-summary}
+**Today's routine:** Fixed policy facts → two framing instructions → two generated treatments → confound check.
 
 **Python introduced:** f-strings, named call arguments, integers, floats, temperature, output limits, latency and token metadata.
+
+**Your change:** change only the frame while holding the facts and call settings fixed.
+:::
 
 The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
 
@@ -147,7 +151,7 @@ Holding the prompt variables fixed does not guarantee that the generated message
 ## Workbook and environment links
 
 ::: {.resource-card}
-[Open the Week 5 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session05/session05_treatment_generation.ipynb) · [Download the notebook](../_generated/downloads/session05/session05_treatment_generation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session05/session05_task.py) · [Download the runnable offline bundle](../_generated/downloads/session05/session05_offline_bundle.zip)
+[Open the Week 5 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session05/session05_treatment_generation.ipynb) · [Download the notebook](../_generated/downloads/session05/session05_treatment_generation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session05/session05_task.py) · [Download the runnable offline bundle](../_generated/downloads/session05/session05_offline_bundle.zip)
 :::
 
 This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.

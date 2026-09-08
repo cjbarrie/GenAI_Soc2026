@@ -487,6 +487,14 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - Weekly chapters and Python pages link to that guide rather than repeating the Box URL. This keeps the destination and instructions consistent if they change.
 - Students submit one continuous recording with audible narration. Camera video and editing are not required. They must check the saved file's audio before uploading and must never display the shared OpenRouter key.
 
+## Course-book reading space and Colab ownership (2026-09-08)
+
+- Use short labels in the book sidebar and collapse course parts by default. Preserve the complete sociological question as the visible page title.
+- Enable reader mode so students can hide both navigation columns when reading or tracing code.
+- Python pages use a wider body, a shallower right-hand contents list and more vertical space between code steps. Code scrolls horizontally rather than wrapping into difficult-to-read lines.
+- Every developed Python page begins with a compact routine summary naming the trace, the Python introduced and the single required change.
+- The canonical public repository owner is `cjbarrie`. Colab links using `christopherbarrie` are invalid and are rejected by `scripts/check_coursebook.py`.
+
 ## Setup and Week 1 Python pivot expanded (2026-08-28)
 
 - Introduce Python, notebook, SDK, API, server and model as six distinct pieces before asking students to run a call.

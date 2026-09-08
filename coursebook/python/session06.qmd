@@ -7,9 +7,13 @@ description: "Worked code, notebook and completion task"
 
 ## Python walkthrough: build one adaptive interview turn
 
-**Research task:** Use a participant answer to generate and record a follow-up question without introducing a cause the participant did not name.
+::: {.routine-summary}
+**Today's routine:** One participant answer → one adaptive probe → updated conversation → second adaptive probe.
 
 **Python introduced:** conversation lists, roles, `.append(...)`, ordered state and repeated model calls.
+
+**Your change:** replace the second participant answer and inspect the next probe.
+:::
 
 The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
 
@@ -145,7 +149,7 @@ Inspect whether each probe follows the participant's words, asks for a concrete 
 ## Workbook and environment links
 
 ::: {.resource-card}
-[Open the Week 6 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session06/session06_conversational_treatments.ipynb) · [Download the notebook](../_generated/downloads/session06/session06_conversational_treatments.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session06/session06_task.py) · [Download the runnable offline bundle](../_generated/downloads/session06/session06_offline_bundle.zip)
+[Open the Week 6 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session06/session06_conversational_treatments.ipynb) · [Download the notebook](../_generated/downloads/session06/session06_conversational_treatments.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session06/session06_task.py) · [Download the runnable offline bundle](../_generated/downloads/session06/session06_offline_bundle.zip)
 :::
 
 This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.

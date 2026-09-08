@@ -7,9 +7,13 @@ description: "Worked code, notebook and completion task"
 
 ## Python walkthrough: give a multimodal model visual evidence
 
-**Research task:** Ask a vision-capable model to describe change across two supplied interaction frames while separating visible evidence from interpretation.
+::: {.routine-summary}
+**Today's routine:** Two interaction frames → one multimodal request → a structured visual description → evidence check.
 
 **Python introduced:** file paths, ordered image lists, nested message content and structured visual descriptions.
+
+**Your change:** replace the second frame and check which claims remain visibly supported.
+:::
 
 The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
 
@@ -153,7 +157,7 @@ The model can still recognize a famous event or import a motive despite the cons
 ## Workbook and environment links
 
 ::: {.resource-card}
-[Open the Week 4 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session04/session04_multimodal_evidence.ipynb) · [Download the notebook](../_generated/downloads/session04/session04_multimodal_evidence.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session04/session04_task.py) · [Download the runnable offline bundle](../_generated/downloads/session04/session04_offline_bundle.zip)
+[Open the Week 4 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session04/session04_multimodal_evidence.ipynb) · [Download the notebook](../_generated/downloads/session04/session04_multimodal_evidence.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session04/session04_task.py) · [Download the runnable offline bundle](../_generated/downloads/session04/session04_offline_bundle.zip)
 :::
 
 This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.

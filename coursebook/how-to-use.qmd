@@ -26,7 +26,7 @@ The downloadable `.py` task file repeats the Python-page exercise exactly and pr
 
 Weeks 1–2 send the same synthetic or public teaching material through OpenRouter and Ollama. Students choose either route in Weeks 3–7 and compare both again in Week 8. A clearly labelled recorded return is supplied as a contingency if the hosted service, network or local runtime is unavailable; using that contingency does not reduce the completion mark.
 
-Each developed week also has an **Open in Google Colab** link. Colab opens the notebook in a browser and supplies a temporary Python environment. Run the first setup cell once: it downloads the public course repository and moves to the correct weekly folder so that the notebook can find its accompanying data. To keep your changes, use Colab's **File → Save a copy in Drive**; the temporary runtime itself is not permanent.
+Each developed week also has an **Open in Google Colab** link. Colab opens the notebook in a browser and supplies a temporary Python environment. Run the first setup cell once: it downloads the public `cjbarrie/GenAI_Soc2026` repository and moves to the correct weekly folder so that the notebook can find its accompanying data. To keep your changes, use Colab's **File → Save a copy in Drive**; the temporary runtime itself is not permanent. Colab uses the OpenRouter route because it cannot normally connect to Ollama running on your own computer.
 
 ## Exercises
 

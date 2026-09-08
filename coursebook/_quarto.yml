@@ -18,6 +18,11 @@ book:
   site-url: "https://cjbarrie.github.io/GenAI_Soc2026"
   repo-url: "https://github.com/cjbarrie/GenAI_Soc2026"
   search: true
+  reader-mode: true
+  sidebar:
+    style: docked
+    collapse-level: 1
+    border: false
   downloads: [pdf]
   sharing: [twitter, linkedin]
   page-navigation: true
@@ -31,39 +36,66 @@ book:
     - assessment.qmd
     - part: "Evidence, measurement and interpretation"
       chapters:
-        - weeks/session01.qmd
-        - python/session01.qmd
-        - weeks/session02.qmd
-        - python/session02.qmd
-        - weeks/session03.qmd
-        - python/session03.qmd
-        - weeks/session04.qmd
-        - python/session04.qmd
+        - text: "Week 1: Research technology"
+          href: weeks/session01.qmd
+        - text: "Week 1: Python"
+          href: python/session01.qmd
+        - text: "Week 2: Annotation"
+          href: weeks/session02.qmd
+        - text: "Week 2: Python"
+          href: python/session02.qmd
+        - text: "Week 3: Qualitative research"
+          href: weeks/session03.qmd
+        - text: "Week 3: Python"
+          href: python/session03.qmd
+        - text: "Week 4: Observation"
+          href: weeks/session04.qmd
+        - text: "Week 4: Python"
+          href: python/session04.qmd
     - part: "Experiments and research encounters"
       chapters:
-        - weeks/session05.qmd
-        - python/session05.qmd
-        - weeks/session06.qmd
-        - python/session06.qmd
+        - text: "Week 5: Experiments"
+          href: weeks/session05.qmd
+        - text: "Week 5: Python"
+          href: python/session05.qmd
+        - text: "Week 6: Interviews"
+          href: weeks/session06.qmd
+        - text: "Week 6: Python"
+          href: python/session06.qmd
     - part: "Synthetic populations and social simulation"
       chapters:
-        - weeks/session07.qmd
-        - python/session07.qmd
-        - weeks/session08.qmd
-        - python/session08.qmd
-        - weeks/session09.qmd
-        - python/session09.qmd
-        - weeks/session10.qmd
-        - python/session10.qmd
+        - text: "Week 7: Synthetic respondents"
+          href: weeks/session07.qmd
+        - text: "Week 7: Python"
+          href: python/session07.qmd
+        - text: "Week 8: Opinion prediction"
+          href: weeks/session08.qmd
+        - text: "Week 8: Python"
+          href: python/session08.qmd
+        - text: "Week 9: Agent interaction"
+          href: weeks/session09.qmd
+        - text: "Week 9: Python"
+          href: python/session09.qmd
+        - text: "Week 10: Collective intelligence"
+          href: weeks/session10.qmd
+        - text: "Week 10: Python"
+          href: python/session10.qmd
     - part: "Research agents, replication and model audits"
       chapters:
-        - weeks/session11.qmd
-        - python/session11.qmd
-        - weeks/session12.qmd
-        - python/session12.qmd
-        - weeks/session13.qmd
-        - python/session13.qmd
-        - weeks/session14.qmd
+        - text: "Week 11: Research agents"
+          href: weeks/session11.qmd
+        - text: "Week 11: Python"
+          href: python/session11.qmd
+        - text: "Week 12: Replication"
+          href: weeks/session12.qmd
+        - text: "Week 12: Python"
+          href: python/session12.qmd
+        - text: "Week 13: Model audits"
+          href: weeks/session13.qmd
+        - text: "Week 13: Python"
+          href: python/session13.qmd
+        - text: "Week 14: Presentations"
+          href: weeks/session14.qmd
     - references.qmd
 
 bibliography: ../references.bib

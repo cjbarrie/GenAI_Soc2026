@@ -7,9 +7,13 @@ description: "Worked code, notebook and completion task"
 
 ## Python walkthrough: make the first two model calls
 
-**Research task:** Ask a hosted model and a model running on this computer to score the same synthetic statement for generalized social trust.
+::: {.routine-summary}
+**Today's routine:** One statement → one shared prompt → two model calls → two research records.
 
-**Python introduced:** notebook cells, strings, variables, functions we call, lists, dictionaries, indexing, SDK objects, attributes, methods, integers, Booleans and a first research record.
+**Python introduced:** notebook cells, strings, variables, functions we call, lists, dictionaries, indexing, SDK objects, attributes, methods, integers and Booleans.
+
+**Your change:** replace the trust statement and run both routes again.
+:::
 
 The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
 
@@ -210,7 +214,7 @@ The two scores are proposed measurements. Neither route establishes that the sco
 ## Workbook and environment links
 
 ::: {.resource-card}
-[Open the Week 1 notebook in Google Colab](https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main/workbook/session01/session01_research_technology.ipynb) · [Download the notebook](../_generated/downloads/session01/session01_research_technology.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session01/session01_task.py) · [Download the runnable offline bundle](../_generated/downloads/session01/session01_offline_bundle.zip)
+[Open the Week 1 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session01/session01_research_technology.ipynb) · [Download the notebook](../_generated/downloads/session01/session01_research_technology.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session01/session01_task.py) · [Download the runnable offline bundle](../_generated/downloads/session01/session01_offline_bundle.zip)
 :::
 
 This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.

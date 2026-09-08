@@ -86,6 +86,97 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   background: #fffaf0;
 }
 
+/* Coding pages need more room and a slower visual rhythm than reading pages. */
+.python-page main.content > section {
+  margin-top: 3.25rem;
+}
+
+.python-page main.content > section:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.python-page h2 {
+  margin-bottom: 1.4rem;
+}
+
+.python-page h3 {
+  margin-top: 3rem;
+  margin-bottom: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid #e2e6e8;
+}
+
+.python-page p,
+.python-page li {
+  line-height: 1.72;
+}
+
+.python-page p {
+  margin-bottom: 1.15rem;
+}
+
+.python-page div.sourceCode {
+  margin: 1.4rem 0;
+  border: 1px solid #d9e0e3;
+  border-radius: 0.45rem;
+  box-shadow: 0 0.15rem 0.5rem rgba(23, 63, 74, 0.05);
+}
+
+.python-page pre.sourceCode {
+  padding: 1.15rem 1.25rem;
+  overflow-x: auto;
+}
+
+.python-page pre.sourceCode code {
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.python-page .callout {
+  margin: 1.25rem 0 2.8rem;
+}
+
+.python-page .callout-body {
+  padding: 1.05rem 1.2rem 1.2rem;
+}
+
+.python-page .resource-card {
+  padding: 1.25rem 1.35rem;
+}
+
+.python-page .resource-card > p {
+  margin: 0;
+  font-size: 0;
+}
+
+.python-page .resource-card a {
+  display: inline-block;
+  font-size: 0.93rem;
+  margin: 0.3rem 0.35rem 0.3rem 0;
+  padding: 0.5rem 0.72rem;
+  border: 1px solid #bad0d4;
+  border-radius: 0.3rem;
+  background: white;
+  text-decoration: none;
+}
+
+.python-page .exercise-box {
+  margin-top: 1.5rem;
+  padding: 1.4rem 1.55rem;
+}
+
+.routine-summary {
+  margin: 1.2rem 0 2.4rem;
+  padding: 1.15rem 1.3rem;
+  border-left: 0.35rem solid var(--course-teal);
+  background: #f3f7f7;
+}
+
+.routine-summary p:last-child {
+  margin-bottom: 0;
+}
+
 table { font-size: 0.94rem; }
 thead { border-top: 2px solid #566168; border-bottom: 1px solid #89939a; }
 tbody { border-bottom: 2px solid #566168; }
@@ -93,6 +184,9 @@ tbody { border-bottom: 2px solid #566168; }
 @media (max-width: 760px) {
   .worked-trace { grid-template-columns: 1fr; }
   .slide-shell { aspect-ratio: 4 / 3; }
+  .python-page main.content > section { margin-top: 2.5rem; }
+  .python-page h3 { margin-top: 2.35rem; }
+  .python-page pre.sourceCode { padding: 0.9rem; }
 }
 
 @media print {

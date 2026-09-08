@@ -21,7 +21,7 @@ BIB = ROOT / "references.bib"
 LOCAL_ANCHOR_PDF = BOOK / "downloads" / "readings" / "ai-and-research-methods-barrie-et-al-2026.pdf"
 SUBMISSION_PAGE = BOOK / "recording-and-submission.qmd"
 BOX_URL = "https://nyu.box.com/s/3oylc29m569ack3jv79rk22chk5r90dp"
-COLAB_REPO = "https://colab.research.google.com/github/christopherbarrie/GenAI_Soc2026/blob/main"
+COLAB_REPO = "https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main"
 
 REQUIRED_SECTIONS = [
     "## This week’s sociological question",
@@ -69,6 +69,7 @@ BANNED_PUBLIC_FRAGMENTS = [
     "OPENROUTER_API_KEY=",
     "sk-or-",
     "Lee-TF-APSA-AI-Report-2026-Tucker-Persily.pdf",
+    "github/christopherbarrie/GenAI_Soc2026",
 ]
 
 OBSOLETE_SESSION14_MATERIALS = [
@@ -138,6 +139,12 @@ def validate_sources(rendered: bool) -> list[str]:
 
     if not LOCAL_ANCHOR_PDF.exists():
         fail(errors, f"Missing local course anchor PDF: {LOCAL_ANCHOR_PDF}")
+
+    obsolete_colab_owner = "github/christopherbarrie/GenAI_Soc2026"
+    colab_sources = list(BOOK.rglob("*.qmd")) + list((ROOT / "workbook").rglob("*.ipynb"))
+    for source in colab_sources:
+        if obsolete_colab_owner in source.read_text(encoding="utf-8"):
+            fail(errors, f"Obsolete Colab repository owner in {source.relative_to(ROOT)}")
 
     if not SUBMISSION_PAGE.exists():
         fail(errors, f"Missing recording and submission guide: {SUBMISSION_PAGE}")
