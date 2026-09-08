@@ -56,6 +56,10 @@ def test_all_student_notebooks_prepare_colab_before_importing_sdks() -> None:
 
         assert setup_index < import_index
         assert "setup_sys.executable" in setup
+        assert "import importlib as setup_importlib" in setup
+        assert "setup_importlib.util.find_spec" in setup
+        assert "setup_importlib.invalidate_caches()" in setup
+        assert "setup_importlib.find_spec" not in setup
         assert '"-m",\n                "pip",\n                "install"' in setup
         assert '"openrouter>=0.6,<1"' in setup
         assert '"ollama>=0.6,<1"' in setup

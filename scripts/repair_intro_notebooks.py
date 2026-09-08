@@ -25,7 +25,7 @@ Run the next cell before any other code. In Colab it installs the two small Pyth
 
 SETUP_CODE = r'''
 # Run this cell first. It prepares Colab or checks the local Python environment.
-import importlib.util as setup_importlib
+import importlib as setup_importlib
 import os as setup_os
 import subprocess as setup_subprocess
 import sys as setup_sys
@@ -44,7 +44,7 @@ course_packages = {
 missing_packages = [
     package_name
     for package_name in course_packages
-    if setup_importlib.find_spec(package_name) is None
+    if setup_importlib.util.find_spec(package_name) is None
 ]
 
 if IN_COLAB:
@@ -64,7 +64,9 @@ if IN_COLAB:
         )
         setup_importlib.invalidate_caches()
 
-    setup_repo = SetupPath("/content/GenAI_Soc2026")
+    setup_repo = SetupPath(
+        setup_os.getenv("COURSE_COLAB_ROOT", "/content/GenAI_Soc2026")
+    )
     if not setup_repo.exists():
         setup_subprocess.run(
             [
@@ -91,7 +93,7 @@ elif missing_packages:
 still_missing = [
     package_name
     for package_name in course_packages
-    if setup_importlib.find_spec(package_name) is None
+    if setup_importlib.util.find_spec(package_name) is None
 ]
 if still_missing:
     raise ModuleNotFoundError(

@@ -26,7 +26,7 @@ The setup also adds the repository root to Python's import path. This is necessa
 
 SETUP_CODE = r'''
 # Run this cell first. It prepares Colab or checks the local Python environment.
-import importlib.util as setup_importlib
+import importlib as setup_importlib
 import os as setup_os
 import subprocess as setup_subprocess
 import sys as setup_sys
@@ -48,7 +48,7 @@ if SESSION == "session13":
 missing_packages = [
     package_name
     for package_name in course_packages
-    if setup_importlib.find_spec(package_name) is None
+    if setup_importlib.util.find_spec(package_name) is None
 ]
 
 if IN_COLAB:
@@ -68,7 +68,9 @@ if IN_COLAB:
         )
         setup_importlib.invalidate_caches()
 
-    COURSE_ROOT = SetupPath("/content/GenAI_Soc2026")
+    COURSE_ROOT = SetupPath(
+        setup_os.getenv("COURSE_COLAB_ROOT", "/content/GenAI_Soc2026")
+    )
     if not COURSE_ROOT.exists():
         setup_subprocess.run(
             [
@@ -108,7 +110,7 @@ if course_root_text not in setup_sys.path:
 still_missing = [
     package_name
     for package_name in course_packages
-    if setup_importlib.find_spec(package_name) is None
+    if setup_importlib.util.find_spec(package_name) is None
 ]
 if still_missing:
     raise ModuleNotFoundError(

@@ -516,3 +516,9 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - Week 8 preserves the required two-route comparison without pretending Ollama ran in Colab: hosted results are produced there, local summaries are `None`, and the local half is completed outside Colab. Week 13 similarly limits its Colab grid to hosted rows.
 - Week 13's setup checks and, if necessary, installs `pandas` before its final table cell.
 - Future release checks cover all Weeks 1–13, including setup-before-import order, package declarations, public repository URLs, repository import paths, Colab route selection and the special dual-route behavior in Weeks 8 and 13.
+
+## 2026-09-08 — Cold-start Colab setup regression fixed
+
+- `invalidate_caches()` belongs to the top-level `importlib` module, not `importlib.util`. Notebook setup cells therefore import `importlib` and use `importlib.util.find_spec(...)` for package discovery.
+- Warm-kernel tests are insufficient because they skip the installation branch once dependencies are present. Release tests must simulate a fresh Colab runtime with missing packages, intercept the install step, execute cache invalidation and then execute the following package-import cell.
+- The cold-start regression test now runs against every Week 1–13 notebook, so the exact Week 2 failure cannot silently return through either notebook generator.
