@@ -1,0 +1,56 @@
+---
+title: "Week 7 — Whose attitudes do synthetic respondents represent?"
+description: "Survey populations, silicon sampling and distributional validation"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">What kind of evidence is produced when a model answers a survey question as if it were a person?</div>
+
+## Connection to the preceding material
+
+Week 6 kept human respondents but changed the interviewer. Week 7 changes the source of the answer. That makes the relationship between a record and a target population the central problem.
+
+## Learning outcomes
+
+You should be able to distinguish a human respondent, aggregate prediction, demographic persona and interview-grounded agent; explain why probability sampling matters; compare means, distributions and within-group variation; trace one structured OpenRouter request; and state what a schema validates.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Methods:** Kozlowski and Evans (2025), “Simulating Subjects,” *Sociological Methods & Research*. Read the complete article. It frames the promise and peril of using LLMs as stand-ins for social agents. [DOI](https://doi.org/10.1177/00491241251337316). [@KozlowskiEvans2025]
+- **Methods and validation:** Boelaert et al. (2025), “Machine Bias,” *Sociological Methods & Research*. Read the complete article. It tests how language models answer opinion polls and compares their response patterns with people. [DOI](https://doi.org/10.1177/00491241251330582). [@BoelaertEtAl2025]
+- **Substantive application:** Igarashi, Kano and Miwa (2025), “ChatGPT versus Humans in Judging Discriminatory Scenarios,” *Humanities and Social Sciences Communications* 12: 1776. Read the complete article. Humans and GPT-4 judge the same experimentally varied scenarios of unequal treatment, giving us a substantive discrimination case and a direct comparison between human and model response patterns. [DOI](https://doi.org/10.1057/s41599-025-06054-6). [@IgarashiEtAl2025]
+:::
+
+## Additional readings grouped by purpose
+
+- **For identity flattening:** Wang, Morgenstern and Dickerson (2025), *Nature Machine Intelligence* 7: 400–411. [DOI](https://doi.org/10.1038/s42256-025-00986-z). [@WangMorgensternDickerson2025]
+- **For survey augmentation rather than replacement:** Kim and Lee (2026), “AI-Augmented Surveys.” [Preprint](https://arxiv.org/abs/2305.09620). [@KimLee2026]
+
+## Sociological and methodological background
+
+Survey inference depends on more than asking a question. Probability sampling links observed respondents to a target population; questionnaire design shapes the answers; total survey error directs attention to coverage, sampling, nonresponse, measurement and processing. Simulmatics provides an instructive prehistory: in 1960 the company used survey segments and computational models to advise the Kennedy campaign. The ambition to model an electorate is older than LLMs, as are the problems created by missing and poorly measured groups.
+
+Public opinion theory adds another caution. Zaller treats a survey response as something assembled at the time from accessible considerations, not a stable value stored unchanged in a person. A demographic persona such as “a 42-year-old Black woman in Georgia” therefore does not reproduce the experiences, networks and information environment through which a human answer is formed.
+
+Igarashi, Kano and Miwa turn this general warning into an empirical comparison. Human respondents and GPT-4 judge the same experimentally varied scenarios of unequal treatment. This lets us ask two separate questions: whether the model gives similar average judgments, and whether it responds to changes in the scenario in the same way as people do. Similarity on one does not guarantee similarity on the other.
+
+## Synthesis of the current LLM literature
+
+The literature now contains several distinct designs. A model can predict an aggregate distribution, answer once per persona, predict a held-out answer for a real respondent, or act through an interview-grounded record. These are not interchangeable. Matching the modal response does not recover the distribution; matching the distribution does not recover individual pairings; aggregate resemblance can coexist with flattened subgroup heterogeneity. Igarashi and colleagues add another target: responsiveness to an experimental treatment. Validation must name which of these targets matters before calculating a score.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 7 lecture slides" src="../_generated/slides/session07.html"></iframe></div>
+[Open the Week 7 slides full screen](../_generated/slides/session07.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 7 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session07.html).
+:::
+[Continue to the Week 7 Python work](../python/session07.qmd).
+
+## Summary and preparation for next week
+
+A synthetic response is conditioned model output, not a sampled person. Week 8 asks a narrower but still ambitious question: can observed human information help predict answers or results that were not observed?

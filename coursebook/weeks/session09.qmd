@@ -1,0 +1,29 @@
+---
+title: "Week 9 — How can micro-level interactions generate macro-level order?"
+description: "Provisional outline"
+---
+
+## Question
+
+<div class="chapter-question">What must we specify before an apparent group pattern can be explained as the result of interacting agents?</div>
+
+## Why this week belongs here
+
+The course moves from model-generated responses to actors that observe one another and update over time. The sociological problem is micro-to-macro explanation, not simply whether agents can produce dialogue.
+
+## Provisional core readings
+
+- Barrie et al. (2026), §§10.4.1–10.4.3. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
+- Macy and Willer (2002), “From Factors to Actors.” [@MacyWiller2002]
+- Park et al. (2023), “Generative Agents.” [@ParkEtAl2023]
+- Further comparison: Chuang et al. (2024) and Ashery, Aiello and Baronchelli (2025). [@ChuangEtAl2024; @AsheryAielloBaronchelli2025]
+
+## Planned chapter and class arc
+
+Reconstruct the explanatory logic of classical ABMs; define state, observation, policy, network and timing; examine what memory, reflection and language policies add; compare generative-agent claims with transparent rule-based baselines.
+
+[See the provisional Week 9 Python plan](../python/session09.qmd).
+
+## Development status
+
+This is a planning page. Slides, the full literature synthesis, workbook and take-home exercise will be built and reviewed later.

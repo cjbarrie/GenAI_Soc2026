@@ -1,12 +1,15 @@
-"""Build the non-pilot session materials from one inspectable curriculum record.
+"""Archive/scaffold utility for explicitly selected course sessions.
 
-The generator makes repeated structure consistent; it does not generate claims with
-an LLM. All prose, code, examples, and source links below are instructor-authored.
+This script is no longer the owner of any reviewed course artifact. It refuses to
+run unless the caller names each session and explicitly acknowledges overwrite.
+Use it only to scaffold a session that will subsequently receive literature-led
+editorial review.
 """
 
 from __future__ import annotations
 
 import ast
+import argparse
 import json
 import re
 from hashlib import sha1
@@ -21,7 +24,7 @@ SESSIONS = [
     {
         "n": 1, "date": "September 2", "slug": "research_technology",
         "title": "What kind of research technology is an LLM?", "domain": "Foundations, Python data, and course map",
-        "movement": "Observe", "anchor": "§§10.1 and 10.9",
+        "movement": "Observe", "anchor": "Introduction and §10.7 (PDF pp. 1–2 and 34–35)",
         "papers": [
             ("Davidson & Karell (2025), integrating GenAI into social science", "https://doi.org/10.1177/00491241251339184"),
             ("Alvero et al. (2026), GenAI in sociological research", "https://sociologicalscience.com/articles-v13-3-45/"),
@@ -54,7 +57,7 @@ print(record)''',
     {
         "n": 3, "date": "September 16", "slug": "qualitative_interpretation",
         "title": "What does interpretation mean when an LLM assists qualitative research?", "domain": "Qualitative analysis",
-        "movement": "Observe", "anchor": "§§10.2.4–10.2.5",
+        "movement": "Observe", "anchor": "§§10.1.4–10.1.5",
         "papers": [
             ("Than et al. (2025), qualitative coding with generative LLMs", "https://doi.org/10.1177/00491241251339188"),
             ("Ibrahim & Voyer (2026), technological reflexivity", "https://doi.org/10.1177/14687941251390794"),
@@ -98,7 +101,7 @@ print("rejected:", rejected)''',
     {
         "n": 4, "date": "September 23", "slug": "multimodal_evidence",
         "title": "What counts as evidence across text, image, and audio?", "domain": "Multimodal measurement",
-        "movement": "Observe", "anchor": "§10.2 and multimodal discussion in §10.7",
+        "movement": "Observe", "anchor": "§§10.1.1 and 10.1.5",
         "papers": [
             ("Law & Roberto (2025), generative multimodal models", "https://doi.org/10.1177/00491241251339673"),
             ("Maranca et al. (2025), correcting image-label errors", "https://doi.org/10.1177/00491241251333372"),
@@ -136,7 +139,7 @@ for item in normalize_multimodal_records(records):
     {
         "n": 5, "date": "September 30", "slug": "treatment_generation",
         "title": "Can generated media isolate a causal construct?", "domain": "Treatment and stimulus generation",
-        "movement": "Intervene", "anchor": "§10.3, especially §§10.3.3–10.3.5",
+        "movement": "Intervene", "anchor": "§10.2, especially §§10.2.3–10.2.5",
         "papers": [
             ("Dafoe, Zhang & Caughey (2018), information equivalence", "https://doi.org/10.1017/pan.2018.9"),
             ("Evsyukova, Rusche & Mill (2025), LinkedOut", "https://doi.org/10.1093/qje/qjae035"),
@@ -175,7 +178,7 @@ print("rejected:", rejected)''',
     {
         "n": 6, "date": "October 7", "slug": "conversational_treatments",
         "title": "What changes when the model becomes an interactant?", "domain": "Conversational and personalized treatments",
-        "movement": "Intervene", "anchor": "§§10.3.4.2 and 10.3.5",
+        "movement": "Intervene", "anchor": "Selected §§10.2 and 10.5",
         "papers": [
             ("Hackenburg et al. (2025), levers of conversational persuasion", "https://doi.org/10.1126/science.aea3884"),
             ("Lin et al. (2025), human–AI voter dialogues", "https://doi.org/10.1038/s41586-025-09771-9"),
@@ -208,7 +211,7 @@ print(summarize_exposure(turns))''',
     {
         "n": 7, "date": "October 21", "slug": "synthetic_representation",
         "title": "Whose attitudes and experiences do synthetic populations represent?", "domain": "Silicon sampling and representation",
-        "movement": "Simulate", "anchor": "§10.4",
+        "movement": "Simulate", "anchor": "§10.3",
         "papers": [
             ("Kozlowski & Evans (2025), simulating subjects", "https://doi.org/10.1177/00491241251337316"),
             ("Boelaert et al. (2025), machine bias in opinion polls", "https://doi.org/10.1177/00491241251330582"),
@@ -245,7 +248,7 @@ for key, values in group_summaries(records).items():
     {
         "n": 8, "date": "October 28", "slug": "opinion_prediction",
         "title": "Can LLMs recover missing or unobserved social worlds?", "domain": "Opinion prediction, validation, and limits",
-        "movement": "Simulate", "anchor": "§§10.4.4–10.4.5 and §10.9",
+        "movement": "Simulate", "anchor": "§§10.3.4–10.3.6 and §10.7",
         "papers": [
             ("Kim & Lee (2026), AI-augmented surveys", "https://arxiv.org/abs/2305.09620"),
             ("Xie et al. (2026), statistical realism", "https://doi.org/10.1073/pnas.2538145123"),
@@ -286,7 +289,7 @@ print(score_inferential_targets(records))''',
     {
         "n": 9, "date": "November 4", "slug": "abm_updates",
         "title": "How can micro-level interactions generate macro-level order?", "domain": "Generative agent-based models I",
-        "movement": "Simulate", "anchor": "§§10.5.1–10.5.3",
+        "movement": "Simulate", "anchor": "§§10.4.1–10.4.3",
         "papers": [
             ("Macy & Willer (2002), from factors to actors", "https://doi.org/10.1146/annurev.soc.28.110601.141117"),
             ("Park et al. (2023), generative agents", "https://doi.org/10.1145/3586183.3606763"),
@@ -321,7 +324,7 @@ print("original still unchanged:", states)''',
     {
         "n": 10, "date": "November 11", "slug": "collective_intelligence",
         "title": "When can agent diversity and debate produce collective intelligence?", "domain": "Generative ABMs II and sociology of AI",
-        "movement": "Simulate", "anchor": "§§10.5.4–10.5.5",
+        "movement": "Simulate", "anchor": "§§10.4.4–10.4.5",
         "papers": [
             ("Ashery et al. (2025), conventions and collective bias", "https://doi.org/10.1126/sciadv.adu9368"),
             ("Barrie & Törnberg (2025), observational equivalence to leakage", "https://arxiv.org/abs/2505.23796"),
@@ -356,7 +359,7 @@ print(compare_interaction_runs(runs, "42"))''',
     {
         "n": 11, "date": "November 18", "slug": "agentic_provenance",
         "title": "Who—or what—produces research data in an agentic workflow?", "domain": "Research agents, tools, and provenance",
-        "movement": "Delegate and audit", "anchor": "§10.6",
+        "movement": "Delegate and audit", "anchor": "§10.5",
         "papers": [
             ("Lu et al. (2026), end-to-end automation of AI research", "https://doi.org/10.1038/s41586-026-10265-5"),
             ("Nature Machine Intelligence (2026), multi-agent systems need transparency", "https://www.nature.com/articles/s42256-026-01183-2"),
@@ -392,7 +395,7 @@ print(build_provenance_table(records))''',
     {
         "n": 12, "date": "November 25", "slug": "replication_studio",
         "title": "What can we reproduce, and what remains opaque?", "domain": "Low-stakes replication and project studio",
-        "movement": "Delegate and audit", "anchor": "§10.8",
+        "movement": "Delegate and audit", "anchor": "§10.7",
         "papers": [
             ("Feuerriegel et al. (2026), GUIDE-LLM reporting checklist", "https://doi.org/10.1038/s41562-026-02492-7"),
             ("Barrie, Palmer & Spirling (2025), replication for language models", "https://arthurspirling.org/documents/BarriePalmerSpirling_TrustMeBro.pdf"),
@@ -429,7 +432,7 @@ print(compare_replication_records(original, rerun))''',
     {
         "n": 13, "date": "December 2", "slug": "model_audits",
         "title": "What culture, ideology, and hierarchy are encoded in models?", "domain": "Auditing LLMs as objects of study",
-        "movement": "Delegate and audit", "anchor": "§10.7, especially §§10.7.4–10.7.7",
+        "movement": "Delegate and audit", "anchor": "§10.6, especially §§10.6.1–10.6.4",
         "papers": [
             ("Waight et al. (2026), state media control and LLMs", "https://doi.org/10.1038/s41586-026-10506-7"),
             ("Buyl et al. (2026), ideology of model creators", "https://doi.org/10.1038/s44387-025-00048-0"),
@@ -470,45 +473,6 @@ conditions, missing = factorial_audit(["m1"], ["en", "es"], ["neutral"], respons
 print("observed:", conditions)
 print("missing:", missing)''',
         "plain": ["Three nested loops construct the Cartesian product one factor at a time.", "A tuple is the exact key for one model-language-frame condition.", "The membership check distinguishes an unobserved condition from a response value of zero.", "The outputs describe what was observed and what is missing; neither output supplies a causal explanation."],
-    },
-    {
-        "n": 14, "date": "December 9", "slug": "evidence_standards",
-        "title": "What standards of evidence should govern LLM-assisted sociology?", "domain": "Project symposium and course synthesis",
-        "movement": "Delegate and audit", "anchor": "§10.9 and selected passages from §§10.2.5–10.8",
-        "papers": [("Course synthesis: revisit one earlier empirical claim", "../literature/literature_audit.md")],
-        "thesis": "The strongest course outcome is not a more confident claim, but a claim whose scope matches its actual evidence.",
-        "tension": "Across the semester, models make new transformations feasible while repeatedly moving validation and responsibility downstream to the researcher.",
-        "target": "Audit one project record from claim through target, evidence, failure mode, and replication record.",
-        "failure": "A project reports an LLM capability but never states the sociological inference, reference evidence, or boundary of the claim.",
-        "task": "Return a missing-evidence checklist and a bounded revision prompt for one project claim.",
-        "function": "audit_project_claim", "signature": "project",
-        "doc": "Check six required research-design fields and return missing names plus a revision prompt.",
-        "body": '''required = [
-        "claim",
-        "inferential_target",
-        "input",
-        "transformation",
-        "validation",
-        "replication_record",
-    ]
-    missing = [field for field in required if project.get(field) in (None, "", [], {})]
-    if missing:
-        revision = "Bound the claim until these fields are supplied: " + ", ".join(missing)
-    else:
-        revision = (
-            "State the population, setting, model/runtime, "
-            "and validation evidence directly in the claim."
-        )
-    return {"missing": missing, "revision": revision}''',
-        "checks": '''partial = {"claim": "The model measures trust", "inferential_target": "meeting-level trust", "input": ["synthetic excerpt"], "transformation": "classification", "validation": None, "replication_record": {}}
-audit = audit_project_claim(partial)
-assert audit["missing"] == ["validation", "replication_record"]
-assert "validation" in audit["revision"]
-complete = {**partial, "validation": {"human_reference": True}, "replication_record": {"model": "m1"}}
-assert audit_project_claim(complete)["missing"] == []''',
-        "example": '''project = {"claim": "The model measures trust", "inferential_target": "meeting-level trust", "input": ["synthetic excerpt"], "transformation": "classification", "validation": None, "replication_record": {}}
-print(audit_project_claim(project))''',
-        "plain": ["`required` is a visible checklist, not a hidden grading rule.", "The list comprehension flags absent keys and empty values while retaining their declared order.", "The conditional changes the revision advice depending on whether evidence is missing.", "The output does not approve the claim; it tells the researcher what must be bounded or supplied."],
     },
 ]
 
@@ -983,9 +947,11 @@ def {session['function']}({session['signature']}):
 '''
 
 
-def build() -> None:
+def build(selected_sessions: set[int]) -> None:
     for session in SESSIONS:
         n = session["n"]
+        if n not in selected_sessions:
+            continue
         sid = f"session{n:02d}"
         write(ROOT / "syllabus" / f"{sid}.md", syllabus(session))
         write(ROOT / "readings" / f"{sid}_reading_guide.md", reading_guide(session))
@@ -998,8 +964,25 @@ def build() -> None:
         notebook_path.write_text(json.dumps(make_notebook(session), indent=1) + "\n", encoding="utf-8")
         write(ROOT / "slides" / sid / f"{sid}.qmd", deck(session))
 
-    print(f"Built {len(SESSIONS)} non-pilot sessions.")
+    print(f"Scaffolded sessions: {', '.join(str(n) for n in sorted(selected_sessions))}.")
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--session",
+        type=int,
+        choices=range(1, 15),
+        action="append",
+        required=True,
+        help="Session number to scaffold; repeat for multiple sessions.",
+    )
+    parser.add_argument(
+        "--confirm-overwrite-scaffold",
+        action="store_true",
+        help="Required acknowledgment that selected source artifacts will be overwritten.",
+    )
+    args = parser.parse_args()
+    if not args.confirm_overwrite_scaffold:
+        parser.error("Refusing to overwrite reviewed work without --confirm-overwrite-scaffold")
+    build(set(args.session))

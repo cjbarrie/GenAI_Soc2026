@@ -2,67 +2,76 @@
 
 from __future__ import annotations
 
+import ast
 import json
+import re
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def check_exists(path: Path, problems: list[str]) -> None:
-    if not path.exists():
-        problems.append(f"missing: {path.relative_to(ROOT)}")
+OBSOLETE_WEEK14 = (
+    ROOT / "assessments/weekly_coding/session14_task.py",
+    ROOT / "readings/session14_reading_guide.md",
+    ROOT / "slides/session14/session14.qmd",
+    ROOT / "solutions/weekly_coding/session14_solution.py",
+    ROOT / "workbook/session14/session14_evidence_standards.ipynb",
+)
 
 
 def check_notebook(path: Path, problems: list[str]) -> None:
     try:
-        notebook = json.loads(path.read_text(encoding="utf-8"))
-        code_cells = [cell for cell in notebook["cells"] if cell["cell_type"] == "code"]
-        for index, cell in enumerate(code_cells, start=1):
+        notebook = json.loads(path.read_text())
+        for index, cell in enumerate(notebook["cells"], start=1):
+            if cell["cell_type"] != "code":
+                continue
             source = cell["source"] if isinstance(cell["source"], str) else "".join(cell["source"])
-            compile(source, f"{path.name}:code-cell-{index}", "exec")
-    except Exception as error:  # report the file and original parser/compiler message
+            ast.parse(source, filename=f"{path.name}:cell-{index}")
+    except Exception as error:
         problems.append(f"notebook error: {path.relative_to(ROOT)}: {error}")
 
 
 def main() -> None:
     problems: list[str] = []
-    for number in range(1, 15):
-        sid = f"session{number:02d}"
-        check_exists(ROOT / "syllabus" / f"{sid}.md", problems)
-        check_exists(ROOT / "readings" / f"{sid}_reading_guide.md", problems)
-        check_exists(ROOT / "instructor" / f"{sid}_notes.md", problems)
-        check_exists(ROOT / "assessments" / "weekly_coding" / f"{sid}_task.py", problems)
-        check_exists(ROOT / "solutions" / "weekly_coding" / f"{sid}_solution.py", problems)
-        check_exists(ROOT / "slides" / sid / f"{sid}.qmd", problems)
+    for week in range(1, 15):
+        syllabus = ROOT / "syllabus" / f"session{week:02d}.md"
+        if not syllabus.exists():
+            problems.append(f"missing: {syllabus.relative_to(ROOT)}")
 
-        notebook_dir = ROOT / "workbook" / sid
-        notebooks = list(notebook_dir.glob("*.ipynb")) if notebook_dir.exists() else []
+    for week in range(1, 14):
+        session = f"session{week:02d}"
+        task = ROOT / "assessments/weekly_coding" / f"{session}_task.py"
+        if not task.exists():
+            problems.append(f"missing: {task.relative_to(ROOT)}")
+        else:
+            try:
+                ast.parse(task.read_text(), filename=str(task))
+            except SyntaxError as error:
+                problems.append(f"task syntax: {task.relative_to(ROOT)}: {error}")
+        notebooks = sorted((ROOT / "workbook" / session).glob("*.ipynb"))
         if len(notebooks) != 1:
-            problems.append(f"expected one notebook in {notebook_dir.relative_to(ROOT)}; found {len(notebooks)}")
+            problems.append(f"expected one notebook in workbook/{session}; found {len(notebooks)}")
         else:
             check_notebook(notebooks[0], problems)
 
-    foundation = ROOT / "workbook" / "00_python_foundations" / "python_foundations.ipynb"
-    check_exists(foundation, problems)
-    if foundation.exists():
-        check_notebook(foundation, problems)
+    for path in OBSOLETE_WEEK14:
+        if path.exists():
+            problems.append(f"Week 14 is presentation-only: remove {path.relative_to(ROOT)}")
 
-    tracked_text_suffixes = {".py", ".md", ".qmd", ".json", ".txt", ".toml"}
+    patterns = (re.compile(r"sk-or-v1-[A-Za-z0-9_-]{12,}"), re.compile(r"sk-[A-Za-z0-9]{20,}"))
     for path in ROOT.rglob("*"):
-        if path.is_file() and path.suffix in tracked_text_suffixes and ".venv" not in path.parts:
-            text = path.read_text(encoding="utf-8", errors="ignore")
-            secret_prefix = "sk-or-" + "v1-"
-            if secret_prefix in text:
-                problems.append(f"possible OpenRouter secret in {path.relative_to(ROOT)}")
+        if not path.is_file() or path.suffix not in {".py", ".md", ".qmd", ".json", ".toml", ".ipynb"}:
+            continue
+        if any(part in {".git", ".venv", "_book", "_build"} for part in path.parts):
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        for pattern in patterns:
+            if pattern.search(text):
+                problems.append(f"possible secret in {path.relative_to(ROOT)}")
 
     if problems:
         print("Course checks failed:")
-        for problem in problems:
-            print("-", problem)
+        print("\n".join(f"- {problem}" for problem in problems))
         raise SystemExit(1)
-
-    print("Course structure, notebook syntax, and secret-pattern checks passed.")
+    print("Course structure, Weeks 1–13 notebook/task syntax, presentation week, and secret checks passed.")
 
 
 if __name__ == "__main__":

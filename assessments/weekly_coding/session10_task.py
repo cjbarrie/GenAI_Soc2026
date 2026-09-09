@@ -1,37 +1,91 @@
-"""Session 10 completion task — Summarize repeated group outcomes and flag a contamination probe that matches the target answer.
+"""Assessed dual-route routine. Run from the repository root."""
 
-Complete means: predict → implement → run checks → interpret → connect to a reading.
-This receives a completion mark, not a code-polish score.
-"""
+# CELL: Load the course settings and SDKs
+import json
+import os
+from getpass import getpass
+from pathlib import Path
 
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
-def compare_interaction_runs(runs, target_answer):
-    """Return structure means, run counts, and IDs whose probe answer already equals the target."""
-    # TODO: replace the next line with your small, explicit solution.
-    raise NotImplementedError("Complete compare_interaction_runs")
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
 
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-# Before coding, explain the intended algorithm aloud:
-# 1. The first dictionary groups outcomes by interaction structure.
-# 2. The same loop performs a separate contamination check; it does not remove cases silently.
-# 3. The second loop summarizes repeated runs rather than selecting the most impressive trajectory.
-# 4. The function returns performance and probe evidence separately so the researcher must interpret both.
+# CELL: Choose a route and define the action schema
+ROUTE = "ollama"
+action_schema = {
+    "type":"object","properties":{"action":{"type":"string"}},
+    "required":["action"],"additionalProperties":False,
+}
 
+# CELL: Define one actor update function
+def choose_action(actor, observation, route):
+    messages = [{"role":"user","content":(
+        "Choose JOIN or STAY_OUT for this simulated actor. Actor: " + json.dumps(actor) +
+        " Observation: " + observation + " Return JSON."
+    )}]
+    if route == "openrouter":
+        with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+            response = client.chat.send(
+                model=HOSTED_MODEL,messages=messages,temperature=0,
+                response_format={"type":"json_schema","json_schema":{
+                    "name":"join_action","strict":True,"schema":action_schema,
+                }},
+            )
+        raw_output = response.choices[0].message.content
+    else:
+        response = ollama.chat(think=False, model=LOCAL_MODEL,messages=messages,format=action_schema,options={"temperature":0})
+        raw_output = response.message.content
+    return json.loads(raw_output)["action"]
 
-def run_checks():
-    runs = [{"id": 1, "structure": "debate", "outcome": 8, "probe_answer": "unknown"}, {"id": 2, "structure": "debate", "outcome": 10, "probe_answer": "42"}, {"id": 3, "structure": "solo", "outcome": 6, "probe_answer": "unknown"}]
-    summary, contaminated = compare_interaction_runs(runs, "42")
-    assert summary["debate"] == {"n": 2, "mean": 9}
-    assert summary["solo"]["mean"] == 6
-    assert contaminated == [2]
+# CELL: Store three actors and two conditions
+actors = [
+    {"id":"a","initial_support":"low"},
+    {"id":"b","initial_support":"medium"},
+    {"id":"c","initial_support":"high"},
+]
+conditions = ["baseline", "interaction"]
+all_runs = []
 
+# CELL: Repeat each condition three times
+for condition in conditions:
+    for run_number in range(3):
+        actions = []
+        previous_action = "No prior action is visible."
+        for actor in actors:
+            if condition == "baseline":
+                observation = "No other actor's action is visible."
+            else:
+                observation = "The preceding actor chose: " + previous_action
+            action = choose_action(actor, observation, ROUTE)
+            actions.append(action)
+            previous_action = action
+        all_runs.append({"condition":condition,"run":run_number,"actions":actions})
+        print(condition, run_number, actions)
 
-# OPTIONAL EXTENSION (not required for completion):
-# Add one small synthetic case designed to trigger the characteristic failure.
-# Predict the result before running it, then explain whether the existing output
-# makes that failure visible or whether the research record needs another field.
+# CELL: Compare convergence without selecting one favorite run
+for record in all_runs:
+    all_same = len(set(record["actions"])) == 1
+    print(record["condition"], record["run"], "all same:", all_same)
 
-
-if __name__ == "__main__":
-    run_checks()
-    print("All checks passed. Now interpret one success or failure.")
+# ONE CHANGE: reverse the actor order and rerun all conditions.

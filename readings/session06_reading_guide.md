@@ -1,21 +1,21 @@
-# Session 6 reading guide — Conversational and personalized treatments
+# Session 6 reading guide — AI-assisted and AI-led interviewing
 
-## The disagreement to carry into class
+## One question links the readings
 
-Persuasion studies isolate model and dialogue levers; relational studies show that disclosure and perceived authorship can change the treatment itself.
+What is the interview meant to produce, and what does the interviewer have to do for that evidence to be useful?
 
-Do not summarize the papers serially. Compare the inferential target, the role assigned to an LLM, the human/reference evidence, and the failure mode each design can or cannot reveal.
-
-| Reading | Ask while reading | Bring to the code |
+| Reading | Read for | Bring to class |
 |---|---|---|
-| [Hackenburg et al. (2025), levers of conversational persuasion](https://doi.org/10.1126/science.aea3884) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Lin et al. (2025), human–AI voter dialogues](https://doi.org/10.1038/s41586-025-09771-9) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Yin, Jia & Wakslak (2024), AI and feeling heard](https://doi.org/10.1073/pnas.2319112121) | What inference does the paper seek? | What evidence could disconfirm it? |
+| [Merton & Kendall (1946)](https://doi.org/10.1086/219886), complete article | specificity, range, depth and non-direction | one useful probe and one risk created by probing |
+| [Geiecke & Jaravel (2026)](https://benjamin.geiecke.com/files/ai_interviews.pdf), complete paper | how protocol, history and model produce the next question | one strength and one claim the evaluation does not settle |
+| [Rivera (2012)](https://doi.org/10.1177/0003122412463213), complete article | how interviews and observation reveal cultural matching in elite hiring | one place where a follow-up question is necessary to connect an evaluative judgment to concrete evidence |
 
 ## Before class
 
-Bring one passage that supports the strongest claim you think is warranted and one passage that makes you qualify it. Complete this sentence: **The output is useful for ___, but it would be invalid evidence for ___ unless ___.**
+Using Rivera, identify one claim about cultural fit, the evidence used to support it and one follow-up question that could have elicited more specific evidence without telling the participant what answer to give.
 
 ## Reading → code
 
-The workbook implements `summarize_exposure`. Its input is small enough to inspect manually. Predict the output, then decide which claim from the readings the check clarifies—and which larger claim it cannot settle.
+The worked example asks a hiring evaluator to explain a judgment about an applicant. The conversation list keeps each turn in order. Decide whether the generated probe asks for a concrete episode, repeats the answer, presupposes a cause or imports a criterion the evaluator did not mention.
+
+Jack, Cooper and Flower (2026) remains an additional contemporary qualitative-interview case.

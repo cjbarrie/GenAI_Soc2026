@@ -28,7 +28,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 1 — What kind of research technology is an LLM?
 
-**Anchor:** §§10.1 and 10.9.
+**Anchor:** Introduction and §10.7 (PDF pp. 1–2 and 34–35).
 
 **Required**
 
@@ -41,7 +41,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 2 — What can an LLM output validly measure?
 
-**Anchor:** §10.2, especially §§10.2.3–10.2.5.
+**Anchor:** §10.1, especially §§10.1.3–10.1.5.
 
 **Required**
 
@@ -54,7 +54,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 3 — What does interpretation mean when an LLM assists qualitative research?
 
-**Anchor:** §§10.2.4–10.2.5.
+**Anchor:** §§10.1.4–10.1.5.
 
 **Required**
 
@@ -68,7 +68,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 4 — What counts as evidence across text, image, and audio?
 
-**Anchor:** §10.2 and the multimodal discussion in §10.7.
+**Anchor:** §§10.1.1 and 10.1.5.
 
 **Required**
 
@@ -82,7 +82,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 5 — Can generated media isolate a causal construct?
 
-**Anchor:** §10.3, especially §§10.3.3–10.3.5.
+**Anchor:** §10.2, especially §§10.2.3–10.2.5.
 
 **Required**
 
@@ -96,7 +96,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 6 — What changes when the model becomes an interactant?
 
-**Anchor:** §§10.3.4.2 and 10.3.5.
+**Anchor:** Selected §§10.2 and 10.5.
 
 **Required**
 
@@ -110,7 +110,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 7 — Whose attitudes and experiences do synthetic populations represent?
 
-**Anchor:** §10.4.
+**Anchor:** §10.3.
 
 **Required**
 
@@ -124,7 +124,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 8 — Can LLMs recover missing or unobserved social worlds?
 
-**Anchor:** §§10.4.4–10.4.5 and §10.9.
+**Anchor:** §§10.3.4–10.3.6 and §10.7.
 
 **Required**
 
@@ -138,7 +138,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 9 — How can micro-level interactions generate macro-level order?
 
-**Anchor:** §§10.5.1–10.5.3.
+**Anchor:** §§10.4.1–10.4.3.
 
 **Required**
 
@@ -152,7 +152,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 10 — When can agent diversity and debate produce collective intelligence?
 
-**Anchor:** §§10.5.4–10.5.5.
+**Anchor:** §§10.4.4–10.4.5.
 
 **Required**
 
@@ -166,7 +166,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 11 — Who—or what—produces research data in an agentic workflow?
 
-**Anchor:** §10.6.
+**Anchor:** §10.5.
 
 **Required**
 
@@ -179,7 +179,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 12 — What can we reproduce, and what remains opaque?
 
-**Anchor:** §10.8. This is a lower-stakes, attendance-flexible studio.
+**Anchor:** §10.7. This is a lower-stakes, attendance-flexible studio.
 
 **Required resource rather than a normal reading load**
 
@@ -190,7 +190,7 @@ The computational link states what students should be able to inspect or reprodu
 
 ### Session 13 — What culture, ideology, and hierarchy are encoded in models?
 
-**Anchor:** §10.7, especially §§10.7.4–10.7.7.
+**Anchor:** §10.6, especially §§10.6.1–10.6.4.
 
 **Required**
 
@@ -202,13 +202,9 @@ The computational link states what students should be able to inspect or reprodu
 
 **Computational link:** preregister a small factorial audit across model, language, user frame, and prompt paraphrase; separate an output difference from a claim about its social cause.
 
-### Session 14 — What standards of evidence should govern LLM-assisted sociology?
+### Session 14 — Project presentations
 
-**Anchor:** §10.9 and selected passages revisited from §§10.2.5–10.8.
-
-**Required:** no new paper. Each student returns with one earlier empirical claim, the validation evidence it used, the evidence it omitted, and a revised inference statement.
-
-**Computational link:** project symposium and synthesis using a common “claim → target → evidence → failure mode → replication record” template.
+No new reading or computational material is assigned. The meeting is reserved for student presentations and questions.
 
 ## Audit of 2025 required and recommended readings
 

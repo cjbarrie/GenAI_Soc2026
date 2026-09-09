@@ -1,21 +1,61 @@
-# Session 3 reading guide — Qualitative analysis
+# Session 3 reading guide — LLMs and qualitative analysis
 
-## The disagreement to carry into class
+## Start with the human method
 
-Workflow accounts emphasize assisted coding; reflexive and critical accounts disagree about whether ambiguity is a defect, a resource, or evidence of epistemic limits.
+Before asking what an LLM can do, we need an account of what qualitative researchers are already doing. The relevant process is iterative:
 
-Do not summarize the papers serially. Compare the inferential target, the role assigned to an LLM, the human/reference evidence, and the failure mode each design can or cannot reveal.
+`familiarization → initial coding → focused coding → comparison → memoing → theme or category development → return to the corpus`
 
-| Reading | Ask while reading | Bring to the code |
+The arrows run in both directions. Researchers revise codes, reread earlier cases, seek cases that do not fit, and move between empirical material and theoretical ideas.
+
+## Required readings
+
+| Reading | What to look for | Question to bring to class |
 |---|---|---|
-| [Than et al. (2025), qualitative coding with generative LLMs](https://doi.org/10.1177/00491241251339188) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Ibrahim & Voyer (2026), technological reflexivity](https://doi.org/10.1177/14687941251390794) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Nguyen & Welch (2026), analyzing—or just chatting?](https://doi.org/10.1177/10944281251377154) | What inference does the paper seek? | What evidence could disconfirm it? |
+| [Timmermans & Tavory (2012), “Theory Construction in Qualitative Research”](https://doi.org/10.1177/0735275112457914), complete article | How an unexpected observation becomes evidence through comparison with alternative theoretical accounts. | What makes an interpretation abductive rather than merely descriptive? |
+| [Than et al. (2025)](https://doi.org/10.1177/00491241251339188), complete article | A bounded researcher–LLM–researcher workflow applied to more than 1,200 newsweekly articles. | Which task is delegated, and which decisions still belong to researchers? |
+| [Viterna (2006), “Pulled, Pushed, and Persuaded”](https://doi.org/10.1086/502690), complete article | How life histories, event sequences and comparison among pathways produce an explanation of high-risk mobilization. | What would disappear if these accounts were reduced to a list of common themes? |
+
+## Four parts of the work
+
+1. **Retrieval:** locate passages relevant to a question.
+2. **Coding:** attach a descriptive or analytic label to particular material.
+3. **Theming:** develop a patterned relationship across codes and cases.
+4. **Interpretation:** explain what that pattern means in context and why it is preferable to alternatives.
+
+A theme is not simply a frequently mentioned topic. It is a claim about a pattern that matters for the research question and survives comparison with context, variation, and counterexamples.
 
 ## Before class
 
-Bring one passage that supports the strongest claim you think is warranted and one passage that makes you qualify it. Complete this sentence: **The output is useful for ___, but it would be invalid evidence for ___ unless ___.**
+Bring:
 
-## Reading → code
+1. one piece of Viterna's evidence that helps distinguish two mobilization pathways;
+2. one surprising observation that could motivate an abductive explanation;
+3. one reason a model-generated theme might look convincing too early; and
+4. one part of this analytic process that would be difficult to preserve across separate LLM calls.
 
-The workbook implements `link_themes_to_evidence`. Its input is small enough to inspect manually. Predict the output, then decide which claim from the readings the check clarifies—and which larger claim it cannot settle.
+Complete this sentence:
+
+> An LLM may help with ___, but the qualitative analysis still depends on the researcher repeatedly ___ .
+
+## How the reading connects to the code
+
+The workbook represents a deliberately simplified version of the human process:
+
+- dictionaries keep passages with IDs and context;
+- a list keeps the small corpus together;
+- a lookup lets us return to cited passages;
+- separate lists preserve supporting and counterexample cases;
+- a claim record preserves context, an alternative interpretation, a decision, and a memo.
+
+`trace_sources(...)` checks whether cited records exist. `check_review_readiness(...)` checks whether the researcher's review has been recorded. Neither function performs thematic analysis or returns `valid_theme = True`.
+
+## Papers used in class
+
+- [Nguyen & Welch (2026)](https://doi.org/10.1177/10944281251377154) — why fluent organization and coding should not be mistaken for interpretation and theorization.
+- [Braun & Clarke (2006)](https://doi.org/10.1191/1478088706qp063oa) and [Charmaz (2024)](https://us.sagepub.com/en-us/nam/constructing-grounded-theory/book255601) — foundational accounts of theme development and constructivist grounded-theory practice.
+- [Ibrahim & Voyer (2026)](https://doi.org/10.1177/14687941251390794) — why the researcher's interaction with a chatbot belongs in the methodological account.
+
+## One aside for a later week
+
+[Jack, Cooper, and Flower (2026)](https://doi.org/10.1177/20597991261448157) study AI-moderated interviews. We mention it only to note that an interviewer can shape the material subsequently analyzed. The design and evaluation of AI interviewing belongs to the later conversational-methods session.

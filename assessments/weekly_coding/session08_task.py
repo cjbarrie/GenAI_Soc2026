@@ -1,37 +1,117 @@
-"""Session 8 completion task — Calculate three target-specific errors from matched human and synthetic records.
+"""Assessed dual-route routine. Run from the repository root."""
 
-Complete means: predict → implement → run checks → interpret → connect to a reading.
-This receives a completion mark, not a code-polish score.
-"""
+# CELL: Load the course settings and SDKs
+import json
+import os
+from getpass import getpass
+from pathlib import Path
 
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
-def score_inferential_targets(records):
-    """Return individual MAE, aggregate mean error, and absolute error in the A–B group gap."""
-    # TODO: replace the next line with your small, explicit solution.
-    raise NotImplementedError("Complete score_inferential_targets")
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
 
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-# Before coding, explain the intended algorithm aloud:
-# 1. The first list contains one absolute individual error per matched record.
-# 2. Two means are computed across the whole dataset for the aggregate target.
-# 3. The nested loops compute separate source-by-group means before constructing each group gap.
-# 4. The returned dictionary prevents one score from silently standing in for all inferential targets.
+# CELL: Store five deidentified teaching profiles and held-out answers
+profiles = [
+    {"id":"p01","age_group":"18–29","education":"some college","region":"Northeast","party":"Democrat","human_answer":2},
+    {"id":"p02","age_group":"30–44","education":"bachelor's","region":"South","party":"Independent","human_answer":4},
+    {"id":"p03","age_group":"45–64","education":"high school","region":"Midwest","party":"Republican","human_answer":6},
+    {"id":"p04","age_group":"65+","education":"graduate","region":"West","party":"Democrat","human_answer":3},
+    {"id":"p05","age_group":"30–44","education":"high school","region":"South","party":"Republican","human_answer":6},
+]
+question = "Place yourself from 1 (very liberal) to 7 (very conservative)."
+schema = {
+    "type":"object",
+    "properties":{"predicted_category":{"type":"integer","minimum":1,"maximum":7}},
+    "required":["predicted_category"],"additionalProperties":False,
+}
+print("Profiles:", len(profiles))
 
+# CELL: Start two empty result lists
+hosted_results = []
+local_results = []
+print(hosted_results)
+print(local_results)
 
-def run_checks():
-    records = [{"group": "A", "human": 5, "synthetic": 3}, {"group": "A", "human": 1, "synthetic": 3}, {"group": "B", "human": 2, "synthetic": 2}, {"group": "B", "human": 2, "synthetic": 2}]
-    scores = score_inferential_targets(records)
-    assert scores["individual_mae"] == 1
-    assert scores["aggregate_error"] == 0
-    assert scores["group_gap_error"] == 0
+# CELL: Loop through the profiles and call both routes
+for profile in profiles:
+    # Build the model input explicitly. The held-out answer is not included.
+    public_profile = {
+        "age_group": profile["age_group"],
+        "education": profile["education"],
+        "region": profile["region"],
+        "party": profile["party"],
+    }
+    prompt = "Predict the survey answer. Profile: " + json.dumps(public_profile) + " Item: " + question
+    messages = [{"role":"user","content":prompt}]
 
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        hosted_response = client.chat.send(
+            model=HOSTED_MODEL, messages=messages, temperature=0,
+            response_format={"type":"json_schema","json_schema":{
+                "name":"opinion_prediction","strict":True,"schema":schema,
+            }},
+        )
+    hosted_raw = hosted_response.choices[0].message.content
+    hosted_prediction = json.loads(hosted_raw)["predicted_category"]
+    hosted_results.append({"id":profile["id"],"prediction":hosted_prediction,"human":profile["human_answer"]})
 
-# OPTIONAL EXTENSION (not required for completion):
-# Add one small synthetic case designed to trigger the characteristic failure.
-# Predict the result before running it, then explain whether the existing output
-# makes that failure visible or whether the research record needs another field.
+    local_response = ollama.chat(think=False,
+        model=LOCAL_MODEL, messages=messages, format=schema,
+        options={"temperature":0},
+    )
+    local_raw = local_response.message.content
+    local_prediction = json.loads(local_raw)["predicted_category"]
+    local_results.append({"id":profile["id"],"prediction":local_prediction,"human":profile["human_answer"]})
 
+    print(profile["id"], "hosted raw:", hosted_raw, "local raw:", local_raw)
 
-if __name__ == "__main__":
-    run_checks()
-    print("All checks passed. Now interpret one success or failure.")
+# CELL: Calculate individual exact matches separately
+hosted_matches = 0
+local_matches = 0
+for record in hosted_results:
+    if record["prediction"] == record["human"]:
+        hosted_matches = hosted_matches + 1
+for record in local_results:
+    if record["prediction"] == record["human"]:
+        local_matches = local_matches + 1
+print("Hosted exact matches:", hosted_matches, "of", len(profiles))
+print("Local exact matches:", local_matches, "of", len(profiles))
+
+# CELL: Compare one aggregate quantity without confusing it with individual accuracy
+human_total = 0
+hosted_total = 0
+local_total = 0
+for record in hosted_results:
+    human_total = human_total + record["human"]
+    hosted_total = hosted_total + record["prediction"]
+for record in local_results:
+    local_total = local_total + record["prediction"]
+human_mean = human_total / len(profiles)
+hosted_mean = hosted_total / len(profiles)
+local_mean = local_total / len(profiles)
+print("Human mean:", human_mean)
+print("Hosted mean:", hosted_mean)
+print("Local mean:", local_mean)
+
+# ONE CHANGE: change p02 education to "high school" and rerun the full loop.

@@ -6,11 +6,10 @@
   },
   "local": {
     "runtime": "Ollama",
-    "model": "gemma4",
+    "model": "gemma4:e2b-it-qat",
     "environment_variable": "COURSE_LOCAL_MODEL",
     "base_url": "http://localhost:11434/api"
   },
-  "checked": "2026-08-18",
-  "note": "Names are defaults for demonstrations, never scientific constants. Record the resolved identifier on every live run."
+  "checked": "2026-08-27",
+  "note": "Freeze and retest these teaching defaults two weeks before term. Record the requested and resolved identifiers on every live run."
 }
-

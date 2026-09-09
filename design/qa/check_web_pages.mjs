@@ -1,7 +1,16 @@
-import { chromium } from "/Users/christopherbarrie/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+
+let playwright;
+try {
+  playwright = await import("playwright");
+} catch (error) {
+  const moduleRoot = process.env.CODEX_NODE_MODULES;
+  if (!moduleRoot) throw error;
+  playwright = await import(pathToFileURL(path.join(moduleRoot, "playwright", "index.mjs")).href);
+}
+const { chromium } = playwright;
 
 const [reportPath, ...htmlPaths] = process.argv.slice(2);
 if (!reportPath || htmlPaths.length === 0) {

@@ -1,45 +1,41 @@
-# Instructor notes — Session 3: Qualitative analysis
+# Session 3 teaching notes
 
-## Intended endpoint
+## What students should understand
 
-Students should leave able to defend this bounded claim: **A theme is auditable only when it remains linked to source evidence and an interpretive decision.** They should also explain `link_themes_to_evidence` line by line without live AI assistance.
+- Qualitative coding organizes and compares material; interpretation requires a defensible account of meaning or process.
+- Index coding and analytic coding do different jobs.
+- Surprise, countercases, chronology and alternative explanations can change an earlier interpretation.
+- A large context window does not ensure equal attention to every passage, and separate calls have no durable memory unless an application stores and retrieves earlier material.
+- An LLM can propose a pattern or apply a defined code, but the researcher must trace sources, restore context, compare cases and decide what the evidence supports.
+- A source check establishes that a citation exists; it does not establish the interpretation.
+- The interaction with the model belongs in the research record because it can redirect the researcher's attention.
 
-## 165-minute plan
+## Pacing
 
-- **9:30–9:42 — retrieval and course map:** locate the session in **Observe**; restate last week's validation habit.
-- **9:42–10:15 — reading disagreement:** compare inferential targets rather than collecting findings.
-- **10:15–10:38 — study anatomy:** input, transformation, evidence, failure mode, claim.
-- **10:38–10:48 — break.**
-- **10:48–11:00 — code block 1:** inspect inputs and types; students predict before execution.
-- **11:00–11:12 — code block 2:** trace initialization and the first loop/decision.
-- **11:12–11:20 — code block 3:** print output; connect each field to research meaning.
-- **11:20–11:45 — paired completion task:** driver reads; navigator explains every line and predicts each check; swap roles halfway.
-- **11:45–12:05 — validation diagnostic:** interpret a failure as a case, not merely a failed assertion.
-- **12:05–12:15 — exit record:** claim, evidence, uncertainty, next skill.
+- 9:30–10:10: study, research question and pre-LLM qualitative analysis.
+- 10:10–10:30: context windows, memory and the bounded model request.
+- 10:30–10:50: Mehta, Than and the source-checking problem.
+- 10:50–11:05: countercases, chronology and revised interpretation.
+- 11:05–11:20: Ibrahim and Voyer; interaction record; unsettled standards.
+- 11:20–11:30: break.
+- 11:30–12:10: one continuous Python walkthrough.
+- 12:10–12:15: return to the opening claim and explain why it changed.
 
-No instructor coding segment exceeds twelve minutes.
+## Oral-assessment prompts during the code walkthrough
 
-## Required code language
+For any block, ask a student to state:
 
-Before typing, say: **input value and type → operation → output value and type → research meaning**. Avoid “this just processes the data.” Ask students to name exactly what changes and what stays unchanged.
+1. What value goes in?
+2. What Python type stores it?
+3. What operation occurs?
+4. What value comes out?
+5. What does that output establish for the research?
+6. What does it leave unresolved?
 
-- The first dictionary comprehension builds a lookup: excerpt ID → full source text.
-- The loop considers one proposed interpretation at a time.
-- The `if` branch rejects missing excerpts, empty quotations, and quotations not found verbatim in the source.
-- The output separates auditable proposals from records that require human review.
+## Presentation cautions
 
-## Likely sticking points
-
-- Brackets: pause and distinguish list position `items[0]` from dictionary key `record["field"]`.
-- Assignment: `=` gives a name to a value; `==` asks whether two values are equal.
-- Loops: trace the first iteration with actual values before describing the general pattern.
-- Functions: arguments enter; local variables change; `return` produces the output.
-- Validation: a passing software check confirms the coded expectation, not the sociological claim.
-
-## Completion standard
-
-Prediction; functioning small algorithm; passing checks plus one interpreted disagreement/failure; 100–150 word connection to a required reading. Syntax elegance is irrelevant.
-
-## Contingency
-
-If environment setup fails, pair students around the rendered notebook and have them trace the provided output. Hardware or API access must not determine completion.
+- Do not reintroduce generic course maps.
+- Do not turn the literature slides into summaries of unrelated papers; each paper changes how we evaluate the same worked example.
+- Do not describe the source-check function as validating a theme.
+- Do not let the Python section become a second lecture. Keep returning to the tenant excerpts and research question.
+- If a live API call fails, load a cached response with the same fields and explain that the access route changed, not the analytic task.

@@ -3,7 +3,7 @@
 **Date:** Wednesday, November 25, 2026 · 9:30 a.m.–12:15 p.m.  
 **Course movement:** Delegate and audit  
 **Methodological domain:** Low-stakes replication and project studio  
-**Chapter anchor:** *AI and Research Methods*, §10.8
+**Chapter anchor:** *AI and Research Methods*, §10.7
 
 ## Substantive question
 
@@ -16,7 +16,7 @@ By the end, students should be able to:
 1. state the inferential target: compare two replication records and classify the visible sources of dependence.
 2. explain the reading disagreement in their own words;
 3. identify the Python type of every major input and output in the worked trace;
-4. explain each line or small block of `compare_replication_records`;
+4. compare two saved trajectory dictionaries field by field;
 5. use the validation diagnostic to bound a sociological claim.
 
 ## Required readings
@@ -30,11 +30,11 @@ A discrepancy is useful evidence when the changed configuration fields are isola
 
 ## Computational trace
 
-Students move from visible synthetic inputs through `compare_replication_records` to a printed output and explicit checks. The required task uses no live API. Every code block is read as **input → Python type → operation → output → research meaning**.
+Planned: students load the Week 11 trajectory, rerun the same question with at most three calls, save every event and compare route, model, prompt, parameters, tool results and final claim.
 
 ## Weekly completion task
 
-Produce a discrepancy report from cached and rerun configurations. Submit a prediction, working code, interpreted check, and 100–150 word reading-linked claim. Completion marks only; missing elements may be supplied within one week.
+Planned: submit a narrated screen recording explaining which inputs were held fixed, which fields changed and what the discrepancy can establish. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class. This remains a low-stakes holiday-week task.
 
 ## Validation focus
 

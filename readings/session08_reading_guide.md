@@ -1,21 +1,26 @@
-# Session 8 reading guide — Opinion prediction, validation, and limits
+# Session 8 reading guide — Predicting what was not observed
 
-## The disagreement to carry into class
+## One comparison links the readings
 
-AI-augmented surveys seek unasked opinions; population realism and experiment forecasting show that success on one statistical target need not transfer to another.
+All three readings estimate something that was not observed directly, but they do not use the same evidence or target the same quantity. Read each complete article and keep the unit of inference visible.
 
-Do not summarize the papers serially. Compare the inferential target, the role assigned to an LLM, the human/reference evidence, and the failure mode each design can or cannot reveal.
-
-| Reading | Ask while reading | Bring to the code |
+| Reading | Methodological role | Question to bring to class |
 |---|---|---|
-| [Kim & Lee (2026), AI-augmented surveys](https://arxiv.org/abs/2305.09620) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Xie et al. (2026), statistical realism](https://doi.org/10.1073/pnas.2538145123) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Ashokkumar et al. (2026), predicting experiment results](https://doi.org/10.1038/s41586-026-10742-x) | What inference does the paper seek? | What evidence could disconfirm it? |
+| [Kim & Lee (2026), “AI-Augmented Surveys”](https://arxiv.org/abs/2305.09620) | Predicts unasked items for observed respondents using their other answers. | What information about a real respondent is available to the model, and what is held out for validation? |
+| [Xie et al. (2026), “Evaluating the Statistical Realism of LLM-Generated Social Science Data”](https://doi.org/10.1073/pnas.2538145123) | Tests whether synthetic data preserve more than a selected marginal statistic. | Which relationships among variables fail even when one aggregate looks plausible? |
+| [Lax & Phillips (2009), “Gay Rights in the States”](https://doi.org/10.1017/S0003055409990050) | Applies multilevel regression and poststratification to state opinion and studies policy responsiveness on gay rights. | Which parts of the substantive conclusion depend on estimated opinion rather than a direct state survey? |
 
 ## Before class
 
-Bring one passage that supports the strongest claim you think is warranted and one passage that makes you qualify it. Complete this sentence: **The output is useful for ___, but it would be invalid evidence for ___ unless ___.**
+For each article, write down:
+
+1. what is observed;
+2. what is predicted;
+3. the unit for which the prediction is evaluated; and
+4. the human or population data used as the comparison.
 
 ## Reading → code
 
-The workbook implements `score_inferential_targets`. Its input is small enough to inspect manually. Predict the output, then decide which claim from the readings the check clarifies—and which larger claim it cannot settle.
+The workbook repeats a structured prediction across five held-out survey cases. It then calculates individual accuracy and aggregate distribution error separately. Trace one profile through the loop and explain why a good aggregate result can coexist with wrong individual answers.
+
+Ashokkumar et al. (2026) is an additional comparison about forecasting experimental results. It targets a different object and will not be treated as evidence that synthetic respondents recover individuals.

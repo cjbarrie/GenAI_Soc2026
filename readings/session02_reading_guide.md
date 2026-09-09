@@ -1,56 +1,71 @@
-# Session 2 Reading Guide — Labels Are Measurements Only After Validation
+# Session 2 reading guide — A label is not yet a measure
 
-## Read for a disagreement
+## Read the papers as a sequence
 
-All three readings agree that LLMs make text coding more accessible. They place the methodological burden in different places:
+The readings add four separate requirements to the same research workflow:
 
-- The chapter begins with the **inferential target**: what variable is being constructed, for what downstream use, and against what evidence should it be validated?
-- Stuhler, Dang Ton, and Ollion show how sociologists can turn codebooks into inspectable **promptbooks**, but their obituary study also reveals task- and subgroup-patterned error.
-- Chae and Davidson compare zero-shot, few-shot, fine-tuned, and instruction-tuned classification. Their comparison makes model scale only one choice among several; accuracy must be considered alongside training data, task complexity, and cost.
+1. **The chapter:** begin with the inferential target and preserve the complete measurement record.
+2. **Stuhler, Dang Ton, and Ollion:** make the coding rules and output requirements explicit in a promptbook.
+3. **Barrie, Palaiologou, and Törnberg:** test whether repeated or equivalent prompts produce a stable variable.
+4. **Egami, Hinck, Stewart, and Wei:** determine whether the remaining annotation errors compromise the estimate made with those labels.
 
-The shared lesson is not “LLMs can code text.” It is that a label becomes a defensible measurement only after researchers specify the construct, observe the errors, and connect those errors to the intended inference.
+Do not reduce the disagreement to “which method is most accurate?” The papers address different stages of the measurement chain.
 
 ## Questions to annotate while reading
 
 ### Chapter §10.2
 
-1. Where does the chapter treat a human code as a benchmark, and where does it question humans as an unquestioned gold standard?
-2. Why can an impressive agreement rate be misleading for rare categories?
-3. Which metadata would another researcher need to interpret or reproduce a label?
+1. What is the difference between evaluating a classifier and validating a measure for a particular downstream use?
+2. Which metadata would another researcher need to interpret or reproduce a label?
+3. Why can apparently strong agreement conceal consequential errors?
 
 ### Stuhler, Dang Ton, and Ollion
 
-1. What does the promptbook add to an ordinary codebook?
-2. Which obituary variables are explicit, which require search across a long document, and which require interpretation or inference?
-3. Why does a simple rule nearly match the generative models for age, while prompting is more useful for sparse information such as military service or education?
-4. What downstream coefficient or group comparison could be biased if extraction errors correlate with identity or historical period?
+1. What does a promptbook add to an ordinary codebook?
+2. How do age, military service, education, and occupation differ as information problems?
+3. When is an LLM methodological overkill?
+4. Does writing a promptbook merely document a construct, or can it change the construct by forcing tacit decisions into the open?
 
-### Chae and Davidson
+### Barrie, Palaiologou, and Törnberg
 
-1. What changes across zero-shot, few-shot, fine-tuned, and instruction-tuned regimes?
-2. When could a smaller fine-tuned model be preferable to a much larger prompted model?
-3. Why is stance detection more demanding than generic sentiment classification?
-4. Which comparison in the paper is closest to your own likely research use—and which is least transportable?
+1. What is held constant and varied in intra-prompt stability?
+2. What is held constant and varied in inter-prompt stability?
+3. Why is stability necessary but insufficient for validity?
+4. What might low stability reveal about the construct, boundary rules, source material, or model/task combination?
+
+### Egami, Hinck, Stewart, and Wei
+
+1. Why can more than 90% or even 95% annotation accuracy still produce biased estimates or invalid confidence intervals?
+2. What is gained by independently expert-coding a probability sample rather than an arbitrary validation subset?
+3. Which part of their solution is a sampling-design idea, and which part is an estimator?
+4. For Session 2, what should a beginner understand without implementing the doubly robust estimator?
 
 ## Bring to class
 
-Complete this four-line record:
+Complete this record for one annotation problem from your own research interests:
 
 ```text
 Construct:
 Unit of analysis:
 One difficult boundary case:
-Downstream inference that could be harmed by patterned error:
+Downstream quantity or comparison:
+One reasonable alternative prompt wording:
 ```
 
 ## Reading-to-code map
 
 | Reading idea | Where it appears in the workbook |
 |---|---|
-| Codebook → promptbook | `CODEBOOK` dictionary and `messages` list |
-| Inspectable task definition | Exact input text, valid labels, and conditional-case rule |
-| Model/regime choice | Optional hosted/local call and recorded model metadata |
-| Accuracy is insufficient | Confusion counts plus precision/recall/F1 |
-| Non-random error | Two conditional comments misread as support |
-| Downstream consequence | Human support rate 33%; cached-model estimate 50% |
+| Codebook → promptbook | `CODEBOOK`, prompt strings, and `messages` |
+| Prompt variation | `prompt_variants` dictionary and cached variant annotations |
+| Case-level instability | `labels_by_comment`, `set`, and `unstable_ids` |
+| Prompt Stability Score | supplied `inter_prompt_pss` helper and returned float |
+| Independent comparison | `reference_source`, Boolean comparisons, and confusion counts |
+| Patterned error | the two conditional false positives |
+| Downstream consequence | reference support rate of 4/12 versus predicted 6/12 |
 
+## Brief in-class asides
+
+Schroeder, Roy, and Kabbara show that LLM suggestions can influence human annotators, so a human-reviewed label is not necessarily an independent benchmark. Agarwal, Naaman, and Vashistha show that autocomplete can also change the style and cultural content of the source text. Together they motivate recording both `reference_source` and `text_production_mode`.
+
+These papers are not additional required reading for this week.

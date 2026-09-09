@@ -20,24 +20,27 @@ All three models below use the same components.
 
 Ten best submissions from Sessions 1–13; Session 12 is automatically low-stakes and can replace a missed task. Weekly work receives completion marks only. A task is complete when it contains the prediction, working code, interpreted check, and reading-linked claim. Work that does not yet contain all four elements can be completed and resubmitted within one week; it is not assigned a numerical quality score.
 
-### Take-home midterm
+### Midterm project proposal
 
 **Proposed timing:** release after Session 6 on October 7 and submit before Session 7 on October 21. The legislative-week break gives students time without displacing a teaching session.
 
-**Proposed length:** approximately 4–6 hours of intended work, submitted as a short notebook plus research-design memo.
+**Proposed length:** 1,200–1,500 words, plus references and a short appendix if needed.
 
 **Proposed structure**
 
-1. **Trace and interpret:** predict and explain the output of short Python fragments using lists, dictionaries, loops, conditionals, and a function.
-2. **Repair:** diagnose a small broken annotation or treatment-generation workflow and complete limited missing code.
-3. **Research design:** identify the inferential target, failure modes, and validation evidence for a flawed LLM-assisted study.
-4. **Reproducibility record:** reconstruct the model/settings/data/provenance fields necessary to interpret one result.
+1. **Research question and motivation:** state the sociological question and the claim the proposed study would seek to support.
+2. **Focused literature position:** identify the relevant debate or gap without requiring an exhaustive review.
+3. **Evidence and design:** specify data, sampling or case selection, unit of analysis, inferential target, and proposed comparison.
+4. **Role of the LLM:** explain the model's specific task and distinguish it from researcher judgment.
+5. **Worked example:** show one input → operation → expected output → researcher check using cached, synthetic or illustrative material.
+6. **Validation, failure and ethics:** identify likely failures, appropriate checks, and issues of privacy, consent, representation, access or ownership.
+7. **Reproducibility and development:** state what will be saved and what must happen next before the final submission.
 
-The midterm does not ask students to reproduce transformer architecture or write a complete API workflow from memory.
+The proposal is the first substantial stage of the final project. It does not ask students to complete a full LLM-assisted study, conduct an exhaustive literature review, reproduce transformer architecture, or write an API workflow from memory.
 
 ### Individual oral code walkthrough
 
-Each student completes a 10–12 minute individual walkthrough shortly after submitting the take-home midterm. The student is shown a short, non-technical code extract drawn from their own midterm or one of the common weekly tasks and must explain it completely in plain language.
+Each student completes a 10–12 minute individual walkthrough shortly after submitting the proposal. The student is shown a short, non-technical code extract drawn from a common weekly task or, where suitable, the proposal's worked example and must explain it completely in plain language.
 
 The walkthrough asks the student to:
 
@@ -57,11 +60,11 @@ The final is a self-designed, LLM-related sociological research project, similar
 
 **Milestones**
 
-- **October 28:** one-page question, inferential target, proposed data, and risk screen.
+- **October 28:** short response-to-feedback note explaining how the midterm proposal will be revised.
 - **November 11:** five-minute design clinic plus validation plan and one minimal input/output trace.
 - **November 25:** optional synchronous/asynchronous replication and project studio; submit a recoverable discrepancy/progress record.
 - **December 9:** 10–12 minute project presentation plus questions and structured peer feedback.
-- **During the December 16–22 exam period:** final research-design package: research question and sociological motivation; inferential target; data and sampling plan; proposed LLM workflow; minimal input/output trace or prototype where feasible; validation strategy; failure modes and ethics; reproducibility record; and a brief AI-use disclosure.
+- **During the December 16–22 exam period:** final research-design package: research question and sociological motivation; inferential target; data and sampling plan; proposed LLM workflow; minimal input/output trace or prototype where feasible; validation strategy; failure modes and ethics; reproducibility record; a brief AI-use disclosure; and an account of how the design changed after proposal feedback.
 
 The 35% final-project component is assessed as research design (25 percentage points) and presentation (10 percentage points). Criteria are: sociological importance; match between claim and design; transparent proposed implementation; validation; substantive interpretation; reproducibility; and communication. Code sophistication is not an independent virtue.
 
@@ -76,7 +79,7 @@ Participation should be evidenced through small, varied contributions: a reading
 | Component | Weight |
 |---|---:|
 | Weekly trace tasks | 20% |
-| Take-home midterm | 20% |
+| Midterm project proposal | 20% |
 | Individual oral code walkthrough | 5% |
 | Final project milestones | 10% |
 | Final project package and presentation | 35% |
@@ -89,7 +92,7 @@ Participation should be evidenced through small, varied contributions: a reading
 | Component | Weight |
 |---|---:|
 | Weekly trace tasks | 30% |
-| Take-home midterm | 20% |
+| Midterm project proposal | 20% |
 | Final project milestones | 10% |
 | Final project package and presentation | 30% |
 | Participation and reading preparation | 10% |
@@ -101,7 +104,7 @@ Participation should be evidenced through small, varied contributions: a reading
 | Component | Weight |
 |---|---:|
 | Weekly trace tasks | 15% |
-| Take-home midterm | 20% |
+| Midterm project proposal | 20% |
 | Final project milestones | 15% |
 | Final project package and presentation | 40% |
 | Participation and reading preparation | 10% |
@@ -110,7 +113,7 @@ Participation should be evidenced through small, varied contributions: a reading
 
 ## AI-use policy: permitted with responsibility and disclosure
 
-The course retains the voice and principle of the 2025 policy: AI can augment learning and research, but it can also substitute for the difficult work through which understanding develops. Use is permitted across weekly tasks, the take-home midterm, and the final project. Students remain responsible for every submitted claim and line of code and must be able to explain their work fully.
+The course retains the voice and principle of the 2025 policy: AI can augment learning and research, but it can also substitute for the difficult work through which understanding develops. Use is permitted across weekly tasks, the midterm project proposal, and the final project. Students remain responsible for every submitted claim and line of code and must be able to explain their work fully.
 
 Material AI assistance requires a brief disclosure naming the tool or model, what it was used for, what was incorporated, and how the student checked it. When an LLM is part of the research method, the full research record additionally preserves prompts, outputs, settings, dates, provider or local runtime, transformations, and validation decisions. The individual oral code walkthrough is completed without live AI assistance and directly verifies understanding.
 

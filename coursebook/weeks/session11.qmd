@@ -1,0 +1,29 @@
+---
+title: "Week 11 — Who—or what—produces research data in an agentic workflow?"
+description: "Provisional outline"
+---
+
+## Question
+
+<div class="chapter-question">When a research agent searches, extracts, analyzes and writes, how can a human verify where each claim came from?</div>
+
+## Why this week belongs here
+
+The first research-agent session introduces planning, tool use, state and long-horizon failure. It connects the division of research labor to claim-level provenance.
+
+## Provisional core readings
+
+- Barrie et al. (2026), §10.5. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
+- Lu et al. (2026), “Towards End-to-End Automation of AI Research.” [@LuEtAl2026AIScientist]
+- *Nature Machine Intelligence* (2026), “Multi-Agent AI Systems Need Transparency.” [@NatureMITransparency2026]
+- Further reporting context: Feuerriegel et al. (2026). [@FeuerriegelEtAl2026]
+
+## Planned chapter and class arc
+
+Introduce agent trajectories and long-horizon tasks; examine current systems and benchmarks, including CRUX and recent Meta work; localize errors across retrieval, extraction, code and synthesis; finish with a human-verifiable claim/source table.
+
+[See the provisional Week 11 Python plan](../python/session11.qmd).
+
+## Development status
+
+This is a planning page. The current thin generated deck is deliberately not published; the chapter, slides and workbook will follow a fresh literature review.

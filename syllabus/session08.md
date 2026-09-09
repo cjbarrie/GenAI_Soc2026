@@ -1,9 +1,7 @@
 # Session 8 — Can LLMs recover missing or unobserved social worlds?
 
 **Date:** Wednesday, October 28, 2026 · 9:30 a.m.–12:15 p.m.  
-**Course movement:** Simulate  
 **Methodological domain:** Opinion prediction, validation, and limits  
-**Chapter anchor:** *AI and Research Methods*, §§10.4.4–10.4.5 and §10.9
 
 ## Substantive question
 
@@ -16,26 +14,26 @@ By the end, students should be able to:
 1. state the inferential target: score individual error, aggregate error, and group-gap error separately.
 2. explain the reading disagreement in their own words;
 3. identify the Python type of every major input and output in the worked trace;
-4. explain each line or small block of `score_inferential_targets`;
+4. trace one profile through one iteration of the dual-route loop;
 5. use the validation diagnostic to bound a sociological claim.
 
 ## Required readings
 
 - [Kim & Lee (2026), AI-augmented surveys](https://arxiv.org/abs/2305.09620)
 - [Xie et al. (2026), statistical realism](https://doi.org/10.1073/pnas.2538145123)
-- [Ashokkumar et al. (2026), predicting experiment results](https://doi.org/10.1038/s41586-026-10742-x)
+- [Lax and Phillips (2009), “Gay Rights in the States: Public Opinion and Policy Responsiveness”](https://doi.org/10.1017/S0003055409990050), complete article.
 
 ## Lecture argument
 
-Validation must be chosen for the inferential target: individuals, aggregates, associations, and effects are different achievements. AI-augmented surveys seek unasked opinions; population realism and experiment forecasting show that success on one statistical target need not transfer to another.
+Lax and Phillips use observed human survey data, a statistical model and poststratification to estimate state opinion and study whether policy responds to preferences on gay rights. Kim and Lee and Xie et al. let us compare that established application with LLM-generated answers. Individual prediction, aggregate prediction, associations among variables and causal effects remain different achievements.
 
 ## Computational trace
 
-Students move from visible synthetic inputs through `score_inferential_targets` to a printed output and explicit checks. The required task uses no live API. Every code block is read as **input → Python type → operation → output → research meaning**.
+Planned: students use the first short `for` loop around the familiar model call to predict five held-out answers through both routes. The records, raw returns and individual and aggregate checks remain visible; students do not write a function.
 
 ## Weekly completion task
 
-Calculate three target-specific errors from matched human and synthetic records. Submit a prediction, working code, interpreted check, and 100–150 word reading-linked claim. Completion marks only; missing elements may be supplied within one week.
+Planned: trace one profile through one iteration for each route and submit a narrated screen recording explaining why aggregate agreement can coexist with individual error. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

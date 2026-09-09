@@ -1,0 +1,16 @@
+{
+  "source": "instructor_authored_offline_fixture",
+  "purpose": "Exercise the complete parsing and validation path without an API key; do not treat these values as empirical model results.",
+  "model": "offline_fixture_v1",
+  "aggregate": {
+    "percentages": [5, 12, 13, 35, 14, 15, 6]
+  },
+  "profiles": [
+    {"case_id": 784, "category": 2, "probabilities": [0.15, 0.30, 0.20, 0.15, 0.10, 0.07, 0.03]},
+    {"case_id": 1097, "category": 2, "probabilities": [0.20, 0.30, 0.20, 0.12, 0.08, 0.06, 0.04]},
+    {"case_id": 1578, "category": 3, "probabilities": [0.18, 0.25, 0.28, 0.12, 0.08, 0.06, 0.03]},
+    {"case_id": 2527, "category": 2, "probabilities": [0.20, 0.32, 0.18, 0.12, 0.08, 0.06, 0.04]},
+    {"case_id": 611, "category": 2, "probabilities": [0.10, 0.40, 0.20, 0.12, 0.08, 0.06, 0.04]},
+    {"case_id": 924, "category": 4, "probabilities": [0.05, 0.15, 0.20, 0.30, 0.15, 0.10, 0.05]}
+  ]
+}

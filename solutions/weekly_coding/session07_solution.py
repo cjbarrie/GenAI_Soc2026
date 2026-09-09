@@ -1,31 +1,38 @@
-"""Worked solution for Session 7.
-
-Read the function in this order: arguments → initial objects → loop/decision
-→ return value. The comments name the research meaning of each operation.
-"""
+"""Worked solution for Session 7: compare cached response distributions."""
 
 
-def group_summaries(records):
-    """Return count, mean, and population variance for every source-by-group combination."""
-    grouped = {}
+def response_distribution(records, wanted_elicitation):
+    """Return proportions for answers 1 through 7 in one elicitation condition."""
+    selected = []
     for record in records:
-        key = (record["source"], record["group"])
-        grouped.setdefault(key, []).append(record["response"])
-    summaries = {}
-    for key, values in grouped.items():
-        mean = sum(values) / len(values)
-        variance = sum((value - mean) ** 2 for value in values) / len(values)
-        summaries[key] = {"n": len(values), "mean": mean, "variance": variance}
-    return summaries
+        if record["elicitation"] == wanted_elicitation:
+            selected.append(record)
+
+    counts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}
+    for record in selected:
+        answer = record["response"]
+        counts[answer] = counts[answer] + 1
+
+    total = len(selected)
+    proportions = {}
+    for answer in counts:
+        proportions[answer] = counts[answer] / total
+
+    return proportions
 
 
 def run_checks():
-    records = [{"source": "human", "group": "A", "response": 1}, {"source": "human", "group": "A", "response": 5}, {"source": "synthetic", "group": "A", "response": 3}, {"source": "synthetic", "group": "A", "response": 3}]
-    summary = group_summaries(records)
-    assert summary[("human", "A")]["mean"] == 3
-    assert summary[("synthetic", "A")]["mean"] == 3
-    assert summary[("human", "A")]["variance"] == 4
-    assert summary[("synthetic", "A")]["variance"] == 0
+    records = [
+        {"elicitation": "forced_choice", "response": 4},
+        {"elicitation": "reported_probabilities", "response": 2},
+        {"elicitation": "forced_choice", "response": 4},
+        {"elicitation": "forced_choice", "response": 5},
+    ]
+    forced = response_distribution(records, "forced_choice")
+    assert abs(sum(forced.values()) - 1.0) < 0.000001
+    assert forced[4] == 2 / 3
+    assert forced[5] == 1 / 3
+    assert forced[1] == 0
 
 
 if __name__ == "__main__":

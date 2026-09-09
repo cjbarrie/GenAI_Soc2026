@@ -1,0 +1,56 @@
+---
+title: "Week 8 — Can LLMs recover opinions we did not observe?"
+description: "Prediction, population estimates and validation"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">When a model predicts an unobserved answer or study result, what exactly has been recovered?</div>
+
+## Connection to the preceding material
+
+Week 7 asked what a synthetic response represents. Week 8 narrows the task: begin with real human data, hide some of it and ask a model to predict what was not observed. This makes validation possible, but only if we specify whether the target is a person’s answer, a population distribution, a group difference or a relationship among variables.
+
+## Learning outcomes
+
+You should be able to distinguish imputation, retrodiction and prediction of never-asked opinions; separate individual accuracy from aggregate resemblance; explain why a plausible record can still distort a population; trace the first `for` loop one case at a time; and compare hosted and local model results without treating either route as the truth.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Methods:** Kim and Lee (2026), “AI-Augmented Surveys.” Read the complete paper. It uses observed survey answers to predict unasked items for real respondents and distinguishes augmentation from wholesale replacement. [Preprint](https://arxiv.org/abs/2305.09620). [@KimLee2026]
+- **Methods and validation:** Xie et al. (2026), “Evaluating the Statistical Realism of LLM-Generated Social Science Data.” Read the complete article. It asks whether success on a selected statistic survives broader tests of joint distributions and relationships among variables. [DOI](https://doi.org/10.1073/pnas.2538145123). [@XieEtAl2026]
+- **Substantive application:** Lax and Phillips (2009), “Gay Rights in the States,” *American Political Science Review* 103(3): 367–386. Read the complete article. It applies multilevel regression and poststratification to state opinion and asks whether policy responds to public preferences on gay rights. This is an established comparison for claims about recovering quantities we did not directly observe. [DOI](https://doi.org/10.1017/S0003055409990050). [@LaxPhillips2009]
+:::
+
+## Additional readings grouped by purpose
+
+- **For forecasting experimental results:** Ashokkumar et al. (2026), “Testing Theories of Human Behaviour at Scale with an AI Research Agent.” [DOI](https://doi.org/10.1038/s41586-026-10742-x). [@AshokkumarEtAl2026]
+- **For within-group heterogeneity:** Wang, Morgenstern and Dickerson (2025), “Large Language Models That Replace Human Participants Can Harmfully Misportray and Flatten Identity Groups.” [DOI](https://doi.org/10.1038/s42256-025-00986-z). [@WangMorgensternDickerson2025]
+
+## Sociological and methodological background
+
+Social scientists already estimate quantities they do not observe directly. Lax and Phillips combine actual survey responses, a multilevel model and census population counts to estimate state opinion, then use those estimates to study policy responsiveness. Their evidence chain matters: observed answers and known population margins constrain the estimate, validation is explicit, and the estimated opinion serves a substantive analysis rather than becoming an end in itself.
+
+An LLM prediction changes this chain. Kim and Lee train on questions, respondents’ other answers and survey years to study three tasks: imputing a missing answer, retrodicting an item not asked in a particular wave and predicting an opinion never asked in the survey. These tasks expose the model to different amounts of relevant evidence and therefore warrant different claims.
+
+## Synthesis of the current LLM literature
+
+Xie and colleagues evaluate whether generated datasets preserve distributions, bivariate associations, multivariate relationships, life-event sequences and links between sequences and covariates. Their results show why “the synthetic data look realistic” is too vague. A model can approximate a marginal distribution while compressing subgroup variation or changing relationships among variables. Kim and Lee likewise separate individual- and aggregate-level performance. Ashokkumar and colleagues extend prediction to experimental findings, but that is a different target again.
+
+The coding example keeps the distinction visible. Five real teaching profiles are passed through OpenRouter and Ollama. The human answer is withheld from each prompt, every raw return is saved, and individual exact matches are calculated separately from the aggregate mean. Five records are not a validation study; they are enough to learn how a repeated model routine works and why the metric must match the claim.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 8 lecture slides" src="../_generated/slides/session08.html"></iframe></div>
+[Open the Week 8 slides full screen](../_generated/slides/session08.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 8 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session08.html).
+:::
+[Continue to the Week 8 Python work](../python/session08.qmd).
+
+## Summary and preparation for next week
+
+A model can be evaluated against answers it did not see, but the result is always relative to a stated target. Week 9 moves from repeated predictions to agents that update an action after observing another actor—and introduces functions only after the inputs and outputs of the model routine are familiar.

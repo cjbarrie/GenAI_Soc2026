@@ -1,6 +1,6 @@
 # Workbook and Coding Progression — Phase 3 Proposal
 
-**Status:** Approved Phase 3 learning progression. This specifies the learning progression; it does not yet build the notebooks.
+**Status:** Implemented dual-route progression. Weeks 1–13 have aligned runnable notebooks and task files; Weeks 8–13 remain provisional as full literature-led chapters.
 
 ## Pedagogical contract
 
@@ -12,7 +12,21 @@ Every worked example will display the same five-part trace:
 4. **Output:** print the raw result before parsing, summarizing, or plotting it.
 5. **Check:** compare the output with human data, a rule-based baseline, a second run/model, or a predeclared expectation.
 
-Students predict the output before important cells run. Notebooks use short cells, visible intermediate values, plain Python before compact pandas operations, and small assertions that explain failures. Live calls are never required to understand the example: each notebook ships with a small cached response.
+Students predict the output before important cells run. Notebooks use short cells, visible intermediate values and plain Python before compact operations. Weeks 1–2 make both a live OpenRouter call and a live Ollama call. Students choose either route in Weeks 3–7, compare both again in Week 8, and then continue with either route. Recorded outputs remain available only as an outage contingency.
+
+### Zero-Python course-book rule
+
+The student course book contains a separate Python page for every coding week. That page, rather than a separate notebook, contains the complete core exercise. Each new idea is introduced in its own short code block. Immediately before the block, the page names the exact input and its Python type. Immediately after it, the page explains every line and symbol, prints the expected output, and states what the output means for the research question. Exercises begin with runnable code and ask students to change one clearly identified value or line; they do not begin with an incomplete function or unexplained placeholder. The downloadable `.py` task is an exact copy of the Python-page exercise, not an advanced extension. Optional notebook material must be labelled as optional and must not quietly become part of the completion criteria.
+
+The Python progression is organized around the parts of an LLM routine rather than around generic programming exercises. Week 1 first makes two genuine calls, then uses their request and return objects to introduce strings, variables, lists, dictionaries, indexing, SDK attributes, string methods, integers, Booleans, `print`, `type` and `len`. Week 2 reuses these ideas for a codebook and label comparisons. Weeks 3–7 add route selection, JSON, multimodal inputs, call parameters, conversation state and schemas. Week 8 introduces the first loop around a call. Week 9 introduces the first student-defined function. Weeks 10–13 reuse those ideas for simulation, tools, reproducibility and a small audit grid. Compact code is not a learning objective.
+
+### Planned interactive for the final workbook
+
+The final Session 1 workbook should use [AnimatedLLM](https://animatedllm.github.io/) immediately before the first API example. Students should work through its text-generation animation and identify: (1) the current context, (2) the next-token probability distribution, (3) the selected token, and (4) how that token becomes part of the next input. This belongs in the student workbook as a short guided activity, not in the Session 1 lecture slides.
+
+Before the first live calls in Week 1, the course distinguishes the **model**, **service**, **API**, and **SDK** in plain language. Week 1 compares OpenRouter as a hosted routing service with an Ollama-served local model. Students identify which parts of the research request stay the same and which parts change when the access route changes.
+
+The first OpenRouter example in Week 1 is assembled across separate cells rather than presented as one unexplained block: prompt string; message list; client call; response object; first choice; returned message; returned text. Each cell states its input, operation, output and research meaning. The extraction path (`response.choices[0].message.content`) is unpacked one step at a time. The Ollama call uses the identical prompt while making the different call and response path explicit.
 
 ## Student-facing semester map
 
@@ -20,10 +34,10 @@ The workbook landing page will show four cumulative strands.
 
 | Course movement | Research capability | Python capability | Validation habit |
 |---|---|---|---|
-| Sessions 1–4: Observe | Turn social material into inspectable records and measurements | Types, collections, indexing, loops, functions, JSON | Inspect inputs; compare with human labels and source evidence |
-| Sessions 5–6: Intervene | Generate fixed and conversational treatments | Combinations, randomization, conditionals, state | Check construct fidelity and treatment exposure |
-| Sessions 7–10: Simulate | Represent people, distributions, and interaction processes | Aggregation, nested records, update functions, repeated runs | Validate at multiple levels; probe sensitivity and contamination |
-| Sessions 11–14: Delegate and audit | Use tools/agents while preserving evidence; study models as social objects | File I/O, deduplication, provenance, configuration, reusable functions | Reproduce, document dependence, and bound claims |
+| Sessions 1–4: Evidence, measurement and interpretation | Turn social material into inspectable records and measurements | Prompt strings, message lists, calls, returned text, JSON and multimodal records | Inspect inputs; compare model returns with human labels and source evidence |
+| Sessions 5–6: Experiments and research encounters | Generate fixed and conversational treatments | Call parameters, structured records, conversation lists and `.append()` | Check construct fidelity and what respondents actually encounter |
+| Sessions 7–10: Synthetic populations and social simulation | Represent people, distributions and interaction processes | Structured outputs, loops and small functions with explicit parameters | Validate at multiple levels; probe sensitivity and contamination |
+| Sessions 11–13: Research agents, replication and model audits | Use tools while preserving evidence; study models as social objects | Tool records, function returns, saved settings and repeated parameter grids | Reproduce, document dependence and bound claims |
 
 ## Python foundations
 
@@ -48,9 +62,9 @@ Each unit ends with 2–4 executable checks and a “read this error” box. Fou
 
 - Canonical materials are ordinary `.ipynb` notebooks, runnable in local JupyterLab or VS Code. A Colab launch path remains available as a fallback, not as a separate version of the course.
 - Use one pinned Python environment (provisionally Python 3.11) with `uv`; provide a plain `requirements.txt` export for students who need `pip`.
-- Teach the official [`openrouter`](https://openrouter.ai/docs/client-sdks/python/overview) Python SDK directly in the first hosted-model examples. After students understand the request and response objects, a thin course helper may centralize model identifiers, caching, and research metadata.
+- Teach the official [`openrouter`](https://openrouter.ai/docs/client-sdks/python/overview) and [`ollama`](https://github.com/ollama/ollama-python) Python clients directly in Week 1. Do not hide the prompt, message list, call or response extraction inside a helper until functions are introduced in Week 9.
 - Read `OPENROUTER_API_KEY` from the environment or notebook secret store. The shared key is never printed, saved in notebooks, or committed. It should have a spending cap, model/provider allowlists, and privacy guardrails.
-- Ship cached raw responses for all required exercises. Live calls are a replaceable step, not a prerequisite for completing the logic or validation task.
+- Ship recorded raw responses as a contingency. Live OpenRouter and Ollama calls are the normal path in Weeks 1–2; a student may use a recorded return when access fails and must explain that substitution in the recording.
 - Use Ollama as the default command-line local runtime because it supplies a simple local API. Provide LM Studio as the GUI alternative and llama.cpp as an optional advanced path. The course examples record the runtime, model artifact/tag, quantization when available, parameters, and retrieval date.
 
 ### Local-LLM support sequence
@@ -58,10 +72,10 @@ Each unit ends with 2–4 executable checks and a “read this error” box. Fou
 The local material is a continuing strand rather than a single installation handout:
 
 1. **Before term:** hardware and disk-space decision tree; Apple Silicon, Windows, Linux, and “hardware not suitable” paths; safe download/removal instructions.
-2. **Session 1:** open versus closed weights; model files, runtimes, quantization, and why “local” is a deployment claim rather than a quality claim.
-3. **Session 2:** run the same classification record from cached output, OpenRouter, and a local model; compare schemas and latency.
+2. **Session 1:** make one hosted and one local call; introduce open versus closed weights, model files, runtimes and why “local” is a deployment claim rather than a quality claim.
+3. **Session 2:** use both routes as annotators and distinguish route disagreement, prompt instability and disagreement with a human reference.
 4. **Session 3:** privacy clinic using synthetic interview data; explain why identifiable field data should not be sent to the shared gateway.
-5. **Session 7:** full local lab: choose a model that fits available memory, start/stop the server, call it from Python, inspect logs, and diagnose common failures.
+5. **Sessions 3–7:** use the chosen route each week for JSON, constrained generation, conversation state and structured probability outputs. Students may repeat the same task with the other route for comparison.
 6. **Session 8:** compare local and hosted population predictions without treating either as a gold standard.
 7. **Session 12:** reproduce an earlier result from an exact local artifact where feasible; contrast this with a routed hosted model.
 
@@ -69,47 +83,46 @@ The guide will cover model selection, memory versus parameter count, context and
 
 ## Weekly beginner tasks
 
-Each task is scoped for roughly 10–25 minutes after the worked example. It introduces no more than two new programming ideas, includes a commented solution, 2–4 tests, and one optional extension.
+Each task uses one small LLM routine and adds one or two Python ideas. Students receive complete setup code and make one named change. Completion depends on the narrated explanation of inputs, operations, outputs and methodological meaning—not on abstraction, efficiency or video editing.
 
 | Session | Beginner task | Inputs → output | Python reinforcement | Reading-to-code connection | Validation check |
 |---:|---|---|---|---|---|
-| 1 | Build one research record | Prompt string + settings dictionary + cached response → nested record | Types, lists, dictionaries | Davidson–Karell’s research-use map becomes a documented call | Assert required metadata fields exist; identify what remains unknown |
-| 2 | Count classification errors | Human/model label pairs → confusion counts and one metric function | Loops, conditionals, counters, functions | Stuhler et al. and Chae–Davidson’s measurement errors become observable | Inspect false positives/negatives, not accuracy alone |
-| 3 | Link themes to evidence | Codebook dictionary + excerpts + proposed labels → evidence table | Dictionaries, filtering, functions | Than et al.’s coding workflow meets Ibrahim–Voyer/Nguyen–Welch’s reflexivity debate | Reject any theme without a supporting source quotation |
-| 4 | Normalize multimodal records | Small text/image/audio metadata records → one common list of dictionaries | Nested data, missing values, simple file paths | Law–Roberto and Maranca et al. motivate modality-specific evidence | Flag missing modality-specific fields; do not equate common schema with common validity |
-| 5 | Construct a treatment set | Two lists of intended/nuisance attributes → factorial treatment records | Nested loops or `itertools`, booleans | Dafoe’s information equivalence becomes a design constraint | Filter variants that violate a predeclared fidelity rule |
-| 6 | Log a conversation | Initial state + three turns → ordered turn records and exposure summary | `if`, loops, state dictionaries, append | Conversational persuasion papers become dynamic treatment records | Distinguish assignment from experienced content |
-| 7 | Compare group distributions | Human and synthetic response records → group means and within-group spread | Grouping, accumulation, missing data | Boelaert and Wang et al.’s flattening claim becomes a statistic | Show a case with similar means but different variance |
-| 8 | Score several inferential targets | Human/synthetic tables → individual, aggregate, association, and effect summaries | Small metric functions, matching records | Kim–Lee, Xie et al., and Ashokkumar et al. require different validation targets | Prevent one metric from standing in for all targets |
-| 9 | Implement one ABM update | Agent states + neighbor list + explicit rule → next state | Functions, loops, dictionaries, copying state | Macy–Willer and Chuang et al. clarify actor/rule/process distinctions | Test synchronous versus accidental in-place updating |
-| 10 | Vary interaction structure | Agent opinions + two network structures → repeated group outcomes | Nested loops, reusable functions, seeds | Ashery et al., the critique/reply, and Kim et al. connect interaction structure to emergence claims | Compare multiple runs and perform a simple contamination probe |
-| 11 | Preserve provenance | Agent-collected source records → deduplicated claim/source table | File/URL fields, sets, deduplication, sorting | The AI Scientist and transparency editorial motivate traceable delegation | Reject claims without a resolvable source and recorded transformation |
-| 12 | Compare replication records | Cached/live/local results + configurations → discrepancy report | JSON serialization, hashing, comparison functions | GUIDE-LLM and Barrie–Palmer–Spirling become an executable audit | Explain whether discrepancy is stochastic, model, provider, or workflow dependence |
-| 13 | Run a factorial audit | Model/language/frame/paraphrase conditions → grouped output differences | Product construction, loops, grouping | Waight, Buyl, and Kim et al. connect output differences to bounded causal claims | Separate observed difference from explanation of its cause |
-| 14 | Audit a project claim | One project research record → missing-evidence checklist | Reuse functions and nested records | Course synthesis: claim → target → evidence → failure mode | Rewrite one claim to match the evidence actually available |
+| 1 | Make the first two model calls, then inspect their objects | Trust statement + scale → identical message → hosted and local raw returns | Strings, lists, dictionaries, indexing, SDK attributes, methods, integers, Booleans, `print`, `type`, `len` | Separates a proposed score from a valid measure of trust | Explain every value, both routes and the missing validation evidence |
+| 2 | Use two LLMs as annotators | Housing comment + codebook → two labels → human comparison | Lists, dictionaries, indexing, equality comparisons | Turns annotation into a visible dual-route routine | Distinguish model disagreement, prompt instability and human disagreement |
+| 3 | Request a structured theme suggestion | Two excerpts → JSON request → model return → parsed `theme`, `evidence_id`, `question` | `json.loads`, keys, lists of dictionaries | Connects model suggestions back to source excerpts | Verify that the cited excerpt exists and supports the interpretation |
+| 4 | Constrain a model to observable description | Ordered observation strings → constrained request → observation/inference fields | Nested message content and structured fields | Makes the distinction between seeing and interpreting operational | Identify recognition or theory that entered despite the constraint |
+| 5 | Generate and compare treatment candidates | Frame string + shared facts + generation settings → candidate text | Keyword arguments such as `model`, `temperature`, `max_tokens` | Shows how an LLM widens a treatment pool without validating it | Change only the frame parameter; inspect semantic confounds |
+| 6 | Generate one adaptive probe | Interview history list → appended participant answer → model-generated next question | Conversation lists, `.append()`, ordered state | Makes the model's role in the interview encounter visible | Check whether the probe follows the answer without introducing a cause |
+| 7 | Request a probability distribution | Exact survey item + population instruction → JSON-schema response → seven probabilities | Structured outputs, `json.loads`, list retrieval, `sum` | Makes aggregate synthetic prediction machine-readable | Check range and total; compare with human data separately |
+| 8 | Repeat a structured prediction across cases | Short profile list → repeated model calls → matched human/model records | First visible `for` loop around an LLM call | Distinguishes individual, aggregate and subgroup validation targets | Calculate only the target named in the claim |
+| 9 | Put an LLM call inside one update function | Agent state + neighbour message + threshold → next state | First student-edited function; explicit parameters and `return` | Separates actor attributes, interaction input and update rule | Change one parameter and explain the resulting state change |
+| 10 | Repeat an interaction under two conditions | Agent list + network/interaction parameter → repeated outcomes | Function calls, loops and result lists | Links micro interaction rules to claims about emergence | Compare runs and retain the conditions that produced each result |
+| 11 | Inspect one research-agent tool record | Research question → tool request → returned source/claim record | Function arguments, returned dictionaries and provenance fields | Makes long-horizon delegation auditable one step at a time | Reject a claim without a resolvable source and recorded transformation |
+| 12 | Re-run one saved routine | Saved prompt, model and parameters → second return → discrepancy record | Named parameters, reusable function call and record comparison | Turns replication dependence into visible code and metadata | Separate prompt, model, provider and stochastic differences |
+| 13 | Run a small parameter audit | Models × prompt frames → structured returns and condition records | Nested loops introduced only here; parameter grid | Connects patterned outputs to bounded audit claims | Describe an observed difference without assigning its social cause |
+| 14 | Project presentations | No coding task | — | Students present and receive feedback on the final research design | — |
 
 ## Standard 165-minute meeting rhythm
 
-This is a default, varied when discussion or student work warrants it:
+This is the default, varied slightly when discussion warrants it:
 
-- 9:30–9:42 — retrieval prompt and semester-map location
-- 9:42–10:15 — reading-led sociological problem and disagreement
-- 10:15–10:38 — methodological argument and worked study anatomy
-- 10:38–10:48 — break
-- 10:48–11:20 — live code walkthrough with prediction before execution
-- 11:20–11:45 — paired beginner task
-- 11:45–12:05 — validation diagnostic and comparison with the reading
-- 12:05–12:15 — exit record: claim, evidence, uncertainty, next skill
+- 9:30–10:00 — instructor framing, sociological background and the question linking the readings;
+- 10:00–10:50 — class discussion of the readings;
+- 10:50–11:00 — break;
+- 11:00–12:05 — guided walkthrough of the coding exercise;
+- 12:05–12:15 — questions, recording/submission reminder and preparation.
 
-No uninterrupted instructor coding segment should normally exceed 12 minutes. The walkthrough pauses after input construction, the model/transformation step, raw output, parsing, and validation.
+The coding walkthrough pauses after input construction, message construction, the model call, the raw return, parsing and validation. Students explain the input and output of each operation before the instructor moves on.
 
 ## Workbook evidence of completion
 
-A completed weekly submission contains only four small artifacts:
+A completed weekly submission is one short screen recording with audio. It shows:
 
-1. the student’s prediction before running the focal cell;
-2. the task function or loop;
-3. passing checks plus one interpreted failure or disagreement;
-4. a 100–150 word claim/evidence note tied to a required reading.
+1. the input and Python type entering each operation;
+2. the prompt/messages and the model access route;
+3. the call and the returned object or cached contingency;
+4. any extraction, parsing or check and its output;
+5. the named change and the resulting difference;
+6. a spoken connection to one reading and one explicit limit.
 
-This is intentionally harder to fake through blind execution and easier to assess than a long undifferentiated notebook.
+Recordings are emailed as attachments to the dedicated NYU Box upload address listed in the course book. Production quality is irrelevant; audible understanding is the criterion.

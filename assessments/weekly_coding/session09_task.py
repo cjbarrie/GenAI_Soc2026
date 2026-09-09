@@ -1,38 +1,80 @@
-"""Session 9 completion task — Write and test one synchronous threshold-update step for a small network.
+"""Assessed dual-route routine. Run from the repository root."""
 
-Complete means: predict → implement → run checks → interpret → connect to a reading.
-This receives a completion mark, not a code-polish score.
-"""
+# CELL: Load the course settings and SDKs
+import json
+import os
+from getpass import getpass
+from pathlib import Path
 
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
-def synchronous_update(states, neighbors, threshold):
-    """Return a new state dictionary; adopt 1 when the prior-state neighbor mean reaches the threshold."""
-    # TODO: replace the next line with your small, explicit solution.
-    raise NotImplementedError("Complete synchronous_update")
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
 
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-# Before coding, explain the intended algorithm aloud:
-# 1. `states.copy()` creates the future state without changing the prior state.
-# 2. The loop visits each agent and retrieves the IDs of its neighbors.
-# 3. The list comprehension looks every neighbor up in the old `states` dictionary.
-# 4. Only after computing from prior state does the function assign the agent's next value.
+# CELL: Choose a normal route and define the action schema
+ROUTE = "ollama"
+action_schema = {
+    "type":"object",
+    "properties":{"action":{"type":"string"},"reason":{"type":"string"}},
+    "required":["action","reason"],"additionalProperties":False,
+}
 
+# CELL: Define the first student-edited model function
+def choose_action(state, observation, route, temperature):
+    prompt = (
+        "Choose one next action for this simulated actor. State: " + json.dumps(state) +
+        " Observation: " + observation + " Return action and reason as JSON."
+    )
+    messages = [{"role":"user","content":prompt}]
 
-def run_checks():
-    states = {"a": 0, "b": 1, "c": 1}
-    neighbors = {"a": ["b", "c"], "b": ["a", "c"], "c": ["a", "b"]}
-    updated = synchronous_update(states, neighbors, 0.5)
-    assert updated == {"a": 1, "b": 1, "c": 1}
-    assert states == {"a": 0, "b": 1, "c": 1}
-    assert updated is not states
+    if route == "openrouter":
+        with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+            response = client.chat.send(
+                model=HOSTED_MODEL, messages=messages, temperature=temperature,
+                response_format={"type":"json_schema","json_schema":{
+                    "name":"agent_action","strict":True,"schema":action_schema,
+                }},
+            )
+        raw_output = response.choices[0].message.content
+    else:
+        response = ollama.chat(think=False,
+            model=LOCAL_MODEL, messages=messages, format=action_schema,
+            options={"temperature":temperature},
+        )
+        raw_output = response.message.content
+    print("Raw function output:", raw_output)
+    return json.loads(raw_output)
 
+# CELL: Call the function and inspect its returned dictionary
+state = {"speaker":"A","prior_action":"silent","goal":"be heard without conflict"}
+observation = "Speaker B expresses disagreement in a calm tone."
+result_1 = choose_action(state, observation, ROUTE, 0)
+print("Returned value:", result_1)
+print("Returned type:", type(result_1))
 
-# OPTIONAL EXTENSION (not required for completion):
-# Add one small synthetic case designed to trigger the characteristic failure.
-# Predict the result before running it, then explain whether the existing output
-# makes that failure visible or whether the research record needs another field.
-
-
-if __name__ == "__main__":
-    run_checks()
-    print("All checks passed. Now interpret one success or failure.")
+# CELL: Change one argument and call the same function again
+# ONE CHANGE: the observation changes; state, route and temperature stay fixed.
+changed_observation = "Speaker B interrupts and raises their voice."
+result_2 = choose_action(state, changed_observation, ROUTE, 0)
+print("First action:", result_1["action"])
+print("Second action:", result_2["action"])

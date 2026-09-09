@@ -1,0 +1,103 @@
+{
+  "study": {
+    "title": "Emergency help and political solidarity",
+    "research_question": "How do tenants distinguish emergency help from political solidarity?",
+    "unit_of_analysis": "A sequenced interview excerpt from one tenant",
+    "provenance": "Instructor-authored synthetic course material. No real people were interviewed and no named model generated these records.",
+    "corpus_limit": "The eight excerpts support classroom comparison only. They provide no evidence about a real neighborhood or population."
+  },
+  "excerpts": [
+    {
+      "excerpt_id": "T01_A",
+      "participant_id": "T01",
+      "sequence": 1,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "The interviewer has asked how the tenant first encountered the mutual-aid network.",
+      "text": "When the rent went up, the grocery deliveries got us through the last week of the month. At that point I did not know who organized them."
+    },
+    {
+      "excerpt_id": "T01_B",
+      "participant_id": "T01",
+      "sequence": 2,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "Later in the same interview, the tenant describes what changed after several months of childcare exchanges.",
+      "text": "After a few months of taking turns with childcare, I started going to the tenants' meetings. The first time I spoke was about the broken elevator."
+    },
+    {
+      "excerpt_id": "T02_A",
+      "participant_id": "T02",
+      "sequence": 1,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "The interviewer asks whether receiving emergency rent support changed the tenant's involvement.",
+      "text": "I was grateful for the emergency fund, but I kept it separate from politics. I did not attend meetings and I still do not think of myself as an organizer."
+    },
+    {
+      "excerpt_id": "T03_A",
+      "participant_id": "T03",
+      "sequence": 1,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "The tenant explains why participation ended after initially helping with deliveries.",
+      "text": "Once the delivery rota became a requirement, it stopped feeling like help. I missed two shifts, people kept messaging me, and I left the group."
+    },
+    {
+      "excerpt_id": "T04_A",
+      "participant_id": "T04",
+      "sequence": 1,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "The interviewer asks how relationships formed through repair exchanges affected later action.",
+      "text": "Fixing things together meant we already trusted one another when the eviction notices arrived. Six of us wrote the petition and delivered it together."
+    },
+    {
+      "excerpt_id": "T05_A",
+      "participant_id": "T05",
+      "sequence": 1,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "The tenant responds to the interviewer's use of the word solidarity.",
+      "text": "The organizers call it solidarity. For me it was mostly a way to make it to payday. That does not mean I wanted a political identity attached to it."
+    },
+    {
+      "excerpt_id": "T06_A",
+      "participant_id": "T06",
+      "sequence": 1,
+      "interview_mode": "ai_moderated_text",
+      "interviewer_provenance": "Instructor-authored simulation of a bounded AI interviewer; no live model was used",
+      "context": "The initial answer was: 'I delivered groceries twice.' The generated follow-up asked: 'Did those deliveries change how you understood your relationship with other tenants?'",
+      "text": "I learned people's names and felt less alone in the building. I would not say it made me political, but I was more willing to ask what others needed."
+    },
+    {
+      "excerpt_id": "T07_A",
+      "participant_id": "T07",
+      "sequence": 1,
+      "interview_mode": "human_moderated",
+      "interviewer_provenance": "Instructor-authored human-interviewer scenario",
+      "context": "The interviewer asks why the tenant continued attending meetings after no longer needing material support.",
+      "text": "The food deliveries ended for me, but by then the meetings were where we compared what the landlord had told each floor. I stayed because acting separately was not working."
+    }
+  ],
+  "candidate_model_proposal": {
+    "candidate_theme": "Mutual aid transforms practical dependence into political solidarity.",
+    "supporting_excerpt_ids": ["T01_B", "T04_A", "T06_A"],
+    "model": "course_simulated_output",
+    "access_route": "cached synthetic record; no API call",
+    "prompt_id": "theme_proposal_v1",
+    "supplied_excerpt_ids": ["T01_A", "T01_B", "T02_A", "T03_A", "T04_A", "T05_A", "T06_A", "T07_A"]
+  },
+  "revised_claim_record": {
+    "candidate_theme": "In several interviews, repeated mutual-aid exchanges created opportunities for political identification, but practical reliance did not consistently become political solidarity and could also generate withdrawal when help was experienced as obligation.",
+    "supporting_excerpt_ids": ["T01_B", "T04_A", "T07_A"],
+    "counterexample_ids": ["T02_A", "T03_A", "T05_A", "T06_A"],
+    "context_note": "Movement from help to collective action appears in several accounts, but other tenants separate assistance from politics or withdraw when reciprocity becomes obligation.",
+    "alternative_interpretation": "Mutual aid creates opportunities for political identification without reliably producing it.",
+    "researcher_decision": "Narrow the model proposal and retain practical coping and obligation as competing interpretations.",
+    "model": "course_simulated_output",
+    "access_route": "cached synthetic record; no API call",
+    "prompt_id": "theme_proposal_v1",
+    "researcher_memo": "The strong conversion language initially directed attention toward T01 and T04. Reading T02, T03, T05, and T06 together made that account look too linear."
+  }
+}

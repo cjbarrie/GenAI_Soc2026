@@ -1,38 +1,90 @@
-"""Session 3 completion task — Link proposed qualitative themes to exact supporting excerpts and reject unsupported labels.
+"""Assessed dual-route routine. Run from the repository root."""
 
-Complete means: predict → implement → run checks → interpret → connect to a reading.
-This receives a completion mark, not a code-polish score.
-"""
+# CELL: Load the course settings and SDKs
+import json
+import os
+from getpass import getpass
+from pathlib import Path
 
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
-def link_themes_to_evidence(excerpts, proposals):
-    """Return accepted theme records and a list of rejected proposal IDs."""
-    # TODO: replace the next line with your small, explicit solution.
-    raise NotImplementedError("Complete link_themes_to_evidence")
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
 
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
 
-# Before coding, explain the intended algorithm aloud:
-# 1. The first dictionary comprehension builds a lookup: excerpt ID → full source text.
-# 2. The loop considers one proposed interpretation at a time.
-# 3. The `if` branch rejects missing excerpts, empty quotations, and quotations not found verbatim in the source.
-# 4. The output separates auditable proposals from records that require human review.
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
 
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-def run_checks():
-    excerpts = [{"id": 1, "text": "Neighbors shared childcare when shifts changed."}, {"id": 2, "text": "I stopped attending after the fee increased."}]
-    proposals = [{"excerpt_id": 1, "theme": "mutual aid", "quote": "shared childcare"}, {"excerpt_id": 2, "theme": "trust", "quote": "everyone trusted staff"}]
-    accepted, rejected = link_themes_to_evidence(excerpts, proposals)
-    assert accepted[0]["theme"] == "mutual aid"
-    assert accepted[0]["quote"] == "shared childcare"
-    assert rejected == [2]
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
 
+# CELL: Choose one route and store two identified excerpts
+ROUTE = "ollama"  # change to "openrouter" if preferred
+excerpts = [
+    {"id": "e01", "text": "After several exchanges, I attended the tenants' meeting."},
+    {"id": "e02", "text": "I accepted help but did not attend political meetings."},
+]
+print("Route:", ROUTE)
+print("First excerpt:", excerpts[0])
 
-# OPTIONAL EXTENSION (not required for completion):
-# Add one small synthetic case designed to trigger the characteristic failure.
-# Predict the result before running it, then explain whether the existing output
-# makes that failure visible or whether the research record needs another field.
+# CELL: Convert the excerpts into prompt text and construct messages
+prompt = (
+    "Suggest one provisional theme. Return JSON with exactly theme, evidence_id, "
+    "and question_for_researcher. Excerpts: " + json.dumps(excerpts)
+)
+messages = [{"role": "user", "content": prompt}]
+print(prompt)
 
+# CELL: Make the selected route's call without hiding either branch
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+    raw_output = response.choices[0].message.content
+else:
+    response = ollama.chat(think=False,
+        model=LOCAL_MODEL,
+        messages=messages,
+        format="json",
+        options={"temperature": 0},
+    )
+    raw_output = response.message.content
 
-if __name__ == "__main__":
-    run_checks()
-    print("All checks passed. Now interpret one success or failure.")
+print("Raw JSON text:", raw_output)
+
+# CELL: Parse the JSON string and return to its cited source
+suggestion = json.loads(raw_output)
+evidence_id = suggestion["evidence_id"]
+cited_excerpt = None
+for excerpt in excerpts:
+    if excerpt["id"] == evidence_id:
+        cited_excerpt = excerpt
+
+print("Theme:", suggestion["theme"])
+print("Cited excerpt:", cited_excerpt)
+print("Question:", suggestion["question_for_researcher"])
+
+# ONE CHANGE: change e02 to
+# "The food deliveries helped, but I avoided the group because meetings felt hostile."

@@ -1,56 +1,88 @@
-"""Session 2 completion task: inspect classification error.
+"""Assessed dual-route routine. Run from the repository root."""
 
-Fill in the two functions below. You may use AI with responsibility and
-disclosure, but you must be able to explain every line in plain language.
-"""
+# CELL: Load the course settings and SDKs
+import json
+import os
+from getpass import getpass
+from pathlib import Path
 
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
-def count_support_outcomes(records):
-    """Return counts for SUPPORT as {'tp', 'fp', 'fn', 'tn'}.
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
 
-    Each record is a dictionary containing `human_label` and `model_label`.
-    SUPPORT is the positive category; every other label is not SUPPORT.
-    """
-    # TODO: create a dictionary whose four counts start at zero.
-    # TODO: loop through records and compare the two labels with "SUPPORT".
-    # TODO: increment exactly one count for every record.
-    raise NotImplementedError("Complete count_support_outcomes")
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
 
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
 
-def precision_recall_f1(counts):
-    """Return precision, recall, and F1 as a dictionary.
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-    If a denominator is zero, return 0.0 for that metric.
-    """
-    # TODO: calculate precision = tp / (tp + fp).
-    # TODO: calculate recall = tp / (tp + fn).
-    # TODO: calculate F1 from precision and recall.
-    raise NotImplementedError("Complete precision_recall_f1")
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
 
+# CELL: Store one comment, the codebook and a human reference label
+comment = "I support the plan if rents remain affordable."
+codebook = {
+    "SUPPORT": "unconditional support for the proposal",
+    "OPPOSE": "unconditional opposition to the proposal",
+    "UNCLEAR": "conditional, mixed, procedural, or insufficient evidence",
+}
+human_label = "UNCLEAR"
+print(comment)
+print(codebook["UNCLEAR"])
 
-# OPTIONAL EXTENSION (not required for completion):
-# Add one conditionally supportive comment that the model labels SUPPORT but the
-# human codebook labels UNCLEAR. Predict which count changes, run the functions,
-# and explain why accuracy alone can hide the resulting prevalence error.
+# CELL: Construct the exact message list used by both routes
+prompt = (
+    "Apply this codebook: " + json.dumps(codebook) +
+    "\nReturn only SUPPORT, OPPOSE, or UNCLEAR.\nComment: " + comment
+)
+messages = [{"role": "user", "content": prompt}]
+print(messages[0]["content"])
 
+# CELL: Make and unpack the OpenRouter call
+with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+    hosted_response = client.chat.send(
+        model=HOSTED_MODEL, messages=messages, temperature=0,
+    )
+hosted_choice = hosted_response.choices[0]
+hosted_raw = hosted_choice.message.content
+print("OpenRouter raw return:", hosted_raw)
+hosted_label = hosted_raw.strip().upper()
+print("OpenRouter label:", hosted_label)
 
-# Run these checks after completing both functions.
-if __name__ == "__main__":
-    example = [
-        {"human_label": "SUPPORT", "model_label": "SUPPORT"},
-        {"human_label": "UNCLEAR", "model_label": "SUPPORT"},
-        {"human_label": "OPPOSE", "model_label": "OPPOSE"},
-    ]
+# CELL: Make and unpack the Ollama call
+local_response = ollama.chat(think=False,
+    model=LOCAL_MODEL, messages=messages, options={"temperature": 0},
+)
+local_raw = local_response.message.content
+print("Ollama raw return:", local_raw)
+local_label = local_raw.strip().upper()
+print("Ollama label:", local_label)
 
-    result = count_support_outcomes(example)
-    assert result == {"tp": 1, "fp": 1, "fn": 0, "tn": 1}
+# CELL: Compare route agreement and human-reference agreement
+routes_agree = hosted_label == local_label
+hosted_matches_human = hosted_label == human_label
+local_matches_human = local_label == human_label
+print("Routes agree:", routes_agree)
+print("OpenRouter matches human label:", hosted_matches_human)
+print("Ollama matches human label:", local_matches_human)
 
-    metrics = precision_recall_f1(result)
-    assert metrics["precision"] == 0.5
-    assert metrics["recall"] == 1.0
-    assert round(metrics["f1"], 3) == 0.667
-
-    empty = precision_recall_f1({"tp": 0, "fp": 0, "fn": 0, "tn": 2})
-    assert empty == {"precision": 0.0, "recall": 0.0, "f1": 0.0}
-
-    print("All checks passed.")
+# ONE CHANGE: replace comment with
+# "I oppose the rezoning proposal because it will displace tenants."
+# Then rerun from the message-construction cell.

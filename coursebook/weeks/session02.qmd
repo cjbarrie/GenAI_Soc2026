@@ -1,0 +1,54 @@
+---
+title: "Week 2 — When can an LLM label count as a measure?"
+description: "Codebooks, promptbooks, stability and downstream error"
+---
+
+## This week’s sociological question
+
+<div class="chapter-question">What evidence do we need before an LLM label can function as a sociological measure?</div>
+
+## Connection to the preceding material
+
+Week 1 preserved a model request and response. This week the response enters a dataset. That raises a stronger question: does the label measure the construct we intended, and what happens to the substantive estimate when it is wrong?
+
+## Learning outcomes
+
+You should be able to define a construct, unit and boundary case; explain how a codebook becomes a promptbook; distinguish prompt stability from validity; calculate confusion counts, precision and recall; and trace label error into a prevalence estimate.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Barrie et al. (2026), “AI and Research Methods,” §§10.1.1–10.1.5.** Introduces annotation, its methodological lineage, model and prompt choices, validation, and downstream inference. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
+- **Stuhler, Dang Ton and Ollion (2025), “From Codebooks to Promptbooks,” *Sociological Methods & Research* 54(3): 794–848.** Connects established coding practice to explicit prompt instructions and validation. [DOI](https://doi.org/10.1177/00491241251336794). [@StuhlerDangTonOllion2025]
+- **Barrie, Palaiologou and Törnberg (2026), “Prompt Stability Scoring for Text Annotation with Large Language Models.”** Treats disagreement across semantically similar prompts as a reliability diagnostic. [DOI](https://doi.org/10.48550/arXiv.2407.02039). [@BarriePalaiologouTornberg2026]
+:::
+
+## Additional readings grouped by purpose
+
+- **For alternative classification strategies:** Chae and Davidson (2026), “Large Language Models for Text Classification,” *Sociological Methods & Research*. [DOI](https://doi.org/10.1177/00491241251325243). [@ChaeDavidson2026]
+- **For the broader measurement argument:** Davidson and Karell (2025). [DOI](https://doi.org/10.1177/00491241251339184). [@DavidsonKarell2025]
+
+## Sociological and methodological background
+
+Text does not arrive as a variable. Sociologists and political scientists have long moved from documents to data by defining constructs, writing codebooks, training research assistants and adjudicating hard cases. Computational text analysis made parts of this work scalable; crowdworker platforms such as MTurk and Prolific made it easier to distribute judgments beyond expert teams. Those changes lowered cost but did not remove the need to decide what counts as evidence for the construct.
+
+An LLM prompt is therefore not a free-standing instruction. It contains a codebook in compressed form: the label names, inclusion and exclusion rules, examples, output format and sometimes a role or rationale. Stuhler and colleagues call attention to this move from codebook to promptbook. The useful comparison is not “human versus AI” in the abstract, but two complete measurement procedures applied to a stated use.
+
+## Synthesis of the current LLM literature
+
+Three issues should remain separate. **Reliability** asks whether reasonable repetitions or prompt formulations agree. **Validity** asks whether the labels represent the intended construct. **Downstream error** asks how mistakes affect the estimate or model in which the labels are used. Prompt Stability Score addresses the first. A human-coded validation sample and difficult boundary cases contribute to the second. Confusion counts and design-based corrections address the third. A classifier can have high overall accuracy and still inflate a rare category if its false positives are concentrated in one direction.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 2 lecture slides" src="../_generated/slides/session02.html"></iframe></div>
+[Open the Week 2 slides full screen](../_generated/slides/session02.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 2 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session02.html).
+:::
+[Continue to the Week 2 Python work](../python/session02.qmd).
+
+## Summary and preparation for next week
+
+Stability tells us where a measurement procedure changes under reasonable prompt variation; independent evidence tells us whether it is right; downstream analysis tells us why the distinction matters. Week 3 moves from assigning predefined labels to developing qualitative interpretations.

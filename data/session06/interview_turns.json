@@ -1,0 +1,26 @@
+[
+  {
+    "interview_id": "A",
+    "turns": [
+      {"role": "interviewer", "text": "Think about the last graduate seminar you attended. Can you tell me about a moment when you considered speaking but did not?", "topic": "seminar_participation", "source": "protocol", "responds_to": null},
+      {"role": "participant", "text": "I had a point about the reading, but two people had already spoken and their comments sounded much more developed.", "topic": "seminar_participation", "source": "participant_response", "responds_to": 1},
+      {"role": "interviewer", "text": "What made their comments seem more developed than yours?", "topic": "intellectual_worth", "source": "adaptive_probe", "responds_to": 2},
+      {"role": "participant", "text": "They connected the reading to other theorists. Mine was just about one paragraph, so it felt too small.", "topic": "intellectual_worth", "source": "participant_response", "responds_to": 3},
+      {"role": "interviewer", "text": "What happened after you decided not to speak?", "topic": "consequences", "source": "protocol", "responds_to": 4},
+      {"role": "participant", "text": "The discussion moved on. Later the professor made almost the same point and I was annoyed with myself.", "topic": "consequences", "source": "participant_response", "responds_to": 5}
+    ]
+  },
+  {
+    "interview_id": "B",
+    "turns": [
+      {"role": "interviewer", "text": "Think about the last graduate seminar you attended. Can you tell me about a moment when you considered speaking but did not?", "topic": "seminar_participation", "source": "protocol", "responds_to": null},
+      {"role": "participant", "text": "A senior student kept jumping in. I had something to say, but it did not feel like there was space.", "topic": "seminar_participation", "source": "participant_response", "responds_to": 1},
+      {"role": "interviewer", "text": "When you say there was no space, what was the senior student doing?", "topic": "status_and_entitlement", "source": "adaptive_probe", "responds_to": 2},
+      {"role": "participant", "text": "He answered every question first and spoke over another student. Nobody stopped him.", "topic": "status_and_entitlement", "source": "participant_response", "responds_to": 3},
+      {"role": "interviewer", "text": "Did anyone else react when he spoke over the other student?", "topic": "interaction_order", "source": "adaptive_probe", "responds_to": 4},
+      {"role": "participant", "text": "People looked down at their notes. The professor paused, then called on somebody else.", "topic": "interaction_order", "source": "participant_response", "responds_to": 5},
+      {"role": "interviewer", "text": "What happened after you decided not to speak?", "topic": "consequences", "source": "protocol", "responds_to": 6},
+      {"role": "participant", "text": "I wrote my point down. I never found another moment to bring it in.", "topic": "consequences", "source": "participant_response", "responds_to": 7}
+    ]
+  }
+]

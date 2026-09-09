@@ -1,82 +1,73 @@
-# Instructor Notes — Session 2: Annotation and Measurement
+# Instructor notes — Session 2: Annotation, measurement, and LLMs
 
-## Session purpose
+## Intended endpoint
 
-Students should leave able to explain why fast, structured output is not yet a valid measurement. The conceptual hinge is the shift from “How accurate is the model?” to “Which errors matter for the inference I want to make?” The computational hinge is seeing every object before and after transformation.
+Students should be able to explain how a sociological construct becomes a codebook, how humans or an LLM apply it to text, and why remaining errors matter for the quantity a study reports. They should also be able to narrate the Python workflow as `input and type → operation → output and type → research meaning`.
 
 ## 165-minute run of class
 
-| Time | Activity | Instructor move | Evidence of understanding |
+| Time | Section | Main teaching move | Evidence of understanding |
 |---|---|---|---|
-| 9:30–9:42 | Retrieval and opening case | Ask students whether 10 correct labels out of 12 sounds adequate before revealing the support-rate bias | Students state an initial criterion and can revise it later |
-| 9:42–10:05 | Classification, extraction, measurement, inference | Keep the four nouns distinct; use one student’s annotation problem to test each | Student can name the unit, construct, and downstream use |
-| 10:05–10:28 | Stuhler et al. | Rebuild the codebook → promptbook move; compare age, military service, and education | Student explains why task properties change which method is attractive |
-| 10:28–10:38 | Chae and Davidson | Contrast model size with training regime and cost | Student can give one case favoring a smaller fine-tuned model |
-| 10:38–10:48 | Break | Keep the conditional-comment slide visible | — |
-| 10:48–11:00 | Code orientation | Show file paths, cached/live distinction, and research record | Student identifies which objects are strings, lists, and dictionaries |
-| 11:00–11:28 | Worked notebook | Pause after load, prompt construction, raw output, merge, counts, and metrics; ask for predictions before running | Students predict types and important values |
-| 11:28–11:50 | Paired completion task | Students write the four-way conditional and metric function without copying the solution | Each pair explains one branch aloud |
-| 11:50–12:05 | Error audit | Locate the two false positives and ask why they are sociologically similar | Students identify conditionality as patterned error and connect it to inflated support |
-| 12:05–12:15 | Exit record | Claim → target → evidence → failure mode → revised claim | One bounded inference statement per student |
+| 9:30–9:47 | Begin with one comment | Compare explicit support for the proposal with general openness to more housing. | Students explain why the research question changes the label. |
+| 9:47–10:08 | What came before | Move from Franzosi and codebooks to human coding teams, MTurk/Prolific, and supervised classifiers. | Students identify what remains constant: construct, unit, categories, rules, and reference decisions. |
+| 10:08–10:23 | The LLM annotation task | Show the exact codebook + comment input and the structured label output. Introduce the twelve-comment synthetic corpus. | Students can name the input, requested output, and intended use of the label. |
+| 10:23–10:38 | Two errors, one changed estimate | Inspect the two conditional false positives and compare 4/12 with 6/12. | Students explain why the support rate rises. |
+| 10:38–10:48 | Break | Leave the unresolved question on screen: what evidence would make the measure credible? | — |
+| 10:48–11:10 | Stuhler and promptbooks | Use the published information-extraction figure, Table 2, and model-size comparison. Return each result to the rezoning rule. | Students distinguish substantive coding instructions from model-facing input/output instructions. |
+| 11:10–11:30 | Prompt stability | Compare reasonable prompt versions on the two difficult comments; introduce intra- and inter-prompt stability and selected PSS results. | Students explain why stability is useful and why stable output can still be wrong. |
+| 11:30–11:43 | Downstream consequences | Use Egami et al. to connect independently sampled expert labels to the final estimate and uncertainty. | Students distinguish record-level agreement from validity of the reported estimate. |
+| 11:43–12:07 | One Python workflow | Begin with the whole pseudocode flow, then trace the same record through prompt construction, model response, parsing, storage, looping, comparison, counts, and rates. | Students predict values and types and explain the first loop iteration. |
+| 12:07–12:13 | Completion/oral rehearsal | Complete a small missing operation and explain it without saying only “the data” or “the model.” | Each student names exact inputs, outputs, and research meaning. |
+| 12:13–12:15 | Bounded conclusion | Revisit the opening comment and the 33%/50% comparison. | One defensible claim plus one necessary next check. |
 
-## Reading discussion prompts
+## Discussion prompts
 
-1. Does a promptbook merely document a measure, or does writing it also change the construct?
-2. Stuhler et al. report that a simple age-extraction rule approaches generative-model accuracy. When is an LLM methodological overkill?
-3. Chae and Davidson find that large prompted models often perform best, while smaller fine-tuned models can be competitive and cheaper. What counts as the relevant cost for a graduate researcher?
-4. If the expert reconciler and the model disagree, what evidence could establish which is better?
-5. If false positives cluster among conditional or marginalized speakers, which downstream estimands become unreliable?
+1. What exactly does `SUPPORT` mean in this study?
+2. What changed when coding moved from a research team to a crowd platform?
+3. What changes—and what does not—when the written rules are applied by an LLM?
+4. Which two comments produce the error, and what do they share?
+5. What can prompt stability establish? What can it not establish?
+6. Why can 10/12 agreement still be inadequate for the study's main quantity?
 
-## Code walkthrough script
+## Code walkthrough language
 
-For every focal cell, ask these questions in order:
+For every focal block ask:
 
-1. What is the input value?
+1. What exact value enters?
 2. What is its Python type?
-3. What operation is applied?
-4. What object comes out?
-5. What would count as evidence that the result is wrong?
+3. What operation occurs?
+4. What exact value comes out?
+5. What is the output's type?
+6. What does it mean for the research claim?
 
-Do not run more than two new cells without a prediction or explanation from a student. When a student uses “the data” or “the model” vaguely, ask them to point to the exact variable.
+The walkthrough must retain the same variable names and records. Do not introduce a fresh example to teach parsing, lists, dictionaries, loops, or Booleans.
 
 ## Likely sticking points
 
-- **Sentiment versus stance:** liking affordable housing is not the same as supporting this proposal.
-- **Positive class:** precision and recall require declaring which label counts as positive.
-- **`and` branches:** students may not see why the four branches are mutually exclusive and exhaustive.
-- **False positive:** use the human label as the reference for this exercise; do not imply it is metaphysically true.
-- **Accuracy:** 10/12 correct is 83%, but the model estimates 6/12 support instead of 4/12.
-- **Cached output:** emphasize that it is instructor-authored for stable teaching, not evidence about a named model.
-- **Temperature zero:** it reduces a source of variation but does not guarantee longitudinal or provider-level reproducibility.
-
-## Oral-assessment bridge
-
-Tell students that the later oral walkthrough will look like today’s paired explanation. A student should be able to say, for example: “This comparison produces a Boolean; the `elif` runs only when the human reference is not support but the model output is support; then the false-positive counter increases by one.” Technical jargon beyond that is unnecessary.
-
-## Contingencies
-
-- **No network:** use the cached JSON; all required work remains available.
-- **OpenRouter rate limit or key failure:** demonstrate the request object without sending it.
-- **Mixed Python experience:** pair students by self-reported comfort, but require the less experienced student to explain the branch logic.
-- **Task runs long:** calculate precision together; leave recall/F1 as the completion submission.
-- **Task runs short:** compare errors by `speaker_role` or run the optional local-model schema mapping.
+- A label is an implementation of a prior construct decision.
+- A dictionary stores named fields; it does not validate their contents.
+- JSON parsing changes a string into a Python object; it does not change whether the label is correct.
+- `=` assigns a value; `==` performs a comparison and returns a Boolean.
+- The loop repeats the same operation on each record and appends each result to one list.
+- Stability, reference agreement, and downstream validity answer different questions.
+- The reference labels are independently produced comparison labels for this exercise, not unquestionable truth.
 
 ## Completion decision
 
-Mark complete only when the submission includes:
+Completion requires a prediction before execution, the short code task, a plain-language explanation of one operation, an interpretation of the conditional false positives, a bounded substantive claim, and an AI-use disclosure where applicable. Code elegance is not graded.
 
-1. a prediction made before the task code is run;
-2. working outcome and metric functions;
-3. passing checks plus an interpretation of the two false positives;
-4. a 100–150 word note connecting the observed error to Stuhler et al., Chae and Davidson, or chapter §10.2.
+## Contingencies
 
-Return incomplete work with the missing element named; students have one week to supply it.
+- **No key or network:** use the cached response; its structure matches the live response used in the walkthrough.
+- **Mixed Python experience:** ask the less experienced student to explain the first iteration before a partner adds detail.
+- **Short on time:** keep the one-record trace and support-rate calculation; treat the supplied prompt-variation helper as read-only.
+- **Extra time:** add a new boundary case and ask students to predict which prompt formulation will be least stable.
 
-## Source and version notes
+## Source notes
 
-- Chapter: Barrie, Argyle, Bisbee et al., “AI and Research Methods,” chapter proof dated August 3, 2026, §§10.2.1–10.2.5.
-- Stuhler, Dang Ton, and Ollion: published 2025 version, DOI 10.1177/00491241251336794. The accessible March 2025 manuscript reports the selected task comparisons used in the deck.
-- Chae and Davidson: volume 55, issue 2 (2026), pp. 501–567, DOI 10.1177/00491241251325243; first published online April 24, 2025.
-- OpenRouter SDK syntax checked against the official Python SDK documentation on August 18, 2026.
-- The rezoning comments, reference labels, and cached model output are synthetic course materials, not research findings.
-
+- Franzosi (1998), “Narrative Analysis—Or Why (and How) Sociologists Should be Interested in Narrative,” *Annual Review of Sociology*.
+- Stuhler, Dang Ton, and Ollion (2025), “From Codebooks to Promptbooks,” *Sociological Methods & Research*.
+- Barrie, Palaiologou, and Törnberg (2024), “Prompt Stability Scoring for Text Annotation with Large Language Models.”
+- Egami, Hinck, Stewart, and Wei (2026), “Using Large Language Model Annotations for the Social Sciences.”
+- Wazny (2020), “Applications of Crowdsourcing in Health,” for the broader social-science crowd-work context; MTurk and Prolific platform materials are credited on the slide.
+- All rezoning comments, cached outputs, prompt-variant labels, and reference labels are instructor-authored synthetic course material.

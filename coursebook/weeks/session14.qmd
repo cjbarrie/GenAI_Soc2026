@@ -1,0 +1,13 @@
+---
+title: "Week 14 — Project presentations"
+---
+
+This meeting is reserved for student project presentations. There is no new lecture content, required reading, coding walkthrough or weekly completion task.
+
+## Presentation format
+
+Each student has 10–12 minutes to present, followed by questions and brief feedback from the group. Presentations should state the sociological question, proposed evidence and research design, where an LLM enters the project, what would need validating, and the main limitation or unresolved decision.
+
+## What to bring
+
+Bring the presentation file and a backup copy. The final research-design package is submitted separately during the examination period, after you have considered the feedback received in class.

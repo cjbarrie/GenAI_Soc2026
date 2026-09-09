@@ -1,6 +1,6 @@
 # Running local LLMs for this course
 
-**Checked:** August 18, 2026. Local operation is optional for assessed work. Students without suitable hardware use the same cached records.
+**Checked:** August 27, 2026. Every student completes the initial Ollama setup and calls in Weeks 1–2, using a paired or instructor machine when their own hardware is unsuitable. From Week 3, students may choose Ollama or OpenRouter for normal assessed work. Cached records are contingencies for genuine access failures.
 
 “Local” describes where inference runs. It does not establish quality, validity, privacy, openness, or reproducibility by itself.
 
@@ -26,7 +26,7 @@ Parameter count is not a memory estimate by itself. Quantization compresses stor
 Ollama supports macOS, Windows, and Linux. Its official quickstart is <https://docs.ollama.com/quickstart>; its local API normally runs at `http://localhost:11434/api`.
 
 ```bash
-ollama run gemma4
+ollama run gemma4:e2b-it-qat
 ```
 
 Exit an interactive chat with `/bye`. Inspect models already downloaded with `ollama list`; inspect currently loaded models and CPU/GPU placement with `ollama ps`.
@@ -37,7 +37,7 @@ Exit an interactive chat with `/bye`. Inspect models already downloaded with `ol
 import requests
 
 request_record = {
-    "model": "gemma4",
+    "model": "gemma4:e2b-it-qat",
     "prompt": "Classify the synthetic comment as SUPPORT, OPPOSE, or UNCLEAR.",
     "stream": False,
     "options": {"temperature": 0},
@@ -82,7 +82,7 @@ Hosted and local paths should be mapped into the same visible schema:
 ```python
 record = {
     "runtime": "ollama",          # or "openrouter" / "lm_studio"
-    "model": "gemma4",           # exact resolved identifier
+    "model": "gemma4:e2b-it-qat", # exact requested identifier
     "model_artifact": None,        # add hash/path/tag when available
     "quantization": None,          # record when exposed
     "parameters": {"temperature": 0},
@@ -146,4 +146,3 @@ Stop a running chat or server using the runtime’s documented controls. Confirm
 - Session 7: full setup and troubleshooting lab.
 - Session 8: hosted/local population predictions, neither treated as gold standard.
 - Session 12: exact-artifact replication where feasible.
-

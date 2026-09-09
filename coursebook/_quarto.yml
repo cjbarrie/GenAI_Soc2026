@@ -1,0 +1,132 @@
+project:
+  type: book
+  output-dir: _book
+  pre-render:
+    - python ../scripts/build_coursebook.py --prepare
+  post-render:
+    - python ../scripts/check_coursebook.py
+  resources:
+    - _generated/**
+    - downloads/**
+
+book:
+  title: "Generative AI in Sociology"
+  subtitle: "Evidence, inference, and research design"
+  author: "Christopher Barrie"
+  date: "2026-09-02"
+  date-format: "[Fall] YYYY"
+  site-url: "https://cjbarrie.github.io/GenAI_Soc2026"
+  repo-url: "https://github.com/cjbarrie/GenAI_Soc2026"
+  search: true
+  reader-mode: true
+  sidebar:
+    style: docked
+    collapse-level: 1
+    border: false
+  downloads: [pdf]
+  sharing: [twitter, linkedin]
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - course-structure.qmd
+    - how-to-use.qmd
+    - recording-and-submission.qmd
+    - computing.qmd
+    - ai-policy.qmd
+    - assessment.qmd
+    - part: "Evidence, measurement and interpretation"
+      chapters:
+        - text: "Week 1: Research technology"
+          href: weeks/session01.qmd
+        - text: "Week 1: Python"
+          href: python/session01.qmd
+        - text: "Week 2: Annotation"
+          href: weeks/session02.qmd
+        - text: "Week 2: Python"
+          href: python/session02.qmd
+        - text: "Week 3: Qualitative research"
+          href: weeks/session03.qmd
+        - text: "Week 3: Python"
+          href: python/session03.qmd
+        - text: "Week 4: Observation"
+          href: weeks/session04.qmd
+        - text: "Week 4: Python"
+          href: python/session04.qmd
+    - part: "Experiments and research encounters"
+      chapters:
+        - text: "Week 5: Experiments"
+          href: weeks/session05.qmd
+        - text: "Week 5: Python"
+          href: python/session05.qmd
+        - text: "Week 6: Interviews"
+          href: weeks/session06.qmd
+        - text: "Week 6: Python"
+          href: python/session06.qmd
+    - part: "Synthetic populations and social simulation"
+      chapters:
+        - text: "Week 7: Synthetic respondents"
+          href: weeks/session07.qmd
+        - text: "Week 7: Python"
+          href: python/session07.qmd
+        - text: "Week 8: Opinion prediction"
+          href: weeks/session08.qmd
+        - text: "Week 8: Python"
+          href: python/session08.qmd
+        - text: "Week 9: Agent interaction"
+          href: weeks/session09.qmd
+        - text: "Week 9: Python"
+          href: python/session09.qmd
+        - text: "Week 10: Collective intelligence"
+          href: weeks/session10.qmd
+        - text: "Week 10: Python"
+          href: python/session10.qmd
+    - part: "Research agents, replication and model audits"
+      chapters:
+        - text: "Week 11: Research agents"
+          href: weeks/session11.qmd
+        - text: "Week 11: Python"
+          href: python/session11.qmd
+        - text: "Week 12: Replication"
+          href: weeks/session12.qmd
+        - text: "Week 12: Python"
+          href: python/session12.qmd
+        - text: "Week 13: Model audits"
+          href: weeks/session13.qmd
+        - text: "Week 13: Python"
+          href: python/session13.qmd
+        - text: "Week 14: Presentations"
+          href: weeks/session14.qmd
+    - references.qmd
+
+bibliography: ../references.bib
+link-citations: true
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    anchor-sections: true
+    smooth-scroll: true
+  pdf:
+    documentclass: scrreprt
+    papersize: letter
+    fontsize: 10.5pt
+    code-overflow: wrap
+    geometry:
+      - margin=1in
+    toc: true
+    colorlinks: true
+    keep-tex: false
+
+execute:
+  enabled: false
+  freeze: auto
+
+language:
+  title-block-published: "Term"

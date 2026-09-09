@@ -1,0 +1,181 @@
+---
+title: "Week 8 Python — Repeat predictions and compare routes"
+description: "Worked code, notebook and completion task"
+---
+
+[Return to the Week 8 readings and slides](../weeks/session08.qmd).
+
+## Python walkthrough: repeat one prediction across five cases
+
+::: {.routine-summary}
+**Today's routine:** Five deidentified profiles → the same request through OpenRouter and Ollama → one saved record per case and route → individual and aggregate comparisons.
+
+**Python introduced:** the first `for` loop around a model call, empty lists, loop variables, `.append(...)`, counters and division.
+
+**Your change:** change only the education field for case `p02`, rerun and compare the two kinds of result.
+:::
+
+Week 8 requires both routes again. Run it on a computer that has Ollama and the course model installed. Colab can run the OpenRouter branch, but it cannot reach Ollama running on your laptop; if your machine cannot run the local model, use the paired or instructor machine in class.
+
+### Load the settings and start with five records
+
+Run the notebook setup cell first. It installs missing packages in Colab, locates the repository locally and reads the centrally recorded model names. The setup code is supplied and is not the assessed Python for this week.
+
+```python
+profiles = [
+    {"id": "p01", "age_group": "18–29", "education": "some college",
+     "region": "Northeast", "party": "Democrat", "human_answer": 2},
+    {"id": "p02", "age_group": "30–44", "education": "bachelor's",
+     "region": "South", "party": "Independent", "human_answer": 4},
+    # Three further records are supplied in the notebook.
+]
+
+question = "Place yourself from 1 (very liberal) to 7 (very conservative)."
+print("Number of profiles:", len(profiles))
+```
+
+::: {.callout-note title="Read the input before running it"}
+`profiles` is a list. Each item is a dictionary representing one deidentified case. `human_answer` is retained for the later comparison but must be removed from the dictionary sent to the model. `question` is a string. `len(profiles)` returns the integer number of cases.
+:::
+
+### Create two empty result lists
+
+```python
+hosted_results = []
+local_results = []
+
+print(hosted_results)
+print(local_results)
+```
+
+::: {.callout-note title="Input and output"}
+There is no data input yet. Each pair of square brackets creates an empty list. After each model call, `.append(...)` will add one result dictionary. Keeping two lists means we do not lose which route produced a prediction.
+:::
+
+### Follow one trip through the loop
+
+```python
+for profile in profiles:
+    public_profile = {
+        "age_group": profile["age_group"],
+        "education": profile["education"],
+        "region": profile["region"],
+        "party": profile["party"],
+    }
+
+    prompt = (
+        "Predict the survey answer. Profile: "
+        + json.dumps(public_profile)
+        + " Item: "
+        + question
+    )
+    messages = [{"role": "user", "content": prompt}]
+```
+
+::: {.callout-note title="What the loop changes"}
+On the first pass, `profile` means `profiles[0]`; on the second, it means `profiles[1]`. `public_profile` copies only the fields the model may see, so `human_answer` is absent. `json.dumps(...)` turns that dictionary into text. The output of this block is one `messages` list ready for a model call.
+:::
+
+### Make both calls and keep the raw text
+
+```python
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        hosted_response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=messages,
+            temperature=0,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "opinion_prediction",
+                    "strict": True,
+                    "schema": schema,
+                },
+            },
+        )
+    hosted_raw = hosted_response.choices[0].message.content
+
+    local_response = ollama.chat(think=False,
+        model=LOCAL_MODEL,
+        messages=messages,
+        format=schema,
+        options={"temperature": 0},
+    )
+    local_raw = local_response.message.content
+
+    print(profile["id"], "hosted:", hosted_raw, "local:", local_raw)
+```
+
+::: {.callout-note title="Two routes, the same research input"}
+Both calls receive the same `messages` list and a schema requiring an answer from 1 to 7. OpenRouter sends the request to the hosted model; Ollama sends it to the local model already running on the computer. `hosted_raw` and `local_raw` are strings. Printing them before parsing makes the original returns visible.
+:::
+
+### Parse and append one record to each list
+
+```python
+    hosted_prediction = json.loads(hosted_raw)["predicted_category"]
+    local_prediction = json.loads(local_raw)["predicted_category"]
+
+    hosted_results.append({
+        "id": profile["id"],
+        "prediction": hosted_prediction,
+        "human": profile["human_answer"],
+    })
+    local_results.append({
+        "id": profile["id"],
+        "prediction": local_prediction,
+        "human": profile["human_answer"],
+    })
+```
+
+::: {.callout-note title="What `.append(...)` does"}
+`json.loads(...)` turns each JSON string into a dictionary; square brackets retrieve its predicted category. Each `.append(...)` adds one new dictionary to the end of a result list. After five passes through the loop, each list contains five records.
+:::
+
+### Count exact matches, then compare the aggregate means
+
+```python
+hosted_matches = 0
+for record in hosted_results:
+    if record["prediction"] == record["human"]:
+        hosted_matches = hosted_matches + 1
+
+human_total = 0
+hosted_total = 0
+for record in hosted_results:
+    human_total = human_total + record["human"]
+    hosted_total = hosted_total + record["prediction"]
+
+human_mean = human_total / len(hosted_results)
+hosted_mean = hosted_total / len(hosted_results)
+
+print("Hosted exact matches:", hosted_matches)
+print("Human mean:", human_mean)
+print("Hosted mean:", hosted_mean)
+```
+
+::: {.callout-note title="These are different checks"}
+The first loop asks whether the prediction and human answer match case by case. The second adds the values before dividing by the number of records. A close mean can coexist with poor individual prediction because over-predictions and under-predictions can cancel. The notebook repeats both calculations for the local route.
+:::
+
+### Methodological check
+
+Five teaching cases cannot establish individual accuracy, subgroup fidelity or population validity. The exercise demonstrates how to preserve matched records and why a claim about an aggregate requires a different check from a claim about people.
+
+## Workbook and environment links
+
+::: {.resource-card}
+[Open the Week 8 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session08/session08_opinion_prediction.ipynb) · [Download the notebook](../_generated/downloads/session08/session08_opinion_prediction.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session08/session08_task.py) · [Download the runnable offline bundle](../_generated/downloads/session08/session08_offline_bundle.zip)
+:::
+
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when running the complete routine from the repository root.
+
+## Take-home exercise
+
+::: {.exercise-box}
+**Estimated work and recording time:** 35–50 minutes.
+
+Run all five profiles through OpenRouter and Ollama. Change only `p02`’s education from `"bachelor's"` to `"high school"`, rerun, and trace that case through one full iteration for each route. Explain the input and output of the loop, both raw returns, both appended records, the exact-match counts and the aggregate means. State why agreement on the mean would not establish correct individual prediction or population representation.
+
+Submit one continuous screen recording with audio using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If you used the paired or instructor machine for Ollama, say so; hardware limitations do not reduce the completion mark.
+:::

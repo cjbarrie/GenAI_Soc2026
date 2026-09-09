@@ -1,37 +1,94 @@
-"""Session 6 completion task — Convert ordered dialogue turns into a transparent exposure summary.
+"""Assessed dual-route routine. Run from the repository root."""
 
-Complete means: predict → implement → run checks → interpret → connect to a reading.
-This receives a completion mark, not a code-polish score.
-"""
+# CELL: Load the course settings and SDKs
+import json
+import os
+from getpass import getpass
+from pathlib import Path
 
+try:
+    import ollama
+    from openrouter import OpenRouter
+except ModuleNotFoundError as error:
+    raise ModuleNotFoundError(
+        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
+        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+    ) from error
 
-def summarize_exposure(turns):
-    """Count speaker turns and collect the topics actually encountered in order."""
-    # TODO: replace the next line with your small, explicit solution.
-    raise NotImplementedError("Complete summarize_exposure")
+ROOT = Path.cwd()
+while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
+    ROOT = ROOT.parent
 
+if not (ROOT / "config" / "course_models.json").exists():
+    raise FileNotFoundError(
+        "The complete GenAI_Soc2026 repository could not be found. A task or "
+        "notebook downloaded by itself is not enough for local work. Open a terminal "
+        "in the complete course folder and run this file from there."
+    )
 
-# Before coding, explain the intended algorithm aloud:
-# 1. `summary` starts as a state dictionary containing counters and an empty ordered list.
-# 2. The loop reads one turn at a time, preserving conversational order.
-# 3. The f-string converts `user` into the key `user_turns` and `assistant` into `assistant_turns`.
-# 4. The membership check prevents a repeated topic from being counted as a new kind of exposure.
+config = json.loads((ROOT / "config" / "course_models.json").read_text())
+HOSTED_MODEL = config["hosted"]["model"]
+LOCAL_MODEL = config["local"]["model"]
 
+if not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-def run_checks():
-    turns = [{"role": "user", "text": "What about rent?", "topic": "housing"}, {"role": "assistant", "text": "Here is one policy.", "topic": "housing"}, {"role": "user", "text": "And transit?", "topic": "transit"}]
-    summary = summarize_exposure(turns)
-    assert summary["user_turns"] == 2
-    assert summary["assistant_turns"] == 1
-    assert summary["topics"] == ["housing", "transit"]
+print("Hosted model:", HOSTED_MODEL)
+print("Local model:", LOCAL_MODEL)
 
+# CELL: Choose a route and construct the opening interview history
+ROUTE = "ollama"  # change to "openrouter" if preferred
+interview_messages = [
+    {"role": "system", "content": (
+        "Conduct a sociological interview. Ask one short follow-up about a concrete "
+        "episode. Do not suggest a cause or put words in the participant's mouth."
+    )},
+    {"role": "user", "content": (
+        "Participant: I spoke after the professor invited me to respond."
+    )},
+]
+print(interview_messages)
 
-# OPTIONAL EXTENSION (not required for completion):
-# Add one small synthetic case designed to trigger the characteristic failure.
-# Predict the result before running it, then explain whether the existing output
-# makes that failure visible or whether the research record needs another field.
+# CELL: Make the first call through the selected route
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        first_response = client.chat.send(
+            model=HOSTED_MODEL, messages=interview_messages, temperature=0,
+        )
+    first_raw = first_response.choices[0].message.content
+else:
+    first_response = ollama.chat(think=False,
+        model=LOCAL_MODEL, messages=interview_messages,
+        options={"temperature": 0},
+    )
+    first_raw = first_response.message.content
+print("First raw return:", first_raw)
+first_probe = first_raw.strip()
+print("First probe:", first_probe)
 
+# CELL: Append the realized probe and a second participant answer
+interview_messages.append({"role": "assistant", "content": first_probe})
+second_answer = "Participant: I felt safer because she made room for me to speak."
+interview_messages.append({"role": "user", "content": second_answer})
+print("Messages before second call:", len(interview_messages))
+print(interview_messages)
 
-if __name__ == "__main__":
-    run_checks()
-    print("All checks passed. Now interpret one success or failure.")
+# CELL: Make the second call with the expanded history
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        second_response = client.chat.send(
+            model=HOSTED_MODEL, messages=interview_messages, temperature=0,
+        )
+    second_raw = second_response.choices[0].message.content
+else:
+    second_response = ollama.chat(think=False,
+        model=LOCAL_MODEL, messages=interview_messages,
+        options={"temperature": 0},
+    )
+    second_raw = second_response.message.content
+print("Second raw return:", second_raw)
+second_probe = second_raw.strip()
+print("Second probe:", second_probe)
+
+# ONE CHANGE: replace second_answer with
+# "Participant: I spoke when there was a pause." and rerun from append onward.

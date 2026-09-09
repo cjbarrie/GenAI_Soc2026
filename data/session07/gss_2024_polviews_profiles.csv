@@ -1,0 +1,29 @@
+case_id,age,sex,race,degree,partyid,region,observed_polviews
+784,23,woman,White,bachelor's degree,not strong Democrat,Northeast,1
+1097,18,woman,other race,high school,"independent, near Democrat",West,1
+1578,23,woman,White,less than high school,independent,Midwest,1
+2527,37,woman,White,graduate degree,strong Democrat,South,1
+611,31,man,White,high school,strong Democrat,Northeast,2
+924,39,man,White,high school,other party,South,2
+2558,53,woman,White,high school,strong Democrat,South,2
+2741,70,woman,White,high school,strong Democrat,Midwest,2
+645,49,woman,White,bachelor's degree,other party,South,3
+1203,36,man,White,bachelor's degree,"independent, near Democrat",Midwest,3
+1235,38,man,White,graduate degree,independent,Midwest,3
+2478,40,man,Black,less than high school,independent,South,3
+317,29,woman,White,less than high school,not strong Democrat,West,4
+2275,32,man,White,high school,independent,Northeast,4
+2416,45,man,White,high school,independent,South,4
+2651,61,woman,White,high school,not strong Republican,Midwest,4
+760,47,woman,White,high school,not strong Republican,Northeast,5
+1100,30,woman,White,bachelor's degree,"independent, near Republican",West,5
+1181,64,man,White,high school,independent,Midwest,5
+2928,22,woman,White,high school,not strong Republican,West,5
+150,71,woman,White,high school,not strong Republican,Northeast,6
+321,69,woman,Black,high school,not strong Republican,West,6
+1064,21,man,other race,bachelor's degree,strong Republican,West,6
+2869,61,woman,White,high school,strong Republican,West,6
+205,62,man,White,high school,strong Republican,West,7
+1693,55,woman,White,bachelor's degree,strong Republican,South,7
+2386,20,woman,White,high school,strong Republican,South,7
+2540,63,woman,Black,high school,not strong Democrat,South,7

@@ -1,6 +1,18 @@
 """Commented reference solution for the Session 2 completion task."""
 
 
+def unstable_comment_ids(labels_by_comment):
+    """Return IDs whose list contains more than one unique label."""
+    unstable = []
+
+    for comment_id, labels in labels_by_comment.items():
+        unique_labels = set(labels)
+        if len(unique_labels) > 1:
+            unstable.append(comment_id)
+
+    return unstable
+
+
 def count_support_outcomes(records):
     """Count binary classification outcomes with SUPPORT as positive."""
     counts = {"tp": 0, "fp": 0, "fn": 0, "tn": 0}
@@ -38,6 +50,13 @@ def precision_recall_f1(counts):
 
 
 if __name__ == "__main__":
+    variant_example = {
+        "1": ["SUPPORT", "SUPPORT", "SUPPORT"],
+        "3": ["SUPPORT", "UNCLEAR", "UNCLEAR"],
+        "4": ["SUPPORT", "SUPPORT", "SUPPORT"],
+    }
+    assert unstable_comment_ids(variant_example) == ["3"]
+
     example = [
         {"human_label": "SUPPORT", "model_label": "SUPPORT"},
         {"human_label": "UNCLEAR", "model_label": "SUPPORT"},
@@ -56,4 +75,3 @@ if __name__ == "__main__":
     assert empty == {"precision": 0.0, "recall": 0.0, "f1": 0.0}
 
     print("All checks passed.")
-

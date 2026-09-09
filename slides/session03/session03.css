@@ -1,0 +1,106 @@
+.reveal .slides section { padding-top: 20px; }
+.reveal .slides section > h2 { max-width: 1170px; }
+.reveal pre code { max-height: 500px; }
+.citation { margin: 9px 0 0; color: #5c6266; font-size: 13px; line-height: 1.16; }
+.caption { margin: 12px 0 0; color: #545b60; font-size: 18px; line-height: 1.22; }
+.plain-note { margin-top: 24px; padding: 14px 18px; border-left: 5px solid var(--cobalt); background: #f0eee7; font-size: 20px; line-height: 1.24; }
+.warning-note { border-left-color: var(--vermilion); }
+.closed-table { width: 100%; margin-top: 22px; border-collapse: collapse; font-size: 19px; }
+.closed-table th { padding: 10px 13px; border-top: 3px solid var(--ink); border-bottom: 2px solid var(--ink); text-align: left; }
+.closed-table td { padding: 10px 13px; border-bottom: 1px solid #b8b4aa; vertical-align: top; }
+.closed-table tbody tr:last-child td { border-bottom: 3px solid var(--ink); }
+.opening-study,.paper-layout,.source-layout,.code-with-output,.before-after,.memory-layout,.final-layout { display: grid; gap: 38px; align-items: center; margin-top: 28px; }
+.opening-study { grid-template-columns: 1.05fr .95fr; }
+.study-brief { padding: 25px 30px; border-top: 5px solid var(--cobalt); background: #f1eee6; }
+.study-brief b { color: var(--cobalt); font-size: 22px; }
+.study-brief p { margin: 9px 0 20px; font-size: 23px; line-height: 1.25; }
+.quote-large { padding: 28px 34px; border-left: 7px solid var(--vermilion); background: #f1eee6; font: 500 29px/1.4 "Source Serif 4", Georgia, serif; }
+.quote-large small { display: block; margin-bottom: 14px; color: var(--cobalt); font: 700 16px "IBM Plex Mono", monospace; }
+.source-layout { grid-template-columns: .72fr 1.28fr; align-items: stretch; }
+.source-meta { padding: 23px 25px; background: #151a1e; color: #fff; }
+.source-meta b,.source-meta span { display: block; }
+.source-meta b { margin-bottom: 14px; color: #a9c7e5; font-size: 20px; }
+.source-meta span { margin-bottom: 10px; font-size: 19px; line-height: 1.2; }
+.source-text { padding: 27px 31px; background: #f1eee6; font: 500 27px/1.38 "Source Serif 4", Georgia, serif; }
+.anchor-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; margin-top: 52px; }
+.anchor-strip > div { padding-top: 16px; border-top: 5px solid var(--cobalt); }
+.anchor-strip b { display: block; font-size: 25px; }
+.anchor-strip p { margin: 10px 0 0; font-size: 20px; line-height: 1.23; }
+.coding-example { display: grid; grid-template-columns: .95fr 1.05fr; gap: 40px; margin-top: 35px; }
+.coding-example > div { padding: 24px 28px; border-top: 4px solid var(--cobalt); }
+.coding-example p { font-size: 21px; line-height: 1.25; }
+.code-tag { display: inline-block; padding: 7px 10px; background: #e5edf5; color: #184c7d; font: 700 17px "IBM Plex Mono", monospace; }
+.paper-layout { grid-template-columns: .78fr 1.22fr; align-items: start; }
+.paper-layout img { width: 100%; max-height: 495px; object-fit: contain; object-position: top center; }
+.paper-layout p { margin: 0 0 17px; font-size: 22px; line-height: 1.25; }
+.paper-full { display: flex; justify-content: center; margin-top: 18px; }
+.paper-full img { width: 100%; height: 455px; object-fit: contain; }
+.paper-full.short img { height: 380px; }
+.paper-full.workflow-figure { margin-top: 8px; }
+.paper-full.workflow-figure img { height: 510px; }
+.book-layout { display: grid; grid-template-columns: .38fr 1.62fr; gap: 48px; align-items: center; margin-top: 26px; }
+.book-layout img { width: 100%; max-height: 500px; object-fit: contain; }
+.book-layout p { font-size: 23px; line-height: 1.26; }
+.abductive-moves { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 46px; }
+.abductive-moves > div { padding: 20px 23px; border-top: 4px solid var(--cobalt); }
+.abductive-moves b { font-size: 23px; }
+.abductive-moves p { font-size: 20px; line-height: 1.23; }
+.analysis-loop { display: flex; align-items: stretch; justify-content: center; gap: 0; margin: 55px auto 0; max-width: 1120px; }
+.analysis-loop > div { flex: 1; position: relative; padding: 23px 21px; border-top: 5px solid var(--cobalt); background: #f0ede5; }
+.analysis-loop > div + div { margin-left: 36px; }
+.analysis-loop > div + div::before { content: "→"; position: absolute; left: -31px; top: 38px; color: var(--vermilion); font-size: 27px; font-weight: 800; }
+.analysis-loop b { font-size: 22px; }
+.analysis-loop p { margin: 10px 0 0; font-size: 18px; line-height: 1.2; }
+.return-band { margin: 34px auto 0; max-width: 1020px; padding: 15px 20px; border: 2px solid var(--vermilion); text-align: center; font-size: 20px; }
+.loss-table { font-size: 18px; }
+.memory-layout { grid-template-columns: 1fr 1fr; }
+.memory-layout > div { padding: 24px 28px; border-top: 5px solid var(--cobalt); }
+.memory-layout b { font-size: 25px; }
+.memory-layout p { font-size: 21px; line-height: 1.24; }
+.task-box { margin: 40px auto 0; max-width: 1030px; padding: 26px 32px; background: #151a1e; color: #fff; }
+.task-box b { color: #a9c7e5; font-size: 21px; }
+.task-box p { margin: 13px 0 0; font-size: 22px; line-height: 1.25; }
+.model-output { margin-top: 28px; padding: 25px 30px; border-left: 7px solid var(--vermilion); background: #f1eee6; }
+.model-output b { color: var(--vermilion); font-size: 20px; }
+.model-output p { margin: 12px 0 0; font: 500 28px/1.34 "Source Serif 4", Georgia, serif; }
+.two-excerpts { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 30px; }
+.two-excerpts > div { padding: 24px 27px; background: #f1eee6; font: 500 22px/1.34 "Source Serif 4", Georgia, serif; }
+.two-excerpts small { display: block; margin-bottom: 12px; color: var(--cobalt); font: 700 15px "IBM Plex Mono", monospace; }
+.comparison-flow { display: grid; grid-template-columns: 1fr .8fr 1fr; gap: 28px; align-items: center; margin-top: 44px; }
+.comparison-flow > div { padding: 22px 25px; border-top: 4px solid var(--cobalt); }
+.comparison-flow .decision { border: 2px solid var(--vermilion); background: #f4e8e3; }
+.comparison-flow b { font-size: 22px; }
+.comparison-flow p { font-size: 19px; line-height: 1.23; }
+.interaction-timeline { display: grid; grid-template-columns: repeat(4,1fr); gap: 34px; margin-top: 44px; }
+.interaction-timeline > div { position: relative; padding-top: 16px; border-top: 5px solid var(--cobalt); }
+.interaction-timeline > div + div::before { content: "→"; position: absolute; left: -27px; top: 26px; color: var(--vermilion); font-size: 25px; }
+.interaction-timeline b { font-size: 21px; }
+.interaction-timeline p { font-size: 18px; line-height: 1.22; }
+.section-slide h2 { margin-top: 160px; font-size: 56px; max-width: 1050px !important; }
+.section-slide p { max-width: 900px; color: #4f575c; font-size: 25px; }
+.workflow-overview { margin: 24px auto 0; max-width: 1030px; padding: 24px 30px; background: #151a1e; color: #fff; }
+.workflow-overview pre { margin: 0; padding: 0; background: transparent; color: inherit; box-shadow: none; font-size: 20px; line-height: 1.34; }
+.code-with-output { grid-template-columns: 1.15fr .85fr; align-items: start; }
+.code-with-output pre { margin-top: 0; font-size: 17px; }
+.output-panel { padding: 22px 25px; background: #151a1e; color: #fff; }
+.output-panel b { color: #a9c7e5; font-size: 20px; }
+.output-panel pre { margin: 15px 0 0; padding: 0; background: transparent; color: inherit; box-shadow: none; font-size: 17px; }
+.io-summary { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 22px; }
+.io-summary > div { padding-top: 11px; border-top: 3px solid var(--cobalt); }
+.io-summary b,.io-summary span { display: block; }
+.io-summary b { font-size: 18px; }
+.io-summary span { margin-top: 7px; font-size: 17px; line-height: 1.18; }
+.before-after { grid-template-columns: 1fr 1fr; }
+.before-after > div { padding: 22px 26px; border-top: 5px solid var(--cobalt); }
+.before-after .revised { border-top-color: var(--vermilion); }
+.before-after b { font-size: 23px; }
+.before-after p { font-size: 21px; line-height: 1.26; }
+.record-fields { display: grid; gap: 9px; margin-top: 24px; }
+.record-fields > div { display: grid; grid-template-columns: 260px 1fr; gap: 18px; padding: 9px 0; border-bottom: 1px solid #bbb7ad; }
+.record-fields code { color: var(--cobalt); font-size: 17px; }
+.record-fields span { font-size: 19px; line-height: 1.2; }
+.final-layout { grid-template-columns: .9fr 1.1fr; }
+.final-layout .quote-large { font-size: 24px; }
+.final-checks { padding-top: 12px; border-top: 5px solid var(--cobalt); }
+.final-checks p { margin: 0 0 17px; font-size: 22px; line-height: 1.24; }
+.final-checks b { color: var(--cobalt); }

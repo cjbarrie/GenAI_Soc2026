@@ -1,7 +1,17 @@
 from solutions.weekly_coding.session02_solution import (
     count_support_outcomes,
     precision_recall_f1,
+    unstable_comment_ids,
 )
+
+
+def test_unstable_ids_identify_prompt_disagreement():
+    labels = {
+        "1": ["SUPPORT", "SUPPORT", "SUPPORT"],
+        "3": ["SUPPORT", "UNCLEAR", "UNCLEAR"],
+        "11": ["SUPPORT", "UNCLEAR", "SUPPORT"],
+    }
+    assert unstable_comment_ids(labels) == ["3", "11"]
 
 
 def test_outcome_counts_cover_each_case():
@@ -32,4 +42,3 @@ def test_zero_denominators_are_safe():
         "recall": 0.0,
         "f1": 0.0,
     }
-

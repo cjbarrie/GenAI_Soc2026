@@ -3,7 +3,7 @@
 **Date:** Wednesday, November 4, 2026 · 9:30 a.m.–12:15 p.m.  
 **Course movement:** Simulate  
 **Methodological domain:** Generative agent-based models I  
-**Chapter anchor:** *AI and Research Methods*, §§10.5.1–10.5.3
+**Chapter anchor:** *AI and Research Methods*, §§10.4.1–10.4.3
 
 ## Substantive question
 
@@ -16,7 +16,7 @@ By the end, students should be able to:
 1. state the inferential target: implement one synchronous update so every agent responds to the same prior state.
 2. explain the reading disagreement in their own words;
 3. identify the Python type of every major input and output in the worked trace;
-4. explain each line or small block of `synchronous_update`;
+4. explain every parameter and return value of `choose_action`;
 5. use the validation diagnostic to bound a sociological claim.
 
 ## Required readings
@@ -31,11 +31,11 @@ An emergent pattern is interpretable only when actor state, observation, policy,
 
 ## Computational trace
 
-Students move from visible synthetic inputs through `synchronous_update` to a printed output and explicit checks. The required task uses no live API. Every code block is read as **input → Python type → operation → output → research meaning**.
+Planned: students use the course's first small function, `choose_action(state, observation, route, temperature)`, to send an agent state and observation to a model and return one structured action. Each parameter is first replaced by a literal value so its role is visible.
 
 ## Weekly completion task
 
-Write and test one synchronous threshold-update step for a small network. Submit a prediction, working code, interpreted check, and 100–150 word reading-linked claim. Completion marks only; missing elements may be supplied within one week.
+Planned: change one observation and submit a narrated screen recording explaining the function call, each parameter, the model return and the updated state. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

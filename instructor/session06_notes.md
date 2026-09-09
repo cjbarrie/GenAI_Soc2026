@@ -1,45 +1,50 @@
-# Instructor notes — Session 6: Conversational and personalized treatments
+# Instructor notes — Session 6: AI-assisted and AI-led interviewing
 
 ## Intended endpoint
 
-Students should leave able to defend this bounded claim: **In conversation, assignment is fixed but exposure emerges turn by turn from both participants.** They should also explain `summarize_exposure` line by line without live AI assistance.
+Students should reject “Is AI a good interviewer?” as underspecified. They should identify the interview purpose, allowable discretion, social relationship, realized path and relevant validation evidence, then explain `audit_interview` line by line.
 
 ## 165-minute plan
 
-- **9:30–9:42 — retrieval and course map:** locate the session in **Intervene**; restate last week's validation habit.
-- **9:42–10:15 — reading disagreement:** compare inferential targets rather than collecting findings.
-- **10:15–10:38 — study anatomy:** input, transformation, evidence, failure mode, claim.
-- **10:38–10:48 — break.**
-- **10:48–11:00 — code block 1:** inspect inputs and types; students predict before execution.
-- **11:00–11:12 — code block 2:** trace initialization and the first loop/decision.
-- **11:12–11:20 — code block 3:** print output; connect each field to research meaning.
-- **11:20–11:45 — paired completion task:** driver reads; navigator explains every line and predicts each check; swap roles halfway.
-- **11:45–12:05 — validation diagnostic:** interpret a failure as a case, not merely a failed assertion.
-- **12:05–12:15 — exit record:** claim, evidence, uncertainty, next skill.
+- **9:30–9:40:** opening interviews and criteria.
+- **9:40–10:10:** life histories, focused interviews and standardization.
+- **10:10–10:35:** repair, Oakley/Bourdieu and claim–evidence fit.
+- **10:35–10:45:** claim–evidence fit versus mode effects; CAPI/CASI/audio-CASI and what predates LLMs.
+- **10:45–10:55:** break.
+- **10:55–11:15:** system types, access routes, privacy and local/remote trade-offs.
+- **11:15–11:40:** current evaluations of text, voice and model variation.
+- **11:40–11:50:** return to the opening and compare the two seminar interviews.
+- **11:50–12:10:** generate and record one adaptive probe; voice pipeline; slow Python trace and completion branch.
+- **12:10–12:15:** source record and close.
 
-No instructor coding segment exceeds twelve minutes.
+## Arc checks
 
-## Required code language
+- Each historical source adds a criterion reused after the break.
+- Name the research purpose before judging a probe.
+- Separate pre-LLM automation from generated follow-up.
+- For every paper state the question, comparison and remaining uncertainty.
+- Return to the opening interviews before the final checklist.
+- When returning to an example after many slides, reproduce the relevant exchange instead of relying on memory.
+- When showing voice, distinguish speech-to-text, the text interviewer and text-to-speech. Hold the question and delivery instruction fixed when comparing voice types.
+- A paper slide must state the study design before presenting what it suggests. Use the published article and show the relevant finding at a readable scale.
+- Prefer direct methodological language. Delete captions that merely restate a diagram or use paired abstractions such as “the transcript shows / the record shows.”
 
-Before typing, say: **input value and type → operation → output value and type → research meaning**. Avoid “this just processes the data.” Ask students to name exactly what changes and what stays unchanged.
+## Python language
 
-- `summary` starts as a state dictionary containing counters and an empty ordered list.
-- The loop reads one turn at a time, preserving conversational order.
-- The f-string converts `user` into the key `user_turns` and `assistant` into `assistant_turns`.
-- The membership check prevents a repeated topic from being counted as a new kind of exposure.
+Use **input and type → current line → state before and after → research meaning**. The worked example must first generate one adaptive probe, then append it to the interview record. A list preserves order; one dictionary is one turn; `enumerate(..., start=1)` yields a turn number and dictionary; `source` comes from the decision log; `topic` is researcher annotation; `.append()` preserves the probe and link; `return` produces a path record, not a quality score.
 
-## Likely sticking points
+## Oral assessment
 
-- Brackets: pause and distinguish list position `items[0]` from dictionary key `record["field"]`.
-- Assignment: `=` gives a name to a value; `==` asks whether two values are equal.
-- Loops: trace the first iteration with actual values before describing the general pattern.
-- Functions: arguments enter; local variables change; `return` produces the output.
-- Validation: a passing software check confirms the coded expectation, not the sociological claim.
+Ask students to explain a turn dictionary, `enumerate`, `source` versus `topic`, what changes on an adaptive probe, and why a passing assertion cannot validate an interview.
 
-## Completion standard
+The required exercise sends a cached synthetic exchange through OpenRouter, then records and audits the generated probe. Keep the cached completed paths as a fallback if the API is unavailable. The optional instructor-led voice comparison needs a separate compatible speech service or local TTS; students do not need a second key. It uses no research data: play the same question and delivery instruction using several voices, then record the class's judgments about authority, intimacy, pressure and intelligibility.
 
-Prediction; functioning small algorithm; passing checks plus one interpreted disagreement/failure; 100–150 word connection to a required reading. Syntax elegance is irrelevant.
+## Repairs to carry forward
 
-## Contingency
-
-If environment setup fails, pair students around the rendered notebook and have them trace the provided output. Hardware or API access must not determine completion.
+- The bridge from Jerolmack and Khan to CAPI/CASI must explicitly distinguish two questions: what an interview account can support, and how administration mode shapes the account.
+- For Liu et al., use the published PACM HCI article, identify the 16-person interview study, and show the reported interest in follow-up support. Do not compress study design, findings, cautions and interpretation into one crowded slide.
+- Quote participant reactions exactly when they matter. Do not add explanations about quotation length or mix paraphrase and quotation in a way the audience cannot follow.
+- If the lecture returns to its opening comparison, show the two exchanges again.
+- State the research aim, fixed opener and probing rule before the worked example.
+- A coding task about adaptive interviewing should actually generate an adaptive probe, show its exact output, append it to the record and explain each input and output.
+- Keep voice comparison inside the Python walkthrough. A standalone demo-app slide is unnecessary unless an app has actually been built.

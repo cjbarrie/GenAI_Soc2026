@@ -1,0 +1,29 @@
+---
+title: "Week 12 — What can we reproduce, and what remains opaque?"
+description: "Provisional outline"
+---
+
+## Question
+
+<div class="chapter-question">If an LLM-assisted result changes, which parts of the discrepancy can we explain from the saved record?</div>
+
+## Why this week belongs here
+
+This second research-agent session turns to replication, provider dependence and the practical record needed to understand a rerun. It remains low-stakes because of the holiday week.
+
+## Provisional core readings
+
+- Barrie et al. (2026), §10.7. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
+- Feuerriegel et al. (2026), reporting checklist. [@FeuerriegelEtAl2026]
+- Barrie, Palmer and Spirling (2025), “Replication for Language Models.” [@BarriePalmerSpirling2025]
+- Further multi-agent context: *Nature Machine Intelligence* (2026). [@NatureMITransparency2026]
+
+## Planned chapter and class arc
+
+Distinguish repeatability, robustness and replication; use the reporting checklist on a real workflow; compare original and rerun configurations; connect discrepancies to the final-project reproducibility record.
+
+[See the provisional Week 12 Python plan](../python/session12.qmd).
+
+## Development status
+
+This is a planning page. The finished session will be developed with Week 11 so the two research-agent meetings form one coherent arc.
