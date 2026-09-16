@@ -12,7 +12,7 @@ Do not read the papers as a sequence from old methods to better AI. Read them as
 
 ## Required reading 1 — Wallander on factorial surveys in sociology
 
-Read the abstract, introduction, sections explaining dimensions and vignette universes, discussion of realism and design, and conclusion.
+Read the complete article.
 
 Factorial surveys combine experimentally varied dimensions inside descriptions of people or situations. For a respondent, a vignette is one short social case. For the researcher, it is one combination selected from a much larger set of possible cases.
 
@@ -42,25 +42,18 @@ Ask:
 
 **Job in the code:** intended-frame, competing-frame, warmth, factual-density, unsupported-claim, and stigmatizing-language fields make rival differences visible enough to review. In the classroom file these are instructor-authored mock annotations, not LLM judgments or human pretest evidence. They do not exhaust what a respondent might infer.
 
-## Required reading 3 — Bai et al. on generated policy messages
+## Required reading 3 — Bloemraad, Silva and Voss on framing immigrant rights
 
-Focus on the study conditions, message pools, human selection, outcomes, and reported message differences. Distinguish:
-
-- human-written messages;
-- LLM-generated messages;
-- human-selected LLM messages;
-- the individual messages inside each pool; and
-- the participants assigned to encounter them.
+Read [Bloemraad, Silva and Voss (2016), “Rights, Economics, or Family?”](https://doi.org/10.1093/sf/sov123) in full. Follow the move from theories of frame resonance to three experimental messages and then to heterogeneous responses by political ideology.
 
 Ask:
 
-- What exactly was randomized?
-- Where did human selection enter the design?
-- Which message features differed across sources?
-- Does evidence that generated messages persuade identify the reason for their effect?
-- What population of possible messages does the result concern?
+- How are the rights, economics and family frames defined theoretically?
+- Which words and claims realize those definitions in the actual treatments?
+- Why might the same frame resonate differently across respondents?
+- Which comparisons would become ambiguous if an LLM changed factual content as well as framing?
 
-**Job in the code:** every candidate keeps a stable ID, source, prompt version, ratings, and final decision. Rejected outputs remain in the research history.
+**Job in the code:** the rights and economics prompts hold a common set of immigration-policy facts fixed. Students inspect whether the generated candidates actually do so.
 
 ## The comparison to bring into class
 
@@ -68,7 +61,9 @@ Ask:
 |---|---|---|---|
 | Wallander | Factorial vignettes | Control, plausibility, and inference from fictitious cases | Define dimensions and possible combinations before producing prose |
 | Dafoe et al. | Survey-experimental information | Respondents may infer more than the named manipulation | Record and pretest plausible competing information |
-| Bai et al. | Pools of human and generated policy messages | Source, selection, and message features can be bundled | Preserve provenance and examine several candidates per condition |
+| Bloemraad et al. | Rights, economics and family frames | A theoretical frame must be realized in specific words, and resonance may vary by audience | Inspect both construct fidelity and unintended semantic differences |
+
+Bai et al. (2025) remains an additional reading on generated message pools and human selection rather than a required reading.
 
 ## In-class evidence rather than additional required reading
 

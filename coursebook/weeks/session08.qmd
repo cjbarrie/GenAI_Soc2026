@@ -13,10 +13,11 @@ Week 7 introduces synthetic respondents and distributional validation. Week 8 wi
 
 ## Provisional core readings
 
-- Barrie et al. (2026), §§10.3.4–10.3.6 and §10.7. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
-- Kim and Lee (2026), “AI-Augmented Surveys.” [@KimLee2026]
-- Xie et al. (2026), “Evaluating the Statistical Realism of LLM-Generated Social Science Data.” [@XieEtAl2026]
-- Further comparison: Ashokkumar et al. (2026) and Wang, Morgenstern and Dickerson (2025). [@AshokkumarEtAl2026; @WangMorgensternDickerson2025]
+- **Methods:** Kim and Lee (2026), “AI-Augmented Surveys.” Read the complete paper. It predicts unasked items for observed respondents using their other answers. [Preprint](https://arxiv.org/abs/2305.09620). [@KimLee2026]
+- **Methods and validation:** Xie et al. (2026), “Evaluating the Statistical Realism of LLM-Generated Social Science Data.” Read the complete article. It tests whether synthetic data preserve more than a selected statistic. [DOI](https://doi.org/10.1073/pnas.2538145123). [@XieEtAl2026]
+- **Substantive application:** Lax and Phillips (2009), “Gay Rights in the States,” *American Political Science Review*. Read the complete article. It uses multilevel regression and poststratification to estimate state opinion and study policy responsiveness on gay rights. It gives us an established comparison for claims about recovering quantities not observed directly. [DOI](https://doi.org/10.1017/S0003055409990050). [@LaxPhillips2009]
+
+Additional comparisons: Ashokkumar et al. (2026) on forecasting experimental results and Wang, Morgenstern and Dickerson (2025) on flattening within-group variation. [@AshokkumarEtAl2026; @WangMorgensternDickerson2025]
 
 ## Planned chapter and class arc
 

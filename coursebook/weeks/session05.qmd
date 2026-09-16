@@ -18,9 +18,9 @@ You should be able to distinguish a vignette, audit study, confederate design an
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Barrie et al. (2026), “AI and Research Methods,” §10.2.** Introduces generated treatments, their methodological lineage, construct fidelity and bundled variation. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
-- **Wallander (2009), “25 Years of Factorial Surveys in Sociology,” *Social Science Research* 38(3): 505–520.** Establishes how sociologists combine experimentally varied vignette dimensions. [DOI](https://doi.org/10.1016/j.ssresearch.2009.03.004). [@Wallander2009]
-- **Dafoe, Zhang and Caughey (2018), “Information Equivalence in Survey Experiments,” *Political Analysis* 26(4): 399–416.** Gives us the language for asking whether alternative wordings convey the same non-focal information. [DOI](https://doi.org/10.1017/pan.2018.9). [@DafoeZhangCaughey2018]
+- **Methods:** Wallander (2009), “25 Years of Factorial Surveys in Sociology,” *Social Science Research* 38(3): 505–520. Read the complete article. It establishes how sociologists combine experimentally varied vignette dimensions. [DOI](https://doi.org/10.1016/j.ssresearch.2009.03.004). [@Wallander2009]
+- **Methods:** Dafoe, Zhang and Caughey (2018), “Information Equivalence in Survey Experiments,” *Political Analysis* 26(4): 399–416. Read the complete article. It gives us the language for asking whether alternative wordings convey the same non-focal information. [DOI](https://doi.org/10.1017/pan.2018.9). [@DafoeZhangCaughey2018]
+- **Substantive application:** Bloemraad, Silva and Voss (2016), “Rights, Economics, or Family?” *Social Forces* 94(4): 1647–1674. Read the complete article. It tests competing frames in an immigration-policy experiment and supplies the substantive case used in the lecture. [DOI](https://doi.org/10.1093/sf/sov123). [@BloemraadSilvaVoss2016]
 :::
 
 ## Additional readings grouped by purpose

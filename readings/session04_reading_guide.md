@@ -10,27 +10,23 @@ Do not read these texts as a history of better recording technology. Read them a
 2. How does a researcher turn observation into evidence?
 3. What inferential burden remains after an action has been recorded or computationally represented?
 
-## Required reading 1 — A short packet on sociological observation
+## Required reading 1 — Charles Goodwin on professional vision
 
-### Georg Simmel, “Sociology of the Senses”
-
-Read for the claim that seeing, hearing, bodily presence, distance, and reciprocal perception help organize a social relation. A sensory channel is therefore not simply a file format.
-
-**Mark one passage that helps answer:** What changes in a confrontation if people can see one another but cannot hear the same instruction?
-
-### Charles Goodwin (1994), “Professional Vision”
-
-Focus on Goodwin's account of coding schemes, highlighting, and graphic representation. His point is not that trained observers simply see more accurately. Professional communities organize a perceptual field so that some features become salient and consequential.
+Read [Goodwin (1994), “Professional Vision”](https://doi.org/10.1525/aa.1994.96.3.02a00100) in full. His point is not that trained observers simply see more accurately. Professional communities use coding schemes, highlighting and graphic representations to organize a perceptual field so that some features become salient and consequential.
 
 **Bring to class:** one example of something a video coder might learn to highlight that an untrained viewer might overlook.
 
 **Job in the code:** the dictionary keys are a small coding scheme. They make distance and temporal source location visible, while leaving most of the scene unrepresented.
 
-## Required reading 2 — Randall Collins and violent situations
+## Required reading 2 — Nassauer and Legewie on video data analysis
 
-### Collins (2013), “Entering and Leaving the Tunnel of Violence”
+Read [Nassauer and Legewie (2021), “Video Data Analysis”](https://doi.org/10.1177/0049124118769093) in full. Follow the decisions that turn recorded action into sociological evidence: research design, units, sampling, transcription, coding, comparison, validity and ethics.
 
-Read the abstract, theory sections on confrontational tension/fear, and conclusion. Use the short Chapter 1 extract from *Violence* to clarify the central move: put the interaction—not a violent individual type—at the center of analysis.
+**Bring to class:** one decision about the beginning, ending, viewpoint or unit of a video that could change the resulting explanation.
+
+## Required reading 3 — Randall Collins and violent situations
+
+Read [Collins (2013), “Entering and Leaving the Tunnel of Violence”](https://doi.org/10.1177/0011392112456500) in full. Follow the central move: put the interaction—not a violent individual type—at the center of analysis.
 
 Do not treat “tunnel of violence” as a label to attach after seeing contact. Ask:
 
@@ -41,27 +37,11 @@ Do not treat “tunnel of violence” as a label to attach after seeing contact.
 
 **Job in the code:** the ordered list and adjacent comparison keep the sequence visible. The `trace_sequence` function deliberately refuses to turn a transition into a causal mechanism.
 
-## Required reading 3 — Nassauer and Legewie on video data analysis
-
-### Nassauer and Legewie (2021), “Video Data Analysis: A Methodological Frame for a Novel Research Trend”
-
-Focus on the sections about research design, units, sampling, transcription, coding, analysis, validity, and ethics. The paper treats video as data produced through a method, not as a transparent replay.
-
-Ask:
-
-- Where does the event begin and end?
-- What is the unit: frame, moment, action, encounter, or event?
-- What does the camera position make visible or obscure?
-- How are audio, transcript, and visual events synchronized?
-- What comparison makes a situational claim stronger?
-- What ethical problem remains even when a video is publicly available?
-
-**Job in the code:** `time`, `source_record`, ordered moments, and `alignment_warnings` preserve four decisions that would otherwise disappear.
-
 ## In-class evidence rather than additional required reading
 
 These works will appear in the slides but are not added to the required load:
 
+- Simmel on the sociology of the senses;
 - Mead on the social act;
 - Goffman on the interaction order;
 - Sacks, Schegloff, and Jefferson on sequential organization and overlap;

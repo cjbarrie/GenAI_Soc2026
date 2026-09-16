@@ -18,14 +18,13 @@ You should be able to separate observable conduct, interpretation and unobserved
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Barrie et al. (2026), “AI and Research Methods,” §§10.1.1 and 10.1.5.** Treats text, images and video as unstructured material that can be labelled or measured, and asks what validation is needed. The sociological account of observation comes from the other readings this week. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
-- **Goodwin (1994), “Professional Vision,” *American Anthropologist* 96(3): 606–633.** Shows how coding, highlighting and material representations organize what members of a profession see. [DOI](https://doi.org/10.1525/aa.1994.96.3.02a00100). [@Goodwin1994]
-- **Collins (2013), “Entering and Leaving the Tunnel of Violence,” *Current Sociology* 61(2): 132–151.** Provides the central situational account of confrontation, tension and entrainment. [DOI](https://doi.org/10.1177/0011392112456500). [@Collins2013]
+- **Methods:** Goodwin (1994), “Professional Vision,” *American Anthropologist* 96(3): 606–633. Read the complete article. It shows how coding, highlighting and material representations organize what members of a profession see. [DOI](https://doi.org/10.1525/aa.1994.96.3.02a00100). [@Goodwin1994]
+- **Methods:** Nassauer and Legewie (2021), “Video Data Analysis,” *Sociological Methods & Research* 50(1): 135–174. Read the complete article. It gives a systematic account of selection, sequencing, transcription and inference when video becomes sociological data. [DOI](https://doi.org/10.1177/0049124118769093). [@NassauerLegewie2021]
+- **Substantive application:** Collins (2013), “Entering and Leaving the Tunnel of Violence,” *Current Sociology* 61(2): 132–151. Read the complete article. Collins uses visual evidence and close sequence analysis to explain confrontation, tension and entrainment. [DOI](https://doi.org/10.1177/0011392112456500). [@Collins2013]
 :::
 
 ## Additional readings grouped by purpose
 
-- **For video as sociological data:** Nassauer and Legewie (2021), “Video Data Analysis,” *Sociological Methods & Research* 50(1): 135–174. [DOI](https://doi.org/10.1177/0049124118769093). [@NassauerLegewie2021]
 - **For the technical grounding debate:** Bisk et al. (2020), “Experience Grounds Language,” *EMNLP*. [Paper](https://aclanthology.org/2020.emnlp-main.703/). [@BiskEtAl2020]
 
 ## Sociological and methodological background

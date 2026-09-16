@@ -18,9 +18,9 @@ You should be able to distinguish a human respondent, aggregate prediction, demo
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Barrie et al. (2026), “AI and Research Methods,” §10.3.** Distinguishes silicon-sampling purposes and the validation target appropriate to each one. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
-- **Kozlowski and Evans (2025), “Simulating Subjects,” *Sociological Methods & Research*.** Frames the promise and peril of AI stand-ins for social agents. [DOI](https://doi.org/10.1177/00491241251337316). [@KozlowskiEvans2025]
-- **Boelaert et al. (2025), “Machine Bias,” *Sociological Methods & Research*.** Tests how language models answer opinion polls and compares their response patterns with people. [DOI](https://doi.org/10.1177/00491241251330582). [@BoelaertEtAl2025]
+- **Methods:** Kozlowski and Evans (2025), “Simulating Subjects,” *Sociological Methods & Research*. Read the complete article. It frames the promise and peril of using LLMs as stand-ins for social agents. [DOI](https://doi.org/10.1177/00491241251337316). [@KozlowskiEvans2025]
+- **Methods and validation:** Boelaert et al. (2025), “Machine Bias,” *Sociological Methods & Research*. Read the complete article. It tests how language models answer opinion polls and compares their response patterns with people. [DOI](https://doi.org/10.1177/00491241251330582). [@BoelaertEtAl2025]
+- **Substantive application:** Igarashi, Kano and Miwa (2025), “ChatGPT versus Humans in Judging Discriminatory Scenarios,” *Humanities and Social Sciences Communications* 12: 1776. Read the complete article. Humans and GPT-4 judge the same experimentally varied scenarios of unequal treatment, giving us a substantive discrimination case and a direct comparison between human and model response patterns. [DOI](https://doi.org/10.1057/s41599-025-06054-6). [@IgarashiEtAl2025]
 :::
 
 ## Additional readings grouped by purpose
@@ -34,9 +34,11 @@ Survey inference depends on more than asking a question. Probability sampling li
 
 Public opinion theory adds another caution. Zaller treats a survey response as something assembled at the time from accessible considerations, not a stable value stored unchanged in a person. A demographic persona such as “a 42-year-old Black woman in Georgia” therefore does not reproduce the experiences, networks and information environment through which a human answer is formed.
 
+Igarashi, Kano and Miwa turn this general warning into an empirical comparison. Human respondents and GPT-4 judge the same experimentally varied scenarios of unequal treatment. This lets us ask two separate questions: whether the model gives similar average judgments, and whether it responds to changes in the scenario in the same way as people do. Similarity on one does not guarantee similarity on the other.
+
 ## Synthesis of the current LLM literature
 
-The literature now contains several distinct designs. A model can predict an aggregate distribution, answer once per persona, predict a held-out answer for a real respondent, or act through an interview-grounded record. These are not interchangeable. Matching the modal response does not recover the distribution; matching the distribution does not recover individual pairings; aggregate resemblance can coexist with flattened subgroup heterogeneity. Validation must name the target before calculating the score.
+The literature now contains several distinct designs. A model can predict an aggregate distribution, answer once per persona, predict a held-out answer for a real respondent, or act through an interview-grounded record. These are not interchangeable. Matching the modal response does not recover the distribution; matching the distribution does not recover individual pairings; aggregate resemblance can coexist with flattened subgroup heterogeneity. Igarashi and colleagues add another target: responsiveness to an experimental treatment. Validation must name which of these targets matters before calculating a score.
 
 ## Slides
 
