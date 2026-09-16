@@ -12,11 +12,11 @@ The arrows run in both directions. Researchers revise codes, reread earlier case
 
 | Reading | What to look for | Question to bring to class |
 |---|---|---|
-| [Timmermans & Tavory (2022), *Data Analysis in Qualitative Research*](https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html), selected material on open coding, focused coding, and analytic memos | How comparison and memo-writing turn observations into a developing explanation. | What would be lost if analysis became a single request for “the main themes”? |
-| [Than et al. (2025)](https://doi.org/10.1177/00491241251339188) | A bounded researcher–LLM–researcher workflow applied to more than 1,200 newsweekly articles. | Which task is delegated, and which decisions still belong to researchers? |
-| [Ibrahim & Voyer (2026)](https://doi.org/10.1177/14687941251390794) | The researcher shapes model output, and the output can redirect later reading and interpretation. | What should be recorded if that interaction is part of the method? |
+| [Timmermans & Tavory (2012), “Theory Construction in Qualitative Research”](https://doi.org/10.1177/0735275112457914), complete article | How an unexpected observation becomes evidence through comparison with alternative theoretical accounts. | What makes an interpretation abductive rather than merely descriptive? |
+| [Than et al. (2025)](https://doi.org/10.1177/00491241251339188), complete article | A bounded researcher–LLM–researcher workflow applied to more than 1,200 newsweekly articles. | Which task is delegated, and which decisions still belong to researchers? |
+| [Viterna (2006), “Pulled, Pushed, and Persuaded”](https://doi.org/10.1086/502690), complete article | How life histories, event sequences and comparison among pathways produce an explanation of high-risk mobilization. | What would disappear if these accounts were reduced to a list of common themes? |
 
-Selected sections keep the workload comparable with other weeks. The aim is not to master every technical comparison.
+The complete articles are assigned; focus your notes on the methodological moves and the substantive explanation, not every technical comparison.
 
 ## Four parts of the work
 
@@ -31,8 +31,8 @@ A theme is not simply a frequently mentioned topic. It is a claim about a patter
 
 Bring:
 
-1. one example of a code that stays close to a passage;
-2. one example of a comparison that could change that code;
+1. one piece of Viterna's evidence that helps distinguish two mobilization pathways;
+2. one surprising observation that could motivate an abductive explanation;
 3. one reason a model-generated theme might look convincing too early; and
 4. one part of the analytic process that would be difficult to preserve across separate LLM calls.
 
@@ -54,6 +54,8 @@ The workbook represents a deliberately simplified version of the human process:
 
 ## Papers used in class
 
+- [Ibrahim & Voyer (2026)](https://doi.org/10.1177/14687941251390794) — why the researcher's interaction with a chatbot belongs in the methodological account.
+- [Williams-Ceci et al. (2026)](https://doi.org/10.1126/sciadv.adw5578) — an experiment on AI writing suggestions and subsequent attitudes, used here as a possible influence mechanism, not direct evidence about qualitative researchers.
 - [Nguyen & Welch (2026)](https://doi.org/10.1177/10944281251377154) — why fluent organization and coding should not be mistaken for interpretation and theorization.
 - [Mehta et al. (2025)](https://www.nature.com/articles/s41598-025-18969-w) — why coherent themes can still rest on weak, truncated, or altered quotations.
 - [Stuart & Laryea (2026)](https://doi.org/10.1007/s11133-025-09625-w) — a current sociological account of iterative coding, analytic memoing, and the move from description toward explanation.

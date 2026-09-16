@@ -16,11 +16,12 @@
       {"key": "DavidsonKarell2025", "status": "additional", "section": "Measurement section", "purpose": "Connects annotation performance to downstream social-science use.", "url": "https://doi.org/10.1177/00491241251339184"}
     ],
     "session03": [
-      {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.1.4–10.1.5", "purpose": "Defines the validation problem for annotation, providing a boundary case against which qualitative interpretation can be distinguished.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},
-      {"key": "TimmermansTavory2022", "status": "essential", "section": "Open coding, focused coding and memo-writing", "purpose": "Establishes qualitative analysis as iterative movement between data and theoretical ideas.", "url": "https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html"},
-      {"key": "ThanEtAl2025", "status": "essential", "section": "Workflow and findings", "purpose": "Shows a researcher–LLM–researcher process for qualitative coding.", "url": "https://doi.org/10.1177/00491241251339188"},
-      {"key": "IbrahimVoyer2026", "status": "additional", "section": "Technological reflexivity", "purpose": "Makes the chatbot interaction itself part of the methodological account.", "url": "https://doi.org/10.1177/14687941251390794"},
-      {"key": "JackCooperFlower2026", "status": "additional", "section": "Analysis discussion", "purpose": "Provides a recent empirical case in which humans retained the interpretive analysis.", "url": "https://doi.org/10.1177/20597991261448157"}
+      {"key": "TimmermansTavory2012", "status": "essential", "section": "Full article", "purpose": "Establishes abductive analysis as movement between surprising observations and alternative theoretical accounts.", "url": "https://doi.org/10.1177/0735275112457914"},
+      {"key": "ThanEtAl2025", "status": "essential", "section": "Full article", "purpose": "Shows a researcher–LLM–researcher process for qualitative coding.", "url": "https://doi.org/10.1177/00491241251339188"},
+      {"key": "Viterna2006", "status": "essential", "section": "Full article", "purpose": "Applies comparative life-history analysis to different pathways into high-risk mobilization.", "url": "https://doi.org/10.1086/502690"},
+      {"key": "IbrahimVoyer2026", "status": "additional", "section": "Full article", "purpose": "Makes the chatbot interaction itself part of the methodological account.", "url": "https://doi.org/10.1177/14687941251390794"},
+      {"key": "WilliamsCeciEtAl2026", "status": "additional", "section": "Full article", "purpose": "Shows how interactive model suggestions can influence subsequent judgment.", "url": "https://doi.org/10.1126/sciadv.adw5578"},
+      {"key": "JackCooperFlower2026", "status": "additional", "section": "Full article", "purpose": "Provides a recent empirical case in which humans retained the interpretive analysis.", "url": "https://doi.org/10.1177/20597991261448157"}
     ],
     "session04": [
       {"key": "BarrieEtAl2026AIResearchMethods", "status": "essential", "section": "Sections 10.1.1 and 10.1.5", "purpose": "Treats text, images and video as annotatable material and states the corresponding validation problem.", "url": "https://doi.org/10.33774/apsa-2026-h59kk", "local_url": "downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf"},

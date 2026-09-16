@@ -18,25 +18,30 @@ You should be able to distinguish retrieval, coding, theming and interpretation;
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Barrie et al. (2026), “AI and Research Methods,” §§10.1.4–10.1.5.** Defines the validation problem for LLM annotation. We use it as a boundary case: qualitative interpretation requires more than assigning or evaluating predefined labels. [Download the chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) · [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk). [@BarrieEtAl2026AIResearchMethods]
-- **Timmermans and Tavory (2022), *Data Analysis in Qualitative Research*.** Selected material on open and focused coding and analytic memo-writing; the foundation for the worked process. [Publisher](https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html). [@TimmermansTavory2022]
-- **Than et al. (2025), “Updating ‘The Future of Coding’,” *Sociological Methods & Research*.** A researcher–LLM–researcher workflow and empirical comparison. [DOI](https://doi.org/10.1177/00491241251339188). [@ThanEtAl2025]
+- **Methods:** Timmermans and Tavory (2012), “Theory Construction in Qualitative Research,” *Sociological Theory*. Read the complete article. It explains abductive analysis: surprising observations become analytically useful through comparison with alternative theoretical accounts. [DOI](https://doi.org/10.1177/0735275112457914). [@TimmermansTavory2012]
+- **Methods and LLMs:** Than et al. (2025), “Updating ‘The Future of Coding’,” *Sociological Methods & Research*. Read the complete article. It provides a researcher–LLM–researcher workflow and an empirical comparison of human and model-assisted coding. [DOI](https://doi.org/10.1177/00491241251339188). [@ThanEtAl2025]
+- **Substantive application:** Viterna (2006), “Pulled, Pushed, and Persuaded,” *American Journal of Sociology*. Read the complete article. Viterna uses life histories and event-level comparisons to explain different routes into high-risk mobilization; we use it to see what qualitative analysis must preserve before asking an LLM for themes. [DOI](https://doi.org/10.1086/502690). [@Viterna2006]
 :::
 
 ## Additional readings grouped by purpose
 
 - **For reflexivity about the model interaction:** Ibrahim and Voyer (2026), “Qualitative Research with LLM Chatbots,” *Qualitative Research*. [DOI](https://doi.org/10.1177/14687941251390794). [@IbrahimVoyer2026]
+- **For evidence that suggestions can influence subsequent judgment:** Williams-Ceci et al. (2026), “Biased AI Writing Assistants Shift Users’ Attitudes on Societal Issues,” *Science Advances*. Their experiments concern writing and political attitudes rather than qualitative analysis, but they show why retaining a pre-model interpretation matters. [DOI](https://doi.org/10.1126/sciadv.adw5578). [@WilliamsCeciEtAl2026]
 - **For a recent empirical implementation:** Jack, Cooper and Flower (2026), “Automating the Qualitative Interview?” *Methodological Innovations*. [DOI](https://doi.org/10.1177/20597991261448157). [@JackCooperFlower2026]
 
 ## Sociological and methodological background
 
 Qualitative analysis is not a single request for “the themes.” Researchers read and re-read material, write provisional codes, compare passages and cases, record hunches, search for exceptions and revise the relationship between data and theory. Timmermans and Tavory emphasize abduction: an unexpected observation becomes productive when it is developed against alternative theoretical accounts. A list of frequent topics is therefore not equivalent to an interpretation.
 
+Viterna shows what this looks like in substantive research. Her explanation of women's routes into Salvadoran guerrilla organizations depends on reconstructing sequences within life histories and comparing different paths into mobilization. The same broad topic can appear in several accounts while doing different explanatory work. That is exactly the kind of difference a decontextualized list of themes can erase.
+
 Our worked corpus consists of short interview excerpts about tenant mutual-aid networks. Each excerpt has an ID, speaker, question, preceding context and text. The research question asks how participants describe the relationship between mutual aid and formal housing organizations. Giving the listener this setup matters: the same sentence could support a different interpretation in a study of friendship, political mobilization or service provision.
 
 ## Synthesis of the current LLM literature
 
-Than and colleagues show that models can contribute useful code suggestions while researchers retain decisions about meaning and iteration. Ibrahim and Voyer ask researchers to document how the chatbot’s categories and conversational affordances enter the analysis. Both point away from one-shot automation. Context windows are large but finite; calls may not preserve cumulative analytic memory; summaries can smooth over contradictions; and a model can cite genuine passages while overstating what they show. The most defensible role in our example is proposal and retrieval: suggest a possible pattern, return the passages, then make the researcher compare support, variation and counterexamples.
+Than and colleagues show that models can contribute useful code suggestions while researchers retain decisions about meaning and iteration. Ibrahim and Voyer ask researchers to document how the chatbot's categories and conversational affordances enter the analysis. Both point away from one-shot automation. But retaining the final decision does not guarantee an independent judgment. In two preregistered writing experiments, Williams-Ceci and colleagues found that biased AI suggestions shifted participants' subsequently reported attitudes, usually without participants recognizing the influence. The participants were not qualitative researchers, so this is evidence of a plausible risk rather than a direct test of qualitative analysis. It nevertheless makes the timing of a suggestion methodologically important.
+
+Our workflow therefore begins with a short independent memo. Only then does the researcher request a model proposal, compare it with the initial memo, inspect the cited passages and search deliberately for counterevidence. Context windows are large but finite; calls may not preserve cumulative analytic memory; summaries can smooth over contradictions; and a model can cite genuine passages while overstating what they show. Viterna gives us the harder standard: can the analysis preserve chronology, comparison across cases and evidence that does not fit the first proposed theme?
 
 ## Slides
 
