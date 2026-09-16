@@ -44,7 +44,7 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
         return json.dumps(
             {
                 "theme": "Participation differs",
-                "evidence_id": "e01",
+                "evidence_id": "T01_B",
                 "question_for_researcher": "What explains the difference?",
             }
         )
@@ -90,6 +90,21 @@ def fake_ollama(**kwargs: object) -> SimpleNamespace:
     )
 
 
+def test_week3_local_task_needs_no_hosted_key(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The downloadable local script runs without prompting for OpenRouter."""
+    monkeypatch.chdir(ROOT)
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setattr("getpass.getpass", lambda *_: pytest.fail("Unexpected key prompt"))
+    import ollama
+
+    monkeypatch.setattr(ollama, "chat", fake_ollama)
+    result = runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
+    assert result["cited_excerpt"]["id"] == "T01_B"
+    assert result["analysis_record"]["countercase_ids"] == ["T02_A", "T03_A"]
+
+
 @pytest.mark.parametrize("week", range(3, 14))
 @pytest.mark.parametrize("runtime", ["local", "colab"])
 def test_followup_notebook_executes_without_live_services(
@@ -129,6 +144,11 @@ def test_followup_notebook_executes_without_live_services(
 
     if runtime == "colab" and week in {3, 4, 5, 6, 7, 9, 10, 11, 12}:
         assert namespace["ROUTE"] == "openrouter"
+    if week == 3:
+        record = namespace["analysis_record"]
+        assert record["first_memo"] == namespace["first_memo"]
+        assert record["cited_excerpt"]["id"] == "T01_B"
+        assert record["countercase_ids"] == ["T02_A", "T03_A"]
     if week == 8 and runtime == "colab":
         assert namespace["local_results"] == []
         assert namespace["local_mean"] is None

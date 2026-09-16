@@ -30,25 +30,34 @@ config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
 
-if not os.getenv("OPENROUTER_API_KEY"):
-    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
-
 print("Hosted model:", HOSTED_MODEL)
 print("Local model:", LOCAL_MODEL)
 
-# CELL: Choose one route and store two identified excerpts
+# CELL: Choose one route and store four identified excerpts
 ROUTE = "ollama"  # change to "openrouter" if preferred
+if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 excerpts = [
-    {"id": "e01", "text": "After several exchanges, I attended the tenants' meeting."},
-    {"id": "e02", "text": "I accepted help but did not attend political meetings."},
+    {"id": "T01_A", "text": "The grocery deliveries helped. At first I did not know who organized them."},
+    {"id": "T01_B", "text": "Months later I helped with childcare and joined the tenants' meeting."},
+    {"id": "T02_A", "text": "I accepted help but kept it separate from politics. I never attended meetings."},
+    {"id": "T03_A", "text": "When the delivery rota became an obligation, I left the group."},
 ]
 print("Route:", ROUTE)
-print("First excerpt:", excerpts[0])
+print("First encounter:", excerpts[0])
+print("Later account from the same tenant:", excerpts[1])
+print("Contrasting accounts:", excerpts[2], excerpts[3])
+
+# CELL: Save your reading before the model suggests one
+first_memo = "Practical help sometimes led to meetings, but not for everyone."
+print("My first reading:", first_memo)
 
 # CELL: Convert the excerpts into prompt text and construct messages
 prompt = (
-    "Suggest one provisional theme. Return JSON with exactly theme, evidence_id, "
-    "and question_for_researcher. Excerpts: " + json.dumps(excerpts)
+    "Research question: How do tenants distinguish emergency help from political solidarity? "
+    "Suggest one provisional theme. Cite one excerpt ID that supports it. "
+    "Return JSON with exactly theme, evidence_id, and question_for_researcher. "
+    "Do not treat a theme as a finding. Excerpts: " + json.dumps(excerpts)
 )
 messages = [{"role": "user", "content": prompt}]
 print(prompt)
@@ -64,7 +73,7 @@ if ROUTE == "openrouter":
         )
     raw_output = response.choices[0].message.content
 else:
-    response = ollama.chat(think=False, 
+    response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=messages,
         format="json",
@@ -86,5 +95,38 @@ print("Theme:", suggestion["theme"])
 print("Cited excerpt:", cited_excerpt)
 print("Question:", suggestion["question_for_researcher"])
 
-# ONE CHANGE: change e02 to
+# CELL: Compare the model suggestion with contrasting cases
+countercase_one = excerpts[2]
+countercase_two = excerpts[3]
+print("The model suggested:", suggestion["theme"])
+print("I wrote before the call:", first_memo)
+print("Does the cited ID exist?", cited_excerpt is not None)
+print("Contrasting case 1:", countercase_one)
+print("Contrasting case 2:", countercase_two)
+
+# CELL: Record a reasoned researcher revision
+revised_claim = (
+    "Repeated exchanges sometimes led to meeting participation, "
+    "but receiving help did not always produce political involvement."
+)
+researcher_reason = (
+    "T01_B follows repeated contact; T02_A separates help from politics; "
+    "T03_A describes withdrawal when help felt obligatory."
+)
+analysis_record = {
+    "first_memo": first_memo,
+    "route": ROUTE,
+    "model_request": prompt,
+    "raw_model_output": raw_output,
+    "model_suggestion": suggestion,
+    "cited_excerpt": cited_excerpt,
+    "countercase_ids": ["T02_A", "T03_A"],
+    "revised_claim": revised_claim,
+    "researcher_reason": researcher_reason,
+}
+print("Revised claim:", analysis_record["revised_claim"])
+print("Why it changed:", analysis_record["researcher_reason"])
+
+# ONE CHANGE: change T02_A to
 # "The food deliveries helped, but I avoided the group because meetings felt hostile."
+# Rerun from the prompt cell and decide whether your revised claim needs to change.
