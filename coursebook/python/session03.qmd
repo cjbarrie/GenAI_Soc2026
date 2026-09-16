@@ -1,27 +1,37 @@
 ---
-title: "Week 3 Python — Qualitative suggestions in JSON"
-description: "Worked code, notebook and completion task"
+title: "Week 3 Python — A researcher–model exchange"
+description: "Eight excerpts, three model turns, and an independent final memo"
 ---
 
 [Return to the Week 3 readings and slides](../weeks/session03.qmd).
 
-## Python walkthrough: ask for a qualitative suggestion in json
+## Python walkthrough: when does mutual aid contribute to political solidarity?
+
+The research question is: **When, if at all, does mutual aid among tenants contribute to political solidarity?** Here, receiving food or emergency money is *not by itself* political solidarity. We are looking for accounts of tenants recognizing a shared problem and acting together. Writing and delivering a petition is clearer evidence of collective action than simply accepting a delivery.
+
+We use eight **instructor-authored fictional excerpts**, not interviews with real people. Two come from the same tenant at different points. Several plainly trouble the idea that aid always leads to organizing:
+
+| ID | What to notice |
+|---|---|
+| T01_A, T01_B | The same tenant first receives groceries, then describes childcare exchanges and meeting attendance months later. |
+| T02_A | Accepted emergency help, rejected political involvement: an obvious countercase to a universal conversion claim. |
+| T03_A | Left when helping became a requirement: another countercase, with a different possible explanation. |
+| T04_A | Describes repair work, trust, eviction notices and a jointly delivered petition. |
+| T05_A | Rejects the organizers' word “solidarity” for their own practical use of aid. |
+| T06_A | Reports stronger social ties but not political identity; an AI-moderated follow-up shaped this account. |
+| T07_A | Stayed in meetings to compare the landlord's claims and act with others. |
+
+A model may suggest a pattern. It does not decide which of these accounts supports it or whether the apparent sequence explains anything. This exercise follows the lecture: **write a first interpretation → ask the model → challenge it with source material → ask what the evidence establishes → write your own provisional conclusion**. This is a small exercise in the abductive and reflexive work discussed by Timmermans and Tavory, Than and colleagues, Viterna, and Ibrahim and Voyer.
 
 ::: {.routine-summary}
-**Today's routine:** Four short interview excerpts → your first reading → one model suggestion → source and countercase checks → a revised claim.
+**What you will learn in Python:** strings, lists of dictionaries, `input(...)`, a short `for` loop over source records, `if/else` route selection, messages and JSON. No student-defined functions are needed.
 
-**Python introduced:** a route selector, `if/else`, lists of dictionaries, `json.dumps(...)` and `json.loads(...)`.
-
-**Your change:** alter one contrasting excerpt, rerun the call, and explain whether your revision should change.
+**What you will submit:** a narrated recording tracing all three calls and explaining what changed in *your* interpretation.
 :::
 
-The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+### 1. Prepare the environment
 
-### Load the course settings and SDKs
-
-Run the notebook's **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local `uv` environment, adds the repository root to Python's import path and sets `IN_COLAB`. Colab uses OpenRouter because it cannot reach the Ollama server on your computer.
-
-This next cell reads the two centrally recorded model names. The hosted key is requested later only if you choose OpenRouter. Keep any key entry out of the recording.
+Run the notebook's **Prepare the notebook environment** cell first. In Colab it installs missing SDKs and obtains the public course configuration. Locally, start JupyterLab from the complete repository with `uv run jupyter lab`, or run the downloadable script with `uv run python assessments/weekly_coding/session03_task.py`.
 
 ```python
 import json
@@ -34,179 +44,344 @@ try:
     from openrouter import OpenRouter
 except ModuleNotFoundError as error:
     raise ModuleNotFoundError(
-        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
-        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+        "A course SDK is missing. In the complete GenAI_Soc2026 folder, "
+        "run 'uv sync --frozen' and then 'uv run python "
+        "assessments/weekly_coding/session03_task.py'."
     ) from error
 
 ROOT = Path.cwd()
 while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
     ROOT = ROOT.parent
-
 if not (ROOT / "config" / "course_models.json").exists():
     raise FileNotFoundError(
-        "The complete GenAI_Soc2026 repository could not be found. A task or "
-        "notebook downloaded by itself is not enough for local work. Open a terminal "
-        "in the complete course folder and run this file from there."
+        "Run this script from the complete GenAI_Soc2026 repository. "
+        "A downloaded script alone does not include the course configuration."
     )
 
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
-
 print("Hosted model:", HOSTED_MODEL)
 print("Local model:", LOCAL_MODEL)
 ```
 
-::: {.callout-note title="Read this setup cell"}
-**Input:** installed Python packages and `config/course_models.json`. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. The folder-search code is supplied setup and is not assessed.
-:::
+**Input:** installed `openrouter` and `ollama` Python packages plus `config/course_models.json`. `import` makes a package available; `Path.cwd()` identifies the current folder; the supplied `while` block finds the course root. `read_text()` gets JSON text and `json.loads(...)` turns it into a dictionary. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL`, two strings. The folder search is setup code, not assessed Python.
 
-### Choose one route and read the four source excerpts
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+### 2. Read the material and choose a route
 
 ```python
-ROUTE = "openrouter" if IN_COLAB else "ollama"  # Ollama is the local default
+ROUTE = "ollama"  # change to "openrouter" to use the hosted route
 if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
-excerpts = [
-    {"id": "T01_A", "text": "The grocery deliveries helped. At first I did not know who organized them."},
-    {"id": "T01_B", "text": "Months later I helped with childcare and joined the tenants' meeting."},
-    {"id": "T02_A", "text": "I accepted help but kept it separate from politics. I never attended meetings."},
-    {"id": "T03_A", "text": "When the delivery rota became an obligation, I left the group."},
-]
-print("Route:", ROUTE)
-print("First encounter:", excerpts[0])
-print("Later account from the same tenant:", excerpts[1])
-print("Contrasting accounts:", excerpts[2], excerpts[3])
-```
 
-::: {.callout-note title="Route and source records"}
-`ROUTE` is a string controlling which later branch runs. If it selects OpenRouter, `getpass(...)` asks for the key without showing it; Ollama needs no key. `excerpts` is a list of four dictionaries. Each dictionary keeps an ID with its text. `T01_A` and `T01_B` come from the same fictional tenant at different times; `T02_A` and `T03_A` complicate a simple story of help turning into political action. These are instructor-authored synthetic passages, not interviews with real people.
-:::
-
-### Write your own first reading before the model call
-
-```python
-first_memo = "Practical help sometimes led to meetings, but not for everyone."
-print("My first reading:", first_memo)
-```
-
-**Input:** your reading of the four passages. **Output:** `first_memo`, a string saved before any model suggestion. It gives you something to compare with the model's response, so you can notice if the suggestion redirects your attention.
-
-### Convert the excerpts into prompt text and construct messages
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
-
-```python
-prompt = (
-    "Research question: How do tenants distinguish emergency help from political solidarity? "
-    "Suggest one provisional theme. Cite one excerpt ID that supports it. "
-    "Return JSON with exactly theme, evidence_id, and question_for_researcher. "
-    "Do not treat a theme as a finding. Excerpts: " + json.dumps(excerpts)
+research_question = (
+    "When, if at all, does mutual aid among tenants contribute "
+    "to political solidarity?"
 )
-messages = [{"role": "user", "content": prompt}]
-print(prompt)
+excerpts = [
+    {
+        "id": "T01_A",
+        "text": "When the rent went up, grocery deliveries got us through the last week of the month. At that point I did not know who organized them.",
+    },
+    {
+        "id": "T01_B",
+        "text": "After a few months of taking turns with childcare, I started going to the tenants' meetings. The first time I spoke was about the broken elevator.",
+    },
+    {
+        "id": "T02_A",
+        "text": "I was grateful for the emergency fund, but I kept it separate from politics. I did not attend meetings and I still do not think of myself as an organizer.",
+    },
+    {
+        "id": "T03_A",
+        "text": "Once the delivery rota became a requirement, it stopped feeling like help. I missed two shifts, people kept messaging me, and I left the group.",
+    },
+    {
+        "id": "T04_A",
+        "text": "Fixing things together meant we already trusted one another when the eviction notices arrived. Six of us wrote the petition and delivered it together.",
+    },
+    {
+        "id": "T05_A",
+        "text": "The organizers call it solidarity. For me it was mostly a way to make it to payday. I did not want a political identity attached to it.",
+    },
+    {
+        "id": "T06_A",
+        "text": "I learned people's names and felt less alone. I would not say it made me political, but I was more willing to ask what others needed.",
+        "context": "An AI-moderated follow-up asked whether deliveries changed relationships.",
+    },
+    {
+        "id": "T07_A",
+        "text": "The food deliveries ended for me, but the meetings were where we compared what the landlord had told each floor. I stayed because acting separately was not working.",
+    },
+]
+print("Research question:", research_question)
+for excerpt in excerpts:
+    print(excerpt["id"], "—", excerpt["text"])
+print("T06_A interviewer context:", excerpts[6]["context"])
 ```
 
-::: {.callout-note title="Preparing the qualitative input"}
-`json.dumps(excerpts)` converts the list of source dictionaries to text without discarding their IDs. The prompt includes the research question, the task and the three requested output fields. It does **not** include `first_memo`: the model cannot see your independent first reading. `messages` is a list containing one dictionary; that list is what the SDK sends.
-:::
+**Input:** eight source dictionaries. Each has an `id` string and a `text` string; T06_A also has a `context` string about the interviewer. `excerpts` is a list, so `excerpts[6]` selects its seventh item (Python counts from zero). The short `for` loop prints one record at a time; it makes **no model calls**. **Output:** the research question, source IDs, texts and T06_A context. The downloadable script defaults to local Ollama. In the Colab notebook, `ROUTE` is automatically `"openrouter"`. A hosted key is requested with hidden input only on that route; keep it off screen when recording.
 
-### Make the selected route's call without hiding either branch
+### 3. Save your reading before the model speaks
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+```python
+print("Example first memo: Help may build relationships, but receiving aid alone is not collective action.")
+first_memo = input("Your one-sentence first reading: ")
+print("Saved before the model:", first_memo)
+```
+
+`input(...)` shows a question and pauses until you type a reply. Its output is a **string** stored in `first_memo`. Write your own sentence. This step matters because model suggestions can influence what a researcher notices next; without a first memo, you cannot compare your earlier reading with the later one.
+
+### What a conversation might sound like
+
+This is an **illustrative exchange**, not a model output students are expected to reproduce:
+
+> **Researcher, before the call:** “Some repeated exchanges led to meetings, but receiving help alone did not.”
+>
+> **Model:** “Mutual aid turns practical dependence into political solidarity.” It cites T04_A.
+>
+> **Researcher:** “That overlooks T02_A, who accepted aid but rejected politics, and T03_A, who left when helping became compulsory. What changes?”
+>
+> **Model:** “Mutual aid can support collective action under some conditions; it does not reliably produce it.”
+>
+> **Researcher:** “T04_A mentions trust and a petition. We have an account of joint action, but how do we know trust caused it rather than the eviction notices?”
+>
+> **Model:** “We do not know from these excerpts. The proposed mechanism needs other evidence.”
+
+The student's final memo may agree with parts of this exchange, reject others, or ask a different question. The point is to make **researcher feedback an input to the next call**, while keeping the original passages available for checking.
+
+### 4. Ask for the model's first proposal
+
+```python
+prompt_1 = (
+    "Research question: " + research_question + "\n"
+    "For this exercise, political solidarity means tenants identifying a shared "
+    "problem and acting together; receiving aid alone does not establish it. "
+    "Suggest one provisional pattern and cite one supplied excerpt ID. "
+    "Return a JSON object with exactly theme, evidence_id, and "
+    "question_for_researcher. These are synthetic interview excerpts: "
+    + json.dumps(excerpts)
+)
+messages_1 = [{"role": "user", "content": prompt_1}]
+print("Round 1 sends", len(excerpts), "labelled excerpts in one user message.")
+```
+
+**First request → raw response.** The `if/else` sends the same message through one chosen route. Each branch puts returned JSON *text* in `raw_1`. `temperature=0` requests less variation, while `max_tokens` or `num_predict` bounds the answer length. Neither setting makes a theme sociologically sound.
 
 ```python
 if ROUTE == "openrouter":
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
-        response = client.chat.send(
+        response_1 = client.chat.send(
             model=HOSTED_MODEL,
-            messages=messages,
+            messages=messages_1,
             temperature=0,
+            max_tokens=250,
             response_format={"type": "json_object"},
         )
-    raw_output = response.choices[0].message.content
+    raw_1 = response_1.choices[0].message.content
 else:
-    response = ollama.chat(think=False,
+    response_1 = ollama.chat(
         model=LOCAL_MODEL,
-        messages=messages,
+        messages=messages_1,
+        think=False,
         format="json",
-        options={"temperature": 0},
+        options={"temperature": 0, "num_predict": 250},
     )
-    raw_output = response.message.content
-
-print("Raw JSON text:", raw_output)
+    raw_1 = response_1.message.content
+print("Round 1 raw output:", raw_1)
 ```
 
-::: {.callout-note title="Reading the branch"}
-`if ROUTE == "openrouter"` runs only when that comparison is true; otherwise `else` runs the Ollama code. Both calls remain visible. Each branch assigns the returned text to `raw_output`, so the next block works with either route. `temperature=0` asks for less variation; it does not make the interpretation correct or guarantee identical reruns.
-:::
+`prompt_1` is one string containing the research question, the operational meaning of political solidarity, the output request and the eight excerpts. `json.dumps(excerpts)` converts the Python list to text while retaining IDs. `messages_1` is a list containing one dictionary with a `role` and `content`. The model receives this message—not `first_memo`.
 
-### Parse the JSON string and return to its cited source
+The `if` branch calls OpenRouter remotely; `else` calls your local Ollama model. Both branches save returned text as `raw_1`. `temperature=0` asks for less variation, not a correct interpretation. `max_tokens` or `num_predict` limits output length; `response_format` or `format` requests JSON. **Output:** raw JSON *text*, printed before we try to read its fields.
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+### 5. Check the cited passage
 
 ```python
-suggestion = json.loads(raw_output)
-evidence_id = suggestion["evidence_id"]
-cited_excerpt = None
+proposal_1 = json.loads(raw_1)
+print("Round 1 fields:", list(proposal_1))
+print("Round 1 theme:", proposal_1.get("theme"))
+print("Round 1 cited ID:", proposal_1.get("evidence_id"))
+cited_1 = None
 for excerpt in excerpts:
-    if excerpt["id"] == evidence_id:
-        cited_excerpt = excerpt
-
-print("Theme:", suggestion["theme"])
-print("Cited excerpt:", cited_excerpt)
-print("Question:", suggestion["question_for_researcher"])
+    if excerpt["id"] == proposal_1.get("evidence_id"):
+        cited_1 = excerpt
+print("Round 1 cited passage:", cited_1)
+print("Round 1 model question:", proposal_1.get("question_for_researcher"))
+print("Your earlier memo:", first_memo)
+print("Compare T02_A, T03_A and T05_A before accepting a general claim.")
 ```
 
-::: {.callout-note title="Text becomes a dictionary"}
-`json.loads(raw_output)` parses the returned string into a Python dictionary. Square brackets retrieve the theme and cited ID. The `for` loop checks the four source records for that ID. If `cited_excerpt` prints as `None`, the model cited an ID absent from the supplied material. An existing citation is only the start of the check: read the passage and ask whether it actually supports the suggested relationship.
-:::
+`json.loads(raw_1)` changes a string into a Python dictionary called `proposal_1`. `.get("theme")` retrieves one field; it gives `None` if the field is missing. The loop compares the model's `evidence_id` against each original ID. If it matches, `cited_1` becomes the entire source dictionary; if it does not, `cited_1` remains `None`. **Output:** a theme, cited ID, full passage and a model question.
 
-### Check the contrasting passages and revise the claim
+Do not confuse *finding the passage* with *confirming the theme*. If the model says all recipients became organizers, T02_A and T03_A immediately trouble that claim. If it cites T02_A for a more modest distinction between aid and politics, T02_A may support the claim. The same excerpt can have different roles depending on what the model actually argued.
+
+### 6. Reply with a countercase
 
 ```python
-countercase_one = excerpts[2]
-countercase_two = excerpts[3]
-print("The model suggested:", suggestion["theme"])
-print("I wrote before the call:", first_memo)
-print("Does the cited ID exist?", cited_excerpt is not None)
-print("Contrasting case 1:", countercase_one)
-print("Contrasting case 2:", countercase_two)
+print(
+    "Example reply: T02_A accepted help but rejected political involvement; "
+    "T03_A left when help became obligatory. How does your theme handle both?"
+)
+feedback_1 = input("Your reply to the model, naming at least one excerpt ID: ")
+messages_2 = messages_1 + [
+    {"role": "assistant", "content": raw_1},
+    {
+        "role": "user",
+        "content": (
+            feedback_1
+            + " Reconsider your theme using the supplied excerpts. Do not simply "
+            "agree with me; explain any evidence that resists my challenge. "
+            "Return JSON with exactly theme, evidence_id, and "
+            "question_for_researcher."
+        ),
+    },
+]
+print("Round 2 new researcher input:", feedback_1)
 ```
 
-**Input:** the model suggestion, your earlier memo, the cited passage and two other source records. **Output:** a comparison you can read aloud. `is not None` checks only whether the ID was found; it cannot judge what a passage means. Ask whether the cited passage supports the theme, whether the two contrasting accounts limit it, and whether the model caused you to overlook anything in your first memo.
+**Second request → raw response.** `messages_2` contains the first user request, the first model answer and your reply. The whole list is sent again; that is how this program carries the conversation forward.
 
 ```python
-revised_claim = (
-    "Repeated exchanges sometimes led to meeting participation, "
-    "but receiving help did not always produce political involvement."
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response_2 = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=messages_2,
+            temperature=0,
+            max_tokens=250,
+            response_format={"type": "json_object"},
+        )
+    raw_2 = response_2.choices[0].message.content
+else:
+    response_2 = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=messages_2,
+        think=False,
+        format="json",
+        options={"temperature": 0, "num_predict": 250},
+    )
+    raw_2 = response_2.message.content
+print("Round 2 raw output:", raw_2)
+```
+
+**Raw response → source check.** Parse `raw_2`, read the revised theme and reopen the source cited by its ID. Ask whether the model answered your countercase or merely agreed with your wording.
+
+```python
+proposal_2 = json.loads(raw_2)
+print("Round 2 theme:", proposal_2.get("theme"))
+cited_2 = None
+for excerpt in excerpts:
+    if excerpt["id"] == proposal_2.get("evidence_id"):
+        cited_2 = excerpt
+print("Round 2 cited passage:", cited_2)
+print("Round 2 model question:", proposal_2.get("question_for_researcher"))
+```
+
+Type your own response in `feedback_1`. The printed sentence is an example, not a required answer. `messages_2` joins three visible pieces: the first user request, the model's raw first answer, and your new reply. This is what “conversation history” means here: **we send earlier turns again as part of the second request**. There is no separate memory hidden in the Python script.
+
+The second call uses the same chosen route and produces `raw_2`. Parsing gives `proposal_2`; the source lookup retrieves `cited_2`. Compare the two themes. Did the model answer your counterexample, simply agree with you, or introduce a new claim with no source?
+
+### 7. Press on the explanation
+
+```python
+print(
+    "Example reply: T04_A mentions trust and a petition. What is observed, "
+    "and what is only an interpretation about why tenants acted together?"
 )
-researcher_reason = (
-    "T01_B follows repeated contact; T02_A separates help from politics; "
-    "T03_A describes withdrawal when help felt obligatory."
+feedback_2 = input("Your second reply, naming an excerpt and a remaining question: ")
+messages_3 = messages_2 + [
+    {"role": "assistant", "content": raw_2},
+    {
+        "role": "user",
+        "content": (
+            feedback_2
+            + " Distinguish reported events from an inferred mechanism. "
+            "Do not claim these few interviews establish a causal effect. "
+            "Keep the theme about mutual aid and solidarity; put remaining "
+            "methodological uncertainty in question_for_researcher. "
+            "Return JSON with exactly theme, evidence_id, and "
+            "question_for_researcher."
+        ),
+    },
+]
+print("Round 3 new researcher input:", feedback_2)
+```
+
+**Third request → raw response.** The full, visible history in `messages_3` now includes your second question. The code makes one more call through the selected route; it does not ask Python to infer a mechanism.
+
+```python
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response_3 = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=messages_3,
+            temperature=0,
+            max_tokens=250,
+            response_format={"type": "json_object"},
+        )
+    raw_3 = response_3.choices[0].message.content
+else:
+    response_3 = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=messages_3,
+        think=False,
+        format="json",
+        options={"temperature": 0, "num_predict": 250},
+    )
+    raw_3 = response_3.message.content
+print("Round 3 raw output:", raw_3)
+```
+
+**Raw response → source check.** Parse `raw_3` and reopen the cited excerpt. Does the model distinguish what a participant reported doing from its own explanation of why it happened?
+
+```python
+proposal_3 = json.loads(raw_3)
+print("Round 3 theme:", proposal_3.get("theme"))
+cited_3 = None
+for excerpt in excerpts:
+    if excerpt["id"] == proposal_3.get("evidence_id"):
+        cited_3 = excerpt
+print("Round 3 cited passage:", cited_3)
+print("Round 3 model question:", proposal_3.get("question_for_researcher"))
+```
+
+The third turn asks a different question. T04_A reports trust and a petition. The petition is a reported action; the claim that trust *caused* it is an interpretation. `feedback_2` is your own question about that distinction. `messages_3` includes both earlier exchanges and this new reply. The third call yields `raw_3`, `proposal_3` and the cited original passage `cited_3`.
+
+A better-sounding answer is not necessarily a better analysis. Check chronology, wording, the interviewer context for T06_A, and the tenants who did not organize.
+
+### 8. Decide what you think and preserve the exchange
+
+```python
+print("The model's three themes:", proposal_1.get("theme"), "|", proposal_2.get("theme"), "|", proposal_3.get("theme"))
+print("Your independent first memo:", first_memo)
+final_memo = input(
+    "Your provisional answer to the research question, with a countercase and limit: "
 )
+if ROUTE == "openrouter":
+    selected_model = HOSTED_MODEL
+else:
+    selected_model = LOCAL_MODEL
+```
+
+**Final memo → research record.** The student supplies the substantive answer; Python only stores it beside the prompts, raw model answers and source checks.
+
+```python
 analysis_record = {
+    "research_question": research_question,
     "first_memo": first_memo,
     "route": ROUTE,
-    "model_request": prompt,
-    "raw_model_output": raw_output,
-    "model_suggestion": suggestion,
-    "cited_excerpt": cited_excerpt,
-    "countercase_ids": ["T02_A", "T03_A"],
-    "revised_claim": revised_claim,
-    "researcher_reason": researcher_reason,
+    "model": selected_model,
+    "excerpts": excerpts,
+    "round_1": {"messages": messages_1, "raw": raw_1, "proposal": proposal_1, "cited": cited_1},
+    "round_2": {"feedback": feedback_1, "messages": messages_2, "raw": raw_2, "proposal": proposal_2, "cited": cited_2},
+    "round_3": {"feedback": feedback_2, "messages": messages_3, "raw": raw_3, "proposal": proposal_3, "cited": cited_3},
+    "final_memo": final_memo,
 }
-print("Revised claim:", analysis_record["revised_claim"])
-print("Why it changed:", analysis_record["researcher_reason"])
+print("Final researcher memo:", analysis_record["final_memo"])
+print("Saved rounds:", list(analysis_record))
 ```
 
-This is an **illustrative researcher revision**, not the only acceptable interpretation. The dictionary keeps the pre-model memo, route, request, raw response, parsed suggestion and reason for revision together. A full study would also record the exact model version and other call settings. The notebook asks you to explain your own decision rather than adopt this wording automatically.
-
-### Change one passage and repeat the check
-
-Edit only `T02_A` in the source-list cell to: `"The food deliveries helped, but I avoided the group because meetings felt hostile."` Then rerun from the prompt cell onward. The changed passage enters the prompt through `json.dumps(excerpts)`. Compare the new raw return with the first one, reopen the cited passage and both contrasting cases, and say whether `revised_claim` or `researcher_reason` needs to change. Do not assume a changed model answer requires a changed sociological claim.
+`final_memo` is **your** provisional answer, typed after reading the three suggestions and the sources. Include a countercase and something the eight excerpts cannot establish. The `if/else` stores the model that actually ran. `analysis_record` is a dictionary holding the first memo, all three rounds, raw outputs, cited sources and final memo. This lets you explain how your reading developed; it does not turn a tiny synthetic corpus into a causal test.
 
 ## Workbook and environment links
 
@@ -214,14 +389,14 @@ Edit only `T02_A` in the source-list cell to: `"The food deliveries helped, but 
 [Open the Week 3 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session03/session03_qualitative_interpretation.ipynb) · [Download the notebook](../_generated/downloads/session03/session03_qualitative_interpretation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session03/session03_task.py) · [Download the runnable offline bundle](../_generated/downloads/session03/session03_offline_bundle.zip)
 :::
 
-This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+The notebook, this page and the downloadable script follow the same three rounds. Colab uses OpenRouter; local JupyterLab or the script can use Ollama. Only these synthetic excerpts should be sent through the shared key.
 
 ## Take-home exercise
 
 ::: {.exercise-box}
-**Estimated work and recording time:** 30–45 minutes.
+**Estimated work and recording time:** 45–60 minutes.
 
-Use one chosen route, change only `T02_A` and rerun. Explain `ROUTE`, the branch that actually ran, `json.dumps`, the raw returned string, `json.loads`, the source lookup, and what `is not None` checks. Show your first memo, the model suggestion, the cited passage, both contrasting cases and your own revised claim. Say what changed between passes and why.
+Use one route. Write your own first memo and two replies to the model. At least one reply must name a passage that complicates the model's claim; the next should ask what evidence supports the proposed explanation. End with a provisional answer to the research question that names a countercase and a limit of these interviews.
 
-Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
+Submit one screen recording with audio. Show all three model calls and raw returns. Explain what the eight dictionaries, each message list, each JSON string and each parsed dictionary contain. Point to the exact excerpt you used when challenging the model, and say whether the model responded well or merely became more agreeable. Never show or read the shared key. Submit using the [recording instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**.
 :::
