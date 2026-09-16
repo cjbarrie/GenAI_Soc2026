@@ -25,7 +25,103 @@ format:
 lang: en
 ---
 
-## We begin with an interview, not an AI tool
+## Where qualitative evidence comes from
+
+<div class="evidence-origins"><div><span>OBSERVATION</span><p>Researchers watch conduct, interaction and routine in a social setting.</p></div><div><span>PARTICIPATION</span><p>Access develops through relationships and time spent in the field.</p></div><div><span>INTERVIEW</span><p>Researchers ask questions and decide when an answer needs a follow-up.</p></div><div><span>PERSONAL DOCUMENT</span><p>Letters, diaries and life histories preserve accounts produced for different audiences.</p></div></div>
+
+<div class="plain-note">These sources do not arrive ready for analysis. Sociologists decide what to observe, what to ask, what to record and how to compare it.</div>
+
+<p class="citation">Du Bois (1899); Thomas and Znaniecki (1919); Whyte (1943); Merton and Kendall (1946).</p>
+
+---
+
+## Three questions for today
+
+<div class="opening-questions"><div><img src="images/source_pages/dubois_schedule_crop.png" alt="Instructions from Du Bois's family schedule"><span>1</span><b>How was the evidence made?</b><p>What happened before a transcript, image, life history or fieldnote became available for analysis?</p></div><div><img src="images/source_pages/polish_peasant_life_record.png" alt="Page from a life history in The Polish Peasant"><span>2</span><b>What does the researcher know that is not contained in one extract?</b><p>Relationships, chronology, setting, prior observations and the conditions under which something was said.</p></div><div><img src="images/source_pages/ibrahim_prompt_example.png" alt="Published example of a qualitative research prompt and model output"><span>3</span><b>What part of the research process is the model performing?</b><p>Finding material, applying a code, comparing cases, suggesting an interpretation or shaping what happens next.</p></div></div>
+
+<p class="citation">Questions developed from the methodological problems raised by Whyte (1943); Merton and Kendall (1946); Deterding and Waters (2021); Timmermans and Tavory (2012); Than et al. (2025); Ibrahim and Voyer (2026).</p>
+
+---
+
+## Du Bois mapped the social organization of Philadelphia's Seventh Ward
+
+<div class="archive-map"><img src="images/source_pages/dubois_seventh_ward_map.jpg" alt="Du Bois's 1899 map of the Seventh Ward of Philadelphia"></div>
+
+<div class="archive-caption"><b>The Seventh Ward, 1896</b><span>The map records where Black residents lived and classifies their social condition block by block. It formed part of a study that also used household visits, schedules, historical records and direct observation.</span></div>
+
+<p class="citation">W. E. B. Du Bois. (1899). <em>The Philadelphia Negro: A Social Study</em>. University of Pennsylvania. Map held by Widener Library, Harvard University; public-domain scan via Wikimedia Commons.</p>
+
+---
+
+## The study began with fifteen months of empirical work
+
+<div class="archive-document"><img src="images/source_pages/dubois_methods_crop.png" alt="Du Bois's description of the scope and methods of The Philadelphia Negro"><div><p>Du Bois describes a house-to-house canvass conducted from August 1896 to December 1897.</p><p>The investigation covered residence, occupation, daily life, homes, organizations and relations with white Philadelphians.</p><p>The eventual book joined these observations to maps, schedules, tables and historical evidence.</p></div></div>
+
+<p class="citation">Du Bois (1899), “The Scope of This Study,” pp. 1–2.</p>
+
+---
+
+## The schedule defined what investigators would record
+
+<div class="archive-document schedule-document"><img src="images/source_pages/dubois_schedule_crop.png" alt="Instructions for the family schedule used in The Philadelphia Negro"><div><p>The family schedule specified who belonged on the same record and how investigators should describe age, family relationships, education and occupation.</p><p>The instructions ask for exact ages and precise occupations. Categories were part of the research design rather than clerical work completed afterwards.</p></div></div>
+
+<p class="citation">Du Bois (1899), Appendix A, “Instructions for Family Schedule,” p. 402.</p>
+
+---
+
+## Thomas and Znaniecki made individual lives central to sociological explanation
+
+<div class="archive-document polish-document"><img src="images/source_pages/polish_peasant_method_crop.png" alt="Thomas and Znaniecki on personal life records as sociological material"><div><p><em>The Polish Peasant</em> used letters, autobiographical material and a long life record to study migration, family relations and social change.</p><p>The authors argued that a life record could connect an individual's experiences to more general social processes.</p><p>The claim was ambitious. It also established personal documents as material that sociologists could compare and interpret.</p></div></div>
+
+<p class="citation">W. I. Thomas and F. Znaniecki. (1919). <em>The Polish Peasant in Europe and America</em>, vol. 3, pp. 5–8.</p>
+
+---
+
+## A life history preserves chronology as well as topics
+
+<div class="life-record-layout"><img src="images/source_pages/polish_peasant_life_record.png" alt="Page from the life record in volume three of The Polish Peasant"><div><p>This page records disagreements about children's education, the mother's efforts to save money and the family's concern with dress and respectability.</p><p>Those details acquire meaning through their place in a longer biography. Extracting “education” or “family conflict” as themes would not reproduce that chronology.</p></div></div>
+
+<p class="citation">Thomas and Znaniecki (1919), <em>Life-Record of an Immigrant</em>, p. 97.</p>
+
+---
+
+## Whyte entered Cornerville through Doc
+
+<div class="whyte-book-layout"><img src="images/source_pages/whyte_street_corner_society_cover.jpg" alt="Cover of William Foote Whyte's Street Corner Society"><div><p>Whyte called the Italian neighbourhood he studied in Boston's North End <b>“Cornerville.”</b></p><p><b>Doc was Ernest Pecci</b>, the leader of the Norton Street group. He introduced Whyte to people he knew, vouched for him and helped him enter settings where an unknown outsider would not have been welcome.</p><p>This was not simply a way to recruit participants. Whyte's access began inside Doc's network, and that relationship shaped what he could observe and how other people understood his presence.</p></div></div>
+
+<p class="citation">William Foote Whyte. (1943). <em>Street Corner Society: The Social Structure of an Italian Slum</em>. University of Chicago Press. Cover shown: 4th ed.</p>
+
+---
+
+## He found organization where outsiders often saw disorder
+
+<div class="whyte-findings"><img src="images/source_pages/whyte_north_end_tenements_1930s.jpg" alt="North End tenements in Boston during the 1930s"><div><div class="finding"><b>The corner groups had a social structure.</b><span>Who led, who followed and how members responded to one another formed a relatively stable hierarchy.</span></div><div class="finding"><b>Position in the group helped explain conduct.</b><span>Leadership rested on reciprocal obligations, and leaders represented their groups in dealings with others.</span></div><div class="finding"><b>The street corner was connected to wider institutions.</b><span>Corner groups, clubs, rackets and ward politics were parts of the same local social world.</span></div></div></div>
+
+<div class="whyte-method"><b>What did participant observation add?</b><span>By returning to the same people and following relationships across settings, Whyte could compare what people said with how they interacted, identify recurring patterns of rank and obligation, and trace connections that no single interview or brief visit would have revealed.</span></div>
+
+<p class="citation">William Foote Whyte. (1941). “Corner Boys: A Study of Clique Behavior.” <em>American Journal of Sociology</em> 46(5):647–664; Whyte (1943), <em>Street Corner Society</em>. Photograph: Boston Public Library, file 08_02_002080.</p>
+
+---
+
+## Merton and Kendall turned from observed conduct to reported experience
+
+<div class="method-shift"><b>Whyte observed relationships as they unfolded.</b><span>Merton and Kendall asked how an interview could reconstruct a person's experience of a situation the researcher had already studied.</span></div>
+
+<div class="focused-interview"><img src="images/source_pages/merton_focused_abstract_crop.png" alt="Title and abstract of Merton and Kendall's article on the focused interview"><div><p>The starting point might be a film, radio programme or other situation that the research team had analysed in advance.</p><p>The interviewer could therefore ask about particular moments while remaining open to responses the researchers had not anticipated.</p><p>The interview produced a different kind of evidence from participant observation: a detailed account of what the participant noticed, felt and understood.</p><p>Follow-up questions were crucial for establishing specificity, range and depth.</p></div></div>
+
+<p class="citation">Robert K. Merton and Patricia L. Kendall. (1946). “The Focused Interview.” <em>American Journal of Sociology</em> 51(6):541–557.</p>
+
+---
+
+## Each method produces a different record of social life
+
+<div class="method-records"><div><b>Du Bois</b><p><strong>Encounter:</strong> a fifteen-month investigation including household visits.</p><p><strong>Record:</strong> schedules, maps, tables and observations.</p><p><strong>Not contained in one schedule:</strong> the wider social organization assembled across these sources.</p></div><div><b>Thomas and Znaniecki</b><p><strong>Encounter:</strong> collecting letters and an extended life history.</p><p><strong>Record:</strong> personal documents written for particular audiences.</p><p><strong>Not contained in one extract:</strong> the longer biography and changing social circumstances.</p></div><div><b>Whyte</b><p><strong>Encounter:</strong> access through Doc and repeated participation.</p><p><strong>Record:</strong> observations combined into an ethnographic account.</p><p><strong>Not contained in one passage:</strong> rapport, tacit knowledge and unrecorded encounters.</p></div><div><b>Merton and Kendall</b><p><strong>Encounter:</strong> a focused interview about an already studied situation.</p><p><strong>Record:</strong> questions, answers and follow-up probes.</p><p><strong>Not contained in one answer:</strong> the question and prior analysis that made it meaningful.</p></div></div>
+
+<div class="plain-note">If a model receives only the finished record, how much of the process that produced it can the model reconstruct?</div>
+
+---
+
+## Our interview example
 
 <div class="opening-study"><div class="quote-large"><small>T01_A · first interview segment</small>“The grocery deliveries got us through the last week of the month. At that point I did not know who organized them.”</div><div class="study-brief"><b>Study</b><p>Interviews with tenants involved in mutual-aid networks after a period of rent increases.</p><b>Research question</b><p>How do residents distinguish emergency help from political solidarity?</p><b>Today's problem</b><p>How could we move from this account to a defensible interpretation?</p></div></div>
 
@@ -47,23 +143,23 @@ lang: en
 
 <div class="plain-note">Coding helps organize the material. The larger aim is a sociological account that remains grounded in what participants said and did.</div>
 
-<p class="citation">Deterding and Waters (2021); Timmermans and Tavory (2012, 2022); Stuart and Laryea (2026).</p>
+<p class="citation">Deterding and Waters (2021); Timmermans and Tavory (2012); Viterna (2006).</p>
 
 ::: {.notes}
 [Sources]
 - Deterding, N. M., and M. C. Waters. 2021. “Flexible Coding of In-depth Interviews.” Sociological Methods & Research 50(2):708–739. https://doi.org/10.1177/0049124118799377.
 - Timmermans, S., and I. Tavory. 2012. “Theory Construction in Qualitative Research.” Sociological Theory 30(3):167–186. https://doi.org/10.1177/0735275112457914.
-- Stuart, F., and K. Laryea. 2026. “What Do I Do with All of These Data?” Qualitative Sociology 49:241–268. https://doi.org/10.1007/s11133-025-09625-w.
+- Viterna, J. S. 2006. “Pulled, Pushed, and Persuaded.” American Journal of Sociology 112(1):1–45. https://doi.org/10.1086/502690.
 [/Sources]
 :::
 
 ---
 
-## Flexible coding separates broad indexing from analytic coding
+## A first pass finds passages; a second pass compares them
 
-<table class="closed-table"><thead><tr><th>First pass: index coding</th><th>Second pass: analytic coding</th></tr></thead><tbody><tr><td>Organize material by broad topics connected to the interview guide.</td><td>Compare indexed passages to develop more interpretive categories.</td></tr><tr><td>Applied across the full interview in a relatively consistent way.</td><td>Can change as researchers compare cases and refine the argument.</td></tr><tr><td>Example: <code>RECEIVING_HELP</code></td><td>Example: <code>HELP_BEFORE_RELATIONSHIP</code></td></tr></tbody></table>
+<div class="coding-passes"><div class="pass-panel index-pass"><span class="pass-kicker">FIRST PASS · WORK THROUGH EVERY INTERVIEW</span><h3>Find passages about receiving help</h3><div class="mini-transcript"><p><small>T01_A</small>“The <mark>grocery deliveries</mark> got us through the last week of the month.”</p><p><small>T01_B</small>“After a few months of taking turns with <mark>childcare</mark>…”</p><p><small>T02_A</small>“I was grateful for the <mark>emergency fund</mark>…”</p></div><span class="code-tag">RECEIVING_HELP</span><p class="pass-question">The broad code tells us where to look again.</p></div><div class="pass-shift"><span>Return to the indexed passages</span><b>→</b></div><div class="pass-panel analytic-pass"><span class="pass-kicker">SECOND PASS · READ THE PASSAGES TOGETHER</span><h3>Compare what receiving help meant</h3><div class="analytic-contrast"><div><small>T01</small><strong>Repeated exchange precedes meeting attendance</strong><span class="code-tag">EXCHANGE_TO_PARTICIPATION</span></div><div><small>T02</small><strong>Emergency support remains separate from politics</strong><span class="code-tag">HELP_WITHOUT_IDENTIFICATION</span></div></div><p class="pass-question">The comparison gives us a more specific analytic question.</p></div></div>
 
-<div class="plain-note">Deterding and Waters developed this approach for large in-depth interview projects in which teams need both consistency and room for interpretation.</div>
+<div class="plain-note">Deterding and Waters distinguish consistent, broad index coding from the more interpretive coding that develops as researchers compare passages and cases.</div>
 
 <p class="citation">Deterding, N. M., and M. C. Waters. (2021). “Flexible Coding of In-depth Interviews: A Twenty-first-century Approach.” <em>Sociological Methods & Research</em> 50(2):708–739. https://doi.org/10.1177/0049124118799377.</p>
 
@@ -85,16 +181,15 @@ lang: en
 
 ---
 
-## Tavory and Timmermans treat surprise as analytically useful
+## Timmermans and Tavory explain how surprise can lead to theory
 
-<div class="book-layout"><img src="images/source_pages/timmermans_tavory_book.jpg" alt="Cover of Data Analysis in Qualitative Research by Timmermans and Tavory"><div><p>Abductive analysis begins when an observation does not fit what the researcher expected.</p><p>The researcher revisits the material, asks what assumptions made the case surprising, and compares alternative ways of understanding it.</p><p>For our study, the useful case may be the tenant who accepts help but explicitly rejects political identification.</p></div></div>
+<div class="paper-layout"><img src="images/timmermans_tavory_2012_page.png" alt="First page of Timmermans and Tavory's article on abductive analysis"><div><p><b>Starting point:</b> an observation does not fit what the researcher expected.</p><p><b>Analytic work:</b> revisit the evidence, question the concepts that made it surprising, and compare alternative explanations.</p><p><b>Our case:</b> a tenant accepts help but explicitly rejects political identification. That case may require us to revise what we mean by participation.</p></div></div>
 
-<p class="citation">Timmermans, S., and I. Tavory. (2022). <em>Data Analysis in Qualitative Research: Theorizing with Abductive Analysis</em>. University of Chicago Press.</p>
+<p class="citation">Timmermans, S., and I. Tavory. (2012). “Theory Construction in Qualitative Research: From Grounded Theory to Abductive Analysis.” <em>Sociological Theory</em> 30(3):167–186. https://doi.org/10.1177/0735275112457914.</p>
 
 ::: {.notes}
 [Sources]
-- University of Chicago Press book page and official cover: https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html.
-- Timmermans and Tavory (2012), official journal abstract and methods discussion.
+- Published article: `literature/source_pdfs/session03/timmermans_tavory_2012_abductive_analysis.pdf`.
 [/Sources]
 :::
 
@@ -106,29 +201,41 @@ lang: en
 
 <div class="plain-note">These moves are drawn from Timmermans and Tavory's account of abductive theory construction, not a generic checklist for using AI.</div>
 
-<p class="citation">Timmermans and Tavory (2012), pp. 179–182; Timmermans and Tavory (2022), chapters 1, 5–9.</p>
+<p class="citation">Timmermans and Tavory (2012), pp. 179–182.</p>
 
 ---
 
-## Stuart and Laryea ask how coding becomes explanation
+## Viterna shows why a list of themes is not enough
 
-<div class="paper-layout"><img src="images/source_pages/stuart_title.png" alt="Published first page of Stuart and Laryea in Qualitative Sociology"><div><p><b>Problem:</b> researchers can finish with categories that describe recurring content but do not explain action.</p><p><b>Their framework:</b> examine actors' goals, obstacles, strategies, and the implications that follow.</p><p><b>Why it matters here:</b> “mutual aid” is a topic. We still need to explain how practical exchange relates to identification, obligation, or withdrawal.</p></div></div>
+<div class="paper-layout"><img src="images/viterna_title_crop.png" alt="Title and abstract of Viterna's article"><div><p>Viterna asks why women entered the Salvadoran guerrilla army through different routes.</p><p>Her evidence combines a rare sample of activists and non-activists with detailed life histories.</p><p>The substantive result is not simply that biographies, networks and repression all matter. Their patterned intersections produce different pathways into the same outcome.</p></div></div>
 
-<p class="citation">Stuart, F., and K. Laryea. (2026). “What Do I Do with All of These Data? A New Pragmatist Framework for Coding and Analysis.” <em>Qualitative Sociology</em> 49:241–268. https://doi.org/10.1007/s11133-025-09625-w.</p>
-
-::: {.notes}
-[Sources]
-- Published open-access PDF: `literature/source_pdfs/session03/stuart_laryea_2026.pdf`.
-[/Sources]
-:::
+<p class="citation">Viterna, J. S. (2006). “Pulled, Pushed, and Persuaded: Explaining Women's Mobilization into the Salvadoran Guerrilla Army.” <em>American Journal of Sociology</em> 112(1):1–45. https://doi.org/10.1086/502690.</p>
 
 ---
 
-## The same passage can support description or explanation
+## Her analysis moves from variables back to lives and sequences
 
-<table class="closed-table"><thead><tr><th>Analytic move</th><th>What we could say about T03_A</th></tr></thead><tbody><tr><td>Topic</td><td>The participant discusses mutual aid.</td></tr><tr><td>Code</td><td><code>WITHDRAWAL_AFTER_OBLIGATION</code></td></tr><tr><td>Pattern</td><td>Some exchanges create participation; others produce distance.</td></tr><tr><td>Process explanation</td><td>When help becomes an enforceable obligation, preserving autonomy may become more important than remaining in the group.</td></tr></tbody></table>
+<div class="paper-layout"><img src="images/viterna_paths_argument_crop.png" alt="Viterna's table and discussion of patterned variation in mobilization"><div><p>A variable-by-variable comparison finds only limited differences between guerrillas and non-guerrillas.</p><p>Viterna then returns to respondents' narratives and identifies three paths: politicized, reluctant and recruited guerrillas.</p><p>The move matters: the same factor can have a different meaning depending on when it appears and what else accompanies it.</p></div></div>
 
-<div class="plain-note">The final row makes a stronger claim and therefore requires comparison with more passages, cases, and alternatives.</div>
+<p class="citation">Viterna (2006), pp. 18–20, especially Table 2 and “A New Approach: Capturing Variation in Mobilization.”</p>
+
+---
+
+## The comparison is made case by case, not only theme by theme
+
+<div class="paper-full workflow-figure"><img style="height:460px" src="images/viterna_table3_crop.png" alt="Viterna's case-level table of objective conditions by mobilization category"></div>
+
+<p class="caption">Each row is a woman and each column records part of her life history. Grouping cases by pathway makes the comparison visible.</p>
+
+<p class="citation">Viterna (2006), Table 3, pp. 22–23.</p>
+
+---
+
+## What has “context” meant in these studies?
+
+<div class="context-meanings"><div><b>Position in a record</b><p>What comes before and after a passage.</p><small>Deterding and Waters</small></div><div><b>Chronology</b><p>When something happens within a life or sequence.</p><small>Thomas and Znaniecki; Viterna</small></div><div><b>Relationships</b><p>Who knows whom, who provides access and how positions change.</p><small>Whyte</small></div><div><b>Elicitation</b><p>Which question, stimulus or interaction produced an answer.</p><small>Merton and Kendall</small></div><div><b>Expectation and surprise</b><p>What the researcher expected and why an observation is anomalous.</p><small>Timmermans and Tavory</small></div><div><b>Comparison and countercases</b><p>Which other cases support, qualify or contradict the account.</p><small>Deterding and Waters; Viterna</small></div></div>
+
+<div class="plain-note">Which of these can be stored in a prompt or metadata field? Which depend on repeated engagement with the material and the setting?</div>
 
 ---
 
@@ -138,11 +245,11 @@ lang: en
 
 <div class="return-band">A later passage can change an earlier code, memo, or interpretation.</div>
 
-<p class="citation">Deterding and Waters (2021); Timmermans and Tavory (2022); Stuart and Laryea (2026).</p>
+<p class="citation">Deterding and Waters (2021); Timmermans and Tavory (2012); Viterna (2006).</p>
 
 ---
 
-## An LLM can assist with parts of this work
+## We need to specify which part of the research process the model enters
 
 <table class="closed-table loss-table"><thead><tr><th>Research activity</th><th>Possible model contribution</th><th>What the workflow must preserve</th></tr></thead><tbody><tr><td>Finding passages</td><td>Retrieve likely relevant excerpts.</td><td>Speaker, sequence, and surrounding text.</td></tr><tr><td>Applying a defined code</td><td>Suggest codes under explicit rules.</td><td>The code definition and cases where it fails.</td></tr><tr><td>Comparing cases</td><td>Place similarities and differences side by side.</td><td>Which cases were included or omitted.</td></tr><tr><td>Developing an account</td><td>Propose a candidate relationship or alternative.</td><td>Researcher memos, counterevidence, and revision history.</td></tr></tbody></table>
 
@@ -220,7 +327,7 @@ lang: en
 
 ---
 
-## Mehta and colleagues provide a simple empirical warning
+## Mehta et al.: can the model reproduce the evidence?
 
 <div class="paper-layout"><img src="images/source_pages/mehta_title.png" alt="Published first page of Mehta and colleagues in Scientific Reports"><div><p><b>Material:</b> focus groups on sexual and reproductive health during COVID-19 in rural western Kenya.</p><p><b>Comparison:</b> human thematic analysis and GPT-4o output.</p><p><b>Finding:</b> broad subthemes were often relevant, but selected quotations were unreliable and sometimes altered.</p><p><b>Why it comes first:</b> before debating interpretation, we can check whether the evidence was reproduced correctly.</p></div></div>
 
@@ -252,7 +359,7 @@ lang: en
 
 ---
 
-## Than and colleagues test a bounded coding workflow
+## Than et al.: can the model apply a bounded concept?
 
 <div class="paper-layout"><img src="images/source_pages/than_title.png" alt="Published first page of Than and colleagues in Sociological Methods and Research"><div><p><b>Material:</b> 1,253 U.S. newsweekly articles published between 1980 and 2012.</p><p><b>Task:</b> decide whether inequality is substantively central to each complete article.</p><p><b>Models:</b> GPT-4 and three open models, compared with existing hand coding.</p><p><b>Scope:</b> the study evaluates contextual classification inside a researcher-led qualitative coding workflow.</p></div></div>
 
@@ -302,9 +409,9 @@ lang: en
 
 ~~~json
 {
-  "candidate_theme": "Mutual aid transforms practical dependence into political solidarity.",
+  "candidate_theme": "Exchange can precede political action.",
   "supporting_excerpt_ids": ["T01_B", "T04_A", "T06_A"],
-  "reasoning": "Repeated exchange is followed by meeting attendance and petitioning."
+  "reasoning": "Repeated exchange is followed by meetings."
 }
 ~~~
 
@@ -338,7 +445,7 @@ lang: en
 
 ---
 
-## Ibrahim and Voyer make the interaction part of the method
+## Ibrahim and Voyer: how does the model alter the analysis?
 
 <div class="paper-layout"><img src="images/source_pages/ibrahim_title.png" alt="Published first page of Ibrahim and Voyer in Qualitative Research"><div><p><b>Examples:</b> deductive coding of Twitter bios and inductive analysis of etiquette texts.</p><p><b>Argument:</b> prompts express researchers' assumptions, while model responses can redirect subsequent analysis.</p><p><b>Proposal:</b> technological reflexivity should cover model bias, researcher–algorithm interaction, evaluation, transparency, epistemic reflection, and ethics.</p></div></div>
 
@@ -384,21 +491,83 @@ lang: en
 
 ---
 
-## This is the interaction we will record in the example
+## Suggestions can influence a person's later judgment
 
-<div class="interaction-timeline"><div><b>Before the model</b><p>Researcher memo: practical help and political identity may remain separate.</p></div><div><b>Model request</b><p>Research question plus eight labelled excerpts.</p></div><div><b>Model proposal</b><p>Mutual aid transforms dependence into solidarity.</p></div><div><b>Researcher response</b><p>Check sources, inspect countercases, and revise the claim.</p></div></div>
+<div class="suggestion-experiment"><div class="experiment-task"><span>WRITING TASK</span><p>Participants wrote about contested issues including the death penalty, voting rights, fracking and genetically modified crops.</p></div><div class="experiment-treatment"><span>RANDOMIZED ASSISTANCE</span><div><b>No suggestions</b><small>control</small></div><div><b>Biased AI autocomplete</b><small>suggestions favoured one position</small></div></div><div class="experiment-result"><span>AFTER WRITING</span><p>Reported attitudes moved toward the position favoured by the AI suggestions.</p><p>Most participants did not recognize the bias or report being influenced by it.</p></div></div>
 
-<div class="plain-note">The research record should preserve all four stages, including what the researcher had already noticed.</div>
+<div class="plain-note">Across two preregistered experiments with 2,582 participants, warnings given before or after the task did not remove the shift.</div>
+
+<p class="citation">Williams-Ceci, S., Jakesch, M., Bhat, A., Kadoma, K., Zalmanson, L., and M. Naaman. (2026). “Biased AI Writing Assistants Shift Users' Attitudes on Societal Issues.” <em>Science Advances</em> 12(11):eadw5578. https://doi.org/10.1126/sciadv.adw5578.</p>
 
 ---
 
-## There are no settled standards for this work yet
+## The study is not about qualitative analysis—but it changes our workflow
 
-<div class="anchor-strip"><div><b>Tasks vary</b><p>Studies use LLMs for retrieval, coding, theme proposals, quotation selection, and interpretation.</p></div><div><b>Evidence varies</b><p>Some compare with human coding; others document an iterative collaboration.</p></div><div><b>Models change</b><p>Access routes, context limits, and underlying models can change during a project.</p></div></div>
+<div class="transfer-layout"><div><b>What the experiment establishes</b><p>Suggestions affected people's reported attitudes during a writing task, often without their awareness.</p><p>The interactive suggestions had a stronger effect than presenting similar arguments as static text.</p></div><div><b>What it does not establish</b><p>The participants were not qualitative researchers assessing evidence.</p><p>The study does not show that every model-generated code or interpretation produces the same effect.</p></div><div class="method-implication"><b>What we should do differently</b><p>Write down an initial interpretation before consulting the model. Afterwards, record what the suggestion made easier to notice—and actively search for evidence that does not fit it.</p></div></div>
 
-<div class="plain-note">This is a fast-moving methodological area. Researchers need to state exactly what the model did, what it saw, how output was checked, and which decisions remained human.</div>
+<p class="citation">Methodological implication developed from Williams-Ceci et al. (2026) and Ibrahim and Voyer (2026).</p>
 
-<p class="citation">Than et al. (2025); Mehta et al. (2025); Ibrahim and Voyer (2026).</p>
+---
+
+## This is the interaction we will record in the example
+
+<div class="interaction-timeline"><div><b>1 · Independent first pass</b><p>Memo: practical help and political identity may remain separate.</p></div><div><b>2 · Model proposal</b><p>Mutual aid transforms dependence into solidarity.</p></div><div><b>3 · Compare before and after</b><p>What did the suggestion make more noticeable? What did the initial memo contain that it omitted?</p></div><div><b>4 · Look for trouble</b><p>Inspect sources, chronology and cases that contradict the proposed relationship.</p></div></div>
+
+<div class="plain-note">The record preserves the researcher's initial reading as well as the model's proposal and the later revision.</div>
+
+---
+
+## Different model contributions require different checks
+
+<table class="closed-table standards-table"><thead><tr><th>Model contribution</th><th>The first question to ask</th><th>Literature used here</th></tr></thead><tbody><tr><td>Transcription or quotation</td><td>Does the output reproduce the source accurately?</td><td>Mehta et al.</td></tr><tr><td>Retrieval or classification</td><td>Does it apply the specified concept, and where does it disagree with human coding?</td><td>Than et al.</td></tr><tr><td>Comparison or interpretation</td><td>Are chronology, countercases and alternative explanations preserved?</td><td>Viterna; Timmermans and Tavory</td></tr><tr><td>Shaping the next research step</td><td>How did the suggestion change what the researcher asked, noticed or analysed next?</td><td>Merton and Kendall; Ibrahim and Voyer</td></tr></tbody></table>
+
+<div class="plain-note">There is no single accuracy score that evaluates all four tasks.</div>
+
+---
+
+## Return to question 1: what happened before the model saw the record?
+
+<div class="record-gallery"><div><img src="images/source_pages/dubois_schedule_crop.png" alt="Du Bois family schedule"><b>Du Bois</b><span>Schedules, maps and observations record households and spatial patterns.</span></div><div><img src="images/source_pages/polish_peasant_life_record.png" alt="Page from a life history in The Polish Peasant"><b>Thomas and Znaniecki</b><span>Letters and life histories preserve chronology and accounts addressed to particular audiences.</span></div><div><img src="images/source_pages/whyte_street_corner_society_cover.jpg" alt="Cover of Street Corner Society"><b>Whyte</b><span>A published ethnography draws together repeated observation across relationships and settings.</span></div><div><img src="images/source_pages/merton_focused_abstract_crop.png" alt="Merton and Kendall article"><b>Merton and Kendall</b><span>An interview transcript records answers and the questions that elicited them.</span></div></div>
+
+<div class="plain-note">The model receives whichever text, image, audio, video, map or metadata the researcher supplies. It does not directly encounter the people, relationships or events from which those records came.</div>
+
+---
+
+## Return to question 3: what part of the research process is the model performing?
+
+<div class="qual-uses"><div><b>Prepare material</b><p>Transcribe audio, identify speakers, translate text or divide a long document into passages for review.</p></div><div><b>Find evidence</b><p>Retrieve passages relevant to a concept even when they do not contain the same keyword.</p></div><div><b>Compare cases and moments</b><p>Set accounts beside one another, follow chronology and locate cases that do not fit a working explanation.</p></div><div><b>Develop an interpretation</b><p>Suggest codes, relationships, mechanisms or alternative readings for the researcher to test against the material.</p></div><div><b>Plan what to examine next</b><p>Draft an interview probe, identify missing evidence or suggest another document or observation to seek.</p></div><div><b>Document and audit</b><p>Link claims and quotations to source IDs, retain prompts and compare how outputs change across runs.</p></div></div>
+
+<p class="citation">Examples and methodological principles drawn from Merton and Kendall (1946); Deterding and Waters (2021); Than et al. (2025); Mehta et al. (2025); Ibrahim and Voyer (2026).</p>
+
+---
+
+## Return to question 2: what counts as context?
+
+<div class="evidence-bundle"><div class="bundle-sources"><span>INTERVIEW</span><p>T01 describes moving from grocery deliveries to tenant meetings.</p><span>IMAGE OR VIDEO</span><p>A dated recording shows who attended and what visibly happened.</p><span>TIMELINE</span><p>Rent increases, deliveries and meetings are placed in chronological order.</p><span>DOCUMENT</span><p>Flyers and meeting notes show how the group described its purpose.</p></div><div class="bundle-question"><small>WORKING CLAIM</small><b>Mutual aid drew tenants into political organizing.</b><p>Ask the model to identify supporting and conflicting evidence, cite every source ID, distinguish observation from interpretation and state what remains unknown.</p></div><div class="bundle-results"><b>A useful response might show that…</b><p><strong>T01 supports a sequence,</strong> but one account does not establish a general process.</p><p><strong>The video establishes attendance,</strong> but not why somebody attended.</p><p><strong>A document supplies institutional context,</strong> but not how residents understood it.</p><p><strong>Contradictory cases</strong> narrow the claim or point to another interview question.</p></div></div>
+
+<div class="plain-note">Supplying several kinds of material is not enough by itself. The researcher still decides which context is sociologically relevant and whether the records justify the connection.</div>
+
+---
+
+## Some context may never be fully contained in the research record
+
+<div class="limits-layout"><div><b>What a supplied record may show</b><ul><li>words in a transcript or fieldnote;</li><li>visible conduct in selected images or video;</li><li>tone and timing in an audio recording;</li><li>dates, locations and other metadata.</li></ul></div><div><b>What may remain outside the record</b><ul><li>why people trusted or avoided the researcher;</li><li>tacit expectations understood by those present;</li><li>sensations, atmosphere and embodied knowledge;</li><li>events the researcher did not see or record.</li></ul></div></div>
+
+<div class="plain-note warning-note">Adding an image or audio clip gives the model another piece of evidence. It does not turn the model into a participant observer.</div>
+
+---
+
+## Questions that remain open
+
+<div class="open-questions"><div><span>1</span><p>Can social context be represented adequately in prompts and metadata, or does some of it depend on participating in the setting?</p><small>Whyte</small></div><div><span>2</span><p>Do images, audio and video improve contextual understanding, or simply provide more selected records?</p><small>Du Bois; Whyte</small></div><div><span>3</span><p>If the model supplies the first interpretation, can the researcher still evaluate it independently?</p><small>Williams-Ceci et al.; Ibrahim and Voyer</small></div><div><span>4</span><p>How can we preserve surprising and contradictory cases rather than smoothing them into a plausible summary?</p><small>Timmermans and Tavory; Viterna</small></div><div><span>5</span><p>What counts as validation when qualitative researchers can reasonably disagree about an interpretation?</p><small>Deterding and Waters; Than et al.</small></div><div><span>6</span><p>What must be saved so another researcher can understand how the analysis developed?</p><small>Mehta et al.; Ibrahim and Voyer</small></div></div>
+
+---
+
+## The Python exercise tests one small part of this larger problem
+
+<div class="bounded-example"><div><span>WHAT WE SUPPLY</span><b>Eight interview excerpts</b><p>Each passage has a participant ID, position in the interview and brief source context.</p></div><div><span>WHAT WE REQUEST</span><b>One candidate pattern</b><p>The model must name the relevant excerpts and explain why it selected them.</p></div><div><span>WHAT WE CHECK</span><b>Sources, chronology and countercases</b><p>We return to the interviews before deciding whether or how the claim should change.</p></div></div>
+
+<div class="plain-note">This does not recreate the interview encounter. It demonstrates how a model suggestion can remain connected to the records on which it is based.</div>
 
 ---
 
@@ -722,7 +891,7 @@ interaction_log = {
 }
 ~~~
 
-<div class="plain-note">This is the classroom implementation of Ibrahim and Voyer's researcher–algorithm interaction: what the researcher thought before, what the model proposed, and what changed next.</div>
+<div class="plain-note">The pre-model memo lets us compare what the researcher noticed independently with what became salient after the suggestion. That comparison responds to the influence documented by Williams-Ceci et al. (2026) and the reflexive record proposed by Ibrahim and Voyer (2026).</div>
 
 ---
 
@@ -781,9 +950,9 @@ missing = [
 
 ---
 
-## The three empirical papers answer different questions
+## The assigned readings have different jobs
 
-<table class="closed-table"><thead><tr><th>Paper</th><th>Contribution to this class</th></tr></thead><tbody><tr><td>Mehta et al. (2025)</td><td>Check that quotations and source support have not been altered.</td></tr><tr><td>Than et al. (2025)</td><td>Give the model a defined task inside a researcher-led coding and validation workflow.</td></tr><tr><td>Ibrahim and Voyer (2026)</td><td>Document how researchers shape the model and how its output redirects the analysis.</td></tr></tbody></table>
+<table class="closed-table"><thead><tr><th>Reading</th><th>What it contributes</th></tr></thead><tbody><tr><td>Timmermans and Tavory (2012)</td><td>A method for developing explanations from surprising evidence and alternative cases.</td></tr><tr><td>Viterna (2006)</td><td>A substantive example in which life histories and sequences distinguish different paths to the same outcome.</td></tr><tr><td>Than et al. (2025)</td><td>A contemporary test of where an LLM can enter a researcher-led coding workflow.</td></tr></tbody></table>
 
 <div class="plain-note">Together they provide a usable starting point, not a settled standard for every qualitative tradition.</div>
 
@@ -793,4 +962,4 @@ missing = [
 
 <div class="final-layout"><div class="quote-large"><small>INITIAL MODEL PROPOSAL</small>“Mutual aid transforms practical dependence into political solidarity.”</div><div class="final-checks"><p><b>Source check:</b> the cited passages exist.</p><p><b>Comparison:</b> T02_A separates help from politics.</p><p><b>Sequence:</b> T01_B follows repeated exchange, not one delivery.</p><p><b>Counterprocess:</b> T03_A links obligation to withdrawal.</p><p><b>Revision:</b> mutual aid can create opportunities for identification without reliably producing it.</p></div></div>
 
-<div class="plain-note">The LLM supplied a candidate relationship. The analysis comes from checking it against cases, context, sequence, alternatives, and the researcher's developing account.</div>
+<div class="plain-note">The LLM supplied a candidate relationship. The code shows how it was checked against cases, context, sequence and alternatives. It does not recover how the interviews were produced or everything the researcher knew about the setting.</div>
