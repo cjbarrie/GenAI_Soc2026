@@ -1,9 +1,7 @@
 # Session 3 — What can an LLM contribute to qualitative interpretation?
 
 **Date:** Wednesday, September 16, 2026 · 9:30 a.m.–12:15 p.m.  
-**Course movement:** Observe  
 **Methodological domain:** Qualitative analysis  
-**Chapter anchor:** *AI and Research Methods*, §§10.1.4–10.1.5
 
 ## Substantive question
 
@@ -23,27 +21,25 @@ By the end, students should be able to:
 
 ## Required readings
 
-- [Timmermans & Tavory (2022), *Data Analysis in Qualitative Research*](https://press.uchicago.edu/ucp/books/book/chicago/D/bo133273407.html), selected material on open coding, focused coding, and analytic memoing
-- [Than et al. (2025), researcher–LLM–researcher qualitative analysis](https://doi.org/10.1177/00491241251339188)
-- [Ibrahim & Voyer (2026), technological reflexivity](https://doi.org/10.1177/14687941251390794)
-
-Selected sections and the reading guide identify the required focus; students are not expected to master every model comparison or technical appendix.
+- [Timmermans and Tavory (2012), “Theory Construction in Qualitative Research”](https://doi.org/10.1177/0735275112457914), complete article.
+- [Than et al. (2025), “Updating ‘The Future of Coding’”](https://doi.org/10.1177/00491241251339188), complete article.
+- [Viterna (2006), “Pulled, Pushed, and Persuaded”](https://doi.org/10.1086/502690), complete article.
 
 ## Lecture argument
 
-Qualitative analysis is not a one-shot extraction of themes. Researchers develop interpretations through repeated reading, coding, comparison, memo-writing, attention to exceptions, and movement between data and theory. An LLM output can be useful within that process only when the researcher can trace it to the corpus, test it against context and counterevidence, consider alternatives, and document how it changed subsequent attention and judgment.
+Viterna's comparison of life histories shows why qualitative analysis cannot be reduced to extracting common topics: sequence, case comparison and alternative explanations are part of the substantive argument. Timmermans and Tavory give us the language of abduction for describing this movement between evidence and theory. We then use Than et al. to ask which parts of that work an LLM may assist and which still require a researcher to return to cases, context and counterevidence.
 
 AI-moderated interviewing appears only as a clearly marked aside. Its full methodological treatment belongs to the later session on conversational methods.
 
 ## Computational trace
 
-Students send two identified excerpts to a model and request a provisional suggestion as JSON. They inspect the raw JSON string, convert it to a Python dictionary and return to the cited excerpt. Every block is read as:
+Students work with eight instructor-authored fictional tenant excerpts and ask when mutual aid contributes to political solidarity. They write an independent first memo, request a provisional suggestion as JSON, challenge it with a countercase, then ask what the reported evidence can and cannot establish. Each of the three model calls prints raw JSON, parses it and returns to the cited excerpt. Every block is read as:
 
 **input value and type → operation → output value and type → research meaning → limit of the check**
 
 ## Weekly completion task
 
-Run the supplied structured-output call, change one excerpt and run it again. Submit a narrated screen recording explaining `json.dumps`, the model call, raw output, `json.loads` and field retrieval. Check the cited source and connect one interpretive limit to a reading. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
+Run the three-round researcher–model exchange. Submit a narrated screen recording explaining the first memo, `json.dumps`, each message list and model call, the raw JSON, `json.loads`, the cited source check, your two replies and your own final memo. Name a countercase and one limit of these interviews. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 The task receives a completion mark. Code elegance is not assessed, and missing elements may be supplied within one week.
 

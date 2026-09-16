@@ -71,6 +71,8 @@ print("Local model:", LOCAL_MODEL)
 
 ```python
 ROUTE = "ollama"  # change to "openrouter" to use the hosted route
+if ROUTE not in ("ollama", "openrouter"):
+    raise ValueError("ROUTE must be 'ollama' or 'openrouter'.")
 if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
@@ -126,6 +128,8 @@ print("T06_A interviewer context:", excerpts[6]["context"])
 ```python
 print("Example first memo: Help may build relationships, but receiving aid alone is not collective action.")
 first_memo = input("Your one-sentence first reading: ")
+if not first_memo.strip():
+    raise ValueError("Write a first memo before asking the model. Then rerun this cell.")
 print("Saved before the model:", first_memo)
 ```
 
@@ -147,7 +151,7 @@ This is an **illustrative exchange**, not a model output students are expected t
 >
 > **Model:** “We do not know from these excerpts. The proposed mechanism needs other evidence.”
 
-The student's final memo may agree with parts of this exchange, reject others, or ask a different question. The point is to make **researcher feedback an input to the next call**, while keeping the original passages available for checking.
+The student's final memo may agree with parts of this exchange, reject others, or ask a different question. The point is to make **researcher feedback an input to the next call**, while keeping the original passages available for checking. Type a nonblank memo and reply at each prompt: an empty answer is stopped before the next model call.
 
 ### 4. Ask for the model's first proposal
 
@@ -191,12 +195,16 @@ print("Round 1 raw output:", raw_1)
 
 `prompt_1` is one string containing the research question, the operational meaning of political solidarity, the output request and the eight excerpts. `json.dumps(excerpts)` converts the Python list to text while retaining IDs. `messages_1` is a list containing one dictionary with a `role` and `content`. The model receives this message—not `first_memo`.
 
-The `if` branch calls OpenRouter remotely; `else` calls your local Ollama model. Both branches save returned text as `raw_1`. `temperature=0` asks for less variation, not a correct interpretation. `max_tokens` or `num_predict` limits output length; `response_format` or `format` requests JSON. **Output:** raw JSON *text*, printed before we try to read its fields.
+The `if` branch calls OpenRouter remotely; `else` calls your local Ollama model. Both branches save returned text as `raw_1`. `temperature=0` asks for less variation, not a correct interpretation. `max_tokens` or `num_predict` limits output length; `response_format` or `format` requests JSON. **Output:** raw JSON *text*, printed before we try to read its fields. The small `ROUTE` check stops a typo from silently selecting the wrong model.
 
 ### 5. Check the cited passage
 
 ```python
 proposal_1 = json.loads(raw_1)
+if not isinstance(proposal_1, dict) or not all(
+    proposal_1.get(field) for field in ("theme", "evidence_id", "question_for_researcher")
+):
+    raise ValueError("Round 1 needs theme, evidence_id and question_for_researcher. Rerun the model call.")
 print("Round 1 fields:", list(proposal_1))
 print("Round 1 theme:", proposal_1.get("theme"))
 print("Round 1 cited ID:", proposal_1.get("evidence_id"))
@@ -205,14 +213,16 @@ for excerpt in excerpts:
     if excerpt["id"] == proposal_1.get("evidence_id"):
         cited_1 = excerpt
 print("Round 1 cited passage:", cited_1)
+if cited_1 is None:
+    print("The model cited an ID not in the eight excerpts. Challenge that in your reply.")
 print("Round 1 model question:", proposal_1.get("question_for_researcher"))
 print("Your earlier memo:", first_memo)
 print("Compare T02_A, T03_A and T05_A before accepting a general claim.")
 ```
 
-`json.loads(raw_1)` changes a string into a Python dictionary called `proposal_1`. `.get("theme")` retrieves one field; it gives `None` if the field is missing. The loop compares the model's `evidence_id` against each original ID. If it matches, `cited_1` becomes the entire source dictionary; if it does not, `cited_1` remains `None`. **Output:** a theme, cited ID, full passage and a model question.
+`json.loads(raw_1)` changes a string into a Python dictionary called `proposal_1`. The next `if` checks that the three requested fields are present before we use them. `.get("theme")` retrieves one field; it gives `None` if the field is missing. The loop compares the model's `evidence_id` against each original ID. If it matches, `cited_1` becomes the entire source dictionary; if it does not, `cited_1` remains `None` and the code prints a warning. **Output:** a theme, cited ID, full passage and a model question.
 
-Do not confuse *finding the passage* with *confirming the theme*. If the model says all recipients became organizers, T02_A and T03_A immediately trouble that claim. If it cites T02_A for a more modest distinction between aid and politics, T02_A may support the claim. The same excerpt can have different roles depending on what the model actually argued.
+Do not confuse *finding the passage* with *confirming the theme*. If the model says all recipients became organizers, T02_A and T03_A immediately trouble that claim. If it cites T02_A for a more modest distinction between aid and politics, T02_A may support the claim. The same excerpt can have different roles depending on what the model actually argued. If the return is not valid JSON, rerun only that model-call cell and then its source-check cell; do not restart the notebook or paste an invented answer. If the model cites an ID absent from the eight excerpts, raise that error in your next reply rather than pretending the passage exists.
 
 ### 6. Reply with a countercase
 
@@ -222,6 +232,8 @@ print(
     "T03_A left when help became obligatory. How does your theme handle both?"
 )
 feedback_1 = input("Your reply to the model, naming at least one excerpt ID: ")
+if not feedback_1.strip():
+    raise ValueError("Write a reply naming a countercase before the second call.")
 messages_2 = messages_1 + [
     {"role": "assistant", "content": raw_1},
     {
@@ -266,12 +278,18 @@ print("Round 2 raw output:", raw_2)
 
 ```python
 proposal_2 = json.loads(raw_2)
+if not isinstance(proposal_2, dict) or not all(
+    proposal_2.get(field) for field in ("theme", "evidence_id", "question_for_researcher")
+):
+    raise ValueError("Round 2 needs theme, evidence_id and question_for_researcher. Rerun the model call.")
 print("Round 2 theme:", proposal_2.get("theme"))
 cited_2 = None
 for excerpt in excerpts:
     if excerpt["id"] == proposal_2.get("evidence_id"):
         cited_2 = excerpt
 print("Round 2 cited passage:", cited_2)
+if cited_2 is None:
+    print("The model cited an ID not in the eight excerpts. Challenge that in your reply.")
 print("Round 2 model question:", proposal_2.get("question_for_researcher"))
 ```
 
@@ -287,6 +305,8 @@ print(
     "and what is only an interpretation about why tenants acted together?"
 )
 feedback_2 = input("Your second reply, naming an excerpt and a remaining question: ")
+if not feedback_2.strip():
+    raise ValueError("Write a second reply about evidence and explanation before the third call.")
 messages_3 = messages_2 + [
     {"role": "assistant", "content": raw_2},
     {
@@ -333,12 +353,18 @@ print("Round 3 raw output:", raw_3)
 
 ```python
 proposal_3 = json.loads(raw_3)
+if not isinstance(proposal_3, dict) or not all(
+    proposal_3.get(field) for field in ("theme", "evidence_id", "question_for_researcher")
+):
+    raise ValueError("Round 3 needs theme, evidence_id and question_for_researcher. Rerun the model call.")
 print("Round 3 theme:", proposal_3.get("theme"))
 cited_3 = None
 for excerpt in excerpts:
     if excerpt["id"] == proposal_3.get("evidence_id"):
         cited_3 = excerpt
 print("Round 3 cited passage:", cited_3)
+if cited_3 is None:
+    print("The model cited an ID not in the eight excerpts. Treat that as a source-check failure.")
 print("Round 3 model question:", proposal_3.get("question_for_researcher"))
 ```
 
@@ -354,6 +380,8 @@ print("Your independent first memo:", first_memo)
 final_memo = input(
     "Your provisional answer to the research question, with a countercase and limit: "
 )
+if not final_memo.strip():
+    raise ValueError("Write your own provisional answer before completing the exercise.")
 if ROUTE == "openrouter":
     selected_model = HOSTED_MODEL
 else:

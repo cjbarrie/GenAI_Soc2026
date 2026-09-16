@@ -456,7 +456,7 @@ This file records decisions for the collaborative redesign of **Generative AI in
 ## Class rhythm and narrated coding submissions (2026-08-27)
 
 - The normal meeting has three substantive parts: instructor framing first, discussion of the readings in the middle and a guided coding walkthrough at the end.
-- The weekly coding submission is a short screen recording with audio, uploaded to a dedicated NYU Box folder whose link will be added later.
+- The weekly coding submission is a short screen recording with audio. The current upload destination is the Google Drive coding videos folder linked in `coursebook/recording-and-submission.qmd` (superseding the earlier NYU Box plan).
 - Students must show the original run and one named change and explain the input, operation and output of every block. They must also explain a methodological limit and connect it to a reading. Video editing and code elegance are not assessed.
 - Weeks 1–2 use real OpenRouter and Ollama calls. Students choose either route in Weeks 3–7 and compare both again in Week 8; recorded responses are an access contingency.
 - Python is introduced through the parts of an LLM routine: strings and messages, returned objects, JSON and structured outputs, generation parameters, conversation state, loops, and then small functions with explicit parameters from Week 9.
@@ -483,7 +483,7 @@ This file records decisions for the collaborative redesign of **Generative AI in
 ## Weekly recording deadline and submission guide (2026-09-08)
 
 - Weekly recordings are due by 5:00 p.m. Eastern on the Tuesday before the next class.
-- `coursebook/recording-and-submission.qmd` is the single source for the Box upload URL, filename guidance and instructions for macOS, Windows and ChromeOS.
+- `coursebook/recording-and-submission.qmd` is the single source for the Google Drive coding videos folder URL, filename guidance and instructions for macOS, Windows and ChromeOS.
 - Weekly chapters and Python pages link to that guide rather than repeating the Box URL. This keeps the destination and instructions consistent if they change.
 - Students submit one continuous recording with audible narration. Camera video and editing are not required. They must check the saved file's audio before uploading and must never display the shared OpenRouter key.
 

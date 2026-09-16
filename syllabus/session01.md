@@ -34,7 +34,7 @@ Students store one trust statement and scoring instruction as strings, build one
 
 ## Weekly completion task
 
-Run both calls and submit a narrated screen recording explaining every string, message, route and return. Explain which computation occurs remotely and locally and why either score is only a proposed measurement. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
+Run both calls and submit a narrated screen recording explaining every string, message, route and return. Explain which computation occurs remotely and locally and why either score is only a proposed measurement. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

@@ -158,6 +158,36 @@ def test_week3_script_hosted_branch_with_recorded_response(
     assert namespace["analysis_record"]["round_2"]["cited"]["id"] == "T02_A"
 
 
+def test_week3_stops_before_call_when_first_memo_is_blank(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(ROOT)
+    monkeypatch.setattr("builtins.input", lambda *_: "   ")
+    import ollama
+
+    monkeypatch.setattr(
+        ollama, "chat", lambda **_: pytest.fail("A blank memo should not trigger a model call")
+    )
+    with pytest.raises(ValueError, match="first memo"):
+        runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
+
+
+def test_week3_reports_missing_model_fields(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(ROOT)
+    monkeypatch.setattr("builtins.input", lambda *_: "Aid may build ties, but not always.")
+    import ollama
+
+    monkeypatch.setattr(
+        ollama,
+        "chat",
+        lambda **_: SimpleNamespace(message=SimpleNamespace(content='{"theme":"A pattern"}')),
+    )
+    with pytest.raises(ValueError, match="theme, evidence_id and question_for_researcher"):
+        runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
+
+
 @pytest.mark.parametrize("week", range(3, 14))
 @pytest.mark.parametrize("runtime", ["local", "colab"])
 def test_followup_notebook_executes_without_live_services(

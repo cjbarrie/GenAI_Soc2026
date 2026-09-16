@@ -33,6 +33,8 @@ print("Local model:", LOCAL_MODEL)
 
 # CELL: Choose a route and inspect eight instructor-authored excerpts
 ROUTE = "ollama"  # change to "openrouter" to use the hosted route
+if ROUTE not in ("ollama", "openrouter"):
+    raise ValueError("ROUTE must be 'ollama' or 'openrouter'.")
 if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
@@ -83,6 +85,8 @@ print("T06_A interviewer context:", excerpts[6]["context"])
 # CELL: State your interpretation before asking the model
 print("Example first memo: Help may build relationships, but receiving aid alone is not collective action.")
 first_memo = input("Your one-sentence first reading: ")
+if not first_memo.strip():
+    raise ValueError("Write a first memo before asking the model. Then rerun this cell.")
 print("Saved before the model:", first_memo)
 
 # CELL: Send the first request and inspect the raw return
@@ -119,6 +123,10 @@ print("Round 1 raw output:", raw_1)
 
 # CELL: Parse the first proposal and return to its source
 proposal_1 = json.loads(raw_1)
+if not isinstance(proposal_1, dict) or not all(
+    proposal_1.get(field) for field in ("theme", "evidence_id", "question_for_researcher")
+):
+    raise ValueError("Round 1 needs theme, evidence_id and question_for_researcher. Rerun the model call.")
 print("Round 1 fields:", list(proposal_1))
 print("Round 1 theme:", proposal_1.get("theme"))
 print("Round 1 cited ID:", proposal_1.get("evidence_id"))
@@ -127,6 +135,8 @@ for excerpt in excerpts:
     if excerpt["id"] == proposal_1.get("evidence_id"):
         cited_1 = excerpt
 print("Round 1 cited passage:", cited_1)
+if cited_1 is None:
+    print("The model cited an ID not in the eight excerpts. Challenge that in your reply.")
 print("Round 1 model question:", proposal_1.get("question_for_researcher"))
 print("Your earlier memo:", first_memo)
 print("Compare T02_A, T03_A and T05_A before accepting a general claim.")
@@ -137,6 +147,8 @@ print(
     "T03_A left when help became obligatory. How does your theme handle both?"
 )
 feedback_1 = input("Your reply to the model, naming at least one excerpt ID: ")
+if not feedback_1.strip():
+    raise ValueError("Write a reply naming a countercase before the second call.")
 messages_2 = messages_1 + [
     {"role": "assistant", "content": raw_1},
     {
@@ -171,12 +183,18 @@ else:
     raw_2 = response_2.message.content
 print("Round 2 raw output:", raw_2)
 proposal_2 = json.loads(raw_2)
+if not isinstance(proposal_2, dict) or not all(
+    proposal_2.get(field) for field in ("theme", "evidence_id", "question_for_researcher")
+):
+    raise ValueError("Round 2 needs theme, evidence_id and question_for_researcher. Rerun the model call.")
 print("Round 2 theme:", proposal_2.get("theme"))
 cited_2 = None
 for excerpt in excerpts:
     if excerpt["id"] == proposal_2.get("evidence_id"):
         cited_2 = excerpt
 print("Round 2 cited passage:", cited_2)
+if cited_2 is None:
+    print("The model cited an ID not in the eight excerpts. Challenge that in your reply.")
 print("Round 2 model question:", proposal_2.get("question_for_researcher"))
 
 # CELL: Press on the proposed mechanism and evidence
@@ -185,6 +203,8 @@ print(
     "and what is only an interpretation about why tenants acted together?"
 )
 feedback_2 = input("Your second reply, naming an excerpt and a remaining question: ")
+if not feedback_2.strip():
+    raise ValueError("Write a second reply about evidence and explanation before the third call.")
 messages_3 = messages_2 + [
     {"role": "assistant", "content": raw_2},
     {
@@ -221,12 +241,18 @@ else:
     raw_3 = response_3.message.content
 print("Round 3 raw output:", raw_3)
 proposal_3 = json.loads(raw_3)
+if not isinstance(proposal_3, dict) or not all(
+    proposal_3.get(field) for field in ("theme", "evidence_id", "question_for_researcher")
+):
+    raise ValueError("Round 3 needs theme, evidence_id and question_for_researcher. Rerun the model call.")
 print("Round 3 theme:", proposal_3.get("theme"))
 cited_3 = None
 for excerpt in excerpts:
     if excerpt["id"] == proposal_3.get("evidence_id"):
         cited_3 = excerpt
 print("Round 3 cited passage:", cited_3)
+if cited_3 is None:
+    print("The model cited an ID not in the eight excerpts. Treat that as a source-check failure.")
 print("Round 3 model question:", proposal_3.get("question_for_researcher"))
 
 # CELL: Make and save your own provisional judgment
@@ -235,6 +261,8 @@ print("Your independent first memo:", first_memo)
 final_memo = input(
     "Your provisional answer to the research question, with a countercase and limit: "
 )
+if not final_memo.strip():
+    raise ValueError("Write your own provisional answer before completing the exercise.")
 if ROUTE == "openrouter":
     selected_model = HOSTED_MODEL
 else:

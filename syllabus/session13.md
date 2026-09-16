@@ -35,7 +35,7 @@ Planned: students run structured-output calls over a small supplied grid of mode
 
 ## Weekly completion task
 
-Planned: submit a narrated screen recording showing which parameter changes in each call, explaining the structured return and comparing two cells without assigning an unsupported social cause. Upload it through the [recording guide and Box folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
+Planned: submit a narrated screen recording showing which parameter changes in each call, explaining the structured return and comparing two cells without assigning an unsupported social cause. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 ## Validation focus
 

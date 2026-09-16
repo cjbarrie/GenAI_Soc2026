@@ -20,7 +20,7 @@ MANIFEST = BOOK / "readings.json"
 BIB = ROOT / "references.bib"
 LOCAL_ANCHOR_PDF = BOOK / "downloads" / "readings" / "ai-and-research-methods-barrie-et-al-2026.pdf"
 SUBMISSION_PAGE = BOOK / "recording-and-submission.qmd"
-BOX_URL = "https://nyu.box.com/s/3oylc29m569ack3jv79rk22chk5r90dp"
+CODING_VIDEOS_FOLDER = "https://drive.google.com/drive/folders/1qn6x9B3sjDs6kJOegZAo0RJ3EeL46rWT?usp=drive_link"
 COLAB_REPO = "https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main"
 
 REQUIRED_SECTIONS = [
@@ -151,7 +151,8 @@ def validate_sources(rendered: bool) -> list[str]:
     else:
         submission_text = SUBMISSION_PAGE.read_text(encoding="utf-8")
         required_submission_text = [
-            BOX_URL,
+            CODING_VIDEOS_FOLDER,
+            "lastname_weekNN.mp4",
             "5:00 p.m. Eastern on the Tuesday before the next class",
             "## Record on a Mac",
             "## Record on Windows",
