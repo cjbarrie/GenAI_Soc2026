@@ -108,10 +108,9 @@ if ROUTE == "openrouter":
         )
     raw_1 = response_1.choices[0].message.content
 else:
-    response_1 = ollama.chat(
+    response_1 = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=messages_1,
-        think=False,
         format="json",
         options={"temperature": 0, "num_predict": 250},
     )
@@ -163,10 +162,9 @@ if ROUTE == "openrouter":
         )
     raw_2 = response_2.choices[0].message.content
 else:
-    response_2 = ollama.chat(
+    response_2 = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=messages_2,
-        think=False,
         format="json",
         options={"temperature": 0, "num_predict": 250},
     )
@@ -214,10 +212,9 @@ if ROUTE == "openrouter":
         )
     raw_3 = response_3.choices[0].message.content
 else:
-    response_3 = ollama.chat(
+    response_3 = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=messages_3,
-        think=False,
         format="json",
         options={"temperature": 0, "num_predict": 250},
     )
