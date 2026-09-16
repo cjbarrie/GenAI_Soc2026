@@ -3,7 +3,6 @@ title: "Week 3 — What can an LLM contribute to qualitative interpretation?"
 description: "Iterative coding, source tracing and technological reflexivity"
 ---
 
-<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/context-and-memory.qmd#context-window">context window</a> · <a href="../glossary/context-and-memory.qmd#stateless-history">conversation history</a> · <a href="../glossary/context-and-memory.qmd#external-memory">memory</a> · <a href="../glossary/outputs-and-tools.qmd#parsing">parsing JSON</a></div>
 
 ## This week’s sociological question
 
