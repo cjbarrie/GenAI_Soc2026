@@ -5,6 +5,12 @@ description: "Eight excerpts, three model turns, and an independent final memo"
 
 [Return to the Week 3 readings and slides](../weeks/session03.qmd).
 
+::: {.callout-important title="Use the supplied Week 3 notebook"}
+[Open the Week 3 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session03/session03_qualitative_interpretation.ipynb) or [download it for JupyterLab](../_generated/downloads/session03/session03_qualitative_interpretation.ipynb). This supplied notebook is the intended version for the weekly task: open it and run its cells in order.
+
+The code blocks on this page explain the same assessed routine one step at a time. They are here for reference, not as instructions to create a blank notebook and paste everything into it. The supplied notebook contains an additional setup cell and automatically chooses OpenRouter in Colab or Ollama locally, so it will not look completely identical. **If you already copied the blocks from this page and successfully ran all three model calls, you do not need to redo the exercise or recording.**
+:::
+
 ## Python walkthrough: when does mutual aid contribute to political solidarity?
 
 The research question is: **When, if at all, does mutual aid among tenants contribute to political solidarity?** Here, receiving food or emergency money is *not by itself* political solidarity. We are looking for accounts of tenants recognizing a shared problem and acting together. Writing and delivering a petition is clearer evidence of collective action than simply accepting a delivery.
@@ -31,7 +37,7 @@ A model may suggest a pattern. It does not decide which of these accounts suppor
 
 ### 1. Prepare the environment
 
-Run the notebook's **Prepare the notebook environment** cell first. In Colab it installs missing SDKs and obtains the public course configuration. Locally, start JupyterLab from the complete repository with `uv run jupyter lab`, or run the downloadable script with `uv run python assessments/weekly_coding/session03_task.py`.
+In the supplied notebook, run **Prepare the notebook environment** first. In Colab it installs missing SDKs and obtains the public course configuration. Locally, start JupyterLab from the complete repository with `uv run jupyter lab`, then open `workbook/session03/session03_qualitative_interpretation.ipynb`. The downloadable script is a separate command-line version for students who prefer it: `uv run python assessments/weekly_coding/session03_task.py`.
 
 ```python
 import json

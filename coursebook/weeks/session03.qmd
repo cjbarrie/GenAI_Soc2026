@@ -53,7 +53,7 @@ Our workflow therefore begins with a short independent memo. The researcher then
 ::: {.content-visible when-format="pdf"}
 The slides are available in the [online Week 3 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session03.html).
 :::
-[Continue to the Week 3 Python work](../python/session03.qmd).
+[Open the Week 3 Python exercise and supplied notebook](../python/session03.qmd).
 
 ## Summary and preparation for next week
 

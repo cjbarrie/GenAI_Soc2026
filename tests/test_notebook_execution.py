@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import runpy
 import shutil
 from pathlib import Path
@@ -12,6 +13,35 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_week3_course_page_and_notebook_use_the_same_core_code() -> None:
+    """Prevent the explanatory page and runnable workbook from drifting apart."""
+    notebook = json.loads(
+        (ROOT / "workbook/session03/session03_qualitative_interpretation.ipynb").read_text()
+    )
+    notebook_code = [
+        "".join(cell["source"]).rstrip()
+        for cell in notebook["cells"]
+        if cell["cell_type"] == "code"
+    ]
+    page = (ROOT / "coursebook/python/session03.qmd").read_text()
+    page_code = [block.rstrip() for block in re.findall(r"```python\n(.*?)```", page, re.S)]
+
+    # The page has one compact setup block; the notebook has a supplied setup
+    # cell plus its import/configuration cell. The assessed cells then match.
+    assert page_code[2:] == notebook_code[3:]
+
+    page_sources = page_code[1].replace(
+        'ROUTE = "ollama"  # change to "openrouter" to use the hosted route',
+        "ROUTE = ROUTE_PLACEHOLDER",
+    )
+    notebook_sources = notebook_code[2].replace(
+        'ROUTE = "openrouter" if IN_COLAB else "ollama"  # local default',
+        "ROUTE = ROUTE_PLACEHOLDER",
+    )
+    assert page_sources == notebook_sources
+    assert "Use the supplied Week 3 notebook" in page
 
 
 def response_text(messages: list[dict], schema_name: str | None = None, schema: dict | None = None) -> str:
