@@ -43,6 +43,19 @@
 .simmel-portrait img { height:390px; width:auto; object-fit:contain; box-shadow:12px 12px 0 #d9d4c9; image-rendering:auto; }
 .simmel-portrait figcaption { margin-top:14px; font-size:18px; color:var(--slate); }
 
+.classic-quote { position:relative; width:1060px; box-sizing:border-box; margin:40px auto 0; padding:34px 48px 30px 58px; border-left:9px solid var(--vermilion); background:var(--clear-paper); }
+.classic-quote::before { content:"“"; position:absolute; top:-42px; left:18px; color:var(--pale-cobalt); font-family:"Source Serif 4",serif; font-size:150px; line-height:1; z-index:0; }
+.classic-quote p { position:relative; z-index:1; margin:0; font-family:"Source Serif 4",serif; font-size:27px; line-height:1.34; }
+.classic-quote mark { background:linear-gradient(transparent 58%, rgba(231, 180, 67, .48) 58%); color:inherit; padding:0 .04em; }
+.classic-quote.simmel-quote { margin-top:24px; padding-top:28px; padding-bottom:25px; }
+.classic-quote.simmel-quote p { font-size:24px; line-height:1.28; }
+.classic-quote.mead-quote { margin-top:20px; padding-top:26px; padding-bottom:23px; }
+.classic-quote.mead-quote p { font-size:21px; line-height:1.25; }
+.classic-quote.goffman-quote { width:990px; margin-top:105px; padding:48px 62px; }
+.classic-quote.goffman-quote p { font-size:38px; line-height:1.28; }
+.quote-connection { width:930px; margin:34px auto 0; font-size:22px; line-height:1.3; }
+section:has(.classic-quote) .source-line { font-size:14px; }
+
 .evidence-split { display:grid; grid-template-columns:1.35fr .65fr; gap:34px; align-items:center; }
 .evidence-split img { width:100%; height:455px; object-fit:cover; }
 .evidence-split p { padding:13px 16px; margin:0 0 12px; background:var(--clear-paper); font-size:22px; }
@@ -151,6 +164,14 @@ section:has(.morrissey-quote) .source-line { font-size:14px; }
 .two-frame-input { display:grid; grid-template-columns:1fr 1fr; gap:22px; height:300px; }
 .two-frame-input img { width:100%; height:255px; object-fit:cover; border:1px solid #c9c4b9; }
 .two-frame-input figcaption { text-align:center; margin-top:6px; }
+.four-frame-input { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; height:390px; }
+.four-frame-input figure { margin:0; min-width:0; }
+.four-frame-input img { width:100%; height:320px; object-fit:contain; background:#ece9e1; border:1px solid #c9c4b9; }
+.four-frame-input figcaption { text-align:center; margin-top:6px; font-size:17px; line-height:1.15; }
+.protest-video-layout { display:grid; grid-template-columns:0.72fr 1fr; gap:36px; align-items:center; margin-top:20px; }
+.protest-video-layout video { width:100%; height:520px; object-fit:contain; background:#151515; }
+.protest-video-layout p { font-size:25px; line-height:1.35; margin:0 0 26px; }
+.collins-code-question { max-width:1000px; margin:65px auto 45px; font-family:var(--serif); font-size:42px; line-height:1.2; text-align:center; color:var(--ink); }
 .boundary-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:25px; }
 .boundary-grid > div { padding:16px 20px; background:var(--clear-paper); border-left:6px solid var(--cobalt); }
 .boundary-grid b { display:block; font-size:22px; margin-bottom:6px; }

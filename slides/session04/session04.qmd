@@ -96,6 +96,16 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
+## Simmel on the reciprocity of looking
+
+<div class="classic-quote simmel-quote">
+<p>“The limits of this relation are to be determined by the significant fact that the glance by which the one seeks to perceive the other is itself expressive. By the glance which reveals the other, one discloses himself. By the same act in which the observer seeks to know the observed, he surrenders himself to be understood by the observer. <mark>The eye cannot take unless at the same time it gives.</mark> The eye of a person discloses his own soul when he seeks to uncover that of another. What occurs in this direct mutual glance represents the most perfect reciprocity in the entire field of human relationships.”</p>
+</div>
+
+<div class="source-line">Simmel, Georg. 1997 [1907]. “Sociology of the Senses.” In <i>Simmel on Culture</i>, edited by D. Frisby and M. Featherstone.</div>
+
+---
+
 ## The football footage gives us sight without the crucial speech
 
 <div class="evidence-split">
@@ -123,6 +133,16 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
+## Mead on significant gestures
+
+<div class="classic-quote mead-quote">
+<p>“Gestures may be either conscious (significant) or unconscious (non-significant). The conversation of gestures is not significant below the human level, because it is not conscious, that is, not self-conscious (though it is conscious in the sense of involving feelings or sensations). An animal as opposed to a human form, in indicating something to, or bringing out a meaning for, another form, is not at the same time indicating or bringing out the same thing or meaning to or for himself; for he has no mind, no thought, and hence there is no meaning here in the significant or self-conscious sense. <mark>A gesture is not significant when the response of another organism to it does not indicate to the organism making it what the other organism is responding to.</mark>”</p>
+</div>
+
+<div class="source-line">Mead, George Herbert. 1934. <i>Mind, Self, and Society</i>, §11, p. 81. Chicago: University of Chicago Press.</div>
+
+---
+
 ## Goffman directs attention to the situation around the act
 
 <div class="annotated-pitch">
@@ -133,6 +153,18 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 <p class="caption">The interaction takes place before teammates, officials, cameras and a stadium audience. Those people and rules are part of the situation.</p>
 
 <div class="source-line">Goffman, Erving. 1983. “The Interaction Order.” <i>American Sociological Review</i> 48(1):1–17.</div>
+
+---
+
+## Goffman on life in the presence of others
+
+<div class="classic-quote goffman-quote">
+<p>“It is a fact of our human condition that, for most of us, our daily life is spent in the immediate presence of others.”</p>
+</div>
+
+<p class="quote-connection">The conduct in the football footage is therefore socially situated: each action occurs within reach of other players, officials, cameras and an audience.</p>
+
+<div class="source-line">Goffman, Erving. 1983. “The Interaction Order.” <i>American Sociological Review</i> 48(1):2.</div>
 
 ---
 
@@ -452,11 +484,40 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
-## The model is another way of organizing attention
+## A second case lets us study a protest confrontation
+
+<div class="protest-video-layout">
+<video controls preload="metadata" aria-label="Short video of a confrontation between police and a protester in Uttarakhand">
+  <source src="images/uttarakhand_protest_confrontation.webm" type="video/webm" />
+</video>
+<div>
+<p>The recording lasts 18 seconds. We can follow changes in distance, gesture, physical contact and the involvement of other people.</p>
+<p>We cannot recover speech clearly, establish motive, or infer how any participant experienced the encounter.</p>
+</div>
+</div>
+
+<div class="source-line">Video: Himalayanwarrior, “Confrontation between Police and a activist during a protest in Uttarakhand,” 2021. Wikimedia Commons. CC BY-SA 4.0.</div>
+
+---
+
+## Collins gives us a question about the sequence
+
+<div class="collins-code-question">How does this confrontation move toward, into or away from physical violence?</div>
+
+<div class="boundary-grid">
+<div><b>Available in the recording</b><span>distance, orientation, gesture, contact, intervention and movement over time</span></div>
+<div><b>Unavailable from these frames</b><span>speech, intention, fear, subjective experience and the cause of the encounter</span></div>
+</div>
+
+<p class="caption">Collins supplies the theoretical question. He does not give us a visual label that a model can simply apply.</p>
+
+---
+
+## The prompt and schema tell the model what to report
 
 <div class="task-card">
-<div class="task-number">1</div><div><b>Constrain what should count</b><span>The prompt asks for visible change and explicitly excludes identity, motive and remembered event knowledge.</span></div>
-<div class="task-number">2</div><div><b>Constrain how it is represented</b><span>The schema separates observable change, visible evidence and interpretation withheld.</span></div>
+<div class="task-number">1</div><div><b>Specify what should count</b><span>The prompt asks about visible position, gesture, contact and intervention. It excludes motive and emotion.</span></div>
+<div class="task-number">2</div><div><b>Specify the form of the answer</b><span>The schema requests ordered observations, visible changes, two Boolean judgments and a list of things the frames cannot establish.</span></div>
 <div class="task-number">3</div><div><b>Inspect what it nevertheless makes salient</b><span>The researcher checks every returned claim against the source frames.</span></div>
 </div>
 
@@ -464,56 +525,84 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
-## The routine starts with two frames we can inspect ourselves
+## Four frames define the sequence the model receives
 
-<div class="two-frame-input">
-<figure><img src="images/zidane_fine2_168.png"><figcaption><code>frame_1</code></figcaption></figure>
-<figure><img src="images/zidane_fine2_169.png"><figcaption><code>frame_2</code></figcaption></figure>
+<div class="four-frame-input">
+<figure><img src="images/uttarakhand_frame_1_04.5s.png"><figcaption><code>frame_1</code><br>4.5 seconds</figcaption></figure>
+<figure><img src="images/uttarakhand_frame_2_05.0s.png"><figcaption><code>frame_2</code><br>5.0 seconds</figcaption></figure>
+<figure><img src="images/uttarakhand_frame_3_06.0s.png"><figcaption><code>frame_3</code><br>6.0 seconds</figcaption></figure>
+<figure><img src="images/uttarakhand_frame_4_08.5s.png"><figcaption><code>frame_4</code><br>8.5 seconds</figcaption></figure>
 </div>
 
 ```python
-frame_1 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_168.png"
-frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_169.png"
+frame_1 = IMAGE_DIR / "uttarakhand_frame_1_04.5s.png"
+frame_2 = IMAGE_DIR / "uttarakhand_frame_2_05.0s.png"
+frame_3 = IMAGE_DIR / "uttarakhand_frame_3_06.0s.png"
+frame_4 = IMAGE_DIR / "uttarakhand_frame_4_08.5s.png"
+frames = [frame_1, frame_2, frame_3, frame_4]
 ```
 
-<p class="caption">Each variable is a <code>Path</code>: it stores a file location. It does not yet contain a model description.</p>
+<p class="caption">Each <code>Path</code> stores one file location. The list records the temporal order supplied to the model.</p>
+
+---
+
+## The source record states what these images leave out
+
+```python
+source_record = {
+    "case": "Uttarakhand protest confrontation",
+    "source": "Wikimedia Commons",
+    "timestamps_seconds": [4.5, 5.0, 6.0, 8.5],
+    "audio_used": False,
+    "capture_limit": "Four selected stills from an 18-second video",
+}
+```
+
+<div class="type-key"><span><b>string</b> stores text</span><span><b>list</b> preserves ordered timestamps</span><span><b>False</b> records a Boolean value</span></div>
+
+<p class="caption">This is a small implementation of Nassauer and Legewie’s instruction to document selection, duration and missing evidence.</p>
 
 ---
 
 ## The prompt states the evidentiary boundary
 
 ```python
-prompt = (
-    "Compare these ordered frames. Describe only visible change. "
-    "Do not name people, infer motive, or use remembered event knowledge."
-)
+prompt = """
+Examine these protest images in their supplied order.
+Describe position, gesture, contact and intervention.
+Do not infer motive, emotion, speech or political identity.
+State what the frames cannot establish.
+"""
 ```
 
 <div class="boundary-grid">
-<div><b>Permitted</b><span>position, orientation, contact and change across the two frames</span></div>
-<div><b>Withheld</b><span>names, speech, intention, emotion and causal explanation</span></div>
+<div><b>Permitted</b><span>position, orientation, gesture, contact, intervention and change across frames</span></div>
+<div><b>Withheld</b><span>speech, intention, emotion, political identity and causal explanation</span></div>
 </div>
 
 <p class="caption"><code>prompt</code> is a string. Its wording is part of the research design, not background decoration.</p>
 
 ---
 
-## The schema keeps observation and interpretation apart
+## The schema specifies what the return must contain
 
 ```python
 schema = {
     "type": "object",
     "properties": {
-        "observable_change": {"type": "string"},
-        "visible_evidence": {"type": "array", "items": {"type": "string"}},
-        "interpretation_withheld": {"type": "string"},
+        "frame_observations": {"type": "array", "items": {"type": "string"}},
+        "visible_changes": {"type": "array", "items": {"type": "string"}},
+        "physical_contact_visible": {"type": "boolean"},
+        "third_party_intervention_visible": {"type": "boolean"},
+        "not_established": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["observable_change", "visible_evidence",
-                 "interpretation_withheld"],
+    "required": ["frame_observations", "visible_changes",
+                 "physical_contact_visible", "third_party_intervention_visible",
+                 "not_established"],
 }
 ```
 
-<div class="type-key"><span><b>{ } dictionary</b> gives values names</span><span><b>[ ] list</b> keeps required fields in order</span><span><b>schema</b> constrains form, not truth</span></div>
+<div class="type-key"><span><b>{ } dictionary</b> gives values names</span><span><b>[ ] list</b> preserves several observations</span><span><b>Boolean</b> stores <code>True</code> or <code>False</code></span></div>
 
 ---
 
@@ -521,7 +610,7 @@ schema = {
 
 <div class="route-compare">
 <div><b>OpenRouter</b><span>The image paths are converted to data URLs and sent to a hosted model over the internet.</span><code>image_to_data_url(frame_1)</code></div>
-<div><b>Ollama</b><span>The local Ollama server reads the image files from this machine.</span><code>"images": [str(frame_1), str(frame_2)]</code></div>
+<div><b>Ollama</b><span>The local Ollama server reads the image files from this machine.</span><code>"images": [str(frame_1), ..., str(frame_4)]</code></div>
 </div>
 
 <p class="takeaway">The transport changes. The frames, prompt, schema and methodological check stay the same.</p>
@@ -537,6 +626,8 @@ messages = [{"role": "user", "content": [
     {"type": "text", "text": prompt},
     {"type": "image_url", "image_url": {"url": image_to_data_url(frame_1)}},
     {"type": "image_url", "image_url": {"url": image_to_data_url(frame_2)}},
+    {"type": "image_url", "image_url": {"url": image_to_data_url(frame_3)}},
+    {"type": "image_url", "image_url": {"url": image_to_data_url(frame_4)}},
 ]}]
 
 with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
@@ -551,7 +642,7 @@ with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
 
 ---
 
-## The Ollama branch reads the same two local files
+## The Ollama branch reads the same four local files
 
 ```python
 import ollama
@@ -559,7 +650,7 @@ import ollama
 messages = [{
     "role": "user",
     "content": prompt,
-    "images": [str(frame_1), str(frame_2)],
+    "images": [str(frame_1), str(frame_2), str(frame_3), str(frame_4)],
 }]
 
 response = ollama.chat(
@@ -575,7 +666,7 @@ response = ollama.chat(
 
 ---
 
-## First preserve the raw return; then turn it into a dictionary
+## Preserve the raw return before parsing it
 
 ```python
 if ROUTE == "openrouter":
@@ -586,9 +677,11 @@ else:
 print("Raw JSON text:", raw_output)
 
 description = json.loads(raw_output)
-print(description["observable_change"])
-print(description["visible_evidence"])
-print(description["interpretation_withheld"])
+print(description["frame_observations"])
+print(description["visible_changes"])
+print(description["physical_contact_visible"])
+print(description["third_party_intervention_visible"])
+print(description["not_established"])
 ```
 
 <div class="object-map"><span><code>raw_output</code><small>JSON string returned by the model</small></span><i>→</i><span><code>json.loads(...)</code><small>conversion operation</small></span><i>→</i><span><code>description</code><small>Python dictionary</small></span></div>
@@ -598,27 +691,43 @@ print(description["interpretation_withheld"])
 ## The researcher checks the named claims against the frames
 
 <div class="review-record">
-<div><b>Observable change</b><p>Can the claimed change be seen across both displayed frames?</p></div>
-<div><b>Visible evidence</b><p>Does every item refer to something actually present in the pixels?</p></div>
-<div><b>Interpretation withheld</b><p>Did the model really avoid identity, motive, speech and remembered event knowledge?</p></div>
+<div><b>Frame observations</b><p>Does each sentence describe the corresponding image?</p></div>
+<div><b>Sequence claims</b><p>Can every claimed change be seen across the ordered frames?</p></div>
+<div><b>Limits</b><p>Did the model avoid motive, emotion, speech and causal explanation?</p></div>
 </div>
 
 <p class="caption">Structured output makes claims easier to inspect. It does not make them accurate.</p>
 
 ---
 
-## One changed frame lets us test what the description depends on
+## Save the researcher’s check beside the model output
 
 ```python
-frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_170.png"
+researcher_check = {
+    "supported_claim": "",
+    "unsupported_or_overstated_claim": "",
+    "missing_observation": "",
+}
+```
+
+<p class="caption">Students fill these strings after comparing the return with the source. The human assessment is saved rather than left in an unrecorded discussion.</p>
+
+---
+
+## A later endpoint tests how frame selection changes the account
+
+```python
+frame_5 = IMAGE_DIR / "uttarakhand_frame_5_11.5s.png"
+frames = [frame_1, frame_2, frame_3, frame_5]
+source_record["timestamps_seconds"] = [4.5, 5.0, 6.0, 11.5]
 ```
 
 <div class="before-after">
-<div><b>Held fixed</b><p>first frame, prompt, schema, route, model and temperature</p></div>
-<div><b>Changed</b><p>only the second image supplied to the model</p></div>
+<div><b>Held fixed</b><p>first three frames, prompt, schema, route, model and temperature</p></div>
+<div><b>Changed</b><p>the endpoint moves from 8.5 to 11.5 seconds</p></div>
 </div>
 
-<p class="takeaway">Rerun the same call and ask which claims changed, which remained, and whether either return imports knowledge that is absent from the images.</p>
+<p class="takeaway">Rerun the call and ask whether the later endpoint makes the encounter appear to escalate, continue or settle differently.</p>
 
 ---
 
@@ -628,9 +737,9 @@ frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_170.png"
 <thead><tr><th>It can help us…</th><th>It cannot establish by itself…</th></tr></thead>
 <tbody>
 <tr><td>describe visible features consistently</td><td>what unrecorded words were spoken</td></tr>
-<tr><td>compare adjacent frames</td><td>how participants experienced the exchange</td></tr>
+<tr><td>compare selected moments in an ordered sequence</td><td>how participants experienced the exchange</td></tr>
 <tr><td>flag uncertain observations for review</td><td>the cause or moral meaning of the act</td></tr>
-<tr><td>save model output beside human corrections</td><td>whether Collins, Morrissey or another account is right</td></tr>
+<tr><td>save model output beside human corrections</td><td>whether Collins’s mechanism occurred</td></tr>
 </tbody>
 </table>
 

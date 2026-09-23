@@ -159,12 +159,28 @@ def prepare() -> None:
         with ZipFile(bundle, "w", compression=ZIP_DEFLATED) as archive:
             archive.write(notebooks[0], Path("workbook") / session / notebooks[0].name)
             archive.write(task, Path("assessments") / "weekly_coding" / task.name)
+            archive.write(
+                ROOT / "config" / "course_models.json",
+                Path("config") / "course_models.json",
+            )
             data_dir = ROOT / "data" / session
             if data_dir.exists():
                 for data_file in sorted(path for path in data_dir.rglob("*") if path.is_file()):
                     if data_file.suffix.lower() in {".pdf", ".doc", ".docx", ".xls", ".xlsx"}:
                         raise RuntimeError(f"Refusing to package restricted source format: {data_file}")
                     archive.write(data_file, data_file.relative_to(ROOT))
+
+            if session == "session04":
+                for helper in (
+                    ROOT / "src" / "genai_soc" / "__init__.py",
+                    ROOT / "src" / "genai_soc" / "media.py",
+                ):
+                    archive.write(helper, helper.relative_to(ROOT))
+                image_dir = ROOT / "slides" / "session04" / "images"
+                for frame in sorted(image_dir.glob("uttarakhand_frame_*.png")):
+                    archive.write(frame, frame.relative_to(ROOT))
+                source_note = image_dir / "uttarakhand_protest_SOURCE.md"
+                archive.write(source_note, source_note.relative_to(ROOT))
 
     prepare_glossary_notebooks()
 

@@ -76,9 +76,12 @@ def main() -> None:
     )
     mark("conversation call", conversation_response.message.content)
 
-    frame_1 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_168.png"
-    frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_169.png"
-    for frame in (frame_1, frame_2):
+    image_dir = ROOT / "slides" / "session04" / "images"
+    frame_1 = image_dir / "uttarakhand_frame_1_04.5s.png"
+    frame_2 = image_dir / "uttarakhand_frame_2_05.0s.png"
+    frame_3 = image_dir / "uttarakhand_frame_3_06.0s.png"
+    frame_4 = image_dir / "uttarakhand_frame_4_08.5s.png"
+    for frame in (frame_1, frame_2, frame_3, frame_4):
         if not frame.exists():
             raise FileNotFoundError(f"Missing Week 4 image: {frame}")
     image_response = ollama.chat(
@@ -87,8 +90,11 @@ def main() -> None:
         messages=[
             {
                 "role": "user",
-                "content": "State one directly visible difference between these ordered frames.",
-                "images": [str(frame_1), str(frame_2)],
+                "content": (
+                    "Describe visible changes in distance, gesture, contact and "
+                    "intervention across these ordered protest frames. Do not infer motive."
+                ),
+                "images": [str(frame_1), str(frame_2), str(frame_3), str(frame_4)],
             }
         ],
         options={"temperature": 0, "num_predict": 60},

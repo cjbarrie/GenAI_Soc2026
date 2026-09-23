@@ -7,7 +7,7 @@
 
 What happens within a confrontation that allows violence to begin—or enables the confrontation to remain nonviolent?
 
-We will use a clearly labeled, non-graphic, instructor-authored reconstruction. It is not evidence about a real protest, police unit, participant, injury, or population.
+We will use a short, non-graphic recording of a real police–protester confrontation in Uttarakhand. The creator released the video under CC BY-SA 4.0. We use it to study visible sequence, selection and evidentiary limits; it is not a basis for judging motive, responsibility or the wider protest.
 
 ## Why this follows Sessions 1–3
 
@@ -25,7 +25,7 @@ By the end, students should be able to:
 3. separate visible or audible conduct from an interpretation of conduct and from unobserved intention;
 4. explain why a video is positioned evidence with a start time, viewpoint, unit, and sampling process;
 5. distinguish recognition, transcription, description, prediction, and sociological explanation;
-6. compare an escalation and de-escalation sequence without treating a recorded change as a cause; and
+6. compare descriptions produced from two selections of the same recorded sequence without treating a visible change as a cause; and
 7. explain the multimodal message and structured return as exact input and type → operation → exact output and type → sociological meaning → limit.
 
 ## Required readings
@@ -42,13 +42,13 @@ Close observation does not give us a transparent copy of social life. It gives u
 
 ## Computational trace
 
-Students place two ordered observations in a list and ask a hosted or local model for JSON separating an observable change from an interpretation to withhold. They trace prompt construction, the call, JSON parsing and field retrieval.
+Students place four timestamped protest stills in an ordered list and ask a hosted or local multimodal model for structured observations. They trace file paths, lists, a source dictionary, prompt construction, the model call, JSON parsing, Boolean fields and a researcher correction.
 
 The code prepares a sequence for human interpretation. It does not discover the cause of violence.
 
 ## Weekly completion task
 
-Run the supplied call, change one visible action and run it again. Submit a narrated screen recording explaining every input and output, comparing both descriptions and identifying any identity, motive or remembered context absent from the input. Link the limit to Collins or Nassauer and upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
+Run the supplied call, replace the 8.5-second endpoint with the supplied 11.5-second frame and run it again. Submit a narrated screen recording explaining every input and output, comparing both descriptions and identifying unsupported or missing observations. Explain how frame selection affects the account and connect the result to Collins and either Goodwin or Nassauer and Legewie. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 The task receives a completion mark. Syntax elegance is not assessed. AI use is permitted with responsibility and disclosure, but each student must be able to explain every submitted line and output without AI assistance.
 

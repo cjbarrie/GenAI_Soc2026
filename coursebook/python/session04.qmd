@@ -1,31 +1,32 @@
 ---
-title: "Week 4 Python — Multimodal evidence"
+title: "Week 4 Python — Analysing a protest sequence"
 description: "Worked code, notebook and completion task"
 ---
 
 [Return to the Week 4 readings and slides](../weeks/session04.qmd).
 
-## Python walkthrough: give a multimodal model visual evidence
+## Python walkthrough: what changes during a confrontation?
 
 ::: {.routine-summary}
-**Today's routine:** Two interaction frames → one multimodal request → a structured visual description → evidence check.
+**Today’s routine:** We store four stills from a real protest video in an ordered list, send them to a multimodal model, parse the structured description and record the researcher’s check.
 
-**Python introduced:** file paths, ordered image lists, nested message content and structured visual descriptions.
+**Python introduced:** file paths, strings, lists, dictionaries, Booleans, nested message content and JSON parsing.
 
-**Your change:** replace the second frame and check which claims remain visibly supported.
+**Your change:** replace the final frame with a later frame and check how the selected endpoint changes the model’s account.
 :::
 
-The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+The sociological question comes from Collins: how does a confrontation move toward, into or away from physical violence? The model will describe observable conduct. It will not decide whether a participant entered the “tunnel of violence.”
 
-### Load the course settings and SDKs
+The images come from an 18-second video recorded at a protest in Uttarakhand, India. Himalayanwarrior released the video under a [Creative Commons Attribution-ShareAlike 4.0 licence](https://commons.wikimedia.org/wiki/File:Confrontation_between_Police_and_a_activist_during_a_protest_in_Uttarakhand.webm). We extracted the stills without cropping them.
 
-Run the notebook's **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local `uv` environment, adds the repository root to Python's import path and sets `IN_COLAB`. Adding the repository root is what makes the supplied `src.genai_soc.media` utility importable after Colab clones the repository.
+### Load the course settings and choose a route
 
-This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+Run the notebook’s **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local environment and defines `IN_COLAB`.
 
 ```python
 import json
 import os
+import sys
 from getpass import getpass
 from pathlib import Path
 
@@ -35,7 +36,7 @@ try:
 except ModuleNotFoundError as error:
     raise ModuleNotFoundError(
         "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
-        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
+        "folder, run 'uv sync --frozen', then reopen this notebook."
     ) from error
 
 ROOT = Path.cwd()
@@ -44,75 +45,138 @@ while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.par
 
 if not (ROOT / "config" / "course_models.json").exists():
     raise FileNotFoundError(
-        "The complete GenAI_Soc2026 repository could not be found. A task or "
-        "notebook downloaded by itself is not enough for local work. Open a terminal "
-        "in the complete course folder and run this file from there."
+        "The complete GenAI_Soc2026 repository could not be found. Open this "
+        "notebook from the course repository or use its Colab link."
     )
+
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
+ROUTE = "openrouter" if IN_COLAB else "ollama"
 
-if not os.getenv("OPENROUTER_API_KEY"):
+if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
+print("Route:", ROUTE)
 print("Hosted model:", HOSTED_MODEL)
 print("Local model:", LOCAL_MODEL)
 ```
 
-::: {.callout-note title="Read this setup cell"}
-**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+::: {.callout-note title="What this produces"}
+`ROOT` is a `Path` pointing to the course folder. `HOSTED_MODEL`, `LOCAL_MODEL` and `ROUTE` are strings. The key prompt appears only when the selected route is OpenRouter. A student using local Ollama does not need to enter a hosted key.
 :::
 
-### Load the supplied image transport utility and identify two frames
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+### Store and display four ordered frames
 
 ```python
+from IPython.display import Image, display
 from src.genai_soc.media import image_to_data_url
 
-ROUTE = "openrouter" if IN_COLAB else "ollama"  # Ollama is the local default
-frame_1 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_168.png"
-frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_169.png"
-timestamps = ["00:00", "00:01"]
-print(frame_1)
-print(frame_2)
-print("Both files exist:", frame_1.exists() and frame_2.exists())
+IMAGE_DIR = ROOT / "slides" / "session04" / "images"
+frame_1 = IMAGE_DIR / "uttarakhand_frame_1_04.5s.png"
+frame_2 = IMAGE_DIR / "uttarakhand_frame_2_05.0s.png"
+frame_3 = IMAGE_DIR / "uttarakhand_frame_3_06.0s.png"
+frame_4 = IMAGE_DIR / "uttarakhand_frame_4_08.5s.png"
+
+frames = [frame_1, frame_2, frame_3, frame_4]
+
+print("frames is a", type(frames))
+print("frame_1 is a", type(frame_1))
+files_exist = (
+    frame_1.exists()
+    and frame_2.exists()
+    and frame_3.exists()
+    and frame_4.exists()
+)
+print("All four files exist:", files_exist)
+
+display(Image(filename=str(frame_1), width=220))
+display(Image(filename=str(frame_2), width=220))
+display(Image(filename=str(frame_3), width=220))
+display(Image(filename=str(frame_4), width=220))
 ```
 
-::: {.callout-note title="Files are inputs too"}
-Each `Path` stores a location, not the image pixels themselves. `display(Image(...))` lets the researcher inspect the frames before asking a model about them. The supplied transport utility later converts a file to the data-URL representation OpenRouter accepts; students need to explain its file input and transport output, not binary encoding.
+::: {.callout-note title="Paths and lists"}
+Each `Path` stores the location of one image file. `frames` is a list. Its order represents time: 4.5, 5.0, 6.0 and 8.5 seconds. `display(...)` shows the evidence before a model is asked to describe it. Each `.exists()` call returns `True` or `False`; `and` requires all four checks to be `True`.
 :::
 
-### State the evidentiary boundary and the required JSON fields
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+### Describe the source as a Python dictionary
 
 ```python
-prompt = (
-    "Compare these ordered frames. Describe only visible change. Do not name people, "
-    "infer motive, or use remembered event knowledge. Return JSON with exactly "
-    "observable_change, visible_evidence, and interpretation_withheld."
-)
+source_record = {
+    "case": "Uttarakhand protest confrontation",
+    "creator": "Himalayanwarrior",
+    "source": "Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "timestamps_seconds": [4.5, 5.0, 6.0, 8.5],
+    "audio_used": False,
+    "capture_limit": "Four selected stills from an 18-second video",
+}
+
+print(source_record)
+print("source_record is a", type(source_record))
+print("audio_used is a", type(source_record["audio_used"]))
+```
+
+::: {.callout-note title="Why this is part of the analysis"}
+The dictionary records where the evidence came from, when each frame occurs and what the model did not receive. This implements part of Nassauer and Legewie’s advice about selection and capture. `False` is a Boolean: it records that the call does not include audio.
+:::
+
+### State the observational task
+
+```python
+prompt = """
+Examine these protest images in their supplied order.
+
+Give one observation for each frame. Then describe visible changes in distance,
+body orientation, gesture, physical contact and intervention by other people.
+
+Do not infer motive, emotion, speech, political identity or responsibility.
+State what these selected frames cannot establish.
+"""
+
+print(prompt)
+print("prompt is a", type(prompt))
+```
+
+The prompt operationalizes a boundary between observable conduct and interpretation. Goodwin reminds us that this boundary organizes what the model will treat as salient.
+
+### Define the structured return
+
+```python
 schema = {
     "type": "object",
     "properties": {
-        "observable_change": {"type": "string"},
-        "visible_evidence": {"type": "array", "items": {"type": "string"}},
-        "interpretation_withheld": {"type": "string"},
+        "frame_observations": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 4,
+            "maxItems": 4,
+        },
+        "visible_changes": {"type": "array", "items": {"type": "string"}},
+        "physical_contact_visible": {"type": "boolean"},
+        "third_party_intervention_visible": {"type": "boolean"},
+        "not_established": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["observable_change", "visible_evidence", "interpretation_withheld"],
+    "required": [
+        "frame_observations",
+        "visible_changes",
+        "physical_contact_visible",
+        "third_party_intervention_visible",
+        "not_established",
+    ],
     "additionalProperties": False,
 }
+
+print("schema is a", type(schema))
 ```
 
-::: {.callout-note title="Constraint and schema"}
-`instruction` tells the model to report visible change and withhold identity, motive and cause. `schema` is a nested dictionary describing the required fields and their types. It can constrain the form of a return; it cannot guarantee that a supposedly visible claim is actually present in a frame.
-:::
+The schema asks for strings, lists and Booleans. It constrains the form of the answer. It cannot make an observation true.
 
 ### Send the images through the selected route
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
 
 ```python
 if ROUTE == "openrouter":
@@ -120,54 +184,217 @@ if ROUTE == "openrouter":
         {"type": "text", "text": prompt},
         {"type": "image_url", "image_url": {"url": image_to_data_url(frame_1)}},
         {"type": "image_url", "image_url": {"url": image_to_data_url(frame_2)}},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_3)}},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_4)}},
     ]
     messages = [{"role": "user", "content": content}]
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
         response = client.chat.send(
-            model=HOSTED_MODEL, messages=messages, temperature=0,
+            model=HOSTED_MODEL,
+            messages=messages,
+            temperature=0,
             response_format={"type": "json_schema", "json_schema": {
-                "name": "visible_sequence", "strict": True, "schema": schema,
+                "name": "protest_sequence",
+                "strict": True,
+                "schema": schema,
             }},
         )
     raw_output = response.choices[0].message.content
 else:
     messages = [{
-        "role": "user", "content": prompt,
-        "images": [str(frame_1), str(frame_2)],
+        "role": "user",
+        "content": prompt,
+        "images": [str(frame_1), str(frame_2), str(frame_3), str(frame_4)],
     }]
-    response = ollama.chat(think=False,
-        model=LOCAL_MODEL, messages=messages, format=schema,
-        options={"temperature": 0},
-    )
+    try:
+        response = ollama.chat(think=False,
+            model=LOCAL_MODEL,
+            messages=messages,
+            format=schema,
+            options={"temperature": 0},
+        )
+    except ConnectionError as error:
+        raise ConnectionError(
+            "Python could not reach Ollama. Start the Ollama application, run "
+            "'ollama list' in a terminal, and then rerun this cell."
+        ) from error
     raw_output = response.message.content
 
 print("Raw JSON text:", raw_output)
+print("raw_output is a", type(raw_output))
 ```
 
-::: {.callout-note title="Multimodal message and return"}
-The message contains ordered text and image parts. The OpenRouter branch converts each path to a data URL; the Ollama branch supplies local path strings in its `images` field. Each branch requests the same schema and stores the returned JSON text in `raw_json`. Route-specific transport differs even though the research question is held fixed.
-:::
+OpenRouter receives data URLs over the internet. Ollama receives paths to files on the local machine. Both calls receive the same ordered evidence, prompt and output schema.
 
-### Parse the three fields and compare them with the images
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+### Parse and inspect the model’s claims
 
 ```python
 description = json.loads(raw_output)
-print("Observable change:", description["observable_change"])
-print("Visible evidence:", description["visible_evidence"])
-print("Interpretation withheld:", description["interpretation_withheld"])
 
-# ONE CHANGE: replace frame_2 with zidane_fine2_170.png and rerun.
+print("description is a", type(description))
+print("Frame observations:", description["frame_observations"])
+print("Visible changes:", description["visible_changes"])
+print("Physical contact visible:", description["physical_contact_visible"])
+print("Third-party intervention visible:", description["third_party_intervention_visible"])
+print("Not established:", description["not_established"])
 ```
 
-::: {.callout-note title="The substantive check"}
-`json.loads(...)` creates a dictionary, then three key lookups retrieve the model's description, claimed visible evidence and withheld interpretation. Printing those values makes them available for frame-by-frame checking. A well-formed list of visible evidence is not proof that each item is visible.
-:::
+`raw_output` is JSON text stored as a string. `json.loads(...)` converts that text into a Python dictionary. Square brackets retrieve one named value from that dictionary.
 
-### Methodological check
+### Record the researcher’s assessment
 
-The model can still recognize a famous event or import a motive despite the constraint. Each returned claim must be checked against pixels in the two displayed frames.
+```python
+supported_claim = input("One claim clearly supported by the frames: ").strip()
+unsupported_claim = input("One unsupported or overstated claim: ").strip()
+missing_observation = input("One visible detail the model missed: ").strip()
+
+if not supported_claim or not unsupported_claim or not missing_observation:
+    raise ValueError("Complete all three parts of the researcher check.")
+
+researcher_check = {
+    "supported_claim": supported_claim,
+    "unsupported_or_overstated_claim": unsupported_claim,
+    "missing_observation": missing_observation,
+}
+
+research_record = {
+    "source": source_record,
+    "route": ROUTE,
+    "model": HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL,
+    "prompt": prompt,
+    "raw_output": raw_output,
+    "parsed_output": description,
+    "researcher_check": researcher_check,
+}
+
+print("Saved record fields:", list(research_record.keys()))
+print("Researcher check:", research_record["researcher_check"])
+```
+
+The model’s return and the researcher’s correction now sit in the same record. This makes disagreement visible rather than silently replacing the model output.
+
+### Make one controlled change
+
+Replace only the final frame. Keep the first three frames, prompt, schema, route, model and temperature fixed:
+
+```python
+frame_5 = IMAGE_DIR / "uttarakhand_frame_5_11.5s.png"
+changed_frames = [frame_1, frame_2, frame_3, frame_5]
+changed_timestamps = [4.5, 5.0, 6.0, 11.5]
+
+display(Image(filename=str(frame_5), width=220))
+print("Original endpoint:", source_record["timestamps_seconds"][-1])
+print("Changed endpoint:", changed_timestamps[-1])
+```
+
+`changed_frames` is a new list, so the original evidence and result remain available for comparison.
+
+### Make the second call without overwriting the first
+
+This cell repeats the route-specific call using the later endpoint. The repetition is deliberate: functions arrive later in the course, so every operation remains visible here.
+
+```python
+if ROUTE == "openrouter":
+    changed_content = [
+        {"type": "text", "text": prompt},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_1)}},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_2)}},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_3)}},
+        {"type": "image_url", "image_url": {"url": image_to_data_url(frame_5)}},
+    ]
+    changed_messages = [{"role": "user", "content": changed_content}]
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        changed_response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=changed_messages,
+            temperature=0,
+            response_format={"type": "json_schema", "json_schema": {
+                "name": "protest_sequence",
+                "strict": True,
+                "schema": schema,
+            }},
+        )
+    changed_raw_output = changed_response.choices[0].message.content
+else:
+    changed_messages = [{
+        "role": "user",
+        "content": prompt,
+        "images": [str(frame_1), str(frame_2), str(frame_3), str(frame_5)],
+    }]
+    try:
+        changed_response = ollama.chat(think=False,
+            model=LOCAL_MODEL,
+            messages=changed_messages,
+            format=schema,
+            options={"temperature": 0},
+        )
+    except ConnectionError as error:
+        raise ConnectionError(
+            "Python could not reach Ollama. Start the Ollama application, run "
+            "'ollama list' in a terminal, and then rerun this cell."
+        ) from error
+    changed_raw_output = changed_response.message.content
+
+print("Changed raw JSON text:", changed_raw_output)
+changed_description = json.loads(changed_raw_output)
+print("Changed result:", changed_description)
+```
+
+`raw_output` and `description` still contain the first return. `changed_raw_output` and `changed_description` contain the second.
+
+### Check the second return and compare the endpoints
+
+```python
+changed_supported_claim = input(
+    "One claim clearly supported in the later-endpoint return: "
+).strip()
+changed_unsupported_claim = input(
+    "One unsupported or overstated claim in that return: "
+).strip()
+changed_missing_observation = input(
+    "One visible detail that return missed: "
+).strip()
+endpoint_comparison = input(
+    "How did replacing 8.5 seconds with 11.5 seconds change the account? "
+).strip()
+
+if not all([
+    changed_supported_claim,
+    changed_unsupported_claim,
+    changed_missing_observation,
+    endpoint_comparison,
+]):
+    raise ValueError("Complete all four parts of the endpoint comparison.")
+
+changed_source_record = source_record.copy()
+changed_source_record["timestamps_seconds"] = changed_timestamps
+changed_researcher_check = {
+    "supported_claim": changed_supported_claim,
+    "unsupported_or_overstated_claim": changed_unsupported_claim,
+    "missing_observation": changed_missing_observation,
+}
+changed_research_record = {
+    "source": changed_source_record,
+    "route": ROUTE,
+    "model": HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL,
+    "prompt": prompt,
+    "raw_output": changed_raw_output,
+    "parsed_output": changed_description,
+    "researcher_check": changed_researcher_check,
+}
+
+comparison_record = {
+    "original": research_record,
+    "later_endpoint": changed_research_record,
+    "student_comparison": endpoint_comparison,
+}
+
+print("Original visible changes:", description["visible_changes"])
+print("Later-endpoint visible changes:", changed_description["visible_changes"])
+print("Your comparison:", endpoint_comparison)
+```
+
+The two records now remain separate. The comparison can therefore distinguish a change in supplied evidence from a change in the researcher’s interpretation.
 
 ## Workbook and environment links
 
@@ -175,14 +402,16 @@ The model can still recognize a famous event or import a motive despite the cons
 [Open the Week 4 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session04/session04_multimodal_evidence.ipynb) · [Download the notebook](../_generated/downloads/session04/session04_multimodal_evidence.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session04/session04_task.py) · [Download the runnable offline bundle](../_generated/downloads/session04/session04_offline_bundle.zip)
 :::
 
-This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided walkthrough and the script when you want to run the complete routine from the repository root.
 
 ## Take-home exercise
 
 ::: {.exercise-box}
-**Estimated work and recording time:** 30–45 minutes.
+**Estimated work and recording time:** 35–50 minutes.
 
-Use one route, replace the second frame with `zidane_fine2_170.png` and rerun. Explain each path, the image representation used by your route, the raw JSON and all three fields. Identify anything not visibly supported.
+Run the four-frame sequence using one route. Explain the image paths, ordered list, source dictionary, prompt, schema, raw JSON and parsed dictionary. Complete the researcher check.
 
-Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
+Then run the explicit later-endpoint call. Explain which claims changed and whether the later endpoint makes the encounter look more escalatory, more settled or simply different. Connect your answer to Collins and either Goodwin or Nassauer and Legewie. Do not claim that the images establish motive, fear or entry into the tunnel of violence.
+
+Submit one continuous screen recording with audio. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
 :::

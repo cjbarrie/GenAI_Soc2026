@@ -35,13 +35,15 @@ Simmel’s sociology of the senses and Goffman’s interaction order make percep
 
 Collins’s theory of violent situations redirects attention from violent people to sequences of interaction. Confrontational tension and fear often inhibit violence; particular configurations allow participants to move through that barrier and sometimes enter a “tunnel” of emotional entrainment. This is a claim about timing and relation. A still image of contact cannot show the full sequence that preceded it.
 
-Our empirical illustration is the Zidane–Materazzi confrontation in the 2006 World Cup final. Broadcast video supplies multiple views and a public chronology, but it does not give direct access to inner intention. The example allows us to distinguish what is visible—the turn, approach and headbutt—from Collins’s situational interpretation and from later biographical accounts.
+The lecture first uses the Zidane–Materazzi confrontation in the 2006 World Cup final. Broadcast video supplies multiple views and a public chronology, but it does not give direct access to inner intention. The example allows us to distinguish what is visible—the turn, approach and headbutt—from Collins’s situational interpretation and from later biographical accounts.
+
+The coding exercise then moves to an openly licensed 18-second recording of a police–protester confrontation in Uttarakhand. Students compare selected frames showing distance, gesture, contact and intervention. Replacing the endpoint of the selected sequence demonstrates that a model’s account depends partly on which moments the researcher makes available. The source video and extracted frames are credited to Himalayanwarrior and distributed under [CC BY-SA 4.0](https://commons.wikimedia.org/wiki/File:Confrontation_between_Police_and_a_activist_during_a_protest_in_Uttarakhand.webm).
 
 ## Synthesis of the current LLM literature
 
 Multimodal models can describe frames, transcribe audio and compare moments. They also arrive with pretrained recognition that may identify famous people or retrieve a culturally familiar narrative. That can be useful, but it can contaminate a task designed to inspect only visible conduct. World-model research asks whether models can learn predictive representations of physical environments; sociology asks an additional question: which social experiences, relations and professional categories have been made legible to the model at all?
 
-The defensible workflow constrains the first pass to observable features, preserves time and source, and records later theoretical interpretation separately. We can then deliberately compare a frame-only call, a sequence call and a context-rich call.
+The defensible workflow constrains the first pass to observable features, preserves time and source, and records later theoretical interpretation separately. The Week 4 routine saves the source record, ordered frames, model return and researcher correction together. It then changes only the final frame to show how sampling the recorded sequence affects the resulting description.
 
 ## Slides
 

@@ -47,6 +47,24 @@ def test_week3_course_page_and_notebook_use_the_same_core_code() -> None:
 def response_text(messages: list[dict], schema_name: str | None = None, schema: dict | None = None) -> str:
     prompt = str(messages[-1].get("content", ""))
     properties = set((schema or {}).get("properties", {}))
+    if schema_name == "protest_sequence" or "frame_observations" in properties:
+        return json.dumps(
+            {
+                "frame_observations": [
+                    "Police and protesters face one another.",
+                    "One protester moves nearer the police line.",
+                    "A protester and an officer gesture at close range.",
+                    "An officer's arm is in contact with a protester's upper body.",
+                ],
+                "visible_changes": [
+                    "The distance narrows.",
+                    "Gesturing becomes physical contact.",
+                ],
+                "physical_contact_visible": True,
+                "third_party_intervention_visible": True,
+                "not_established": ["Speech", "Motive", "Subjective experience"],
+            }
+        )
     if schema_name == "visible_sequence" or "observable_change" in properties:
         return json.dumps(
             {
@@ -245,10 +263,10 @@ def test_followup_notebook_executes_without_live_services(
         ),
     )
     exec(code_cells[0], namespace)
+    namespace["IN_COLAB"] = runtime == "colab"
     exec(code_cells[1], namespace)
     namespace["OpenRouter"] = FakeOpenRouter
     namespace["ollama"].chat = fake_ollama
-    namespace["IN_COLAB"] = runtime == "colab"
     if week == 3:
         sample_replies = iter([
             "Help sometimes builds ties, but not for everyone.",
@@ -257,6 +275,17 @@ def test_followup_notebook_executes_without_live_services(
             "These accounts suggest a possible pathway, not a causal finding.",
         ])
         monkeypatch.setattr("builtins.input", lambda *_: next(sample_replies))
+    if week == 4:
+        sample_checks = iter([
+            "The distance between the central figures narrows.",
+            "The frames do not establish that either person is angry.",
+            "Other people change position around the central pair.",
+            "The later frame shows more separation.",
+            "The later frame does not establish that the dispute ended.",
+            "One person remains partly obscured.",
+            "The later endpoint makes the encounter look more settled.",
+        ])
+        monkeypatch.setattr("builtins.input", lambda *_: next(sample_checks))
 
     for source in code_cells[2:]:
         if week == 12 and "output_dir = ROOT" in source:
@@ -275,6 +304,11 @@ def test_followup_notebook_executes_without_live_services(
         assert record["round_2"]["messages"][1]["content"] == record["round_1"]["raw"]
         assert record["round_3"]["messages"][3]["content"] == record["round_2"]["raw"]
         assert record["final_memo"].startswith("These accounts")
+    if week == 4:
+        assert namespace["research_record"]["source"]["timestamps_seconds"][-1] == 8.5
+        assert namespace["changed_research_record"]["source"]["timestamps_seconds"][-1] == 11.5
+        assert namespace["comparison_record"]["original"] is namespace["research_record"]
+        assert namespace["comparison_record"]["later_endpoint"] is namespace["changed_research_record"]
     if week == 8 and runtime == "colab":
         assert namespace["local_results"] == []
         assert namespace["local_mean"] is None
@@ -343,11 +377,26 @@ def test_downloadable_task_executes_on_local_route(
             "These accounts suggest a possible pathway, not a causal finding.",
         ])
         monkeypatch.setattr("builtins.input", lambda *_: next(sample_replies))
+    if week == 4:
+        sample_checks = iter([
+            "The distance between the central figures narrows.",
+            "The frames do not establish that either person is angry.",
+            "Other people change position around the central pair.",
+            "The later frame shows more separation.",
+            "The later frame does not establish that the dispute ended.",
+            "One person remains partly obscured.",
+            "The later endpoint makes the encounter look more settled.",
+        ])
+        monkeypatch.setattr("builtins.input", lambda *_: next(sample_checks))
 
     namespace = runpy.run_path(
         str(ROOT / "assessments" / "weekly_coding" / f"session{week:02d}_task.py")
     )
     assert namespace["HOSTED_MODEL"]
     assert namespace["LOCAL_MODEL"]
+    if week == 4:
+        assert namespace["research_record"]["source"]["timestamps_seconds"][-1] == 8.5
+        assert namespace["changed_research_record"]["source"]["timestamps_seconds"][-1] == 11.5
+        assert namespace["comparison_record"]["student_comparison"].startswith("The later")
     if week == 12:
         assert (tmp_path / "student_outputs" / "week12_rerun.json").exists()
