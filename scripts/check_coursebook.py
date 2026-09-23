@@ -16,11 +16,12 @@ ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "coursebook"
 WEEK_DIR = BOOK / "weeks"
 PYTHON_DIR = BOOK / "python"
+GLOSSARY_DIR = BOOK / "glossary"
 MANIFEST = BOOK / "readings.json"
 BIB = ROOT / "references.bib"
 LOCAL_ANCHOR_PDF = BOOK / "downloads" / "readings" / "ai-and-research-methods-barrie-et-al-2026.pdf"
 SUBMISSION_PAGE = BOOK / "recording-and-submission.qmd"
-BOX_UPLOAD_EMAIL = "Coding_.38jlkn5sii39h6mf@u.box.com"
+CODING_VIDEOS_FOLDER = "https://drive.google.com/drive/folders/1qn6x9B3sjDs6kJOegZAo0RJ3EeL46rWT?usp=drive_link"
 COLAB_REPO = "https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main"
 
 REQUIRED_SECTIONS = [
@@ -88,6 +89,15 @@ OBSOLETE_SESSION14_MATERIALS = [
     ROOT / "workbook" / "session14" / "session14_evidence_standards.ipynb",
 ]
 
+GLOSSARY_PAGES = [
+    "index.qmd",
+    "model-call-basics.qmd",
+    "context-and-memory.qmd",
+    "outputs-and-tools.qmd",
+    "agents-and-harnesses.qmd",
+    "models-and-evaluation.qmd",
+]
+
 
 class LinkCollector(HTMLParser):
     def __init__(self) -> None:
@@ -139,8 +149,78 @@ def validate_rendered_links(errors: list[str]) -> None:
                 fail(errors, f"Broken rendered link in {page.relative_to(output)}: {raw_target}")
 
 
+def validate_glossary(errors: list[str], rendered: bool) -> None:
+    config = (BOOK / "_quarto.yml").read_text(encoding="utf-8")
+    anchors_by_page: dict[str, set[str]] = {}
+    entry_count = 0
+
+    for name in GLOSSARY_PAGES:
+        path = GLOSSARY_DIR / name
+        if not path.exists():
+            fail(errors, f"Missing field-guide page: {path}")
+            continue
+        if f"glossary/{name}" not in config:
+            fail(errors, f"Field-guide page is absent from book navigation: {name}")
+
+        text = path.read_text(encoding="utf-8")
+        anchors = set(re.findall(r"^## .+? \{#([a-z0-9-]+)\}\s*$", text, re.MULTILINE))
+        anchors_by_page[name] = anchors
+
+        if name == "index.qmd":
+            continue
+        stem = Path(name).stem
+        expected_colab = (
+            "https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/gh-pages/"
+            f"_generated/downloads/glossary/{stem}.ipynb"
+        )
+        if expected_colab not in text:
+            fail(errors, f"{name}: missing field-guide Colab link")
+        matches = list(re.finditer(r"^## .+? \{#([a-z0-9-]+)\}\s*$", text, re.MULTILINE))
+        entry_count += len(matches)
+        for position, match in enumerate(matches):
+            end = matches[position + 1].start() if position + 1 < len(matches) else len(text)
+            block = text[match.end():end]
+            anchor = match.group(1)
+            for required in ("**In plain English.**", "```python", "glossary-output"):
+                if required not in block:
+                    fail(errors, f"{name}#{anchor}: missing {required!r}")
+            if "**Why it matters.**" not in block and "**Common confusion.**" not in block:
+                fail(errors, f"{name}#{anchor}: missing a methodological implication or warning")
+
+    if entry_count < 40:
+        fail(errors, f"Field guide contains only {entry_count} worked entries; expected at least 40")
+
+    index = GLOSSARY_DIR / "index.qmd"
+    if index.exists():
+        index_text = index.read_text(encoding="utf-8")
+        links = re.findall(r'href="([a-z0-9-]+\.qmd)#([a-z0-9-]+)"', index_text)
+        if len(links) < 60:
+            fail(errors, f"A–Z field-guide index contains only {len(links)} linked terms")
+        for page_name, anchor in links:
+            if anchor not in anchors_by_page.get(page_name, set()):
+                fail(errors, f"Broken field-guide index target: {page_name}#{anchor}")
+
+    for number in range(1, 9):
+        week = WEEK_DIR / f"session{number:02d}.qmd"
+        if week.exists() and "../glossary/" not in week.read_text(encoding="utf-8"):
+            fail(errors, f"{week.name}: missing links to the field guide")
+
+    if rendered:
+        for name in GLOSSARY_PAGES:
+            html = BOOK / "_book" / "glossary" / Path(name).with_suffix(".html")
+            if not html.exists():
+                fail(errors, f"Rendered field-guide page missing: {html}")
+            if name != "index.qmd":
+                notebook = BOOK / "_book" / "_generated" / "downloads" / "glossary" / Path(name).with_suffix(".ipynb")
+                if not notebook.exists():
+                    fail(errors, f"Rendered field-guide companion notebook missing: {notebook}")
+                else:
+                    validate_notebook(notebook, errors)
+
+
 def validate_sources(rendered: bool) -> list[str]:
     errors: list[str] = []
+    validate_glossary(errors, rendered)
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     weeks = manifest.get("weeks", {})
     keys = bib_keys()
@@ -159,7 +239,8 @@ def validate_sources(rendered: bool) -> list[str]:
     else:
         submission_text = SUBMISSION_PAGE.read_text(encoding="utf-8")
         required_submission_text = [
-            BOX_UPLOAD_EMAIL,
+            CODING_VIDEOS_FOLDER,
+            "lastname_weekNN.mp4",
             "5:00 p.m. Eastern on the Tuesday before the next class",
             "## Record on a Mac",
             "## Record on Windows",

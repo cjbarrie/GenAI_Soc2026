@@ -3,6 +3,8 @@ title: "Week 8 — Can LLMs recover opinions we did not observe?"
 description: "Prediction, population estimates and validation"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/models-and-evaluation.qmd#benchmark-evaluation">evaluation</a> · <a href="../glossary/models-and-evaluation.qmd#provider-routing">provider and routing</a> · <a href="../glossary/models-and-evaluation.qmd#serving-constraints">batching and rate limits</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">When a model predicts an unobserved answer or study result, what exactly has been recovered?</div>

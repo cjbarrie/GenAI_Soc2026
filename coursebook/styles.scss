@@ -177,6 +177,112 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   margin-bottom: 0;
 }
 
+/* The field guide is a reference surface: roomy entries, short code, clear outputs. */
+.glossary-page main.content > section {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e1e5e7;
+}
+
+.glossary-page main.content > section:first-of-type {
+  margin-top: 1.6rem;
+}
+
+.glossary-page h2 { margin-bottom: 0.75rem; }
+.glossary-page h3 { margin-top: 2.2rem; }
+.glossary-page p, .glossary-page li { line-height: 1.7; }
+
+.term-meta {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid #bad0d4;
+  border-radius: 999px;
+  color: var(--course-teal);
+  background: #f3f7f7;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.term-meta.advanced {
+  border-color: #d8c5a4;
+  color: #80581e;
+  background: #fffaf0;
+}
+
+.concept-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.6rem;
+  align-items: stretch;
+  margin: 1.2rem 0 1.5rem;
+}
+
+.concept-flow > div {
+  position: relative;
+  padding: 0.8rem 0.9rem;
+  border-top: 0.25rem solid var(--course-teal);
+  background: #f5f7f7;
+  text-align: center;
+}
+
+.concept-flow > div + div::before {
+  content: "→";
+  position: absolute;
+  left: -0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--course-coral);
+  font-weight: 700;
+}
+
+.concept-flow strong, .concept-flow span { display: block; }
+.concept-flow span { margin-top: 0.25rem; font-size: 0.88rem; }
+
+.concept-contrast {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0 1.5rem;
+}
+
+.concept-contrast > div {
+  padding: 1rem 1.1rem;
+  border-top: 0.3rem solid var(--course-teal);
+  background: #f5f7f7;
+}
+
+.concept-contrast > div:last-child { border-top-color: var(--course-coral); }
+.concept-contrast strong { display: block; margin-bottom: 0.35rem; }
+
+.glossary-output {
+  margin: -0.7rem 0 1.4rem;
+  padding: 0.7rem 0.9rem;
+  border-left: 0.25rem solid #8a949a;
+  background: #f7f7f5;
+  font-family: $font-family-monospace;
+  font-size: 0.88rem;
+  white-space: pre-wrap;
+}
+
+.az-index {
+  columns: 3 14rem;
+  column-gap: 2rem;
+  margin-top: 1.2rem;
+}
+
+.az-index li { break-inside: avoid; margin-bottom: 0.35rem; }
+
+.week-glossary-link {
+  margin: 1rem 0 1.8rem;
+  padding: 0.75rem 0.9rem;
+  border-left: 0.25rem solid var(--course-teal);
+  background: #f3f7f7;
+  font-size: 0.92rem;
+}
+
 table { font-size: 0.94rem; }
 thead { border-top: 2px solid #566168; border-bottom: 1px solid #89939a; }
 tbody { border-bottom: 2px solid #566168; }
@@ -187,6 +293,9 @@ tbody { border-bottom: 2px solid #566168; }
   .python-page main.content > section { margin-top: 2.5rem; }
   .python-page h3 { margin-top: 2.35rem; }
   .python-page pre.sourceCode { padding: 0.9rem; }
+  .concept-contrast { grid-template-columns: 1fr; }
+  .concept-flow > div + div::before { content: "↓"; left: 50%; top: -0.65rem; transform: translateX(-50%); }
+  .az-index { columns: 1; }
 }
 
 @media print {

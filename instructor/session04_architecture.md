@@ -1,6 +1,6 @@
 # Session 4 architecture — What can we learn from a recorded situation?
 
-**Status:** Rebuilt after instructor review, 2026-08-26.
+**Status:** Rebuilt after instructor review and fact-checked again, 2026-09-22.
 
 ## Communication job
 
@@ -62,24 +62,25 @@ This is a source description, not a theoretical codebook.
 
 Separate visible statements from causal and theoretical interpretations. Contrast Collins's interactional question with Morrissey's account of masculinity and habitus and experimental work on provocation and performance. The point is that different claims require different evidence.
 
-### 6. Use an LLM as a second observer
+### 6. Use an LLM as another professionally organized observer
 
-The first prompt asks for visible actions only and explicit uncertainty. A second call adds an adjacent frame. The researcher then records a correction and source detail next to the model response.
+The prompt asks for visible change across two ordered frames and prohibits identity, motive and remembered event knowledge. A JSON schema separates observable change, visible evidence and interpretation withheld. The researcher checks every returned claim against the source frames. This carries Goodwin's argument into the model workflow: prompt, schema and interface organize what the model makes salient.
 
 ### 7. Teach Python through that same operation
 
-The code sequence is cumulative:
+The code sequence is cumulative and matches the tested Week 4 notebook:
 
-1. `Path` object for the image;
+1. two `Path` objects for ordered frames;
 2. prompt string;
-3. image bytes and base64 encoding;
-4. message list containing text and image;
-5. OpenRouter client and model call;
-6. response object and answer string;
+3. schema dictionary;
+4. route-specific message representation;
+5. an official OpenRouter SDK call or Ollama call;
+6. raw JSON text;
 7. JSON parsing into a dictionary;
-8. human check added to the dictionary;
-9. ordered list of frame observations; and
-10. loop that repeats the same routine.
+8. field-by-field human check; and
+9. one changed second frame followed by a rerun.
+
+There are no student-defined functions or loops in Week 4.
 
 Every slide must state the input, object type, operation and output. The sociological interpretation remains a human judgment.
 
@@ -103,5 +104,6 @@ Every slide must state the input, object type, operation and output. The sociolo
 - Goodwin, Charles. 1994. “Professional Vision.” *American Anthropologist* 96(3):606–633.
 - Collins, Randall. 2008. *Violence: A Micro-sociological Theory*.
 - Collins, Randall. 2013. “Entering and Leaving the Tunnel of Violence.” *Current Sociology* 61(2):132–151.
-- Nassauer, Anne. 2022. “Video Data Analysis as a Tool for Studying Escalation Processes.” *Sociological Methods & Research*.
+- Nassauer, Anne. 2022. “Video Data Analysis as a Tool for Studying Escalation Processes: The Case of Police Use of Force.” *Historical Social Research* 47(1):36–57.
+- Heinlein, Michael. 2026. “Artificial Intelligence and the Clinical Gaze: Visual Practices of AI-Assisted Colonoscopy.” *Sociology of Health & Illness* 48:e70144.
 - Morrissey, Sean. 2009. “‘Un homme avant tout’: Zinedine Zidane and the Sociology of a Head-butt.” *Soccer & Society* 10(2):210–225.

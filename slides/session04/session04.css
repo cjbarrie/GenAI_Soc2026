@@ -15,6 +15,10 @@
 .three-questions b { display:block; font-size:29px; margin-bottom:12px; }
 .three-questions span { display:block; font-size:21px; line-height:1.25; }
 .three-questions.numbered { margin-top:70px; }
+.four-questions { display:grid; grid-template-columns:repeat(2,1fr); gap:22px 30px; margin-top:34px; }
+.four-questions > div { border-left:7px solid var(--cobalt); background:var(--clear-paper); padding:18px 22px; min-height:145px; }
+.four-questions b { display:block; font-size:27px; margin-bottom:9px; }
+.four-questions span { display:block; font-size:20px; line-height:1.22; }
 .bottom-question { margin-top:48px; font-family:"Source Serif 4",serif; font-size:28px; }
 
 .compare-images { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
@@ -70,11 +74,22 @@
 .large-paper.landscape { grid-template-columns:1.25fr .75fr; }
 .large-paper img { width:100%; height:465px; object-fit:contain; object-position:center; }
 .large-paper p { font-size:23px; }
+section:has(.large-paper.landscape) .large-paper p { font-size:20px; line-height:1.22; margin:0 0 13px; }
+
+.goodwin-argument { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:54px; }
+.goodwin-argument > div { background:var(--clear-paper); border-top:7px solid var(--cobalt); padding:27px 25px; min-height:220px; }
+.goodwin-argument b { display:block; font-family:"Source Serif 4",serif; font-size:30px; margin-bottom:17px; }
+.goodwin-argument span { display:block; font-size:21px; line-height:1.28; }
 
 .heinlein-slide { display:grid; grid-template-columns:1.25fr .75fr; gap:30px; align-items:center; height:455px; }
 .heinlein-slide img { width:100%; height:445px; object-fit:contain; }
 .heinlein-slide p { font-size:20px; line-height:1.24; margin:0 0 14px; }
 section:has(.heinlein-slide) .source-line { max-width:1120px; font-size:14px; }
+.heinlein-evidence { display:grid; grid-template-columns:1.05fr .95fr; gap:38px; align-items:center; height:455px; }
+.heinlein-evidence.reverse { grid-template-columns:.8fr 1.2fr; }
+.heinlein-evidence img { width:100%; height:450px; object-fit:contain; object-position:center; }
+.heinlein-evidence p { margin:0 0 16px; padding:13px 16px; background:var(--clear-paper); border-left:5px solid var(--cobalt); font-size:19px; line-height:1.22; }
+section:has(.heinlein-evidence) .source-line { font-size:14px; }
 
 .paper-cards { display:grid; gap:24px; margin-top:55px; }
 .paper-cards.three { grid-template-columns:repeat(3,1fr); }
@@ -133,6 +148,19 @@ section:has(.morrissey-quote) .source-line { font-size:14px; }
 .task-card .task-number { display:flex; align-items:center; justify-content:center; background:var(--cobalt); color:white; font-size:30px; font-weight:700; }
 .task-card b { display:block; font-size:25px; }.task-card span { font-size:20px; }
 
+.two-frame-input { display:grid; grid-template-columns:1fr 1fr; gap:22px; height:300px; }
+.two-frame-input img { width:100%; height:255px; object-fit:cover; border:1px solid #c9c4b9; }
+.two-frame-input figcaption { text-align:center; margin-top:6px; }
+.boundary-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:25px; }
+.boundary-grid > div { padding:16px 20px; background:var(--clear-paper); border-left:6px solid var(--cobalt); }
+.boundary-grid b { display:block; font-size:22px; margin-bottom:6px; }
+.boundary-grid span { display:block; font-size:18px; line-height:1.2; }
+.route-compare { display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:55px; }
+.route-compare > div { display:flex; flex-direction:column; min-height:235px; padding:25px 28px; background:var(--clear-paper); border-top:7px solid var(--cobalt); }
+.route-compare b { font-size:29px; margin-bottom:12px; }
+.route-compare span { font-size:20px; line-height:1.25; }
+.route-compare code { margin-top:auto; font-size:16px; color:var(--cobalt); }
+
 .input-output { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; height:480px; }
 .input-output.input-only { grid-template-columns:1.1fr .9fr; }
 .input-output > img, .input-output > p img { width:100%; height:430px; object-fit:cover; }
@@ -179,6 +207,8 @@ section:has(.mini-frames) .prompt-box p { margin:0 0 10px; }
 .closing-points { display:grid; grid-template-columns:1fr 1fr; gap:24px 30px; margin-top:42px; }
 .closing-points > div { padding:22px 24px; background:var(--clear-paper); border-left:7px solid var(--cobalt); }
 .closing-points b { display:block; font-size:25px; }.closing-points span { font-size:19px; }
+
+section:has(pre) pre code { font-size:.63em; line-height:1.28; }
 
 /* Keep section slides on the course palette rather than black. */
 .section-slide { background:var(--cobalt); }

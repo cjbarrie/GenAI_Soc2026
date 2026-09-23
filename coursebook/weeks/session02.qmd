@@ -3,6 +3,8 @@ title: "Week 2 — When can an LLM label count as a measure?"
 description: "Codebooks, promptbooks, stability and downstream error"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/outputs-and-tools.qmd#structured-output">structured output</a> · <a href="../glossary/outputs-and-tools.qmd#validation">validation</a> · <a href="../glossary/models-and-evaluation.qmd#reliability-reproducibility">prompt sensitivity and reliability</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">What evidence do we need before an LLM label can function as a sociological measure?</div>

@@ -1,0 +1,213 @@
+---
+title: "Field guide: outputs and tools"
+description: "How generated text becomes data, evidence or an action request"
+---
+
+A model normally returns text. Research software often needs to parse that text, validate its structure and decide what—if anything—to do with it.
+
+::: {.resource-card}
+[Open the companion notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/gh-pages/_generated/downloads/glossary/outputs-and-tools.ipynb) · [Download the notebook](../_generated/downloads/glossary/outputs-and-tools.ipynb)
+:::
+
+<div class="concept-flow"><div><strong>Raw return</strong><span>text from the model</span></div><div><strong>Parsing</strong><span>turn text into a Python object</span></div><div><strong>Structural check</strong><span>test fields and types</span></div><div><strong>Substantive check</strong><span>compare with evidence</span></div></div>
+
+## Plain text and JSON {#plain-text-json}
+
+<span class="term-meta">Core · Week 3</span>
+
+**In plain English.** Plain text is an unstructured string. JSON is a text format for representing objects such as dictionaries and lists.
+
+```python
+plain_text = "The theme is solidarity."
+json_text = '{"theme": "solidarity", "evidence_id": "e01"}'
+print(type(plain_text))
+print(type(json_text))
+```
+
+<div class="glossary-output">&lt;class 'str'&gt;
+&lt;class 'str'&gt;</div>
+
+**Common confusion.** JSON returned by a model is still a Python string until we parse it.
+
+## Parsing {#parsing}
+
+<span class="term-meta">Core · Week 3</span>
+
+**In plain English.** Parsing reads text according to a known format and creates a structured Python object.
+
+```python
+import json
+
+raw_output = '{"theme": "solidarity", "evidence_id": "e01"}'
+parsed_output = json.loads(raw_output)
+print(type(parsed_output))
+print(parsed_output["evidence_id"])
+```
+
+<div class="glossary-output">&lt;class 'dict'&gt;
+e01</div>
+
+**Input → operation → output.** `json.loads(...)` receives a string and returns a dictionary. Square brackets retrieve one value.
+
+**Why it matters.** Parsing makes fields accessible to code. It does not tell us whether the proposed theme or citation is correct.
+
+## Schema {#schema}
+
+<span class="term-meta">Core · Weeks 3 and 7</span>
+
+**In plain English.** A schema describes the fields, types and requirements an output should satisfy.
+
+```python
+schema = {
+    "required": ["label", "confidence"],
+    "types": {"label": "string", "confidence": "number"},
+}
+print(schema["required"])
+```
+
+<div class="glossary-output">['label', 'confidence']</div>
+
+**Why it matters.** A schema makes an output contract explicit. It is useful for consistent data collection but does not define the construct being measured.
+
+## Structured output and constrained decoding {#structured-output}
+
+<span class="term-meta">Core · Weeks 3 and 7</span>
+
+**In plain English.** Structured output asks the model to return a specified form. Some systems use constrained decoding to restrict generation so the return conforms to a grammar or schema.
+
+```python
+requested_shape = {
+    "label": "SUPPORT | OPPOSE | UNCLEAR",
+    "reason": "one short string",
+}
+model_return = {"label": "SUPPORT", "reason": "The speaker endorses the proposal."}
+print(model_return.keys() == requested_shape.keys())
+```
+
+<div class="glossary-output">True</div>
+
+**Common confusion.** Matching the requested keys is structural success. Whether `SUPPORT` is the right label is a separate measurement question.
+
+See the [Ollama structured-output documentation](https://docs.ollama.com/capabilities/structured-outputs) for a live route-specific implementation.
+
+## Structural and substantive validation {#validation}
+
+<span class="term-meta">Core · Weeks 2–13</span>
+
+**In plain English.** Structural validation checks whether data have the expected form. Substantive validation checks whether the resulting claim, label or prediction is supported.
+
+```python
+result = {"label": "SUPPORT", "evidence_id": "missing-id"}
+known_ids = ["e01", "e02"]
+
+structure_ok = set(result) == {"label", "evidence_id"}
+evidence_exists = result["evidence_id"] in known_ids
+print(structure_ok, evidence_exists)
+```
+
+<div class="glossary-output">True False</div>
+
+**Why it matters.** The dictionary is structurally complete while its citation fails a basic source check.
+
+## Tool definition, call and result {#tool-calling}
+
+<span class="term-meta advanced">Advanced · Week 11</span>
+
+**In plain English.** A tool definition tells a model what operation is available and what arguments it accepts. A tool call is the model's request to use it. A tool result is the value returned by the surrounding program.
+
+```python
+tool_definition = {"name": "find_excerpt", "argument": "excerpt_id"}
+tool_call = {"name": "find_excerpt", "arguments": {"excerpt_id": "e02"}}
+corpus = {"e02": "I accepted help but did not attend meetings."}
+tool_result = corpus[tool_call["arguments"]["excerpt_id"]]
+print(tool_result)
+```
+
+<div class="glossary-output">I accepted help but did not attend meetings.</div>
+
+**Input → operation → output.** The model-style call supplies an ID. Ordinary Python retrieves the corresponding source text. The model does not execute arbitrary Python here.
+
+**Why it matters.** Tool use introduces another operation and another possible failure between a prompt and a final claim.
+
+## Multimodal input {#multimodal-input}
+
+<span class="term-meta">Core · Week 4</span>
+
+**In plain English.** A multimodal request contains more than one kind of input, such as text and an image.
+
+```python
+content = [
+    {"type": "text", "text": "Describe only visible changes."},
+    {"type": "image", "path": "frame_02.png"},
+]
+print([item["type"] for item in content])
+```
+
+<div class="glossary-output">['text', 'image']</div>
+
+**Why it matters.** The text instruction and image are both part of the research instrument. A model may also rely on prior visual associations that were not supplied in the image.
+
+## Speech-to-text and text-to-speech {#speech-interfaces}
+
+<span class="term-meta">Useful · Week 6</span>
+
+**In plain English.** Speech-to-text, or STT, converts audio into text. Text-to-speech, or TTS, turns text into generated audio. Neither is the interviewing model itself.
+
+```python
+audio_file = "participant_answer.wav"
+transcript = "The rent increase changed who could stay."
+follow_up = "What happened next?"
+spoken_output_file = "follow_up.wav"
+print(audio_file, "→", transcript)
+print(follow_up, "→", spoken_output_file)
+```
+
+<div class="glossary-output">participant_answer.wav → The rent increase changed who could stay.
+What happened next? → follow_up.wav</div>
+
+**Why it matters.** Transcription errors and synthetic voice characteristics become part of the research encounter and need separate evaluation.
+
+## Log probabilities {#log-probabilities}
+
+<span class="term-meta advanced">Advanced · Model audits</span>
+
+**In plain English.** A log probability is a logarithmic representation of the probability the model assigned to a candidate token. Some APIs expose these values.
+
+```python
+import math
+
+log_probability = -0.36
+probability = math.exp(log_probability)
+print(round(probability, 2))
+```
+
+<div class="glossary-output">0.70</div>
+
+**Why it matters.** Token probability can describe uncertainty at a generation step. It is not automatically calibrated confidence in the substantive correctness of an answer.
+
+## Function parameter and named argument {#function-parameter}
+
+<span class="term-meta">Useful · Weeks 5 and 9</span>
+
+**In plain English.** A parameter is a name in a function definition. An argument is the value supplied when the function is called. Named arguments make the relationship visible.
+
+```python
+def make_request(temperature):
+    return {"temperature": temperature}
+
+request = make_request(temperature=0.2)
+print(request)
+```
+
+<div class="glossary-output">{'temperature': 0.2}</div>
+
+**Why it matters.** Model settings such as `temperature` are ordinary values passed into client functions. They should be explicit rather than hidden inside unexplained code.
+
+## Sources and course examples
+
+- [JSON specification](https://www.json.org/json-en.html)
+- [Ollama structured outputs](https://docs.ollama.com/capabilities/structured-outputs)
+- [Ollama tool calling](https://docs.ollama.com/capabilities/tool-calling)
+- [Week 2 Python: labels and comparisons](../python/session02.qmd)
+- [Week 3 Python: JSON and source retrieval](../python/session03.qmd)
+- [Week 4 Python: multimodal evidence](../python/session04.qmd)

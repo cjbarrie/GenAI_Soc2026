@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import runpy
 import shutil
 from pathlib import Path
@@ -12,6 +13,35 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_week3_course_page_and_notebook_use_the_same_core_code() -> None:
+    """Prevent the explanatory page and runnable workbook from drifting apart."""
+    notebook = json.loads(
+        (ROOT / "workbook/session03/session03_qualitative_interpretation.ipynb").read_text()
+    )
+    notebook_code = [
+        "".join(cell["source"]).rstrip()
+        for cell in notebook["cells"]
+        if cell["cell_type"] == "code"
+    ]
+    page = (ROOT / "coursebook/python/session03.qmd").read_text()
+    page_code = [block.rstrip() for block in re.findall(r"```python\n(.*?)```", page, re.S)]
+
+    # The page has one compact setup block; the notebook has a supplied setup
+    # cell plus its import/configuration cell. The assessed cells then match.
+    assert page_code[2:] == notebook_code[3:]
+
+    page_sources = page_code[1].replace(
+        'ROUTE = "ollama"  # change to "openrouter" to use the hosted route',
+        "ROUTE = ROUTE_PLACEHOLDER",
+    )
+    notebook_sources = notebook_code[2].replace(
+        'ROUTE = "openrouter" if IN_COLAB else "ollama"  # local default',
+        "ROUTE = ROUTE_PLACEHOLDER",
+    )
+    assert page_sources == notebook_sources
+    assert "Use the supplied Week 3 notebook" in page
 
 
 def response_text(messages: list[dict], schema_name: str | None = None, schema: dict | None = None) -> str:
@@ -40,12 +70,28 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
         return json.dumps({"claim": "Errors can enter during several stages.", "source_id": "s2"})
     if schema_name == "audit_response" or "approval" in properties:
         return json.dumps({"approval": 60, "explanation": "A bounded test response."})
-    if "provisional theme" in prompt:
+    if "Distinguish reported events" in prompt:
         return json.dumps(
             {
-                "theme": "Participation differs",
-                "evidence_id": "e01",
-                "question_for_researcher": "What explains the difference?",
+                "theme": "Repeated exchange may help collective action, but these accounts do not establish causation",
+                "evidence_id": "T04_A",
+                "question_for_researcher": "What other evidence would test the proposed mechanism?",
+            }
+        )
+    if "Reconsider your theme" in prompt:
+        return json.dumps(
+            {
+                "theme": "Some recipients join collective action while others keep aid separate from politics",
+                "evidence_id": "T02_A",
+                "question_for_researcher": "What differentiates these accounts?",
+            }
+        )
+    if "provisional pattern" in prompt:
+        return json.dumps(
+            {
+                "theme": "Mutual aid leads tenants into political action",
+                "evidence_id": "T04_A",
+                "question_for_researcher": "Does every recipient join?",
             }
         )
     if "survey message" in prompt.lower():
@@ -90,6 +136,88 @@ def fake_ollama(**kwargs: object) -> SimpleNamespace:
     )
 
 
+def test_week3_local_task_needs_no_hosted_key(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The downloadable local script runs without prompting for OpenRouter."""
+    monkeypatch.chdir(ROOT)
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setattr("getpass.getpass", lambda *_: pytest.fail("Unexpected key prompt"))
+    sample_replies = iter([
+        "Help sometimes builds ties, but not for everyone.",
+        "T02_A did not join; T03_A left. Revise your theme.",
+        "T04_A reports trust and a petition. What remains an inference?",
+        "These accounts suggest a possible pathway, not a causal finding.",
+    ])
+    monkeypatch.setattr("builtins.input", lambda *_: next(sample_replies))
+    import ollama
+
+    monkeypatch.setattr(ollama, "chat", fake_ollama)
+    result = runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
+    assert result["cited_1"]["id"] == "T04_A"
+    assert result["cited_2"]["id"] == "T02_A"
+    assert result["cited_3"]["id"] == "T04_A"
+    assert result["analysis_record"]["final_memo"].startswith("These accounts")
+
+
+def test_week3_script_hosted_branch_with_recorded_response(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Exercise the downloadable script's OpenRouter branch without spending a key."""
+    monkeypatch.chdir(ROOT)
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only-key")
+    import openrouter
+
+    monkeypatch.setattr(openrouter, "OpenRouter", FakeOpenRouter)
+    sample_replies = iter([
+        "Help sometimes builds ties, but not for everyone.",
+        "T02_A did not join; T03_A left. Revise your theme.",
+        "T04_A reports trust and a petition. What remains an inference?",
+        "These accounts suggest a possible pathway, not a causal finding.",
+    ])
+    monkeypatch.setattr("builtins.input", lambda *_: next(sample_replies))
+    source = (ROOT / "assessments/weekly_coding/session03_task.py").read_text()
+    source = source.replace(
+        'ROUTE = "ollama"  # change to "openrouter" to use the hosted route',
+        'ROUTE = "openrouter"  # test route',
+        1,
+    )
+    namespace: dict[str, object] = {"__name__": "__main__"}
+    exec(compile(source, "session03_task.py", "exec"), namespace)
+    assert namespace["ROUTE"] == "openrouter"
+    assert namespace["analysis_record"]["round_2"]["cited"]["id"] == "T02_A"
+
+
+def test_week3_stops_before_call_when_first_memo_is_blank(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(ROOT)
+    monkeypatch.setattr("builtins.input", lambda *_: "   ")
+    import ollama
+
+    monkeypatch.setattr(
+        ollama, "chat", lambda **_: pytest.fail("A blank memo should not trigger a model call")
+    )
+    with pytest.raises(ValueError, match="first memo"):
+        runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
+
+
+def test_week3_reports_missing_model_fields(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(ROOT)
+    monkeypatch.setattr("builtins.input", lambda *_: "Aid may build ties, but not always.")
+    import ollama
+
+    monkeypatch.setattr(
+        ollama,
+        "chat",
+        lambda **_: SimpleNamespace(message=SimpleNamespace(content='{"theme":"A pattern"}')),
+    )
+    with pytest.raises(ValueError, match="theme, evidence_id and question_for_researcher"):
+        runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
+
+
 @pytest.mark.parametrize("week", range(3, 14))
 @pytest.mark.parametrize("runtime", ["local", "colab"])
 def test_followup_notebook_executes_without_live_services(
@@ -121,6 +249,14 @@ def test_followup_notebook_executes_without_live_services(
     namespace["OpenRouter"] = FakeOpenRouter
     namespace["ollama"].chat = fake_ollama
     namespace["IN_COLAB"] = runtime == "colab"
+    if week == 3:
+        sample_replies = iter([
+            "Help sometimes builds ties, but not for everyone.",
+            "T02_A did not join; T03_A left. Revise your theme.",
+            "T04_A reports trust and a petition. What remains an inference?",
+            "These accounts suggest a possible pathway, not a causal finding.",
+        ])
+        monkeypatch.setattr("builtins.input", lambda *_: next(sample_replies))
 
     for source in code_cells[2:]:
         if week == 12 and "output_dir = ROOT" in source:
@@ -129,6 +265,16 @@ def test_followup_notebook_executes_without_live_services(
 
     if runtime == "colab" and week in {3, 4, 5, 6, 7, 9, 10, 11, 12}:
         assert namespace["ROUTE"] == "openrouter"
+    if week == 3:
+        record = namespace["analysis_record"]
+        assert record["first_memo"] == namespace["first_memo"]
+        assert record["round_1"]["cited"]["id"] == "T04_A"
+        assert record["round_2"]["cited"]["id"] == "T02_A"
+        assert record["round_3"]["cited"]["id"] == "T04_A"
+        assert [len(record[f"round_{turn}"]["messages"]) for turn in (1, 2, 3)] == [1, 3, 5]
+        assert record["round_2"]["messages"][1]["content"] == record["round_1"]["raw"]
+        assert record["round_3"]["messages"][3]["content"] == record["round_2"]["raw"]
+        assert record["final_memo"].startswith("These accounts")
     if week == 8 and runtime == "colab":
         assert namespace["local_results"] == []
         assert namespace["local_mean"] is None
@@ -189,6 +335,14 @@ def test_downloadable_task_executes_on_local_route(
 
     monkeypatch.setattr(ollama, "chat", fake_ollama)
     monkeypatch.setattr(openrouter, "OpenRouter", FakeOpenRouter)
+    if week == 3:
+        sample_replies = iter([
+            "Help sometimes builds ties, but not for everyone.",
+            "T02_A did not join; T03_A left. Revise your theme.",
+            "T04_A reports trust and a petition. What remains an inference?",
+            "These accounts suggest a possible pathway, not a causal finding.",
+        ])
+        monkeypatch.setattr("builtins.input", lambda *_: next(sample_replies))
 
     namespace = runpy.run_path(
         str(ROOT / "assessments" / "weekly_coding" / f"session{week:02d}_task.py")

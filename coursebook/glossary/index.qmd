@@ -1,0 +1,125 @@
+---
+title: "Language Model Field Guide"
+subtitle: "Plain English, small Python examples and methodological consequences"
+---
+
+This is a reference for terms that appear in the course, model documentation and current discussions of research agents. You do not need to learn it from beginning to end. Start with the terms marked **Core**, follow links from the weekly chapters and return when an unfamiliar term appears.
+
+Every entry contains:
+
+- a plain-English explanation;
+- a small Python example;
+- the expected output;
+- an account of the example's input, operation and output;
+- a practical or methodological reason to care;
+- a warning where common terminology is misleading.
+
+The examples are intentionally short. Most run offline and contain no key. Entries that describe a live model call link to the complete OpenRouter and Ollama routines in the weekly Python pages.
+
+## Four routes through the guide
+
+<div class="concept-flow"><div><strong>Start a call</strong><span>prompts, messages, tokens and routes</span></div><div><strong>Control what is available</strong><span>context, retrieval and memory</span></div><div><strong>Use the return</strong><span>JSON, schemas, tools and validation</span></div><div><strong>Build and audit a system</strong><span>agents, harnesses and evaluation</span></div></div>
+
+- [Model-call basics](model-call-basics.qmd) begins with strings and one request.
+- [Context and memory](context-and-memory.qmd) asks what the model can see now and what a system can retrieve later.
+- [Outputs and tools](outputs-and-tools.qmd) follows generated text into Python objects, checks and actions.
+- [Agents, skills and harnesses](agents-and-harnesses.qmd) shows what surrounds a model during a longer task.
+- [Models, infrastructure and evaluation](models-and-evaluation.qmd) explains how models are produced, served and audited.
+
+## Suggested progression through the semester
+
+| First encounter | Terms to know |
+|---|---|
+| Setup and Week 1 | model, inference, prompt, messages, API, SDK, endpoint, hosted/local, token, temperature, response |
+| Week 2 | structured output, schema, validation, seed, reliability and prompt sensitivity |
+| Week 3 | JSON, parsing, context window, stateless calls, attention, memory, chunking |
+| Week 4 | multimodal input and grounding |
+| Weeks 5–6 | function arguments, conversation state, STT and TTS |
+| Weeks 7–8 | probability output, calibration, batching and evaluation |
+| Weeks 9–10 | agent, state, action, agent loop and stopping condition |
+| Weeks 11–13 | retrieval, tools, skills, harnesses, traces, guardrails and reproducibility |
+
+## A note on terminology
+
+Technical vocabulary changes quickly, and some terms—especially *agent*, *skill*, *harness*, *scaffold* and *memory*—are used differently across systems. The guide gives a clear working definition, identifies important variations and then describes the observable implementation. For research reporting, the implementation is more informative than the label alone.
+
+## A–Z index
+
+<ul class="az-index">
+<li><a href="agents-and-harnesses.qmd#agent">Agent</a></li>
+<li><a href="agents-and-harnesses.qmd#agent-loop">Agent loop</a></li>
+<li><a href="agents-and-harnesses.qmd#agent-skill">Agent skill</a></li>
+<li><a href="context-and-memory.qmd#attention-long-context">Attention</a></li>
+<li><a href="models-and-evaluation.qmd#benchmark-evaluation">Benchmark</a></li>
+<li><a href="models-and-evaluation.qmd#serving-constraints">Batching</a></li>
+<li><a href="context-and-memory.qmd#cache">Cache</a></li>
+<li><a href="models-and-evaluation.qmd#calibration">Calibration</a></li>
+<li><a href="agents-and-harnesses.qmd#checkpoint-human-approval">Checkpoint</a></li>
+<li><a href="context-and-memory.qmd#chunking">Chunking</a></li>
+<li><a href="outputs-and-tools.qmd#structured-output">Constrained decoding</a></li>
+<li><a href="context-and-memory.qmd#context-window">Context window</a></li>
+<li><a href="models-and-evaluation.qmd#distillation">Distillation</a></li>
+<li><a href="context-and-memory.qmd#embeddings">Embeddings</a></li>
+<li><a href="model-call-basics.qmd#api-endpoint">Endpoint</a></li>
+<li><a href="models-and-evaluation.qmd#benchmark-evaluation">Evaluation</a></li>
+<li><a href="context-and-memory.qmd#external-memory">External memory</a></li>
+<li><a href="models-and-evaluation.qmd#fine-tuning-preference">Fine-tuning</a></li>
+<li><a href="outputs-and-tools.qmd#function-parameter">Function parameter</a></li>
+<li><a href="agents-and-harnesses.qmd#guardrail">Guardrail</a></li>
+<li><a href="models-and-evaluation.qmd#hallucination-grounding">Grounding</a></li>
+<li><a href="models-and-evaluation.qmd#hallucination-grounding">Hallucination</a></li>
+<li><a href="agents-and-harnesses.qmd#harness-scaffold">Harness</a></li>
+<li><a href="model-call-basics.qmd#hosted-local">Hosted model</a></li>
+<li><a href="agents-and-harnesses.qmd#checkpoint-human-approval">Human approval</a></li>
+<li><a href="model-call-basics.qmd#language-model">Inference</a></li>
+<li><a href="outputs-and-tools.qmd#plain-text-json">JSON</a></li>
+<li><a href="model-call-basics.qmd#language-model">Language model</a></li>
+<li><a href="model-call-basics.qmd#request-response">Latency</a></li>
+<li><a href="outputs-and-tools.qmd#log-probabilities">Log probabilities</a></li>
+<li><a href="context-and-memory.qmd#attention-long-context">Long context</a></li>
+<li><a href="model-call-basics.qmd#hosted-local">Local model</a></li>
+<li><a href="model-call-basics.qmd#maximum-output-tokens">Maximum output tokens</a></li>
+<li><a href="context-and-memory.qmd#external-memory">Memory</a></li>
+<li><a href="model-call-basics.qmd#messages-and-roles">Messages</a></li>
+<li><a href="models-and-evaluation.qmd#mixture-of-experts">Mixture of experts</a></li>
+<li><a href="models-and-evaluation.qmd#model-drift">Model drift</a></li>
+<li><a href="model-call-basics.qmd#model-identifier">Model identifier</a></li>
+<li><a href="outputs-and-tools.qmd#multimodal-input">Multimodal input</a></li>
+<li><a href="outputs-and-tools.qmd#function-parameter">Named argument</a></li>
+<li><a href="agents-and-harnesses.qmd#state-observation-action">Observation</a></li>
+<li><a href="outputs-and-tools.qmd#parsing">Parsing</a></li>
+<li><a href="models-and-evaluation.qmd#weights-parameters">Parameters</a></li>
+<li><a href="agents-and-harnesses.qmd#planning">Planning</a></li>
+<li><a href="models-and-evaluation.qmd#posttraining-instruction-tuning">Post-training</a></li>
+<li><a href="models-and-evaluation.qmd#pretraining">Pretraining</a></li>
+<li><a href="model-call-basics.qmd#prompt">Prompt</a></li>
+<li><a href="models-and-evaluation.qmd#reliability-reproducibility">Prompt sensitivity</a></li>
+<li><a href="agents-and-harnesses.qmd#provenance">Provenance</a></li>
+<li><a href="models-and-evaluation.qmd#provider-routing">Provider</a></li>
+<li><a href="models-and-evaluation.qmd#quantization">Quantization</a></li>
+<li><a href="models-and-evaluation.qmd#serving-constraints">Rate limit</a></li>
+<li><a href="context-and-memory.qmd#retrieval-rag">Retrieval and RAG</a></li>
+<li><a href="models-and-evaluation.qmd#reliability-reproducibility">Reproducibility</a></li>
+<li><a href="model-call-basics.qmd#request-response">Request and response</a></li>
+<li><a href="model-call-basics.qmd#messages-and-roles">Roles</a></li>
+<li><a href="models-and-evaluation.qmd#provider-routing">Routing</a></li>
+<li><a href="agents-and-harnesses.qmd#sandbox">Sandbox</a></li>
+<li><a href="agents-and-harnesses.qmd#harness-scaffold">Scaffold</a></li>
+<li><a href="outputs-and-tools.qmd#schema">Schema</a></li>
+<li><a href="model-call-basics.qmd#sdk-client">SDK/client</a></li>
+<li><a href="model-call-basics.qmd#seed">Seed</a></li>
+<li><a href="agents-and-harnesses.qmd#state-observation-action">State</a></li>
+<li><a href="context-and-memory.qmd#stateless-history">Stateless call</a></li>
+<li><a href="agents-and-harnesses.qmd#stopping-condition">Stopping condition</a></li>
+<li><a href="outputs-and-tools.qmd#structured-output">Structured output</a></li>
+<li><a href="model-call-basics.qmd#temperature">Temperature</a></li>
+<li><a href="model-call-basics.qmd#token">Token and tokenization</a></li>
+<li><a href="context-and-memory.qmd#token-budget">Token budget</a></li>
+<li><a href="outputs-and-tools.qmd#tool-calling">Tool call</a></li>
+<li><a href="agents-and-harnesses.qmd#agent-tool">Tool</a></li>
+<li><a href="agents-and-harnesses.qmd#trajectory-trace">Trace and trajectory</a></li>
+<li><a href="context-and-memory.qmd#truncation">Truncation</a></li>
+<li><a href="outputs-and-tools.qmd#speech-interfaces">STT and TTS</a></li>
+<li><a href="outputs-and-tools.qmd#validation">Validation</a></li>
+<li><a href="models-and-evaluation.qmd#weights-parameters">Weights</a></li>
+</ul>

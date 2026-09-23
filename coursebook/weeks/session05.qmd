@@ -3,6 +3,8 @@ title: "Week 5 — Can generated media isolate a causal construct?"
 description: "Sociological experiments, generated candidates and treatment validity"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/model-call-basics.qmd#temperature">temperature</a> · <a href="../glossary/outputs-and-tools.qmd#function-parameter">named arguments</a> · <a href="../glossary/outputs-and-tools.qmd#validation">substantive validation</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">When an LLM drafts experimental material, how do we know that the candidates vary the intended construct rather than several things at once?</div>

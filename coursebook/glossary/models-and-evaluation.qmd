@@ -1,0 +1,264 @@
+---
+title: "Field guide: models, infrastructure and evaluation"
+description: "How models are produced, served, compared and audited"
+---
+
+Some terms describe how a model was produced; others describe how it is served or evaluated. Keeping these stages separate prevents us from attributing every observed difference to “the model.”
+
+::: {.resource-card}
+[Open the companion notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/gh-pages/_generated/downloads/glossary/models-and-evaluation.ipynb) · [Download the notebook](../_generated/downloads/glossary/models-and-evaluation.ipynb)
+:::
+
+## Weights and parameters {#weights-parameters}
+
+<span class="term-meta advanced">Advanced · Model background</span>
+
+**In plain English.** Parameters are numerical values adjusted during training. The complete collection of learned parameter values is often called the model's weights.
+
+```python
+illustrative_layer = {"weight_1": 0.42, "weight_2": -0.17, "bias": 0.03}
+print(len(illustrative_layer))
+```
+
+<div class="glossary-output">3</div>
+
+**Why it matters.** The dictionary is only an illustration. Real language models contain very large arrays of learned values, not human-readable facts or rules.
+
+## Pretraining {#pretraining}
+
+<span class="term-meta advanced">Advanced · Model background</span>
+
+**In plain English.** Pretraining adjusts model weights using a large collection of data before the model is adapted to follow the instructions students normally give it.
+
+```python
+training_stage = {
+    "name": "pretraining",
+    "example_objective": "predict a missing or next token",
+    "changes_weights": True,
+}
+print(training_stage["name"])
+```
+
+<div class="glossary-output">pretraining</div>
+
+**Why it matters.** Training data and objectives shape what a model can reproduce, associate and systematically miss.
+
+## Post-training and instruction tuning {#posttraining-instruction-tuning}
+
+<span class="term-meta advanced">Advanced · Model background</span>
+
+**In plain English.** Post-training is further training after pretraining. Instruction tuning is a form of post-training using examples of instructions and preferred responses to make a model more useful in interaction.
+
+```python
+model_history = ["pretraining", "instruction_tuning", "deployment"]
+print(model_history[1])
+```
+
+<div class="glossary-output">instruction_tuning</div>
+
+**Common confusion.** A helpful chat style is not produced by pretraining alone, and post-training does not erase everything learned earlier.
+
+## Fine-tuning and preference optimization {#fine-tuning-preference}
+
+<span class="term-meta advanced">Advanced · Model background</span>
+
+**In plain English.** Fine-tuning continues training for a more specific objective or dataset. Preference optimization uses comparisons or feedback about outputs to shift model behavior. RLHF is one influential family of such approaches.
+
+```python
+training_run = {
+    "base_model": "example-base-model",
+    "method": "supervised fine-tuning",
+    "training_examples": 1200,
+}
+print(training_run["method"])
+```
+
+<div class="glossary-output">supervised fine-tuning</div>
+
+**Why it matters.** “Same architecture” does not mean same behavior when data and post-training differ.
+
+## Distillation {#distillation}
+
+<span class="term-meta advanced">Advanced · Local models</span>
+
+**In plain English.** Distillation trains a smaller model to reproduce selected behavior of a larger teacher model.
+
+```python
+distillation_record = {
+    "teacher": "larger-model",
+    "student": "smaller-model",
+    "target": "teacher-generated responses",
+}
+print(distillation_record["teacher"], "→", distillation_record["student"])
+```
+
+<div class="glossary-output">larger-model → smaller-model</div>
+
+**Why it matters.** A distilled model can be cheaper or easier to run locally but may reproduce only part of the teacher's behavior.
+
+## Quantization {#quantization}
+
+<span class="term-meta advanced">Advanced · Local models</span>
+
+**In plain English.** Quantization stores or computes model values at reduced numerical precision to lower memory and compute requirements.
+
+```python
+model_artifacts = {
+    "full_precision_gb": 16.0,
+    "quantized_gb": 4.3,
+}
+saved_gb = model_artifacts["full_precision_gb"] - model_artifacts["quantized_gb"]
+print(saved_gb)
+```
+
+<div class="glossary-output">11.7</div>
+
+**Why it matters.** Quantization can make local inference feasible, but the exact artifact and quantization method become part of the reproducibility record.
+
+## Mixture of experts {#mixture-of-experts}
+
+<span class="term-meta advanced">Advanced · Model background</span>
+
+**In plain English.** A mixture-of-experts model contains multiple parameter groups and a routing mechanism that activates a subset for a particular token or input.
+
+```python
+experts = ["expert_A", "expert_B", "expert_C", "expert_D"]
+activated = experts[1:3]
+print(activated)
+```
+
+<div class="glossary-output">['expert_B', 'expert_C']</div>
+
+**Common confusion.** The Python slice illustrates selecting a subset; it is not the learned routing computation used inside a real model.
+
+## Provider and routing {#provider-routing}
+
+<span class="term-meta">Useful · Weeks 1, 8 and 13</span>
+
+**In plain English.** A provider operates the infrastructure that serves a model. Routing selects which provider or endpoint handles a request.
+
+```python
+run = {
+    "requested_model": "openai/gpt-5.2",
+    "route": "openrouter",
+    "provider": "provider reported in response",
+}
+print(run["route"], "→", run["provider"])
+```
+
+<div class="glossary-output">openrouter → provider reported in response</div>
+
+**Why it matters.** A request may keep the same model slug while its serving route changes. Record provider information when the API exposes it.
+
+## Batching, rate limits and latency {#serving-constraints}
+
+<span class="term-meta">Useful · Weeks 8–13</span>
+
+**In plain English.** Batching groups work for efficient processing. A rate limit restricts requests or tokens over time. Latency is the elapsed time before a result returns.
+
+```python
+serving_record = {
+    "cases_in_batch": 5,
+    "requests_per_minute_limit": 20,
+    "latency_seconds": 1.4,
+}
+print(serving_record)
+```
+
+<div class="glossary-output">{'cases_in_batch': 5, 'requests_per_minute_limit': 20, 'latency_seconds': 1.4}</div>
+
+**Why it matters.** Serving constraints affect study cost, missing returns and whether cases were processed under comparable conditions.
+
+## Benchmark and evaluation {#benchmark-evaluation}
+
+<span class="term-meta">Core · Weeks 2–13</span>
+
+**In plain English.** An evaluation measures performance under specified tasks and criteria. A benchmark is a reusable task, dataset or suite used for comparison.
+
+```python
+reference_labels = ["SUPPORT", "OPPOSE", "UNCLEAR"]
+model_labels = ["SUPPORT", "SUPPORT", "UNCLEAR"]
+matches = [reference == model for reference, model in zip(reference_labels, model_labels)]
+accuracy = sum(matches) / len(matches)
+print(round(accuracy, 2))
+```
+
+<div class="glossary-output">0.67</div>
+
+**Why it matters.** A benchmark result applies to that dataset, task formulation, metric and execution setup. It is not a context-free measure of intelligence.
+
+## Calibration {#calibration}
+
+<span class="term-meta advanced">Advanced · Weeks 7–8</span>
+
+**In plain English.** Calibration asks whether stated probabilities correspond to observed frequencies across comparable predictions.
+
+```python
+predicted_probabilities = [0.8, 0.8, 0.8, 0.8, 0.8]
+observed_outcomes = [1, 1, 1, 0, 0]
+print("Mean prediction:", sum(predicted_probabilities) / len(predicted_probabilities))
+print("Observed rate:", sum(observed_outcomes) / len(observed_outcomes))
+```
+
+<div class="glossary-output">Mean prediction: 0.8
+Observed rate: 0.6</div>
+
+**Why it matters.** One set this small cannot establish calibration, but it shows what must be compared. Confident prose is not a probability estimate.
+
+## Reliability, prompt sensitivity and reproducibility {#reliability-reproducibility}
+
+<span class="term-meta">Core · Weeks 1–2 and 12</span>
+
+**In plain English.** Reliability concerns consistency under a defined repetition or variation. Prompt sensitivity is change associated with changes in wording or prompt construction. Reproducibility asks whether a recorded procedure can be rerun and whether resulting differences can be explained.
+
+```python
+outputs = ["SUPPORT", "SUPPORT", "UNCLEAR", "SUPPORT"]
+support_rate = outputs.count("SUPPORT") / len(outputs)
+print(support_rate)
+```
+
+<div class="glossary-output">0.75</div>
+
+**Why it matters.** The calculation summarizes agreement across four returns. A real audit must state what changed across runs and what was held fixed.
+
+## Hallucination and grounding {#hallucination-grounding}
+
+<span class="term-meta">Core · Weeks 3 and 11</span>
+
+**In plain English.** Hallucination is commonly used for generated content that is unsupported or false. Grounding links an answer to supplied evidence or an external source that can be inspected.
+
+```python
+claim = {"text": "T01 immediately joined the group.", "source_ids": ["T01_A"]}
+source = {"T01_A": "At that point I did not know who organized them."}
+print(source[claim["source_ids"][0]])
+```
+
+<div class="glossary-output">At that point I did not know who organized them.</div>
+
+**Why it matters.** Retrieving the cited passage reveals that the claim is not supported. Grounding requires an actual comparison, not merely a citation-shaped string.
+
+## Model versioning and drift {#model-drift}
+
+<span class="term-meta advanced">Advanced · Weeks 12–13</span>
+
+**In plain English.** Versioning identifies the model artifact used at a time. Drift is change in observed behavior or service conditions across time.
+
+```python
+run_one = {"date": "2026-09-01", "model": "model-v1", "label": "SUPPORT"}
+run_two = {"date": "2026-11-01", "model": "model-v2", "label": "UNCLEAR"}
+changed_fields = [key for key in run_one if run_one[key] != run_two[key]]
+print(changed_fields)
+```
+
+<div class="glossary-output">['date', 'model', 'label']</div>
+
+**Why it matters.** The records show several simultaneous changes. They do not, on their own, identify which change caused the different label.
+
+## Sources and course examples
+
+- [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+- [Training Language Models to Follow Instructions with Human Feedback](https://arxiv.org/abs/2203.02155)
+- [OpenRouter provider routing](https://openrouter.ai/docs/guides/routing/provider-selection)
+- [Week 2 Python: prompt variation and human reference labels](../python/session02.qmd)
+- [Week 7 Python: structured probabilities](../python/session07.qmd)
+- [Week 13 Python: a small model audit](../python/session13.qmd)

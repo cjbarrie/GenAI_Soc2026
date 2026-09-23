@@ -125,4 +125,4 @@ A completed weekly submission is one short screen recording with audio. It shows
 5. the named change and the resulting difference;
 6. a spoken connection to one reading and one explicit limit.
 
-Recordings are emailed as attachments to the dedicated NYU Box upload address listed in the course book. Production quality is irrelevant; audible understanding is the criterion.
+Recordings are uploaded to the Google Drive coding videos folder linked in the course book, with the student's surname and week number in the filename. Production quality is irrelevant; audible understanding is the criterion.

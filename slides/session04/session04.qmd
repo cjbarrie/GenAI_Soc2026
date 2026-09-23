@@ -155,8 +155,8 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 <div class="paper-focus">
 <img src="images/source_pages/goodwin_title.png">
 <div>
-<p>Goodwin studies archaeologists and courtroom lawyers.</p>
-<p>In both settings, people use established practices to turn a complex visual field into professionally relevant evidence.</p>
+<p>Goodwin studies archaeologists and courtroom lawyers at work.</p>
+<p>In both settings, people use shared practices to make some features of a complex visual field relevant and leave others in the background.</p>
 <p><b>His term is professional vision.</b></p>
 </div>
 </div>
@@ -169,7 +169,7 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 <div class="large-paper">
 <img src="images/source_pages/goodwin_munsell.png">
-<div><p>The Munsell chart provides a shared set of categories for describing soil colour.</p><p>It does not merely store a perception. It helps archaeologists produce a comparable observation.</p></div>
+<div><p>The Munsell chart supplies a shared coding scheme for soil colour.</p><p>An archaeologist compares a patch of dirt with the chart, names it using an established category, and produces an observation that colleagues can use.</p></div>
 </div>
 
 <div class="source-line">Goodwin (1994), pp. 608–610. Screenshot from the published article.</div>
@@ -180,32 +180,44 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 <div class="large-paper landscape">
 <img src="images/source_pages/goodwin_king_coding.png">
-<div><p>The prosecution and defence organized attention to different parts of the video.</p><p>Terms such as <b>aggressive</b> and <b>nonaggressive</b> made the movement legible within competing accounts.</p></div>
+<div><p>The prosecution and defence did not simply replay the tape. They selected frames, named movements and placed them inside opposing accounts of the encounter.</p><p>Terms such as <b>aggressive</b> and <b>nonaggressive</b> told the jury how a movement should count as evidence.</p></div>
 </div>
 
 <div class="source-line">Goodwin (1994), pp. 619–621. Screenshot from the published article.</div>
 
 ---
 
-## Highlighting can make one feature appear decisive
+## The white lines outlined King’s body—not a mark on the ground
 
 <div class="large-paper landscape">
 <img src="images/source_pages/goodwin_king_highlighting.png">
-<div><p>The defence repeatedly highlighted a white line beneath King’s foot.</p><p>Cropping and highlighting altered the figure–ground relation: one movement became central while surrounding action receded.</p></div>
+<div><p>The defence enlarged individual frames, pasted them into a long sequence and placed transparent overlays on top.</p><p>The white lines traced King’s body. This made him the most conspicuous moving figure while the officers receded into the background.</p><p>Counsel then described the sequence as movement “from the ground to a charge.” Image and language worked together.</p></div>
 </div>
 
 <div class="source-line">Goodwin (1994), pp. 623–625. Screenshot from the published article.</div>
 
 ---
 
-## Heinlein follows professional vision into AI-assisted colonoscopy
+## Goodwin’s argument is more specific than “people see things differently”
+
+<div class="goodwin-argument">
+<div><b>Coding</b><span>Established categories make an event recognizable as a particular kind of thing.</span></div>
+<div><b>Highlighting</b><span>Material devices make selected features more salient than their surroundings.</span></div>
+<div><b>Representation</b><span>Charts, frame sequences and talk turn what is seen into evidence others can inspect.</span></div>
+</div>
+
+<p class="takeaway">Professional vision is a socially organized way of seeing. It is neither a neutral view nor simply an individual opinion.</p>
+
+---
+
+## Heinlein studies what happens when the highlight appears live
 
 <div class="heinlein-slide">
 <img src="images/source_pages/heinlein_title_abstract.png" alt="Title and highlighted abstract of Heinlein's article on AI-assisted colonoscopy">
 <div>
 <p>Heinlein observed colonoscopies and interviewed gastroenterologists using commercial AI systems.</p>
-<p>The software marks possible polyps on screen in real time. Clinicians may follow, override or be interrupted by those markings.</p>
-<p><b>The sociological question is how an algorithm changes what becomes noticeable and authoritative during the procedure.</b></p>
+<p>The software places intermittent green boxes around areas it classifies as suspicious.</p>
+<p>Unlike the courtroom overlays, these marks appear while practitioners are still deciding where to look and what to do.</p>
 </div>
 </div>
 
@@ -213,25 +225,54 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
-## These traditions give us three questions for any recorded scene
+## Clinicians did not respond to the boxes in one uniform way
 
-<div class="three-questions numbered">
-<div><b>1. Access</b><span>What could this observer or device perceive? <i>(Simmel)</i></span></div>
-<div><b>2. Sequence</b><span>What action preceded the response? <i>(Mead; sequence analysis)</i></span></div>
-<div><b>3. Representation</b><span>How were features selected, coded and highlighted? <i>(Goodwin)</i></span></div>
+<div class="heinlein-evidence">
+<img src="images/source_pages/heinlein_observations.png" alt="Published article excerpt describing clinicians following, rejecting and switching off AI bounding boxes">
+<div>
+<p><b>Follow:</b> a marker directs attention to tissue that is inspected and removed.</p>
+<p><b>Override:</b> a team discusses a marked area and decides it is not a polyp.</p>
+<p><b>Switch off:</b> repeated boxes interrupt concentration and the clinician deactivates the system.</p>
+</div>
 </div>
 
-<p class="small-note">Goffman adds a fourth reminder: the people, rules and audiences around the action are part of the situation.</p>
+<div class="source-line">Heinlein (2026), pp. 3–4. Screenshot from the published article.</div>
 
 ---
 
-## Video sequence analysis begins with the quality of the record
+## The interface may also change how expertise is learned
+
+<div class="heinlein-evidence reverse">
+<img src="images/source_pages/heinlein_attention_shift.png" alt="Published article excerpt discussing circular gaze and attention to AI boxes">
+<div>
+<p>Experienced clinicians describe a <b>“circular gaze”</b>: scanning the whole visual field before concentrating on a suspicious area.</p>
+<p>Heinlein reports concern that less experienced users may stare at the centre and wait for a box to appear.</p>
+<p><b>The issue is therefore not only diagnostic accuracy. It is how an interface redistributes attention, judgement and authority.</b></p>
+</div>
+</div>
+
+<div class="source-line">Heinlein (2026), pp. 4 and 6. Screenshot from the published article.</div>
+
+---
+
+## These traditions give us four questions for any recorded scene
+
+<div class="four-questions numbered">
+<div><b>1. Access</b><span>What could this observer or device perceive? <i>(Simmel)</i></span></div>
+<div><b>2. Sequence</b><span>What action preceded the response? <i>(Mead; sequence analysis)</i></span></div>
+<div><b>3. Situation</b><span>Which people, rules and audiences organized the encounter? <i>(Goffman)</i></span></div>
+<div><b>4. Representation</b><span>How were features selected, coded and highlighted? <i>(Goodwin; Heinlein)</i></span></div>
+</div>
+
+---
+
+## We now need a method for reconstructing what the recording preserves
 
 <div class="paper-focus wide">
 <img src="images/source_pages/nassauer_title.png">
 <div>
 <p>Nassauer studies escalation by reconstructing interactions moment by moment.</p>
-<p>The method depends on whether video adequately captures the relevant duration, camera angle, resolution and sound.</p>
+<p>This turns the opening problem into a method: establish duration, angle, resolution and sound before drawing conclusions from the sequence.</p>
 </div>
 </div>
 
@@ -285,7 +326,7 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
-## Collins asks why confrontations so often fail to become violence
+## Nassauer gives us a method; Collins gives us a question to investigate
 
 <div class="collins-opening">
 <div class="collins-question"><span>Why does most face-to-face confrontation</span><strong>not become effective violence?</strong></div>
@@ -411,269 +452,173 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
-## We will use an LLM as another observer of the record
+## The model is another way of organizing attention
 
 <div class="task-card">
-<div class="task-number">1</div><div><b>Give the model one frame</b><span>Ask only for visible actions and explicit uncertainty.</span></div>
-<div class="task-number">2</div><div><b>Add an adjacent frame</b><span>See which claims change when sequence is available.</span></div>
-<div class="task-number">3</div><div><b>Check the response</b><span>Compare each claim with the frame and source record.</span></div>
+<div class="task-number">1</div><div><b>Constrain what should count</b><span>The prompt asks for visible change and explicitly excludes identity, motive and remembered event knowledge.</span></div>
+<div class="task-number">2</div><div><b>Constrain how it is represented</b><span>The schema separates observable change, visible evidence and interpretation withheld.</span></div>
+<div class="task-number">3</div><div><b>Inspect what it nevertheless makes salient</b><span>The researcher checks every returned claim against the source frames.</span></div>
 </div>
 
----
-
-## First input: one image and a deliberately narrow instruction
-
-:::: {.input-output .input-only}
-![](images/source_pages/zidane_close_3.png)
-
-::: {.prompt-box}
-**Prompt**
-
-Describe only visible positions and actions. Do not infer speech, intention or emotion. For anything uncertain, write `uncertain`. Return JSON with the keys `visible_actions` and `limits`.
-:::
-::::
+<p class="caption">This applies Goodwin’s question to an LLM: how do the prompt, schema and interface shape the model’s “professional vision”?</p>
 
 ---
 
-## Example output: useful, but still open to checking
+## The routine starts with two frames we can inspect ourselves
 
-**`visible_actions`**
-
-- Two players are moving in the same direction.
-- The player in white turns his upper body toward the player in blue.
-
-**`limits`**
-
-- The image does not show what either player said.
-- Intention and emotion cannot be determined from this frame.
-
-**Three checks:** Does every action appear in the frame? · Has the model added a motive? · What does one still fail to show?
-
----
-
-## More context helps—but it can also invite outside knowledge
-
-::::: {.input-output}
-::: {.mini-frames}
-![](images/source_pages/zidane_close_2.png)
-
-![](images/source_pages/zidane_close_3.png)
-:::
-
-::: {.prompt-box}
-**New prompt**
-
-Compare these frames in order. Describe only a change that is visible across them. Do not infer why it occurred.
-
-**Unconstrained response**
-
-“Zidane turns back toward Materazzi.”
-
-The identification may be correct, but it comes from the model’s prior knowledge rather than these pixels alone.
-
-**Constrained response**
-
-“The player in white changes from moving downfield to turning his body toward the player in blue.”
-:::
-:::::
-
----
-
-## The researcher records corrections next to the model response
-
-<div class="review-record">
-<div><b>Model description</b><p>“The player in white turns toward the player in blue.”</p></div>
-<div><b>Researcher check</b><p>Supported across frames 2–3. Direction of gaze is unclear at this resolution.</p></div>
-<div><b>Source detail</b><p>FIFA broadcast clip; selected adjacent frames; speech unavailable.</p></div>
+<div class="two-frame-input">
+<figure><img src="images/zidane_fine2_168.png"><figcaption><code>frame_1</code></figcaption></figure>
+<figure><img src="images/zidane_fine2_169.png"><figcaption><code>frame_2</code></figcaption></figure>
 </div>
-
-<p class="caption">Keeping all three entries lets another reader see the source, the model’s proposal and the human revision.</p>
-
----
-
-## The Python section builds that record one piece at a time
-
-<div class="code-roadmap">
-<div><b>A path</b><span>where the image file is</span></div>
-<div><b>A string</b><span>the instruction sent with it</span></div>
-<div><b>A list</b><span>the ordered messages and frames</span></div>
-<div><b>A dictionary</b><span>one returned observation</span></div>
-<div><b>A loop</b><span>repeat the same check across frames</span></div>
-</div>
-
----
-
-## Start with the two inputs we can inspect ourselves
 
 ```python
-from pathlib import Path
+frame_1 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_168.png"
+frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_169.png"
+```
 
-image_path = Path("images/zidane_close_3.png")
+<p class="caption">Each variable is a <code>Path</code>: it stores a file location. It does not yet contain a model description.</p>
 
+---
+
+## The prompt states the evidentiary boundary
+
+```python
 prompt = (
-    "Describe only visible positions and actions. "
-    "Do not infer speech, intention or emotion."
+    "Compare these ordered frames. Describe only visible change. "
+    "Do not name people, infer motive, or use remembered event knowledge."
 )
 ```
 
-<div class="code-explain"><p><code>image_path</code> is a <b>Path object</b>: it points to a file.</p><p><code>prompt</code> is a <b>string</b>: Python’s type for text.</p></div>
-
----
-
-## The image must be converted into data the API can send
-
-```python
-import base64
-
-image_bytes = image_path.read_bytes()
-encoded = base64.b64encode(image_bytes).decode("utf-8")
-image_url = f"data:image/png;base64,{encoded}"
-```
-
-<div class="line-notes">
-<div><code>read_bytes()</code><span>reads the image file as bytes</span></div>
-<div><code>b64encode(...)</code><span>turns those bytes into safe text</span></div>
-<div><code>image_url</code><span>adds a label telling the API that the text represents a PNG</span></div>
+<div class="boundary-grid">
+<div><b>Permitted</b><span>position, orientation, contact and change across the two frames</span></div>
+<div><b>Withheld</b><span>names, speech, intention, emotion and causal explanation</span></div>
 </div>
 
----
-
-## A message can contain both text and an image
-
-```python
-messages = [
-    {
-        "role": "user",
-        "content": [
-            {"type": "text", "text": prompt},
-            {"type": "image_url",
-             "image_url": {"url": image_url}},
-        ],
-    }
-]
-```
-
-<div class="type-key"><span><b>[ ] list</b> keeps items in order</span><span><b>{ } dictionary</b> gives each value a name</span><span><b>" " string</b> stores text</span></div>
+<p class="caption"><code>prompt</code> is a string. Its wording is part of the research design, not background decoration.</p>
 
 ---
 
-## OpenRouter sends the same message format to different models
+## The schema keeps observation and interpretation apart
 
 ```python
-from openai import OpenAI
-import os
-
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=os.environ["OPENROUTER_API_KEY"],
-)
-
-response = client.chat.completions.create(
-    model="openai/gpt-4.1-mini",
-    messages=messages,
-)
-```
-
-<div class="code-explain"><p><code>client</code> stores how to reach the service.</p><p><code>create(...)</code> sends the model name and our messages. Other settings—temperature, output format and token limits—can also be supplied.</p></div>
-
----
-
-## The response object contains more than the answer text
-
-```python
-answer_text = response.choices[0].message.content
-print(answer_text)
-```
-
-<div class="object-map">
-<span><code>response</code><small>whole returned object</small></span><i>→</i>
-<span><code>choices[0]</code><small>first generated answer</small></span><i>→</i>
-<span><code>message.content</code><small>answer text</small></span>
-</div>
-
-<p class="small-note">The full response also contains model identifiers and token-use information that belong in the research record.</p>
-
----
-
-## JSON lets Python recover named parts of the answer
-
-```python
-import json
-
-observation = json.loads(answer_text)
-
-print(observation["visible_actions"])
-print(observation["limits"])
-```
-
-<div class="code-explain"><p><code>json.loads()</code> converts JSON text into Python objects.</p><p>Here, <code>observation</code> is a dictionary; its values are two lists.</p></div>
-
----
-
-## We add the human check to the same dictionary
-
-```python
-observation["researcher_check"] = {
-    "supported": True,
-    "correction": "Direction of gaze is unclear",
-    "source": "FIFA broadcast, frame 3",
+schema = {
+    "type": "object",
+    "properties": {
+        "observable_change": {"type": "string"},
+        "visible_evidence": {"type": "array", "items": {"type": "string"}},
+        "interpretation_withheld": {"type": "string"},
+    },
+    "required": ["observable_change", "visible_evidence",
+                 "interpretation_withheld"],
 }
 ```
 
-<div class="before-after">
-<div><b>Before</b><p>model description + stated limits</p></div>
-<div><b>After</b><p>model description + limits + researcher correction + source</p></div>
+<div class="type-key"><span><b>{ } dictionary</b> gives values names</span><span><b>[ ] list</b> keeps required fields in order</span><span><b>schema</b> constrains form, not truth</span></div>
+
+---
+
+## OpenRouter and Ollama receive the same research instruction differently
+
+<div class="route-compare">
+<div><b>OpenRouter</b><span>The image paths are converted to data URLs and sent to a hosted model over the internet.</span><code>image_to_data_url(frame_1)</code></div>
+<div><b>Ollama</b><span>The local Ollama server reads the image files from this machine.</span><code>"images": [str(frame_1), str(frame_2)]</code></div>
 </div>
 
+<p class="takeaway">The transport changes. The frames, prompt, schema and methodological check stay the same.</p>
+
 ---
 
-## A list preserves observations in frame order
+## The OpenRouter branch sends text, images and the schema
 
 ```python
-sequence_record = []
+from openrouter import OpenRouter
 
-sequence_record.append(observation_frame_2)
-sequence_record.append(observation_frame_3)
+messages = [{"role": "user", "content": [
+    {"type": "text", "text": prompt},
+    {"type": "image_url", "image_url": {"url": image_to_data_url(frame_1)}},
+    {"type": "image_url", "image_url": {"url": image_to_data_url(frame_2)}},
+]}]
+
+with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+    response = client.chat.send(
+        model=HOSTED_MODEL, messages=messages, temperature=0,
+        response_format={"type": "json_schema", "json_schema": {
+            "name": "visible_sequence", "strict": True, "schema": schema}},
+    )
 ```
 
-<div class="array-view"><span>index 0<br><b>frame 2</b></span><span>index 1<br><b>frame 3</b></span></div>
-
-<p class="caption"><code>append()</code> adds one dictionary to the end. The order matters because our question concerns change across time.</p>
+<p class="caption"><code>HOSTED_MODEL</code> comes from the course configuration. The key is entered privately and never printed.</p>
 
 ---
 
-## A loop repeats the same operation across several files
+## The Ollama branch reads the same two local files
 
 ```python
-frame_paths = [
-    Path("images/zidane_close_1.png"),
-    Path("images/zidane_close_2.png"),
-    Path("images/zidane_close_3.png"),
-]
+import ollama
 
-sequence_record = []
+messages = [{
+    "role": "user",
+    "content": prompt,
+    "images": [str(frame_1), str(frame_2)],
+}]
 
-for frame_path in frame_paths:
-    observation = describe_frame(frame_path, prompt)
-    sequence_record.append(observation)
+response = ollama.chat(
+    think=False,
+    model=LOCAL_MODEL,
+    messages=messages,
+    format=schema,
+    options={"temperature": 0},
+)
 ```
 
-<div class="line-notes"><div><code>for ... in ...</code><span>takes one path at a time, in order</span></div><div><code>describe_frame(...)</code><span>runs the image-and-prompt routine we just unpacked</span></div><div><code>append(...)</code><span>saves each returned dictionary</span></div></div>
+<p class="caption"><code>LOCAL_MODEL</code> also comes from the course configuration. Ollama performs the model inference on the local machine.</p>
 
 ---
 
-## The saved record should expose the full chain
+## First preserve the raw return; then turn it into a dictionary
 
-| field | saved value |
-|---|---|
-| source | FIFA broadcast clip · frame 3 |
-| prompt | Describe only visible positions and actions… |
-| model | openai/gpt-4.1-mini |
-| model description | The player in white turns… |
-| researcher correction | Direction of gaze is unclear. |
-| missing evidence | speech · intention · emotion |
+```python
+if ROUTE == "openrouter":
+    raw_output = response.choices[0].message.content
+else:
+    raw_output = response.message.content
 
-<p class="takeaway">Python keeps the pieces together. It does not decide whether the sociological interpretation is convincing.</p>
+print("Raw JSON text:", raw_output)
+
+description = json.loads(raw_output)
+print(description["observable_change"])
+print(description["visible_evidence"])
+print(description["interpretation_withheld"])
+```
+
+<div class="object-map"><span><code>raw_output</code><small>JSON string returned by the model</small></span><i>→</i><span><code>json.loads(...)</code><small>conversion operation</small></span><i>→</i><span><code>description</code><small>Python dictionary</small></span></div>
+
+---
+
+## The researcher checks the named claims against the frames
+
+<div class="review-record">
+<div><b>Observable change</b><p>Can the claimed change be seen across both displayed frames?</p></div>
+<div><b>Visible evidence</b><p>Does every item refer to something actually present in the pixels?</p></div>
+<div><b>Interpretation withheld</b><p>Did the model really avoid identity, motive, speech and remembered event knowledge?</p></div>
+</div>
+
+<p class="caption">Structured output makes claims easier to inspect. It does not make them accurate.</p>
+
+---
+
+## One changed frame lets us test what the description depends on
+
+```python
+frame_2 = ROOT / "slides" / "session04" / "images" / "zidane_fine2_170.png"
+```
+
+<div class="before-after">
+<div><b>Held fixed</b><p>first frame, prompt, schema, route, model and temperature</p></div>
+<div><b>Changed</b><p>only the second image supplied to the model</p></div>
+</div>
+
+<p class="takeaway">Rerun the same call and ask which claims changed, which remained, and whether either return imports knowledge that is absent from the images.</p>
 
 ---
 

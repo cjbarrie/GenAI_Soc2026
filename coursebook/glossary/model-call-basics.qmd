@@ -1,0 +1,248 @@
+---
+title: "Field guide: model-call basics"
+description: "From a Python string to a model response"
+---
+
+This page explains the pieces involved in one language-model call. The examples are deliberately small and run without an API key. Follow the Week 1 links when you want to make the corresponding live OpenRouter or Ollama call.
+
+::: {.resource-card}
+[Open the companion notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/gh-pages/_generated/downloads/glossary/model-call-basics.ipynb) · [Download the notebook](../_generated/downloads/glossary/model-call-basics.ipynb)
+:::
+
+<div class="concept-flow"><div><strong>Research material</strong><span>text we want to analyse</span></div><div><strong>Python objects</strong><span>strings, lists and dictionaries</span></div><div><strong>Client request</strong><span>sent to a model server</span></div><div><strong>Response</strong><span>returned text and metadata</span></div></div>
+
+## Language model and inference {#language-model}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** A language model is a trained system that assigns probabilities to possible continuations of a sequence. **Inference** is what happens when we run that trained model to produce an answer; it is not another round of training.
+
+```python
+model_name = "openai/gpt-5.2"
+operation = "inference"
+print(model_name, operation)
+```
+
+<div class="glossary-output">openai/gpt-5.2 inference</div>
+
+**Input → operation → output.** Two strings are stored and printed. In a live call, the model name selects a trained model and the server performs inference on the supplied messages.
+
+**Why it matters.** A fluent return is a generated result from a particular model invocation, not a fact retrieved from an authoritative database.
+
+## Prompt {#prompt}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** A prompt is the material we deliberately give the model for a task: instructions, questions, examples and research text.
+
+```python
+text = "Most people can be trusted."
+instruction = "Score the text for generalized social trust from 0 to 2."
+prompt = instruction + "\n\nText: " + text
+print(prompt)
+```
+
+<div class="glossary-output">Score the text for generalized social trust from 0 to 2.
+
+Text: Most people can be trusted.</div>
+
+**Input → operation → output.** Two strings are joined into a third string. That final string is what the model receives as the user content.
+
+**Common confusion.** A prompt is not only the last question typed into a chat window. System instructions, examples, retrieved documents and earlier turns may all become part of the effective prompt.
+
+## Messages and roles {#messages-and-roles}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** Chat interfaces normally send an ordered list of messages. A role tells the model how each piece of text functions in that conversation.
+
+```python
+messages = [
+    {"role": "system", "content": "Return a score and one reason."},
+    {"role": "user", "content": "Score: Most people can be trusted."},
+]
+print(messages[1]["role"])
+print(messages[1]["content"])
+```
+
+<div class="glossary-output">user
+Score: Most people can be trusted.</div>
+
+**Input → operation → output.** `messages` is a list; each item is a dictionary. `[1]` selects the second dictionary and `["content"]` retrieves its text.
+
+**Why it matters.** The order and roles are part of the research instrument and should be saved.
+
+## Token and tokenization {#token}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** A token is one unit of text processed by a model. It may be a word, part of a word, punctuation or whitespace. Tokenization is the conversion from ordinary text to those units.
+
+```python
+illustrative_tokens = ["general", "ized", " social", " trust", "."]
+print(len(illustrative_tokens))
+print(illustrative_tokens)
+```
+
+<div class="glossary-output">5
+['general', 'ized', ' social', ' trust', '.']</div>
+
+**Input → operation → output.** A list represents an illustrative tokenization and `len(...)` counts its items. Real token boundaries depend on the selected model's tokenizer.
+
+**Common confusion.** Tokens are not reliably equivalent to words. Cost and context limits are normally measured in tokens.
+
+## Temperature {#temperature}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** Temperature changes how sharply or diffusely a model samples among possible next tokens. Lower values usually make high-probability continuations more dominant; they do not make an answer true.
+
+<div class="concept-contrast"><div><strong>Lower temperature</strong>Probability is concentrated more heavily on the leading candidates.</div><div><strong>Higher temperature</strong>Lower-ranked candidates receive more opportunity to be sampled.</div></div>
+
+```python
+request = {"temperature": 0.0}
+print(request)
+request["temperature"] = 0.8
+print(request)
+```
+
+<div class="glossary-output">{'temperature': 0.0}
+{'temperature': 0.8}</div>
+
+**Input → operation → output.** The value associated with one dictionary key changes. In practice the dictionary field becomes a named argument in the OpenRouter or Ollama request.
+
+**Why it matters.** Record temperature, but test empirical stability rather than treating `0` as a guarantee of identical returns.
+
+## Maximum output tokens {#maximum-output-tokens}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** This setting limits how many tokens the model may generate after reading the input.
+
+```python
+request = {"max_output_tokens": 80}
+print("Output ceiling:", request["max_output_tokens"], "tokens")
+```
+
+<div class="glossary-output">Output ceiling: 80 tokens</div>
+
+**Why it matters.** A short limit can cut an answer off. A long limit permits more text but does not require the model to use it.
+
+## Seed {#seed}
+
+<span class="term-meta">Useful · Week 2</span>
+
+**In plain English.** A seed is an initial number used by a pseudorandom process. Some providers accept one to make sampling more repeatable, although identical seeds do not guarantee identical results across changing infrastructure or model versions.
+
+```python
+run_record = {"seed": 42, "temperature": 0}
+repeat_record = {"seed": 42, "temperature": 0}
+print(run_record == repeat_record)
+```
+
+<div class="glossary-output">True</div>
+
+**Input → operation → output.** Python confirms that the recorded settings match. It does not establish that two external model executions will match.
+
+**Why it matters.** A seed is one recorded condition in a reproducibility check, not a substitute for rerunning and comparing the outputs.
+
+## API and endpoint {#api-endpoint}
+
+<span class="term-meta">Core · Setup</span>
+
+**In plain English.** An API is a documented way for programs to communicate. An endpoint is a particular network address within that API.
+
+```python
+api = "Ollama API"
+endpoint = "http://localhost:11434/api/chat"
+print(api)
+print(endpoint)
+```
+
+<div class="glossary-output">Ollama API
+http://localhost:11434/api/chat</div>
+
+**Why it matters.** The endpoint is the destination, not the model. OpenRouter contacts a remote endpoint; Ollama normally contacts an endpoint on the same computer.
+
+## SDK or client library {#sdk-client}
+
+<span class="term-meta">Core · Setup</span>
+
+**In plain English.** An SDK or client library is installed code that turns familiar Python objects into an API request and turns the reply into a Python response object.
+
+```python
+package_names = ["openrouter", "ollama"]
+for package_name in package_names:
+    print("Python client:", package_name)
+```
+
+<div class="glossary-output">Python client: openrouter
+Python client: ollama</div>
+
+**Common confusion.** Installing the `ollama` Python package does not download the model or necessarily start the Ollama application. Installing the OpenRouter package does not install a hosted model.
+
+## Model identifier and version {#model-identifier}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** A model identifier is the string a service uses to select a model. A version records which changing or dated model artifact actually produced the return.
+
+```python
+run = {
+    "requested_model": "openai/gpt-5.2",
+    "resolved_model": "provider-reported-version",
+}
+print(run["requested_model"])
+```
+
+<div class="glossary-output">openai/gpt-5.2</div>
+
+**Why it matters.** Save both requested and provider-reported identifiers when available. A convenient alias may later point to a changed model.
+
+## Hosted and local models {#hosted-local}
+
+<span class="term-meta">Core · Setup</span>
+
+**In plain English.** A hosted call runs inference on an external provider's hardware. A local call runs a downloaded model through software such as Ollama on the user's machine.
+
+```python
+routes = {
+    "openrouter": "remote provider hardware",
+    "ollama": "this computer",
+}
+print(routes["openrouter"])
+print(routes["ollama"])
+```
+
+<div class="glossary-output">remote provider hardware
+this computer</div>
+
+**Why it matters.** The routes differ in privacy, hardware requirements, cost, speed and reproducibility. Local does not automatically mean secure; hosted does not automatically mean unsuitable.
+
+## Request, response and usage metadata {#request-response}
+
+<span class="term-meta">Core · Week 1</span>
+
+**In plain English.** A request is what our program sends. A response is what the service sends back. Usage metadata describes features of that exchange such as token counts and latency.
+
+```python
+request = {"model": "course-model", "messages": [{"role": "user", "content": "Score this."}]}
+response = {"content": "2", "prompt_tokens": 9, "output_tokens": 1, "latency_ms": 420}
+print(response["content"])
+print(response["prompt_tokens"] + response["output_tokens"])
+```
+
+<div class="glossary-output">2
+10</div>
+
+**Input → operation → output.** The first lookup retrieves generated content. The addition calculates total recorded tokens from two numeric fields.
+
+**Why it matters.** Save the raw return and metadata before extracting the single field needed for analysis.
+
+## Sources and live examples
+
+- [OpenRouter Python SDK](https://openrouter.ai/docs/client-sdks/python/overview)
+- [OpenRouter API reference](https://openrouter.ai/docs/api/reference/overview)
+- [Ollama API introduction](https://docs.ollama.com/api/introduction)
+- [Ollama Python client](https://github.com/ollama/ollama-python)
+- [Week 1 Python: two complete live calls](../python/session01.qmd)

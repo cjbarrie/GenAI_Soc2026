@@ -3,6 +3,8 @@ title: "Week 1 — What kind of research technology is an LLM?"
 description: "From a model answer to an inspectable research record"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/model-call-basics.qmd#language-model">model and inference</a> · <a href="../glossary/model-call-basics.qmd#prompt">prompt</a> · <a href="../glossary/model-call-basics.qmd#messages-and-roles">messages</a> · <a href="../glossary/model-call-basics.qmd#temperature">temperature</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">When does a model response become part of a defensible research process rather than a piece of plausible text?</div>

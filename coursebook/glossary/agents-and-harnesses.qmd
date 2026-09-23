@@ -1,0 +1,270 @@
+---
+title: "Field guide: agents, skills and harnesses"
+description: "What surrounds the model when a task takes more than one call"
+---
+
+An agent is not a special substance inside a language model. It is a system assembled around model calls. The terms on this page describe different parts of that system.
+
+::: {.resource-card}
+[Open the companion notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/gh-pages/_generated/downloads/glossary/agents-and-harnesses.ipynb) · [Download the notebook](../_generated/downloads/glossary/agents-and-harnesses.ipynb)
+:::
+
+<div class="concept-flow"><div><strong>Task and state</strong><span>what is known now</span></div><div><strong>Model decision</strong><span>the proposed next action</span></div><div><strong>Tool or environment</strong><span>what happens outside the model</span></div><div><strong>Updated state</strong><span>what the next call can receive</span></div></div>
+
+## Agent {#agent}
+
+<span class="term-meta advanced">Advanced · Week 9</span>
+
+**In plain English.** An agent is a system in which a model receives a task and state, selects actions, observes results and may continue across multiple steps.
+
+```python
+agent = {
+    "task": "Find evidence about tenant participation.",
+    "state": {"step": 1, "sources_seen": []},
+    "available_tools": ["search_corpus"],
+}
+print(agent["task"])
+```
+
+<div class="glossary-output">Find evidence about tenant participation.</div>
+
+**Common confusion.** A single model response is not necessarily an agent. Agency here describes the surrounding sequence of decisions and actions.
+
+## Tool {#agent-tool}
+
+<span class="term-meta advanced">Advanced · Week 11</span>
+
+**In plain English.** A tool is a callable capability outside the model, such as searching a corpus, reading a file or calculating a statistic.
+
+```python
+def search_corpus(query):
+    return [{"source_id": "s03", "text": "Meeting attendance followed repeated exchange."}]
+
+tool_result = search_corpus("participation after mutual aid")
+print(tool_result[0]["source_id"])
+```
+
+<div class="glossary-output">s03</div>
+
+**Why it matters.** The tool has its own data, errors and permissions. Its result should be recorded separately from the model's interpretation.
+
+## Agent loop {#agent-loop}
+
+<span class="term-meta advanced">Advanced · Weeks 9–12</span>
+
+**In plain English.** An agent loop repeats a bounded sequence: give the model the current state, obtain an action, execute or reject it, store the observation, and decide whether to continue.
+
+```python
+steps = []
+for step_number in range(1, 4):
+    steps.append({"step": step_number, "action": "inspect_next_source"})
+print(len(steps))
+```
+
+<div class="glossary-output">3</div>
+
+**Input → operation → output.** `range(1, 4)` supplies three integers. Each iteration appends one event dictionary. A real loop also needs explicit stopping and failure rules.
+
+**Why it matters.** Repeated calls can compound small errors, so the complete sequence matters as much as the final response.
+
+## State, observation and action {#state-observation-action}
+
+<span class="term-meta advanced">Advanced · Week 9</span>
+
+**In plain English.** State is the information carried between steps. An action is what the system attempts. An observation is what comes back from the tool or environment.
+
+```python
+state = {"sources_seen": []}
+action = {"tool": "read_source", "source_id": "s03"}
+observation = {"source_id": "s03", "status": "found"}
+state["sources_seen"].append(observation["source_id"])
+print(state)
+```
+
+<div class="glossary-output">{'sources_seen': ['s03']}</div>
+
+**Why it matters.** We should be able to distinguish what the model requested from what actually happened.
+
+## Planning {#planning}
+
+<span class="term-meta advanced">Advanced · Week 11</span>
+
+**In plain English.** Planning is the production or selection of steps intended to reach a goal. A plan may be generated once or revised after observations.
+
+```python
+plan = [
+    "identify search terms",
+    "search supplied corpus",
+    "inspect excerpts",
+    "draft one bounded claim",
+]
+print(plan[0], "→", plan[-1])
+```
+
+<div class="glossary-output">identify search terms → draft one bounded claim</div>
+
+**Why it matters.** A plausible plan can still omit contrary evidence or use tools in an invalid order. Plans are objects to inspect, not guarantees of competent execution.
+
+## Trajectory and trace {#trajectory-trace}
+
+<span class="term-meta advanced">Advanced · Weeks 11–12</span>
+
+**In plain English.** A trajectory is the sequence of states, decisions, actions and observations produced during a run. A trace is the saved record that allows us to inspect that sequence.
+
+```python
+trace = [
+    {"event": "model_action", "value": "search_corpus"},
+    {"event": "tool_result", "value": ["s03", "s08"]},
+    {"event": "model_claim", "value": "Repeated exchange preceded participation."},
+]
+print([event["event"] for event in trace])
+```
+
+<div class="glossary-output">['model_action', 'tool_result', 'model_claim']</div>
+
+**Why it matters.** Saving only the final answer hides the route by which it was produced.
+
+## Stopping condition {#stopping-condition}
+
+<span class="term-meta advanced">Advanced · Weeks 10–12</span>
+
+**In plain English.** A stopping condition specifies when an iterative system must end.
+
+```python
+step = 3
+maximum_steps = 3
+claim_has_source = True
+should_stop = step >= maximum_steps or claim_has_source
+print(should_stop)
+```
+
+<div class="glossary-output">True</div>
+
+**Why it matters.** Without bounded stopping, an agent may continue spending money, repeat itself or accumulate unsupported transformations.
+
+## Checkpoint and human approval {#checkpoint-human-approval}
+
+<span class="term-meta advanced">Advanced · Weeks 11–13</span>
+
+**In plain English.** A checkpoint pauses the workflow at a named stage. Human approval is one possible rule for deciding whether the next action may proceed.
+
+```python
+checkpoint = {
+    "proposed_action": "publish_claim",
+    "source_check_passed": False,
+    "approved": False,
+}
+may_continue = checkpoint["source_check_passed"] and checkpoint["approved"]
+print(may_continue)
+```
+
+<div class="glossary-output">False</div>
+
+**Why it matters.** “Human in the loop” is meaningful only when we state what the person sees, what they must decide and whether they can prevent the action.
+
+## Skill {#agent-skill}
+
+<span class="term-meta advanced">Advanced · Week 11</span>
+
+**In plain English.** In many agent systems, a skill is a reusable package for a kind of task. It can contain instructions, examples, resources and references to tools. The term is not standardized across platforms.
+
+```python
+skill = {
+    "name": "source_checker",
+    "instructions": "Resolve every cited ID and return the matching excerpt.",
+    "tools": ["read_source"],
+    "output_fields": ["source_id", "excerpt", "found"],
+}
+print(skill["name"])
+```
+
+<div class="glossary-output">source_checker</div>
+
+**Common confusion.** A skill may tell an agent how and when to use a tool; the tool is the callable operation itself.
+
+## Harness and scaffold {#harness-scaffold}
+
+<span class="term-meta advanced">Advanced · Week 11</span>
+
+**In plain English.** A harness is the surrounding software that prepares model inputs, exposes tools, carries state, repeats calls, applies limits and records events. **Scaffold** is often used for a designed arrangement of prompts and steps. Usage varies, so researchers should describe the actual components rather than rely on the label.
+
+<div class="concept-flow"><div><strong>Instructions</strong><span>what the system asks</span></div><div><strong>Model</strong><span>proposes an action</span></div><div><strong>Harness</strong><span>executes, limits and records</span></div><div><strong>Next call</strong><span>receives updated state</span></div></div>
+
+```python
+harness = {
+    "maximum_steps": 3,
+    "allowed_tools": ["search_corpus", "read_source"],
+    "require_source_id": True,
+    "events": [],
+}
+harness["events"].append({"event": "run_started"})
+print(harness["events"])
+```
+
+<div class="glossary-output">[{'event': 'run_started'}]</div>
+
+**Why it matters.** Apparent differences between “agents” may be produced by their harnesses rather than their underlying language models.
+
+## Guardrail {#guardrail}
+
+<span class="term-meta advanced">Advanced · Weeks 11–13</span>
+
+**In plain English.** A guardrail is a rule or check intended to constrain inputs, outputs or actions.
+
+```python
+proposed_source_id = "s99"
+allowed_source_ids = {"s01", "s03", "s08"}
+guardrail_passed = proposed_source_id in allowed_source_ids
+print(guardrail_passed)
+```
+
+<div class="glossary-output">False</div>
+
+**Common confusion.** A guardrail reduces a specified risk. It does not make the overall system safe or methodologically valid.
+
+## Sandbox {#sandbox}
+
+<span class="term-meta advanced">Advanced · Week 11</span>
+
+**In plain English.** A sandbox is a restricted environment that limits what code or tools can access or change.
+
+```python
+sandbox = {
+    "readable_folders": ["course_corpus/"],
+    "network_access": False,
+    "may_delete_files": False,
+}
+print(sandbox["network_access"])
+```
+
+<div class="glossary-output">False</div>
+
+**Why it matters.** Tool permissions determine the possible consequences of a mistaken or manipulated agent action.
+
+## Provenance {#provenance}
+
+<span class="term-meta">Core · Weeks 1–13</span>
+
+**In plain English.** Provenance is information about where an input, transformation or claim came from.
+
+```python
+claim_record = {
+    "claim": "Repeated exchange preceded participation in T01.",
+    "source_ids": ["T01_A", "T01_B"],
+    "model": "course-model",
+    "reviewed_by_researcher": True,
+}
+print(claim_record["source_ids"])
+```
+
+<div class="glossary-output">['T01_A', 'T01_B']</div>
+
+**Why it matters.** Provenance lets a reader return from a generated claim to the supplied material and recorded operations.
+
+## Sources and course examples
+
+- [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- [Ollama tool calling](https://docs.ollama.com/capabilities/tool-calling)
+- [Week 9 Python: the first course agent function](../python/session09.qmd)
+- [Week 11 Python: a transparent research-agent tool call](../python/session11.qmd)
+- [Week 12 Python: rerunning and comparing a trajectory](../python/session12.qmd)

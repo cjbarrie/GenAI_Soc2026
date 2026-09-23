@@ -3,6 +3,8 @@ title: "Week 7 — Whose attitudes do synthetic respondents represent?"
 description: "Survey populations, silicon sampling and distributional validation"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/outputs-and-tools.qmd#schema">schema</a> · <a href="../glossary/outputs-and-tools.qmd#structured-output">structured output</a> · <a href="../glossary/models-and-evaluation.qmd#calibration">calibration</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">What kind of evidence is produced when a model answers a survey question as if it were a person?</div>

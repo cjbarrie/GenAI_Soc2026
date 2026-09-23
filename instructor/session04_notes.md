@@ -1,246 +1,202 @@
-# Instructor notes — Session 4: What part of social experience becomes evidence?
+# Instructor notes — Session 4: What can we learn from a recorded situation?
 
 ## Intended endpoint
 
-Students should leave able to say:
+Students should leave able to explain four linked points:
 
-> Collins asks us to explain violence through the unfolding situation rather than a stable violent type. Image, audio, transcript, fieldnote, participant, and model records preserve different parts of that situation. The code records ordered changes and missing alignment. It prepares a sequence for interpretation; it does not identify intention, responsibility, or a causal mechanism.
+1. A recording preserves selected features of a situation from a particular position.
+2. Actions become interpretable through their place in an unfolding sequence and the responses of others.
+3. Codes, visual highlights, theory and interfaces organize what an observer notices.
+4. A multimodal model can propose a structured description, but the researcher must check each claim against the source record and state what the record cannot establish.
 
-They should also explain the focal Python block without live AI assistance:
+For the Python routine, students should be able to narrate:
 
-`exact input and type → operation → exact output and type → sociological meaning → limit`
+`two image paths + prompt string + schema dictionary → route-specific model call → raw JSON string → parsed dictionary → source check`
 
-## Provenance and classroom care
+## The exact Goodwin argument
 
-The confrontation is an **instructor-authored synthetic reconstruction**. State this before the first frame and repeat it when participant recollections appear. It contains no real people, institution, testimony, injury, or empirical outcome. It is non-graphic and stops immediately after brief contact.
+Do not reduce Goodwin to “people can interpret the same image differently” or to a generic warning about bias. His argument is more sociological and more useful:
 
-Students can complete every activity from the text descriptions. Never require anyone to listen to or inspect a confrontation scene. Do not ask the class to decide which group is morally or legally responsible.
+> Professional vision consists of socially organized practices through which members of a community make selected features of a complex perceptual field relevant, intelligible and available as evidence for the work they are doing.
+
+Goodwin follows three connected practices:
+
+- **Coding schemes** transform continuous, ambiguous material into professionally recognized objects. The Munsell chart does not merely report a private perception of soil colour; it helps an archaeologist produce an observation in categories colleagues can compare and act upon.
+- **Highlighting** makes some features conspicuous while pushing others into the background. Highlighting is material: bodies, charts, overlays, pointing and talk all direct attention.
+- **The production and articulation of material representations** rearranges an event into a form that can be inspected and argued over. In the Rodney King trial, individual frames were enlarged, cropped and pasted into a long spatial sequence. Counsel's language and the display mutually reinforced a proposed reading.
+
+Professional vision is therefore perspectival and socially situated, but it is not simply arbitrary individual opinion. Communities provide practices, categories, artefacts and standards through which members learn to see. Those practices can also be contested, as the opposing courtroom accounts demonstrate.
+
+### The white-line correction
+
+The white line in Goodwin is **not a line beneath King's foot or a feature already present in the scene**. The defence placed transparent overlays on enlarged still frames, with white lines tracing King's body. This altered the figure–ground relation: King became the conspicuous moving figure while the officers receded. Counsel described the displayed movement as going “from the ground to a charge.” The important point is that the visual overlay and the verbal coding worked together to construct the event as evidence for a particular legal account.
+
+Do not ask the slide to settle what “really happened.” Ask how a courtroom practice turned a complex recorded encounter into an intelligible object for the jury.
+
+## How to teach the Goodwin section
+
+### 1. Begin with archaeology
+
+Ask students what happens between seeing a patch of soil and entering a comparable observation in a field record. Use the Munsell chart to show that professional categories do not arrive after perception; they help organize the act of seeing and reporting.
+
+Suggested question:
+
+> What does the chart allow archaeologists to see and communicate that an unaided description such as “brownish” would not?
+
+### 2. Move to the courtroom
+
+Explain that the Rodney King video did not enter court as a self-interpreting record. Lawyers selected frames, slowed and reorganized time, named movements and connected those movements to competing legal accounts.
+
+Suggested questions:
+
+- What has happened to time when a video becomes a row of still images?
+- Which actor becomes figure and which becomes background?
+- What does a label such as “aggressive” ask the jury to treat as relevant?
+
+### 3. Reveal the overlays
+
+First let students inspect the published figure. Then identify the transparent overlays and white bodily outlines. Stress that this is a demonstration of highlighting as an embodied and material practice, not merely a metaphor.
+
+Suggested question:
+
+> If the outlines had instead traced the officers' bodies and batons, how might the perceptual field have been reorganized?
+
+### 4. State the argument explicitly
+
+Use the synthesis slide only after both empirical examples. Give the three practices—coding, highlighting and representation—and then state that professional vision is socially organized seeing.
+
+### 5. Carry Goodwin into the rest of the lecture
+
+- **Heinlein:** green bounding boxes are live algorithmic highlights. They can direct attention, be overridden or interrupt the procedure. The sociological issue is how attention, judgement, authority and training change—not only whether detection accuracy rises.
+- **Nassauer:** camera position, segmentation and sequence reconstruction organize the evidentiary field. They are methodological choices, not neutral retrieval.
+- **Collins:** a theory supplies another coding scheme by making timing, distance, confrontation and emotional dominance analytically relevant. It must still be tested against appropriate evidence.
+- **The LLM routine:** the prompt and JSON schema tell the model what to notice and how to represent it. The model's output is another professionally organized description, not an unmediated account of the pixels.
 
 ## 165-minute plan
 
-### 9:30–9:40 — Go back from text to action
+### 9:30–9:43 — Establish the empirical problem
 
-- Revisit the Week 2 label and Week 3 interview excerpt.
-- Ask: what had to happen before either became text in Python?
-- Collect concrete omissions: body position, sequence, sound, gaze, setting, audience, experience.
-- Introduce today's substantive question without mentioning a model.
+- Open on the FIFA thumbnail and note that “moments of madness” supplies an interpretation before the clip plays.
+- Compare the close broadcast and tactical views.
+- Separate what is visible, what is audible and what must be inferred.
+- State the day's question: how does a recorded situation become sociological evidence?
 
-**Evidence of understanding:** students name a feature of an unfolding situation rather than saying only “context.”
+**Check:** students should name a feature omitted by a recording, not say only “context.”
 
-### 9:40–9:58 — How sociologists have studied situations
+### 9:43–10:03 — A short sociological prehistory
 
-Keep this section general. The purpose is to establish a sequence of methodological questions before introducing the protest example.
+- **Simmel:** sensory access and distance are part of social relations.
+- **Mead:** gesture and response form an unfolding social act.
+- **Goffman:** actors, officials, audiences and rules organize the situation.
+- **Sequence analysis:** a movement becomes intelligible through what precedes and follows it.
 
-- **Simmel:** sight, hearing, distance, reciprocal perception.
-- **Mead:** a movement becomes a gesture within a social act through others' responses.
-- **Goffman:** co-presence has an interaction order of mutual monitoring, displays, boundaries, and obligations.
-- **Conversation analysis:** timing, overlap, response, and repair are part of the action.
-- **Emerson, Fretz, and Shaw:** fieldnotes select and write the event; they are not the event.
-- **Goodwin:** coding, highlighting, and representation organize what a trained community sees.
+Keep applying each point to the same football sequence. The authors are not a chronology quiz; each contributes one question for the case.
 
-Do not teach six miniature theories. Each author contributes one question that can later be applied to the same scene.
+### 10:03–10:25 — Goodwin and professional vision
 
-**Evidence of understanding:** students explain that human observation is theoretically and professionally organized before a model enters.
+Teach the Goodwin sequence above: Munsell chart → courtroom coding → white body outlines → three-part synthesis.
 
-### 9:58–10:05 — Introduce the constructed case
+Return to the FIFA thumbnail and ask how cropping, captioning and repetition have already organized the viewer's attention.
 
-- State clearly that the storyboard is a synthetic teaching example and does not depict real people or an empirical event.
-- Introduce the question: what happens within a confrontation that allows violence to begin—or enables it to remain nonviolent?
-- Show only the starting position. Establish that no contact has yet occurred and that the camera provides one view.
-- Remind students that the six questions from the preceding section now guide the observation.
+**Check:** students should be able to explain why professional vision is neither neutral sight nor arbitrary opinion.
 
-### 10:05–10:18 — Collins shifts the explanation to the situation
+### 10:25–10:40 — Heinlein and live algorithmic highlighting
 
-Show the public Princeton chapter page and make it clear that it is a book chapter.
+- Introduce the study design: observations and interviews in AI-assisted colonoscopy.
+- Explain the intermittent green boxes marking suspected polyps.
+- Compare following a mark, overriding it and switching the system off.
+- Explain the circular gaze and the concern that novices may wait for the interface to tell them where to look.
 
-Explain:
+Bridge explicitly:
 
-- grievances, identities, or individual traits do not make violence automatic;
-- confrontational tension/fear is usually a barrier;
-- most confrontations do not become competent violence;
-- close sequence comparison is needed to identify a proposed pathway through the barrier.
-
-Avoid presenting confrontational tension/fear as directly visible in a frame. It is a theoretical claim that needs multiple forms of evidence.
-
-**Student prompt:** What would a dispositional explanation ask us to observe? What would a situational explanation ask us to reconstruct?
-
-### 10:18–10:30 — Observe the common sequence before seeing its endings
-
-Reveal t=0, 2, 4, and 6. Students write only what is visible or audible. Ban “aggressive,” “threatening,” “fearless,” and “chaotic” for the first pass.
-
-Then reveal the de-escalation and escalation endings. Ask for the earliest defensible divergence and an alternative account. Introduce Nassauer's comparison of violent and nonviolent outcomes.
-
-**Evidence of understanding:** students distinguish conduct, interpretation, and unobserved experience.
-
-### 10:30–10:40 — A video becomes evidence through a method
-
-Introduce Nassauer and Legewie explicitly as a methods paper. Apply its questions to the same sequence:
-
-- event boundary;
-- unit of analysis;
-- camera position and start time;
-- audio/transcript synchronization;
-- segmentation and coding;
-- comparison;
-- validity and ethics.
-
-Reveal Camera B, which begins at five seconds behind one group. Ask how it changes the apparent first movement.
-
-**Evidence of understanding:** students call a video positioned evidence rather than a transparent replay.
+> Goodwin shows how a professional community organizes seeing. Heinlein asks what changes when an algorithm begins to participate in that organization during the work itself.
 
 ### 10:40–10:50 — Break
 
-Leave the paired endings beside the cached whole-event summary:
+Leave the four questions—access, sequence, situation and representation—on screen.
 
-> Aggressive protesters approached police and caused the confrontation to become violent.
+### 10:50–11:08 — Turn the problem into a video method
 
-Below it leave: **description, prediction, or explanation?**
+Use Nassauer to introduce recording quality, multiple angles, ordered reconstruction and source documentation. Build the FIFA source record and then show the selection funnel.
 
-### 10:50–11:04 — Different records preserve different parts of the action
+Bridge explicitly:
 
-Compare the storyboard, audio transcript, automatic transcript, detailed transcript, observation note, and two synthetic participant recollections.
+> The recording does not interpret itself, so we first need a defensible reconstruction method. Only then should we apply a theory of violence.
 
-For each record ask:
+### 11:08–11:28 — Collins as a theory to investigate
 
-1. What does it contribute?
-2. What did its production remove?
-3. What claim can it not support?
+- State the comparative puzzle: most confrontations do not become competent violence.
+- Explain confrontational tension and fear as a proposed barrier, not something automatically visible in a still.
+- Present Collins's routes around the barrier and his narrower idea of the tunnel of violence.
+- Ask what changed immediately before contact in this case.
 
-Bring Simmel and Goodwin back. Add Davidson for transcription and Mestre and Ryan for audio.
+Do not treat an instructor-created list of stages as Collins's theory. Keep the observed sequence descriptive and use Collins to formulate comparative questions.
 
-**Important:** state that the recollections are instructor-authored and not testimony.
+### 11:28–11:42 — Compare claims and evidence
 
-### 11:04–11:17 — What multimodal and world models actually do
+- Separate observable, causal and theoretical statements in the table.
+- Put Collins beside Morrissey's habitus account and the experimental anger account.
+- Use the Morrissey quotation to provoke discussion about how much additional biographical and historical evidence a strong interpretation requires.
 
-Explain the technical operations in plain language:
+**Check:** students should identify the evidence needed for a claim rather than choosing their preferred explanation.
 
-- **shared representation:** ImageBind places information from several modalities in a common representational space;
-- **recognition/description:** a model names an action or produces text about it;
-- **next-state prediction:** V-JEPA 2 learns to predict a future representation from prior video;
-- **planning:** a system uses such prediction to select an action.
+### 11:42–11:52 — Apply Goodwin to the model
 
-Use Bisk et al. to ask what embodied and socially situated experience adds. Then state the central limit: accurate prediction of a future frame is not a sociological explanation of the mechanism that produced it.
+Explain that the model is not a neutral second pair of eyes. The prompt defines what should count; the schema highlights fields; the model and interface produce a representation. Ask what this setup pushes into the foreground and background.
 
-Do not suggest that models literally share human sensory experience.
+### 11:52–12:12 — Walk through the Python routine
 
-### 11:17–11:27 — The visible videos are also a sample
+Move slowly through the exact routine used in the Week 4 coursebook and notebook:
 
-Use Legewie, Nassauer, and Kühne (2026) as an in-class extension.
+1. inspect `frame_1` and `frame_2`;
+2. read the prompt string aloud;
+3. identify the three schema fields;
+4. compare OpenRouter data URLs with Ollama local image paths;
+5. inspect the route-specific call;
+6. print the raw JSON string before parsing;
+7. use `json.loads(...)` to create a dictionary;
+8. check each named field against the source images; and
+9. replace only `frame_2` with `zidane_fine2_170.png` and rerun.
 
-Ask students to define the target population for “protests become violent when distance narrows.” Then name selection processes: dramatic clips circulate, lead-up is missing, peaceful non-events are not uploaded, cameras are unevenly present, and platform ranking changes availability.
+There are no student-defined functions or loops this week. Those Python ideas are introduced later in the course.
 
-**Evidence of understanding:** students distinguish reconstruction of this episode from generalization across situations.
+### 12:12–12:15 — Close
 
-### 11:27–11:39 — Represent one moment in Python
-
-Build the t=4 dictionary from values students already understand.
-
-Pause on every token that carries meaning:
-
-- `4` is an integer time value;
-- quoted text is a string;
-- `audible_events` is a list of strings;
-- the braces create a dictionary;
-- the keys are an instructor-authored coding scheme;
-- `moment[\"distance\"]` retrieves one value.
-
-Have students predict the exact output and its type before execution.
-
-### 11:39–11:51 — Put the moments in order
-
-Place dictionaries in a list. Trace:
-
-```python
-previous_moment = None
-
-for current_moment in moments:
-    print(previous_moment)
-    print(current_moment)
-    previous_moment = current_moment
-```
-
-Act out the first two iterations. Explain `None` as a deliberate absence: on the first iteration there is no previous observed moment to compare.
-
-**Evidence of understanding:** students can state the current values of both names at each pause.
-
-### 11:51–12:03 — Record a change without calling it a cause
-
-Add the two conditions and `.append()` one at a time. The output is a list of structured change records with `time`, `from`, `to`, and `source`. Then add the alignment warning and return the result dictionary.
-
-Run the same `trace_sequence` function on the two endings. Ask what differs in the returned lists and what remains interpretive.
-
-**Required wording:** a software check confirms that the coded expectation was met. It does not validate the sociological explanation.
-
-### 12:03–12:11 — Completion task and oral rehearsal
-
-Students work in pairs and switch roles:
-
-- programmer completes one branch;
-- explainer predicts the exact output and describes each line;
-- both compare the two endings;
-- switch before the alignment-warning branch.
-
-No uninterrupted instructor coding segment should exceed twelve minutes.
-
-### 12:11–12:15 — Revise the initial summary
-
-Return to the initial model summary. Invite revisions that preserve sequence and limits.
-
-Target response:
-
-> In the constructed escalation sequence, narrowing distance, overlapping signals, and a sudden shift in relative position occurred before the shove. The de-escalating ending restored distance at the corresponding moment. The comparison shows how a Collins-inspired situational explanation could be investigated, but it does not establish intention, responsibility, or a general pattern.
-
-Connect forward: Session 5 moves from observing model-mediated evidence to using generated material in an intervention.
+Return to the opening thumbnail and ask students to name four layers now visible in it: source selection, sequence, social situation and representation. Preview Week 5 as a move from interpreting model-mediated evidence to constructing experimental material.
 
 ## Beginner-code narration
 
-For every code slide ask in this order:
+For every block ask, in this order:
 
 1. What is the exact input value?
-2. What Python type is it?
-3. What operation happens?
-4. What is the exact output value and type?
-5. What does it mean for the research question?
+2. What Python type or object stores it?
+3. What operation is performed?
+4. What exact output is produced?
+5. What does that output let us check?
 6. What does it not establish?
 
 Likely sticking points:
 
-- `=` gives a name to a value; `==` compares values.
-- `[]` can create a list or retrieve a list position; `record[\"distance\"]` retrieves a dictionary value by key.
-- `.get()` retrieves a value without stopping if the key is absent.
-- `is not None` prevents a comparison on the first iteration.
-- `.append()` changes the list by adding one item.
-- `return` sends a value back to the caller.
-- A passing `assert` is a software result, not a validity result.
+- A `Path` stores a file location; it is not the image pixels or a description.
+- The prompt is a string.
+- The schema is a nested dictionary containing strings, dictionaries and a list.
+- OpenRouter and Ollama use different transport syntax even though the research instruction is held fixed.
+- `raw_output` is still text, even when the text follows JSON syntax.
+- `json.loads(raw_output)` turns that text into a Python dictionary.
+- Retrieving `description["visible_evidence"]` does not validate the contents of the list.
+- A structured output can be perfectly well formed and empirically wrong.
 
 ## Completion standard
 
-Completion requires:
+Students replace only the second frame, rerun through one selected route and submit a narrated screen recording. The recording should:
 
-- an output prediction made before execution;
-- both missing branches completed;
-- supplied checks passing;
-- one loop iteration explained in ordinary language;
-- a comparison of the two endings;
-- 100–150 words linked to Collins or Nassauer, with one explicit limit; and
-- AI-use disclosure if applicable.
+- identify both image-path inputs;
+- explain whether OpenRouter or Ollama performs the inference;
+- explain the prompt string and schema dictionary;
+- show the raw JSON before parsing;
+- identify the parsed dictionary and its three fields;
+- check every visible-evidence claim against the displayed frames;
+- identify any imported identity, motive or event knowledge; and
+- connect the methodological limit to Goodwin, Heinlein or Nassauer.
 
-Syntax elegance is irrelevant. If the environment fails, use the rendered notebook and trace the provided output by hand.
-# Rebuild record — 2026-08-26
-
-The original version failed because it opened with a generic course sequence, used a synthetic protest as an ungrounded example, introduced Collins before teaching students how video evidence is constructed, and presented disconnected code objects without a single visible model call. Several slides relied on compressed slogans, black section backgrounds, first-page screenshots and instructor-created syntheses whose provenance was unclear.
-
-Repairs now required in this and future weeks:
-
-- start from a legible empirical problem rather than a course map;
-- use one real, sociologically defensible case across theory, methods and code;
-- introduce authors through the concrete studies and evidence on which their claims rest;
-- show the relevant page, figure, quotation or example at readable size;
-- distinguish published concepts from instructor synthesis explicitly;
-- establish the method used to construct evidence before applying a substantive theory to it;
-- keep observation, participant account, causal interpretation and theoretical interpretation distinct;
-- make each code slide continue the same workflow and show input, type, operation and output;
-- avoid black backgrounds, empty slide announcements, unexplained callouts and compressed “AI English”; and
-- verify that closing slides summarize the lecture rather than an arbitrary block of course weeks.
-
-The rebuilt case is the Zidane–Materazzi incident. Official FIFA close and tactical-camera footage provides a real sequence; missing usable speech makes the limits of video obvious; and the “moments of madness” thumbnail offers a direct example of framing. Goodwin is taught through the Munsell chart and Rodney King trial, Nassauer through published camera-angle and sequence figures, and Collins through the passages that state his comparative claim. *Situational Breakdowns* has moved to further reading.
+Syntax elegance is irrelevant. The student is demonstrating that they understand the input, operation, output and evidentiary check.

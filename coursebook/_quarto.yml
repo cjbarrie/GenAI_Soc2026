@@ -32,6 +32,20 @@ book:
     - how-to-use.qmd
     - recording-and-submission.qmd
     - computing.qmd
+    - part: "Language model field guide"
+      chapters:
+        - text: "Start here and A–Z index"
+          href: glossary/index.qmd
+        - text: "Model-call basics"
+          href: glossary/model-call-basics.qmd
+        - text: "Context and memory"
+          href: glossary/context-and-memory.qmd
+        - text: "Outputs and tools"
+          href: glossary/outputs-and-tools.qmd
+        - text: "Agents and harnesses"
+          href: glossary/agents-and-harnesses.qmd
+        - text: "Models and evaluation"
+          href: glossary/models-and-evaluation.qmd
     - ai-policy.qmd
     - assessment.qmd
     - part: "Evidence, measurement and interpretation"

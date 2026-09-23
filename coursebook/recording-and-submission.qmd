@@ -8,13 +8,13 @@ Upload each weekly coding recording by **5:00 p.m. Eastern on the Tuesday before
 
 If the class schedule changes, a dated instruction on the weekly page or in an NYU announcement takes priority. Missing elements may be supplied within one week, as described in the [assessment policy](assessment.qmd).
 
-## Submit by email to Box
+## Upload to the coding videos folder
 
-[Email your recording to `Coding_.38jlkn5sii39h6mf@u.box.com`](mailto:Coding_.38jlkn5sii39h6mf@u.box.com){.btn .btn-primary}
+[Open the coding videos folder in Google Drive](https://drive.google.com/drive/folders/1qn6x9B3sjDs6kJOegZAo0RJ3EeL46rWT?usp=drive_link){.btn .btn-primary}
 
-Attach the recording to the email. Name the file `lastname_weekNN.mp4`, replacing `lastname` and `NN` with your surname and the two-digit week number. Files ending in `.mov` or `.webm` are also accepted. You do not need to write a message in the email body.
+Sign in with your NYU Google account if prompted. Open the folder, choose **New → File upload** (or drag the video into the folder), and wait until Drive says the upload is complete. Name the file `lastname_weekNN.mp4`, replacing `lastname` with your surname and `NN` with the two-digit week number—for example, `chen_week03.mp4`. If another student shares your surname, add your first name: `chen_maya_week03.mp4`. Files ending in `.mov` or `.webm` are also accepted.
 
-Wait until the attachment has finished uploading before sending. Keep the message in your Sent folder as confirmation of submission. Do not put the shared OpenRouter key in the filename, recording, notebook, subject line or email body.
+Refresh the folder and confirm that your correctly named file appears. Do not put the shared OpenRouter key in the filename, recording or notebook. If the folder opens but you cannot upload, contact the instructor before the deadline; viewing a Drive folder does not necessarily grant upload permission.
 
 ## What the recording should show
 

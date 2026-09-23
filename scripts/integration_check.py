@@ -37,7 +37,14 @@ def main() -> None:
         if week == 9:
             require("def choose_action(" in source, "Week 9 must introduce choose_action", problems)
         require("raw" in source.lower(), f"{session}: raw return is not visibly preserved", problems)
-        require("ONE CHANGE" in source, f"{session}: missing one named change", problems)
+        if week == 3:
+            require(
+                "feedback_1 = input" in source and "feedback_2 = input" in source,
+                f"{session}: missing the two researcher replies",
+                problems,
+            )
+        else:
+            require("ONE CHANGE" in source, f"{session}: missing one named change", problems)
         if week in (1, 2, 8):
             require("client.chat.send" in source and "ollama.chat" in source, f"{session}: both routes required", problems)
         if 3 <= week <= 7:

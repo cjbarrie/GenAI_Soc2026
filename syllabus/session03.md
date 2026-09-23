@@ -33,13 +33,13 @@ AI-moderated interviewing appears only as a clearly marked aside. Its full metho
 
 ## Computational trace
 
-Students send two identified excerpts to a model and request a provisional suggestion as JSON. They inspect the raw JSON string, convert it to a Python dictionary and return to the cited excerpt. Every block is read as:
+Students work with eight instructor-authored fictional tenant excerpts and ask when mutual aid contributes to political solidarity. They write an independent first memo, request a provisional suggestion as JSON, challenge it with a countercase, then ask what the reported evidence can and cannot establish. Each of the three model calls prints raw JSON, parses it and returns to the cited excerpt. Every block is read as:
 
 **input value and type → operation → output value and type → research meaning → limit of the check**
 
 ## Weekly completion task
 
-Run the supplied structured-output call, change one excerpt and run it again. Submit a narrated screen recording explaining `json.dumps`, the model call, raw output, `json.loads` and field retrieval. Check the cited source and connect one interpretive limit to a reading. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
+Run the three-round researcher–model exchange. Submit a narrated screen recording explaining the first memo, `json.dumps`, each message list and model call, the raw JSON, `json.loads`, the cited source check, your two replies and your own final memo. Name a countercase and one limit of these interviews. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
 
 The task receives a completion mark. Code elegance is not assessed, and missing elements may be supplied within one week.
 

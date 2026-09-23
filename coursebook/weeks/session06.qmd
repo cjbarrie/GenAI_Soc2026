@@ -3,6 +3,8 @@ title: "Week 6 — What changes when a model starts asking the questions?"
 description: "Interview traditions, adaptive probes, voice and realized interview paths"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/context-and-memory.qmd#stateless-history">conversation history</a> · <a href="../glossary/agents-and-harnesses.qmd#state-observation-action">state and action</a> · <a href="../glossary/outputs-and-tools.qmd#speech-interfaces">speech-to-text and text-to-speech</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">What kind of evidence does an interview produce, and what changes when a model can choose or write the next probe?</div>

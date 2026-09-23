@@ -3,6 +3,8 @@ title: "Week 4 — What part of social experience becomes evidence?"
 description: "Observation, professional vision and multimodal sequence analysis"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/outputs-and-tools.qmd#multimodal-input">multimodal input</a> · <a href="../glossary/models-and-evaluation.qmd#hallucination-grounding">grounding</a> · <a href="../glossary/context-and-memory.qmd#truncation">selection and truncation</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">What happens within a confrontation that allows violence to begin—or enables it to remain nonviolent—and what can a recording actually show?</div>

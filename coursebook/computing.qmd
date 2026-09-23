@@ -6,6 +6,8 @@ The course uses real model calls from Week 1. Everyone configures both supported
 
 This chapter separates several things that are easy to conflate: Python, a notebook, an SDK, an API, a server and a model. They work together, but they are not interchangeable names for the same thing.
 
+Use the [Language Model Field Guide](glossary/index.qmd) when you want a short definition, a small Python example and the methodological consequence of a term used here.
+
 ## Six pieces of the setup
 
 | Piece | What it is | What it does in this course |

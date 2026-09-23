@@ -3,6 +3,8 @@ title: "Week 3 — What can an LLM contribute to qualitative interpretation?"
 description: "Iterative coding, source tracing and technological reflexivity"
 ---
 
+<div class="week-glossary-link"><strong>Field guide:</strong> <a href="../glossary/context-and-memory.qmd#context-window">context window</a> · <a href="../glossary/context-and-memory.qmd#stateless-history">conversation history</a> · <a href="../glossary/context-and-memory.qmd#external-memory">memory</a> · <a href="../glossary/outputs-and-tools.qmd#parsing">parsing JSON</a></div>
+
 ## This week’s sociological question
 
 <div class="chapter-question">Where can a model assist an iterative qualitative analysis without replacing the researcher’s engagement with cases, context and counterevidence?</div>
@@ -26,6 +28,7 @@ You should be able to distinguish retrieval, coding, theming and interpretation;
 ## Additional readings grouped by purpose
 
 - **For reflexivity about the model interaction:** Ibrahim and Voyer (2026), “Qualitative Research with LLM Chatbots,” *Qualitative Research*. [DOI](https://doi.org/10.1177/14687941251390794). [@IbrahimVoyer2026]
+- **For evidence that suggestions can influence subsequent judgment:** Williams-Ceci et al. (2026), “Biased AI Writing Assistants Shift Users’ Attitudes on Societal Issues,” *Science Advances*. Their experiments concern writing and political attitudes rather than qualitative analysis, but they show why retaining a pre-model interpretation matters. [DOI](https://doi.org/10.1126/sciadv.adw5578). [@WilliamsCeciEtAl2026]
 - **For a recent empirical implementation:** Jack, Cooper and Flower (2026), “Automating the Qualitative Interview?” *Methodological Innovations*. [DOI](https://doi.org/10.1177/20597991261448157). [@JackCooperFlower2026]
 
 ## Sociological and methodological background
@@ -34,11 +37,13 @@ Qualitative analysis is not a single request for “the themes.” Researchers r
 
 Viterna shows what this looks like in substantive research. Her explanation of women’s routes into Salvadoran guerrilla organizations depends on reconstructing sequences within life histories and comparing different paths into mobilization. The same broad topic can appear in several accounts while doing different explanatory work. That is exactly the kind of difference a decontextualized list of themes can erase.
 
-Our worked corpus consists of short interview excerpts about tenant mutual-aid networks. Each excerpt has an ID, speaker, question, preceding context and text. The research question asks how participants describe the relationship between mutual aid and formal housing organizations. Giving the listener this setup matters: the same sentence could support a different interpretation in a study of friendship, political mobilization or service provision.
+Our worked corpus consists of eight instructor-authored fictional excerpts about tenant mutual aid. Each has an ID and text; one also records the interviewer question that shaped the answer. The research question is: **When, if at all, does mutual aid among tenants contribute to political solidarity?** Receiving help alone is not enough: the exercise looks for accounts of tenants identifying a shared problem and acting together. The excerpts include both joint action and clear countercases, so a proposed theme has to survive comparison rather than just sound plausible.
 
 ## Synthesis of the current LLM literature
 
-Than and colleagues show that models can contribute useful code suggestions while researchers retain decisions about meaning and iteration. Ibrahim and Voyer ask researchers to document how the chatbot’s categories and conversational affordances enter the analysis. Both point away from one-shot automation. Context windows are large but finite; calls may not preserve cumulative analytic memory; summaries can smooth over contradictions; and a model can cite genuine passages while overstating what they show. The worked exercise therefore asks the model for a provisional suggestion and a source ID, then sends the researcher back to the passage. Viterna gives us the harder standard: can the analysis preserve chronology, comparison across cases and evidence that does not fit the first proposed theme?
+Than and colleagues show that models can contribute useful code suggestions while researchers retain decisions about meaning and iteration. Ibrahim and Voyer ask researchers to document how the chatbot’s categories and conversational affordances enter the analysis. Both point away from one-shot automation. But retaining the final decision does not guarantee an independent judgment. In two preregistered writing experiments, Williams-Ceci and colleagues found that biased AI suggestions shifted participants’ subsequently reported attitudes, usually without participants recognizing the influence. The participants were not qualitative researchers, so this is evidence of a plausible risk rather than a direct test of qualitative analysis. It nevertheless makes the timing of a suggestion methodologically important.
+
+Our workflow therefore begins with a short independent memo. The researcher then makes three visible model calls: request a provisional pattern, reply with a countercase, and ask what evidence supports the proposed explanation. After each reply, they reopen the cited source. The final memo belongs to the researcher. Context windows are large but finite; calls may not preserve cumulative analytic memory; summaries can smooth over contradictions; and a model can cite genuine passages while overstating what they show. Viterna gives us the harder standard: can the analysis preserve chronology, comparison across cases and evidence that does not fit the first proposed theme?
 
 ## Slides
 
@@ -49,7 +54,7 @@ Than and colleagues show that models can contribute useful code suggestions whil
 ::: {.content-visible when-format="pdf"}
 The slides are available in the [online Week 3 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session03.html).
 :::
-[Continue to the Week 3 Python work](../python/session03.qmd).
+[Open the Week 3 Python exercise and supplied notebook](../python/session03.qmd).
 
 ## Summary and preparation for next week
 
