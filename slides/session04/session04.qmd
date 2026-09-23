@@ -156,13 +156,11 @@ Open with the empirical problem, not the course map. The thumbnail itself alread
 
 ---
 
-## Goffman on life in the presence of others
+## Goffman on socially situated conduct
 
-<div class="classic-quote goffman-quote">
-<p>“It is a fact of our human condition that, for most of us, our daily life is spent in the immediate presence of others.”</p>
-</div>
-
-<p class="quote-connection">The conduct in the football footage is therefore socially situated: each action occurs within reach of other players, officials, cameras and an audience.</p>
+<figure class="goffman-source-quote">
+<img src="images/source_pages/goffman_interaction_order_quote.png" alt="Highlighted passage from Goffman's Interaction Order arguing that everyday conduct occurs in the immediate presence of others and should be studied in its own terms">
+</figure>
 
 <div class="source-line">Goffman, Erving. 1983. “The Interaction Order.” <i>American Sociological Review</i> 48(1):2.</div>
 
