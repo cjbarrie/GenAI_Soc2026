@@ -2,11 +2,13 @@
   "hosted": {
     "provider": "OpenRouter",
     "model": "openai/gpt-5.2",
+    "embedding_model": "openai/text-embedding-3-small",
     "environment_variable": "COURSE_HOSTED_MODEL"
   },
   "local": {
     "runtime": "Ollama",
     "model": "gemma4:e2b-it-qat",
+    "embedding_model": "all-minilm",
     "environment_variable": "COURSE_LOCAL_MODEL",
     "base_url": "http://localhost:11434/api"
   },

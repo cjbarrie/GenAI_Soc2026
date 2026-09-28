@@ -12,7 +12,9 @@ dependencies = [
   "pydantic>=2.9,<3",
   "pandas>=2.3,<3",
   "matplotlib>=3.10,<4",
+  "plotly>=6.3,<7",
   "requests>=2.32,<3",
+  "umap-learn>=0.5.9,<1",
 ]
 
 [dependency-groups]

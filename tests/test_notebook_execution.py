@@ -88,6 +88,21 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
         return json.dumps({"claim": "Errors can enter during several stages.", "source_id": "s2"})
     if schema_name == "audit_response" or "approval" in properties:
         return json.dumps({"approval": 60, "explanation": "A bounded test response."})
+    if schema_name == "treatment_batch" or properties == {"messages"}:
+        prompt_lower = prompt.lower()
+        frame = next(
+            (name for name in ("rights", "economics", "family") if name in prompt_lower),
+            "frame",
+        )
+        item_count = int(
+            (schema or {}).get("properties", {}).get("messages", {}).get("maxItems", 20)
+        )
+        return json.dumps({
+            "messages": [
+                f"{frame.title()} treatment {index:02d} keeps the stated policy facts fixed while varying wording, emphasis, and argument order for inspection."
+                for index in range(1, item_count + 1)
+            ]
+        })
     if "Distinguish reported events" in prompt:
         return json.dumps(
             {
@@ -133,6 +148,10 @@ class FakeOpenRouter:
     def chat(self) -> "FakeOpenRouter":
         return self
 
+    @property
+    def embeddings(self) -> "FakeOpenRouter":
+        return self
+
     def send(self, **kwargs: object) -> SimpleNamespace:
         response_format = kwargs.get("response_format") or {}
         schema_record = response_format.get("json_schema") or {}
@@ -144,6 +163,15 @@ class FakeOpenRouter:
             usage=SimpleNamespace(prompt_tokens=12, completion_tokens=8),
         )
 
+    def generate(self, **kwargs: object) -> SimpleNamespace:
+        texts = kwargs["input"]
+        return SimpleNamespace(
+            data=[
+                SimpleNamespace(embedding=fake_embedding_vector(text, index))
+                for index, text in enumerate(texts)
+            ]
+        )
+
 
 def fake_ollama(**kwargs: object) -> SimpleNamespace:
     supplied_format = kwargs.get("format")
@@ -152,6 +180,48 @@ def fake_ollama(**kwargs: object) -> SimpleNamespace:
     return SimpleNamespace(
         message=SimpleNamespace(content=content), prompt_eval_count=12, eval_count=8
     )
+
+
+def fake_embedding_vector(text: str, position: int) -> list[float]:
+    """Return a stable, nonconstant vector suitable for exercising UMAP."""
+    total = sum(ord(character) for character in text)
+    return [
+        float(position),
+        float(total % 101),
+        float((total + position * 7) % 97),
+        float(len(text)),
+        float(position % 3),
+        float((total // 3) % 89),
+        float((position * position) % 83),
+        float((total + position) % 79),
+    ]
+
+
+def fake_ollama_embed(**kwargs: object) -> SimpleNamespace:
+    texts = kwargs["input"]
+    return SimpleNamespace(
+        embeddings=[fake_embedding_vector(text, index) for index, text in enumerate(texts)]
+    )
+
+
+class FakeEmbeddingHttpResponse:
+    def __init__(self, texts: list[str]) -> None:
+        self.texts = texts
+
+    def raise_for_status(self) -> None:
+        return None
+
+    def json(self) -> dict[str, list[dict[str, object]]]:
+        return {
+            "data": [
+                {"index": index, "embedding": fake_embedding_vector(text, index)}
+                for index, text in enumerate(self.texts)
+            ]
+        }
+
+
+def fake_requests_post(*_: object, **kwargs: object) -> FakeEmbeddingHttpResponse:
+    return FakeEmbeddingHttpResponse(kwargs["json"]["input"])
 
 
 def test_week3_local_task_needs_no_hosted_key(
@@ -266,7 +336,9 @@ def test_followup_notebook_executes_without_live_services(
     namespace["IN_COLAB"] = runtime == "colab"
     exec(code_cells[1], namespace)
     namespace["OpenRouter"] = FakeOpenRouter
-    namespace["ollama"].chat = fake_ollama
+    monkeypatch.setattr(namespace["ollama"], "chat", fake_ollama)
+    if week == 5:
+        monkeypatch.setattr(namespace["ollama"], "embed", fake_ollama_embed)
     if week == 3:
         sample_replies = iter([
             "Help sometimes builds ties, but not for everyone.",
@@ -288,6 +360,8 @@ def test_followup_notebook_executes_without_live_services(
         monkeypatch.setattr("builtins.input", lambda *_: next(sample_checks))
 
     for source in code_cells[2:]:
+        if week == 5 and "output_folder = ROOT" in source:
+            namespace["ROOT"] = tmp_path
         if week == 12 and "output_dir = ROOT" in source:
             namespace["ROOT"] = tmp_path
         exec(source, namespace)
@@ -309,6 +383,11 @@ def test_followup_notebook_executes_without_live_services(
         assert namespace["changed_research_record"]["source"]["timestamps_seconds"][-1] == 11.5
         assert namespace["comparison_record"]["original"] is namespace["research_record"]
         assert namespace["comparison_record"]["later_endpoint"] is namespace["changed_research_record"]
+    if week == 5:
+        assert len(namespace["treatment_records"]) == 60
+        assert namespace["embeddings"].shape == (60, 8)
+        assert namespace["coordinates"].shape == (60, 2)
+        assert (tmp_path / "outputs" / "session05" / "week05_treatment_map.html").exists()
     if week == 8 and runtime == "colab":
         assert namespace["local_results"] == []
         assert namespace["local_mean"] is None
@@ -366,9 +445,12 @@ def test_downloadable_task_executes_on_local_route(
 
     import ollama
     import openrouter
+    import requests
 
     monkeypatch.setattr(ollama, "chat", fake_ollama)
+    monkeypatch.setattr(ollama, "embed", fake_ollama_embed)
     monkeypatch.setattr(openrouter, "OpenRouter", FakeOpenRouter)
+    monkeypatch.setattr(requests, "post", fake_requests_post)
     if week == 3:
         sample_replies = iter([
             "Help sometimes builds ties, but not for everyone.",
@@ -398,5 +480,10 @@ def test_downloadable_task_executes_on_local_route(
         assert namespace["research_record"]["source"]["timestamps_seconds"][-1] == 8.5
         assert namespace["changed_research_record"]["source"]["timestamps_seconds"][-1] == 11.5
         assert namespace["comparison_record"]["student_comparison"].startswith("The later")
+    if week == 5:
+        assert len(namespace["treatment_records"]) == 60
+        assert namespace["embeddings"].shape == (60, 8)
+        assert namespace["coordinates"].shape == (60, 2)
+        assert (tmp_path / "outputs" / "session05" / "week05_treatment_map.html").exists()
     if week == 12:
         assert (tmp_path / "student_outputs" / "week12_rerun.json").exists()

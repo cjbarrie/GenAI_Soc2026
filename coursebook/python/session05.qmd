@@ -1,182 +1,400 @@
 ---
-title: "Week 5 Python — Generating experimental materials"
-description: "Worked code, notebook and completion task"
+title: "Week 5 Python — Mapping a population of generated treatments"
+description: "Generate 60 treatments, embed their wording and inspect an interactive semantic map"
 ---
 
 [Return to the Week 5 readings and slides](../weeks/session05.qmd).
 
-## Python walkthrough: generate experimental materials
+## Python walkthrough: map a population of generated treatments
 
 ::: {.routine-summary}
-**Today's routine:** Fixed policy facts → two framing instructions → two generated treatments → confound check.
+**Research question:** When we ask an LLM for several versions of the same experimental condition, how much does the wording vary within and across the conditions?
 
-**Python introduced:** f-strings, named call arguments, integers, floats, temperature, output limits, latency and token metadata.
+**Routine:** Fixed description and outcome question → 60 generated framing passages → one embedding per passage → two-dimensional UMAP → interactive inspection.
 
-**Your change:** change only the frame while holding the facts and call settings fixed.
+**Python introduced:** strings, dictionaries, lists, a `for` loop, structured JSON, arrays, table columns and named arguments.
 :::
 
-The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+The exercise generates 20 rights passages, 20 economics passages and 20 family passages. Python places each passage between the same policy description and the same outcome question. Sixty points do not constitute a validated treatment population. They give us a candidate population that we can inspect before deciding what to pretest.
 
-### Load the course settings and SDKs
+## Prepare the environment
 
-Run the notebook's **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local `uv` environment, adds the repository root to Python's import path and sets `IN_COLAB`. Colab uses OpenRouter because it cannot reach the Ollama server on your computer.
+Run the notebook's first setup cell before the code below. In Colab it installs the course SDKs, Plotly and UMAP, then uses OpenRouter. On a local machine it checks the repository environment. Local Ollama work requires both course models:
 
-This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+```bash
+ollama pull gemma4:e2b-it-qat
+ollama pull all-minilm
+```
+
+The first local model writes the framing passages. The compact second model converts each passage into a numerical embedding. In Colab, OpenRouter provides both operations. An embedding places texts with related language and meaning nearer to one another in a high-dimensional numerical space.
+
+## Choose the hosted or local route
 
 ```python
 import json
 import os
+import sys
+import time
 from getpass import getpass
 from pathlib import Path
 
-try:
-    import ollama
-    from openrouter import OpenRouter
-except ModuleNotFoundError as error:
-    raise ModuleNotFoundError(
-        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
-        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
-    ) from error
+import numpy as np
+import ollama
+import pandas as pd
+import plotly.express as px
+import umap
+from openrouter import OpenRouter
 
 ROOT = Path.cwd()
 while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
     ROOT = ROOT.parent
 
-if not (ROOT / "config" / "course_models.json").exists():
-    raise FileNotFoundError(
-        "The complete GenAI_Soc2026 repository could not be found. A task or "
-        "notebook downloaded by itself is not enough for local work. Open a terminal "
-        "in the complete course folder and run this file from there."
-    )
-
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
+HOSTED_EMBEDDING_MODEL = config["hosted"]["embedding_model"]
 LOCAL_MODEL = config["local"]["model"]
+LOCAL_EMBEDDING_MODEL = config["local"]["embedding_model"]
 
-if not os.getenv("OPENROUTER_API_KEY"):
+ROUTE = "openrouter" if IN_COLAB else "ollama"
+
+if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-print("Hosted model:", HOSTED_MODEL)
-print("Local model:", LOCAL_MODEL)
+print("Route:", ROUTE)
+print("Generation model:", HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL)
 ```
 
-::: {.callout-note title="Read this setup cell"}
-**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
-:::
+`ROUTE` is a string. The `if` statement asks for the hosted key only when the selected route needs it. The four model variables are also strings read from the course configuration.
 
-### Choose a route and store the fixed facts and changing frame
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+## Define the research setting and the fixed survey text
 
 ```python
-import time
-
-ROUTE = "openrouter" if IN_COLAB else "ollama"  # Ollama is the local default
-shared_facts = (
-    "The proposal would create a pathway to permanent legal status for undocumented "
-    "immigrants who meet residency and background-check requirements."
+research_context = (
+    "We are constructing candidate materials for an online survey experiment. "
+    "Every participant will see a fixed policy description, one variable framing "
+    "passage, and then the same outcome question. The model writes only the "
+    "middle framing passage."
 )
-frame = "rights"
-temperature = 0.7
-max_tokens = 140
-```
 
-::: {.callout-note title="Separate what stays fixed"}
-The facts and frame are separate strings so the exercise can change one while holding the other constant. `temperature` is a float and `maximum_output_tokens` is an integer. They are recorded as model-call inputs, not treated as substantive properties of the message.
-:::
-
-### Construct the prompt with an f-string
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
-
-```python
-prompt = (
-    f"Write one 70–90 word survey message using a {frame} frame. "
-    f"Use only these facts and return only the message:\n\n{shared_facts}"
+fixed_description = (
+    "The proposal would create a pathway to permanent legal status for "
+    "undocumented immigrants who meet residency and background-check requirements."
 )
-messages = [{"role": "user", "content": prompt}]
-print(prompt)
+
+fixed_outcome_question = "How strongly do you support or oppose this proposal?"
+
+frame_instructions = {
+    "rights": (
+        "Contrast the argument that long-term residents possess rights that should not "
+        "depend entirely on citizenship with the argument that citizenship should "
+        "determine full political membership."
+    ),
+    "economics": (
+        "Contrast the argument that immigrants contribute through work and taxes with "
+        "the argument that immigration may create pressure on jobs and public spending."
+    ),
+    "family": (
+        "Contrast the argument that policy should keep families together with the "
+        "argument that immigration rules should be enforced even when relatives may "
+        "be separated."
+    ),
+}
+
+messages_per_batch = 10
+temperature = 0.9
+# ONE CHANGE: set temperature to 0.3 before your recorded run. Explain what
+# you expect this parameter change to do, then inspect the actual treatments.
+
+generation_jobs = [
+    {"frame": "rights", "batch": 1},
+    {"frame": "rights", "batch": 2},
+    {"frame": "economics", "batch": 1},
+    {"frame": "economics", "batch": 2},
+    {"frame": "family", "batch": 1},
+    {"frame": "family", "batch": 2},
+]
 ```
 
-::: {.callout-note title="How the f-string works"}
-The leading `f` allows values inside braces to be inserted into a string. `{frame}` and `{facts}` are replaced by their current values. The output is one complete prompt; printing it is how we check that the intended frame changed and the factual material did not.
-:::
+**Inputs:** `research_context`, `fixed_description`, and `fixed_outcome_question` are strings. `frame_instructions` is a dictionary with three keys. `generation_jobs` is a list of six dictionaries: two batches for each frame. `messages_per_batch` is an integer. `temperature` is a float.
 
-### Make one timed call and preserve route-specific metadata
+The model writes only the middle passage. Python supplies the same description and outcome question for every candidate. This does not guarantee that the passages differ only by frame. Detecting other differences is the point of the exercise.
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+## Specify the structured output
 
 ```python
-started = time.perf_counter()
+batch_schema = {
+    "type": "object",
+    "properties": {
+        "messages": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": messages_per_batch,
+            "maxItems": messages_per_batch,
+        }
+    },
+    "required": ["messages"],
+    "additionalProperties": False,
+}
+```
+
+The schema asks for one dictionary containing a list called `messages`. It constrains the shape of the response, not the substantive quality of the passages.
+
+## Generate two batches of ten passages for each frame
+
+```python
+treatment_records = []
+raw_generation_records = []
+
+for job in generation_jobs:
+    frame = job["frame"]
+    batch_number = job["batch"]
+    frame_instruction = frame_instructions[frame]
+    prompt = f"""
+{research_context}
+
+Fixed description shown before the framing passage:
+{fixed_description}
+
+Fixed question shown after the framing passage:
+{fixed_outcome_question}
+
+Assigned {frame.upper()} frame:
+{frame_instruction}
+
+Write exactly {messages_per_batch} alternative framing passages for batch {batch_number}. Each passage must:
+- contain 30–45 words;
+- present both positions in the assigned contest;
+- keep the order of the two positions constant;
+- use no arguments from either of the other frames;
+- introduce no statistics, examples, or new factual claims;
+- contain no question;
+- make no reference to participants, surveys, framing, or experiments;
+- avoid repeating or rewriting the fixed policy description.
+
+Vary the wording and sentence structure without changing the underlying contrast.
+Return only the framing passages in JSON matching the supplied schema.
+""".strip()
+
+    model_messages = [{"role": "user", "content": prompt}]
+    started = time.perf_counter()
+
+    if ROUTE == "openrouter":
+        with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+            response = client.chat.send(
+                model=HOSTED_MODEL,
+                messages=model_messages,
+                temperature=temperature,
+                max_tokens=5000,
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "treatment_batch",
+                        "strict": True,
+                        "schema": batch_schema,
+                    },
+                },
+            )
+        raw_output = response.choices[0].message.content
+    else:
+        response = ollama.chat(think=False,
+            model=LOCAL_MODEL,
+            messages=model_messages,
+            format=batch_schema,
+            options={"temperature": temperature, "num_predict": 5000},
+        )
+        raw_output = response.message.content
+
+    latency_seconds = round(time.perf_counter() - started, 2)
+    raw_generation_records.append({
+        "frame": frame,
+        "batch": batch_number,
+        "prompt": prompt,
+        "raw_output": raw_output,
+        "latency_seconds": latency_seconds,
+    })
+
+    parsed_batch = json.loads(raw_output)
+    generated_messages = parsed_batch["messages"]
+    if len(generated_messages) != messages_per_batch:
+        raise ValueError(
+            f"Expected {messages_per_batch} passages for {frame} batch "
+            f"{batch_number}; received {len(generated_messages)}"
+        )
+    print(frame, "batch:", batch_number, "messages:", len(generated_messages))
+
+    for position, text in enumerate(generated_messages, start=1):
+        framing_passage = text.strip()
+        if len(framing_passage.split()) < 10 or framing_passage.lower().startswith(
+            ("framing_passage_", "support_or_oppose_", "family_contrast")
+        ):
+            raise ValueError(
+                f"{frame} batch {batch_number} returned a placeholder instead of a "
+                "framing passage. Rerun the generation cell before continuing."
+            )
+        full_stimulus = (
+            fixed_description
+            + "\n\n"
+            + framing_passage
+            + "\n\n"
+            + fixed_outcome_question
+        )
+        treatment_records.append({
+            "treatment_id": f"{frame}_b{batch_number}_{position:02d}",
+            "frame": frame,
+            "batch": batch_number,
+            "framing_passage": framing_passage,
+            "full_stimulus": full_stimulus,
+            "word_count": len(framing_passage.split()),
+            "route": ROUTE,
+            "model": HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL,
+            "temperature": temperature,
+        })
+
+print("Total treatments:", len(treatment_records))
+print(treatment_records[0])
+```
+
+The outer loop runs six times. Each job contains a frame, a batch number and the corresponding instruction. Each model call returns ten framing passages. Python checks for the requested count and catches short placeholder strings before adding anything to the map. The final output still contains 60 treatment dictionaries.
+
+Preserving `raw_generation_records` matters: it keeps the exact prompt and unedited model return rather than saving only the cleaned messages.
+
+## Save the generated population
+
+```python
+output_folder = ROOT / "outputs" / "session05"
+output_folder.mkdir(parents=True, exist_ok=True)
+
+population_path = output_folder / "generated_treatments.json"
+population_path.write_text(json.dumps({
+    "research_context": research_context,
+    "fixed_description": fixed_description,
+    "fixed_outcome_question": fixed_outcome_question,
+    "frame_instructions": frame_instructions,
+    "generation_records": raw_generation_records,
+    "treatments": treatment_records,
+}, indent=2))
+
+print("Saved:", population_path)
+```
+
+The output file makes the generated population inspectable after the live model calls have ended.
+
+## Convert the 60 framing passages into embeddings
+
+```python
+treatment_texts = [record["framing_passage"] for record in treatment_records]
+
 if ROUTE == "openrouter":
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
-        response = client.chat.send(
-            model=HOSTED_MODEL, messages=messages,
-            temperature=temperature, max_tokens=max_tokens,
+        embedding_response = client.embeddings.generate(
+            model=HOSTED_EMBEDDING_MODEL,
+            input=treatment_texts,
+            encoding_format="float",
+            timeout_ms=120_000,
         )
-    raw_output = response.choices[0].message.content
-    input_tokens = getattr(response.usage, "prompt_tokens", None)
-    output_tokens = getattr(response.usage, "completion_tokens", None)
+    embeddings = np.array([item.embedding for item in embedding_response.data])
 else:
-    response = ollama.chat(think=False,
-        model=LOCAL_MODEL, messages=messages,
-        options={"temperature": temperature, "num_predict": max_tokens},
+    embedding_response = ollama.embed(
+        model=LOCAL_EMBEDDING_MODEL,
+        input=treatment_texts,
     )
-    raw_output = response.message.content
-    input_tokens = response.prompt_eval_count
-    output_tokens = response.eval_count
-latency_seconds = round(time.perf_counter() - started, 2)
+    embeddings = np.array(embedding_response.embeddings)
 
-print("Raw candidate:", raw_output.strip())
-print("Input tokens:", input_tokens)
-print("Output tokens:", output_tokens)
-print("Latency seconds:", latency_seconds)
+print("Embedding array shape:", embeddings.shape)
 ```
 
-::: {.callout-note title="Call inputs and observed outputs"}
-`time.perf_counter()` records a clock value before and after the call; subtraction gives elapsed seconds. The selected branch supplies model, messages, temperature and output limit. It then retrieves the candidate text and, where available, token-use metadata. Latency and token counts describe this run, not the candidate's validity.
-:::
+**Input:** a list of 60 variable framing passages. **Operation:** the embedding model converts every passage into a vector of numbers. **Output:** a two-dimensional NumPy array. The first dimension should be 60 because there is one row per passage. The second dimension is the number of values in each embedding. We omit the repeated description and outcome question because they are identical across all candidates.
 
-### Save the design settings beside the candidate
+These vectors are semantic representations produced by a model. They are useful measurements, not neutral or definitive descriptions of meaning.
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+## Project the embeddings into two dimensions
 
 ```python
-candidate_record = {
-    "route": ROUTE,
-    "frame": frame,
-    "shared_facts": shared_facts,
-    "temperature": temperature,
-    "max_tokens": max_tokens,
-    "raw_output": raw_output.strip(),
-}
-print(candidate_record)
+projector = umap.UMAP(
+    n_neighbors=10,
+    min_dist=0.25,
+    metric="cosine",
+    random_state=42,
+)
 
-# ONE CHANGE: change frame from "rights" to "economics" and nothing else.
+coordinates = projector.fit_transform(embeddings)
+print("UMAP coordinate shape:", coordinates.shape)
 ```
 
-::: {.callout-note title="The candidate record"}
-The dictionary stores the changing frame, fixed facts, route, model, settings, elapsed time and generated text together. This is the output needed for the later causal-design review. The named change asks for a second candidate; comparison should isolate intended framing from other semantic differences.
+UMAP takes the high-dimensional embedding array as input. It returns 60 pairs of coordinates. The two axes have no direct substantive meaning. What matters is which points appear near one another and which points appear isolated.
+
+The fixed `random_state` makes this particular projection reproducible. A different setting or projection method can change the visual arrangement.
+
+## Build the interactive semantic map
+
+```python
+map_data = pd.DataFrame(treatment_records)
+map_data["umap_1"] = coordinates[:, 0]
+map_data["umap_2"] = coordinates[:, 1]
+
+figure = px.scatter(
+    map_data,
+    x="umap_1",
+    y="umap_2",
+    color="frame",
+    hover_name="treatment_id",
+    hover_data={
+        "framing_passage": True,
+        "word_count": True,
+        "frame": True,
+        "umap_1": ":.2f",
+        "umap_2": ":.2f",
+    },
+    title="Semantic map of 60 generated immigration-frame treatments",
+)
+figure.update_traces(marker={"size": 11, "opacity": 0.78})
+figure.update_layout(legend_title_text="Assigned frame")
+if "ipykernel" in sys.modules:
+    figure.show()
+
+map_path = output_folder / "week05_treatment_map.html"
+map_data.to_csv(output_folder / "week05_treatment_map.csv", index=False)
+figure.write_html(map_path, include_plotlyjs=True)
+print("Saved interactive map:", map_path)
+```
+
+Hover over a point to read the treatment. Look for:
+
+- passages from different assigned frames that appear close together;
+- passages from the same frame that are far apart;
+- isolated passages whose wording may contain an unusual argument or tone;
+- regions dominated by one frame and regions in which the frames overlap.
+
+The map helps us select cases for closer reading. It does not tell us that a treatment is valid, that a cluster is a real social category or that distance on the screen is a causal quantity.
+
+### Example interactive output
+
+The map below comes from a verified local run of the same 60-treatment routine. Hover over a point to inspect the message associated with it.
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Interactive semantic map of generated Week 5 treatments" src="../_generated/interactive/session05_treatment_map.html"></iframe></div>
+
+[Open the example semantic map full screen](../_generated/interactive/session05_treatment_map.html).
 :::
 
-### Methodological check
-
-Holding the prompt variables fixed does not guarantee that the generated messages differ only in framing. Compare facts, certainty, tone, length and implied beneficiaries before treating them as experimental stimuli.
+::: {.content-visible when-format="pdf"}
+![Example UMAP projection of 60 generated treatments](../_generated/interactive/session05_treatment_map.png){fig-alt="Example UMAP projection of sixty generated treatments coloured by assigned frame"}
+:::
 
 ## Workbook and environment links
 
 ::: {.resource-card}
-[Open the Week 5 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session05/session05_treatment_generation.ipynb) · [Download the notebook](../_generated/downloads/session05/session05_treatment_generation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session05/session05_task.py) · [Download the runnable offline bundle](../_generated/downloads/session05/session05_offline_bundle.zip)
+[Open the Week 5 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session05/session05_treatment_generation.ipynb) · [Download the notebook](../_generated/downloads/session05/session05_treatment_generation.ipynb) · [Download the Python exercise](../_generated/downloads/session05/session05_task.py) · [Download the offline bundle](../_generated/downloads/session05/session05_offline_bundle.zip)
 :::
-
-This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
 
 ## Take-home exercise
 
 ::: {.exercise-box}
-**Estimated work and recording time:** 30–45 minutes.
+**Estimated work and recording time:** 45–60 minutes.
 
-Run the rights and economics frames through one chosen route. Explain the f-string and every named call argument, then compare the candidates for semantic confounds and state what a human pretest must establish.
+Set `temperature` to `0.3`, generate the 60-treatment population using one route and create the interactive map. Explain what you expected the parameter change to do, then discuss what the model actually produced. In the recording, trace one ten-passage job through the generation loop, including its frame and batch number. Explain the input and output of the embedding call and show how the 60 embedding rows become 60 coordinate pairs.
 
-Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
+Use the hover labels to discuss one cross-frame pair that appears close together and two same-frame treatments that appear relatively far apart. Read the underlying texts before interpreting the positions. Explain why the plot identifies material for further inspection rather than validating the experimental conditions.
+
+Submit one continuous screen recording with audio. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key.
 :::

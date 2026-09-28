@@ -182,6 +182,18 @@ def prepare() -> None:
                 source_note = image_dir / "uttarakhand_protest_SOURCE.md"
                 archive.write(source_note, source_note.relative_to(ROOT))
 
+    session05_map = (
+        ROOT / "data" / "session05" / "example_outputs" / "week05_treatment_map.html"
+    )
+    if session05_map.exists():
+        interactive_dir = GENERATED / "interactive"
+        interactive_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(session05_map, interactive_dir / "session05_treatment_map.html")
+        shutil.copy2(
+            ROOT / "slides" / "session05" / "images" / "week05_umap_example.png",
+            interactive_dir / "session05_treatment_map.png",
+        )
+
     prepare_glossary_notebooks()
 
     print("Prepared public slides, weekly resources and field-guide companion notebooks.")

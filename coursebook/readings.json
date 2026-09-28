@@ -30,9 +30,9 @@
     ],
     "session05": [
       {"key": "Wallander2009", "status": "essential", "section": "Full article", "purpose": "Places generated vignettes within the sociology of factorial survey design.", "url": "https://doi.org/10.1016/j.ssresearch.2009.03.004"},
-      {"key": "DafoeZhangCaughey2018", "status": "essential", "section": "Full article", "purpose": "Explains why two differently worded treatments may change more than the intended construct.", "url": "https://doi.org/10.1017/pan.2018.9"},
+      {"key": "BaiEtAl2025", "status": "essential", "section": "Full article", "purpose": "Compares human-written, LLM-generated and human-selected LLM messages in experiments with human participants.", "url": "https://doi.org/10.1038/s41467-025-61345-5"},
       {"key": "BloemraadSilvaVoss2016", "status": "essential", "section": "Full article", "purpose": "Applies framing theory in an experiment on support for immigrant rights.", "url": "https://doi.org/10.1093/sf/sov123"},
-      {"key": "BaiEtAl2025", "status": "additional", "section": "Full article", "purpose": "Provides a published example of generated policy messages tested on human participants.", "url": "https://doi.org/10.1038/s41467-025-61345-5"},
+      {"key": "DafoeZhangCaughey2018", "status": "additional", "section": "Full article", "purpose": "Explains why two differently worded treatments may change more than the intended construct.", "url": "https://doi.org/10.1017/pan.2018.9"},
       {"key": "Velez2025", "status": "additional", "section": "Full article", "purpose": "Shows how candidate questions can be selected adaptively without treating generation as validation.", "url": "https://doi.org/10.1017/pan.2024.34"}
     ],
     "session06": [

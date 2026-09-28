@@ -36,7 +36,7 @@ The material can be text, an image, a person's behaviour, or the interface throu
 <div class="llm-treatment-jobs">
 <div><b>Write candidates</b><span>Produce several possible vignettes, messages, profiles, or survey items.</span></div>
 <div><b>Vary a feature</b><span>Change a specified part while trying to keep the rest comparable.</span></div>
-<div><b>Build an adaptive instrument</b><span>Turn participant input into new items while a survey is running.</span></div>
+<div><b>Map a candidate population</b><span>Compare many possible treatments before choosing what to pretest.</span></div>
 </div>
 
 The main question is not simply whether the output looks plausible. We need to know what participants encounter, what differs across conditions, and how the material was produced and checked.
@@ -115,17 +115,26 @@ One level from each dimension is combined into a complete neighbourhood descript
 
 If the applications also differ in education or experience, random assignment cannot tell us which difference produced the response.
 
-## Confederate experiments construct a social performance
+## The motherhood penalty appeared in both evaluations and employer callbacks
 
-<div class="paper-with-claim"><img src="images/ridgeway_title.png" alt="Published American Journal of Sociology article by Ridgeway and Erickson"><p>The participant worked with a trained confederate in an audio task. The experiment varied how that partner performed status in the interaction.</p></div>
+<div class="correll-results">
+<figure><img src="images/correll_results_table_crop.png" alt="Correll, Benard, and Paik Table 1 comparing mothers and nonmothers in the laboratory experiment"><figcaption><b>Laboratory experiment</b><br><strong>Recommended for hire:</strong> 47% of mothers and 84% of nonmothers.<br><strong>Starting salary:</strong> $137,000 and $148,000.</figcaption></figure>
+<figure><img src="images/correll_audit_results_crop.png" alt="Published results passage reporting employer callbacks for mothers and nonmothers"><figcaption><b>Audit study</b><br><strong>Employer callback:</strong> 3.1% of mothers and 6.6% of otherwise equivalent nonmothers.</figcaption></figure>
+</div>
 
-<div class="source-line">Ridgeway and Erickson (2000), “Creating and Spreading Status Beliefs,” <em>American Journal of Sociology</em> 106(3): 579–615.</div>
+<div class="source-line">Correll, Benard, and Paik (2007), Table 1 and audit-study results, pp. 1316 and 1330.</div>
 
-## What changed was the way the confederate delivered the argument
+## The confederate delivered the same argument in two different ways
 
-<div class="paper-evidence highlighted-paper"><div class="image-highlight-wrap"><img src="images/ridgeway_delivery_crop.png" alt="Large stitched crop from two consecutive AJS pages describing deferential and nondeferential delivery"><span class="ridge-highlight-one"></span><span class="ridge-highlight-two"></span></div><p>The confederates used the same choices and arguments. What changed was their confidence and whether they spoke deferentially. Several confederates were assigned across conditions.</p></div>
+<div class="paper-evidence confederate-method"><img src="images/ridgeway_methods_crop.png" alt="Published methods passage explaining the confederate task and the deferential and nondeferential conditions"><p>Participants completed a ten-trial audio task with a trained confederate. The confederate followed the same script for choices and arguments. The treatment changed the confidence and deference with which the argument was delivered.</p></div>
 
-<div class="source-line">Ridgeway and Erickson (2000), methods section, pp. 590–591.</div>
+<div class="source-line">Ridgeway and Erickson (2000), “Creating and Spreading Status Beliefs,” <em>American Journal of Sociology</em> 106(3): 579–615, p. 593.</div>
+
+## Nondeferential delivery produced much greater influence
+
+<div class="paper-evidence confederate-results"><img src="images/ridgeway_results_table_crop.png" alt="Published Table 1 showing confederate influence under deferential and nondeferential delivery"><p><b>Round 1:</b><br>Male confederates: 86.3% versus 43.8%.<br><br>Female confederates: 73.5% versus 45.1%.<br><br>Each comparison is nondeferential versus deferential delivery.</p></div>
+
+<div class="source-line">Ridgeway and Erickson (2000), Table 1, p. 595.</div>
 
 ## Music Lab made the interface part of the treatment
 
@@ -133,7 +142,7 @@ If the applications also differ in education or experience, random assignment ca
 
 <div class="source-line">Salganik, Dodds, and Watts (2006), “Experimental Study of Inequality and Unpredictability in an Artificial Cultural Market,” <em>Science</em> 311: 854–856, Figure S2.</div>
 
-## The condition name is only a shorthand
+## Different materials create different opportunities for confounding
 
 “Racial composition,” “parental status,” “interaction style,” and “social influence” name the comparison. Participants encounter a complete description, application, performance, or interface.
 
@@ -145,35 +154,78 @@ If the applications also differ in education or experience, random assignment ca
 <div>Social influence</div><div>An interface with popularity information</div><div>Everything else in the interface</div>
 </div>
 
-The checking problem therefore depends on the material: plausible combinations for a vignette, matched qualifications for an application, consistent delivery for a confederate, and a controlled display for an interface.
+Each row identifies something other than the intended treatment that could explain the outcome. Vignettes need plausible combinations, applications need equivalent qualifications, confederates need consistent delivery, and interfaces need the same display apart from the assigned condition.
 
-## Bloemraad, Silva, and Voss tested three movement frames
+## Written framing experiments apply the same principle to short passages
 
-<div class="paper-with-claim bloemraad-title"><img src="images/bloemraad_title_crop.png" alt="Published Social Forces title and complete abstract for Bloemraad, Silva, and Voss"><p>The study asked whether rights, economics, or family language changes support for legal status and access to public benefits for undocumented immigrants.</p></div>
+<div class="paper-with-claim bloemraad-title"><img src="images/bloemraad_title_crop.png" alt="Published Social Forces title and complete abstract for Bloemraad, Silva, and Voss"><p>Bloemraad, Silva, and Voss moved from material objects and performances to survey wording. They inserted a short framing passage into questions about legal status and public benefits for undocumented immigrants.</p></div>
 
 <div class="source-line">Bloemraad, Silva, and Voss (2016), “Rights, Economics, or Family?” <em>Social Forces</em> 94(4): 1647–1674.</div>
 
-## The article prints the exact three framing contests
+## Each treatment inserted a framing contest into the survey question
 
-<div class="paper-evidence treatment-evidence"><img src="images/bloemraad_design_crop.png" alt="Complete published experimental-design passage listing the rights, economics, and family framing contests"><p>The crop ends after the three complete treatment phrases. Each presented an argument and counterargument within one domain; the control omitted the additional phrase.</p></div>
+<div class="treatment-evidence-full"><img src="images/bloemraad_design_crop.png" alt="Complete published experimental-design passage listing the rights, economics, and family framing contests"><p>The control contained no additional phrase. Each treatment added one of the three complete passages shown here: rights, economics, or family.</p></div>
 
 <div class="source-line">Bloemraad, Silva, and Voss (2016), experimental design, pp. 1658–1659.</div>
-
-## A framing contest is not the same as a one-sided persuasive message
-
-<div class="frame-three">
-<div><small>RIGHTS</small><p>Human rights for everyone versus priority for the rights of US citizens.</p></div>
-<div><small>ECONOMICS</small><p>Economic contribution and growth versus jobs and public costs.</p></div>
-<div><small>FAMILY</small><p>Keeping families together versus enforcing removal of parents.</p></div>
-</div>
-
-The structure matters: both sides of the dispute remain within the same domain.
 
 ## The frames resonated differently across political groups
 
 <div class="paper-evidence"><img src="images/bloemraad_results_crop.png" alt="Published Figure 3 showing framing results by political ideology"><p>The family contest increased support for permanent residency and citizenship among conservatives, while the rights contest reduced support among moderates. The economic contest changed little.</p></div>
 
 <div class="source-line">Bloemraad, Silva, and Voss (2016), Figure 3.</div>
+
+## Bai and colleagues made message production part of the experiment
+
+<div class="paper-with-claim"><img src="images/bai_title.png" alt="Title page of Bai and colleagues in Nature Communications"><p>The researchers compared messages written by people, messages generated by an LLM, and LLM messages selected by a person before testing those materials with human participants.</p></div>
+
+<div class="source-line">Bai et al. (2025), “LLM-Generated Messages Can Persuade Humans on Policy Issues,” <em>Nature Communications</em> 16: 6037.</div>
+
+## The three production procedures involved different decisions
+
+<div class="treatment-three">
+<div><b>Human</b><p>A lay participant wrote a persuasive message.</p></div>
+<div><b>LLM</b><p>The model generated the message used in the experiment.</p></div>
+<div><b>Human selection</b><p>A person selected one message from five LLM-generated alternatives.</p></div>
+</div>
+
+Generation and selection both formed part of the procedure that produced the treatment.
+
+## Participants read one message drawn from a larger pool
+
+In the first two studies, the researchers used pools of 50 human-written and 50 LLM-generated messages. A participant encountered one message, not an average message.
+
+<div class="logic-box"><b>Why this matters</b><span>If only one unusually strong message drives the result, a claim about “LLM messages” is too broad. The set of messages forms part of the evidence.</span></div>
+
+## All three persuasive-message conditions outperformed the control
+
+<div class="effect-plot">
+<div class="effect-axis"><span>0</span><span>2</span><span>4</span><span>6 points</span></div>
+<div class="effect-row" style="--lo:29.5%; --est:55.7%; --hi:81.8%;"><div><b>Study 1</b><span>Smoking ban</span></div><div class="effect-track"></div><strong>+3.62</strong></div>
+<div class="effect-row" style="--lo:10.6%; --est:27.8%; --hi:45.1%;"><div><b>Study 2</b><span>Assault-weapons ban</span></div><div class="effect-track"></div><strong>+1.81</strong></div>
+<div class="effect-row" style="--lo:35.5%; --est:48.5%; --hi:61.4%;"><div><b>Study 3</b><span>Four policy issues</span></div><div class="effect-track"></div><strong>+3.15</strong></div>
+</div>
+
+All three confidence intervals lie above zero. The estimates compare LLM-generated messages with the neutral control on a 0–100 policy-support scale.
+
+<div class="source-line">Bai et al. (2025), policy-support results, pp. 3–4. Points show regression estimates; lines show 95% confidence intervals.</div>
+
+## What Bai and colleagues can establish
+
+Participants were randomly assigned to <strong>complete messages produced in different ways</strong>. Those messages also differed in length, tone, argument structure, factual detail, and storytelling.
+
+<div class="causal-box"><p><b>Supported:</b> the LLM-produced message pool changed policy support relative to the neutral control.</p><p><b>Still unresolved:</b> which linguistic differences between the human and LLM pools account for the persuasive effect.</p></div>
+
+## What population of messages does the claim cover?
+
+<div class="message-population">
+<div><small>NARROW CLAIM</small><b>These messages</b><span>The exact texts used in this experiment.</span></div>
+<div><small>BROADER CLAIM</small><b>This production procedure</b><span>Other outputs from the same prompt, model, and selection rule.</span></div>
+<div><small>THEORETICAL CLAIM</small><b>This kind of frame</b><span>A much wider population of possible messages.</span></div>
+</div>
+
+Using several messages reduces dependence on one unusually strong wording. It does not show that the pool represents every way the frame could be expressed.
+
+<div class="source-line">Slater, Peter, and Valkenburg (2015), “Message Variability and Heterogeneity: A Core Challenge for Communication Research,” <em>Communication Yearbook</em> 39: 3–31.</div>
 
 ## Today’s hands-on example uses the same three domains
 
@@ -214,7 +266,7 @@ Moral intensity, unsupported factual claims, emotional imagery, and terminology 
 
 ## Dafoe and colleagues call this an information-equivalence problem
 
-<div class="paper-with-claim"><img src="images/dafoe_abstract_crop.png" alt="Large crop of the published Political Analysis title and abstract"><p>A manipulation may change respondents' beliefs about background facts as well as the focal concept. The treatment groups then differ in more information than the researcher intended.</p></div>
+<div class="paper-with-claim dafoe-claim"><img src="images/dafoe_abstract_crop.png" alt="Large crop of the published Political Analysis title and abstract"><p>A manipulation may change respondents' beliefs about background facts as well as the focal concept. The treatment groups then differ in more information than the researcher intended.</p></div>
 
 <div class="source-line">Dafoe, Zhang, and Caughey (2018), “Information Equivalence in Survey Experiments,” <em>Political Analysis</em> 26(4): 399–416.</div>
 
@@ -294,52 +346,6 @@ Variation is useful only if we keep a record of where every alternative came fro
 <div>Main experiment</div><div>Participants</div><div>What happens when people are assigned to the retained treatments?</div>
 </div>
 
-## Bai et al. compared three ways of producing persuasive messages
-
-<div class="paper-with-claim"><img src="images/bai_title.png" alt="Title page of Bai and colleagues in Nature Communications"><p>The studies compared messages written by people, messages generated by an LLM, and LLM messages selected in a separate human-in-the-loop procedure.</p></div>
-
-<div class="source-line">Bai et al. (2025), “LLM-Generated Messages Can Persuade Humans on Policy Issues,” <em>Nature Communications</em> 16: 6037.</div>
-
-## The three production procedures were not simply “AI versus human”
-
-<div class="treatment-three">
-<div><b>Human</b><p>A lay participant wrote a persuasive message.</p></div>
-<div><b>LLM</b><p>The model generated the message used in the experiment.</p></div>
-<div><b>Human-in-the-loop</b><p>A person selected one message from five LLM-generated alternatives.</p></div>
-</div>
-
-Generation and selection both form part of the treatment-production procedure.
-
-## Participants read one message drawn from a larger pool
-
-In the first two studies, the researchers used pools of 50 human-written and 50 LLM-generated messages. A participant encountered one message, not an average message.
-
-<div class="logic-box"><b>Why this matters</b><span>If only one unusually strong message drives the result, a claim about “LLM messages” is too broad. The set of messages is part of the evidence.</span></div>
-
-## All three persuasive-message conditions outperformed the control
-
-<div class="paper-evidence"><img src="images/bai_results_top.png" alt="Large crop of Figure 1 from the published Nature Communications article"><p>Compared with the neutral control, LLM messages significantly increased support in all three studies. Human and human-selected LLM messages also beat the control in Studies 1 and 2. The direct LLM-versus-human differences were not statistically significant.</p></div>
-
-<div class="source-line">Bai et al. (2025), Figure 1 and policy-support results. Effects are changes on a 0–100 scale with 95% confidence intervals.</div>
-
-## Why that result is not an isolated effect of “AI authorship”
-
-Participants were randomly assigned to <strong>complete messages produced in different ways</strong>. Those messages also differed in length, tone, argument structure, factual detail, and storytelling. The experiment therefore estimates the effect of each production procedure as implemented, not the effect of an authorship label while holding the wording fixed.
-
-<div class="causal-box"><p><b>Supported:</b> the LLM-produced message pool changed policy support relative to the neutral control.</p><p><b>Not isolated:</b> which linguistic differences between the human and LLM pools account for any persuasive effect.</p></div>
-
-## Slater, Peter, and Valkenburg ask what messages the claim covers
-
-<div class="message-population">
-<div><small>NARROW CLAIM</small><b>These messages</b><span>The exact texts used in this experiment.</span></div>
-<div><small>BROADER CLAIM</small><b>This production procedure</b><span>Other outputs from the same prompt, model, and selection rule.</span></div>
-<div><small>THEORETICAL CLAIM</small><b>This kind of frame</b><span>A much wider population of possible messages.</span></div>
-</div>
-
-Using several messages reduces dependence on one unusually strong wording. It does not by itself show that the pool represents every way the frame could be expressed.
-
-<div class="source-line">Slater, Peter, and Valkenburg (2015), “Message Variability and Heterogeneity: A Core Challenge for Communication Research,” <em>Communication Yearbook</em> 39: 3–31.</div>
-
 ## Generated images create the same selection problem
 
 <div class="paper-with-claim"><img src="images/schwitter_title.png" alt="Title page of Schwitter article on generated visual vignettes"><p>Schwitter used generated images in factorial surveys. The image makes intended dimensions visible, but it can also introduce faces, hands, lighting, text, posture, and background details the design never specified.</p></div>
@@ -363,7 +369,7 @@ Using several messages reduces dependence on one unusually strong wording. It do
 
 ## LinkedOut validated generated profile photographs before fieldwork
 
-<div class="paper-with-claim"><img src="images/linkedout_qje_title_crop.png" alt="Title and abstract of the published Quarterly Journal of Economics article LinkedOut"><p>The field experiment studied discrimination in professional networking. Generated profile images were candidates that had to be narrowed, rated, and matched before use.</p></div>
+<div class="paper-with-claim linkedout-claim"><img src="images/linkedout_qje_title_crop.png" alt="Title and abstract of the published Quarterly Journal of Economics article LinkedOut"><p>The field experiment studied discrimination in professional networking. Generated profile images were candidates that had to be narrowed, rated, and matched before use.</p></div>
 
 <div class="source-line">Evsyukova, Rusche, and Mill (2025), “LinkedOut? A Field Experiment on Discrimination in Job Network Formation,” <em>Quarterly Journal of Economics</em> 140(1): 283–334.</div>
 
@@ -384,6 +390,8 @@ Using several messages reduces dependence on one unusually strong wording. It do
 The authors used these ratings to select and match profiles before the field experiment. This is the same causal-inference problem as the framing example: the intended cue should not be bundled with a consistent difference in another persuasive attribute.
 
 <div class="source-line">Evsyukova, Rusche, and Mill (2025), Online Appendix, image-validation measures and Figures F.2–F.5.</div>
+
+<!-- Archived screening walkthrough retained in source for possible later use.
 
 ## The examples so far freeze the treatment pool before fieldwork
 
@@ -781,3 +789,229 @@ This week, the researcher can inspect and freeze every message before assignment
 
 <div class="comparison-band"><strong>Fixed treatment</strong><span>Participant receives one pre-approved message from a retained pool.</span></div>
 <div class="comparison-band"><strong>Adaptive treatment</strong><span>The condition shapes a conversation, but participants may receive different words, arguments, and amounts of interaction.</span></div>
+
+-->
+
+## The model writes only the middle part of the stimulus
+
+<div class="generation-population">
+<div><small>FIXED</small><b>Policy description</b><span>The same proposal and eligibility requirements</span></div>
+<div><small>MODEL OUTPUT</small><b>Framing passage</b><span>Rights, economics, or family</span></div>
+<div><small>FIXED</small><b>Outcome question</b><span>The same support or opposition question</span></div>
+</div>
+
+Python joins these three strings to create each complete stimulus. The model never rewrites the policy description or the outcome question.
+
+## The exercise generates 60 versions of the middle passage
+
+<div class="population-count"><b>20 rights</b><b>20 economics</b><b>20 family</b><span>60 candidate framing passages</span></div>
+
+The model returns structured JSON. Python gives every passage an ID and saves the frame, complete stimulus, prompt, model, route, temperature, and unedited model output.
+
+## The prompt explains the survey setup before requesting text
+
+```text
+Participants will see:
+1. a fixed policy description;
+2. one framing passage written by the model;
+3. the same outcome question.
+
+Write only the middle passage. Present both positions in the
+assigned framing contest. Do not ask a question, rewrite the
+policy description, introduce new facts, or use another frame.
+```
+
+The model receives enough context to know what it is writing and where that text will appear.
+
+## Each frame is generated in two batches
+
+```python
+generation_jobs = [
+    {"frame": "rights", "batch": 1},
+    {"frame": "rights", "batch": 2},
+    {"frame": "economics", "batch": 1},
+    {"frame": "economics", "batch": 2},
+    {"frame": "family", "batch": 1},
+    {"frame": "family", "batch": 2},
+]
+```
+
+Each dictionary describes one model call. Two calls of ten passages give us twenty passages per frame without asking the model for one long response.
+
+## Each job creates one prompt
+
+```python
+for job in generation_jobs:
+    frame = job["frame"]
+    batch_number = job["batch"]
+    frame_instruction = frame_instructions[frame]
+    prompt = f"""
+    {research_context}
+    Assigned frame: {frame_instruction}
+    Write exactly 10 passages of 30–45 words.
+    """
+```
+
+<div class="code-explain"><div><b>Input</b><span>one frame, its instruction and a batch number</span></div><div><b>Operation</b><span>insert them into the prompt</span></div><div><b>Output</b><span>one request for ten passages</span></div></div>
+
+The complete prompt also includes the fixed policy description, the outcome question and the constraints shown on the previous slide.
+
+## Each response must contain ten complete passages
+
+```python
+parsed_batch = json.loads(raw_output)
+generated_messages = parsed_batch["messages"]
+
+print(frame, "batch", batch_number, len(generated_messages))
+```
+
+```text
+rights batch 1: 10
+rights batch 2: 10
+...
+family batch 2: 10
+```
+
+The schema checks the number and type of returned items. Python also rejects short field names such as `framing_passage_8`. Neither check establishes that the passages express the intended frame.
+
+## Every framing passage becomes a separate record
+
+```python
+{
+    "treatment_id": "rights_b1_07",
+    "frame": "rights",
+    "batch": 1,
+    "framing_passage": "...",
+    "full_stimulus": "...",
+    "word_count": 37,
+    "route": "openrouter",
+    "model": "openai/gpt-5.2",
+    "temperature": 0.9
+}
+```
+
+The exact prompts and raw batch returns are saved separately. Each individual record also keeps the variable passage and the complete stimulus a participant would see.
+
+## Reading sixty framing passages one after another is difficult
+
+<div class="inspection-problem">
+<div><b>Within a frame</b><span>Do all twenty rights messages express roughly the same argument?</span></div>
+<div><b>Across frames</b><span>Do messages assigned to different conditions sometimes say very similar things?</span></div>
+<div><b>Outliers</b><span>Does one treatment introduce unusual language or an extra factual claim?</span></div>
+</div>
+
+We still need to read the text. A semantic map helps us decide where to look first.
+
+## An embedding represents each framing passage as a vector
+
+<div class="embedding-sequence">
+<div><b>One framing passage</b><span>A 30–45 word string</span></div>
+<div><b>Embedding model</b><span>Measures many dimensions of textual similarity</span></div>
+<div><b>One vector</b><span>A long list of numbers</span></div>
+</div>
+
+Only the sixty variable passages are embedded. The repeated description and question would add the same language to every input.
+
+## The embedding array still has too many dimensions to plot directly
+
+```text
+                 dimension 1   dimension 2   dimension 3   ...
+rights_01           0.014          -0.032          0.081
+rights_02           0.019          -0.029          0.074
+economics_01       -0.043           0.062          0.011
+...
+```
+
+The embedding coordinates are model-produced measurements of semantic similarity. They are not direct observations of a treatment's social meaning.
+
+## UMAP gives every treatment two coordinates
+
+```python
+projector = umap.UMAP(
+    n_neighbors=10,
+    min_dist=0.25,
+    metric="cosine",
+    random_state=42,
+)
+
+coordinates = projector.fit_transform(embeddings)
+```
+
+**Input:** sixty high-dimensional embeddings. **Output:** sixty pairs of coordinates. The axes themselves have no substantive interpretation.
+
+## The interactive plot reconnects each point to its wording
+
+<div class="umap-example"><img src="images/week05_umap_example.png" alt="UMAP projection of sixty generated framing passages coloured by assigned frame"><p>In the notebook, hover over a point to display its ID, assigned frame, word count, and framing passage.<br><br>The colours are labels we supplied. The positions come from the framing passage, its embedding, and the UMAP projection.</p></div>
+
+## Three patterns are worth inspecting in the underlying text
+
+<div class="inspection-problem">
+<div><b>Cross-frame neighbours</b><span>Different labels, but very similar wording</span></div>
+<div><b>Within-frame separation</b><span>The same label covers substantially different messages</span></div>
+<div><b>Isolated points</b><span>One candidate may contain an unusual argument or tone</span></div>
+</div>
+
+The plot identifies cases for close reading. It does not decide whether a candidate belongs in the experiment.
+
+## UMAP can reveal a problem without explaining it
+
+If the family points form a tight cluster and the economic points are widely dispersed, several explanations remain possible:
+
+- the prompts constrained the conditions differently;
+- the embedding model responds strongly to family vocabulary;
+- the model produced genuinely different levels of message heterogeneity;
+- the two-dimensional projection exaggerates or obscures relationships in the original space.
+
+The next step is to read the treatments and then conduct a human pretest.
+
+## The production record and semantic map answer different questions
+
+<div class="record-map-compare">
+<div><b>Production record</b><span>Which prompt, model, route, settings, and raw return produced each candidate?</span></div>
+<div><b>Semantic map</b><span>Which candidates does one embedding-and-projection pipeline place near one another?</span></div>
+<div><b>Human pretest</b><span>How do intended participants perceive the frame, tone, plausibility, and other attributes?</span></div>
+</div>
+
+We need all three. None can substitute for the others.
+
+## Bai and colleagues make the candidate population part of the evidence
+
+Bai et al. tested messages drawn from larger pools rather than treating one generated message as “the LLM treatment.” Our exercise makes that population visible before participant assignment.
+
+<div class="logic-box"><b>The comparison we are preparing</b><span>Do rights, economics, and family framing contests affect support for legal status when each condition is represented by a defensible set of messages?</span></div>
+
+The map helps us inspect whether the generated set supports that comparison. It does not supply the answer.
+
+## Velez changes the problem after fieldwork begins
+
+<div class="paper-with-claim"><img src="images/velez_title_crop.png" alt="Published Political Analysis title and abstract for Yamil Velez's Crowdsourced Adaptive Surveys"><p>Our exercise freezes a generated message population before assignment. Velez instead allows participant responses to contribute new survey items while the instrument is in the field. These designs therefore create different inferential problems.</p></div>
+
+<div class="source-line">Velez (2025), “Crowdsourced Adaptive Surveys,” <em>Political Analysis</em> 33: 284–297.</div>
+
+## Completion task: follow one population from generation to inspection
+
+<div class="completion-flow">
+<div><b>1</b><span>Generate 60 treatments</span></div>
+<div><b>2</b><span>Save the production record</span></div>
+<div><b>3</b><span>Embed all texts</span></div>
+<div><b>4</b><span>Project with UMAP</span></div>
+<div><b>5</b><span>Inspect the wording</span></div>
+</div>
+
+In the recording, explain one pass through the generation loop, the shape of the embedding array, and how sixty rows become sixty plotted points. Use the hover text to discuss one close cross-frame pair and two separated same-frame treatments.
+
+## What this exercise can and cannot establish
+
+<div class="causal-box">
+<p><b>It can show:</b> how a specified prompt produced a heterogeneous population of treatments and where one semantic pipeline places those treatments relative to one another.</p>
+<p><b>It cannot show:</b> that the frames are valid, that UMAP clusters are social categories, or that participants will perceive the treatments as the researcher intends.</p>
+</div>
+
+The conditions should not enter the main experiment until close reading and a participant pretest support the intended comparison.
+
+## Next week the treatment will change during the interaction
+
+This week, the researcher generates and inspects a treatment population before assignment. Next week, the model will use a participant's preceding answer to decide what question to ask next.
+
+<div class="comparison-band"><strong>Week 5</strong><span>Generate, map, review, and freeze the treatment pool before fieldwork.</span></div>
+<div class="comparison-band"><strong>Week 6</strong><span>Generate later interviewer turns in response to the unfolding conversation.</span></div>

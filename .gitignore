@@ -14,6 +14,7 @@ coursebook/_book/
 coursebook/_generated/
 coursebook/.quarto/
 literature/source_pdfs/
+literature/print_packets/
 slides/session*/sources/
 tmp/
 _quarto_internal_scss_error.scss

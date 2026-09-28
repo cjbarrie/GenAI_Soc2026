@@ -1,0 +1,301 @@
+treatment_id,frame,batch,framing_passage,full_stimulus,word_count,route,model,temperature,umap_1,umap_2
+rights_b1_01,rights,1,Some argue that established residency inherently grants certain rights independent of citizenship. Others contend that full political standing necessitates a clear link to national citizenship status.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Some argue that established residency inherently grants certain rights independent of citizenship. Others contend that full political standing necessitates a clear link to national citizenship status.
+
+How strongly do you support or oppose this proposal?",26,ollama,gemma4:e2b-it-qat,0.9,18.467646,-13.437591
+rights_b1_02,rights,1,"The idea that long-term inhabitants deserve specific protections, separate from formal citizenship, exists alongside the view that political belonging must strictly follow citizenship.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The idea that long-term inhabitants deserve specific protections, separate from formal citizenship, exists alongside the view that political belonging must strictly follow citizenship.
+
+How strongly do you support or oppose this proposal?",23,ollama,gemma4:e2b-it-qat,0.9,17.389528,-13.555811
+rights_b1_03,rights,1,"There is a perspective asserting that certain rights belong to residents based on their time spent in the area. Conversely, another view maintains that citizenship dictates complete political inclusion.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+There is a perspective asserting that certain rights belong to residents based on their time spent in the area. Conversely, another view maintains that citizenship dictates complete political inclusion.
+
+How strongly do you support or oppose this proposal?",29,ollama,gemma4:e2b-it-qat,0.9,16.595003,-13.560205
+rights_b1_04,rights,1,One position suggests that the legal rights of established residents should stand on their residency alone. The opposing stance maintains that only citizenship confers the right to full political participation.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One position suggests that the legal rights of established residents should stand on their residency alone. The opposing stance maintains that only citizenship confers the right to full political participation.
+
+How strongly do you support or oppose this proposal?",30,ollama,gemma4:e2b-it-qat,0.9,18.035833,-13.189037
+rights_b1_05,rights,1,A line of reasoning posits that those who have lived here long possess rights that shouldn't be solely tied to citizenship. Another line of reasoning insists citizenship must be the sole determinant of political membership.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+A line of reasoning posits that those who have lived here long possess rights that shouldn't be solely tied to citizenship. Another line of reasoning insists citizenship must be the sole determinant of political membership.
+
+How strongly do you support or oppose this proposal?",35,ollama,gemma4:e2b-it-qat,0.9,17.10689,-12.704869
+rights_b1_06,rights,1,Consider the claim that residency establishes a baseline of rights for long-term inhabitants. The counter-claim emphasizes that citizenship is the essential criteria for holding full political membership.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Consider the claim that residency establishes a baseline of rights for long-term inhabitants. The counter-claim emphasizes that citizenship is the essential criteria for holding full political membership.
+
+How strongly do you support or oppose this proposal?",27,ollama,gemma4:e2b-it-qat,0.9,17.857729,-12.9988575
+rights_b1_07,rights,1,The argument is presented that existing residency warrants certain entitlements that exist outside of citizenship status. The contrasting view maintains that political membership is strictly conditional on citizenship.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The argument is presented that existing residency warrants certain entitlements that exist outside of citizenship status. The contrasting view maintains that political membership is strictly conditional on citizenship.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,19.041473,-13.229589
+rights_b1_08,rights,1,"It is suggested that the duration of residence itself confers specific rights, regardless of formal citizenship. The opposing argument stresses that citizenship must be the prerequisite for complete political affiliation.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+It is suggested that the duration of residence itself confers specific rights, regardless of formal citizenship. The opposing argument stresses that citizenship must be the prerequisite for complete political affiliation.
+
+How strongly do you support or oppose this proposal?",30,ollama,gemma4:e2b-it-qat,0.9,17.773123,-12.776333
+rights_b1_09,rights,1,One perspective frames the issue around the rights afforded to those who reside here long-term. The other perspective frames it around the requirement of citizenship for total political membership.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One perspective frames the issue around the rights afforded to those who reside here long-term. The other perspective frames it around the requirement of citizenship for total political membership.
+
+How strongly do you support or oppose this proposal?",29,ollama,gemma4:e2b-it-qat,0.9,16.41595,-13.015956
+rights_b1_10,rights,1,The assertion is that established residency warrants particular rights that are distinct from citizenship. The contrasting assertion is that citizenship is the only basis for full political membership.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The assertion is that established residency warrants particular rights that are distinct from citizenship. The contrasting assertion is that citizenship is the only basis for full political membership.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,18.886555,-12.732292
+rights_b2_01,rights,2,"Some believe that established residents deserve protections irrespective of their immigration status, while others maintain that full political participation necessitates citizenship.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Some believe that established residents deserve protections irrespective of their immigration status, while others maintain that full political participation necessitates citizenship.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,17.517342,-14.079512
+rights_b2_02,rights,2,"The perspective is that long-term inhabitants hold inherent entitlements independent of citizenship status, contrasted with the view that political membership should be strictly tied to citizenship.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The perspective is that long-term inhabitants hold inherent entitlements independent of citizenship status, contrasted with the view that political membership should be strictly tied to citizenship.
+
+How strongly do you support or oppose this proposal?",26,ollama,gemma4:e2b-it-qat,0.9,16.883732,-13.287648
+rights_b2_03,rights,2,"One viewpoint asserts that rights should apply to those who have lived here long-term, not just citizens, whereas the opposing view insists that citizenship is the sole determinant of political inclusion.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One viewpoint asserts that rights should apply to those who have lived here long-term, not just citizens, whereas the opposing view insists that citizenship is the sole determinant of political inclusion.
+
+How strongly do you support or oppose this proposal?",31,ollama,gemma4:e2b-it-qat,0.9,16.666527,-13.193355
+rights_b2_04,rights,2,"There is a contention that established residency confers certain rights regardless of citizenship, juxtaposed with the idea that only citizenship grants full political membership.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+There is a contention that established residency confers certain rights regardless of citizenship, juxtaposed with the idea that only citizenship grants full political membership.
+
+How strongly do you support or oppose this proposal?",24,ollama,gemma4:e2b-it-qat,0.9,18.53791,-13.086904
+rights_b2_05,rights,2,"The argument is that certain rights belong to those with long residency, separate from citizenship, while another perspective claims citizenship is the prerequisite for full political standing.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The argument is that certain rights belong to those with long residency, separate from citizenship, while another perspective claims citizenship is the prerequisite for full political standing.
+
+How strongly do you support or oppose this proposal?",27,ollama,gemma4:e2b-it-qat,0.9,18.055832,-12.450764
+rights_b2_06,rights,2,"Consider the idea that residency grants certain entitlements that remain valid even without citizenship, against the notion that citizenship defines who can fully participate politically.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Consider the idea that residency grants certain entitlements that remain valid even without citizenship, against the notion that citizenship defines who can fully participate politically.
+
+How strongly do you support or oppose this proposal?",25,ollama,gemma4:e2b-it-qat,0.9,18.664116,-13.775897
+rights_b2_07,rights,2,"Some feel that those residing here for a long time deserve specific protections that are not contingent on their citizenship, while others argue that citizenship is the necessary condition for political involvement.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Some feel that those residing here for a long time deserve specific protections that are not contingent on their citizenship, while others argue that citizenship is the necessary condition for political involvement.
+
+How strongly do you support or oppose this proposal?",32,ollama,gemma4:e2b-it-qat,0.9,17.031351,-13.799317
+rights_b2_08,rights,2,"The stance is that established residency establishes a basis for rights that citizens do not automatically possess, in contrast to the belief that citizenship alone dictates political membership.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The stance is that established residency establishes a basis for rights that citizens do not automatically possess, in contrast to the belief that citizenship alone dictates political membership.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,18.568924,-13.049989
+rights_b2_09,rights,2,"It is suggested that the duration of residency warrants certain rights independent of citizenship, whereas the alternative holds that citizenship is the defining feature of political membership.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+It is suggested that the duration of residency warrants certain rights independent of citizenship, whereas the alternative holds that citizenship is the defining feature of political membership.
+
+How strongly do you support or oppose this proposal?",27,ollama,gemma4:e2b-it-qat,0.9,18.699137,-12.410367
+rights_b2_10,rights,2,"The position held is that long-term presence should secure certain rights that citizenship does not guarantee, opposed to the belief that citizenship is the only valid basis for political standing.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The position held is that long-term presence should secure certain rights that citizenship does not guarantee, opposed to the belief that citizenship is the only valid basis for political standing.
+
+How strongly do you support or oppose this proposal?",30,ollama,gemma4:e2b-it-qat,0.9,17.41235,-13.362262
+economics_b1_01,economics,1,"Immigrants generate income and contribute to the tax base, while those who arrive might strain available employment and public resources.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Immigrants generate income and contribute to the tax base, while those who arrive might strain available employment and public resources.
+
+How strongly do you support or oppose this proposal?",20,ollama,gemma4:e2b-it-qat,0.9,24.91449,4.329211
+economics_b1_02,economics,1,The argument emphasizes the economic value of immigrant labor and tax contributions against concerns about job displacement and public expenditure.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The argument emphasizes the economic value of immigrant labor and tax contributions against concerns about job displacement and public expenditure.
+
+How strongly do you support or oppose this proposal?",20,ollama,gemma4:e2b-it-qat,0.9,25.122765,5.004442
+economics_b1_03,economics,1,"One perspective highlights the economic benefits of workers through taxes, while another points to potential pressures on employment and government finances.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One perspective highlights the economic benefits of workers through taxes, while another points to potential pressures on employment and government finances.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,24.506182,4.7720304
+economics_b1_04,economics,1,Consider the contribution to the economy via wages and taxes versus the concern that immigration could impact job availability and public services.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Consider the contribution to the economy via wages and taxes versus the concern that immigration could impact job availability and public services.
+
+How strongly do you support or oppose this proposal?",22,ollama,gemma4:e2b-it-qat,0.9,25.292511,5.8059487
+economics_b1_05,economics,1,The proposal involves weighing the economic contributions of immigrants with the potential impact on domestic job markets and public spending.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The proposal involves weighing the economic contributions of immigrants with the potential impact on domestic job markets and public spending.
+
+How strongly do you support or oppose this proposal?",20,ollama,gemma4:e2b-it-qat,0.9,24.705141,5.7559876
+economics_b1_06,economics,1,"Arguments focus on the economic inputs from immigrants through taxes and work, juxtaposed with worries about job competition and fiscal burdens.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Arguments focus on the economic inputs from immigrants through taxes and work, juxtaposed with worries about job competition and fiscal burdens.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,25.472904,4.726792
+economics_b1_07,economics,1,"View the situation through the lens of immigrant productivity and tax revenue generation, contrasted with the idea of increased job scarcity and spending.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+View the situation through the lens of immigrant productivity and tax revenue generation, contrasted with the idea of increased job scarcity and spending.
+
+How strongly do you support or oppose this proposal?",23,ollama,gemma4:e2b-it-qat,0.9,25.657747,5.380084
+economics_b1_08,economics,1,The consideration is between the economic gains derived from immigrant work and the potential strain on existing employment opportunities and public finances.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The consideration is between the economic gains derived from immigrant work and the potential strain on existing employment opportunities and public finances.
+
+How strongly do you support or oppose this proposal?",22,ollama,gemma4:e2b-it-qat,0.9,24.959332,5.4233546
+economics_b1_09,economics,1,There is a tension between the economic benefits realized through the labor and taxes of immigrants and the worries about job saturation and public costs.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+There is a tension between the economic benefits realized through the labor and taxes of immigrants and the worries about job saturation and public costs.
+
+How strongly do you support or oppose this proposal?",25,ollama,gemma4:e2b-it-qat,0.9,25.040663,4.636048
+economics_b1_10,economics,1,"The situation presents a contrast between the economic input of immigrants in terms of work and taxes, and the worry about job market effects and public spending.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The situation presents a contrast between the economic input of immigrants in terms of work and taxes, and the worry about job market effects and public spending.
+
+How strongly do you support or oppose this proposal?",27,ollama,gemma4:e2b-it-qat,0.9,25.462717,5.0842896
+economics_b2_01,economics,2,"Some view the proposal as establishing a route to legal standing through work and tax contributions, while others see it as placing strain on employment and public finances.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Some view the proposal as establishing a route to legal standing through work and tax contributions, while others see it as placing strain on employment and public finances.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,23.879364,5.932162
+economics_b2_02,economics,2,"The idea is presented as a path to lawful residency based on employment and taxation, alongside concerns about job competition and fiscal impact.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The idea is presented as a path to lawful residency based on employment and taxation, alongside concerns about job competition and fiscal impact.
+
+How strongly do you support or oppose this proposal?",23,ollama,gemma4:e2b-it-qat,0.9,23.762327,5.318872
+economics_b2_03,economics,2,One perspective suggests immigrants gain permanent legal status through labor and tax payments; the opposing view highlights potential pressure on the job market and government budgets.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One perspective suggests immigrants gain permanent legal status through labor and tax payments; the opposing view highlights potential pressure on the job market and government budgets.
+
+How strongly do you support or oppose this proposal?",26,ollama,gemma4:e2b-it-qat,0.9,24.383623,4.440265
+economics_b2_04,economics,2,"Arguments highlight how immigrants can secure long-term legal status via their work and taxes, juxtaposed against worries about job availability and public expense.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Arguments highlight how immigrants can secure long-term legal status via their work and taxes, juxtaposed against worries about job availability and public expense.
+
+How strongly do you support or oppose this proposal?",23,ollama,gemma4:e2b-it-qat,0.9,23.942114,4.5604844
+economics_b2_05,economics,2,"The proposal is framed as providing a means for undocumented individuals to achieve permanent legal status through economic contributions, versus the risk of job market strain and spending.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The proposal is framed as providing a means for undocumented individuals to achieve permanent legal status through economic contributions, versus the risk of job market strain and spending.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,24.107986,5.609955
+economics_b2_06,economics,2,"Consider the view that immigrants establish their right to permanent status via work and taxes, contrasted with the worry that this increases pressure on employment and public resources.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Consider the view that immigrants establish their right to permanent status via work and taxes, contrasted with the worry that this increases pressure on employment and public resources.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,24.105993,4.1395483
+economics_b2_07,economics,2,"The presentation outlines the idea of legal status through employment and taxation as one side, while the other side emphasizes potential effects on job creation and public spending.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The presentation outlines the idea of legal status through employment and taxation as one side, while the other side emphasizes potential effects on job creation and public spending.
+
+How strongly do you support or oppose this proposal?",28,ollama,gemma4:e2b-it-qat,0.9,23.413448,5.6632285
+economics_b2_08,economics,2,"From one viewpoint, immigrants attain permanent legal status through their labor and taxes; from another, there is apprehension regarding job saturation and public sector costs.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+From one viewpoint, immigrants attain permanent legal status through their labor and taxes; from another, there is apprehension regarding job saturation and public sector costs.
+
+How strongly do you support or oppose this proposal?",25,ollama,gemma4:e2b-it-qat,0.9,24.762192,4.186689
+economics_b2_09,economics,2,"The discourse presents the mechanism for permanent legal status rooted in work and taxes, while concurrently addressing the potential challenges related to job competition and public budgets.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The discourse presents the mechanism for permanent legal status rooted in work and taxes, while concurrently addressing the potential challenges related to job competition and public budgets.
+
+How strongly do you support or oppose this proposal?",27,ollama,gemma4:e2b-it-qat,0.9,23.029396,5.4135847
+economics_b2_10,economics,2,"There is an emphasis on how work and taxes could lead to permanent legal status, set against the concern that increased numbers might affect job availability and public expenditures.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+There is an emphasis on how work and taxes could lead to permanent legal status, set against the concern that increased numbers might affect job availability and public expenditures.
+
+How strongly do you support or oppose this proposal?",29,ollama,gemma4:e2b-it-qat,0.9,23.391514,5.28313
+family_b1_01,family,1,"Maintaining family unity is important, just as upholding immigration regulations ensures adherence to established legal structures regardless of familial proximity.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Maintaining family unity is important, just as upholding immigration regulations ensures adherence to established legal structures regardless of familial proximity.
+
+How strongly do you support or oppose this proposal?",20,ollama,gemma4:e2b-it-qat,0.9,10.827542,1.5537336
+family_b1_02,family,1,The focus on keeping families together conflicts with the necessity of strictly enforcing immigration rules even when relatives might be geographically separated.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The focus on keeping families together conflicts with the necessity of strictly enforcing immigration rules even when relatives might be geographically separated.
+
+How strongly do you support or oppose this proposal?",22,ollama,gemma4:e2b-it-qat,0.9,11.3918495,1.2891269
+family_b1_03,family,1,Prioritizing the integrity of the family unit stands in opposition to the imperative of enforcing immigration laws irrespective of whether family members remain together.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Prioritizing the integrity of the family unit stands in opposition to the imperative of enforcing immigration laws irrespective of whether family members remain together.
+
+How strongly do you support or oppose this proposal?",24,ollama,gemma4:e2b-it-qat,0.9,11.246625,1.5622523
+family_b1_04,family,1,"It is crucial to prioritize family cohesion while simultaneously insisting on strict enforcement of immigration regulations, even in cases where relatives are not immediately with each other.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+It is crucial to prioritize family cohesion while simultaneously insisting on strict enforcement of immigration regulations, even in cases where relatives are not immediately with each other.
+
+How strongly do you support or oppose this proposal?",27,ollama,gemma4:e2b-it-qat,0.9,11.619937,1.8745958
+family_b1_05,family,1,One perspective emphasizes the value of keeping families united; the other stresses the need for firm immigration enforcement even when relatives are not physically close.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One perspective emphasizes the value of keeping families united; the other stresses the need for firm immigration enforcement even when relatives are not physically close.
+
+How strongly do you support or oppose this proposal?",25,ollama,gemma4:e2b-it-qat,0.9,11.542965,2.7524498
+family_b1_06,family,1,"Preserving family ties is a consideration against the need to strictly enforce immigration rules, even when separated relatives are involved.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Preserving family ties is a consideration against the need to strictly enforce immigration rules, even when separated relatives are involved.
+
+How strongly do you support or oppose this proposal?",20,ollama,gemma4:e2b-it-qat,0.9,11.793751,1.3564107
+family_b1_07,family,1,"Support for keeping families together contrasts with the obligation to enforce immigration rules, even when family members are not in the same location.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Support for keeping families together contrasts with the obligation to enforce immigration rules, even when family members are not in the same location.
+
+How strongly do you support or oppose this proposal?",23,ollama,gemma4:e2b-it-qat,0.9,10.879911,2.2384386
+family_b1_08,family,1,"The desire to maintain family closeness competes with the duty to rigorously apply immigration regulations, even when relatives are physically distant.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The desire to maintain family closeness competes with the duty to rigorously apply immigration regulations, even when relatives are physically distant.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,11.208614,2.58048
+family_b1_09,family,1,"Valuing family bonds requires balancing this against the requirement to enforce immigration rules, even when relatives might be separated.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Valuing family bonds requires balancing this against the requirement to enforce immigration rules, even when relatives might be separated.
+
+How strongly do you support or oppose this proposal?",19,ollama,gemma4:e2b-it-qat,0.9,11.93227,2.7387013
+family_b1_10,family,1,"Focusing on family unity is weighed against the mandate to enforce immigration rules, even in situations where relatives are not together.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Focusing on family unity is weighed against the mandate to enforce immigration rules, even in situations where relatives are not together.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,11.038424,2.028036
+family_b2_01,family,2,"Some believe policy should prioritize maintaining family unity, while others argue that enforcing immigration regulations necessitates separating relatives.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Some believe policy should prioritize maintaining family unity, while others argue that enforcing immigration regulations necessitates separating relatives.
+
+How strongly do you support or oppose this proposal?",18,ollama,gemma4:e2b-it-qat,0.9,11.999224,1.5758209
+family_b2_02,family,2,"Advocates for keeping families united suggest that immigration rules must be strictly enforced, even if it means family members might be separated.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Advocates for keeping families united suggest that immigration rules must be strictly enforced, even if it means family members might be separated.
+
+How strongly do you support or oppose this proposal?",22,ollama,gemma4:e2b-it-qat,0.9,11.781019,1.0501977
+family_b2_03,family,2,The idea that family cohesion is paramount contrasts with the view that immigration policies demand enforcement regardless of potential family separation.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The idea that family cohesion is paramount contrasts with the view that immigration policies demand enforcement regardless of potential family separation.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,12.566031,1.9989064
+family_b2_04,family,2,"Maintaining family togetherness is one perspective, whereas some contend that immigration rules must be upheld even when relatives are kept apart.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Maintaining family togetherness is one perspective, whereas some contend that immigration rules must be upheld even when relatives are kept apart.
+
+How strongly do you support or oppose this proposal?",21,ollama,gemma4:e2b-it-qat,0.9,11.623498,2.1594288
+family_b2_05,family,2,"One viewpoint emphasizes preserving family bonds, while another insists that immigration enforcement dictates separation for relatives.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+One viewpoint emphasizes preserving family bonds, while another insists that immigration enforcement dictates separation for relatives.
+
+How strongly do you support or oppose this proposal?",16,ollama,gemma4:e2b-it-qat,0.9,12.356639,2.5131059
+family_b2_06,family,2,The principle of keeping families together is presented alongside the necessity of applying immigration rules even if it results in family division.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The principle of keeping families together is presented alongside the necessity of applying immigration rules even if it results in family division.
+
+How strongly do you support or oppose this proposal?",22,ollama,gemma4:e2b-it-qat,0.9,10.692061,1.7649121
+family_b2_07,family,2,"There is a perspective supporting the continuity of family units, juxtaposed with one arguing that immigration enforcement must occur even with family separation.","The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+There is a perspective supporting the continuity of family units, juxtaposed with one arguing that immigration enforcement must occur even with family separation.
+
+How strongly do you support or oppose this proposal?",23,ollama,gemma4:e2b-it-qat,0.9,12.893116,1.9853284
+family_b2_08,family,2,Focusing on the importance of family proximity is presented against the argument that immigration policies require separation for relatives.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Focusing on the importance of family proximity is presented against the argument that immigration policies require separation for relatives.
+
+How strongly do you support or oppose this proposal?",19,ollama,gemma4:e2b-it-qat,0.9,12.523576,1.4228717
+family_b2_09,family,2,The emphasis on family structure is contrasted with the assertion that immigration enforcement mandates separation for relatives under current rules.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+The emphasis on family structure is contrasted with the assertion that immigration enforcement mandates separation for relatives under current rules.
+
+How strongly do you support or oppose this proposal?",20,ollama,gemma4:e2b-it-qat,0.9,12.258306,2.1662319
+family_b2_10,family,2,Arguments for keeping families integrated are presented against the stance that immigration regulations require separating family members.,"The proposal would create a pathway to permanent legal status for undocumented immigrants who meet residency and background-check requirements.
+
+Arguments for keeping families integrated are presented against the stance that immigration regulations require separating family members.
+
+How strongly do you support or oppose this proposal?",17,ollama,gemma4:e2b-it-qat,0.9,12.466055,1.132569

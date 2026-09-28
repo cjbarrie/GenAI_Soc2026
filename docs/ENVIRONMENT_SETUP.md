@@ -92,11 +92,12 @@ Download Ollama from the [official Ollama download page](https://ollama.com/down
 ```bash
 ollama --version
 ollama pull gemma4:e2b-it-qat
+ollama pull all-minilm
 ollama list
 curl http://localhost:11434/api/version
 ```
 
-The first command checks the installed application. `ollama pull` downloads the model artifact. `ollama list` checks that the tag is installed. The final command makes a direct request to the local API; a JSON version reply shows that the server is reachable. The pull is several gigabytes and may take time. The exact course tag is `gemma4:e2b-it-qat`; do not silently substitute `gemma4`, which currently downloads a larger artifact.
+The first command checks the installed application. Each `ollama pull` downloads a model artifact. `gemma4:e2b-it-qat` generates text and accepts the Week 4 images; it is several gigabytes and may take time. `all-minilm` is a much smaller embedding model used in Week 5 to turn each generated treatment into a numeric vector for the semantic map. `ollama list` checks that both tags are installed. The final command makes a direct request to the local API; a JSON version reply shows that the server is reachable. Do not silently substitute `gemma4`, which currently downloads a larger artifact.
 
 Make the first terminal call:
 
@@ -164,7 +165,8 @@ You can instead open `workbook/00_setup/dual_route_preflight.ipynb` and run its 
 | `No module named ...` in Colab | the setup cell at the top was not run, or its installation failed | restart the runtime and run the setup cell before any imports |
 | `No module named src...` in Colab | an older notebook did not add the cloned repository root to Python's import path | reopen the current public notebook and run its setup cell first |
 | Ollama connection refused | the local application/server is not running | start Ollama and run `ollama list` |
-| model not found | the exact tag is not installed | run `ollama pull gemma4:e2b-it-qat` |
+| generation model not found | the exact generation tag is not installed | run `ollama pull gemma4:e2b-it-qat` |
+| embedding model not found in Week 5 | the small embedding tag is not installed | run `ollama pull all-minilm` |
 | out of memory or very slow | the model does not fit comfortably | stop other applications and bring the diagnostic to class |
 | OpenRouter unauthorized | the key is absent, mistyped or expired | re-enter the privately supplied key without displaying it |
 | OpenRouter `User not found` | the supplied key is invalid, expired, or no longer attached to an active OpenRouter account | re-enter it once; then ask the instructor to replace or reactivate the course key |

@@ -45,6 +45,10 @@ course_packages = {
     "openrouter": "openrouter>=0.6,<1",
     "ollama": "ollama>=0.6,<1",
 }
+if SESSION == "session05":
+    course_packages["plotly"] = "plotly>=6.3,<7"
+    course_packages["umap"] = "umap-learn>=0.5.9,<1"
+    course_packages["pandas"] = "pandas>=2.3,<3"
 if SESSION == "session13":
     course_packages["pandas"] = "pandas>=2.2,<3"
 
@@ -205,7 +209,9 @@ Run the setup cell immediately below before doing anything else. Colab installs 
     )
     for cell in cells:
         if cell["cell_type"] == "markdown" and "Choose" in "".join(cell["source"]) and "route" in "".join(cell["source"]).lower():
-            cell["source"] = lines("".join(cell["source"]).rstrip() + route_note)
+            source = "".join(cell["source"]).rstrip()
+            if "In Colab, `ROUTE` is set" not in source:
+                cell["source"] = lines(source + route_note)
             break
 
 
