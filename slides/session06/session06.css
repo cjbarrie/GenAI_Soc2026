@@ -377,6 +377,61 @@
 
 .liu-findings > div { font-size: .75em; }
 
+.velez-intro {
+  display: grid;
+  grid-template-columns: 58% 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.velez-intro img {
+  width: 100%;
+  height: 470px;
+  object-fit: contain;
+  object-position: top;
+  background: #fff;
+  border: 1px solid #bbb;
+  box-shadow: 0 4px 12px #0002;
+}
+
+.velez-intro > div { font-size: .76em; }
+
+.velez-flow {
+  display: block;
+  width: 100%;
+  height: 505px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+.velez-table {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  margin-top: 8px;
+}
+
+.velez-result {
+  display: grid;
+  grid-template-columns: 62% 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.velez-result img {
+  width: 100%;
+  height: 475px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+}
+
+.velez-result > div { font-size: .73em; }
+
 .opening-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;

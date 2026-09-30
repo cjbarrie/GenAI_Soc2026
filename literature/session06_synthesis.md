@@ -286,28 +286,29 @@ Tourangeau and Smith provide the empirical result. The conclusion should be rest
 
 This is the bridge to the break. Students should now be able to say what is and is not new about LLM interviewing.
 
-#### Add three Velez slides before the break
+#### Use Velez, Liu and Clifford to connect interviewing to experimentation
 
-Velez is now an essential reading, so the single transition reference is not enough. Add a compact three-slide sequence after audio-CASI rather than scattering brief mentions through the lecture.
+The 2026 APSR article is now the essential Velez reading. Add a four-slide sequence after the general explanation of an AI interviewer. Keep the 2025 crowdsourced adaptive survey as a brief comparison on the earlier Week 5 transition slide.
 
-**Slide A: “Velez lets respondents change the survey while it is running”**
+**Slide A: “An interview determines the experimental treatment”**
 
-Use the published Figure 1 process diagram at a readable size. Walk through one concrete item from left to right: open-ended response → LLM-produced survey item → similarity and toxicity checks → question bank → participant ratings → Gaussian Thompson sampling. State explicitly that the bandit changes the probability that an item is shown to later respondents.
+Introduce the published article and its research question. Participants identify an issue they care deeply about and discuss their reasons with an LLM. The system then uses that conversation to construct the experimental conditions.
 
-**Slide B: “The method recovered issues the original battery did not contain”**
+**Slide B: “The conversation is converted into focal and distal beliefs”**
 
-Show one substantive result from the issue-salience application and one from either the Latino misinformation or local-politics application. The point is not merely that the pipeline runs. Participant-generated items can surface concerns that a fixed researcher-authored battery would miss, while the LLM and filters can also alter what participants originally contributed.
+Use the published Figure 2 and explain one example. The model extracts the participant's position and the belief it treats as central to that position. It also generates a relevant belief that the participant did not mention. Participants are then randomized to a counterargument aimed at the focal belief, the distal belief or a placebo topic.
 
-**Slide C: “There are now two different kinds of adaptation”**
+**Slide C: “The model's summary becomes part of the treatment assignment”**
 
-Use a visual comparison rather than another prose table:
+Use a readable crop from published Table 2. Follow one row from the open response through the chat excerpt to the elicited attitude, focal belief and distal belief. Ask what evidence would establish that the focal-belief statement faithfully represents the conversation.
 
-- **Across respondents:** in Velez, earlier participants contribute items and ratings that change what later participants may see.
-- **Within one interview:** in AI-led interviewing, the current participant's answer changes the next probe in that participant's conversation.
+**Slide D: “Arguments aimed at focal beliefs produced larger attitude changes”**
 
-For Velez, the audit record needs the source response, generated item, filter results, bank version, ratings and selection probability. For an adaptive interview, it needs the preceding conversation, generated probe, model settings and any human intervention. End with the question that carries into the second half: when does adaptation improve what we learn, and when does it make different respondents' evidence harder to compare?
+Use published Figure 7. Explain that the plotted quantity compares the attitude effects of focal-belief and distal-belief counterarguments across both studies and waves. The overall estimate favors the focal condition. Preserve the paper's own caution that several individual estimates remain imprecise.
 
-To keep the lecture length stable, replace the present standalone “new capability” slide with Slide C, fold the current fixed-script/model-generated typology into the opening slide of Part 5, and remove the repeated general access-route comparison. OpenRouter, direct APIs and Ollama can be handled when the Python example begins.
+End the sequence with two checks that the rest of the lecture will reuse. First, did the interview elicit the participant's reasoning without supplying it? Second, did the treatment generator change anything besides the target belief? Random assignment estimates treatment effects after this pipeline has run, but does not validate every model decision inside the pipeline.
+
+To limit repetition, remove the general three-column access-route slide. OpenRouter and Ollama belong with the Python example. Retain the privacy slides because the new article makes transcript handling and personalized treatment generation more consequential.
 
 ### Part 5 — What LLM interviewing adds (about 13 slides)
 
