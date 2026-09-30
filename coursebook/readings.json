@@ -36,11 +36,12 @@
       {"key": "Velez2025", "status": "additional", "section": "Full article", "purpose": "Shows how candidate questions can be selected adaptively without treating generation as validation.", "url": "https://doi.org/10.1017/pan.2024.34"}
     ],
     "session06": [
-      {"key": "MertonKendall1946", "status": "essential", "section": "Full article", "purpose": "Supplies foundational criteria for specificity, range, depth and personal context.", "url": "https://doi.org/10.1086/219886"},
+      {"key": "JerolmackKhan2014", "status": "essential", "section": "Full article", "purpose": "Asks when interview accounts can support claims about situated action and shows why talk and observed conduct may diverge.", "url": "https://doi.org/10.1177/0049124114523396"},
       {"key": "VelezLiuClifford2026", "status": "essential", "section": "Full article", "purpose": "Combines a semi-structured LLM interview with an experiment in which the conversation determines which personalized counterargument a participant can receive.", "url": "https://doi.org/10.1017/S0003055426101622"},
       {"key": "GeieckeJaravel2026", "status": "essential", "section": "Full paper", "purpose": "Provides a major contemporary implementation of AI-led interviews.", "url": "https://benjamin.geiecke.com/files/ai_interviews.pdf"},
       {"key": "Rivera2012", "status": "essential", "section": "Full article", "purpose": "Uses interviews and observation to explain how evaluators construct cultural fit in elite hiring.", "url": "https://doi.org/10.1177/0003122412463213"},
       {"key": "JackCooperFlower2026", "status": "additional", "section": "Full article", "purpose": "Shows how a qualitative chatbot was built and how researchers experienced it.", "url": "https://doi.org/10.1177/20597991261448157"},
+      {"key": "MertonKendall1946", "status": "additional", "section": "Full article", "purpose": "Provides the classic criteria of nondirection, specificity, range, depth and personal context for focused interviewing.", "url": "https://doi.org/10.1086/219886"},
       {"key": "Velez2025", "status": "additional", "section": "Full article", "purpose": "Provides a comparison in which participant contributions change a shared question bank across respondents rather than the next probe within one interview.", "url": "https://doi.org/10.1017/pan.2024.34"}
     ],
     "session07": [

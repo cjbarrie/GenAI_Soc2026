@@ -589,16 +589,19 @@ This table is primarily a planning device. The deck should not necessarily repro
 
 ### Required
 
-1. **Merton and Kendall (1946), selected sections:** establishes what a focused interviewer is trying to accomplish and gives students a vocabulary for evaluating probes.
-2. **Geiecke and Jaravel (2026), selected sections:** provides the strongest current positive case, a system architecture, and multiple forms of evaluation.
-3. **Jack, Cooper, and Flower (2026):** introduces participant experience and the possibility that completion and abundance coexist with weak depth or interaction.
+1. **Jerolmack and Khan (2014), full article:** establishes the central claim–evidence problem by asking when interview accounts can support claims about situated action.
+2. **Velez, Liu and Clifford (2026), full article:** shows how an LLM interview can determine the personalized treatments used in a later experiment.
+3. **Geiecke and Jaravel (2026), full paper:** provides a major current implementation, a system architecture and several forms of evaluation across text and voice.
+4. **Rivera (2012), full article:** supplies the substantive application and shows why interview accounts and observation contribute different evidence about cultural matching.
+
+Merton and Kendall (1946) now appears as an additional reading. Its criteria remain in the lecture because they provide a precise vocabulary for evaluating probes, but Jerolmack and Khan supplies the required methodological spine.
 
 ### Worked through in class
 
 - Chicago life-history archive: material form and triangulation.
 - Suchman and Jordan plus Schober and Conrad: trouble, repair, and accuracy.
 - Oakley and Bourdieu: relationship and reflexivity.
-- Jerolmack and Khan plus Lamont and Swidler: inferential target.
+- Merton and Kendall: specificity, range, depth and nondirection.
 - Tourangeau and Smith: pre-LLM automation and disclosure.
 - Wuttke et al.: randomized interviewer comparison.
 - Cuevas et al.: validation metrics and richness.
@@ -663,7 +666,7 @@ Before slide implementation, approve or revise:
 
 1. the three-question framework: evidence, interviewer discretion, and social relationship;
 2. the allocation of roughly 75 minutes before the break to the historical and interactional foundations;
-3. Merton and Kendall replacing Suchman and Jordan as the required classic reading, with Suchman/Jordan taught through a transcript;
+3. Jerolmack and Khan as the required classic methods reading, with Merton and Kendall retained as additional background and taught through the focused-interview examples;
 4. the synthetic seminar-participation study and its limited inferential target;
 5. the narrow Python job: reconstruct realized interview paths, without scoring quality;
 6. persuasion as a short transfer application near the end.

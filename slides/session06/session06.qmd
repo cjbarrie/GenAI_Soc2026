@@ -18,17 +18,17 @@ format:
     embed-resources: true
 ---
 
-## Two interviewers respond differently to the same hiring judgment
+## Two follow-up questions in Rivera's hiring study
 
 <div class="cols"><div class="transcript"><div class="turn"><span class="speaker">Interviewer:</span> Tell me about a recent candidate who seemed like a good fit for the firm.</div><div class="turn"><span class="speaker">Evaluator:</span> The conversation flowed. We had a surprising amount in common.</div><div class="turn"><span class="speaker">Interviewer:</span> What did you find you had in common?</div><div class="turn"><span class="speaker">Evaluator:</span> We had both rowed in college and talked about long training days.</div></div><div class="transcript"><div class="turn"><span class="speaker">Interviewer:</span> Tell me about a recent candidate who seemed like a good fit for the firm.</div><div class="turn"><span class="speaker">Evaluator:</span> The conversation flowed. We had a surprising amount in common.</div><div class="turn"><span class="speaker">Interviewer:</span> So their background matched the firm's culture?</div><div class="turn"><span class="speaker">Evaluator:</span> Yes, I suppose so.</div></div></div>
 
+<div class="citation">Instructor-written comparison based on Rivera (2012), “Hiring as Cultural Matching,” <em>American Sociological Review</em> 77(6): 999–1022.</div>
+
 ---
 
-## What did you use to make that judgment?
+## Four questions for evaluating an interview
 
-The room may have used several standards without naming them:
-
-<table class="tbl"><tr><th>Standard</th><th>Where it comes from</th><th>Question</th></tr><tr><td>Specificity and nondirection</td><td>Merton & Kendall (1946)</td><td>Did the probe obtain a concrete account without supplying it?</td></tr><tr><td>Procedural comparability</td><td>Fowler & Mangione (1990)</td><td>Did interviewer discretion vary across participants?</td></tr><tr><td>Relationship and reciprocity</td><td>Oakley (2016); Bourdieu (1996)</td><td>Who is asking, and what does the participant think this relationship is?</td></tr><tr><td>Claim–evidence fit</td><td>Jerolmack & Khan (2014)</td><td>What can this account actually establish?</td></tr></table>
+<table class="tbl"><tr><th>Question</th><th>Relevant literature</th><th>What we inspect</th></tr><tr><td>What should the interview establish?</td><td>Jerolmack & Khan (2014); Rivera (2012)</td><td>Whether the eventual claim stays within what the account can support.</td></tr><tr><td>What discretion may the interviewer use?</td><td>Merton & Kendall (1946); Fowler & Mangione (1990)</td><td>Whether a probe requests evidence or supplies an explanation.</td></tr><tr><td>How does the encounter shape the answer?</td><td>Oakley (2016); Bourdieu (1996)</td><td>Who or what is asking, through which mode, and how the participant interprets that relationship.</td></tr><tr><td>What record and validation are required?</td><td>Contemporary AI-interview studies</td><td>What this participant received, how it was generated, and how its quality was checked.</td></tr></table>
 
 <div class="citation">Merton & Kendall, 1946, <em>AJS</em> 51(6): 541–557; Fowler & Mangione, 1990, <em>Standardized Survey Interviewing</em>; Oakley, 2016, <em>Sociology</em> 50(1): 195–213; Bourdieu, 1996, <em>Theory, Culture & Society</em> 13(2): 17–37; Jerolmack & Khan, 2014, <em>Sociological Methods & Research</em> 43(2): 178–209.</div>
 
@@ -44,34 +44,27 @@ The room may have used several standards without naming them:
 
 ---
 
-## There is no universal winner—and that is the point
+## Interview A better serves this research question
 
 <div class="cols"><div><h3>Interview A</h3><p>Asks the evaluator to specify what “in common” meant in this case.</p><p><strong>Risk:</strong> the follow-up creates a participant-specific path.</p></div><div><h3>Interview B</h3><p>Offers “firm culture” as the explanation before the evaluator has done so.</p><p><strong>Risk:</strong> agreement may reflect the wording of the probe rather than the evaluator's original account.</p></div></div>
 
-<div class="criterion"><strong>The right answer depends on the claim.</strong> If the study asks how evaluators construct cultural fit, A currently gives better evidence. If it requires a standardized measure of fit, neither exchange is an adequate instrument.</div>
+<div class="criterion">Rivera asks how evaluators construct cultural fit. Interview A currently gives better evidence because it asks the evaluator to specify the comparison. If the aim were a standardized measure of fit, neither exchange would be an adequate instrument.</div>
 
 ---
 
-## Three questions will let us make that judgment properly
+## Rivera combines interview accounts with observation
 
-<div class="route"><div class="route-item"><strong>Evidence</strong><br>What should the interview establish?</div><div class="route-arrow">→</div><div class="route-item"><strong>Discretion</strong><br>What may the interviewer do?</div><div class="route-arrow">→</div><div class="route-item"><strong>Relationship</strong><br>Who or what is asking?</div></div>
+<div class="cols6040"><img class="paper" src="images/rivera_title_crop.png" alt="Title and abstract of Rivera's Hiring as Cultural Matching"><div><p>Rivera interviewed <strong>120 evaluators</strong> in elite professional-service firms and observed one hiring committee.</p><p>The interviews elicited evaluators' criteria and accounts of recently interviewed candidates. Observation showed how candidate evaluations were produced and contested in real time.</p><p>The distinction between an account and situated conduct will matter throughout the lecture.</p></div></div>
 
-<div class="purpose">The first question clarifies the research purpose. The second lets us inspect the probe. The third asks how the encounter itself shapes the answer.</div>
-
----
-
-## The two opening interviews already show what is new
-
-<table class="tbl"><tr><th>Same before the answer</th><th>Different after the answer</th></tr><tr><td>Research question<br>Fixed opening question<br>Instructions about probing</td><td><strong>A:</strong> asks what “in common” meant<br><strong>B:</strong> supplies “firm culture” as the interpretation</td></tr></table>
-
-<div class="purpose">Once the next question depends on the answer, the interview protocol is no longer a complete record of what each participant received.</div>
+<div class="citation">Lauren A. Rivera (2012), “Hiring as Cultural Matching,” <em>American Sociological Review</em> 77(6): 999–1022.</div>
 
 ---
 
-## This extends the treatment problem from last week
+## Four interviewing traditions clarify different parts of the problem
 
-<table class="tbl"><tr><th></th><th>Set in advance</th><th>Can change</th></tr><tr><td>Fixed vignette</td><td>Wording and exposure</td><td>Participant response</td></tr><tr><td>Adaptive item bank</td><td>Pool and selection rule</td><td>Next item across respondents</td></tr><tr><td>Adaptive interview</td><td>Protocol and instructions</td><td>Next probe within a conversation</td></tr></table>
-<div class="purpose">The guide or system prompt no longer completely describes the interview a participant received.</div>
+<table class="tbl"><tr><th>Tradition</th><th>Main concern</th></tr><tr><td>Life histories</td><td>Place an account within biography, institutions and historical change.</td></tr><tr><td>Focused and survey interviews</td><td>Decide when to pursue detail and when to restrict interviewer discretion.</td></tr><tr><td>Feminist and reflexive interviewing</td><td>Examine power, reciprocity and the social relationship that produces the account.</td></tr><tr><td>Ethnographic critique</td><td>Match the eventual claim to what interview talk can establish.</td></tr></table>
+
+<div class="purpose">These traditions do not offer one universal standard. They identify different questions that an AI interviewer must answer.</div>
 
 ---
 
@@ -87,7 +80,7 @@ The room may have used several standards without naming them:
 
 ---
 
-## A transcript is a record of a life, not the life itself
+## What a life-history transcript leaves out
 
 If our claim concerns how class, migration or institutional experience develops over time, a fluent twenty-minute account can still be too thin.
 
@@ -112,20 +105,6 @@ If our claim concerns how class, migration or institutional experience develops 
 <div class="cols4060"><div><p>They call the criteria <strong>provisional</strong> and interrelated:</p><ol><li>nondirection;</li><li>specificity;</li><li>range;</li><li>depth and personal context.</li></ol><p>The formulation matters: “depth” is not a word-count metric. It concerns affective significance and personal context.</p></div><img class="source-crop" src="images/merton_criteria_crop.png" alt="Merton and Kendall's four criteria on page 545"></div>
 
 <div class="citation">Merton & Kendall (1946), p. 545. Screenshot from the supplied published PDF.</div>
-
----
-
-## The four criteria can pull the interviewer in different directions
-
-<table class="tbl"><tr><th>The criterion</th><th>What the paper asks the interviewer to notice</th></tr><tr><td>Nondirection</td><td>Keep guidance to a minimum so the participant's own framing can appear.</td></tr><tr><td>Specificity</td><td>Obtain a full and specific definition of the situation.</td></tr><tr><td>Range</td><td>Cover anticipated and unanticipated responses and stimuli.</td></tr><tr><td>Depth and personal context</td><td>Distinguish central, affect-laden responses from peripheral ones and connect them to prior experience.</td></tr></table>
-
-<div class="purpose">These are not four independent scores. The interviewer evaluates the conversation as it proceeds and adapts technique accordingly.</div>
-
-::: {.notes}
-[Sources]
-- Merton & Kendall (1946), pp. 545, 552–555 | Source: https://doi.org/10.1086/219886 | Accessed: 2026-08-25
-[/Sources]
-:::
 
 ---
 
@@ -247,7 +226,7 @@ He describes verbal and bodily signs of attention—“yes,” “right,” nods
 
 ---
 
-## The relationship affects the account—but the account still has limits
+## Interview accounts and claims about conduct
 
 <div class="transcript">“When senior students are in the room, I decide not to speak because I assume their comments will be more sophisticated.”</div>
 
@@ -299,7 +278,7 @@ He describes verbal and bodily signs of attention—“yes,” “right,” nods
 
 ---
 
-## Their argument is not that interviews are useless
+## What interview evidence can establish
 
 <div class="cols6040"><div class="source-highlight-wrap"><img src="images/jerolmack_uses_crop.png" alt="Jerolmack and Khan describe what interviews can establish and where caution is needed"><div class="source-mark highlight-uses-account" aria-hidden="true"></div><div class="source-mark highlight-uses-limit" aria-hidden="true"></div></div><div><h3>Interviews can tell us about</h3><p>meanings, expectations, retrospective narratives and practices that cannot be directly observed.</p><h3>A claim about action needs more</h3><p>Observation, triangulation, or evidence that this kind of account predicts the behaviour being claimed.</p></div></div>
 
@@ -310,14 +289,6 @@ He describes verbal and bodily signs of attention—“yes,” “right,” nods
 - Jerolmack & Khan (2014), p. 180 | Local source: slides/session06/sources/jerolmack_khan_2014.pdf | DOI: https://doi.org/10.1177/0049124114523396 | Accessed: 2026-08-25
 [/Sources]
 :::
-
----
-
-## Rivera uses interviews to explain how employers judge “fit”
-
-<div class="cols6040"><img class="paper" src="images/rivera_title_crop.png" alt="Title and abstract of Rivera's Hiring as Cultural Matching"><div><p>The study draws on <strong>120 interviews</strong> with evaluators in elite professional-service firms and participant observation of one hiring committee.</p><p>Rivera argues that hiring is not only skills sorting. Evaluators also match candidates to themselves and to an image of the firm.</p><p>This gives us a substantive question for the rest of the lecture: what must an interviewer ask to show how a judgment of fit was made?</p></div></div>
-
-<div class="citation">Rivera, L. A. (2012). “Hiring as Cultural Matching: The Case of Elite Professional Service Firms.” <em>American Sociological Review</em> 77(6):999–1022. https://doi.org/10.1177/0003122412463213.</div>
 
 ---
 
@@ -424,6 +395,14 @@ When we return: what kinds of systems are called “AI interviews,” and what d
 
 ---
 
+## Current studies answer different methodological questions
+
+<table class="tbl"><tr><th>Question</th><th>Evidence used in the studies</th></tr><tr><td>What support would human interviewers use?</td><td>Interviews with researchers in Liu et al. (2025)</td></tr><tr><td>What happens when an interview shapes a later treatment?</td><td>Personalized experiment in Velez, Liu & Clifford (2026)</td></tr><tr><td>Do adaptive probes improve the material collected?</td><td>Transcript ratings and randomized comparisons in Geiecke & Jaravel (2026) and Cuevas et al. (2025)</td></tr><tr><td>Where do human and AI interviewers make different mistakes?</td><td>Error coding in Wuttke et al. (2025)</td></tr><tr><td>How do participants experience the interaction?</td><td>Participant follow-up in Jack et al. (2026) and Cuevas et al. (2025)</td></tr><tr><td>Does model choice alter the interview?</td><td>Controlled model comparison in Panfilova et al. (2026)</td></tr></table>
+
+<div class="purpose">No single evaluation establishes whether an AI interviewer is good. Each design tests a different part of the method.</div>
+
+---
+
 ## Liu et al. asked interview researchers what support they would use
 
 <div class="liu-study"><img class="paper" src="images/liu_title_page.png" alt="First page of Liu and colleagues' published article"><div><p><strong>Participants:</strong> 16 researchers with different levels of interviewing experience.</p><p><strong>Method:</strong> 50–80 minute semi-structured interviews, followed by inductive thematic analysis.</p><p><strong>Question:</strong> Where might AI help a human interviewer, and where might it create new problems?</p><p>This was a study of researchers' expectations. It did not test an AI assistant during field interviews.</p></div></div>
@@ -448,7 +427,7 @@ When we return: what kinds of systems are called “AI interviews,” and what d
 
 ---
 
-## Velez, Liu and Clifford link an LLM interview to a persuasion experiment
+## An interview determines the personalized experimental treatments
 
 <div class="velez-intro"><img src="images/velez_liu_clifford_title_abstract.png" alt="Title and abstract of Beyond Belief Change"><div><p><strong>Research question:</strong> Do arguments change attitudes more when they address a belief that the participant regards as central to that attitude?</p><p>Participants first discussed a deeply held political position with an LLM. The model then summarized the participant's position, identified a focal belief and generated a relevant belief the participant had not mentioned.</p><p>Those outputs determined which personalized counterarguments could enter the experiment.</p></div></div>
 
@@ -528,24 +507,6 @@ When we return: what kinds of systems are called “AI interviews,” and what d
 
 ---
 
-## “We do not store prompts” is not the end of the privacy review
-
-<div class="cols"><div><h3>Follow the data</h3><ul><li>raw audio;</li><li>transcript;</li><li>conversation context;</li><li>generated question;</li><li>metadata and logs.</li></ul></div><div><h3>Ask who controls it</h3><ul><li>research team;</li><li>routing service;</li><li>model provider;</li><li>speech provider;</li><li>commercial interview platform.</li></ul></div></div>
-
-<div class="criterion"><strong>For OpenRouter:</strong> prompt logging is opt-in, but requests still pass to a model provider and provider policies vary. Zero Data Retention routing and <code>data_collection: "deny"</code> narrow the eligible providers; they do not replace consent, a data-management plan or contractual review.</div>
-
-<div class="citation">OpenRouter documentation and privacy policy, accessed 25 August 2026. For commercial platforms, check the study-specific contract: retention and access may be set by the commissioning organization.</div>
-
----
-
-## Running a model locally keeps the data on your machine
-
-<table class="tbl"><tr><th>Question</th><th>Remote service</th><th>Local model</th></tr><tr><td>Where does inference happen?</td><td>Provider infrastructure</td><td>Researcher's machine or server</td></tr><tr><td>What constrains model size?</td><td>Service offering and cost</td><td>RAM/VRAM and supported hardware</td></tr><tr><td>What affects speed?</td><td>Network, provider queue and model</td><td>Model size, quantization and GPU/CPU</td></tr><tr><td>Who maintains the stack?</td><td>Provider plus research team</td><td>Research team</td></tr></table>
-
-<div class="purpose">CPU inference may be slow enough to disrupt a spoken interview. A smaller local model may respond quickly but behave differently from the remote model used in validation.</div>
-
----
-
 ## Geiecke and Jaravel evaluate both text and voice interviews
 
 <div class="cols6040"><img class="paper" src="images/geiecke_title-01.png" alt="First page of Geiecke and Jaravel"><div><p>They build an AI-led interview platform and use it in several substantive applications. Their evaluation compares human and AI interviewers, text and voice input, prompts and models.</p><p>The paper therefore speaks to several design choices separately rather than treating “AI interviewing” as one condition.</p><div class="citation">Benjamin Geiecke & Xavier Jaravel (2026), “The Rise of AI-Led Interviews in Social Science,” working paper.</div></div></div>
@@ -588,7 +549,7 @@ When we return: what kinds of systems are called “AI interviews,” and what d
 
 ---
 
-## The stronger voice result is informative, but it does not settle the method
+## What the voice comparison establishes
 
 <div class="cards3"><div class="card"><h3>What it shows</h3><p>Mode changed the information participants supplied and the transcripts sociologists evaluated.</p></div><div class="card"><h3>What it cannot show alone</h3><p>Whether accounts were more accurate, whether all topics benefit, or how voice changes disclosure.</p></div><div class="card"><h3>What to record</h3><p>Input and output mode, transcription model, voice model, voice setting, latency and participant edits.</p></div></div>
 
@@ -615,30 +576,6 @@ When we return: what kinds of systems are called “AI interviews,” and what d
 <div class="criterion">The paper does not establish that one interviewer type is simply better. It identifies different failure patterns that training and system design would need to address.</div>
 
 <div class="citation">Wuttke et al. (2025), pp. 137–140 and Table 1. Human coders judged response quality broadly similar in this small sample.</div>
-
----
-
-## Jack, Cooper and Flower provide a larger sociological field example
-
-<div class="cards3"><div class="card"><h3>Who?</h3><p>74 social scientists at a Swedish university.</p></div><div class="card"><h3>What?</h3><p>A chatbot interviewed them about their own use of generative AI.</p></div><div class="card"><h3>Follow-up?</h3><p>23 participants later described the experience by email.</p></div></div>
-
-<p>This is an actual AI-mediated qualitative study, not only a benchmark or hypothetical system.</p>
-
-<div class="citation">Tullia Jack, Alex Cooper & Lisa Flower (2026), “Automating the Qualitative Interview? Using Gen AI Chatbots in Social Science Research,” <em>Methodological Innovations</em>, advance online publication. https://doi.org/10.1177/20597991261448157</div>
-
----
-
-## Finishing an interview is not the same as producing a good one
-
-Jack and colleagues show that simultaneous adaptive interviews can elicit substantial text at scale. Participants' follow-up accounts also raised repetition, limited nuance and a weaker sense of interaction.
-
-<div class="cols"><div><h3>Operational evidence</h3><p>Completion, length, duration and system logs show whether the interview ran.</p></div><div><h3>Methodological evidence</h3><p>Transcript review and participant follow-up show whether the exchange produced specificity, depth and a credible relationship.</p></div></div>
-
-::: {.notes}
-[Sources]
-- Jack, Cooper & Flower (2026) | Source: https://journals.sagepub.com/doi/10.1177/20597991261448157 | Accessed: 2026-08-25
-[/Sources]
-:::
 
 ---
 
@@ -692,25 +629,21 @@ This tells us how one participant interpreted the relationship the chatbot was p
 
 ---
 
-## Panfilova and colleagues hold the interview design fixed and change the model
+## Data flows in a remote interview system
 
-<div class="cols6040"><img class="paper paper-compact" src="images/panfilova_agent_crop.png" alt="Panfilova interviewer-agent flowchart"><div><p>Six models received the same prompts, guardrails and interview workflow. Each processed the same baseline interview material, making model choice the main difference between conditions.</p><p>The follow-up answers came from a fixed simulated interviewee. This is a controlled benchmark, not evidence from interviews with people.</p></div></div>
+<div class="cols"><div><h3>Follow the data</h3><ul><li>raw audio;</li><li>transcript;</li><li>conversation context;</li><li>generated question;</li><li>metadata and logs.</li></ul></div><div><h3>Ask who controls it</h3><ul><li>research team;</li><li>routing service;</li><li>model provider;</li><li>speech provider;</li><li>commercial interview platform.</li></ul></div></div>
 
-<div class="citation">Panfilova et al. (2026), <em>Scientific Reports</em>. DOI: 10.1038/s41598-026-46517-7.</div>
+<div class="criterion"><strong>For OpenRouter:</strong> prompt logging is opt-in, but requests still pass to a model provider and provider policies vary. Zero Data Retention routing and <code>data_collection: "deny"</code> narrow the eligible providers; they do not replace consent, a data-management plan or contractual review.</div>
 
----
-
-## Model choice changed speed, follow-up rate and interviewer style
-
-<div class="cols4060"><div><p>Across ten standardized interviews, models differed substantially in time and number of follow-ups.</p><p>For example, the reported average interview time ranged from about nine minutes for GPT-5 Chat to more than two hours for Qwen3-235B A22B.</p><p>Gemini 2.5 Pro more often used emphatic, appreciative phrasing. The paper treats this as a model-specific style—not proof that participants experienced greater empathy.</p></div><img class="paper" src="images/panfilova_table2_crop.png" alt="Panfilova model performance table"></div>
-
-<div class="citation">Panfilova et al. (2026), Table 2 and Results. DeepSeek completed only three interviews and is not directly comparable.</div>
+<div class="citation">OpenRouter documentation and privacy policy, accessed 25 August 2026. For commercial platforms, check the study-specific contract: retention and access may be set by the commissioning organization.</div>
 
 ---
 
-## The studies use different evidence to answer different questions
+## Local and remote inference
 
-<table class="tbl"><tr><th>Evidence and source</th><th>What it helps us assess</th><th>What it cannot settle alone</th></tr><tr><td>Protocol/error coding — Wuttke et al.</td><td>Missed probes, leading questions, active listening</td><td>Performance by expert interviewers</td></tr><tr><td>Sociologist transcript ratings — Geiecke & Jaravel</td><td>How evaluators judged resulting transcripts</td><td>Truth, rapport or behavioral validity</td></tr><tr><td>Participant experience — Jack et al.; Cuevas et al.</td><td>How the exchange felt and where it frustrated</td><td>Accuracy of the account</td></tr><tr><td>Richness coding — Cuevas et al.</td><td>Specificity, palpable examples, perspective</td><td>Whether these exhaust qualitative quality</td></tr><tr><td>Controlled model comparison — Panfilova et al.</td><td>Model-specific style, speed and follow-up behavior</td><td>Field interaction with human participants</td></tr></table>
+<table class="tbl"><tr><th>Question</th><th>Remote service</th><th>Local model</th></tr><tr><td>Where does inference happen?</td><td>Provider infrastructure</td><td>Researcher's machine or server</td></tr><tr><td>What constrains model size?</td><td>Service offering and cost</td><td>RAM/VRAM and supported hardware</td></tr><tr><td>What affects speed?</td><td>Network, provider queue and model</td><td>Model size, quantization and GPU/CPU</td></tr><tr><td>Who maintains the stack?</td><td>Provider plus research team</td><td>Research team</td></tr></table>
+
+<div class="purpose">CPU inference may be slow enough to disrupt a spoken interview. A smaller local model may respond quickly but behave differently from the remote model used in validation.</div>
 
 ---
 
@@ -757,11 +690,9 @@ The model proposes the next question. We still inspect whether it follows the pa
 
 ---
 
-## First, turn the interview brief and conversation into model messages {.tight-code}
+## First, store the instruction and opening answer {.tight-code}
 
 ```python
-import json
-
 INTERVIEW_PROTOCOL = """
 Research aim: understand how evaluators decide that a candidate
 is a good cultural fit.
@@ -770,24 +701,17 @@ clarification, or consequence. Do not introduce a cause.
 Return only the question.
 """
 
-opening_question = (
-    "Tell me about a recent candidate who seemed like a good fit."
-)
 first_answer = (
-    "The conversation flowed. We had a surprising amount in common."
+    "Evaluator: The conversation flowed. "
+    "We had a surprising amount in common."
 )
-turns = [
-    {"role": "interviewer", "text": opening_question},
-    {"role": "participant", "text": first_answer},
-]
-
-messages = [
+conversation = [
     {"role": "system", "content": INTERVIEW_PROTOCOL},
-    {"role": "user", "content": json.dumps(turns, indent=2)},
+    {"role": "user", "content": first_answer},
 ]
 ```
 
-<div class="io-strip"><div><strong>Input</strong><br>Two strings become two turn dictionaries inside the ordered <code>turns</code> list.</div><div><strong>Output</strong><br><code>json.dumps(...)</code> converts that list into readable text inside <code>messages</code>.</div></div>
+<div class="io-strip"><div><strong>Two strings</strong><br><code>INTERVIEW_PROTOCOL</code> stores the research aim and probing rule. <code>first_answer</code> stores the evaluator's words.</div><div><strong>One list</strong><br><code>conversation</code> places those strings inside two dictionaries in the order the model should read them.</div></div>
 
 ---
 
@@ -796,7 +720,7 @@ messages = [
 ```python
 reply = client.chat.send(
     model=INTERVIEW_MODEL,
-    messages=messages,
+    messages=conversation,
     temperature=0,
     stream=False,
 )
@@ -810,48 +734,41 @@ next_probe = reply.choices[0].message.content.strip()
 
 ---
 
-## Store the generated question as the next turn
+## Append the generated question to the same list
 
 ```python
-probe_turn = {
-    "role": "interviewer",
-    "text": next_probe,
-    "topic": None,
-    "source": "adaptive_probe",
-    "responds_to": len(turns),
-}
-
-turns.append(probe_turn)
+conversation.append({
+    "role": "assistant",
+    "content": next_probe,
+})
 ```
 
-<div class="io-strip"><div><strong>Before</strong><br><code>turns</code> ends with the participant's answer.</div><div><strong>After</strong><br><code>turns</code> also contains the generated probe and its link to that answer.</div></div>
+<div class="io-strip"><div><strong>Before</strong><br><code>conversation</code> contains the instruction and the evaluator's first answer.</div><div><strong>After</strong><br>The same list also contains the exact question returned by the model.</div></div>
 
 ---
 
-## Each turn is one dictionary inside a list
+## The conversation is one ordered list of dictionaries
 
 ```python
-turns = [{
-    "role": "interviewer",
-    "text": next_probe,
-    "topic": None,
-    "source": "adaptive_probe",
-    "responds_to": 2,
-}]
+print(conversation)
+
+# 1. system instruction
+# 2. evaluator answer
+# 3. generated interviewer question
 ```
-<div class="purpose"><strong>List:</strong> preserves order. <strong>Dictionary:</strong> stores named fields for one turn. <code>topic</code> is still <code>None</code> because the researcher has not yet added an analytic label.</div>
+<div class="purpose"><strong>The list</strong> preserves the order of the exchange. <strong>Each dictionary</strong> has a <code>role</code> and <code>content</code>. The OpenRouter and Ollama clients both accept this message format.</div>
 
 ---
 
-## Read one record from left to right
+## Read one message dictionary from left to right
 
-<div class="flow"><div><code>role</code><br><span class="mini">transcript log<br>who spoke</span></div><div><code>text</code><br><span class="mini">transcript log<br>exact words</span></div><div><code>source</code><br><span class="mini">decision log<br>protocol or probe</span></div><div><code>responds_to</code><br><span class="mini">decision log<br>prior turn link</span></div><div><code>topic</code><br><span class="mini">researcher annotation<br>analytic label</span></div></div>
+<div class="flow"><div><code>{</code><br><span class="mini">dictionary<br>begins</span></div><div><code>"role"</code><br><span class="mini">system, user<br>or assistant</span></div><div><code>"content"</code><br><span class="mini">the instruction,<br>answer or question</span></div><div><code>}</code><br><span class="mini">dictionary<br>ends</span></div></div>
 
-<div class="purpose"><code>topic</code> was added by the researcher for this exercise. The LLM did not generate it, and the audit function does not validate it.</div>
+<div class="purpose">The list shows which answer preceded the generated question. It does not establish that the question was relevant or non-leading; that still requires a methodological check.</div>
 
 ---
 
-## Speech-to-text turns the recording into text the interviewer model can read
+## Optional voice extension: speech-to-text produces the next input
 
 ```python
 with open("answer.wav", "rb") as audio_file:
@@ -872,11 +789,11 @@ answer_text = stt_result.text
 ## OpenRouter handles the text interviewer in our class setup
 
 ```python
-messages.append({"role": "user", "content": answer_text})
+conversation.append({"role": "user", "content": answer_text})
 
 reply = client.chat.send(
     model=INTERVIEW_MODEL,
-    messages=messages,
+    messages=conversation,
     temperature=0,
     stream=False,
 )
@@ -888,7 +805,7 @@ next_probe = reply.choices[0].message.content.strip()
 
 ---
 
-## Text-to-speech makes that question audible {.tight-code}
+## Optional voice extension: text-to-speech produces an audio file {.tight-code}
 
 ```python
 from pathlib import Path
@@ -915,7 +832,7 @@ with speech_client.audio.speech.with_streaming_response.create(
 
 ---
 
-## Test several voices while keeping the question fixed {.tight-code}
+## Optional demonstration: compare voices with fixed wording {.tight-code}
 
 ```python
 voices = ["coral", "marin", "cedar"]
@@ -939,56 +856,41 @@ Because the wording and instruction stay fixed, the comparison isolates the sele
 
 ---
 
-## Save the generated probe with the answer that prompted it
-
-```python
-probe_record = {
-    "participant_answer": first_answer,
-    "generated_probe": next_probe,
-    "source": "adaptive_probe",
-    "model": INTERVIEW_MODEL,
-}
-
-print(probe_record)
-```
-
-<div class="purpose"><strong>Input:</strong> the participant's answer, the generated question and the model name. <strong>Output:</strong> one dictionary preserving the connection between them.</div>
-
----
-
-## A list can preserve each interview turn in order
-
-```python
-conversation = [
-    {"role": "interviewer", "text": opening_question},
-    {"role": "participant", "text": first_answer},
-    {"role": "interviewer", "text": next_probe},
-]
-
-print(conversation[2]["text"])
-```
-
-<div class="cols"><div><strong><code>conversation</code></strong><br>A list. Its order records what happened first, second and third.</div><div><strong><code>conversation[2]</code></strong><br>The third dictionary. Python starts counting at zero.</div></div>
-
----
-
-## Now add the participant's next answer
+## Now add the evaluator's next answer
 
 ```python
 second_answer = (
-    "We had both worked on the college newspaper, "
-    "so the conversation became much more informal."
+    "Evaluator: We had both rowed in college and "
+    "talked about long training days."
 )
 
 conversation.append({
-    "role": "participant",
-    "text": second_answer,
+    "role": "user",
+    "content": second_answer,
 })
 
 print(conversation)
 ```
 
-<div class="purpose"><code>.append(...)</code> changes the list by adding one new item at the end. That expanded conversation becomes the input to the next model call.</div>
+<div class="purpose"><code>.append(...)</code> adds the evaluator's answer at the end of the same list. The next model call receives the entire expanded conversation.</div>
+
+---
+
+## The second call uses the expanded conversation
+
+```python
+second_reply = client.chat.send(
+    model=INTERVIEW_MODEL,
+    messages=conversation,
+    temperature=0,
+    stream=False,
+)
+
+second_probe = second_reply.choices[0].message.content.strip()
+print(second_probe)
+```
+
+<div class="purpose"><strong>What changed:</strong> the call uses the same model and settings, but the list now includes the first generated question and the evaluator's answer to it.</div>
 
 ---
 
@@ -1000,7 +902,7 @@ print(conversation)
 
 ## The completion task is deliberately small
 
-Generate one adaptive probe, add one participant answer, and explain orally:
+Generate two adaptive probes, change the evaluator's second answer, and explain orally:
 
 1. what each string stores;
 2. what the model received;
@@ -1010,7 +912,7 @@ Generate one adaptive probe, add one participant answer, and explain orally:
 
 ---
 
-## Build the source record while the interview runs
+## The source record for an adaptive interview
 
 <div class="cards3"><div class="card"><h3>Before</h3><p>Research question, protocol, consent, system instructions, models, route, speech settings and escalation rules.</p></div><div class="card"><h3>During</h3><p>Ordered turns, exact prompts and outputs, probe links, human approvals/edits, latency and errors.</p></div><div class="card"><h3>After</h3><p>Validation evidence, transcript corrections, analysis decisions, retention, deletion and access.</p></div></div>
 
@@ -1018,11 +920,11 @@ Generate one adaptive probe, add one participant answer, and explain orally:
 
 ---
 
-## What would you need to know before treating this transcript as sociological evidence?
+## Four questions before treating the transcript as evidence
 
-1. What is the interview meant to establish?
-2. Which decisions were fixed, selected, generated or human-approved?
-3. What did this participant actually experience?
-4. What evidence validates the interview for that research purpose?
+1. What should this interview establish?
+2. What discretion did the interviewer or model use?
+3. How did the encounter, mode and relationship shape the answer?
+4. What record and validation support the eventual claim?
 
 <div class="purpose">Next week: whether models can stand in for people or populations.</div>

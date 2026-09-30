@@ -36,29 +36,30 @@ if not os.getenv("OPENROUTER_API_KEY"):
 print("Hosted model:", HOSTED_MODEL)
 print("Local model:", LOCAL_MODEL)
 
-# CELL: Choose a route and construct the opening interview history
+# CELL: Choose a route and construct the opening conversation
 ROUTE = "ollama"  # change to "openrouter" if preferred
-interview_messages = [
+conversation = [
     {"role": "system", "content": (
-        "Conduct a sociological interview. Ask one short follow-up about a concrete "
-        "episode. Do not suggest a cause or put words in the participant's mouth."
+        "Research aim: understand how evaluators decide that a candidate is a good "
+        "cultural fit. Ask one short follow-up about a concrete judgment, episode "
+        "or comparison. Do not introduce a cause the evaluator has not mentioned."
     )},
     {"role": "user", "content": (
-        "Participant: I spoke after the professor invited me to respond."
+        "Evaluator: The conversation flowed. We had a surprising amount in common."
     )},
 ]
-print(interview_messages)
+print(conversation)
 
 # CELL: Make the first call through the selected route
 if ROUTE == "openrouter":
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
         first_response = client.chat.send(
-            model=HOSTED_MODEL, messages=interview_messages, temperature=0,
+            model=HOSTED_MODEL, messages=conversation, temperature=0,
         )
     first_raw = first_response.choices[0].message.content
 else:
     first_response = ollama.chat(think=False,
-        model=LOCAL_MODEL, messages=interview_messages,
+        model=LOCAL_MODEL, messages=conversation,
         options={"temperature": 0},
     )
     first_raw = first_response.message.content
@@ -67,22 +68,24 @@ first_probe = first_raw.strip()
 print("First probe:", first_probe)
 
 # CELL: Append the realized probe and a second participant answer
-interview_messages.append({"role": "assistant", "content": first_probe})
-second_answer = "Participant: I felt safer because she made room for me to speak."
-interview_messages.append({"role": "user", "content": second_answer})
-print("Messages before second call:", len(interview_messages))
-print(interview_messages)
+conversation.append({"role": "assistant", "content": first_probe})
+second_answer = (
+    "Evaluator: We had both rowed in college and talked about long training days."
+)
+conversation.append({"role": "user", "content": second_answer})
+print("Messages before second call:", len(conversation))
+print(conversation)
 
-# CELL: Make the second call with the expanded history
+# CELL: Make the second call with the expanded conversation
 if ROUTE == "openrouter":
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
         second_response = client.chat.send(
-            model=HOSTED_MODEL, messages=interview_messages, temperature=0,
+            model=HOSTED_MODEL, messages=conversation, temperature=0,
         )
     second_raw = second_response.choices[0].message.content
 else:
     second_response = ollama.chat(think=False,
-        model=LOCAL_MODEL, messages=interview_messages,
+        model=LOCAL_MODEL, messages=conversation,
         options={"temperature": 0},
     )
     second_raw = second_response.message.content
@@ -91,4 +94,5 @@ second_probe = second_raw.strip()
 print("Second probe:", second_probe)
 
 # ONE CHANGE: replace second_answer with
-# "Participant: I spoke when there was a pause." and rerun from append onward.
+# "Evaluator: She understood how we work with clients. I could picture her here."
+# and rerun from the append cell onward.

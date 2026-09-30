@@ -15,12 +15,12 @@ Week 5 generated fixed candidates before participants encountered them. In an ad
 
 ## Learning outcomes
 
-You should be able to distinguish interview purposes and survey modes; explain specificity, range, depth and personal context in the focused interview; distinguish speech-to-text, a text interviewer and text-to-speech; compare an assigned protocol with the path a participant actually received; and audit the source and target of every adaptive probe.
+You should be able to distinguish what interview accounts can establish from claims about situated action; explain how interviewer discretion, administration mode and the research relationship shape an account; distinguish speech-to-text, a text interviewer and text-to-speech; compare an assigned protocol with the path a participant actually received; and audit the source and target of every adaptive probe.
 
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Methods:** Merton and Kendall (1946), “The Focused Interview,” *American Journal of Sociology* 51(6): 541–557. Read the complete article. It supplies foundational criteria for evaluating what a probe elicits. [DOI](https://doi.org/10.1086/219886). [@MertonKendall1946]
+- **Methods:** Jerolmack and Khan (2014), “Talk Is Cheap: Ethnography and the Attitudinal Fallacy,” *Sociological Methods & Research* 43(2): 178–209. Read the complete article. It asks when accounts collected in interviews can support claims about what people do in particular situations. [DOI](https://doi.org/10.1177/0049124114523396). [@JerolmackKhan2014]
 - **AI interviewing and experimentation:** Velez, Liu and Clifford (2026), “Beyond Belief Change: The Persuasive Returns of Targeting Attitude-Relevant Beliefs,” *American Political Science Review*. Read the complete article. Participants discuss a deeply held issue with an LLM; the model identifies the belief central to their position and generates the personalized treatments used in the experiment. [DOI](https://doi.org/10.1017/S0003055426101622). [@VelezLiuClifford2026]
 - **Methods and LLMs:** Geiecke and Jaravel (2026), “The Rise of AI-Led Interviews in Social Science.” Read the complete paper. It presents a large text-and-voice implementation and explicit validation exercises. [Paper](https://benjamin.geiecke.com/files/ai_interviews.pdf). [@GeieckeJaravel2026]
 - **Substantive application:** Rivera (2012), “Hiring as Cultural Matching,” *American Sociological Review* 77(6): 999–1022. Read the complete article. Rivera uses interviews and observation to show how evaluators construct cultural fit in elite hiring; it gives us a real case against which to assess adaptive probes. [DOI](https://doi.org/10.1177/0003122412463213). [@Rivera2012]
@@ -29,11 +29,14 @@ You should be able to distinguish interview purposes and survey modes; explain s
 ## Additional readings grouped by purpose
 
 - **For a qualitative chatbot case:** Jack, Cooper and Flower (2026), *Methodological Innovations*. [DOI](https://doi.org/10.1177/20597991261448157). [@JackCooperFlower2026]
+- **For focused interviewing:** Merton and Kendall (1946), “The Focused Interview,” *American Journal of Sociology* 51(6): 541–557. [DOI](https://doi.org/10.1086/219886). [@MertonKendall1946]
 - **For adaptation across respondents:** Velez (2025), “Crowdsourced Adaptive Surveys,” *Political Analysis* 33(4): 284–297. [DOI](https://doi.org/10.1017/pan.2024.34). [@Velez2025]
 
 ## Sociological and methodological background
 
-Interviews have never been neutral containers into which respondents deposit attitudes. Merton and Kendall’s focused interview began with a situation the researcher had already analysed and used follow-up questions to recover specificity, range, depth and personal context. A good probe could pursue an unexpected response without telling the respondent what that response ought to mean. Later feminist and reflexive work made power, reciprocity and the interviewer’s social position part of the method. These traditions remind us that the interviewer helps produce the account recorded in the transcript.
+Jerolmack and Khan begin from a problem that runs through this week: what can an interview account establish? People can describe meanings, expectations and past events, but an account produced in an interview does not automatically predict conduct in another situation. Their examples show that differences between talk and observed action may arise because the interview and the encounter are different social settings, not because one simply reveals the respondent's true attitude.
+
+Earlier and later interviewing traditions help us inspect how the account is produced. Merton and Kendall’s focused interview began with a situation the researcher had already analysed and used follow-up questions to recover specificity, range, depth and personal context. A good probe could pursue an unexpected response without telling the respondent what that response ought to mean. Feminist and reflexive work made power, reciprocity and the interviewer’s social position part of the method. Together, these traditions direct attention to both the content of an account and the encounter in which it was elicited.
 
 Rivera’s study makes the evidentiary stakes concrete. Interviewers described cultural fit, while observation showed how evaluators converted shared tastes and experiences into judgments about candidates. The two sources do not simply duplicate one another. An adaptive interviewer might elicit a specific evaluative episode, but a leading probe could also supply the very explanation the study is meant to discover.
 
