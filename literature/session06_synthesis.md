@@ -264,7 +264,7 @@ The published debate then has a clear job rather than appearing as an aside.
 
 **Criterion added:** claim–evidence fit.
 
-### Part 4 — Computers had already changed interviews (about 3 slides)
+### Part 4 — Computers and adaptive surveys had already changed interviews (about 6 slides)
 
 #### Slides 24–26: CAPI, CASI and audio-CASI
 
@@ -285,6 +285,29 @@ Show the same sensitive item across interviewer-administered, screen self-admini
 Tourangeau and Smith provide the empirical result. The conclusion should be restrained: mode affects disclosure, and greater disclosure is not automatically greater validity.
 
 This is the bridge to the break. Students should now be able to say what is and is not new about LLM interviewing.
+
+#### Add three Velez slides before the break
+
+Velez is now an essential reading, so the single transition reference is not enough. Add a compact three-slide sequence after audio-CASI rather than scattering brief mentions through the lecture.
+
+**Slide A: “Velez lets respondents change the survey while it is running”**
+
+Use the published Figure 1 process diagram at a readable size. Walk through one concrete item from left to right: open-ended response → LLM-produced survey item → similarity and toxicity checks → question bank → participant ratings → Gaussian Thompson sampling. State explicitly that the bandit changes the probability that an item is shown to later respondents.
+
+**Slide B: “The method recovered issues the original battery did not contain”**
+
+Show one substantive result from the issue-salience application and one from either the Latino misinformation or local-politics application. The point is not merely that the pipeline runs. Participant-generated items can surface concerns that a fixed researcher-authored battery would miss, while the LLM and filters can also alter what participants originally contributed.
+
+**Slide C: “There are now two different kinds of adaptation”**
+
+Use a visual comparison rather than another prose table:
+
+- **Across respondents:** in Velez, earlier participants contribute items and ratings that change what later participants may see.
+- **Within one interview:** in AI-led interviewing, the current participant's answer changes the next probe in that participant's conversation.
+
+For Velez, the audit record needs the source response, generated item, filter results, bank version, ratings and selection probability. For an adaptive interview, it needs the preceding conversation, generated probe, model settings and any human intervention. End with the question that carries into the second half: when does adaptation improve what we learn, and when does it make different respondents' evidence harder to compare?
+
+To keep the lecture length stable, replace the present standalone “new capability” slide with Slide C, fold the current fixed-script/model-generated typology into the opening slide of Part 5, and remove the repeated general access-route comparison. OpenRouter, direct APIs and Ollama can be handled when the Python example begins.
 
 ### Part 5 — What LLM interviewing adds (about 13 slides)
 

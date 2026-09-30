@@ -37,10 +37,10 @@
     ],
     "session06": [
       {"key": "MertonKendall1946", "status": "essential", "section": "Full article", "purpose": "Supplies foundational criteria for specificity, range, depth and personal context.", "url": "https://doi.org/10.1086/219886"},
+      {"key": "Velez2025", "status": "essential", "section": "Full article", "purpose": "Shows how participant responses can be converted into new survey items and how an adaptive algorithm changes which items later respondents see.", "url": "https://doi.org/10.1017/pan.2024.34"},
       {"key": "GeieckeJaravel2026", "status": "essential", "section": "Full paper", "purpose": "Provides a major contemporary implementation of AI-led interviews.", "url": "https://benjamin.geiecke.com/files/ai_interviews.pdf"},
       {"key": "Rivera2012", "status": "essential", "section": "Full article", "purpose": "Uses interviews and observation to explain how evaluators construct cultural fit in elite hiring.", "url": "https://doi.org/10.1177/0003122412463213"},
-      {"key": "JackCooperFlower2026", "status": "additional", "section": "Full article", "purpose": "Shows how a qualitative chatbot was built and how researchers experienced it.", "url": "https://doi.org/10.1177/20597991261448157"},
-      {"key": "Velez2025", "status": "additional", "section": "Full article", "purpose": "Provides a comparison between adapting a survey and composing a qualitative probe.", "url": "https://doi.org/10.1017/pan.2024.34"}
+      {"key": "JackCooperFlower2026", "status": "additional", "section": "Full article", "purpose": "Shows how a qualitative chatbot was built and how researchers experienced it.", "url": "https://doi.org/10.1177/20597991261448157"}
     ],
     "session07": [
       {"key": "KozlowskiEvans2025", "status": "essential", "section": "Full article", "purpose": "Frames artificial stand-ins as representations with specific inferential limits.", "url": "https://doi.org/10.1177/00491241251337316"},
