@@ -1,27 +1,27 @@
 ---
-title: "Week 6 Python — Adaptive interview turns"
+title: "Week 6 Python — Adaptive interview paths"
 description: "Worked code, notebook and completion task"
 ---
 
 [Return to the Week 6 readings and slides](../weeks/session06.qmd).
 
-## Python walkthrough: build one adaptive interview turn
+## Python walkthrough: compare two interview paths
 
 ::: {.routine-summary}
-**Today's routine:** One participant answer → one adaptive probe → updated conversation → second adaptive probe.
+**Today's routine:** One evaluator answer, one generated probe and two alternative replies. The model then generates a different next question for each path.
 
-**Python introduced:** conversation lists, roles, `.append(...)`, ordered state and repeated model calls.
+**Python introduced:** strings, message dictionaries, ordered lists, `.copy(...)`, `.append(...)` and repeated model calls.
 
-**Your change:** replace the second participant answer and inspect the next probe.
+**Your change:** replace the case-performance answer, recreate both paths and inspect the next probes.
 :::
 
-The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+The example follows Rivera's research question about cultural fit. The model sees the same protocol, first answer and first probe in both paths. Only the evaluator's next answer changes.
 
 ### Load the course settings and SDKs
 
 Run the notebook's **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local `uv` environment, adds the repository root to Python's import path and sets `IN_COLAB`. Colab uses OpenRouter because it cannot reach the Ollama server on your computer.
 
-This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+This next cell reads the centrally recorded model names and chooses a route. It asks for the hosted key only when the selected route is OpenRouter. Never include key entry in the recording.
 
 ```python
 import json
@@ -44,52 +44,65 @@ while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.par
 
 if not (ROOT / "config" / "course_models.json").exists():
     raise FileNotFoundError(
-        "The complete GenAI_Soc2026 repository could not be found. A task or "
-        "notebook downloaded by itself is not enough for local work. Open a terminal "
-        "in the complete course folder and run this file from there."
+        "The complete GenAI_Soc2026 repository could not be found. Download or "
+        "clone the repository and start Jupyter from the course folder."
     )
 
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
+ROUTE = "openrouter" if IN_COLAB else "ollama"
 
-if not os.getenv("OPENROUTER_API_KEY"):
+if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
+print("Route:", ROUTE)
 print("Hosted model:", HOSTED_MODEL)
 print("Local model:", LOCAL_MODEL)
 ```
 
 ::: {.callout-note title="Read this setup cell"}
-**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+**Input:** installed Python packages and `config/course_models.json`. OpenRouter also needs the hidden course key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block finds the course configuration; `json.loads(...)` turns JSON text into a dictionary. **Output:** `ROUTE`, `HOSTED_MODEL` and `LOCAL_MODEL` are strings. The folder-search code is supplied setup and is not assessed.
 :::
 
-### Choose a route and construct the opening conversation
+### Store the interview protocol and first answer
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+The two values below are strings. The protocol tells the model what the interview is trying to learn and limits what it should ask. The answer records exactly what the evaluator said.
 
 ```python
-ROUTE = "openrouter" if IN_COLAB else "ollama"  # Ollama is the local default
+interview_protocol = """
+Research question: How do evaluators decide that a candidate is a good cultural fit?
+Ask one short follow-up question about a concrete judgment, episode or comparison.
+Do not introduce a cause the evaluator has not mentioned.
+Do not claim to have human feelings or experiences.
+Return only the question.
+"""
+
+first_answer = "Evaluator: I could picture her working here."
+
+print(type(interview_protocol))
+print(type(first_answer))
+```
+
+### Construct the opening message history
+
+`conversation` is a list. Each item is a dictionary with a `role` and `content`. The order matters because the model reads the messages as a conversation.
+
+```python
 conversation = [
-    {"role": "system", "content": (
-        "Research aim: understand how evaluators decide that a candidate is a good "
-        "cultural fit. Ask one short follow-up about a concrete judgment, episode "
-        "or comparison. Do not introduce a cause the evaluator has not mentioned."
-    )},
-    {"role": "user", "content": (
-        "Evaluator: The conversation flowed. We had a surprising amount in common."
-    )},
+    {"role": "system", "content": interview_protocol},
+    {"role": "user", "content": first_answer},
 ]
+
+print(type(conversation))
 print(conversation)
 ```
 
 ::: {.callout-note title="Conversation as ordered state"}
-`conversation` is a list of dictionaries in chronological order. Roles say whether an item contains the interviewing instruction, an evaluator's answer or a model-generated probe. This complete list becomes the input to the first call. Reordering or omitting an item would change what the model can use.
+The first dictionary contains the interviewing instruction. The second contains the evaluator's answer. This complete list becomes the input to the first model call.
 :::
 
 ### Make the first call through the selected route
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
 
 ```python
 if ROUTE == "openrouter":
@@ -104,66 +117,138 @@ else:
         options={"temperature": 0},
     )
     first_raw = first_response.message.content
+
 print("First raw return:", first_raw)
 first_probe = first_raw.strip()
 print("First probe:", first_probe)
 ```
 
 ::: {.callout-note title="The first adaptive probe"}
-The `if/else` branch sends the same conversation through the chosen route. Both branches store returned text in `first_probe`. That string is the proposed next interviewer turn. The later check asks whether it follows the evaluator's answer without supplying a cause.
+The `if/else` branch sends the same conversation through the selected route. Both branches place returned text in `first_raw`. `.strip()` removes blank space around that text and stores the resulting string in `first_probe`.
 :::
 
-### Append the realized probe and a second participant answer
+### Build two independent paths
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+Both paths retain the exact first probe. `.copy()` creates two independent lists. Changing one path will not change the other.
 
 ```python
-conversation.append({"role": "assistant", "content": first_probe})
-second_answer = (
-    "Evaluator: We had both rowed in college and talked about long training days."
+shared_answer = (
+    "Evaluator: We discovered that we had both rowed in college and understood "
+    "long training days."
 )
-conversation.append({"role": "user", "content": second_answer})
-print("Messages before second call:", len(conversation))
-print(conversation)
+case_answer = (
+    "Evaluator: She challenged an assumption in the case without becoming combative."
+)
+
+shared_path = conversation.copy()
+shared_path.append({"role": "assistant", "content": first_probe})
+shared_path.append({"role": "user", "content": shared_answer})
+
+case_path = conversation.copy()
+case_path.append({"role": "assistant", "content": first_probe})
+case_path.append({"role": "user", "content": case_answer})
+
+print("Shared path messages:", len(shared_path))
+print("Case path messages:", len(case_path))
 ```
 
-::: {.callout-note title="What append changes"}
-`.append(...)` changes the existing list by adding one dictionary at its end. The first append records what the model asked; the second records the evaluator's next answer. Printing `conversation` shows the expanded input that the second call will receive.
+::: {.callout-note title="What copy and append change"}
+Each copied list begins with the same two dictionaries. The first `.append(...)` records the generated probe. The second adds one evaluator answer. Both finished paths contain four messages, but their final messages differ.
 :::
 
-### Make the second call with the expanded conversation
+### Generate the next probe for each path
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+The syntax repeats because functions do not enter the course until Week 9. Reading both branches now makes every input visible.
 
 ```python
 if ROUTE == "openrouter":
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
-        second_response = client.chat.send(
-            model=HOSTED_MODEL, messages=conversation, temperature=0,
+        shared_response = client.chat.send(
+            model=HOSTED_MODEL, messages=shared_path, temperature=0,
         )
-    second_raw = second_response.choices[0].message.content
+        case_response = client.chat.send(
+            model=HOSTED_MODEL, messages=case_path, temperature=0,
+        )
+    shared_raw = shared_response.choices[0].message.content
+    case_raw = case_response.choices[0].message.content
 else:
-    second_response = ollama.chat(think=False,
-        model=LOCAL_MODEL, messages=conversation,
+    shared_response = ollama.chat(think=False,
+        model=LOCAL_MODEL, messages=shared_path,
         options={"temperature": 0},
     )
-    second_raw = second_response.message.content
-print("Second raw return:", second_raw)
-second_probe = second_raw.strip()
-print("Second probe:", second_probe)
+    case_response = ollama.chat(think=False,
+        model=LOCAL_MODEL, messages=case_path,
+        options={"temperature": 0},
+    )
+    shared_raw = shared_response.message.content
+    case_raw = case_response.message.content
 
-# ONE CHANGE: replace second_answer with
-# "Evaluator: She understood how we work with clients. I could picture her here."
-# and rerun from the append cell onward.
+shared_probe = shared_raw.strip()
+case_probe = case_raw.strip()
+
+print("Shared-experience raw return:", shared_raw)
+print("Case-performance raw return:", case_raw)
+print("Shared-experience probe:", shared_probe)
+print("Case-performance probe:", case_probe)
 ```
 
-::: {.callout-note title="Why the second call differs"}
-The call syntax is unchanged, but `conversation` now contains the first probe and the evaluator's next answer. The returned `second_probe` can therefore respond to that answer. Comparing the two probes checks continuity, leading language and repetition; it does not by itself establish interview quality.
+::: {.callout-note title="The comparison"}
+The protocol, opening answer, first probe, route, model and temperature remain the same. The final evaluator answer changes. Different next probes show how that answer can alter the interview path, although a model may still vary across repeated calls.
 :::
 
-### Methodological check
+### Record the researcher's assessment
 
-Inspect whether each probe follows the participant's words, asks for a concrete episode, avoids repetition and does not name a cause in advance.
+The model does not review its own interviewing. Read each probe and replace the placeholder notes below with your assessment.
+
+```python
+shared_review = {
+    "responsive": True,
+    "introduces_new_cause": False,
+    "asks_for_concrete_evidence": True,
+    "claims_human_experience": False,
+    "notes": "Replace this sentence with your assessment of the shared path.",
+}
+
+case_review = {
+    "responsive": True,
+    "introduces_new_cause": False,
+    "asks_for_concrete_evidence": True,
+    "claims_human_experience": False,
+    "notes": "Replace this sentence with your assessment of the case path.",
+}
+
+print(shared_review)
+print(case_review)
+```
+
+Use the readings to interpret these fields:
+
+- Rivera asks how evaluators construct cultural fit. Does the probe elicit their reasoning without naming the explanation for them?
+- Jerolmack and Khan distinguish interview accounts from observed conduct. What does this exchange establish about the evaluator, and what would require observation or administrative data?
+- Cuevas and colleagues show why false expressions of shared experience matter. Does the model present itself honestly?
+
+### Preserve the research record
+
+```python
+model_used = HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL
+
+research_record = {
+    "route": ROUTE,
+    "requested_model": model_used,
+    "opening_messages": conversation,
+    "first_raw_return": first_raw,
+    "shared_path": shared_path,
+    "shared_raw_return": shared_raw,
+    "case_path": case_path,
+    "case_raw_return": case_raw,
+    "shared_review": shared_review,
+    "case_review": case_review,
+}
+
+print(json.dumps(research_record, indent=2))
+```
+
+The dictionary keeps the model inputs, raw returns and researcher judgments together. It does not turn those judgments into facts about hiring practice.
 
 ## Workbook and environment links
 
@@ -171,14 +256,14 @@ Inspect whether each probe follows the participant's words, asks for a concrete 
 [Open the Week 6 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session06/session06_conversational_treatments.ipynb) · [Download the notebook](../_generated/downloads/session06/session06_conversational_treatments.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session06/session06_task.py) · [Download the runnable offline bundle](../_generated/downloads/session06/session06_offline_bundle.zip)
 :::
 
-This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
+This page, the notebook and the `.py` download contain the same assessed routine. The notebook supplies the most explanation. The script runs the routine from the repository root.
 
 ## Take-home exercise
 
 ::: {.exercise-box}
-**Estimated work and recording time:** 30–45 minutes.
+**Estimated work and recording time:** 35–50 minutes.
 
-Use one route, make both calls, then change only the second evaluator answer. Explain `conversation` before each call, both `.append()` operations and why the second call has more context than the first.
+Use one route and run the opening call plus both interview paths. Then change only `case_answer`, rerun from **Build two independent paths** onward and compare the new case probe with the earlier one. Because the cell recreates both lists from `conversation`, it will not duplicate earlier turns.
 
-Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
+Submit one continuous screen recording with audio. Explain what each string, list and dictionary stores; why `.copy()` keeps the paths independent; what each model call receives and returns; how your changed answer affected the next probe; and one limit drawn from Rivera or Jerolmack and Khan. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
 :::
