@@ -440,6 +440,22 @@ print("Generated probe:", interviewer_probe)
 
 ---
 
+## Two simple checks return Boolean values {.tight-code}
+
+```python
+is_question = interviewer_probe.endswith("?")
+mentions_because = "because" in interviewer_probe.lower()
+
+print(is_question)
+print(mentions_because)
+```
+
+<div class="io-strip"><div><strong><code>.endswith("?")</code></strong><br>Checks the final character.</div><div><strong><code>"because" in ...</code></strong><br>Checks whether a word appears.</div></div>
+
+<p class="plain-takeaway">These checks describe the string. They do not tell us whether the question is neutral or useful.</p>
+
+---
+
 ## Tinker with the interviewer advice {.transcript-slide}
 
 <div class="path-compare"><div><div class="pair-label">Request an example</div><p>Ask for a concrete episode. Do not name a cause in advance.</p></div><div><div class="pair-label">Request a comparison</div><p>Ask how this candidate differed from one who did not seem to fit.</p></div></div>
@@ -466,6 +482,21 @@ print(persona["role"])
 ```
 
 <p>The dictionary contains details supplied by the researcher. It does not describe a real or representative evaluator.</p>
+
+---
+
+## Dictionaries can be updated after they are created {.tight-code}
+
+```python
+persona["interview_setting"] = "first-round hiring interview"
+
+print(persona["interview_setting"])
+print(persona.get("age", "not supplied"))
+```
+
+<div class="io-strip"><div><strong>Square brackets</strong><br>Add or retrieve a named field.</div><div><strong><code>.get(...)</code></strong><br>Return a fallback if the field is missing.</div></div>
+
+<p class="plain-takeaway">Changing the dictionary changes the persona text sent in the next model call.</p>
 
 ---
 
@@ -548,11 +579,28 @@ conversation.append({"role": "user", "content": synthetic_answer})
 
 print(len(conversation))
 print(conversation[1]["content"])
+print(conversation[-1])
 ```
 
 <div class="io-strip"><div><strong><code>conversation[1]</code></strong><br>Select the second turn.</div><div><strong><code>["content"]</code></strong><br>Select the text stored inside that turn.</div></div>
 
 <p class="plain-takeaway">The model does not remember the earlier call by itself. The program sends the relevant history again.</p>
+
+---
+
+## A slice selects only part of the history {.tight-code}
+
+```python
+latest_turn = conversation[-1]
+recent_context = conversation[-2:]
+
+print(latest_turn)
+print(recent_context)
+```
+
+<div class="io-strip"><div><strong><code>[-1]</code></strong><br>The final item in the list.</div><div><strong><code>[-2:]</code></strong><br>A new list containing the final two items.</div></div>
+
+<p class="plain-takeaway">Sending less history saves context space but may remove details needed to interpret the next answer.</p>
 
 ---
 
@@ -577,10 +625,11 @@ Run both exercises. Then:
 
 1. edit <code>interviewer_advice</code> and generate another probe;
 2. edit the persona fields and generate another fictional answer;
-3. explain what each model call receives and returns;
+3. explain one Boolean check and one dictionary update;
 4. show how <code>.append(...)</code> builds the ordered conversation;
-5. identify one useful difference and one invented or unsupported detail;
-6. explain why the synthetic answer is test material rather than evidence about real hiring.
+5. explain what <code>[-1]</code> and <code>[-2:]</code> retrieve;
+6. identify one useful difference and one invented or unsupported detail;
+7. explain why the synthetic answer is test material rather than evidence about real hiring.
 
 ---
 

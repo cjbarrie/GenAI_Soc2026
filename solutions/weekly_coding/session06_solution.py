@@ -48,6 +48,16 @@ def build_conversation(first_answer, probe, synthetic_answer):
     return conversation
 
 
+def inspect_probe_and_context(probe, conversation):
+    """Return the beginner-level string and list operations used in the task."""
+    return {
+        "is_question": probe.endswith("?"),
+        "mentions_because": "because" in probe.lower(),
+        "latest_turn": conversation[-1],
+        "recent_context": conversation[-2:],
+    }
+
+
 def build_record(route, model, research_question, advice, conversation, persona):
     """Keep editable inputs and the realized conversation together."""
     return {
@@ -90,6 +100,12 @@ def run_checks():
     assert len(conversation) == 3
     assert conversation[1]["role"] == "assistant"
     assert conversation[2]["content"] == synthetic_answer
+
+    inspection = inspect_probe_and_context(probe, conversation)
+    assert inspection["is_question"] is True
+    assert inspection["mentions_because"] is False
+    assert inspection["latest_turn"] == conversation[2]
+    assert inspection["recent_context"] == conversation[1:]
 
     record = build_record(
         "ollama", "local-model", question, advice, conversation, persona

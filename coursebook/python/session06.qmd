@@ -12,7 +12,7 @@ description: "Worked code, notebook and completion task"
 
 **Exercise 2:** Give the model a fictional interviewee persona and ask it to answer the generated question. Then edit the persona and try again.
 
-**Python introduced:** strings, f-strings, lists of message dictionaries, dictionary fields, repeated model calls and `.append(...)` for conversation state.
+**Python introduced:** strings, f-strings, Boolean checks, dictionary updates, safe dictionary access, repeated model calls and list operations for conversation state.
 :::
 
 The first exercise shows that researcher instructions can change the interview. The second uses synthetic answers to test the protocol. A synthetic answer is not evidence about real evaluators.
@@ -113,6 +113,18 @@ print("Generated probe:", interviewer_probe)
 
 The input is `interviewer_messages`. The raw return is stored before `.strip()` produces the question in `interviewer_probe`.
 
+### Check simple properties of the returned string
+
+```python
+is_question = interviewer_probe.endswith("?")
+mentions_because = "because" in interviewer_probe.lower()
+
+print("Ends with a question mark:", is_question)
+print("Contains the word 'because':", mentions_because)
+```
+
+`True` and `False` are Boolean values. `.endswith("?")` checks the final character. `.lower()` makes capitalization consistent before `in` checks whether the word appears. These checks identify visible properties of the string; they cannot determine whether the probe is genuinely neutral or useful.
+
 ### Tinker with the advice
 
 Edit only `interviewer_advice`, then rerun from **Construct the message list**. Some possibilities are:
@@ -145,6 +157,17 @@ print(persona["role"])
 ```
 
 `persona` is a dictionary. Each key names a feature supplied by the researcher. The values do not describe a real person and should not be treated as a representative profile.
+
+### Update and safely inspect the persona dictionary
+
+```python
+persona["interview_setting"] = "first-round hiring interview"
+
+print(persona["interview_setting"])
+print(persona.get("age", "not supplied"))
+```
+
+The first line adds a key and value to the existing dictionary. This is called **mutation**: `persona` now contains another field. Square brackets assume that a key exists. `.get(...)` instead supplies a fallback value when the requested key is missing, which is useful when interview records are incomplete.
 
 ### Put the persona and generated probe into a second message list
 
@@ -216,9 +239,19 @@ conversation.append({"role": "user", "content": synthetic_answer})
 print("Number of turns:", len(conversation))
 print("Second turn:", conversation[1])
 print("Question text only:", conversation[1]["content"])
+print("Latest turn:", conversation[-1])
 ```
 
-The final expression combines two operations: `[1]` selects the second dictionary and `["content"]` retrieves its text. This nested structure is the practical basis of conversational state in many chat applications.
+The nested expression `[1]["content"]` selects the second dictionary and then retrieves its text. The index `-1` means the final item, so it continues to work as the conversation grows.
+
+Sometimes an application sends only recent turns rather than the complete transcript:
+
+```python
+recent_context = conversation[-2:]
+print(recent_context)
+```
+
+`[-2:]` is a **slice**. It creates a new list containing the final two turns. This is a simplified way to see the choice behind conversational memory: supplying less history may save space, but it may also remove details needed to interpret the next answer.
 
 ### Preserve a small research record
 
@@ -252,5 +285,5 @@ Run both exercises once. Then make two changes:
 1. edit only `interviewer_advice` and regenerate the probe;
 2. edit the fields in `persona` and regenerate the fictional answer.
 
-In one continuous screen recording, explain the input and output of each model call, how the f-string uses the advice, what the persona dictionary stores, how `.append(...)` builds the ordered conversation, what changed after each edit and why the synthetic response is test material rather than evidence about real hiring. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key.
+In one continuous screen recording, explain the input and output of each model call, one Boolean check, how the persona dictionary is updated, how `.append(...)` builds the ordered conversation, what `[-1]` and `[-2:]` retrieve, what changed after each edit and why the synthetic response is test material rather than evidence about real hiring. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key.
 :::

@@ -85,6 +85,12 @@ interviewer_probe = interviewer_raw.strip()
 print("Raw interviewer return:", interviewer_raw)
 print("Generated probe:", interviewer_probe)
 
+# PYTHON CHECK: string operations can produce Boolean values
+is_question = interviewer_probe.endswith("?")
+mentions_because = "because" in interviewer_probe.lower()
+print("Ends with a question mark:", is_question)
+print("Contains the word 'because':", mentions_because)
+
 
 # EXERCISE 2: Generate a fictional response to the probe
 persona = {
@@ -95,6 +101,11 @@ persona = {
         "the candidate challenged an assumption in the case without becoming combative"
     ),
 }
+
+# PYTHON CHANGE: update one dictionary field and safely request another
+persona["interview_setting"] = "first-round hiring interview"
+print("Interview setting:", persona["interview_setting"])
+print("Age supplied:", persona.get("age", "not supplied"))
 
 persona_text = json.dumps(persona, indent=2)
 persona_messages = [
@@ -148,6 +159,11 @@ conversation.append({"role": "user", "content": synthetic_answer})
 print("Number of turns:", len(conversation))
 print("The model's question:", conversation[1]["content"])
 print("The fictional answer:", conversation[2]["content"])
+print("Latest turn:", conversation[-1])
+
+# A slice creates a new list containing only the two most recent turns
+recent_context = conversation[-2:]
+print("Two most recent turns:", recent_context)
 
 
 # CELL: Preserve a small research record

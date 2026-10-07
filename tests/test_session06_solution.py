@@ -8,6 +8,7 @@ from solutions.weekly_coding.session06_solution import (
     build_interviewer_messages,
     build_persona_messages,
     build_record,
+    inspect_probe_and_context,
     run_checks,
 )
 
@@ -43,6 +44,15 @@ def test_conversation_state_preserves_order_and_nested_values():
     assert conversation[2]["content"] == "fictional answer"
 
 
+def test_boolean_checks_negative_indexing_and_slicing():
+    conversation = build_conversation("answer", "Why?", "fictional answer")
+    inspection = inspect_probe_and_context("Why?", conversation)
+    assert inspection["is_question"] is True
+    assert inspection["mentions_because"] is False
+    assert inspection["latest_turn"] == conversation[-1]
+    assert inspection["recent_context"] == conversation[-2:]
+
+
 def test_record_preserves_inputs_and_realized_conversation():
     persona = {"role": "junior evaluator"}
     conversation = build_conversation("answer", "probe", "fictional answer")
@@ -64,6 +74,9 @@ def test_notebook_is_valid_and_matches_the_two_exercises():
     assert "Raw interviewer return" in source and "Raw synthetic return" in source
     assert "conversation.append" in source
     assert 'conversation[1]["content"]' in source
+    assert 'interviewer_probe.endswith("?")' in source
+    assert 'persona.get("age", "not supplied")' in source
+    assert "conversation[-1]" in source and "conversation[-2:]" in source
     assert "evidence about real hiring" in source
 
 
@@ -72,6 +85,9 @@ def test_downloadable_task_does_not_require_openrouter_key_for_ollama():
     assert 'if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY")' in task
     assert "interviewer_advice" in task and "persona = {" in task
     assert "conversation.append" in task
+    assert 'interviewer_probe.endswith("?")' in task
+    assert 'persona.get("age", "not supplied")' in task
+    assert "conversation[-1]" in task and "conversation[-2:]" in task
     assert "shared_path" not in task and "case_path" not in task
 
 
