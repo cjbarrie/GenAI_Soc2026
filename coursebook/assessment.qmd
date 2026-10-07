@@ -22,7 +22,9 @@ A task is complete when the recording makes the student's understanding audible:
 
 ## Midterm project proposal
 
-The proposal is released after Week 6 and submitted before Week 7. In 1,200–1,500 words, you set out a sociological question, locate it in a focused body of literature, specify the evidence and research design, and explain exactly where an LLM would enter the study. Include one concrete input → operation → expected output → researcher check, along with a validation plan, likely failures, ethical issues, the records you would preserve and the next steps toward the final project.
+The proposal is released after Week 6 and is due at the end of Week 7: **Friday 23 October at 23:59 Eastern**. Submit it through the [Midterm project proposal page on NYU Brightspace](https://brightspace.nyu.edu/d2l/le/lessons/599622/units/14051368).
+
+In 1,200–1,500 words, you set out a sociological question, locate it in a focused body of literature, specify the evidence and research design, and explain exactly where an LLM would enter the study. Include one concrete input → operation → expected output → researcher check, along with a validation plan, likely failures, ethical issues, the records you would preserve and the next steps toward the final project.
 
 This is the first substantial version of the final project. It is not a Python test, and it does not require a completed empirical study or an exhaustive literature review.
 

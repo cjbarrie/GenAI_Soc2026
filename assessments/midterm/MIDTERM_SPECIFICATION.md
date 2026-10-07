@@ -1,7 +1,11 @@
 # Midterm project proposal
 
-**Release:** after Session 6, October 7.  
-**Due:** before Session 7, October 21.  
+**Release:** after Session 6, October 7.
+
+**Due:** end of Week 7, Friday October 23 at 23:59 Eastern.
+
+**Submit:** [NYU Brightspace — Midterm project proposal](https://brightspace.nyu.edu/d2l/le/lessons/599622/units/14051368).
+
 **Length:** 1,200–1,500 words, plus references and a short appendix if needed.
 **Weight:** 20%, followed by a separate 5% oral walkthrough.
 
