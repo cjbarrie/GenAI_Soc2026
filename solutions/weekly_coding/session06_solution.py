@@ -1,73 +1,102 @@
-"""Instructor checks for the Week 6 adaptive-interview state."""
+"""Instructor checks for the Week 6 interviewer and persona exercise."""
+
+import json
 
 
-def build_opening(protocol, first_answer):
-    """Return the two messages sent to the first model call."""
+def build_interviewer_messages(research_question, advice, first_answer):
+    """Put the research question, interviewer advice and answer into model messages."""
     return [
-        {"role": "system", "content": protocol},
+        {
+            "role": "system",
+            "content": (
+                f"Research question: {research_question}\n"
+                f"Advice for the interviewer: {advice}\n"
+                "Return only the next interview question."
+            ),
+        },
         {"role": "user", "content": first_answer},
     ]
 
 
-def build_paths(conversation, first_probe, shared_answer, case_answer):
-    """Create two independent paths that share the same earlier messages."""
-    shared_path = conversation.copy()
-    shared_path.append({"role": "assistant", "content": first_probe})
-    shared_path.append({"role": "user", "content": shared_answer})
+def build_persona_messages(persona, probe):
+    """Put a fictional persona and the generated probe into a second model input."""
+    persona_text = json.dumps(persona, indent=2)
+    return [
+        {
+            "role": "system",
+            "content": (
+                "Generate fictional test data for an interview protocol. "
+                "Use only the supplied persona details and say when the persona "
+                "does not know. Do not present the answer as evidence about real people."
+            ),
+        },
+        {
+            "role": "user",
+            "content": (
+                f"Fictional persona:\n{persona_text}\n\n"
+                f"Interview question:\n{probe}"
+            ),
+        },
+    ]
 
-    case_path = conversation.copy()
-    case_path.append({"role": "assistant", "content": first_probe})
-    case_path.append({"role": "user", "content": case_answer})
-    return shared_path, case_path
+
+def build_conversation(first_answer, probe, synthetic_answer):
+    """Reconstruct the ordered turns that the interview system would retain."""
+    conversation = [{"role": "user", "content": first_answer}]
+    conversation.append({"role": "assistant", "content": probe})
+    conversation.append({"role": "user", "content": synthetic_answer})
+    return conversation
 
 
-def build_record(route, model, conversation, first_raw, shared_path, shared_raw,
-                 case_path, case_raw, shared_review, case_review):
-    """Keep model inputs, raw returns and researcher reviews together."""
+def build_record(route, model, research_question, advice, conversation, persona):
+    """Keep editable inputs and the realized conversation together."""
     return {
         "route": route,
         "requested_model": model,
-        "opening_messages": conversation,
-        "first_raw_return": first_raw,
-        "shared_path": shared_path,
-        "shared_raw_return": shared_raw,
-        "case_path": case_path,
-        "case_raw_return": case_raw,
-        "shared_review": shared_review,
-        "case_review": case_review,
+        "research_question": research_question,
+        "interviewer_advice": advice,
+        "persona": persona,
+        "conversation": conversation,
     }
 
 
 def run_checks():
-    protocol = "Ask for a concrete episode without introducing a cause."
-    first_answer = "Evaluator: I could picture her working here."
-    first_probe = "What did she say or do that made you think that?"
-    shared_answer = "Evaluator: We had both rowed in college."
-    case_answer = "Evaluator: She challenged the case assumption calmly."
+    question = "How do evaluators decide that a candidate is a good cultural fit?"
+    advice = "Ask for one concrete example without suggesting a cause."
+    answer = "Evaluator: I could picture her working here."
+    probe = "What did she say or do that made you think that?"
+    synthetic_answer = "She challenged a case assumption calmly."
+    persona = {
+        "role": "junior evaluator",
+        "known_episode": "the candidate challenged a case assumption calmly",
+    }
 
-    conversation = build_opening(protocol, first_answer)
-    shared_path, case_path = build_paths(
-        conversation, first_probe, shared_answer, case_answer
+    interviewer_messages = build_interviewer_messages(question, advice, answer)
+    assert len(interviewer_messages) == 2
+    assert advice in interviewer_messages[0]["content"]
+    assert interviewer_messages[1]["content"] == answer
+
+    changed = build_interviewer_messages(
+        question, "Ask how the evaluator felt at that moment.", answer
     )
+    assert changed[0] != interviewer_messages[0]
+    assert changed[1] == interviewer_messages[1]
 
-    assert len(conversation) == 2
-    assert len(shared_path) == 4
-    assert len(case_path) == 4
-    assert shared_path is not case_path
-    assert shared_path[:3] == case_path[:3]
-    assert shared_path[-1]["content"] == shared_answer
-    assert case_path[-1]["content"] == case_answer
+    persona_messages = build_persona_messages(persona, probe)
+    assert '"role": "junior evaluator"' in persona_messages[1]["content"]
+    assert probe in persona_messages[1]["content"]
 
-    changed_shared, changed_case = build_paths(
-        conversation,
-        first_probe,
-        shared_answer,
-        "Evaluator: She asked careful questions about the firm's clients.",
+    conversation = build_conversation(answer, probe, synthetic_answer)
+    assert len(conversation) == 3
+    assert conversation[1]["role"] == "assistant"
+    assert conversation[2]["content"] == synthetic_answer
+
+    record = build_record(
+        "ollama", "local-model", question, advice, conversation, persona
     )
-    assert len(changed_shared) == 4
-    assert len(changed_case) == 4
-    assert changed_case[-1] != case_path[-1]
-    assert len(conversation) == 2
+    assert record["interviewer_advice"] == advice
+    assert record["persona"] == persona
+    assert record["conversation"] == conversation
 
 
 if __name__ == "__main__":

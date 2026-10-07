@@ -368,214 +368,202 @@ The comment shows how this participant interpreted the relationship performed by
 
 ---
 
-## One probe, two possible answers {.transcript-slide}
-
-<div class="turn"><span class="speaker">One plausible first probe:</span> What did she say or do that made you think that?</div>
-
-<div class="path-compare"><div><div class="pair-label">Shared experience</div><div class="turn"><span class="speaker">Evaluator:</span> We discovered that we had both rowed in college and understood long training days.</div></div><div><div class="pair-label">Case performance</div><div class="turn"><span class="speaker">Evaluator:</span> She challenged an assumption in the case without becoming combative.</div></div></div>
-
-<p class="plain-takeaway">The protocol and first probe stay fixed. We change only the evaluator's next answer.</p>
-
----
-
-## The interview input in Python {.tight-code}
+## Exercise 1: interviewer advice {.tight-code}
 
 ```python
-interview_protocol = """
-Research question: How do evaluators decide that a candidate
-is a good cultural fit?
-Ask one follow-up question. Request a concrete episode,
-clarification, or comparison. Do not introduce a cause.
-Return only the question.
-"""
-
+research_question = (
+    "How do evaluators decide that a candidate "
+    "is a good cultural fit?"
+)
+interviewer_advice = (
+    "Ask one short follow-up that requests a concrete example. "
+    "Do not suggest a cause or answer for the evaluator."
+)
 first_answer = "Evaluator: I could picture her working here."
-
-print(type(interview_protocol))
-print(type(first_answer))
 ```
 
-<div class="io-strip"><div><strong>Input 1</strong><br><code>interview_protocol</code> stores the research question and interviewing rule.</div><div><strong>Input 2</strong><br><code>first_answer</code> stores the evaluator's exact words.</div></div>
+<div class="io-strip"><div><strong>Researcher input</strong><br><code>interviewer_advice</code> is an editable string.</div><div><strong>Interview input</strong><br><code>first_answer</code> contains the evaluator's exact words.</div></div>
 
 ---
 
-## The message history {.tight-code}
+## The model receives the advice {.tight-code}
 
 ```python
-conversation = [
-    {"role": "system", "content": interview_protocol},
+interviewer_messages = [
+    {
+        "role": "system",
+        "content": (
+            f"Research question: {research_question}\n"
+            f"Advice for the interviewer: {interviewer_advice}\n"
+            "Return only the next interview question."
+        ),
+    },
     {"role": "user", "content": first_answer},
 ]
-
-print(type(conversation))
-print(conversation)
 ```
 
-<div class="dictionary-parts"><div><strong><code>[ ... ]</code></strong><p>The list keeps messages in order.</p></div><div><strong><code>{ ... }</code></strong><p>Each dictionary stores one message.</p></div><div><strong><code>role</code> and <code>content</code></strong><p>The keys identify the speaker and the words.</p></div></div>
+<p>The <code>f</code> before the string inserts the current research question and advice.</p>
 
 ---
 
-## The first call with OpenRouter {.tight-code}
+## Generate the probe with OpenRouter {.tight-code}
 
 ```python
 with OpenRouter(
     api_key=os.environ["OPENROUTER_API_KEY"]
 ) as client:
-    first_response = client.chat.send(
+    interviewer_response = client.chat.send(
         model=HOSTED_MODEL,
-        messages=conversation,
+        messages=interviewer_messages,
         temperature=0,
     )
 
-first_raw = first_response.choices[0].message.content
+interviewer_raw = interviewer_response.choices[0].message.content
 ```
-
-<div class="io-strip"><div><strong>Input</strong><br>The model name, message list and temperature.</div><div><strong>Raw return</strong><br>The response object contains the generated text.</div></div>
 
 ---
 
-## The first call with Ollama {.tight-code}
+## Generate the probe with Ollama {.tight-code}
 
 ```python
-first_response = ollama.chat(
+interviewer_response = ollama.chat(
     think=False,
     model=LOCAL_MODEL,
-    messages=conversation,
+    messages=interviewer_messages,
     options={"temperature": 0},
 )
 
-first_raw = first_response.message.content
-first_probe = first_raw.strip()
-print("First probe:", first_probe)
-```
-
-<p>After either call, <code>.strip()</code> stores the returned question in <code>first_probe</code>.</p>
-
----
-
-## Two independent conversation paths {.tight-code}
-
-```python
-shared_path = conversation.copy()
-shared_path.append({
-    "role": "assistant",
-    "content": first_probe,
-})
-shared_path.append({
-    "role": "user",
-    "content": "Evaluator: We had both rowed in college.",
-})
-
-case_path = conversation.copy()
-case_path.append({"role": "assistant", "content": first_probe})
-case_path.append({
-    "role": "user",
-    "content": "Evaluator: She challenged a case assumption calmly.",
-})
-```
-
-<p><code>.copy()</code> creates two separate lists. Each path keeps the same protocol, first answer and first probe.</p>
-
----
-
-## Two path calls with OpenRouter {.tight-code}
-
-```python
-with OpenRouter(
-    api_key=os.environ["OPENROUTER_API_KEY"]
-) as client:
-    shared_response = client.chat.send(
-        model=HOSTED_MODEL,
-        messages=shared_path,
-        temperature=0,
-    )
-    case_response = client.chat.send(
-        model=HOSTED_MODEL,
-        messages=case_path,
-        temperature=0,
-    )
-
-shared_raw = shared_response.choices[0].message.content
-case_raw = case_response.choices[0].message.content
+interviewer_raw = interviewer_response.message.content
+interviewer_probe = interviewer_raw.strip()
+print("Generated probe:", interviewer_probe)
 ```
 
 ---
 
-## Two path calls with Ollama {.tight-code}
+## Tinker with the interviewer advice {.transcript-slide}
 
-```python
-shared_response = ollama.chat(
-    think=False,
-    model=LOCAL_MODEL,
-    messages=shared_path,
-    options={"temperature": 0},
-)
-case_response = ollama.chat(
-    think=False,
-    model=LOCAL_MODEL,
-    messages=case_path,
-    options={"temperature": 0},
-)
+<div class="path-compare"><div><div class="pair-label">Request an example</div><p>Ask for a concrete episode. Do not name a cause in advance.</p></div><div><div class="pair-label">Request a comparison</div><p>Ask how this candidate differed from one who did not seem to fit.</p></div></div>
 
-shared_raw = shared_response.message.content
-case_raw = case_response.message.content
-```
+<div class="model-output"><span>Change one string</span><p>Edit <code>interviewer_advice</code>, rebuild <code>interviewer_messages</code>, and generate another probe.</p></div>
 
-<p>Each call receives four messages. Only the final evaluator answer differs.</p>
+<p class="plain-takeaway">The advice can change what the model pursues and what assumptions enter the interview.</p>
 
 ---
 
-## Compare the returned probes {.tight-code}
+## Exercise 2: a fictional interviewee {.tight-code}
 
 ```python
-shared_probe = shared_raw.strip()
-case_probe = case_raw.strip()
-
-print("Shared-experience probe:", shared_probe)
-print("Case-performance probe:", case_probe)
-```
-
-<div class="path-compare"><div><div class="pair-label">Shared-experience path</div><p>Does the question pursue rowing, similarity or another detail from the answer?</p></div><div><div class="pair-label">Case-performance path</div><p>Does the question pursue the challenge, the interaction or another detail from the answer?</p></div></div>
-
-<p class="plain-takeaway">Each call receives four messages. Only the final evaluator answer differs.</p>
-
----
-
-## Review the generated probes {.tight-code}
-
-```python
-shared_review = {
-    "responsive": True,
-    "introduces_new_cause": False,
-    "asks_for_concrete_evidence": True,
-    "claims_human_experience": False,
-    "notes": "Replace this sentence with your assessment.",
+persona = {
+    "role": "junior evaluator at a consulting firm",
+    "decision_power": "takes notes but has no final vote",
+    "evaluation_style": "prefers evidence from the case exercise",
+    "known_episode": (
+        "the candidate challenged a case assumption calmly"
+    ),
 }
 
-case_review = shared_review.copy()
-case_review["notes"] = "Replace this with your case-path assessment."
+print(persona["role"])
 ```
 
-<table class="tbl"><tr><th>Reading</th><th>Question for the review</th></tr><tr><td>Rivera</td><td>Does the probe elicit how the evaluator reached the judgment?</td></tr><tr><td>Jerolmack and Khan</td><td>Does the account show what was said, or what happened in hiring practice?</td></tr><tr><td>Cuevas et al.</td><td>Does the model imply that it has human feelings or experiences?</td></tr></table>
+<p>The dictionary contains details supplied by the researcher. It does not describe a real or representative evaluator.</p>
 
 ---
 
-## The research record {.tight-code}
+## The persona becomes model input {.tight-code}
 
 ```python
-model_used = HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL
+persona_text = json.dumps(persona, indent=2)
+persona_messages = [
+    {
+        "role": "system",
+        "content": (
+            "Generate fictional test data. Use only the supplied "
+            "persona details and say when the persona does not know."
+        ),
+    },
+    {
+        "role": "user",
+        "content": (
+            f"Fictional persona:\n{persona_text}\n\n"
+            f"Interview question:\n{interviewer_probe}"
+        ),
+    },
+]
+```
 
+<p>The output of Exercise 1 becomes part of the input to Exercise 2.</p>
+
+---
+
+## Generate the fictional answer with OpenRouter {.tight-code}
+
+```python
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        synthetic_response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=persona_messages,
+            temperature=0,
+    )
+    synthetic_raw = synthetic_response.choices[0].message.content
+```
+
+<p><code>persona_messages</code> is the input. <code>synthetic_response</code> is the complete SDK response object. The final line retrieves the returned text.</p>
+
+---
+
+## Generate the fictional answer with Ollama {.tight-code}
+
+```python
+else:
+    synthetic_response = ollama.chat(think=False,
+        model=LOCAL_MODEL,
+        messages=persona_messages,
+        options={"temperature": 0},
+    )
+    synthetic_raw = synthetic_response.message.content
+
+synthetic_answer = synthetic_raw.strip()
+print("Synthetic answer:", synthetic_answer)
+```
+
+<p>Both routes produce the same Python variable: <code>synthetic_answer</code>. This lets the rest of the notebook work in the same way whichever route was selected.</p>
+
+---
+
+## What the synthetic answer is for
+
+<table class="tbl roomy"><tr><th>It can help us inspect</th><th>It cannot establish</th></tr><tr><td>Whether the question is intelligible</td><td>How real evaluators understand cultural fit</td></tr><tr><td>Whether the question invites an invented detail</td><td>How frequently an answer would occur</td></tr><tr><td>Whether a different persona changes the answer</td><td>Whether the persona represents a social group</td></tr></table>
+
+<p class="plain-takeaway">Here the persona provides test material for an interview protocol. Week 7 asks what would be required to use synthetic answers as population evidence.</p>
+
+---
+
+## The interview has to keep an ordered history {.tight-code}
+
+```python
+conversation = [{"role": "user", "content": first_answer}]
+conversation.append({"role": "assistant", "content": interviewer_probe})
+conversation.append({"role": "user", "content": synthetic_answer})
+
+print(len(conversation))
+print(conversation[1]["content"])
+```
+
+<div class="io-strip"><div><strong><code>conversation[1]</code></strong><br>Select the second turn.</div><div><strong><code>["content"]</code></strong><br>Select the text stored inside that turn.</div></div>
+
+<p class="plain-takeaway">The model does not remember the earlier call by itself. The program sends the relevant history again.</p>
+
+---
+
+## Save the advice, persona and conversation {.tight-code}
+
+```python
 research_record = {
     "route": ROUTE,
-    "requested_model": model_used,
-    "opening_messages": conversation,
-    "first_raw_return": first_raw,
-    "shared_path": shared_path,
-    "shared_raw_return": shared_raw,
-    "case_path": case_path,
-    "case_raw_return": case_raw,
-    "shared_review": shared_review,
-    "case_review": case_review,
+    "interviewer_advice": interviewer_advice,
+    "persona": persona,
+    "conversation": conversation,
 }
 
 print(json.dumps(research_record, indent=2))
@@ -585,15 +573,14 @@ print(json.dumps(research_record, indent=2))
 
 ## Week 6 coding task
 
-Run the opening call and both interview paths. Then change only the case-performance answer and recreate the two paths.
+Run both exercises. Then:
 
-In your recording, explain:
-
-1. what the strings, lists and dictionaries store;
-2. why <code>.copy()</code> keeps the paths separate;
-3. what each model call receives and returns;
-4. how the changed answer affects the next probe;
-5. what the interview can and cannot establish.
+1. edit <code>interviewer_advice</code> and generate another probe;
+2. edit the persona fields and generate another fictional answer;
+3. explain what each model call receives and returns;
+4. show how <code>.append(...)</code> builds the ordered conversation;
+5. identify one useful difference and one invented or unsupported detail;
+6. explain why the synthetic answer is test material rather than evidence about real hiring.
 
 ---
 
