@@ -92,8 +92,9 @@ else:
         )
     if not (COURSE_ROOT / "config" / "course_models.json").exists():
         raise FileNotFoundError(
-            "The complete GenAI_Soc2026 repository could not be found. Download or "
-            "clone the repository, open a terminal in that folder, and run: uv run jupyter lab"
+            "This notebook downloaded by itself cannot locate the course files. "
+            "Download or clone the complete GenAI_Soc2026 repository, open a terminal "
+            "in that folder, and run: uv run jupyter lab"
         )
 
 course_root_text = str(COURSE_ROOT)

@@ -522,7 +522,7 @@ if ROUTE == "openrouter":
         )
     raw_sparse = response.choices[0].message.content
 else:
-    response = ollama.chat(
+    response = ollama.chat(think=False,
         model=LOCAL_MODEL, messages=messages,
         format=distribution_schema, options={"temperature": 0},
     )

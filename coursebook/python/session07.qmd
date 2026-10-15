@@ -36,7 +36,6 @@ import os
 from getpass import getpass
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import ollama
 from openrouter import OpenRouter
 
@@ -182,7 +181,7 @@ if ROUTE == "openrouter":
         )
     raw_forced = forced_response.choices[0].message.content
 else:
-    forced_response = ollama.chat(
+    forced_response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=forced_messages,
         format=forced_schema,
@@ -217,7 +216,7 @@ if ROUTE == "openrouter":
         )
     raw_sparse = sparse_response.choices[0].message.content
 else:
-    sparse_response = ollama.chat(
+    sparse_response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=sparse_messages,
         format=distribution_schema,
@@ -252,7 +251,7 @@ if ROUTE == "openrouter":
         )
     raw_rich = rich_response.choices[0].message.content
 else:
-    rich_response = ollama.chat(
+    rich_response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=rich_messages,
         format=distribution_schema,
@@ -313,6 +312,8 @@ print("Rich expected score:", rich_expected_score)
 ## 9. Plot both distributions
 
 ```python
+import matplotlib.pyplot as plt
+
 scale = [1, 2, 3, 4, 5, 6, 7]
 
 plt.plot(scale, sparse_probabilities, marker="o", label="sparse persona")
@@ -322,7 +323,7 @@ plt.xlabel("Political views category")
 plt.ylabel("Model-assigned probability")
 plt.xticks(scale)
 plt.legend()
-plt.show()
+plt.show(block=False)
 ```
 
 The list `scale` supplies the horizontal positions. The two probability lists supply the vertical positions. The dashed line shows the answer given by the observed respondent used for this teaching example.

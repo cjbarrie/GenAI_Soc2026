@@ -10,7 +10,6 @@ import os
 from getpass import getpass
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import ollama
 from openrouter import OpenRouter
 
@@ -125,7 +124,7 @@ if ROUTE == "openrouter":
         )
     raw_forced = forced_response.choices[0].message.content
 else:
-    forced_response = ollama.chat(
+    forced_response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=forced_messages,
         format=forced_schema,
@@ -153,7 +152,7 @@ if ROUTE == "openrouter":
         )
     raw_sparse = sparse_response.choices[0].message.content
 else:
-    sparse_response = ollama.chat(
+    sparse_response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=sparse_messages,
         format=distribution_schema,
@@ -181,7 +180,7 @@ if ROUTE == "openrouter":
         )
     raw_rich = rich_response.choices[0].message.content
 else:
-    rich_response = ollama.chat(
+    rich_response = ollama.chat(think=False,
         model=LOCAL_MODEL,
         messages=rich_messages,
         format=distribution_schema,
@@ -226,6 +225,8 @@ print("Sparse expected score:", sparse_expected_score)
 print("Rich expected score:", rich_expected_score)
 
 # CELL: Plot both probability distributions
+import matplotlib.pyplot as plt
+
 scale = [1, 2, 3, 4, 5, 6, 7]
 plt.plot(scale, sparse_probabilities, marker="o", label="sparse persona")
 plt.plot(scale, rich_probabilities, marker="o", label="richer persona")
@@ -234,7 +235,7 @@ plt.xlabel("Political views category")
 plt.ylabel("Model-assigned probability")
 plt.xticks(scale)
 plt.legend()
-plt.show()
+plt.show(block=False)
 
 # CELL: Compare the forced answer with the held-out answer
 exact_match = forced_category == held_out_human_answer

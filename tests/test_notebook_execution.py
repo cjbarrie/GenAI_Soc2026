@@ -47,6 +47,12 @@ def test_week3_course_page_and_notebook_use_the_same_core_code() -> None:
 def response_text(messages: list[dict], schema_name: str | None = None, schema: dict | None = None) -> str:
     prompt = str(messages[-1].get("content", ""))
     properties = set((schema or {}).get("properties", {}))
+    if schema_name == "forced_answer" or "category" in properties:
+        return json.dumps({"category": 4})
+    if schema_name in {"sparse_distribution", "rich_distribution"} or properties == {"probabilities"}:
+        return json.dumps(
+            {"probabilities": [0.05, 0.10, 0.15, 0.30, 0.20, 0.15, 0.05]}
+        )
     if schema_name == "protest_sequence" or "frame_observations" in properties:
         return json.dumps(
             {
