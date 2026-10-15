@@ -1,27 +1,34 @@
 ---
-title: "Week 7 Python — Structured synthetic responses"
-description: "Worked code, notebook and completion task"
+title: "Week 7 Python — Persona information and response format"
+description: "Compare a forced answer with probability distributions from sparse and richer personas"
 ---
 
 [Return to the Week 7 readings and slides](../weeks/session07.qmd).
 
-## Python walkthrough: request a structured synthetic response
+## Python walkthrough: compare persona information and response formats
 
 ::: {.routine-summary}
-**Today's routine:** One deidentified profile → one structured prediction → three schema checks → held-out comparison.
+**Research question:** How much does a synthetic survey response change when we alter the information in the persona or ask the model to express uncertainty?
 
-**Python introduced:** JSON Schema, required fields, numeric lists, `len(...)`, `sum(...)` and Boolean checks.
+**Python introduced:** dictionary merging with `|`, f-strings, JSON Schema, lists, indexing, `len(...)`, `sum(...)`, arithmetic and a two-line plot.
 
-**Your change:** change only `age_group`, rerun and compare the probability lists.
+**Three conditions:** one forced category from a sparse persona; seven probabilities from the same sparse persona; seven probabilities from a richer persona.
 :::
 
-The routine begins with the model input. It does not postpone the live call until after unrelated Python exercises. Predict what each block will create before running it.
+The survey item and model stay fixed. This makes the comparison concrete: Condition A changes the requested output, while Condition C adds two attitude fields to the persona used in Condition B.
 
-### Load the course settings and SDKs
+## Prepare the notebook environment
 
-Run the notebook's **Prepare the notebook environment** cell first. It installs missing SDKs in Colab, checks the local `uv` environment, adds the repository root to Python's import path and sets `IN_COLAB`. Colab uses OpenRouter because it cannot reach the Ollama server on your computer.
+Open the supplied notebook and run **Prepare the notebook environment** first. In Colab, that cell installs the two model SDKs and uses OpenRouter. On your own machine, start JupyterLab from the complete repository with:
 
-This next cell reads the two centrally recorded model names and asks for the hosted key without displaying it. Treat the key entry as setup; never include it in the recording.
+```bash
+uv sync
+uv run jupyter lab
+```
+
+The local route uses Ollama. Start the Ollama application and confirm that the course model is installed with `ollama list`. The setup cell prints an exact repair command when anything is missing.
+
+### Load Python tools and choose a route
 
 ```python
 import json
@@ -29,147 +36,317 @@ import os
 from getpass import getpass
 from pathlib import Path
 
-try:
-    import ollama
-    from openrouter import OpenRouter
-except ModuleNotFoundError as error:
-    raise ModuleNotFoundError(
-        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
-        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
-    ) from error
+import matplotlib.pyplot as plt
+import ollama
+from openrouter import OpenRouter
 
 ROOT = Path.cwd()
 while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
     ROOT = ROOT.parent
 
-if not (ROOT / "config" / "course_models.json").exists():
-    raise FileNotFoundError(
-        "The complete GenAI_Soc2026 repository could not be found. A task or "
-        "notebook downloaded by itself is not enough for local work. Open a terminal "
-        "in the complete course folder and run this file from there."
-    )
-
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
 
-if not os.getenv("OPENROUTER_API_KEY"):
+ROUTE = "openrouter" if IN_COLAB else "ollama"
+if ROUTE == "openrouter" and not os.getenv("OPENROUTER_API_KEY"):
     os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
 
-print("Hosted model:", HOSTED_MODEL)
-print("Local model:", LOCAL_MODEL)
+print("Route:", ROUTE)
+print("Model:", HOSTED_MODEL if ROUTE == "openrouter" else LOCAL_MODEL)
 ```
 
-::: {.callout-note title="Read this setup cell"}
-**Input:** installed Python packages, `config/course_models.json`, and—if it is not already set—the hidden OpenRouter key. **Operations:** `import` makes an installed tool available; `Path.cwd()` gives Python the current folder; the `while` block walks upward until it finds the course configuration; `json.loads(...)` turns the file's JSON text into a dictionary; square brackets retrieve the two model names. **Output:** `HOSTED_MODEL` and `LOCAL_MODEL` are strings. `getpass(...)` accepts the key without echoing it. The folder-search code is supplied setup and is not assessed.
+::: {.callout-note title="What this block creates"}
+`json`, `os`, `matplotlib`, `ollama` and `OpenRouter` become available to later cells. `HOSTED_MODEL`, `LOCAL_MODEL` and `ROUTE` are strings. The key is requested only when the OpenRouter route is selected, and `getpass(...)` prevents it from appearing on screen.
 :::
 
-### Choose a route and store one deidentified profile and survey item
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+## 1. Store the question and two personas
 
 ```python
-ROUTE = "openrouter" if IN_COLAB else "ollama"  # Ollama is the local default
-profile = {
+question = (
+    "Where would you place yourself from 1 (extremely liberal) "
+    "to 7 (extremely conservative)?"
+)
+
+sparse_persona = {
     "age_group": "30–44",
     "education": "bachelor's degree",
     "region": "South",
     "party_identification": "independent",
 }
-question = (
-    "On a scale from 1 (very liberal) to 7 (very conservative), "
-    "where would you place yourself?"
-)
+
+rich_persona = sparse_persona | {
+    "economic_view": "government should reduce inequality",
+    "social_view": "often supports traditional social norms",
+}
+
 held_out_human_answer = 4
-print(profile)
-print(question)
+
+print(type(question), question)
+print(type(sparse_persona), sparse_persona)
+print(type(rich_persona), rich_persona)
 ```
 
-::: {.callout-note title="Profile, question and held-out answer"}
-`profile` is a dictionary containing public-use teaching attributes; `survey_item` is the exact question string. `held_out_human_answer` is stored separately and is not included in the prompt. This separation prevents the model from seeing the answer it is meant to predict.
+::: {.callout-note title="Strings, dictionaries and the merge operator"}
+`question` is a string. Each persona is a dictionary containing named key–value pairs. The `|` operator creates a new dictionary: it keeps the four sparse fields and adds two attitude fields. It does not alter `sparse_persona`. The held-out answer remains in a separate integer and never enters a prompt.
 :::
 
-### Define the exact output structure
+## 2. Describe the two output structures
 
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+Condition A asks for one integer. Conditions B and C ask for a seven-number probability list.
 
 ```python
-schema = {
+forced_schema = {
     "type": "object",
     "properties": {
-        "predicted_category": {"type": "integer", "minimum": 1, "maximum": 7},
-        "probabilities": {
-            "type": "array", "items": {"type": "number"},
-            "minItems": 7, "maxItems": 7,
-        },
+        "category": {"type": "integer", "minimum": 1, "maximum": 7}
     },
-    "required": ["predicted_category", "probabilities"],
+    "required": ["category"],
     "additionalProperties": False,
 }
-prompt = (
-    "Predict this deidentified respondent's answer. Return seven probabilities in "
-    "order from 1 to 7. Profile: " + json.dumps(profile) + " Item: " + question
-)
-messages = [{"role": "user", "content": prompt}]
+
+distribution_schema = {
+    "type": "object",
+    "properties": {
+        "probabilities": {
+            "type": "array",
+            "items": {"type": "number", "minimum": 0, "maximum": 1},
+            "minItems": 7,
+            "maxItems": 7,
+        }
+    },
+    "required": ["probabilities"],
+    "additionalProperties": False,
+}
 ```
 
-::: {.callout-note title="Reading the JSON Schema"}
-The schema requires an integer category from 1 to 7 and a seven-number probability list. `required` says both fields must appear; `additionalProperties: False` prohibits extra fields. These rules concern readable structure and numeric bounds, not whether the prediction represents people well.
+::: {.callout-note title="What the schemas check"}
+The first schema requires `category` to contain an integer between 1 and 7. The second requires `probabilities` to contain exactly seven numbers between 0 and 1. Neither schema checks whether the values resemble human answers.
 :::
 
-### Make the selected structured-output call
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+## 3. Build three prompt strings
 
 ```python
+forced_prompt = f"""
+Predict this person's answer to the survey item.
+Return one category from 1 to 7.
+
+PERSONA: {json.dumps(sparse_persona)}
+QUESTION: {question}
+"""
+
+sparse_distribution_prompt = f"""
+Predict this person's answer to the survey item.
+Return seven probabilities in scale order from 1 to 7. They must sum to 1.
+
+PERSONA: {json.dumps(sparse_persona)}
+QUESTION: {question}
+"""
+
+rich_distribution_prompt = f"""
+Predict this person's answer to the survey item.
+Return seven probabilities in scale order from 1 to 7. They must sum to 1.
+
+PERSONA: {json.dumps(rich_persona)}
+QUESTION: {question}
+"""
+
+print(forced_prompt)
+print(sparse_distribution_prompt)
+print(rich_distribution_prompt)
+```
+
+::: {.callout-note title="What the f-strings do"}
+The braces inside an f-string insert a value. `json.dumps(...)` turns a dictionary into text that can be inserted into the prompt. Read the three printed strings before sending them. The sparse persona is identical in the first two prompts; the requested output changes. The last two prompts request the same output; the persona changes.
+:::
+
+## 4. Condition A: request one category
+
+```python
+forced_messages = [{"role": "user", "content": forced_prompt}]
+
 if ROUTE == "openrouter":
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
-        response = client.chat.send(
-            model=HOSTED_MODEL, messages=messages, temperature=0,
-            response_format={"type": "json_schema", "json_schema": {
-                "name": "polviews_prediction", "strict": True, "schema": schema,
-            }},
+        forced_response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=forced_messages,
+            temperature=0,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "forced_answer",
+                    "strict": True,
+                    "schema": forced_schema,
+                },
+            },
         )
-    raw_output = response.choices[0].message.content
+    raw_forced = forced_response.choices[0].message.content
 else:
-    response = ollama.chat(think=False,
-        model=LOCAL_MODEL, messages=messages, format=schema,
+    forced_response = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=forced_messages,
+        format=forced_schema,
         options={"temperature": 0},
     )
-    raw_output = response.message.content
-print("Raw JSON text:", raw_output)
+    raw_forced = forced_response.message.content
+
+print("Raw forced-answer JSON:", raw_forced)
 ```
 
-::: {.callout-note title="Two ways to request the same structure"}
-The prompt joins the profile and exact item into one message. OpenRouter places the schema in `response_format`; Ollama receives it through `format`. Both branches preserve the returned JSON text in `raw_json` before any field is extracted.
-:::
+The input is a one-item list of message dictionaries. The output saved in `raw_forced` is a JSON-formatted string. Printing the raw string before parsing keeps a visible record of what the model returned.
 
-### Parse, check structure and only then compare with the held-out answer
-
-Run this block, print its output and explain what enters and leaves the operation. The next block uses the value created here.
+## 5. Condition B: request probabilities from the sparse persona
 
 ```python
-prediction = json.loads(raw_output)
-probabilities = prediction["probabilities"]
-seven_values = len(probabilities) == 7
-sum_is_close = abs(sum(probabilities) - 1.0) < 0.02
-matches_human = prediction["predicted_category"] == held_out_human_answer
-print("Predicted category:", prediction["predicted_category"])
-print("Seven probabilities:", seven_values)
-print("Sum close to one:", sum_is_close)
-print("Held-out human answer:", held_out_human_answer)
-print("Exact match:", matches_human)
+sparse_messages = [{"role": "user", "content": sparse_distribution_prompt}]
 
-# ONE CHANGE: change age_group to "18–29" and rerun.
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        sparse_response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=sparse_messages,
+            temperature=0,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "sparse_distribution",
+                    "strict": True,
+                    "schema": distribution_schema,
+                },
+            },
+        )
+    raw_sparse = sparse_response.choices[0].message.content
+else:
+    sparse_response = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=sparse_messages,
+        format=distribution_schema,
+        options={"temperature": 0},
+    )
+    raw_sparse = sparse_response.message.content
+
+print("Raw sparse-persona JSON:", raw_sparse)
 ```
 
-::: {.callout-note title="Structure check versus evidence check"}
-Parsing creates a dictionary. `len(probabilities)` counts entries and `sum(probabilities)` adds them; comparisons produce Booleans checking seven values, an approximate total of one and values between zero and one. Only after those mechanical checks is `predicted_category` compared with the held-out human answer. One match is not population validation.
-:::
+The route and persona match Condition A. The requested output has changed from one category to seven probabilities.
 
-### Methodological check
+## 6. Condition C: request probabilities from the richer persona
 
-A valid schema means Python can retrieve the required fields. One exact match does not establish individual accuracy, group fidelity or population representation.
+```python
+rich_messages = [{"role": "user", "content": rich_distribution_prompt}]
+
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        rich_response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=rich_messages,
+            temperature=0,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "rich_distribution",
+                    "strict": True,
+                    "schema": distribution_schema,
+                },
+            },
+        )
+    raw_rich = rich_response.choices[0].message.content
+else:
+    rich_response = ollama.chat(
+        model=LOCAL_MODEL,
+        messages=rich_messages,
+        format=distribution_schema,
+        options={"temperature": 0},
+    )
+    raw_rich = rich_response.message.content
+
+print("Raw rich-persona JSON:", raw_rich)
+```
+
+This call requests the same seven probabilities as Condition B. The only substantive change is the addition of `economic_view` and `social_view` to the persona.
+
+## 7. Parse and inspect the three returns
+
+```python
+forced_result = json.loads(raw_forced)
+sparse_result = json.loads(raw_sparse)
+rich_result = json.loads(raw_rich)
+
+forced_category = forced_result["category"]
+sparse_probabilities = sparse_result["probabilities"]
+rich_probabilities = rich_result["probabilities"]
+
+print("Forced category:", forced_category)
+print("Sparse probabilities:", sparse_probabilities)
+print("Rich probabilities:", rich_probabilities)
+```
+
+`json.loads(...)` converts each raw string into a dictionary. Square brackets retrieve a value by key. `forced_category` is an integer, while each probability object is a list.
+
+## 8. Check the lists and calculate an expected score
+
+```python
+print("Sparse list has seven values:", len(sparse_probabilities) == 7)
+print("Rich list has seven values:", len(rich_probabilities) == 7)
+print("Sparse sum:", sum(sparse_probabilities))
+print("Rich sum:", sum(rich_probabilities))
+
+sparse_expected_score = (
+    sparse_probabilities[0] * 1 + sparse_probabilities[1] * 2
+    + sparse_probabilities[2] * 3 + sparse_probabilities[3] * 4
+    + sparse_probabilities[4] * 5 + sparse_probabilities[5] * 6
+    + sparse_probabilities[6] * 7
+)
+rich_expected_score = (
+    rich_probabilities[0] * 1 + rich_probabilities[1] * 2
+    + rich_probabilities[2] * 3 + rich_probabilities[3] * 4
+    + rich_probabilities[4] * 5 + rich_probabilities[5] * 6
+    + rich_probabilities[6] * 7
+)
+
+print("Sparse expected score:", sparse_expected_score)
+print("Rich expected score:", rich_expected_score)
+```
+
+`len(...)` counts list entries. `sum(...)` adds them. Indexing starts at zero, so `[0]` retrieves the probability assigned to response category 1. Multiplying each probability by its category and adding the products gives an expected score.
+
+## 9. Plot both distributions
+
+```python
+scale = [1, 2, 3, 4, 5, 6, 7]
+
+plt.plot(scale, sparse_probabilities, marker="o", label="sparse persona")
+plt.plot(scale, rich_probabilities, marker="o", label="richer persona")
+plt.axvline(held_out_human_answer, color="black", linestyle="--", label="held-out answer")
+plt.xlabel("Political views category")
+plt.ylabel("Model-assigned probability")
+plt.xticks(scale)
+plt.legend()
+plt.show()
+```
+
+The list `scale` supplies the horizontal positions. The two probability lists supply the vertical positions. The dashed line shows the answer given by the observed respondent used for this teaching example.
+
+## 10. Compare the forced answer with the held-out answer
+
+```python
+exact_match = forced_category == held_out_human_answer
+
+print("Forced model answer:", forced_category)
+print("Held-out human answer:", held_out_human_answer)
+print("Exact match:", exact_match)
+```
+
+The equality operator `==` produces a Boolean: either `True` or `False`. This check evaluates one prediction for one case. The probability plot evaluates how two prompt specifications change the model's representation of uncertainty.
+
+## Methodological check
+
+The comparison separates two decisions that are often collapsed:
+
+- **Elicitation:** forcing one answer versus requesting a probability for every category.
+- **Persona information:** supplying four demographic fields versus adding two attitudinal statements.
+
+A change in the plot shows prompt sensitivity. It does not show that either persona reproduces a human response process or represents a population.
 
 ## Workbook and environment links
 
@@ -177,14 +354,21 @@ A valid schema means Python can retrieve the required fields. One exact match do
 [Open the Week 7 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session07/session07_synthetic_representation.ipynb) · [Download the notebook](../_generated/downloads/session07/session07_synthetic_representation.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session07/session07_task.py) · [Download the runnable offline bundle](../_generated/downloads/session07/session07_offline_bundle.zip)
 :::
 
-This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when you want to run the complete routine from the repository root.
-
 ## Take-home exercise
 
 ::: {.exercise-box}
-**Estimated work and recording time:** 30–45 minutes.
+**Estimated work and recording time:** 40–55 minutes.
 
-Use one route, run the original profile, change only `age_group` and rerun. Explain every schema field, the raw JSON, the parsed list and all three checks. State why neither prediction establishes representativeness.
+Run all three conditions. Then change exactly one value in `rich_persona`, rerun only Condition C and recreate the plot.
 
-Submit one continuous screen recording with audio. Show the original run and the named change. Explain every operation's input, Python type and output; identify the access route; connect the methodological limit to one essential reading. Upload it using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If a cached contingency was necessary, identify it.
+Submit one continuous screen recording with audio. Explain:
+
+1. the input and output of each model call;
+2. how `|` creates the richer dictionary;
+3. how JSON text becomes a Python dictionary and then a list;
+4. what `len`, `sum` and list indexing do;
+5. which values become the x and y coordinates in the plot;
+6. what changed after your one edit and why this remains a sensitivity test.
+
+Upload the recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never display or read the shared key. State which route and model you used.
 :::

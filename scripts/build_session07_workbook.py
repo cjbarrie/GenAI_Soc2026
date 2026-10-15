@@ -1,326 +1,283 @@
-"""Build the Session 7 workbook from explicit, beginner-oriented cells."""
+"""Build the reviewed Week 7 notebook from the assessed script."""
 
-import json
-import textwrap
 from pathlib import Path
 
+import nbformat as nbf
+
+
 ROOT = Path(__file__).resolve().parents[1]
+TASK = ROOT / "assessments" / "weekly_coding" / "session07_task.py"
 OUTPUT = ROOT / "workbook" / "session07" / "session07_synthetic_representation.ipynb"
 
 
-def md(text):
-    text = textwrap.dedent(text).strip()
-    return {"cell_type": "markdown", "metadata": {}, "source": [line + "\n" for line in text.splitlines()]}
+def markdown(text: str):
+    return nbf.v4.new_markdown_cell(text.strip())
 
 
-def code(text):
-    text = textwrap.dedent(text).strip()
-    return {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": [line + "\n" for line in text.splitlines()]}
+def code(text: str):
+    return nbf.v4.new_code_cell(text.strip())
+
+
+SETUP = r'''
+SESSION = "session07"
+
+import importlib as setup_importlib
+import importlib.util as setup_importlib_util
+import os as setup_os
+import subprocess as setup_subprocess
+import sys as setup_sys
+from pathlib import Path as SetupPath
+
+try:
+    import google.colab as setup_colab  # type: ignore[import-not-found]
+    IN_COLAB = True
+except ImportError:
+    IN_COLAB = False
+
+course_packages = {
+    "openrouter": "openrouter>=0.6,<1",
+    "ollama": "ollama>=0.6,<1",
+    "matplotlib": "matplotlib>=3.10,<4",
+}
+missing_packages = [
+    package_name
+    for package_name in course_packages
+    if setup_importlib_util.find_spec(package_name) is None
+]
+
+if IN_COLAB:
+    if missing_packages:
+        setup_subprocess.run(
+            [
+                setup_sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--quiet",
+                "--disable-pip-version-check",
+                *[course_packages[name] for name in missing_packages],
+            ],
+            check=True,
+        )
+        setup_importlib.invalidate_caches()
+
+    COURSE_ROOT = SetupPath(
+        setup_os.getenv("COURSE_COLAB_ROOT", "/content/GenAI_Soc2026")
+    )
+    if not COURSE_ROOT.exists():
+        setup_subprocess.run(
+            [
+                "git",
+                "clone",
+                "--depth",
+                "1",
+                "https://github.com/cjbarrie/GenAI_Soc2026.git",
+                str(COURSE_ROOT),
+            ],
+            check=True,
+        )
+    setup_os.chdir(COURSE_ROOT / "workbook" / SESSION)
+else:
+    COURSE_ROOT = SetupPath.cwd()
+    while not (COURSE_ROOT / "config" / "course_models.json").exists() and COURSE_ROOT != COURSE_ROOT.parent:
+        COURSE_ROOT = COURSE_ROOT.parent
+    if missing_packages:
+        missing_text = ", ".join(missing_packages)
+        raise ModuleNotFoundError(
+            f"This notebook is using a Python environment without: {missing_text}.\n\n"
+            "Close Jupyter. Open a terminal in the GenAI_Soc2026 repository and run:\n"
+            "    uv sync\n"
+            "    uv run jupyter lab\n\n"
+            "In VS Code, select the Python interpreter inside the repository's .venv folder."
+        )
+    if not (COURSE_ROOT / "config" / "course_models.json").exists():
+        raise FileNotFoundError(
+            "The complete GenAI_Soc2026 repository could not be found. Download or "
+            "clone the repository, open a terminal in that folder, and run: uv run jupyter lab"
+        )
+
+course_root_text = str(COURSE_ROOT)
+if course_root_text not in setup_sys.path:
+    setup_sys.path.insert(0, course_root_text)
+
+still_missing = [
+    package_name
+    for package_name in course_packages
+    if setup_importlib_util.find_spec(package_name) is None
+]
+if still_missing:
+    raise ModuleNotFoundError(
+        "Setup did not make these packages available: " + ", ".join(still_missing)
+    )
+
+print("Environment:", "Google Colab" if IN_COLAB else "local course environment")
+print("Python executable:", setup_sys.executable)
+print("Course root:", COURSE_ROOT)
+print("Working folder:", SetupPath.cwd())
+print("Python SDKs: ready")
+if IN_COLAB:
+    print("Route for this runtime: OpenRouter")
+else:
+    import json as setup_json
+    import ollama as setup_ollama
+
+    setup_config = setup_json.loads(
+        (COURSE_ROOT / "config" / "course_models.json").read_text()
+    )
+    setup_local_model = setup_config["local"]["model"]
+    try:
+        setup_models = setup_ollama.list().models
+        setup_model_names = [
+            getattr(item, "model", None) or getattr(item, "name", None)
+            for item in setup_models
+        ]
+        print("Ollama server: reachable at localhost:11434")
+        if setup_local_model in setup_model_names:
+            print("Course local model: ready —", setup_local_model)
+        else:
+            print("Course local model: NOT INSTALLED —", setup_local_model)
+            print("NEXT STEP: open a terminal and run: ollama pull " + setup_local_model)
+    except Exception as setup_error:
+        print("Ollama server: NOT REACHABLE")
+        print("NEXT STEP: start the Ollama application, then run: ollama list")
+        print("Diagnostic:", str(setup_error).splitlines()[0])
+'''
+
+
+EXPLANATIONS = {
+    "Load the course settings and SDKs": (
+        "## Load tools and choose a route\n\n"
+        "**Input:** the course model configuration and, for OpenRouter, the hidden key. "
+        "**Output:** two model-name strings and the selected route. The Colab version "
+        "chooses OpenRouter automatically; local Jupyter defaults to Ollama."
+    ),
+    "Store one question and two persona dictionaries": (
+        "## Store the question and two personas\n\n"
+        "`question` is a string. `sparse_persona` and `rich_persona` are dictionaries. "
+        "The `|` operator creates a new dictionary with two added attitude fields. "
+        "The held-out human answer remains separate from every prompt."
+    ),
+    "Define one forced-choice schema and one probability schema": (
+        "## Define the expected output structures\n\n"
+        "The first schema permits one integer from 1 to 7. The second permits exactly "
+        "seven numbers between 0 and 1. These are structure checks, not evidence that "
+        "the values represent people."
+    ),
+    "Build the three prompts": (
+        "## Build the prompt strings\n\n"
+        "Read all three printed prompts. Conditions A and B use the same persona but "
+        "request different outputs. Conditions B and C request the same output but use "
+        "different persona information."
+    ),
+    "Condition A - sparse persona with a forced answer": (
+        "## Condition A: one forced category\n\n"
+        "**Input:** a one-item message list and the forced-choice schema. **Output:** "
+        "`raw_forced`, a JSON-formatted string that is printed before parsing."
+    ),
+    "Condition B - sparse persona with seven probabilities": (
+        "## Condition B: sparse-persona probabilities\n\n"
+        "The persona matches Condition A. The model must now return a probability for "
+        "every response category."
+    ),
+    "Condition C - richer persona with seven probabilities": (
+        "## Condition C: richer-persona probabilities\n\n"
+        "The requested output matches Condition B. The persona now includes two "
+        "attitudinal statements."
+    ),
+    "Convert the three JSON strings into Python objects": (
+        "## Parse the raw returns\n\n"
+        "`json.loads(...)` turns each JSON string into a dictionary. Square brackets "
+        "retrieve the integer or list stored under a named key."
+    ),
+    "Check the lists and calculate expected scores": (
+        "## Check the lists and calculate expected scores\n\n"
+        "`len` counts list entries, `sum` adds them and `[0]` through `[6]` retrieve "
+        "the seven probabilities. The weighted sum gives an expected scale position."
+    ),
+    "Plot both probability distributions": (
+        "## Plot both distributions\n\n"
+        "The list `scale` supplies the x-values. Each probability list supplies one "
+        "set of y-values. The vertical line shows the held-out human answer."
+    ),
+    "Compare the forced answer with the held-out answer": (
+        "## Compare one forced answer\n\n"
+        "The equality operator returns `True` or `False`. This evaluates one prediction "
+        "for one observed case."
+    ),
+}
+
+
+task_text = TASK.read_text(encoding="utf-8")
+parts = task_text.split("# CELL: ")[1:]
+task_cells = []
+for part in parts:
+    heading, body = part.split("\n", 1)
+    if heading == "Load the course settings and SDKs":
+        body = body.replace(
+            'ROUTE = "ollama"  # change to "openrouter" if preferred',
+            'ROUTE = "openrouter" if IN_COLAB else "ollama"',
+        )
+    task_cells.extend([markdown(EXPLANATIONS[heading]), code(body)])
+
+
+setup_cell = code(SETUP)
+setup_cell["id"] = "colab-setup"
 
 
 cells = [
-    md("""
-    # Session 7 workbook — two ways to predict GSS answers
-
-    We will make two live model-based predictions:
-
-    1. **Aggregate prediction:** one model call predicts the seven-category U.S. ideology distribution.
-    2. **Profile prediction:** repeated calls predict held-out `POLVIEWS` answers for real records selected from the 2024 GSS public-use file.
-
-    For every block, identify the **input**, its Python **type**, the **operation**, the **output**, and the claim the result does or does not support. We use OpenRouter because one SDK and one key can route requests to several model providers. You remain responsible for the prompt, data sent to the provider, model choice, cost, and interpretation.
-    """),
-    md("""
-    ## 1. Set up the OpenRouter client
-
-    The instructor will provide access to an API key. Place it in the environment as `OPENROUTER_API_KEY`; do not paste it into a notebook that may be shared.
-
-    If needed, run `%pip install openrouter pandas matplotlib` once and restart the kernel.
-    """),
-    code("""
-    import json
-    import os
-    from pathlib import Path
-
-    import matplotlib.pyplot as plt
-    import pandas as pd
-    from openrouter import OpenRouter
-
-    api_key = os.environ["OPENROUTER_API_KEY"]
-    client = OpenRouter(api_key=api_key)
-    MODEL = "openai/gpt-5.2"
-
-    print("Client type:", type(client).__name__)
-    print("Model:", MODEL)
-    """),
-    md("""
-    **Inputs:** the key is a string read from the environment; `MODEL` is another string. **Output:** `client` is an `OpenRouter` object that can send requests. Creating it does not yet call a model or spend credits.
-    """),
-    md("## 2. Use the question people were actually asked"),
-    code('''
-    polviews_question = """I'm going to show you a seven-point scale on which the
-    political views that people might hold are arranged from extremely liberal--point 1--
-    to extremely conservative--point 7. Where would you place yourself?"""
-
-    labels = {
-        1: "extremely liberal",
-        2: "liberal",
-        3: "slightly liberal",
-        4: "moderate, middle of the road",
-        5: "slightly conservative",
-        6: "conservative",
-        7: "extremely conservative",
-    }
-
-    print(polviews_question)
-    print(labels)
-    '''),
-    md("""
-    `polviews_question` is one string. `labels` is a dictionary whose integer keys are response codes and whose string values explain those codes. The prompt wording matches the GSS wording.
-    """),
-    md("## 3. Exercise A — ask for an aggregate distribution"),
-    code("""
-    distribution_schema = {
-        "type": "object",
-        "properties": {
-            "percentages": {
-                "type": "array",
-                "items": {"type": "number", "minimum": 0, "maximum": 100},
-                "minItems": 7,
-                "maxItems": 7,
-            }
-        },
-        "required": ["percentages"],
-        "additionalProperties": False,
-    }
-
-    response_format = {
-        "type": "json_schema",
-        "json_schema": {
-            "name": "ideology_distribution",
-            "strict": True,
-            "schema": distribution_schema,
-        },
-    }
-    """),
-    md("""
-    `distribution_schema` permits one dictionary with one key, `percentages`, pointing to exactly seven numbers between 0 and 100. `response_format` gives the schema a name and requests strict structured output. It constrains the form of the answer; it does not make the percentages accurate.
-    """),
-    code('''
-    aggregate_prompt = f"""Use the exact survey question below.
-
-    Predict the percentage of 2024 U.S. adults in each response category from 1 to 7.
-    Return the percentages in scale order. They should sum to 100.
-
-    QUESTION:
-    {polviews_question}
-    """
-
-    print(aggregate_prompt)
-    '''),
-    md("""
-    **Input:** the f-string inserts `polviews_question` into the instruction. **Output:** `aggregate_prompt` is one complete string. Read it before sending it: this is the full information supplied to the model.
-    """),
-    code("""
-    aggregate_response = client.chat.send(
-        model=MODEL,
-        messages=[{"role": "user", "content": aggregate_prompt}],
-        response_format=response_format,
-        provider={"require_parameters": True},
-        stream=False,
-    )
-
-    aggregate_text = aggregate_response.choices[0].message.content
-    aggregate_prediction = json.loads(aggregate_text)
-
-    print("Raw structured text:", aggregate_text)
-    print("Parsed dictionary:", aggregate_prediction)
-    """),
-    md("""
-    `messages` is a list containing one dictionary. `client.chat.send(...)` sends it to OpenRouter. The response contains a list named `choices`; `[0]` selects the first answer; `.message.content` retrieves its JSON string. `json.loads` converts that string into a Python dictionary.
-    """),
-    md("## 4. Check and compare the aggregate prediction"),
-    code("""
-    predicted_percentages = aggregate_prediction["percentages"]
-
-    assert len(predicted_percentages) == 7
-    assert all(0 <= value <= 100 for value in predicted_percentages)
-    assert abs(sum(predicted_percentages) - 100) < 0.1
-
-    gss_percentages = [4.4, 13.3, 11.6, 36.3, 12.1, 16.3, 5.9]
-    comparison = pd.DataFrame({
-        "scale": range(1, 8),
-        "model_prediction": predicted_percentages,
-        "gss_valid_percent": gss_percentages,
-    })
-    comparison
-    """),
-    md("""
-    The assertions test the output structure and arithmetic. The dataframe puts the model prediction beside the 2024 GSS unweighted valid-response percentages. A match is evidence about this specific aggregate prediction—not evidence that the model created representative individuals.
-    """),
-    code("""
-    comparison.plot(
-        x="scale",
-        y=["model_prediction", "gss_valid_percent"],
-        kind="bar",
-        figsize=(10, 4),
-    )
-    plt.ylabel("Percent")
-    plt.title("Aggregate model prediction and 2024 GSS valid responses")
-    plt.show()
-    """),
-    md("## 5. Exercise B — load actual GSS profile records"),
-    code("""
-    profile_path = Path("../../data/session07/gss_2024_polviews_profiles.csv")
-    gss = pd.read_csv(profile_path)
-
-    profile_columns = ["case_id", "age", "sex", "race", "degree", "partyid", "region"]
-    profiles = gss[profile_columns].copy()
-    held_out = gss[["case_id", "observed_polviews"]].copy()
-
-    print("profiles shape:", profiles.shape)
-    print("held_out shape:", held_out.shape)
-    profiles.head()
-    """),
-    md("""
-    The source file contains 28 public-use GSS records, four selected from each observed ideology category. `profiles` deliberately excludes `observed_polviews`; `held_out` keeps it for later comparison. This balanced teaching subset is not a population sample and must not be used to estimate the U.S. distribution.
-    """),
-    md("## 6. Define the structured output for one profile"),
-    code("""
-    profile_schema = {
-        "type": "object",
-        "properties": {
-            "category": {"type": "integer", "minimum": 1, "maximum": 7},
-            "probabilities": {
-                "type": "array",
-                "items": {"type": "number", "minimum": 0, "maximum": 1},
-                "minItems": 7,
-                "maxItems": 7,
-            },
-        },
-        "required": ["category", "probabilities"],
-        "additionalProperties": False,
-    }
-
-    profile_response_format = {
-        "type": "json_schema",
-        "json_schema": {
-            "name": "profile_prediction",
-            "strict": True,
-            "schema": profile_schema,
-        },
-    }
-    """),
-    md("One answer must contain an integer category and seven probabilities. The schema checks their types and ranges. We separately check that the probabilities sum to one."),
-    code('''
-    def make_profile_prompt(profile):
-        profile_text = profile.to_dict()
-        return f"""Predict how the person described below answered the exact survey item.
-        Return one category from 1 to 7 and probabilities for all seven categories in scale order.
-
-        PROFILE:
-        {profile_text}
-
-        QUESTION:
-        {polviews_question}
+    markdown(
         """
+        # Week 7 — How persona information and response format change a prediction
 
-    first_prompt = make_profile_prompt(profiles.iloc[0])
-    print(first_prompt)
-    '''),
-    md("""
-    `profiles.iloc[0]` selects the first row as a pandas Series. `.to_dict()` turns it into a dictionary. The function returns one string. Confirm that `observed_polviews` is absent before sending anything.
-    """),
-    md("## 7. Make one profile prediction before using a loop"),
-    code("""
-    first_response = client.chat.send(
-        model=MODEL,
-        messages=[{"role": "user", "content": first_prompt}],
-        response_format=profile_response_format,
-        provider={"require_parameters": True},
-        stream=False,
-    )
+        We will run three explicit model calls: a forced answer from a sparse persona, a
+        probability distribution from the same sparse persona, and a probability
+        distribution from a richer persona. For every cell, identify the input, Python
+        type, operation and output before moving on.
+        """
+    ),
+    markdown(
+        """
+        [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session07/session07_synthetic_representation.ipynb)
 
-    first_result = json.loads(first_response.choices[0].message.content)
-    assert abs(sum(first_result["probabilities"]) - 1) < 0.001
-    print(first_result)
-    """),
-    md("Before moving on, name the current value and type of `first_response`, `first_result`, `first_result[\"category\"]`, and `first_result[\"probabilities\"]`."),
-    md("## 8. Repeat the same operation across profiles"),
-    code("""
-    prediction_records = []
+        Run the setup cell immediately below. Colab uses OpenRouter. Local Jupyter uses
+        Ollama by default. Never show the shared key in your recording.
+        """
+    ),
+    markdown(
+        """
+        ## Prepare the notebook environment
 
-    # Use .head(6) for a short class run. Remove .head(6) to query all 28 profiles.
-    for _, profile in profiles.head(6).iterrows():
-        prompt = make_profile_prompt(profile)
-        response = client.chat.send(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            response_format=profile_response_format,
-            provider={"require_parameters": True},
-            stream=False,
-        )
-        result = json.loads(response.choices[0].message.content)
-        prediction_records.append({
-            "case_id": int(profile["case_id"]),
-            "predicted_polviews": result["category"],
-            "probabilities": result["probabilities"],
-            "model": MODEL,
-            "prompt_id": "polviews_persona_v1",
-        })
+        In Colab, the next cell installs missing SDKs and downloads the public course
+        repository. Locally, it checks that Jupyter is using the course environment and
+        prints the exact repair command when something is missing.
+        """
+    ),
+    setup_cell,
+    *task_cells,
+    markdown(
+        """
+        ## Completion task
 
-    predictions = pd.DataFrame(prediction_records)
-    predictions
-    """),
-    md("""
-    On each iteration, `profile` is one Series. The model returns one structured answer. `.append(...)` adds one dictionary to `prediction_records`. After six iterations, `predictions` has six rows. The loop does not change the original GSS file.
-    """),
-    md("## 9. Join predictions to answers the model did not see"),
-    code("""
-    profile_comparison = predictions.merge(
-        held_out,
-        on="case_id",
-        validate="one_to_one",
-    )
-
-    profile_comparison["correct"] = (
-        profile_comparison["predicted_polviews"]
-        == profile_comparison["observed_polviews"]
-    )
-
-    accuracy = profile_comparison["correct"].mean()
-    print("Exact-match accuracy:", accuracy)
-    profile_comparison[["case_id", "predicted_polviews", "observed_polviews", "correct"]]
-    """),
-    md("""
-    `merge` joins rows using `case_id`. `validate="one_to_one"` stops the code if an ID appears twice. The comparison produces Booleans. `.mean()` treats `True` as 1 and `False` as 0, returning the proportion exactly predicted.
-
-    Accuracy is only one validation target. Also inspect distributions, errors by profile fields, prompt stability, and performance against simple baselines.
-    """),
-    md("""
-    ## 10. Completion task
-
-    1. Run the aggregate prediction and plot it beside the published GSS distribution.
-    2. Change one inconsequential phrase in the aggregate instruction and record what changes.
-    3. Run the profile prediction for at least six cases.
-    4. Explain, line by line, how one response moves from the model call into `profile_comparison`.
-    5. Report exact-match accuracy and compare predicted and observed category counts.
-    6. In 150–200 words, explain why the aggregate and profile exercises validate different claims.
-    7. Disclose model, access route, prompt version, query date, and any material AI assistance.
-
-    Be ready to explain any four consecutive code lines orally, including the current value and Python type of every named object.
-    """),
+        1. Run all three conditions and explain every call's input and output.
+        2. Change exactly one value in `rich_persona`.
+        3. Rebuild `rich_distribution_prompt` and rerun only Condition C.
+        4. Recreate the plot and explain which probabilities moved.
+        5. Explain the dictionary merge, JSON conversion, list indexing, `len`, `sum`
+           and the plotted x and y values.
+        6. State why the comparison is a prompt-sensitivity check rather than evidence
+           that the personas represent a population.
+        """
+    ),
 ]
 
-notebook = {
-    "cells": cells,
-    "metadata": {
-        "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
-        "language_info": {"name": "python", "version": "3"},
-    },
-    "nbformat": 4,
-    "nbformat_minor": 5,
+notebook = nbf.v4.new_notebook(cells=cells)
+notebook.metadata.kernelspec = {
+    "display_name": "Python 3",
+    "language": "python",
+    "name": "python3",
 }
+notebook.metadata.language_info = {"name": "python", "version": "3"}
 
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-OUTPUT.write_text(json.dumps(notebook, indent=2) + "\n", encoding="utf-8")
+nbf.write(notebook, OUTPUT)
 print(f"Wrote {OUTPUT}")

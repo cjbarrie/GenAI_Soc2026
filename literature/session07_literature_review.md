@@ -208,6 +208,18 @@ The paper also shows why a single "accuracy" number is inadequate. A condition c
 
 **Status:** Prominent in-class study and recommended optional reading. The paper is 54 pages and appeared only two months before the class meeting, so it should not automatically displace a required sociology reading. Reconsider that decision at the synthesis stage.
 
+### Broska, Howes and van Loon (2025), the mixed-subjects design
+
+**Full citation:** David Broska, Michael Howes and Austin van Loon. 2025. “The Mixed Subjects Design: Treating Large Language Models as Potentially Informative Observations.” *Sociological Methods & Research* 54(3): 1074–1109. [DOI](https://doi.org/10.1177/00491241251326865).
+
+**Material and design:** The paper proposes a mixed-subjects design based on prediction-powered inference. Human observations remain the reference outcomes. A model predicts the same outcome for those observed cases and for additional cases, and the observed prediction errors are used to correct the combined estimate.
+
+**Principal findings:** In the Moral Machine application, correlations between human and LLM outcomes range from 0.049 to 0.353. Consequently, adding 100,000 LLM predictions to 10,000 human observations produces an effective sample size of at most 11,275. The paper also shows why LLM-only inference is risky: for one pedestrian-versus-passenger contrast, the model-only estimate is 49 percentage points while the human estimate is 11 points.
+
+**Teaching job:** This is the constructive alternative to calling synthetic answers replacement respondents. It makes the informational value of model predictions an empirical quantity and keeps human observations in the design. Use Figure 1 to explain the design and the reported effective-sample-size calculation to show why a large synthetic sample can add little precision.
+
+**Status:** Additional reading and focal lecture case, replacing Wang, Morgenstern and Dickerson in the Week 7 reading list.
+
 **Local source:** `literature/source_pdfs/session07/gordon_et_al_2026_fidelity_paradox.pdf`.
 
 ### Taubenfeld et al. (2026), behavioral dispositions in LLMs
@@ -434,9 +446,9 @@ Avoid anonymous groups “A” and “B.” The response scale, question wording
 16. Trace the Python summary one value at a time.
 17. End with a bounded use claim and a bridge to Session 8.
 
-## 10. Provisional reading-load decision
+## 10. Final reading-load decision (15 October 2026)
 
-Keep the three existing required readings for the moment: Kozlowski and Evans for the sociological methodological argument, Boelaert et al. for direct opinion-poll validation, and Wang, Morgenstern and Dickerson for identity flattening and epistemic harm. Make Gordon et al. a substantial instructor-led case rather than a fourth required paper. At the synthesis stage, consider replacing Boelaert with Gordon only if the latter's matched human/interview/synthetic design is needed for the workbook strongly enough to justify assigning a new 54-page working paper. Do not make the alignment-focused Minder et al. paper required for this week.
+The required readings are de Sola Pool and Abelson (1961), “The Simulmatics Project,” as the primary historical account; Park et al. (2026), “LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals” (the revised “Generative Agent Simulations of 1,000 People” paper), as the strongest interview-grounded positive case; and Boelaert et al. (2025), “Machine Bias,” as the population-level validation study. Kozlowski and Evans, Broska, Howes and van Loon, Gordon et al., and Lepore and Berman are additional readings. Wang, Morgenstern and Dickerson remains useful background but is no longer assigned in Week 7. Igarashi, Kano and Miwa is not assigned and has been removed from the lecture. Kim and Lee belongs in Session 8 rather than being repeated here.
 
 ## 11. Python and local-model implications
 
@@ -464,9 +476,9 @@ The local-model component should show:
 
 Required student work must use cached outputs. The live local call is an instructor demonstration and optional student extension, with explicit hardware and model-size routes. Starting the server, choosing a model that fits, inspecting logs and stopping the server should be documented in the workbook.
 
-## 12. Recommendation at Review Gate 1
+## 12. Implemented recommendation
 
-Keep the three required readings provisionally. Add Deming/Groves, Bourdieu, McCall, Argyle and Bisbee as in-class foundations. Use Taubenfeld et al. to establish the difference between identifying a majority position and representing human disagreement. Use Park et al. to state the strongest interview-grounded digital-twin proposition, Gordon et al. to test it with matched Prolific respondents, and Chen et al. to show the practical consequences of demographic over-determination. Use Minder et al. only to distinguish a prompted respondent persona from a model persona shaped during training. Do not add all of these to the assigned reading load.
+Organize the lecture around Simulmatics' computational electorate, Park et al.'s interview-grounded individuals, and Boelaert et al.'s population-level validation. Add Deming/Groves, Bourdieu, McCall and Argyle as in-class foundations. Use Gordon et al. to test the claim that richer individual grounding improves population fidelity. Use Broska, Howes and van Loon to show how model predictions can be combined with human observations without treating synthetic cases as substitutes. Keep the remaining recent studies outside the required load.
 
 The synthesis should be organized around a simple claim:
 

@@ -38,7 +38,7 @@ format:
 
 ## What we will work out today
 
-<div class="three-questions"><div><strong>What was generated?</strong>An aggregate distribution, an answer for a demographic profile, or a prediction about a particular person?</div><div><strong>What comparison was made?</strong>A majority answer, the whole distribution, subgroup differences, associations, or individual answers?</div><div><strong>What does that comparison support?</strong>Exploration, prediction, population description—or replacement of human measurement?</div></div>
+<div class="three-questions"><div><strong>What was generated?</strong>An aggregate distribution, an answer for a demographic profile, or a prediction about a particular person?</div><div><strong>What comparison was made?</strong>A majority answer, the whole distribution, subgroup differences, associations, or individual answers?</div><div><strong>What does that comparison support?</strong>Exploration, prediction, population description or replacement of human measurement?</div></div>
 
 ---
 
@@ -48,7 +48,7 @@ format:
 
 <div class="record" style="margin-top:36px;">Age: 42 · Education: bachelor's degree · Party ID: independent
 Question: “Where would you place yourself?”
-Model output: 4 — moderate, middle of the road</div>
+Model output: 4 (moderate, middle of the road)</div>
 
 <div class="purpose"><strong>Persona-based silicon sampling</strong> repeats this procedure across many profiles. The profiles may come from survey records, population margins, researcher-written cases, or another model.</div>
 
@@ -59,6 +59,14 @@ Model output: 4 — moderate, middle of the road</div>
 <div class="cols"><div><h3>1 · Predict the aggregate</h3><p>The model receives the question and is asked for seven percentages for U.S. adults.</p><div class="output">{1: 4, 2: 13, 3: 12, 4: 36,
  5: 12, 6: 16, 7: 7}</div><p class="compact">One model call returns one predicted distribution.</p></div><div><h3>2 · Predict one profile at a time</h3><p>The model receives selected fields from an actual GSS record and predicts that respondent’s answer.</p><div class="output">{"case_id": 1042,
  "predicted_polviews": 4}</div><p class="compact">Many calls create case-level predictions that can be compared with held-out answers.</p></div></div>
+
+---
+
+## Three different designs are called “synthetic respondents”
+
+<table class="tbl"><tr><th>Design</th><th>What the model receives</th><th>What it produces</th><th>Relevant human comparison</th></tr><tr><td><strong>Aggregate prediction</strong></td><td>A question and a population description</td><td>One distribution</td><td>Observed population distribution</td></tr><tr><td><strong>Demographic persona</strong></td><td>One short profile and the question</td><td>One answer or probability vector</td><td>Held-out answers and subgroup distributions</td></tr><tr><td><strong>Interview-grounded agent</strong></td><td>Material supplied by an observed participant</td><td>A prediction for that person</td><td>That participant's held-out answer or retest</td></tr></table>
+
+<div class="purpose">An aggregate distribution, a demographic-persona answer and a prediction for one observed person require different validation.</div>
 
 ---
 
@@ -78,57 +86,75 @@ Model output: 4 — moderate, middle of the road</div>
 
 ---
 
-## Deming put non-sampling errors on the agenda
+## Sampling error is only one source of survey error
 
-<div class="deming-source"><img class="figure-focus" src="images/source_pages/deming_1944_opening.png" alt="Opening of the original 1944 American Sociological Review article, showing Deming's purpose and his warning that a complete count does not remove other sources of error"></div>
+<div class="cols6040"><img class="figure-crop" style="height:420px;" src="images/source_pages/deming_1944_opening.png" alt="Opening of Deming's 1944 article on survey errors"><div><p>Deming distinguished sampling variation from errors introduced by the questionnaire, interviewers, respondents and data processing.</p><p>A complete count can still give a poor estimate when the measurement process is weak.</p><div class="question" style="font-size:.9em; padding:13px 18px;"><strong>For this lecture:</strong> generating more model answers only reduces Monte Carlo variation. It cannot repair a badly specified question or a systematically distorted response process.</div></div></div>
 
-<div class="citation">W. Edwards Deming (1944), “On Errors in Surveys,” <em>American Sociological Review</em> 9(4): 359–369, p. 359.</div>
+<div class="citation">W. Edwards Deming (1944), “On Errors in Surveys,” <em>American Sociological Review</em> 9(4): 359–369.</div>
 
 ---
 
-## Kish’s book made probability sampling a practical craft
+## Probability sampling connects cases to a population
 
-<div class="cols4060"><img class="paper" src="images/source_pages/kish_survey_sampling_cover.jpg" alt="Original cover of Leslie Kish's Survey Sampling"><div><p>Leslie Kish’s <em>Survey Sampling</em> explains how selection probabilities, stratification, clustering and weights connect sampled cases to a population.</p><div class="answer" style="font-size:1em;">A case does not need to look “typical.” Its contribution to an estimate comes from the sampling design and estimator.</div><p class="compact">That is why a collection of plausible demographic personas is not automatically a population sample.</p></div></div>
+<div class="cols4060"><img class="paper" style="height:400px;" src="images/source_pages/kish_survey_sampling_cover.jpg" alt="Original cover of Leslie Kish's Survey Sampling"><div><p>Kish explains how known selection probabilities, stratification, clustering and weights support estimates about a defined population.</p><p><strong>A sampled case contributes through the sampling design.</strong> It does not have to resemble an average citizen.</p><p>A list of plausible demographic profiles has no equivalent link to a population unless the researcher supplies one.</p></div></div>
 
 <div class="citation">Leslie Kish (1965), <em>Survey Sampling</em>. New York: Wiley.</div>
 
 ---
 
-## Total survey error separates measurement and representation
+## Total survey error separates two sets of problems
 
-<div class="tse-grid"><div><h3>Measurement</h3><div class="chain-line"><div>Construct</div><div>Question</div><div>Response</div><div>Edited value</div></div><p class="compact">Validity, measurement error and processing error can enter along this side.</p></div><div><h3>Representation</h3><div class="chain-line"><div>Target population</div><div>Frame</div><div>Sample</div><div>Respondents</div></div><p class="compact">Coverage, sampling and nonresponse error can enter along this side.</p></div></div>
+<div class="tse-overview"><div><h3>Measurement</h3><div class="tse-track"><span>Construct</span><span>Question</span><span>Answer</span><span>Recorded value</span></div><p>Does the recorded value capture the intended concept?</p></div><div><h3>Representation</h3><div class="tse-track"><span>Target population</span><span>Frame</span><span>Selected cases</span><span>Respondents</span></div><p>Which people can the estimate describe?</p></div></div>
 
-<div class="criterion"><strong>Both sides meet in the survey statistic.</strong> A synthetic procedure can alter the response-production process and the connection between cases and a target population.</div>
+<p style="margin-top:26px;">The final estimate inherits problems from either side. A well-worded question cannot repair missing groups, and a representative sample cannot repair a poor measure.</p>
 
 <div class="citation">Groves & Lyberg (2010), “Total Survey Error: Past, Present, and Future,” <em>Public Opinion Quarterly</em> 74(5): 849–879, especially Figure 3.</div>
 
 ---
 
-## Deming and total survey error give us a useful starting point
+## The sources of error in more detail
 
-<table class="tbl"><tr><th></th><th>Question to ask</th><th>LLM example</th></tr><tr><td><strong>Concept</strong></td><td>What is the intended construct?</td><td>Does “moderate” mean the same thing in the prompt and survey setting?</td></tr><tr><td><strong>Measurement</strong></td><td>How is an answer produced and coded?</td><td>Forced choice, probabilities and parsing produce different records.</td></tr><tr><td><strong>Representation</strong></td><td>How do cases connect to a population?</td><td>Where did the profiles come from, and what estimator combines them?</td></tr><tr><td><strong>Use</strong></td><td>What claim must the estimate support?</td><td>Debugging a pipeline requires less than replacing a human survey.</td></tr></table>
+<div class="tse-tabset"><div class="tse-tab-column"><h3>Measurement</h3><div class="tse-tabs"><button class="tse-tab active" data-target="tse-construct">Construct</button><button class="tse-tab" data-target="tse-question">Question</button><button class="tse-tab" data-target="tse-answer">Answer</button><button class="tse-tab" data-target="tse-processing">Processing</button></div><div class="tse-panel active" id="tse-construct"><strong>Construct validity</strong><p>Does “political ideology” mean what the study claims it means?</p></div><div class="tse-panel" id="tse-question"><strong>Question wording</strong><p>Order, labels and context can change how respondents understand the task.</p></div><div class="tse-panel" id="tse-answer"><strong>Response error</strong><p>Recall, uncertainty, social desirability and scale use affect the answer.</p></div><div class="tse-panel" id="tse-processing"><strong>Processing error</strong><p>Coding, parsing and recoding can change the value stored for analysis.</p></div></div><div class="tse-tab-column"><h3>Representation</h3><div class="tse-tabs"><button class="tse-tab active" data-target="tse-population">Population</button><button class="tse-tab" data-target="tse-frame">Frame</button><button class="tse-tab" data-target="tse-selection">Selection</button><button class="tse-tab" data-target="tse-nonresponse">Nonresponse</button></div><div class="tse-panel active" id="tse-population"><strong>Target population</strong><p>The claim must name the people, place and period it concerns.</p></div><div class="tse-panel" id="tse-frame"><strong>Coverage error</strong><p>Some members of the population may never appear in the sampling frame.</p></div><div class="tse-panel" id="tse-selection"><strong>Sampling error</strong><p>Different probability samples produce different estimates.</p></div><div class="tse-panel" id="tse-nonresponse"><strong>Nonresponse error</strong><p>Respondents can differ systematically from selected people who do not answer.</p></div></div></div>
+
+<div class="citation">Click a label to reveal its definition. Terminology follows Groves & Lyberg (2010).</div>
 
 ---
 
-## Simulmatics tried to model the electorate in 1960
+## Synthetic responses change both parts of the design
 
-<div class="cols4060"><img class="paper" src="images/source_pages/simulmatics_religious_issue_page25.png" alt="Page 25 of a Simulmatics analysis of the religious issue in Kennedy's 1960 campaign"><div><p>Simulmatics advised John F. Kennedy’s campaign using accumulated polling records and a computer model.</p><p>This page reports its analysis of the “religious issue.” The model output becomes campaign advice about whether Kennedy should confront anti-Catholicism directly.</p><div class="metric-row"><div class="metric-box"><div class="number">100,000</div><div class="mini">earlier poll records</div></div><div class="metric-box"><div class="number">480</div><div class="mini">voter types</div></div></div></div></div>
+<table class="tbl"><tr><th></th><th>Human survey</th><th>LLM routine</th></tr><tr><td><strong>Measurement</strong></td><td>A person interprets the question, retrieves relevant information, forms a judgment and selects a response.</td><td>The prompt, model and decoding settings generate a token sequence that is parsed into a response.</td></tr><tr><td><strong>Representation</strong></td><td>The frame, selection probabilities, nonresponse and weights connect respondents to a target population.</td><td>The source of the profiles and the rule used to combine predictions determine what population claim is possible.</td></tr><tr><td><strong>Immediate check</strong></td><td>Pretest the question and inspect response patterns.</td><td>Compare the model output with human data collected for the same target and question.</td></tr></table>
+
+---
+
+## Simulmatics built a computational electorate in 1960
+
+<div class="cols4060"><img class="paper" style="height:410px;" src="images/source_pages/simulmatics_religious_issue_page25.png" alt="Page 25 of a Simulmatics analysis of the religious issue in Kennedy's 1960 campaign"><div><p>Simulmatics advised John F. Kennedy’s campaign using accumulated polling records and a computer model.</p><p>This page reports its analysis of the “religious issue.” The output becomes advice about whether Kennedy should confront anti-Catholicism directly.</p><div class="criterion"><strong>Its source material:</strong> more than 100,000 earlier interviews, reduced to 480 voter types.</div></div></div>
 
 <div class="citation">Simulmatics, “Analysis of Simulation on the Religious Issue,” p. 25, JFK Library, Lawrence F. O’Brien Papers, LOBPP-016-010; historical details synthesized in Clinton et al. (2026).</div>
 
 ---
 
-## The published account called it a computer simulation
+## Pool and Abelson explained what went into the machine
 
-<div class="cols4060"><img class="paper" src="images/source_pages/desola_pool_candidates_issues_strategies_cover.jpg" alt="Cover of Candidates, Issues, and Strategies by Ithiel de Sola Pool, Robert Abelson, and Samuel Popkin"><div><p>De Sola Pool, Abelson and Popkin described the system in 1964.</p><div class="process" style="grid-template-columns:1fr;"><div><strong>Poll records → voter categories → issue groupings → predicted response to a campaign move</strong></div></div><p class="compact">Their own account rejected the newspaper image of an autonomous “people machine.” The novelty was computational processing of public-opinion data.</p></div></div>
+<div class="cols6040"><img class="figure-crop" style="height:390px; object-fit:cover; object-position:top;" src="images/crops/pool_abelson_matrix_crop.png" alt="Pool and Abelson describe the 480 voter types and 52 issue clusters"><div><p>The project assembled <strong>66 earlier surveys</strong> containing more than <strong>100,000 interviews</strong>.</p><p>It reduced those records to a <strong>480 voter-type × 52 issue-cluster</strong> matrix.</p><p>Each matrix cell stored a base count and the percentages classified as <strong>pro</strong>, <strong>anti</strong> and <strong>undecided or confused</strong>.</p><p class="compact">Questions entered the same issue cluster only when the researchers judged them politically equivalent and their response patterns correlated across voter types.</p></div></div>
 
-<div class="citation">de Sola Pool, Abelson & Popkin (1964), <em>Candidates, Issues, and Strategies</em>. MIT Press.</div>
+<div class="citation">de Sola Pool & Abelson (1961), “The Simulmatics Project,” <em>Public Opinion Quarterly</em> 25(2): 167–183, pp. 167–168.</div>
 
 ---
 
-## Jill Lepore recovered the company’s history
+## How the Simulmatics calculation worked
 
-<div class="cols4060"><img class="paper" src="images/source_pages/lepore_if_then_cover.png" alt="Cover of Jill Lepore's If Then: How the Simulmatics Corporation Invented the Future"><div><p><em>If Then</em> is a history of the Simulmatics Corporation based on its archived papers.</p><p>Lepore traces the company from political consulting into advertising, counterinsurgency and other attempts to predict and shape behaviour.</p></div></div>
+<div class="sim-calc"><div><span>1</span><strong>Classify the voter</strong><p>Place each record in one of 480 types using region, settlement, income, race, religion, sex and party.</p></div><div><span>2</span><strong>Choose an equation</strong><p>Religion and party created nine cross-pressure groups. Each group received a different vote equation.</p></div><div><span>3</span><strong>Calculate a type-level vote</strong><p>The equation used earlier vote intentions, turnout and anti-Catholic responses for that voter type.</p></div><div><span>4</span><strong>Construct each state</strong><p>Weight the 480 type-level estimates by the estimated number of each type living in the state.</p></div></div>
+
+<div class="question" style="font-size:.84em; padding:12px 18px; margin-top:20px;"><strong>Example from the paper:</strong> for Protestant Democrats, the model began with 1958 vote intentions, estimated which anti-Catholic respondents would defect, and increased the nonvoting adjustment because cross-pressured voters were expected to abstain more often.</div>
+
+<div class="citation">de Sola Pool & Abelson (1961), pp. 175–180. The computer ran a separate calculation for each voter type and then formed weighted state estimates.</div>
+
+---
+
+## Lepore asks who gets to use the “people machine”
+
+<div class="cols4060"><img class="paper" style="height:410px;" src="images/source_pages/lepore_if_then_cover.png" alt="Cover of Jill Lepore's If Then: How the Simulmatics Corporation Invented the Future"><div><p><em>If Then</em> follows Simulmatics from political consulting into advertising, counterinsurgency and other attempts to predict and shape behaviour.</p><p>The Kennedy campaign received the reports. The people represented in the archived surveys did not see or challenge the categories used to classify them.</p><div class="question" style="font-size:.91em; padding:13px 18px;"><strong>Questions for the historical case</strong><br>Who defined the voter types?<br>Who could query the model?<br>How did the advice affect campaign decisions?</div></div></div>
 
 <div class="citation">Jill Lepore (2020), <em>If Then</em>; Lepore & Berman (2021), “The People Machine,” <em>Harvard Data Science Review</em>.</div>
 
@@ -136,7 +162,7 @@ Model output: 4 — moderate, middle of the road</div>
 
 ## Bourdieu questions what a poll has made countable
 
-<div class="cols6040"><img class="source-crop" src="images/crops/bourdieu_fr_quote_crop.png" alt="French source passage from Bourdieu's L'opinion publique n'existe pas"><div><div class="quote" style="font-size:.94em;">« Toute enquête d’opinion suppose que tout le monde peut avoir une opinion… »</div><p><strong>Translation:</strong> “Every opinion poll assumes that everyone can have an opinion.”</p><p>Bourdieu then adds two further assumptions: opinions can be treated as equivalent units, and there is agreement about which questions deserve to be asked.</p></div></div>
+<div class="cols6040"><img class="source-crop" style="height:420px;" src="images/crops/bourdieu_fr_quote_crop.png" alt="French source passage from Bourdieu's L'opinion publique n'existe pas"><div><div class="quote" style="font-size:.9em;">« Toute enquête d’opinion suppose que tout le monde peut avoir une opinion… »</div><p><strong>Translation:</strong> “Every opinion poll assumes that everyone can have an opinion.”</p><p class="compact">Bourdieu then adds two further assumptions: opinions can be treated as equivalent units, and there is agreement about which questions deserve to be asked.</p></div></div>
 
 <div class="citation">Pierre Bourdieu (1973), “L’opinion publique n’existe pas,” <em>Les Temps modernes</em> 318.</div>
 
@@ -158,36 +184,40 @@ Model output: 4 — moderate, middle of the road</div>
 
 ---
 
-## McCall warns against turning categories into homogeneous groups
+## McCall treats categories as provisional analytical tools
 
-<div class="cols"><img class="figure-crop" style="height:390px;" src="images/crops/mccall_intra_published_crop.png" alt="McCall discussion of intracategorical complexity"><img class="figure-crop" style="height:390px;" src="images/crops/mccall_inter_published_crop.png" alt="McCall discussion of intercategorical complexity"></div>
-
-<div class="purpose"><strong>Intracategorical work</strong> studies complexity within a social location. <strong>Intercategorical work</strong> compares relationships and inequality across categories while treating those categories provisionally.</div>
+<div class="cols"><div><img class="figure-crop" style="height:285px;" src="images/crops/mccall_intra_full.png" alt="McCall defines intracategorical complexity"><p class="compact"><strong>Intracategorical analysis</strong> examines variation and lived experience within a social group.</p></div><div><img class="figure-crop" style="height:285px;" src="images/crops/mccall_inter_full.png" alt="McCall describes the provisional use of categories"><p class="compact"><strong>Intercategorical analysis</strong> uses categories provisionally to study relationships and inequalities among groups.</p></div></div>
 
 <div class="citation">Leslie McCall (2005), “The Complexity of Intersectionality,” <em>Signs</em> 30(3): 1771–1800, pp. 1773–74 and 1784–85.</div>
 
 ---
 
-## A grouping variable is not a script for an answer
+## How a respondent produces a survey answer
 
-<div class="record">age: 34
+<div class="response-process"><div><span>1</span><strong>Comprehend</strong><p>What does the question mean?</p></div><div><span>2</span><strong>Retrieve</strong><p>Which memories or considerations come to mind?</p></div><div><span>3</span><strong>Judge</strong><p>How are those considerations combined?</p></div><div><span>4</span><strong>Respond</strong><p>Which scale category expresses that judgment?</p></div></div>
+
+<div class="cols" style="margin-top:30px;"><div><p>The CASM tradition studies errors and variation at each stage of this process.</p></div><div><p>Zaller adds that different political considerations may be accessible at different moments.</p></div></div>
+
+<div class="citation">National Research Council (1984), <em>Cognitive Aspects of Survey Methodology</em>; Tourangeau, Rips & Rasinski (2000), <em>The Psychology of Survey Response</em>; Zaller (1992).</div>
+
+---
+
+## A demographic persona skips over that response process
+
+<div class="persona-casm"><div><div class="record">age: 34
 gender: woman
 education: bachelor's degree
-party identification: independent</div>
+party identification: independent</div><p>These are classifications selected by the researcher.</p></div><div class="persona-output"><span>MODEL CALL</span><strong>“4 (moderate)”</strong></div><div><h3>What remains unobserved</h3><ul><li>how this person understands “liberal” and “conservative”;</li><li>which experiences and political considerations matter;</li><li>how certain or ambivalent the person feels;</li><li>how the person would use the seven response categories.</li></ul></div></div>
 
-<div class="cols" style="margin-top:28px;"><div><strong>The profile supplies</strong><ul><li>four categorical descriptions;</li><li>the wording chosen by the researcher;</li><li>no direct account from this person.</li></ul></div><div><strong>It does not supply</strong><ul><li>how the person understands “liberal”;</li><li>which issues are salient;</li><li>certainty, ambivalence or biography;</li><li>a reason that similarly labelled people agree.</li></ul></div></div>
-
----
-
-## All we can observe is the model’s output
-
-<div class="cols"><div><h3>We can compare</h3><ul><li>the aggregate response distribution;</li><li>error for held-out people;</li><li>variation within categories;</li><li>differences across categories;</li><li>associations among answers;</li><li>sensitivity to prompts and models.</li></ul></div><div><h3>We cannot read off</h3><ul><li>how the model “perceived” the question;</li><li>whether it used the supplied labels as a person would;</li><li>whether matching numbers arose through the same social process;</li><li>whether a match transfers to another question or population.</li></ul></div></div>
+<div class="citation">The omitted stages follow the CASM response model. The profile and output are teaching examples.</div>
 
 ---
 
-## Three designs are often called “synthetic respondents”
+## Three different checks answer three different questions
 
-<table class="tbl"><tr><th>Design</th><th>Model input</th><th>Model output</th><th>Natural comparison</th></tr><tr><td><strong>Aggregate prediction</strong></td><td>Question plus population or sample description</td><td>One distribution</td><td>Observed human distribution</td></tr><tr><td><strong>Demographic persona</strong></td><td>One profile plus the question</td><td>One answer or probability vector per profile</td><td>Held-out answers and subgroup distributions</td></tr><tr><td><strong>Interview-grounded agent</strong></td><td>Material supplied by one participant</td><td>Prediction for that participant</td><td>The participant’s held-out answer or retest</td></tr></table>
+<div class="validation-levels"><div><strong>Output check</strong><p>Did the model return a usable category or seven probabilities?</p></div><div><strong>Predictive check</strong><p>How often does the output match held-out human answers?</p></div><div><strong>Population check</strong><p>Does the full synthetic distribution match the target population, including variation within groups?</p></div></div>
+
+<p style="margin-top:28px;">The next studies test different rows of this list. Their results should not be treated as interchangeable evidence.</p>
 
 ---
 
@@ -229,27 +259,19 @@ instruction = "Return one integer from 1 to 7."</div><ul class="field-list"><li>
 
 ---
 
-## Kozlowski and Evans widen the sociological standard
+## A broader sociological standard asks what the stand-in must preserve
 
-<div class="cols4060"><img class="paper paper-short" src="images/published/kozlowski_title.png" alt="Published title page for Simulating Subjects"><div><p>Their question is not simply whether a model can produce plausible answers.</p><p>They ask what a stand-in for a social actor would need to preserve about culture, time, embodiment, difference and interaction.</p><div class="criterion"><strong>Validation must be tied to the social feature the study needs.</strong></div></div></div>
+<div class="cols6040"><img class="figure-crop" style="height:365px;" src="images/crops/kozlowski_fig5_crop.png" alt="Kozlowski and Evans Figure 5 summarizing limitations of LLM social subjects"><div><p>Kozlowski and Evans ask what an artificial stand-in would need to preserve about culture, time, embodiment, difference and interaction.</p><div class="six-list"><div><strong>Bias</strong></div><div><strong>Uniformity</strong></div><div><strong>Atemporality</strong></div><div><strong>Sensory experience</strong></div><div><strong>Linguistic cultures</strong></div><div><strong>Alien intelligence</strong></div></div><div class="criterion"><strong>The relevant test depends on the social feature the study needs.</strong></div></div></div>
 
-<div class="citation">Kozlowski & Evans (2025), “Simulating Subjects,” <em>Sociological Methods & Research</em> 54(3): 1017–1073.</div>
-
----
-
-## Their six limitations point to different empirical tests
-
-<div class="cols6040"><img class="figure-crop" src="images/crops/kozlowski_fig5_crop.png" alt="Kozlowski and Evans Figure 5 summarizing limitations of LLM social subjects"><div class="six-list"><div><strong>Bias</strong></div><div><strong>Uniformity</strong></div><div><strong>Atemporality</strong></div><div><strong>Impoverished sensory experience</strong></div><div><strong>Linguistic cultures</strong></div><div><strong>Alien intelligence</strong></div></div></div>
-
-<div class="citation">Kozlowski & Evans (2025), Figure 5 and “Limitations and Opportunities in Simulating Agents and Interactions.”</div>
+<div class="citation">Additional reading: Kozlowski & Evans (2025), “Simulating Subjects,” <em>Sociological Methods & Research</em> 54(3): 1017–1073, Figure 5.</div>
 
 ---
 
-## Rich interviews test a different proposition
+## Park and colleagues build agents from long interviews
 
-<div class="cols4060"><img class="paper paper-short" src="images/source_pages/park_title.png" alt="Title page of Park et al.'s generative agents paper"><div><div class="metric-row"><div class="metric-box"><div class="number">1,052</div><div class="mini">U.S. participants</div></div><div class="metric-box"><div class="number">2 hours</div><div class="mini">semi-structured interview</div></div></div><p>Park and colleagues built agents from interviews, surveys, or both, then predicted held-out GSS, personality, economic-game and experimental answers.</p><p>The comparison is primarily <strong>person-to-prediction</strong>, not a claim that interview-grounded agents form a representative sample.</p></div></div>
+<div class="cols4060"><img class="paper" style="height:350px;" src="images/source_pages/park_title.png" alt="Title page of Park et al.'s LLM Agents Grounded in Self-Reports"><div><div class="criterion"><strong>1,052 participants</strong> each completed a roughly <strong>two-hour semi-structured interview</strong>.</div><p>Park and colleagues built agents from those interviews, then predicted held-out GSS, personality, economic-game and experimental answers.</p><p class="compact">The comparison is <strong>person-to-prediction</strong>. It does not establish that the agents form a representative population.</p></div></div>
 
-<div class="citation">Park et al. (2024), “LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals.”</div>
+<div class="citation">Park et al. (2026), “LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals,” revised version of “Generative Agent Simulations of 1,000 People,” arXiv:2411.10109.</div>
 
 ---
 
@@ -258,6 +280,14 @@ instruction = "Return one integer from 1 to 7."</div><ul class="field-list"><li>
 <div class="cols6040"><img class="figure-crop" src="images/crops/park_fig1_crop.png" alt="Park et al. design with participant retest"><div><p>Participants answered the evaluation measures and completed them again two weeks later.</p><p>The agents answered the held-out measures too.</p><div class="criterion"><strong>The paper scales agent performance against participants’ own test–retest consistency.</strong></div><p class="compact">That is more informative than pretending a person would reproduce every answer perfectly.</p></div></div>
 
 <div class="citation">Park et al. (2024), Figure 1.</div>
+
+---
+
+## Simulmatics and Park construct different kinds of stand-in
+
+<table class="tbl"><tr><th></th><th>Simulmatics</th><th>Park et al.</th></tr><tr><td><strong>Human material</strong></td><td>Archived opinion polls</td><td>Two-hour individual interviews</td></tr><tr><td><strong>Representational unit</strong></td><td>480 voter types</td><td>1,052 interview-grounded agents</td></tr><tr><td><strong>Output</strong></td><td>Response to campaign scenarios</td><td>Held-out individual answers</td></tr><tr><td><strong>Primary comparison</strong></td><td>Group response and campaign usefulness</td><td>Person-to-prediction correspondence</td></tr><tr><td><strong>Unresolved question</strong></td><td>What disappears inside a voter type?</td><td>What disappears when an interview becomes model context?</td></tr></table>
+
+<div class="purpose">Park can compare each agent with held-out answers from the person who was interviewed. Estimating public opinion would still require a population design.</div>
 
 ---
 
@@ -273,40 +303,6 @@ instruction = "Return one integer from 1 to 7."</div><ul class="field-list"><li>
 
 ---
 
-## Igarashi and colleagues compare judgments of discrimination
-
-<div class="cols4060"><img class="paper paper-short" src="images/igarashi_title_crop.png" alt="Title and abstract of Igarashi, Kano and Miwa"><div><p>Japanese respondents and GPT-4 judge the same hypothetical cases of unequal treatment.</p><p>The study varies who is disadvantaged, the social setting, the reason given for unequal treatment and the definition of discrimination supplied before the task.</p><div class="question"><strong>Do people and the model respond to those differences in the same way?</strong></div></div></div>
-
-<div class="citation">Igarashi, A., Y. Kano, and H. Miwa. (2025). “ChatGPT versus Humans in Judging Discriminatory Scenarios: Experimental Evidence from a Japanese Context.” <em>Humanities and Social Sciences Communications</em> 12:1776. https://doi.org/10.1057/s41599-025-06054-6.</div>
-
----
-
-## The human and model experiments use the same scenario design
-
-<img class="figure-wide-contained" src="images/igarashi_design_crop.png" alt="Igarashi and colleagues' vignette templates and parallel ChatGPT experiment">
-
-<div class="purpose">Four thousand people each rated four randomized scenarios. The researchers then ran a parallel GPT-4 experiment with the same vignettes, question and response scale, resetting the conversation for each simulated respondent.</div>
-
-<div class="citation">Igarashi, Kano, and Miwa (2025), “Data and methods,” pp. 4–5. Screenshot from the published article.</div>
-
----
-
-## GPT-4 rated the scenarios as more discriminatory overall
-
-<div class="cols6040"><img class="figure-crop" src="images/igarashi_figure1_crop.png" alt="Figure 1 distributions of discrimination judgments for GPT-4 and humans"><div><p>The top grey distributions are GPT-4; the lower white distributions are human responses.</p><p>The model's ratings are generally farther to the discriminatory end of the six-point scale.</p><p>This is an important difference in levels. It does not yet tell us whether the experimental contrasts move in the same direction.</p></div></div>
-
-<div class="citation">Igarashi, Kano, and Miwa (2025), Figure 1, p. 8.</div>
-
----
-
-## The experimental effects also differ
-
-<div class="cols6040"><img class="figure-crop" src="images/igarashi_figure2_crop.png" alt="Figure 2 compares experimental effects for GPT-4 and humans"><div><p>Each dot is the estimated change produced by one vignette feature.</p><p>The model and humans do not attach the same weight to all targets and justifications. The paper reports especially different sensitivity to gender and to customer-needs explanations.</p><p>A model can therefore differ from people in both its average judgment and its response to the treatment dimensions.</p></div></div>
-
-<div class="citation">Igarashi, Kano, and Miwa (2025), Figure 2 and discussion, pp. 8–10.</div>
-
----
-
 ## Boelaert and colleagues test opinion-poll questions directly
 
 <div class="cols4060"><img class="paper paper-short" src="images/published/boelaert_title.png" alt="Published title page for Machine Bias"><div><p>They compare LLM answers with 148 nationally representative polls from the United States, Britain, France, Germany and Italy.</p><p>The study varies model, prompt, temperature and repeated runs.</p><div class="criterion"><strong>Outcome:</strong> distance between the complete model and human response distributions.</div></div></div>
@@ -317,7 +313,7 @@ instruction = "Return one integer from 1 to 7."</div><ul class="field-list"><li>
 
 ## Their distance measure uses every response category
 
-<div class="cols6040"><img class="figure-crop" src="images/crops/boelaert_fig1_published_crop.png" alt="Boelaert Figure 1 illustrating normalized Earth Mover's Distance"><div><p>The normalized Earth Mover’s Distance asks how much probability mass must move—and how far—to turn one ordered distribution into another.</p><div class="output">human: [0.10, 0.20, 0.40, 0.20, 0.10]
+<div class="cols6040"><img class="figure-crop" style="height:365px;" src="images/crops/boelaert_fig1_published_crop.png" alt="Boelaert Figure 1 illustrating normalized Earth Mover's Distance"><div><p>The normalized Earth Mover’s Distance asks how much probability mass must move, and how far, to turn one ordered distribution into another.</p><div class="output">human: [0.10, 0.20, 0.40, 0.20, 0.10]
 model: [0.02, 0.08, 0.70, 0.15, 0.05]</div><p class="compact">Matching the mode is not enough if the rest of the distribution is displaced.</p></div></div>
 
 <div class="citation">Boelaert et al. (2025), Figure 1.</div>
@@ -326,35 +322,27 @@ model: [0.02, 0.08, 0.70, 0.15, 0.05]</div><p class="compact">Matching the mode 
 
 ## Performance varies by topic, model and country
 
-<div class="cols boelaert-pair"><img src="images/crops/boelaert_fig2a_published_crop.png" alt="Boelaert Figure 2 model comparison"><img src="images/crops/boelaert_fig2b_published_crop.png" alt="Boelaert Figure 2 topic and country panels"></div>
+<div class="cols boelaert-pair" style="--figure-height:315px;"><img style="height:315px;" src="images/crops/boelaert_fig2a_published_crop.png" alt="Boelaert Figure 2 model comparison"><img style="height:315px;" src="images/crops/boelaert_fig2b_published_crop.png" alt="Boelaert Figure 2 topic and country panels"></div>
 
-<div class="purpose">Political ideology performs better than many other topics in this study. That does not license a general claim that persona prompting represents public opinion.</div>
+<p class="compact">The error differs by outcome, country and model. Political ideology is among the better-performing topics in this study, while other topics show much larger discrepancies.</p>
 
 <div class="citation">Boelaert et al. (2025), Figure 2.</div>
 
 ---
 
-## Wang and colleagues study identity-dependent tasks
+## Broska and colleagues keep human observations in the design
 
-<div class="cols4060"><img class="paper paper-short" src="images/published/wang_title.png" alt="Published Nature Machine Intelligence title page"><div><p>Four LLMs are compared with human studies involving 3,200 participants across sixteen identities.</p><p>The paper distinguishes:</p><ul><li><strong>misportrayal</strong>—shifting a group away from the human comparison;</li><li><strong>flattening</strong>—making group members too similar;</li><li><strong>essentialization</strong>—treating an identity label as a defining perspective.</li></ul></div></div>
+<div class="cols6040"><img class="figure-crop" style="height:345px;" src="images/crops/broska_fig1_mixed_subjects.png" alt="Broska and colleagues compare human, silicon and mixed-subjects designs"><div style="font-size:.91em;"><p><strong>Human observations remain the reference data.</strong></p><p>The model predicts the same outcome for observed people and for additional cases.</p><p>Prediction-powered inference estimates the model's error from the observed human outcomes.</p><p>The predictions add information only when they track the human outcome.</p></div></div>
 
-<div class="citation">Wang, Morgenstern & Dickerson (2025), <em>Nature Machine Intelligence</em> 7: 400–411. https://doi.org/10.1038/s42256-025-00986-z</div>
-
----
-
-## Their overview connects the problem to the training process
-
-<div class="cols6040"><img class="figure-crop" src="images/crops/wang_fig1_published_crop.png" alt="Published Wang Figure 1 overview"><div><p>Models learn from uneven textual traces and from optimisation procedures that do not reproduce the composition or experience of social groups.</p><p>Adding an identity label at inference time cannot by itself repair those limitations.</p><div class="criterion"><strong>McCall’s question returns:</strong> how much variation inside the category survives?</div></div></div>
-
-<div class="citation">Wang, Morgenstern & Dickerson (2025), Figure 1.</div>
+<div class="citation">Broska, Howes & van Loon (2025), “The Mixed Subjects Design,” <em>Sociological Methods & Research</em> 54(3): 1074–1109, Figure 1.</div>
 
 ---
 
-## GPT-4 persona responses are less diverse than human responses
+## More LLM predictions can add very little information
 
-<div class="wang-focus"><div><div class="figure-label">GPT-4 · semantic diversity measured with SBERT cosine</div><img src="images/crops/wang_fig4_gpt4_sbert_focus.png" alt="Focused panel from Wang Figure 4 comparing GPT-4 and human response diversity"></div><div><h3>What is being tested?</h3><p>For each identity, the authors compare the diversity of human responses with 100 model responses per question. This panel averages across three to six questions.</p><h3>How do we read it?</h3><p>Further right means more varied responses. The grey crosses are the human participants; the coloured circles are GPT-4 persona responses.</p><p class="result-line">For nearly every identity in this panel, the human responses are more diverse.</p></div></div>
+<div class="cols4060"><img class="source-crop" style="height:390px;" src="images/crops/broska_results_text.png" alt="Broska and colleagues report modest PPI correlations and effective sample sizes"><div><p>In the Moral Machine application, the correlation between human and model outcomes ranged from <strong>0.049 to 0.353</strong>.</p><p>Adding <strong>100,000 LLM predictions</strong> to <strong>10,000 human observations</strong> produced an effective sample size of at most <strong>11,275</strong>.</p><p>For one contrast, the LLM-only estimate was <strong>49 percentage points</strong>; the human estimate was <strong>11 points</strong>.</p></div></div>
 
-<div class="citation">Wang, Morgenstern & Dickerson (2025), Figure 4, focused on the GPT-4 SBERT-cosine panel. The full figure repeats the comparison across four models and four diversity measures.</div>
+<div class="citation">Broska, Howes & van Loon (2025), pp. 1098–1100. Human observations remain in every mixed-subjects estimate.</div>
 
 ---
 
@@ -402,225 +390,200 @@ model: [0.02, 0.08, 0.70, 0.15, 0.05]</div><p class="compact">Matching the mode 
 
 ---
 
-## The strongest evidence is for bounded uses
+## What the current evidence supports
 
 <div class="continuum"><div><strong>Debug a pipeline</strong>Do records parse and plots render?</div><div><strong>Pilot an instrument</strong>Where does wording confuse the model?</div><div><strong>Explore sensitivity</strong>Which results move across prompts and models?</div><div><strong>Predict held-out answers</strong>Compare with people and simpler baselines.</div><div><strong>Replace human measurement</strong>Show that every population feature needed by the claim is preserved.</div></div>
 
-<div class="answer" style="font-size:.96em; margin-top:30px;">The studies today give much stronger support to the first three uses than to the final one.</div>
+<p style="margin-top:30px;">The studies provide direct evidence for pipeline testing, instrument development and sensitivity analysis. Replacing human measurement requires validation against the population feature used in the final claim.</p>
 
 ---
 
-## Demo 1 asks for one aggregate prediction
+## Week 7 coding task: change what the model receives and returns
 
-<div class="question"><strong>Model prompt</strong><br>“Using the exact GSS question below, predict the percentage of 2024 U.S. adults in each response category. Return seven percentages that sum to 100.”</div>
+<table class="tbl"><tr><th>Condition</th><th>Persona information</th><th>Requested output</th></tr><tr><td><strong>A · forced answer</strong></td><td>Age, education, region and party identification</td><td>One category from 1 to 7</td></tr><tr><td><strong>B · sparse distribution</strong></td><td>The same four demographic fields</td><td>Seven probabilities</td></tr><tr><td><strong>C · richer distribution</strong></td><td>Demographics plus two attitudinal statements</td><td>Seven probabilities</td></tr></table>
 
-<div class="process" style="grid-template-columns:repeat(4,1fr); margin-top:35px;"><div><strong>Input</strong><br>question + target population</div><div><strong>Model call</strong><br>one request</div><div><strong>Output</strong><br>seven percentages</div><div><strong>Comparison</strong><br>predicted vs GSS distribution</div></div>
-
-<div class="warning-box">This is a prediction of an aggregate. It does not create individual respondents.</div>
+<p style="margin-top:24px;">The question and model stay fixed. We can see what changes when the persona and elicitation format change.</p>
 
 ---
 
-## OpenRouter gives us one client for several model providers
+## Store the survey item and two personas
 
 ::: {.code-small}
 ```python
-import os
-from openrouter import OpenRouter
+question = (
+    "Where would you place yourself from 1 "
+    "(extremely liberal) to 7 (extremely conservative)?"
+)
 
-api_key = os.environ["OPENROUTER_API_KEY"]
-client = OpenRouter(api_key=api_key)
-model = "openai/gpt-5.2"
+sparse_persona = {
+    "age_group": "30–44",
+    "education": "bachelor's degree",
+    "region": "South",
+    "party_identification": "independent",
+}
+
+rich_persona = sparse_persona | {
+    "economic_view": "government should reduce inequality",
+    "social_view": "often supports traditional social norms",
+}
 ```
 :::
 
-<div class="cols"><div><strong>What stays the same</strong><br>The Python method for sending a request and reading a response.</div><div><strong>What can change</strong><br>The model string can route the same code to a supported OpenAI, Anthropic, Google or open-weight model.</div></div>
-
-<div class="purpose">The single SDK reduces provider-specific setup. It does not make models interchangeable: supported parameters, prices, privacy terms and outputs still vary.</div>
-
-<div class="citation">OpenRouter Python SDK and structured-output documentation, accessed 26 August 2026.</div>
+<div class="purpose"><code>|</code> creates a new dictionary containing the original fields plus the two added key–value pairs.</div>
 
 ---
 
-## Structured output makes the expected answer explicit
+## Condition A requests one forced answer
+
+::: {.code-tiny}
+```python
+forced_prompt = f"""
+Predict this person's answer to the survey item.
+Return one category from 1 to 7.
+
+PERSONA: {json.dumps(sparse_persona)}
+QUESTION: {question}
+"""
+
+forced_schema = {
+    "type": "object",
+    "properties": {
+        "category": {"type": "integer", "minimum": 1, "maximum": 7}
+    },
+    "required": ["category"],
+}
+```
+:::
+
+<p class="compact">The model has to collapse any uncertainty into one integer.</p>
+
+---
+
+## Conditions B and C request a probability distribution
 
 ::: {.code-small}
 ```python
 distribution_schema = {
     "type": "object",
     "properties": {
-        "percentages": {
+        "probabilities": {
             "type": "array",
-            "items": {"type": "number", "minimum": 0, "maximum": 100},
+            "items": {"type": "number", "minimum": 0, "maximum": 1},
             "minItems": 7,
             "maxItems": 7,
         }
     },
-    "required": ["percentages"],
-    "additionalProperties": False,
-}
-
-response_format = {
-    "type": "json_schema",
-    "json_schema": {
-        "name": "distribution",
-        "strict": True,
-        "schema": distribution_schema,
-    },
+    "required": ["probabilities"],
 }
 ```
 :::
 
-<div class="cols"><div><strong>Input to the schema</strong><br>The required key, list length and permitted range.</div><div><strong>What it gives us</strong><br>A machine-readable description of the answer OpenRouter should return.</div></div>
+<p class="compact">Both prompts use this schema. Condition B inserts <code>sparse_persona</code>; Condition C inserts <code>rich_persona</code>.</p>
 
 ---
 
-## The live call returns a Python object we can inspect
+## Build the sparse and rich prompts
 
-<div class="cols6040"><div>
+::: {.code-small}
+```python
+sparse_distribution_prompt = f"""
+Predict probabilities for all seven answers.
+PERSONA: {json.dumps(sparse_persona)}
+QUESTION: {question}
+"""
+
+rich_distribution_prompt = f"""
+Predict probabilities for all seven answers.
+PERSONA: {json.dumps(rich_persona)}
+QUESTION: {question}
+"""
+```
+:::
+
+<div class="cols"><div><strong>Same question</strong><br>The response scale and wording remain fixed.</div><div><strong>Different persona</strong><br>The second string contains two additional attitudinal fields.</div></div>
+
+---
+
+## The route-specific call remains visible
 
 ::: {.code-tiny}
 ```python
-response = client.chat.send(
-    model="openai/gpt-5.2",
-    messages=[{"role": "user", "content": prompt}],
-    response_format=response_format,
-    provider={"require_parameters": True},
-    stream=False,
-)
+messages = [{"role": "user", "content": sparse_distribution_prompt}]
 
-text = response.choices[0].message.content
-prediction = json.loads(text)
-print(prediction["percentages"])
+if ROUTE == "openrouter":
+    with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL,
+            messages=messages,
+            response_format={"type": "json_schema", "json_schema": {
+                "name": "distribution", "strict": True,
+                "schema": distribution_schema,
+            }},
+        )
+    raw_sparse = response.choices[0].message.content
+else:
+    response = ollama.chat(
+        model=LOCAL_MODEL, messages=messages,
+        format=distribution_schema, options={"temperature": 0},
+    )
+    raw_sparse = response.message.content
 ```
 :::
 
-</div><div class="code-steps"><div><strong>1. Send the request</strong><code>chat.send(...)</code> receives the model name, prompt and schema. It returns an OpenRouter response.</div><div><strong>2. Select one answer</strong><code>choices[0]</code> means the first answer returned by the model.</div><div><strong>3. Read its text</strong><code>message.content</code> is a JSON-formatted string.</div><div><strong>4. Convert the string</strong><code>json.loads(text)</code> produces a Python dictionary that we can analyse.</div></div></div>
-
 ---
 
-## Structured does not mean substantively valid
-
-<div class="validation-compare"><div><h3>The schema checks the structure</h3><ul><li>the required <code>percentages</code> field exists;</li><li>the list contains exactly seven values;</li><li>every value is numeric and between 0 and 100;</li><li>the response can be parsed into a Python dictionary.</li></ul></div><div><h3>We still check the research claim</h3><ul><li>the seven values sum to 100;</li><li>the prompt used the intended question wording;</li><li>the distribution matches relevant human data;</li><li>the comparison supports the claim we want to make.</li></ul></div></div>
-
----
-
-## A second check hides one real GSS answer
-
-<div class="annotated-record"><div class="record">profile = {
-  "case_id": 1042,
-  "age": 42,
-  "education": "bachelor's degree",
-  "party_id": "independent"
-}
-
-held_out_answer = 3</div><ul class="field-list"><li>The profile fields come from one GSS record.</li><li><code>POLVIEWS</code> is removed before the model call.</li><li>The model predicts one category from 1 to 7.</li><li>Only afterwards do we compare the prediction with <code>held_out_answer</code>.</li></ul></div>
-
-<div class="process" style="grid-template-columns:repeat(5,1fr); margin-top:42px;"><div><strong>Source row</strong><br>Profile plus observed answer</div><div><strong>Hide</strong><br>Remove <code>POLVIEWS</code></div><div><strong>Send</strong><br>Profile and question only</div><div><strong>Predict</strong><br>Return category 1–7</div><div><strong>Compare</strong><br>Reveal the human answer</div></div>
-
----
-
-## Put the profile and question into one prompt
+## Parse the two distributions and check the arithmetic
 
 ::: {.code-small}
 ```python
-question = (
-    "Where would you place yourself from 1 (liberal) "
-    "to 7 (conservative)?"
-)
+sparse_result = json.loads(raw_sparse)
+rich_result = json.loads(raw_rich)
 
-prompt = f"""
-Here is a deidentified survey profile:
-{json.dumps(profile, indent=2)}
+sparse_probabilities = sparse_result["probabilities"]
+rich_probabilities = rich_result["probabilities"]
 
-Survey question: {question}
-Return one predicted category from 1 to 7 and seven probabilities.
-"""
-
-print(prompt)
+print("Seven sparse values:", len(sparse_probabilities) == 7)
+print("Sparse sum:", sum(sparse_probabilities))
+print("Rich sum:", sum(rich_probabilities))
 ```
 :::
 
-<div class="cols"><div><strong>Inputs</strong><br><code>profile</code> is a dictionary and <code>question</code> is a string.</div><div><strong>Output</strong><br><code>prompt</code> is the complete string the model will receive.</div></div>
+<p class="compact"><code>json.loads</code> creates dictionaries. Square brackets retrieve the list stored under <code>probabilities</code>. <code>len</code> counts values and <code>sum</code> adds them.</p>
 
 ---
 
-## Specify the two fields the model must return
+## Plot the two probability distributions
 
 ::: {.code-small}
 ```python
+scale = [1, 2, 3, 4, 5, 6, 7]
 
-profile_response_format = {
-    "type": "json_schema",
-    "json_schema": {
-        "name": "profile_prediction",
-        "strict": True,
-        "schema": {
-            "type": "object",
-            "properties": {
-                "category": {"type": "integer", "minimum": 1, "maximum": 7},
-                "probabilities": {
-                    "type": "array", "items": {"type": "number"},
-                    "minItems": 7, "maxItems": 7,
-                },
-            },
-            "required": ["category", "probabilities"],
-            "additionalProperties": False,
-        },
-    },
-}
+plt.plot(scale, sparse_probabilities, marker="o", label="sparse persona")
+plt.plot(scale, rich_probabilities, marker="o", label="richer persona")
+plt.xlabel("Political views category")
+plt.ylabel("Model-assigned probability")
+plt.legend()
+plt.show()
 ```
 :::
 
-<div class="cols"><div><strong><code>category</code></strong><br>One integer from 1 to 7.</div><div><strong><code>probabilities</code></strong><br>Exactly seven numeric values, one for each response category.</div></div>
+<p class="compact">The x-values come from <code>scale</code>. The two probability lists supply the y-values.</p>
 
 ---
 
-## Make one call and preserve the raw return
+## Compare the three output objects
 
-::: {.code-small}
-```python
-response = client.chat.send(
-    model="openai/gpt-5.2",
-    messages=[{"role": "user", "content": prompt}],
-    response_format=profile_response_format,
-    provider={"require_parameters": True},
-    stream=False,
-)
+<table class="tbl"><tr><th>Output</th><th>Python type</th><th>What it shows</th></tr><tr><td><code>forced_category</code></td><td>integer</td><td>The single answer selected under forced choice</td></tr><tr><td><code>sparse_probabilities</code></td><td>list of seven numbers</td><td>The uncertainty implied by demographic labels</td></tr><tr><td><code>rich_probabilities</code></td><td>list of seven numbers</td><td>How two attitudinal statements move probability across the scale</td></tr></table>
 
-raw_text = response.choices[0].message.content
-print(raw_text)
-```
-:::
-
-<div class="purpose"><strong>Input:</strong> the prompt string and the required response structure. <strong>Output:</strong> <code>raw_text</code>, a JSON-formatted string. We print it before converting it.</div>
+<p style="margin-top:24px;">The held-out human answer supports one exact-match check. The two distributions support a sensitivity comparison across persona specifications.</p>
 
 ---
 
-## Convert the return, then reveal the held-out answer
+## Completion task
 
-::: {.code-small}
-```python
-prediction = json.loads(raw_text)
-predicted_answer = prediction["category"]
+<div class="three-questions"><div><strong>Run all three conditions</strong>Explain the input and output of each model call.</div><div><strong>Change one attitude</strong>Edit one value in <code>rich_persona</code>, then rerun Condition C.</div><div><strong>Interpret the plot</strong>Describe what moved and why this is a sensitivity check.</div></div>
 
-held_out_answer = 3
-is_same = predicted_answer == held_out_answer
-
-print("Model prediction:", predicted_answer)
-print("Human answer:", held_out_answer)
-print("Exact match:", is_same)
-```
-:::
-
-<div class="cols"><div><strong><code>json.loads(...)</code></strong><br>turns the returned string into a dictionary.</div><div><strong><code>==</code></strong><br>asks whether two values are equal and produces <code>True</code> or <code>False</code>.</div></div>
-
-<div class="warning-box">One exact match does not show that the model represents a population. It only evaluates one prediction for one held-out case.</div>
-
----
-
-## The two exercises answer different questions
-
-<table class="tbl"><tr><th></th><th>Aggregate prediction</th><th>Profile prediction</th></tr><tr><td><strong>Number of calls</strong></td><td>One</td><td>One per selected profile</td></tr><tr><td><strong>Model output</strong></td><td>Seven percentages</td><td>One answer or probability vector per case</td></tr><tr><td><strong>Human comparison</strong></td><td>Observed GSS distribution</td><td>Held-out GSS answers</td></tr><tr><td><strong>Main metric</strong></td><td>Distributional distance</td><td>Accuracy plus subgroup and distributional checks</td></tr><tr><td><strong>Claim it cannot establish</strong></td><td>Individual prediction</td><td>Population representation without a sampling and weighting argument</td></tr></table>
+<p style="margin-top:30px;">In the recording, explain the dictionary merge operator, list indexing, JSON conversion and the x and y values in the plot.</p>
 
 ---
 
@@ -628,7 +591,7 @@ print("Exact match:", is_same)
 
 <div class="three-questions"><div><strong>Re-run it</strong>Change prompt phrasing, model and date. Does the apparent fit survive?</div><div><strong>Try other questions</strong>Does it work beyond one ideology item that models may have seen discussed online?</div><div><strong>Inspect social variation</strong>Does it preserve subgroup distributions and within-group disagreement?</div></div>
 
-<div class="answer" style="font-size:1em; margin-top:35px;">A close histogram is a result to investigate. It is not, on its own, evidence that synthetic respondents represent U.S. adults.</div>
+<p style="margin-top:35px;">A close histogram warrants further testing. Evidence for population representation also requires other questions, other models, subgroup comparisons and a defensible link between the generated cases and U.S. adults.</p>
 
 ---
 
@@ -636,7 +599,7 @@ print("Exact match:", is_same)
 
 <div class="cols"><div><h3>Ashokkumar et al.</h3><p>Can LLMs predict the results of social-science experiments?</p><p>We will separate rank-order prediction from calibration and effect-size inflation.</p></div><div><h3>Centaur</h3><p>Can a model trained across many psychology experiments predict human choices in held-out tasks?</p><p>It is useful context, but less directly about population representation.</p></div></div>
 
-<div class="purpose">Both belong with Week 8’s question: what is held out, what is the baseline, and what kind of generalization is being claimed?</div>
+<p class="compact">Week 8 focuses on the held-out outcome, the comparison baseline and the scope of the resulting prediction claim.</p>
 
 <div class="citation">Ashokkumar et al. (2026), <em>Nature</em>, https://doi.org/10.1038/s41586-026-10742-x; Binz et al. (2025), <em>Nature</em>, https://doi.org/10.1038/s41586-025-09215-4.</div>
 
@@ -644,9 +607,23 @@ print("Exact match:", is_same)
 
 ## Additional reading
 
-- Chen, Zhu & Zheng (2026), “When Synthetic Users Fail.”
-- Abeliuk, Gaete & Bro (2026), “Auditing Socio-Demographic and Cross-Societal Fairness in LLM-Simulated Public Opinion.”
-- Bisbee et al. (2024), “Synthetic Replacements for Human Survey Data?”
-- Clinton et al. (2026), “Public Opinion in the Age of AI.”
+- Kozlowski & Evans (2025), “Simulating Subjects.”
+- Broska, Howes & van Loon (2025), “The Mixed Subjects Design.”
+- Gordon et al. (2026), “Do Richer Personas Improve LLM Survey Simulation? A Fidelity Paradox.”
+- Lepore & Berman (2021), “The People Machine: The Earliest Machine Learning?”
 
-<div class="answer" style="font-size:1em; margin-top:36px;">The point to retain: name the object the model produced, the human evidence it was compared with, and the claim that comparison can support.</div>
+<p style="margin-top:36px;">For every result, state what the model produced, which human evidence supplied the comparison and which claim that comparison evaluates.</p>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".tse-tab").forEach((button) => {
+    button.addEventListener("click", () => {
+      const column = button.closest(".tse-tab-column");
+      column.querySelectorAll(".tse-tab").forEach((tab) => tab.classList.remove("active"));
+      column.querySelectorAll(".tse-panel").forEach((panel) => panel.classList.remove("active"));
+      button.classList.add("active");
+      column.querySelector("#" + button.dataset.target).classList.add("active");
+    });
+  });
+});
+</script>

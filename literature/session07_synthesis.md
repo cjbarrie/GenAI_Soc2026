@@ -103,17 +103,17 @@ Demographic backstories can condition an LLM so that aggregate response patterns
 
 **Teaching job:** Establish the proposition later papers test. Do not begin with the critiques before students understand the actual claim and procedure.
 
-### Kozlowski and Evans define the methodological program
+### Kozlowski and Evans provide an additional methodological framework
 
 Their six concerns—bias, uniformity, atemporality, disembodiment, linguistic cultures and alien intelligence—show that “realistic text” is not a sufficient target. They argue for validation against the human evidence relevant to the proposed inference.
 
-**Teaching job:** Supply the sociological framework for asking what a simulated subject would have to preserve. This is the constructive required reading.
+**Teaching job:** Supply an optional broader framework for asking what a simulated subject would have to preserve. It is additional rather than required reading.
 
 ### Park et al. provide the strongest interview-grounded positive case
 
 Agents built from long interviews with 1,052 people reproduce GSS responses at 85 percent of the participants' own two-week test–retest agreement and reduce some demographic accuracy gaps relative to demographic-only agents.
 
-**Teaching job:** Show why richer individual grounding is attractive and create the question that Gordon et al. directly investigate. State clearly that “85 percent” is relative to human self-replication, not 85 percent raw accuracy.
+**Teaching job:** This is required reading. Show why richer individual grounding is attractive and create the question that Gordon et al. directly investigate. State clearly that “85 percent” is relative to human self-replication, not 85 percent raw accuracy.
 
 ### Taubenfeld et al. separate majority direction from human disagreement
 
@@ -133,11 +133,11 @@ Synthetic feeling-thermometer means can resemble ANES averages while dispersion,
 
 **Teaching job:** Give the first direct empirical demonstration that a matching average is not a sufficient replacement criterion.
 
-### Wang, Morgenstern and Dickerson make the social stakes explicit
+### Broska, Howes and van Loon retain human observations in the design
 
-Across four LLMs, 3,200 human participants and sixteen identities, models can misportray groups, flatten within-group variation and encourage essentialist prompting.
+Their mixed-subjects design uses prediction-powered inference: human outcomes remain the reference data, while LLM predictions can improve precision when they track those outcomes. In the Moral Machine application, prediction–outcome correlations range from 0.049 to 0.353. Adding 100,000 model predictions to 10,000 human observations therefore yields an effective sample size of no more than 11,275. An LLM-only contrast also estimates a 49-percentage-point effect where the human estimate is 11 points.
 
-**Teaching job:** Move from statistical mismatch to epistemic and representational harm. This is the required reading that explains why the error matters sociologically.
+**Teaching job:** Show a constructive alternative to replacing respondents. More model-generated cases do not automatically supply much information, and model-only estimates can be confidently wrong. This is an additional reading and a focal lecture case.
 
 ### Gordon et al. test whether richer personas solve the problem
 
@@ -314,7 +314,7 @@ Required work uses cached responses. The live demonstration is optional and has 
 | McCall | What does a demographic category fail to capture? | profiles remain separate fields; no “typical group member” label |
 | Taubenfeld et al. | Does the model preserve disagreement as well as majority direction? | forced-choice and probability-based distributions |
 | Boelaert et al. | Does bias and dispersion vary by topic? | full scale counts and proportions, not one mean |
-| Wang et al. | Are people flattened within identity categories? | within-group distribution comparison |
+| Broska et al. | How much information do model predictions add once their errors are estimated from human data? | human outcomes, model predictions and an effective-sample-size comparison |
 | Gordon et al. | Does persona detail or elicitation method change fidelity? | explicit `elicitation` field and three cached conditions |
 | Chen et al. | Are group differences exaggerated? | one bounded subgroup comparison against human data |
 

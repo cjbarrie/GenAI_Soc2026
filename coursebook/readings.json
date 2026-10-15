@@ -45,11 +45,13 @@
       {"key": "Velez2025", "status": "additional", "section": "Full article", "purpose": "Provides a comparison in which participant contributions change a shared question bank across respondents rather than the next probe within one interview.", "url": "https://doi.org/10.1017/pan.2024.34"}
     ],
     "session07": [
-      {"key": "KozlowskiEvans2025", "status": "essential", "section": "Full article", "purpose": "Frames artificial stand-ins as representations with specific inferential limits.", "url": "https://doi.org/10.1177/00491241251337316"},
+      {"key": "PoolAbelson1961", "status": "essential", "section": "Full article", "purpose": "Documents the Simulmatics attempt to turn archived polls into a computational electorate during the 1960 campaign.", "url": "https://doi.org/10.1086/267012"},
+      {"key": "ParkEtAl2026SelfReports", "status": "essential", "section": "Full paper", "purpose": "Builds interview-grounded agents for 1,052 people and evaluates their held-out predictions against human test-retest consistency.", "url": "https://arxiv.org/abs/2411.10109"},
       {"key": "BoelaertEtAl2025", "status": "essential", "section": "Full article", "purpose": "Tests how generative models answer survey questions and where their distributions differ.", "url": "https://doi.org/10.1177/00491241251330582"},
-      {"key": "IgarashiEtAl2025", "status": "essential", "section": "Full article", "purpose": "Compares how Japanese respondents and GPT-4 judge experimentally varied scenarios of unequal treatment.", "url": "https://doi.org/10.1057/s41599-025-06054-6"},
-      {"key": "WangMorgensternDickerson2025", "status": "additional", "section": "Full article", "purpose": "Shows how synthetic substitutes can flatten within-group heterogeneity.", "url": "https://doi.org/10.1038/s42256-025-00986-z"},
-      {"key": "KimLee2026", "status": "additional", "section": "Full paper", "purpose": "Previews a different target: predicting unasked opinions for observed respondents.", "url": "https://arxiv.org/abs/2305.09620"}
+      {"key": "KozlowskiEvans2025", "status": "additional", "section": "Full article", "purpose": "Provides a broader sociological framework for deciding what an artificial stand-in would need to preserve.", "url": "https://doi.org/10.1177/00491241251337316"},
+      {"key": "BroskaHowesVanLoon2025", "status": "additional", "section": "Full article", "purpose": "Keeps human observations as the reference data and uses LLM predictions only when they measurably improve precision.", "url": "https://doi.org/10.1177/00491241251326865"},
+      {"key": "GordonEtAl2026", "status": "additional", "section": "Full paper", "purpose": "Tests whether demographic and interview-grounded personas improve distributional fidelity for the same observed respondents.", "url": "https://doi.org/10.2139/ssrn.7306183"},
+      {"key": "LeporeBerman2021", "status": "additional", "section": "Full article", "purpose": "Uses the history of Simulmatics to ask who constructs, queries and acts on a computational public.", "url": "https://doi.org/10.1162/99608f92.87b0ec26"}
     ],
     "session08": [
       {"key": "KimLee2026", "status": "essential", "section": "Full paper", "purpose": "Uses observed survey answers to predict missing responses for actual respondents.", "url": "https://arxiv.org/abs/2305.09620"},

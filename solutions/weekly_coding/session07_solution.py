@@ -1,40 +1,34 @@
-"""Worked solution for Session 7: compare cached response distributions."""
+"""Checks for the Week 7 persona and elicitation comparison."""
 
 
-def response_distribution(records, wanted_elicitation):
-    """Return proportions for answers 1 through 7 in one elicitation condition."""
-    selected = []
-    for record in records:
-        if record["elicitation"] == wanted_elicitation:
-            selected.append(record)
+def validate_probabilities(probabilities):
+    """Check that seven numeric probabilities lie in range and sum to one."""
+    return (
+        len(probabilities) == 7
+        and all(isinstance(value, (int, float)) for value in probabilities)
+        and all(0 <= value <= 1 for value in probabilities)
+        and abs(sum(probabilities) - 1.0) < 0.000001
+    )
 
-    counts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}
-    for record in selected:
-        answer = record["response"]
-        counts[answer] = counts[answer] + 1
 
-    total = len(selected)
-    proportions = {}
-    for answer in counts:
-        proportions[answer] = counts[answer] / total
-
-    return proportions
+def expected_score(probabilities):
+    """Return the expected value of a probability distribution over 1–7."""
+    if not validate_probabilities(probabilities):
+        raise ValueError("Expected seven probabilities between 0 and 1 that sum to one")
+    return sum((index + 1) * probability for index, probability in enumerate(probabilities))
 
 
 def run_checks():
-    records = [
-        {"elicitation": "forced_choice", "response": 4},
-        {"elicitation": "reported_probabilities", "response": 2},
-        {"elicitation": "forced_choice", "response": 4},
-        {"elicitation": "forced_choice", "response": 5},
-    ]
-    forced = response_distribution(records, "forced_choice")
-    assert abs(sum(forced.values()) - 1.0) < 0.000001
-    assert forced[4] == 2 / 3
-    assert forced[5] == 1 / 3
-    assert forced[1] == 0
+    sparse = [0.05, 0.10, 0.15, 0.30, 0.20, 0.15, 0.05]
+    rich = [0.08, 0.16, 0.22, 0.24, 0.16, 0.09, 0.05]
+
+    assert validate_probabilities(sparse)
+    assert validate_probabilities(rich)
+    assert abs(expected_score(sparse) - 4.15) < 0.000001
+    assert abs(expected_score(rich) - 3.71) < 0.000001
+    assert not validate_probabilities([0.5, 0.5])
 
 
 if __name__ == "__main__":
     run_checks()
-    print("All Session 7 checks passed.")
+    print("All Week 7 checks passed.")

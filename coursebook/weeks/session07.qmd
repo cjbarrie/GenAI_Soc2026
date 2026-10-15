@@ -15,32 +15,42 @@ Week 6 kept human respondents but changed the interviewer. Week 7 changes the so
 
 ## Learning outcomes
 
-You should be able to distinguish a human respondent, aggregate prediction, demographic persona and interview-grounded agent; explain why probability sampling matters; compare means, distributions and within-group variation; trace one structured OpenRouter request; and state what a schema validates.
+You should be able to distinguish a human respondent, aggregate prediction, demographic persona and interview-grounded agent; explain how Simulmatics built a computational electorate from archived polls; compare population distributions with held-out predictions for observed people; trace one structured model request; and state what a schema validates.
 
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Methods:** Kozlowski and Evans (2025), “Simulating Subjects,” *Sociological Methods & Research*. Read the complete article. It frames the promise and peril of using LLMs as stand-ins for social agents. [DOI](https://doi.org/10.1177/00491241251337316). [@KozlowskiEvans2025]
-- **Methods and validation:** Boelaert et al. (2025), “Machine Bias,” *Sociological Methods & Research*. Read the complete article. It tests how language models answer opinion polls and compares their response patterns with people. [DOI](https://doi.org/10.1177/00491241251330582). [@BoelaertEtAl2025]
-- **Substantive application:** Igarashi, Kano and Miwa (2025), “ChatGPT versus Humans in Judging Discriminatory Scenarios,” *Humanities and Social Sciences Communications* 12: 1776. Read the complete article. Humans and GPT-4 judge the same experimentally varied scenarios of unequal treatment, giving us a substantive discrimination case and a direct comparison between human and model response patterns. [DOI](https://doi.org/10.1057/s41599-025-06054-6). [@IgarashiEtAl2025]
+- **Historical foundation:** de Sola Pool and Abelson (1961), “The Simulmatics Project,” *Public Opinion Quarterly* 25(2): 167–183. Read the complete article. It shows how archived polls were reduced to voter types and issue clusters in an early attempt to build a queryable computational electorate. [DOI](https://doi.org/10.1086/267012). [@PoolAbelson1961]
+- **Interview-grounded simulation:** Park et al. (2026), “LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals” (the revised version of the paper originally circulated as “Generative Agent Simulations of 1,000 People”). Read the complete paper. The authors build agents from two-hour interviews with 1,052 people and compare their predictions with held-out survey, personality, economic-game and experimental answers. [Paper](https://arxiv.org/abs/2411.10109). [@ParkEtAl2026SelfReports]
+- **Population-level validation:** Boelaert et al. (2025), “Machine Bias,” *Sociological Methods & Research* 54(3): 1156–1196. Read the complete article. It compares complete model and human distributions across 148 opinion polls rather than treating a plausible modal answer as sufficient. [DOI](https://doi.org/10.1177/00491241251330582). [@BoelaertEtAl2025]
 :::
 
 ## Additional readings grouped by purpose
 
-- **For identity flattening:** Wang, Morgenstern and Dickerson (2025), *Nature Machine Intelligence* 7: 400–411. [DOI](https://doi.org/10.1038/s42256-025-00986-z). [@WangMorgensternDickerson2025]
-- **For survey augmentation rather than replacement:** Kim and Lee (2026), “AI-Augmented Surveys.” [Preprint](https://arxiv.org/abs/2305.09620). [@KimLee2026]
+- **For a broader sociological standard:** Kozlowski and Evans (2025), “Simulating Subjects,” *Sociological Methods & Research* 54(3): 1017–1073. [DOI](https://doi.org/10.1177/00491241251337316). [@KozlowskiEvans2025]
+- **For combining predictions with human data:** Broska, Howes and van Loon (2025), “The Mixed Subjects Design,” *Sociological Methods & Research* 54(3): 1074–1109. [DOI](https://doi.org/10.1177/00491241251326865). [@BroskaHowesVanLoon2025]
+- **For a matched interview and survey comparison:** Gordon et al. (2026), “Do Richer Personas Improve LLM Survey Simulation? A Fidelity Paradox.” [DOI](https://doi.org/10.2139/ssrn.7306183). [@GordonEtAl2026]
+- **For the political history of Simulmatics:** Lepore and Berman (2021), “The People Machine: The Earliest Machine Learning?” *Harvard Data Science Review* 3(1). [DOI](https://doi.org/10.1162/99608f92.87b0ec26). [@LeporeBerman2021]
 
 ## Sociological and methodological background
 
-Survey inference depends on more than asking a question. Probability sampling links observed respondents to a target population; questionnaire design shapes the answers; total survey error directs attention to coverage, sampling, nonresponse, measurement and processing. Simulmatics provides an instructive prehistory: in 1960 the company used survey segments and computational models to advise the Kennedy campaign. The ambition to model an electorate is older than LLMs, as are the problems created by missing and poorly measured groups.
+Survey inference depends on the process that produced an answer and the process that connected respondents to a population. Total survey error separates these problems. On the measurement side, researchers ask whether the question captures the intended construct and whether answers were recorded and processed accurately. On the representation side, they ask who the sampling frame omitted, how cases were selected, who did not respond and how weighting changed the estimate. An LLM response introduces a new way of producing an answer without removing any of these older problems.
+
+The cognitive aspects of survey methodology (CASM) tradition breaks an answer into four stages: comprehending the question, retrieving relevant information, forming a judgment and mapping that judgment onto the available response categories. A demographic persona contains none of this process. It gives the model classifications selected by the researcher and then asks the model to supply the missing response process. [@NationalResearchCouncil1984CASM; @TourangeauRipsRasinski2000]
+
+Simulmatics provides a more direct prehistory for this week. De Sola Pool and Abelson describe how the project assembled more than 100,000 earlier poll interviews, reduced voters to a matrix of 480 types and grouped questions into 52 issue clusters. The system was intended to estimate how electoral groups would respond to possible campaign moves. It did not generate new people from language-model weights. It nevertheless established the ambition to turn past human records into a computational public that a client could query.
+
+Lepore's history asks who defined the voter types, who could query the simulated public and how campaign staff used the output. These questions belong inside the methodological account because the model was built for a client and its classifications shaped campaign advice.
 
 Public opinion theory adds another caution. Zaller treats a survey response as something assembled at the time from accessible considerations, not a stable value stored unchanged in a person. A demographic persona such as “a 42-year-old Black woman in Georgia” therefore does not reproduce the experiences, networks and information environment through which a human answer is formed.
 
-Igarashi, Kano and Miwa turn this general warning into an empirical comparison. Human respondents and GPT-4 judge the same experimentally varied scenarios of unequal treatment. This lets us ask two separate questions: whether the model gives similar average judgments, and whether it responds to changes in the scenario in the same way as people do. Similarity on one does not guarantee similarity on the other.
+Park and colleagues pursue a much more individually grounded strategy. Instead of asking a model to infer a person from a few demographic labels, they construct agents from roughly two-hour interviews with 1,052 observed participants. The agents then answer held-out measures, and their performance is scaled against participants' own two-week test-retest consistency. The widely cited 85 percent result is relative to that human consistency benchmark, not 85 percent raw accuracy.
 
 ## Synthesis of the current LLM literature
 
-The literature now contains several distinct designs. A model can predict an aggregate distribution, answer once per persona, predict a held-out answer for a real respondent, or act through an interview-grounded record. These are not interchangeable. Matching the modal response does not recover the distribution; matching the distribution does not recover individual pairings; aggregate resemblance can coexist with flattened subgroup heterogeneity. Igarashi and colleagues add another target: responsiveness to an experimental treatment. Validation must name which of these targets matters before calculating a score.
+The literature now contains several distinct designs. Simulmatics predicted how constructed voter types might respond to campaign moves. A contemporary model can predict an aggregate distribution, answer once per demographic persona, or predict held-out answers for an observed person using interview material. These are not interchangeable.
+
+Park et al. offer evidence about person-to-prediction correspondence. Boelaert et al. test population-level distributions. Gordon et al. compare aggregate predictions, demographic personas and interview-grounded personas for the same observed sample. Broska, Howes and van Loon take a different approach: human outcomes remain the reference data, while prediction-powered inference uses LLM predictions only to the extent that they improve precision. In their Moral Machine application, the correlations between human and model outcomes are modest, so 100,000 additional LLM predictions add far less information than their nominal count suggests.
 
 ## Slides
 
