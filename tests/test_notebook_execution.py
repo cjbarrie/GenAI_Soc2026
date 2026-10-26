@@ -84,6 +84,15 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
         if "probabilities" in properties:
             value["probabilities"] = [0.1, 0.1, 0.15, 0.3, 0.15, 0.1, 0.1]
         return json.dumps(value)
+    if schema_name == "effect_forecast" or properties == {
+        "predicted_control_percent",
+        "predicted_treatment_percent",
+    }:
+        if "towel" in prompt.lower():
+            return json.dumps({"predicted_control_percent": 36, "predicted_treatment_percent": 43})
+        if "disease" in prompt.lower():
+            return json.dumps({"predicted_control_percent": 70, "predicted_treatment_percent": 25})
+        return json.dumps({"predicted_control_percent": 30, "predicted_treatment_percent": 38})
     if schema_name == "agent_action" or properties == {"action", "reason"}:
         return json.dumps({"action": "speak calmly", "reason": "The observation changed."})
     if schema_name == "join_action" or properties == {"action"}:
@@ -396,7 +405,7 @@ def test_followup_notebook_executes_without_live_services(
         assert (tmp_path / "outputs" / "session05" / "week05_treatment_map.html").exists()
     if week == 8 and runtime == "colab":
         assert namespace["local_results"] == []
-        assert namespace["local_mean"] is None
+        assert namespace["local_mae"] is None
     if week == 13:
         expected_routes = ["openrouter"] if runtime == "colab" else ["openrouter", "ollama"]
         assert namespace["routes"] == expected_routes

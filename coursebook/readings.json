@@ -58,6 +58,7 @@
       {"key": "XieEtAl2026", "status": "essential", "section": "Full article", "purpose": "Separates resemblance on one statistic from broader population realism.", "url": "https://doi.org/10.1073/pnas.2538145123"},
       {"key": "LaxPhillips2009", "status": "essential", "section": "Full article", "purpose": "Applies multilevel regression and poststratification to state opinion and studies policy responsiveness on gay rights.", "url": "https://doi.org/10.1017/S0003055409990050"},
       {"key": "AshokkumarEtAl2026", "status": "additional", "section": "Full article", "purpose": "Tests prediction of experimental results rather than replacement of individual participants.", "url": "https://doi.org/10.1038/s41586-026-10742-x"},
+      {"key": "BinzEtAl2025Centaur", "status": "additional", "section": "Full article", "purpose": "Trains and evaluates one model across 160 cognitive experiments, including held-out tasks and altered contexts.", "url": "https://doi.org/10.1038/s41586-025-09215-4"},
       {"key": "WangMorgensternDickerson2025", "status": "additional", "section": "Full article", "purpose": "Provides a hard case for claims that missing social worlds have been recovered.", "url": "https://doi.org/10.1038/s42256-025-00986-z"}
     ],
     "session09": [

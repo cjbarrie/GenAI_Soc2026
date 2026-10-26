@@ -1,96 +1,115 @@
 ---
-title: "Week 8 Python — Repeat predictions and compare routes"
+title: "Week 8 Python — Forecast three experimental effects"
 description: "Worked code, notebook and completion task"
 ---
 
 [Return to the Week 8 readings and slides](../weeks/session08.qmd).
 
-## Python walkthrough: repeat one prediction across five cases
+## Python walkthrough: does performance travel across experiments?
 
 ::: {.routine-summary}
-**Today's routine:** Five deidentified profiles → the same request through OpenRouter and Ollama → one saved record per case and route → individual and aggregate comparisons.
+**Today’s routine:** Three published experiments → the same forecast through OpenRouter and Ollama → a predicted treatment effect for each case → comparison with held-out human results.
 
-**Python introduced:** the first `for` loop around a model call, empty lists, loop variables, `.append(...)`, counters and division.
+**Python introduced:** the first `for` loop around a model call, empty lists, loop variables, `.append(...)`, subtraction, `abs(...)`, totals and division.
 
-**Your change:** change only the education field for case `p02`, rerun and compare the two kinds of result.
+**Your change:** change only `temperature` for one experiment and see whether the forecast moves.
 :::
 
-Week 8 requires both routes again. Run it on a computer that has Ollama and the course model installed. Colab can run the OpenRouter branch, but it cannot reach Ollama running on your laptop; if your machine cannot run the local model, use the paired or instructor machine in class.
+Ashokkumar et al. (2026) simulate many individual respondents and aggregate their answers. Our small classroom version is simpler: it asks each model to forecast the control and treatment rates directly. This lets us learn the Python and inspect cross-context error, but it is not a reproduction of their method. [@AshokkumarEtAl2026]
 
-### Load the settings and start with five records
+Week 8 requires both routes again. Colab can run OpenRouter but cannot reach Ollama on your laptop. Complete the Ollama part in local JupyterLab, VS Code, or on the paired/instructor machine.
 
-Run the notebook setup cell first. It installs missing packages in Colab, locates the repository locally and reads the centrally recorded model names. The setup code is supplied and is not the assessed Python for this week.
+### The benchmark contains three different experiments
 
 ```python
-profiles = [
-    {"id": "p01", "age_group": "18–29", "education": "some college",
-     "region": "Northeast", "party": "Democrat", "human_answer": 2},
-    {"id": "p02", "age_group": "30–44", "education": "bachelor's",
-     "region": "South", "party": "Independent", "human_answer": 4},
-    # Three further records are supplied in the notebook.
+experiments = [
+    {
+        "id": "turnout",
+        "context": "Michigan registered voters before the 2006 primary",
+        "control": "No mailing",
+        "treatment": "A mailing says voting records are public and that an updated record will be sent to the household and its neighbours after the election.",
+        "outcome": "Percent who voted",
+        "human_control": 29.7,
+        "human_treatment": 37.8,
+    },
+    {
+        "id": "towels",
+        "context": "Hotel guests staying at least two nights",
+        "control": "A sign asks guests to help save the environment by reusing towels.",
+        "treatment": "A sign says almost 75% of guests participate in the towel-reuse programme.",
+        "outcome": "Percent who reused a towel",
+        "human_control": 35.1,
+        "human_treatment": 44.1,
+    },
+    {
+        "id": "disease",
+        "context": "Participants choose between programmes responding to a disease expected to kill 600 people",
+        "control": "Gain frame: choose between saving 200 people for certain or a one-third chance of saving all 600.",
+        "treatment": "Loss frame: choose between 400 people dying for certain or a one-third chance that nobody dies.",
+        "outcome": "Percent choosing the certain option",
+        "human_control": 72.0,
+        "human_treatment": 22.0,
+    },
 ]
 
-question = "Place yourself from 1 (very liberal) to 7 (very conservative)."
-print("Number of profiles:", len(profiles))
+print("Experiments:", len(experiments))
+print("First context:", experiments[0]["context"])
 ```
 
-::: {.callout-note title="Read the input before running it"}
-`profiles` is a list. Each item is a dictionary representing one deidentified case. `human_answer` is retained for the later comparison but must be removed from the dictionary sent to the model. `question` is a string. `len(profiles)` returns the integer number of cases.
-:::
+The list contains three dictionaries. Each dictionary stores the material the model may see and two published human rates that it may not see. The observed effects are 8.1, 9.0 and −50.0 percentage points respectively. [@GerberGreenLarimer2008; @GoldsteinCialdiniGriskevicius2008; @TverskyKahneman1981]
 
-### Create two empty result lists
+### State exactly what the model must return
 
 ```python
+schema = {
+    "type": "object",
+    "properties": {
+        "predicted_control_percent": {"type": "number", "minimum": 0, "maximum": 100},
+        "predicted_treatment_percent": {"type": "number", "minimum": 0, "maximum": 100},
+    },
+    "required": ["predicted_control_percent", "predicted_treatment_percent"],
+    "additionalProperties": False,
+}
+
+temperature = 0
 hosted_results = []
 local_results = []
-
-print(hosted_results)
-print(local_results)
 ```
 
-::: {.callout-note title="Input and output"}
-There is no data input yet. Each pair of square brackets creates an empty list. After each model call, `.append(...)` will add one result dictionary. Keeping two lists means we do not lose which route produced a prediction.
-:::
+`schema` is a dictionary describing two required numbers. `temperature` is an integer. The two empty lists will grow by one result for every completed call.
 
-### Follow one trip through the loop
+### Follow one experiment through the loop
 
 ```python
-for profile in profiles:
-    public_profile = {
-        "age_group": profile["age_group"],
-        "education": profile["education"],
-        "region": profile["region"],
-        "party": profile["party"],
+for experiment in experiments:
+    experiment_for_model = {
+        "context": experiment["context"],
+        "control": experiment["control"],
+        "treatment": experiment["treatment"],
+        "outcome": experiment["outcome"],
     }
 
     prompt = (
-        "Predict the survey answer. Profile: "
-        + json.dumps(public_profile)
-        + " Item: "
-        + question
+        "Forecast the two outcome rates for this randomized experiment in the stated population. "
+        "Return percentages from 0 to 100. Do not claim that this replaces human evidence.\n"
+        + json.dumps(experiment_for_model, indent=2)
     )
     messages = [{"role": "user", "content": prompt}]
 ```
 
-::: {.callout-note title="What the loop changes"}
-On the first pass, `profile` means `profiles[0]`; on the second, it means `profiles[1]`. `public_profile` copies only the fields the model may see, so `human_answer` is absent. `json.dumps(...)` turns that dictionary into text. The output of this block is one `messages` list ready for a model call.
-:::
+On the first pass, `experiment` refers to the turnout dictionary. The four fields copied into `experiment_for_model` are the complete research input. The `human_control` and `human_treatment` fields are deliberately absent.
 
-### Make both calls and keep the raw text
+### Make both calls and preserve the raw returns
 
 ```python
     with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
         hosted_response = client.chat.send(
             model=HOSTED_MODEL,
             messages=messages,
-            temperature=0,
+            temperature=temperature,
             response_format={
                 "type": "json_schema",
-                "json_schema": {
-                    "name": "opinion_prediction",
-                    "strict": True,
-                    "schema": schema,
-                },
+                "json_schema": {"name": "effect_forecast", "strict": True, "schema": schema},
             },
         )
     hosted_raw = hosted_response.choices[0].message.content
@@ -99,68 +118,77 @@ On the first pass, `profile` means `profiles[0]`; on the second, it means `profi
         model=LOCAL_MODEL,
         messages=messages,
         format=schema,
-        options={"temperature": 0},
+        options={"temperature": temperature},
     )
     local_raw = local_response.message.content
 
-    print(profile["id"], "hosted:", hosted_raw, "local:", local_raw)
+    print(experiment["id"], "hosted raw:", hosted_raw)
+    print(experiment["id"], "local raw:", local_raw)
 ```
 
-::: {.callout-note title="Two routes, the same research input"}
-Both calls receive the same `messages` list and a schema requiring an answer from 1 to 7. OpenRouter sends the request to the hosted model; Ollama sends it to the local model already running on the computer. `hosted_raw` and `local_raw` are strings. Printing them before parsing makes the original returns visible.
-:::
+Both routes receive the same experimental description and output schema. `hosted_raw` and `local_raw` are strings. Printing them before parsing retains what each service actually returned.
 
-### Parse and append one record to each list
+### A reference run from the lecture
+
+On 26 October 2026, the configured local model (`gemma4:e2b-it-qat`) received the towel-reuse input above at `temperature = 0`. It returned:
+
+```json
+{
+  "predicted_control_percent": 30,
+  "predicted_treatment_percent": 75
+}
+```
+
+The predicted effect is `75 - 30 = 45` percentage points. The published human effect is `44.1 - 35.1 = 9.0` points, so the absolute error is `abs(45 - 9) = 36` points. The model gets the direction right but substantially overstates the effect.
+
+This is a dated reference run, not an answer your notebook must reproduce. Your output may differ even with the same model and temperature. The input, prompt, schema and calculation are exactly the ones used in the slides and notebook.
+
+### Turn each return into a comparable record
 
 ```python
-    hosted_prediction = json.loads(hosted_raw)["predicted_category"]
-    local_prediction = json.loads(local_raw)["predicted_category"]
+    observed_effect = experiment["human_treatment"] - experiment["human_control"]
 
+    hosted_parsed = json.loads(hosted_raw)
+    hosted_effect = (
+        hosted_parsed["predicted_treatment_percent"]
+        - hosted_parsed["predicted_control_percent"]
+    )
     hosted_results.append({
-        "id": profile["id"],
-        "prediction": hosted_prediction,
-        "human": profile["human_answer"],
-    })
-    local_results.append({
-        "id": profile["id"],
-        "prediction": local_prediction,
-        "human": profile["human_answer"],
+        "id": experiment["id"],
+        "predicted_effect": hosted_effect,
+        "observed_effect": observed_effect,
+        "absolute_error": abs(hosted_effect - observed_effect),
+        "raw": hosted_raw,
     })
 ```
 
-::: {.callout-note title="What `.append(...)` does"}
-`json.loads(...)` turns each JSON string into a dictionary; square brackets retrieve its predicted category. Each `.append(...)` adds one new dictionary to the end of a result list. After five passes through the loop, each list contains five records.
-:::
+Subtraction creates an effect in percentage points. `abs(...)` removes the sign from the prediction error: missing by −7 and +7 both count as seven points. `.append(...)` adds the new dictionary to the end of the list. The notebook repeats the same steps for `local_results`.
 
-### Count exact matches, then compare the aggregate means
+### Compare the errors across contexts
 
 ```python
-hosted_matches = 0
+hosted_error_total = 0
+
 for record in hosted_results:
-    if record["prediction"] == record["human"]:
-        hosted_matches = hosted_matches + 1
+    hosted_error_total = hosted_error_total + record["absolute_error"]
+    print(
+        record["id"],
+        "predicted effect:", round(record["predicted_effect"], 1),
+        "observed effect:", round(record["observed_effect"], 1),
+        "absolute error:", round(record["absolute_error"], 1),
+    )
 
-human_total = 0
-hosted_total = 0
-for record in hosted_results:
-    human_total = human_total + record["human"]
-    hosted_total = hosted_total + record["prediction"]
-
-human_mean = human_total / len(hosted_results)
-hosted_mean = hosted_total / len(hosted_results)
-
-print("Hosted exact matches:", hosted_matches)
-print("Human mean:", human_mean)
-print("Hosted mean:", hosted_mean)
+hosted_mae = hosted_error_total / len(hosted_results)
+print("Hosted mean absolute error:", round(hosted_mae, 1))
 ```
 
-::: {.callout-note title="These are different checks"}
-The first loop asks whether the prediction and human answer match case by case. The second adds the values before dividing by the number of records. A close mean can coexist with poor individual prediction because over-predictions and under-predictions can cancel. The notebook repeats both calculations for the local route.
-:::
+The second loop does not call a model. It reads the saved records, adds the three errors and divides by three. Mean absolute error (MAE) answers a narrow question: how far were these forecasts from these published effects, on average?
 
 ### Methodological check
 
-Five teaching cases cannot establish individual accuracy, subgroup fidelity or population validity. The exercise demonstrates how to preserve matched records and why a claim about an aggregate requires a different check from a claim about people.
+The benchmark is useful because it contains different outcomes and settings. It is also unusually easy for a language model to recognize: all three studies are famous and may occur in training data. A small error could therefore reflect retrieval rather than generalization. Ashokkumar et al. address this problem by separately examining experiments that were unpublished before the model’s training cutoff. The model also systematically overestimated effect sizes even though the overall correlation was high.
+
+Centaur provides another way to pose the cross-context question. It is trained on trial-by-trial choices from 160 experiments and tested on unfamiliar participants, changed cover stories, modified task structures and new domains. Its evidence concerns those held-out tasks; it does not establish human plausibility in every social setting. [@BinzEtAl2025Centaur]
 
 ## Workbook and environment links
 
@@ -168,14 +196,16 @@ Five teaching cases cannot establish individual accuracy, subgroup fidelity or p
 [Open the Week 8 notebook in Google Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session08/session08_opinion_prediction.ipynb) · [Download the notebook](../_generated/downloads/session08/session08_opinion_prediction.ipynb) · [Download the Python exercise as a `.py` file](../_generated/downloads/session08/session08_task.py) · [Download the runnable offline bundle](../_generated/downloads/session08/session08_offline_bundle.zip)
 :::
 
-This page, the notebook and the `.py` download contain the same assessed routine. Use the notebook for the guided cell-by-cell walkthrough and the script when running the complete routine from the repository root.
+This page, the notebook and the `.py` download contain the same assessed routine.
 
 ## Take-home exercise
 
 ::: {.exercise-box}
 **Estimated work and recording time:** 35–50 minutes.
 
-Run all five profiles through OpenRouter and Ollama. Change only `p02`’s education from `"bachelor's"` to `"high school"`, rerun, and trace that case through one full iteration for each route. Explain the input and output of the loop, both raw returns, both appended records, the exact-match counts and the aggregate means. State why agreement on the mean would not establish correct individual prediction or population representation.
+Run all three experiments through OpenRouter and Ollama. Trace one complete iteration: the original experiment dictionary, the reduced model input, the prompt, the raw return, the parsed percentages, the predicted effect and the appended record. Compare the absolute errors across contexts and the mean absolute error across routes.
+
+Then change only `temperature` from `0` to `0.7`, run the towel experiment again and describe what changed. Explain why these three famous benchmarks cannot distinguish generalization from recall, and name one stronger test drawn from Ashokkumar et al. or Centaur.
 
 Submit one continuous screen recording with audio using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Never show or read the shared key. If you used the paired or instructor machine for Ollama, say so; hardware limitations do not reduce the completion mark.
 :::

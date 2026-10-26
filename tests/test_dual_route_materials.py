@@ -105,8 +105,8 @@ def test_weeks_3_to_12_select_openrouter_in_colab() -> None:
 def test_dual_route_weeks_degrade_explicitly_in_colab() -> None:
     week8 = "\n".join(notebook_sources(8))
     assert 'if IN_COLAB:\n        local_raw = None' in week8
-    assert "local_matches = None if IN_COLAB else 0" in week8
-    assert "local_mean = None if IN_COLAB else" in week8
+    assert "local_results = []" in week8
+    assert "local_mae = None if IN_COLAB else" in week8
 
     week13 = "\n".join(notebook_sources(13))
     assert 'routes = ["openrouter"] if IN_COLAB else ["openrouter", "ollama"]' in week13

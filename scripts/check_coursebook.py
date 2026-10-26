@@ -427,7 +427,7 @@ def validate_sources(rendered: bool) -> list[str]:
         if number == 8:
             if definitions:
                 fail(errors, "session08_task.py: Week 8 must not define a function")
-            if "client.chat.send" not in source or "ollama.chat" not in source or "for profile in profiles" not in source:
+            if "client.chat.send" not in source or "ollama.chat" not in source or "for experiment in experiments" not in source:
                 fail(errors, "session08_task.py: missing bounded dual-route loop")
         if number == 9 and "def choose_action(" not in source:
             fail(errors, "session09_task.py: Week 9 must introduce choose_action")

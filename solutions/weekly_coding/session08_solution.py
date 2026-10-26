@@ -1,36 +1,54 @@
-"""Worked solution for Session 8.
-
-Read the function in this order: arguments → initial objects → loop/decision
-→ return value. The comments name the research meaning of each operation.
-"""
+"""Worked checks for the Week 8 experimental-effect benchmark."""
 
 
-def score_inferential_targets(records):
-    """Return individual MAE, aggregate mean error, and absolute error in the A–B group gap."""
-    individual_errors = [abs(row["human"] - row["synthetic"]) for row in records]
-    individual_mae = sum(individual_errors) / len(individual_errors)
-    human_mean = sum(row["human"] for row in records) / len(records)
-    synthetic_mean = sum(row["synthetic"] for row in records) / len(records)
-    means = {}
-    for source in ("human", "synthetic"):
-        for group in ("A", "B"):
-            values = [row[source] for row in records if row["group"] == group]
-            means[(source, group)] = sum(values) / len(values)
-    human_gap = means[("human", "A")] - means[("human", "B")]
-    synthetic_gap = means[("synthetic", "A")] - means[("synthetic", "B")]
-    return {
-        "individual_mae": individual_mae,
-        "aggregate_error": abs(human_mean - synthetic_mean),
-        "group_gap_error": abs(human_gap - synthetic_gap),
-    }
+def score_effect_forecasts(records):
+    """Return one absolute error per experiment and the mean absolute error."""
+    scored = []
+    error_total = 0
+    for record in records:
+        predicted_effect = record["predicted_treatment"] - record["predicted_control"]
+        observed_effect = record["human_treatment"] - record["human_control"]
+        absolute_error = abs(predicted_effect - observed_effect)
+        scored.append(
+            {
+                "id": record["id"],
+                "predicted_effect": predicted_effect,
+                "observed_effect": observed_effect,
+                "absolute_error": absolute_error,
+            }
+        )
+        error_total = error_total + absolute_error
+    return {"records": scored, "mae": error_total / len(scored)}
 
 
 def run_checks():
-    records = [{"group": "A", "human": 5, "synthetic": 3}, {"group": "A", "human": 1, "synthetic": 3}, {"group": "B", "human": 2, "synthetic": 2}, {"group": "B", "human": 2, "synthetic": 2}]
-    scores = score_inferential_targets(records)
-    assert scores["individual_mae"] == 1
-    assert scores["aggregate_error"] == 0
-    assert scores["group_gap_error"] == 0
+    records = [
+        {
+            "id": "turnout",
+            "predicted_control": 30.0,
+            "predicted_treatment": 38.0,
+            "human_control": 29.7,
+            "human_treatment": 37.8,
+        },
+        {
+            "id": "towels",
+            "predicted_control": 36.0,
+            "predicted_treatment": 43.0,
+            "human_control": 35.1,
+            "human_treatment": 44.1,
+        },
+        {
+            "id": "disease",
+            "predicted_control": 70.0,
+            "predicted_treatment": 25.0,
+            "human_control": 72.0,
+            "human_treatment": 22.0,
+        },
+    ]
+    scores = score_effect_forecasts(records)
+    assert round(scores["records"][0]["observed_effect"], 1) == 8.1
+    assert round(scores["records"][1]["absolute_error"], 1) == 2.0
+    assert round(scores["mae"], 2) == 2.37
 
 
 if __name__ == "__main__":

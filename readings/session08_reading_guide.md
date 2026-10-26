@@ -21,6 +21,6 @@ For each article, write down:
 
 ## Reading → code
 
-The workbook repeats a structured prediction across five held-out survey cases. It then calculates individual accuracy and aggregate distribution error separately. Trace one profile through the loop and explain why a good aggregate result can coexist with wrong individual answers.
+The workbook repeats one treatment-effect forecast across three published experiments. It withholds the human outcome rates from the prompt, saves each raw model return and compares predicted and observed effects in percentage points. Trace one experiment through the loop and explain why performance can differ across voter turnout, towel reuse and risky-choice contexts.
 
-Ashokkumar et al. (2026) is an additional comparison about forecasting experimental results. It targets a different object and will not be treated as evidence that synthetic respondents recover individuals.
+Ashokkumar et al. (2026) is the design reference for the coding task. It targets experimental effects rather than individual survey answers. Binz et al. (2025) provide a broader comparison through Centaur, which is evaluated across many cognitive tasks. Treat both papers as bounded validation studies, not as evidence that a model is generally interchangeable with people.

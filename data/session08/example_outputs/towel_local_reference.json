@@ -1,0 +1,22 @@
+{
+  "run_date": "2026-10-26",
+  "route": "Ollama",
+  "model": "gemma4:e2b-it-qat",
+  "temperature": 0,
+  "experiment_id": "towels",
+  "model_input": {
+    "context": "Hotel guests staying at least two nights",
+    "control": "A sign asks guests to help save the environment by reusing towels.",
+    "treatment": "A sign says almost 75% of guests participate in the towel-reuse programme.",
+    "outcome": "Percent who reused a towel"
+  },
+  "raw_return": "{\n  \"predicted_control_percent\": 30,\n  \"predicted_treatment_percent\": 75\n}",
+  "predicted_control_percent": 30,
+  "predicted_treatment_percent": 75,
+  "predicted_effect_points": 45,
+  "human_control_percent": 35.1,
+  "human_treatment_percent": 44.1,
+  "observed_effect_points": 9.0,
+  "absolute_error_points": 36.0,
+  "note": "This is one dated reference run using the same prompt and schema as the Week 8 exercise. A rerun may differ."
+}
