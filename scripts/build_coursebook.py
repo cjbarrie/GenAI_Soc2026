@@ -194,6 +194,17 @@ def prepare() -> None:
             interactive_dir / "session05_treatment_map.png",
         )
 
+    session08_distribution = (
+        ROOT / "slides" / "session08" / "images" / "towel_local_model_distribution.png"
+    )
+    if session08_distribution.exists():
+        interactive_dir = GENERATED / "interactive"
+        interactive_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(
+            session08_distribution,
+            interactive_dir / "session08_towel_local_model_distribution.png",
+        )
+
     prepare_glossary_notebooks()
 
     print("Prepared public slides, weekly resources and field-guide companion notebooks.")

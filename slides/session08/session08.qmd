@@ -415,6 +415,16 @@ messages = [{"role": "user", "content": prompt}]
 
 ---
 
+## Repeated local forecasts at temperature 0.7
+
+<img class="local-distribution" src="images/towel_local_model_distribution.png" alt="Boxplots and individual points showing fifteen predicted treatment effects from each of five local language models for the towel-reuse experiment. The published human effect is nine percentage points.">
+
+<div class="distribution-finding"><b>Five models, 15 seeded calls each.</b> Falcon's median forecast was +10 points and Salamandra's was +15. Gemma and Llama produced much larger median effects of +50 and +55 points. The spread within each model shows that a single call can be misleading.</div>
+
+<p class="citation">Local Ollama run, 26 October 2026. Same towel-reuse input, prompt and JSON schema in all 75 calls. Seeds vary; temperature = 0.7. Published human effect: +9 points.</p>
+
+---
+
 ## Raw returns and predicted effects
 
 ```python

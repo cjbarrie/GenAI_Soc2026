@@ -143,6 +143,18 @@ The predicted effect is `75 - 30 = 45` percentage points. The published human ef
 
 This is a dated reference run, not an answer your notebook must reproduce. Your output may differ even with the same model and temperature. The input, prompt, schema and calculation are exactly the ones used in the slides and notebook.
 
+### Repeated forecasts across five local models
+
+We also sent the same towel-reuse prompt and schema to five locally installed Ollama models. Each model received 15 calls at `temperature = 0.7`, using a fixed set of seeds so the comparison can be reproduced.
+
+![](../_generated/interactive/session08_towel_local_model_distribution.png){fig-alt="Distributions of predicted treatment effects from five local language models. A dashed line marks the published nine-point human effect."}
+
+The published experiment found a nine-point effect. Falcon's median prediction was 10 points and Salamandra's was 15. DeepSeek's median was 25 points. Gemma and Llama produced much larger median effects of 50 and 55 points. Predictions also varied considerably within the same model: Falcon ranged from 0 to 45 points, while Llama ranged from 15 to 75.
+
+This comparison changes only the model and sampling seed. It therefore demonstrates two distinct sources of variation: different models can produce different forecasts, and repeated calls to the same model can also move substantially. It does not establish that Falcon or Salamandra is generally more accurate; there is only one experiment in this comparison.
+
+The complete outputs are included in the offline bundle as `towel_local_model_distribution.json` and `towel_local_model_distribution.csv`. The assessed exercise asks you to make one temperature change, not to repeat all 75 calls.
+
 ### Turn each return into a comparable record
 
 ```python

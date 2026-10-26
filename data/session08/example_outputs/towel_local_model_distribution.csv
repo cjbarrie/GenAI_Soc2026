@@ -1,0 +1,218 @@
+model_label,model,seed,temperature,predicted_control_percent,predicted_treatment_percent,predicted_effect_points,absolute_error_points,raw_return
+Gemma 4 E2B,gemma4:e2b-it-qat,20261000,0.7,30.0,50.0,20.0,11.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 50
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261001,0.7,20.0,75.0,55.0,46.0,"{
+  ""predicted_control_percent"": 20,
+  ""predicted_treatment_percent"": 75
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261002,0.7,25.0,75.0,50.0,41.0,"{""predicted_control_percent"": 25.0, ""predicted_treatment_percent"": 75.0}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261003,0.7,30.0,75.0,45.0,36.0,"{""predicted_control_percent"": 30.0, ""predicted_treatment_percent"": 75.0}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261004,0.7,10.0,75.0,65.0,56.0,"{
+  ""predicted_control_percent"": 10,
+  ""predicted_treatment_percent"": 75
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261005,0.7,35.0,65.0,30.0,21.0,"{
+  ""predicted_control_percent"": 35.0,
+  ""predicted_treatment_percent"": 65.0
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261006,0.7,10.0,68.0,58.0,49.0,"{
+  ""predicted_control_percent"": 10,
+  ""predicted_treatment_percent"": 68
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261007,0.7,30.0,60.0,30.0,21.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 60
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261008,0.7,10.0,75.0,65.0,56.0,"{
+  ""predicted_control_percent"": 10,
+  ""predicted_treatment_percent"": 75
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261009,0.7,10.0,35.0,25.0,16.0,"{""predicted_control_percent"": 10, ""predicted_treatment_percent"": 35}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261010,0.7,20.0,75.0,55.0,46.0,"{""predicted_control_percent"": 20.0, ""predicted_treatment_percent"": 75.0}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261011,0.7,10.0,75.0,65.0,56.0,"{
+  ""predicted_control_percent"": 10,
+  ""predicted_treatment_percent"": 75
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261012,0.7,30.0,55.0,25.0,16.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 55
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261013,0.7,20.0,75.0,55.0,46.0,"{
+  ""predicted_control_percent"": 20,
+  ""predicted_treatment_percent"": 75
+}"
+Gemma 4 E2B,gemma4:e2b-it-qat,20261014,0.7,35.0,75.0,40.0,31.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 75}"
+Llama 3.2 3B,llama3.2:3b,20261000,0.7,20.0,75.0,55.0,46.0,"{ ""predicted_control_percent"": 20, ""predicted_treatment_percent"": 75 }"
+Llama 3.2 3B,llama3.2:3b,20261001,0.7,20.0,75.0,55.0,46.0,"{ ""predicted_control_percent"": 20, ""predicted_treatment_percent"": 75 }"
+Llama 3.2 3B,llama3.2:3b,20261002,0.7,0.0,75.0,75.0,66.0,"{
+
+  ""predicted_control_percent"": 0,
+  ""predicted_treatment_percent"": 75
+}"
+Llama 3.2 3B,llama3.2:3b,20261003,0.7,10.0,75.0,65.0,56.0,"{
+  ""predicted_control_percent"": 10,
+  ""predicted_treatment_percent"": 75
+}"
+Llama 3.2 3B,llama3.2:3b,20261004,0.7,10.0,25.0,15.0,6.0,"{ ""predicted_control_percent"": 10, ""predicted_treatment_percent"": 25 }"
+Llama 3.2 3B,llama3.2:3b,20261005,0.7,40.0,80.0,40.0,31.0,"{ ""predicted_control_percent"": 40, ""predicted_treatment_percent"": 80 }"
+Llama 3.2 3B,llama3.2:3b,20261006,0.7,10.0,75.0,65.0,56.0,"{""predicted_control_percent"": 10, ""predicted_treatment_percent"": 75}"
+Llama 3.2 3B,llama3.2:3b,20261007,0.7,0.1,75.0,74.9,65.9,"{ ""predicted_control_percent"": 0.1, ""predicted_treatment_percent"": 75 }"
+Llama 3.2 3B,llama3.2:3b,20261008,0.7,20.0,50.0,30.0,21.0,"{ ""predicted_control_percent"": 20, ""predicted_treatment_percent"": 50 }"
+Llama 3.2 3B,llama3.2:3b,20261009,0.7,40.0,75.0,35.0,26.0,"{
+  ""predicted_control_percent"": 40,
+  ""predicted_treatment_percent"": 75
+}"
+Llama 3.2 3B,llama3.2:3b,20261010,0.7,10.0,75.0,65.0,56.0,"{
+  ""predicted_control_percent"": 10,
+  ""predicted_treatment_percent"": 75
+}"
+Llama 3.2 3B,llama3.2:3b,20261011,0.7,30.0,55.0,25.0,16.0,"{ ""predicted_control_percent"": 30, ""predicted_treatment_percent"": 55 }"
+Llama 3.2 3B,llama3.2:3b,20261012,0.7,12.0,83.0,71.0,62.0,"{ ""predicted_control_percent"": 12, ""predicted_treatment_percent"": 83 }"
+Llama 3.2 3B,llama3.2:3b,20261013,0.7,20.0,60.0,40.0,31.0,"{ ""predicted_control_percent"": 20, ""predicted_treatment_percent"": 60 }"
+Llama 3.2 3B,llama3.2:3b,20261014,0.7,25.0,75.0,50.0,41.0,"{
+  ""predicted_control_percent"": 25,
+  ""predicted_treatment_percent"": 75
+}"
+Falcon 3 7B,falcon3:7b,20261000,0.7,75.0,85.0,10.0,1.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 85
+}"
+Falcon 3 7B,falcon3:7b,20261001,0.7,75.0,75.0,0.0,9.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 75
+}"
+Falcon 3 7B,falcon3:7b,20261002,0.7,35.0,45.0,10.0,1.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 45}"
+Falcon 3 7B,falcon3:7b,20261003,0.7,60.0,75.0,15.0,6.0,"{
+  ""predicted_control_percent"": 60,
+  ""predicted_treatment_percent"": 75
+}"
+Falcon 3 7B,falcon3:7b,20261004,0.7,30.0,45.0,15.0,6.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 45
+}"
+Falcon 3 7B,falcon3:7b,20261005,0.7,75.0,75.0,0.0,9.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 75
+}"
+Falcon 3 7B,falcon3:7b,20261006,0.7,75.0,82.0,7.0,2.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 82
+}"
+Falcon 3 7B,falcon3:7b,20261007,0.7,75.0,85.0,10.0,1.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 85
+}"
+Falcon 3 7B,falcon3:7b,20261008,0.7,35.0,70.0,35.0,26.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 70
+}"
+Falcon 3 7B,falcon3:7b,20261009,0.7,35.0,60.0,25.0,16.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 60
+}"
+Falcon 3 7B,falcon3:7b,20261010,0.7,30.0,75.0,45.0,36.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 75
+}"
+Falcon 3 7B,falcon3:7b,20261011,0.7,75.0,85.0,10.0,1.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 85
+}"
+Falcon 3 7B,falcon3:7b,20261012,0.7,75.0,80.0,5.0,4.0,"{
+  ""predicted_control_percent"": 75,
+  ""predicted_treatment_percent"": 80
+}"
+Falcon 3 7B,falcon3:7b,20261013,0.7,60.0,85.0,25.0,16.0,"{
+  ""predicted_control_percent"": 60,
+  ""predicted_treatment_percent"": 85
+}"
+Falcon 3 7B,falcon3:7b,20261014,0.7,60.0,75.0,15.0,6.0,"{
+  ""predicted_control_percent"": 60,
+  ""predicted_treatment_percent"": 75
+}"
+DeepSeek R1 8B,deepseek-r1:8b,20261000,0.7,35.0,55.0,20.0,11.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 55
+}"
+DeepSeek R1 8B,deepseek-r1:8b,20261001,0.7,35.0,62.5,27.5,18.5,"{""predicted_control_percent"": 35.0, ""predicted_treatment_percent"": 62.5}"
+DeepSeek R1 8B,deepseek-r1:8b,20261002,0.7,35.0,65.0,30.0,21.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 65}"
+DeepSeek R1 8B,deepseek-r1:8b,20261003,0.7,35.0,65.0,30.0,21.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 65}"
+DeepSeek R1 8B,deepseek-r1:8b,20261004,0.7,35.0,65.0,30.0,21.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 65}"
+DeepSeek R1 8B,deepseek-r1:8b,20261005,0.7,35.0,60.0,25.0,16.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 60
+}"
+DeepSeek R1 8B,deepseek-r1:8b,20261006,0.7,30.0,65.0,35.0,26.0,"{""predicted_control_percent"": 30, ""predicted_treatment_percent"": 65}"
+DeepSeek R1 8B,deepseek-r1:8b,20261007,0.7,35.0,47.0,12.0,3.0,"{ ""predicted_control_percent"": 35, ""predicted_treatment_percent"": 47 }"
+DeepSeek R1 8B,deepseek-r1:8b,20261008,0.7,40.0,65.0,25.0,16.0,"{""predicted_control_percent"": 40.0, ""predicted_treatment_percent"": 65.0}"
+DeepSeek R1 8B,deepseek-r1:8b,20261009,0.7,35.0,40.0,5.0,4.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 40}"
+DeepSeek R1 8B,deepseek-r1:8b,20261010,0.7,35.0,65.0,30.0,21.0,"{""predicted_control_percent"": 35, ""predicted_treatment_percent"": 65}"
+DeepSeek R1 8B,deepseek-r1:8b,20261011,0.7,60.0,80.0,20.0,11.0,"{
+  ""predicted_control_percent"": 60,
+  ""predicted_treatment_percent"": 80
+}"
+DeepSeek R1 8B,deepseek-r1:8b,20261012,0.7,40.0,60.0,20.0,11.0,"{""predicted_control_percent"": 40, ""predicted_treatment_percent"": 60}"
+DeepSeek R1 8B,deepseek-r1:8b,20261013,0.7,25.0,35.0,10.0,1.0,"{""predicted_control_percent"": 25, ""predicted_treatment_percent"": 35}"
+DeepSeek R1 8B,deepseek-r1:8b,20261014,0.7,25.0,40.0,15.0,6.0,"{""predicted_control_percent"": 25, ""predicted_treatment_percent"": 40}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261000,0.7,25.0,40.0,15.0,6.0,"{
+  ""predicted_control_percent"": 25,
+  ""predicted_treatment_percent"": 40
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261001,0.7,45.2,64.5,19.299999999999997,10.299999999999997,"{
+  ""predicted_control_percent"": 45.2,
+  ""predicted_treatment_percent"": 64.5
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261002,0.7,35.0,50.0,15.0,6.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 50
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261003,0.7,45.0,55.0,10.0,1.0,"{
+  ""predicted_control_percent"": 45.0,
+  ""predicted_treatment_percent"": 55.0
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261004,0.7,0.3,0.4,0.10000000000000003,8.9,"{
+  ""predicted_control_percent"": 0.30,
+  ""predicted_treatment_percent"": 0.40
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261005,0.7,35.0,50.0,15.0,6.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 50
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261006,0.7,30.0,45.0,15.0,6.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 45
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261007,0.7,55.0,65.0,10.0,1.0,"{
+  ""predicted_control_percent"": 55,
+  ""predicted_treatment_percent"": 65
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261008,0.7,25.0,35.0,10.0,1.0,"{
+  ""predicted_control_percent"": 25.0,
+  ""predicted_treatment_percent"": 35.0
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261009,0.7,30.0,65.0,35.0,26.0,"{
+  ""predicted_control_percent"": 30,
+  ""predicted_treatment_percent"": 65
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261010,0.7,35.0,45.0,10.0,1.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 45
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261011,0.7,50.0,70.0,20.0,11.0,"{
+  ""predicted_control_percent"": 50,
+  ""predicted_treatment_percent"": 70
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261012,0.7,40.0,50.0,10.0,1.0,"{
+  ""predicted_control_percent"": 40,
+  ""predicted_treatment_percent"": 50
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261013,0.7,35.0,65.0,30.0,21.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 65
+}"
+Salamandra 7B,hf.co/mradermacher/salamandra-7b-instruct-2606-GGUF:Q8_0,20261014,0.7,35.0,55.0,20.0,11.0,"{
+  ""predicted_control_percent"": 35,
+  ""predicted_treatment_percent"": 55
+}"
