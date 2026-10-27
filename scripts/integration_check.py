@@ -35,7 +35,11 @@ def main() -> None:
         if week < 9:
             require(not functions, f"{session}: function introduced before Week 9", problems)
         if week == 9:
-            require("def choose_action(" in source, "Week 9 must introduce choose_action", problems)
+            require(
+                "def request_assistance(" in source,
+                "Week 9 must introduce request_assistance",
+                problems,
+            )
         require("raw" in source.lower(), f"{session}: raw return is not visibly preserved", problems)
         if week == 3:
             require(
