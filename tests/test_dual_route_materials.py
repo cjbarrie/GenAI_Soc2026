@@ -38,7 +38,7 @@ def test_route_progression_and_first_function() -> None:
     for week in range(1, 9):
         tree = ast.parse(task_source(week))
         assert not any(isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) for node in ast.walk(tree))
-    assert "def choose_action(" in task_source(9)
+    assert "def request_assistance(" in task_source(9)
 
 
 def test_no_key_is_embedded_in_student_tasks() -> None:

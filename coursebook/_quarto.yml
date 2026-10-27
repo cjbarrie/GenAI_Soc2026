@@ -86,28 +86,24 @@ book:
           href: weeks/session08.qmd
         - text: "Week 8: Python"
           href: python/session08.qmd
-        - text: "Week 9: Agent interaction"
+    - part: "Work, relationships and institutional power"
+      chapters:
+        - text: "Week 9: LLMs at work"
           href: weeks/session09.qmd
         - text: "Week 9: Python"
           href: python/session09.qmd
-        - text: "Week 10: Collective intelligence"
+        - text: "Week 10: Writing, influence and relationships"
           href: weeks/session10.qmd
         - text: "Week 10: Python"
           href: python/session10.qmd
-    - part: "Research agents, replication and model audits"
-      chapters:
-        - text: "Week 11: Research agents"
+        - text: "Week 11: Language, inequality and institutional power"
           href: weeks/session11.qmd
         - text: "Week 11: Python"
           href: python/session11.qmd
-        - text: "Week 12: Replication"
+        - text: "25 November: Class cancelled"
           href: weeks/session12.qmd
-        - text: "Week 12: Python"
-          href: python/session12.qmd
-        - text: "Week 13: Model audits"
+        - text: "2 December: Proposal meetings"
           href: weeks/session13.qmd
-        - text: "Week 13: Python"
-          href: python/session13.qmd
         - text: "Week 14: Presentations"
           href: weeks/session14.qmd
     - references.qmd

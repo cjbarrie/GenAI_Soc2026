@@ -1,11 +1,12 @@
 ---
-title: "How can micro-level interactions generate macro-level order?"
-subtitle: "Session 9 · Generative agent-based models I"
+title: "LLMs at work"
+subtitle: "Performance, knowledge and organizational position"
 author: "Generative AI in Sociology"
 date: "November 4, 2026"
 format:
   revealjs:
     theme: [default, ../../design/theme.scss]
+    css: session09.css
     width: 1280
     height: 720
     margin: 0
@@ -17,167 +18,555 @@ format:
     embed-resources: true
 ---
 
-## We are learning to simulate
+## A customer asks whether they have been charged twice
 
-<div class="course-map">
-<div class="active"><strong>Observe</strong><small>measure and interpret</small></div>
-<div class=""><strong>Intervene</strong><small>generate and converse</small></div>
-<div class="active"><strong>Simulate</strong><small>populations and agents</small></div>
-<div class=""><strong>Delegate & audit</strong><small>tools, provenance, power</small></div>
+<div class="opening-case">
+<div><span>Bank statement</span><b>Annual plan · completed</b><b>Annual plan · pending</b></div>
+<blockquote>“The pending amount has reduced the money available for my rent tomorrow. Have I been charged twice, and can you refund it today?”</blockquote>
+</div>
+
+<p class="plain-note">The worker needs to distinguish what the record establishes, what remains uncertain and what the firm permits.</p>
+
+---
+
+## The worker has this billing policy
+
+<div class="policy-card">
+<p>A pending authorization is <strong>not a completed payment</strong> and normally disappears within three to five business days.</p>
+<p>Agents cannot manually release or refund a pending authorization.</p>
+<p>A duplicate-charge refund requires <strong>two distinct settled transaction identifiers</strong>.</p>
+<p>Immediate financial hardship may be escalated to a supervisor, but escalation does not itself authorize a refund.</p>
 </div>
 
 ---
 
-## How can micro-level interactions generate macro-level order?
+## The assistant receives three pieces of text
 
-<div class="major-question">What evidence would let you answer without treating fluency as validity?</div>
-
----
-
-## The inferential target comes before the metric
-
-<div class="semantic-line">Implement one synchronous update so every agent responds to the same prior state.</div>
-
-<div class="semantic-line warning" style="margin-top: 42px;">Updating a dictionary in place lets later agents observe a future state, creating an accidental order effect.</div>
+<div class="input-flow">
+<div><span>1</span><b>Customer message</b><p>What the customer reports</p></div>
+<div><span>2</span><b>Internal policy</b><p>What the firm currently permits</p></div>
+<div><span>3</span><b>Assistance mode</b><p>What kind of help the system should provide</p></div>
+</div>
+<div class="flow-arrow">↓</div><div class="model-box">LLM request</div>
 
 ---
 
-## The readings make the methodological burden visible
+## Draft mode writes a proposed reply
 
-- **Macy & Willer (2002):** methodological opportunity
-- **Park et al. (2023):** validation or counterclaim
-- **Chuang et al. (2024):** validation or counterclaim
-
-::: {.notes}
-[Sources]
-- Macy & Willer (2002), from factors to actors | Source: https://doi.org/10.1146/annurev.soc.28.110601.141117 | Accessed: 2026-08-18
-- Park et al. (2023), generative agents | Source: https://doi.org/10.1145/3586183.3606763 | Accessed: 2026-08-18
-- Chuang et al. (2024), LLM opinion dynamics | Source: https://doi.org/10.18653/v1/2024.findings-naacl.211 | Accessed: 2026-08-18
-[/Sources]
-:::
+<div class="mode-layout"><div><span class="mode-label">DRAFT</span><p>The model identifies the relevant policy, recommends an action and writes text that could be sent to the customer.</p></div><div class="output-card"><b>Recommended action</b><p>Explain that the pending entry is not evidence of a second settled charge. Offer a hardship escalation.</p><b>Customer reply</b><p>“I can see why this is urgent. The second entry is still pending…”</p></div></div>
 
 ---
 
-## The readings disagree about success
+## Coach mode leaves the reply to the worker
 
-<div class="lead">Classic ABM explanation emphasizes transparent rules; generative agents add memory, reflection, and language policies whose model tendencies may shape the macro result.</div>
-
-<div class="semantic-line warning" style="margin-top: 36px;">Which part of that disagreement can the week's code make inspectable?</div>
-
-::: {.notes}
-[Sources]
-- Macy & Willer (2002), from factors to actors | Source: https://doi.org/10.1146/annurev.soc.28.110601.141117 | Accessed: 2026-08-18
-- Park et al. (2023), generative agents | Source: https://doi.org/10.1145/3586183.3606763 | Accessed: 2026-08-18
-- Chuang et al. (2024), LLM opinion dynamics | Source: https://doi.org/10.18653/v1/2024.findings-naacl.211 | Accessed: 2026-08-18
-[/Sources]
-:::
+<div class="mode-layout coach"><div><span class="mode-label">COACH</span><p>The model lists the checks, uncertainty and relevant policy. The worker must decide how to explain the case.</p></div><div class="output-card"><b>Worker guidance</b><p>Verify whether a second transaction has settled. Do not promise a refund. Consider hardship escalation.</p><b>Customer reply</b><p><code>None</code></p></div></div>
 
 ---
 
-## The session's bounded claim
+## What has changed in the worker’s job?
 
-<div class="major-question">An emergent pattern is interpretable only when actor state, observation, policy, update timing, and stopping rules are explicit.</div>
+<div class="three-question"><div><b>Performance</b><p>Does the worker handle the case more quickly or accurately?</p></div><div><b>Knowledge</b><p>Can the worker reason through a similar case without the assistant?</p></div><div><b>Organizational position</b><p>Who supplies the reasoning, chooses the procedure and makes the final decision?</p></div></div>
 
----
-
-## One small algorithm makes the design inspectable
-
-**Task:** Write and test one synchronous threshold-update step for a small network.
-
-1. show exact input objects;
-2. name their Python types;
-3. apply one visible transformation;
-4. print the returned object;
-5. interpret a check.
+<p class="plain-note">These require different evidence. A fluent answer from the model settles none of them.</p>
 
 ---
 
-## Read the function header before the body
+## Marx studied machinery as part of capitalist production
+
+<div class="source-text-layout"><div class="historical-name">Karl Marx<br><small><em>Capital</em>, vol. 1, ch. 15</small></div><div><p>Marx’s object was not machinery in isolation. He asked how machinery was introduced and used within capitalist production.</p><p>The relevant questions concern control of the labour process, intensification, cooperation and the extraction of surplus value.</p></div></div>
+
+<p class="citation">Marx (1867), <em>Capital</em>, vol. 1, ch. 15, “Machinery and Modern Industry.”</p>
+
+---
+
+## Braverman examined management’s control over workplace knowledge
+
+<div class="cover-layout"><img src="images/braverman_cover.jpg" alt="Cover of Labor and Monopoly Capital"><div><p>Braverman argued that scientific management sought to separate the conception of work from its execution.</p><p>Planning and knowledge could be concentrated in management while workers carried out increasingly specified operations.</p></div></div>
+
+<p class="citation">Braverman (1974), <em>Labor and Monopoly Capital</em>.</p>
+
+---
+
+## Scientific management separates planning from execution
+
+<div class="planning-execution"><div><b>Planning</b><p>Define the method, assemble knowledge, set the standard and decide how performance will be measured.</p></div><div class="division-line"></div><div><b>Execution</b><p>Carry out the prescribed operation under conditions designed elsewhere.</p></div></div>
+
+<p class="plain-note">For an LLM assistant, the question is not only whether the worker can reject its suggestion. It is also where the substantive reasoning was performed.</p>
+
+---
+
+## A workplace assistant can return codified practice as an instruction
+
+<div class="knowledge-pipeline"><div>Earlier customer conversations</div><i>→</i><div>Training data and organizational documents</div><i>→</i><div>Advice during a new case</div></div>
+<div class="compare-note"><b>Continuity</b><p>Management collects and standardizes examples of successful work.</p><b>Difference</b><p>The system can generate situated natural-language advice during a live interaction.</p></div>
+
+---
+
+## Burawoy studied the production quota game known as “making out”
+
+<div class="cover-layout"><img src="images/burawoy_cover.jpg" alt="Cover of Manufacturing Consent"><div><p>Machine-shop workers pursued output targets, managed effort and competed within a game organized around production quotas.</p><p>The game created room for initiative and satisfaction, while also helping reproduce the production system and its constraints.</p></div></div>
+
+<p class="citation">Burawoy (1979), <em>Manufacturing Consent</em>.</p>
+
+---
+
+## Consent is produced inside the labour process
+
+<div class="burawoy-layout"><div><b>Rules and quotas</b><p>Management sets the field of action.</p></div><div><b>Shop-floor practices</b><p>Workers develop strategies and incentives around the work.</p></div><div><b>Consent</b><p>Participation in the game can help reproduce the organization of production.</p></div></div>
+
+<p class="plain-note">This is not simply a theory of why workers like technologies that benefit management.</p>
+
+---
+
+## Barley followed the same CT scanner into two hospitals
+
+<div class="paper-layout barley-paper"><img src="images/barley_title_abstract_crop.png" alt="Title and abstract from the first page of Barley 1986"><div><p><strong>Setting:</strong> radiology departments in two community hospitals introducing the same model of CT scanner.</p><p><strong>Evidence:</strong> longitudinal observation of examinations, interactions and occupational roles.</p><p><strong>Question:</strong> how can similar technologies become part of different organizational arrangements?</p></div></div>
+
+<p class="citation">Barley (1986), “Technology as an Occasion for Structuring,” <em>Administrative Science Quarterly</em> 31(1): 78–108.</p>
+
+---
+
+## The two departments developed different interaction patterns
+
+<img class="wide-evidence" src="images/barley_figure2_crop.png" alt="Barley Figure 2 comparing interaction scripts at the two hospitals">
+<p class="figure-note">Technical consultation and mutual execution eventually became common at Urban; role reversal and clandestine teaching were more prominent at Suburban.</p>
+<p class="citation">Barley (1986), Figure 2, p. 101.</p>
+
+---
+
+## Operational authority changed differently in the two hospitals
+
+<div class="figure-layout"><img src="images/barley_figure3_crop.png" alt="Barley Figure 3 showing operational decisions by radiologists"><div><p>The proportion of operational decisions made by radiologists fell sharply at Suburban and remained higher at Urban.</p><p>The same scanner did not establish the same division of labour.</p></div></div>
+<p class="citation">Barley (1986), Figure 3, p. 103.</p>
+
+---
+
+## The technology did not determine one occupational settlement
+
+<div class="two-hospital"><div><span>SUBURBAN</span><p>Technologists gained practical control and sometimes taught radiologists how to use the system.</p></div><div><span>URBAN</span><p>Radiologists retained more operational authority and the occupational relation developed differently.</p></div></div>
+
+<p class="plain-note">The organizational result emerged through existing roles and the interactions that formed around the scanner.</p>
+
+---
+
+## Zuboff observed computerization inside workplaces
+
+<div class="cover-layout"><img src="images/zuboff_cover.jpg" alt="Cover of In the Age of the Smart Machine"><div><p>Zuboff studied how computerized systems changed industrial and office work.</p><p>Her distinction between automating and “informating” draws attention to systems that perform operations while also creating new information about the work.</p></div></div>
+
+<p class="citation">Zuboff (1988), <em>In the Age of the Smart Machine</em>.</p>
+
+---
+
+## Computer systems perform tasks and produce information about them
+
+<div class="z-two"><div><b>During the task</b><p>The system displays information, recommends actions or carries out part of the operation.</p></div><div><b>After the task</b><p>The organization may retain prompts, suggestions, edits, response times, acceptance decisions and outcomes.</p></div></div>
+
+<p class="plain-note">The record can support learning, quality review or managerial control. Its consequences depend on who can see it and how it is used.</p>
+
+---
+
+## Expertise, discretion and authority describe different parts of the job
+
+<table class="closed-table"><thead><tr><th>Dimension</th><th>Question</th><th>Draft mode</th><th>Coach mode</th></tr></thead><tbody><tr><td>Expertise</td><td>Who performs the substantive reasoning?</td><td>Much may be in the generated draft</td><td>More may remain with the worker</td></tr><tr><td>Discretion</td><td>Who chooses how the task is carried out?</td><td>The worker may edit or reject</td><td>The worker composes the reply</td></tr><tr><td>Authority</td><td>Who can make the final decision?</td><td colspan="2">The organizational rule may be unchanged</td></tr></tbody></table>
+
+<p class="plain-note">Coach mode does not necessarily increase formal authority. Draft mode can preserve formal discretion while shifting reasoning to the system.</p>
+
+---
+
+## The recent studies measure different outcomes
+
+<div class="three-study"><div><b>Barley</b><p>Occupational relations and operational decisions</p></div><div><b>Brynjolfsson, Li and Raymond</b><p>Performance while a customer-support assistant is available</p></div><div><b>Wiles and colleagues</b><p>Assisted performance and a later test without ChatGPT</p></div></div>
+
+---
+
+## Brynjolfsson, Li and Raymond studied an assistant used during customer chats
+
+<div class="paper-layout"><img src="images/bryn_title-01.png" alt="First page of Generative AI at Work"><div><p><strong>Setting:</strong> 5,172 customer-support agents at one software company.</p><p><strong>System:</strong> a GPT-3-based assistant offered real-time response suggestions and links to internal documentation.</p><p><strong>Rollout:</strong> access was introduced at different times across workers.</p></div></div>
+
+<p class="citation">Brynjolfsson, Li & Raymond (2025), <em>Quarterly Journal of Economics</em> 140(2): 889–942.</p>
+
+---
+
+## The rollout compared workers before and after access
+
+<div class="rollout"><div><span>Before access</span><p>Agent-month performance without the assistant</p></div><i>→</i><div><span>After access</span><p>Agent-month performance with recommendations available</p></div></div>
+
+<p class="plain-note">The preferred analysis includes agent fixed effects, calendar-time effects and controls for tenure. The rollout was not a simple individually randomized trial.</p>
+
+---
+
+## Issues resolved per hour increased by about 15 per cent
+
+<div class="figure-layout wide"><img src="images/bryn_result_crop.png" alt="Brynjolfsson Table II and main result text"><div><b class="big-number">15.2%</b><p>Estimated increase in resolutions per hour in the preferred specification.</p><p>The estimate concerns measured performance while the assistant was available.</p></div></div>
+
+<p class="citation">Brynjolfsson, Li & Raymond (2025), Table II and p. 907.</p>
+
+---
+
+## Less experienced agents gained more
+
+<div class="experience-contrast"><div><b>Lower tenure and lower prior performance</b><p>Larger improvements in the study’s productivity and quality measures.</p></div><div><b>More experienced and higher-performing agents</b><p>Smaller productivity gains and small declines on some quality measures.</p></div></div>
+
+<p class="plain-note">Possible explanations include access to codified expertise, standardization towards the firm’s preferred style and a lower starting baseline.</p>
+
+---
+
+## The study measures performance while assistance is available
+
+<div class="measurement-card"><b>Observed</b><p>Resolution speed, resolution rates, customer sentiment and other outcomes during assisted work.</p><b>Not directly tested</b><p>Whether the same workers could reproduce the assistant’s reasoning after access was removed.</p></div>
+
+---
+
+## Wiles and colleagues tested unfamiliar data-science work
+
+<div class="paper-layout"><img src="images/wiles_title-01.png" alt="First page of Wiles et al. 2026"><div><p><strong>Participants:</strong> 487 management consultants.</p><p><strong>Tasks:</strong> coding, statistics and prediction problems outside their usual skill set.</p><p><strong>Comparison:</strong> ChatGPT access and training versus conventional resources.</p></div></div>
+
+<p class="citation">Wiles et al. (2026), “Generative AI and the Temporary Upskilling of Knowledge Workers,” <em>Nature Human Behaviour</em>.</p>
+
+---
+
+## ChatGPT improved performance on the assisted tasks
+
+<div class="figure-layout"><img src="images/wiles_performance_crop.png" alt="Wiles Figure 1 showing assisted task performance"><div><p>Treated participants performed better than controls on coding, statistics and prediction tasks.</p><p>They still remained below the data-scientist benchmark represented by zero.</p></div></div>
+
+<p class="citation">Wiles et al. (2026), Figure 1.</p>
+
+---
+
+## The later test found no evidence of greater technical knowledge without ChatGPT
+
+<div class="figure-layout"><img src="images/wiles_knowledge_crop.png" alt="Wiles Figure 3 showing post-experiment knowledge"><div><p>After the task, both groups answered technical questions without ChatGPT.</p><p>The authors report no statistically significant joint treatment effect across the five questions.</p></div></div>
+
+<p class="citation">Wiles et al. (2026), Figure 3.</p>
+
+---
+
+## The two papers do not establish one general relationship between productivity and learning
+
+<div class="study-boundary"><div><b>Brynjolfsson et al.</b><p>Different workers, firm, tasks and design. Measures workplace performance during assistance.</p></div><div><b>Wiles et al.</b><p>Different experiment and population. Includes a later knowledge test without assistance.</p></div></div>
+
+<p class="plain-note">Together they show why the outcomes must be separated. They do not show whether the customer-support agents learned.</p>
+
+---
+
+## Break
+
+<div class="break-time">10 minutes</div>
+
+---
+
+## What counts as skill in each paper?
+
+<div class="discussion-question">Where does practical knowledge appear in Barley? What is measured as performance in Brynjolfsson et al.? What additional evidence do Wiles et al. use to test retained knowledge?</div>
+
+---
+
+## Where does occupational knowledge reside?
+
+<div class="discussion-question">Compare the technologists’ “clandestine teaching,” the customer-service assistant trained on earlier conversations and the consultants using ChatGPT.</div>
+
+---
+
+## Who exercises expertise, discretion and authority?
+
+<div class="discussion-question">Apply all three questions to draft and coach mode. Does permission to edit a generated answer mean that the worker performed the reasoning embodied in it?</div>
+
+---
+
+## Why might less experienced workers gain more?
+
+<div class="discussion-question">Consider access to codified expertise, standardization towards an organizational norm and a lower starting baseline. What evidence would distinguish these explanations?</div>
+
+---
+
+## Would the same assistant have the same effect in another workplace?
+
+<div class="discussion-question">Which occupational relations, incentives, training arrangements and performance measures might change the result?</div>
+
+---
+
+## How should the customer-support assistant be configured?
+
+<div class="discussion-question">Choose draft mode, coach mode or a third design. State the intended outcome and the evidence needed to assess performance, learning, discretion and authority.</div>
+
+---
+
+## The code compares two configurations
+
+<div class="code-purpose"><div><b>It does</b><p>Send the same case and policy under two assistance instructions; preserve and check the returned records.</p></div><div><b>It does not</b><p>Measure real productivity, learning, worker consent, discretion or managerial control.</p></div></div>
+
+---
+
+## The complete program in ordinary language
+
+<ol class="pseudocode"><li>Store the customer message, policy and assistance mode.</li><li>Combine them into the model instruction.</li><li>Send the request through OpenRouter or Ollama.</li><li>Print the raw text before parsing it.</li><li>Turn the JSON text into a dictionary.</li><li>Check the answer against policy and mode.</li><li>Repeat the operation inside a function.</li><li>Change only the mode and compare.</li></ol>
+
+---
+
+## The program starts with one customer message
 
 ```python
-def synchronous_update(states, neighbors, threshold):
-    # return one documented result
+customer_message = (
+    "My bank shows one completed annual-plan charge and "
+    "another entry that is still pending. Rent is due tomorrow."
+)
+
+print(customer_message)
+print(type(customer_message))
 ```
 
-**Return value:** Return a new state dictionary; adopt 1 when the prior-state neighbor mean reaches the threshold.
-
-<div class="semantic-line">Arguments are names for input values. `return` sends the output back.</div>
+<div class="io-line"><b>Input:</b> literal text · <code>str</code><i>→</i><b>Output:</b> stored text and <code>&lt;class 'str'&gt;</code></div>
 
 ---
 
-## Trace the first block with actual values
-
-::: {.compact-code}
-```python
-def synchronous_update(states, neighbors, threshold):
-    next_states = states.copy()
-    for agent, neighbor_ids in neighbors.items():
-        neighbor_values = [states[neighbor] for neighbor in neighbor_ids]
-        neighbor_mean = sum(neighbor_values) / len(neighbor_values)
-        next_states[agent] = 1 if neighbor_mean >= threshold else 0
-    return next_states
-```
-:::
-
----
-
-## Trace the next block before running it
-
-::: {.compact-code}
-```python
-# The full function is visible in the workbook.
-# Now inspect the returned object and the checks.
-```
-:::
-
-<div class="semantic-line">For each line: what value enters, what changes, and what value exists afterward?</div>
-
----
-
-## Four sentences explain the code
-
-1. `states.copy()` creates the future state without changing the prior state.
-2. The loop visits each agent and retrieves the IDs of its neighbors.
-3. The list comprehension looks every neighbor up in the old `states` dictionary.
-4. Only after computing from prior state does the function assign the agent's next value.
-
----
-
-## A software check states one exact expectation
+## The internal policy is a second string
 
 ```python
-# after the worked example in the notebook
-assert updated is not states
+policy_text = (
+    "A pending authorization is not a completed payment. "
+    "A refund requires two distinct settled transaction IDs. "
+    "Financial hardship may be escalated, but escalation "
+    "does not authorize a refund."
+)
 ```
 
-<div class="semantic-line warning">A passing assertion validates the coded expectation—not the larger sociological inference.</div>
+<p class="code-meaning">The program knows only the policy supplied here. Informal practice and undocumented exceptions are absent.</p>
 
 ---
 
-## The characteristic failure is substantive
+## The assistance mode is another string
 
-<div class="major-question">Updating a dictionary in place lets later agents observe a future state, creating an accidental order effect.</div>
+```python
+assistance_mode = "draft"
 
----
+print(assistance_mode)
+print(type(assistance_mode))
+```
 
-## Completion task: predict, implement, interpret
-
-1. Predict one output before execution.
-2. Complete `synchronous_update`.
-3. Run all supplied checks.
-4. Explain one diagnostic in plain language.
-5. Connect it to one required reading in 100–150 words.
+<p class="code-meaning">This value changes the organizational instruction. It does not change the underlying model.</p>
 
 ---
 
-## Revise the claim to match the evidence
+## An f-string combines the three values
 
-<div class="major-question">This trace makes one methodological decision inspectable. What additional evidence would strengthen the sociological claim?</div>
+```python
+prompt = f"""
+Customer message:
+{customer_message}
 
-::: {.notes}
-[Sources]
-- Macy & Willer (2002), from factors to actors | Source: https://doi.org/10.1146/annurev.soc.28.110601.141117 | Accessed: 2026-08-18
-- Park et al. (2023), generative agents | Source: https://doi.org/10.1145/3586183.3606763 | Accessed: 2026-08-18
-- Chuang et al. (2024), LLM opinion dynamics | Source: https://doi.org/10.18653/v1/2024.findings-naacl.211 | Accessed: 2026-08-18
-[/Sources]
-:::
+Internal policy:
+{policy_text}
+
+Assistance mode: {assistance_mode}
+Return the six required fields as JSON.
+"""
+```
+
+<p class="code-meaning">The braces insert the current string values into one new string.</p>
+
+---
+
+## The message list is sent to the model
+
+```python
+messages = [
+    {
+        "role": "user",
+        "content": prompt,
+    }
+]
+
+print(messages[0]["content"])
+```
+
+<div class="io-line"><b>Input:</b> prompt · <code>str</code><i>→</i><b>Output:</b> one-item <code>list</code> containing a <code>dict</code></div>
+
+---
+
+## OpenRouter sends the request to a hosted model
+
+```python
+if ROUTE == "openrouter":
+    client = OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"])
+    response = client.chat.send(
+        model=HOSTED_MODEL,
+        messages=messages,
+        response_format=response_format,
+        temperature=0,
+    )
+    raw_text = response.choices[0].message.content
+```
+
+<p class="code-meaning">The text leaves the computer and is processed by the selected hosted provider.</p>
+
+---
+
+## Ollama sends the request to a model on the computer
+
+```python
+else:
+    response = ollama.chat(
+        think=False,
+        model=LOCAL_MODEL,
+        messages=messages,
+        format=output_schema,
+        options={"temperature": 0},
+    )
+    raw_text = response.message.content
+```
+
+<p class="code-meaning">The Python request goes to the Ollama server running locally. The model must already be downloaded.</p>
+
+---
+
+## The raw return is text
+
+```python
+print(raw_text)
+print(type(raw_text))
+```
+
+<pre class="mini-output"><code>{"known_facts":["One charge is settled"],
+ "uncertainties":["Whether the pending entry will settle"],
+ "recommended_action":"Explain pending status; escalate hardship",
+ "policy_evidence":"Refund requires two settled IDs",
+ "worker_guidance":"Do not promise a refund",
+ "customer_reply":"I can see why this is urgent..."}</code></pre>
+
+---
+
+## JSON parsing turns the text into a dictionary
+
+```python
+result = json.loads(raw_text)
+
+print(result["known_facts"])
+print(result["uncertainties"])
+print(type(result))
+```
+
+<div class="io-line"><b>Input:</b> JSON-formatted <code>str</code><i>→</i><b>Output:</b> Python <code>dict</code></div>
+
+---
+
+## The policy checks are Boolean expressions
+
+```python
+combined_text = " ".join(
+    result["known_facts"] + [result["recommended_action"]]
+).lower()
+
+invented_second_charge = "two completed charges" in combined_text
+unsupported_refund = "refund today" in combined_text
+
+print(invented_second_charge)
+print(unsupported_refund)
+```
+
+<p class="code-meaning"><code>False</code> means the forbidden phrase was not found. It does not prove that the whole answer is correct.</p>
+
+---
+
+## The mode check compares the return with the instruction
+
+```python
+if assistance_mode == "draft":
+    mode_ok = result["customer_reply"] is not None
+else:
+    mode_ok = result["customer_reply"] is None
+
+print(mode_ok)
+```
+
+<p class="code-meaning">For draft mode: is there a reply? For coach mode: was the reply left empty?</p>
+
+---
+
+## First replace the function parameters with literal values
+
+```python
+customer_message = "One completed charge; one pending entry"
+policy_text = "Refund only after two settled transaction IDs"
+assistance_mode = "draft"
+route = "ollama"
+```
+
+<p class="code-meaning">These four values will become the four arguments entering the function.</p>
+
+---
+
+## The first function repeats the operation
+
+```python
+def request_assistance(
+    customer_message,
+    policy_text,
+    assistance_mode,
+    route,
+):
+    # Build prompt and messages
+    # Call the selected model route
+    # Parse and check the return
+    return assistance_record
+```
+
+<p class="code-meaning"><code>def</code> stores a reusable procedure. The indented lines run only when the function is called.</p>
+
+---
+
+## Arguments enter; one dictionary comes back
+
+```python
+draft_record = request_assistance(
+    customer_message=customer_message,
+    policy_text=policy_text,
+    assistance_mode="draft",
+    route=ROUTE,
+)
+
+print(draft_record["parsed_output"])
+print(type(draft_record))
+```
+
+<div class="io-line"><b>Input:</b> four arguments<i>→</i><b>Output:</b> one research-record <code>dict</code></div>
+
+---
+
+## Change one argument and run the operation again
+
+```python
+coach_record = request_assistance(
+    customer_message=customer_message,
+    policy_text=policy_text,
+    assistance_mode="coach",
+    route=ROUTE,
+)
+
+print(coach_record["parsed_output"]["customer_reply"])
+```
+
+<p class="code-meaning">The customer message, policy, model and route remain fixed. Only the assistance instruction changes.</p>
+
+---
+
+## Compare the two configurations
+
+<table class="closed-table"><thead><tr><th>Question</th><th>Draft</th><th>Coach</th></tr></thead><tbody><tr><td>Who produced the customer-facing text?</td><td>The model</td><td>The worker must do so</td></tr><tr><td>Can the worker still edit or reject?</td><td>Possibly</td><td>Yes</td></tr><tr><td>Who can authorize a refund?</td><td colspan="2">The organizational policy remains the same</td></tr><tr><td>What did our run establish?</td><td colspan="2">How the two instructions changed model output</td></tr></tbody></table>
+
+---
+
+## The take-home task
+
+<div class="task-brief"><span>Change</span><p>Revise one sentence of the advice given to the assistant, then run both modes again.</p><span>Check</span><p>Explain whether the outputs distinguish known facts, uncertainty, hardship escalation and refund authority.</p><span>Record</span><p>Show the inputs and outputs of each operation, then explain every parameter and returned object.</p><span>Submit</span><p>Upload the narrated screen recording using your name and <code>Week09</code> in the filename.</p></div>
+
+---
+
+## What can we conclude?
+
+<div class="closing"><p>An LLM can improve measured performance while it is available. That does not, by itself, show that workers gained knowledge or that their discretion and authority increased.</p><p>The organizational consequences depend on how the system is configured, what it records and how work is arranged around it.</p></div>
+
+---
+
+## Questions that remain open
+
+<div class="open-questions"><div>Which forms of worker knowledge become training material, and who owns the resulting system?</div><div>When does assistance support learning rather than continued dependence?</div><div>Who can inspect the record of suggestions, edits and outcomes?</div><div>How do workers reshape the system in practice?</div></div>

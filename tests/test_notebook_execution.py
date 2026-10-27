@@ -95,6 +95,31 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
         return json.dumps({"predicted_control_percent": 30, "predicted_treatment_percent": 38})
     if schema_name == "agent_action" or properties == {"action", "reason"}:
         return json.dumps({"action": "speak calmly", "reason": "The observation changed."})
+    if schema_name == "workplace_assistance" or "known_facts" in properties:
+        coach_mode = "Assistance mode: coach" in prompt
+        return json.dumps(
+            {
+                "known_facts": [
+                    "One annual-plan charge has completed.",
+                    "A second entry is pending.",
+                ],
+                "uncertainties": ["Whether the pending entry will settle."],
+                "recommended_action": (
+                    "Explain that the pending entry is not a completed charge and escalate "
+                    "the reported hardship without authorizing a refund."
+                ),
+                "policy_evidence": (
+                    "A refund requires two settled transaction identifiers; escalation "
+                    "does not authorize a refund."
+                ),
+                "worker_guidance": "Verify settlement status and offer hardship escalation.",
+                "customer_reply": (
+                    None
+                    if coach_mode
+                    else "The second entry is pending, so I cannot confirm a duplicate charge."
+                ),
+            }
+        )
     if schema_name == "join_action" or properties == {"action"}:
         return json.dumps({"action": "JOIN"})
     if schema_name == "tool_request" or "tool_name" in properties:
@@ -406,6 +431,11 @@ def test_followup_notebook_executes_without_live_services(
     if week == 8 and runtime == "colab":
         assert namespace["local_results"] == []
         assert namespace["local_mae"] is None
+    if week == 9:
+        assert namespace["draft_record"]["parsed_output"]["customer_reply"] is not None
+        assert namespace["coach_record"]["parsed_output"]["customer_reply"] is None
+        assert all(namespace["draft_record"]["checks"].values())
+        assert all(namespace["coach_record"]["checks"].values())
     if week == 13:
         expected_routes = ["openrouter"] if runtime == "colab" else ["openrouter", "ollama"]
         assert namespace["routes"] == expected_routes

@@ -36,13 +36,7 @@ REQUIRED_SECTIONS = [
     "## Summary and preparation",
 ]
 
-OUTLINE_SECTIONS = [
-    "## Question",
-    "## Why this week belongs here",
-    "## Provisional core readings",
-    "## Planned chapter and class arc",
-    "## Development status",
-]
+OUTLINE_SECTIONS = ["## Planned question"]
 
 SESSION08_OUTLINE_SECTIONS = [
     "## Question",
@@ -58,18 +52,15 @@ PYTHON_REQUIRED_SECTIONS = [
     "## Take-home exercise",
 ]
 
-PYTHON_OUTLINE_SECTIONS = [
-    "## Planned code trace",
-    "## Planned completion recording",
-    "## Development status",
-]
+PYTHON_OUTLINE_SECTIONS: list[str] = []
 
 PRESENTATION_SECTIONS = [
     "## Presentation format",
     "## What to bring",
 ]
 
-DEVELOPED_SESSION_MAX = 8
+DEVELOPED_SESSION_MAX = 9
+NON_TEACHING_SESSIONS = {12, 13}
 
 BANNED_PUBLIC_FRAGMENTS = [
     "solutions/",
@@ -267,20 +258,22 @@ def validate_sources(rendered: bool) -> list[str]:
         text = chapter.read_text(encoding="utf-8")
         python_page = PYTHON_DIR / f"{session}.qmd"
         python_text = ""
-        if number <= 13:
+        if number <= 13 and number not in NON_TEACHING_SESSIONS:
             if not python_page.exists():
                 fail(errors, f"Missing separate Python page: {python_page}")
             else:
                 python_text = python_page.read_text(encoding="utf-8")
-        elif python_page.exists():
+        elif number == 14 and python_page.exists():
             fail(errors, "session14: presentation week must not have a Python page")
 
         if number <= DEVELOPED_SESSION_MAX:
             expected_sections = REQUIRED_SECTIONS
         elif number == 14:
             expected_sections = PRESENTATION_SECTIONS
-        else:
+        elif number not in NON_TEACHING_SESSIONS:
             expected_sections = OUTLINE_SECTIONS
+        else:
+            expected_sections = []
         for heading in expected_sections:
             if heading not in text:
                 fail(errors, f"{chapter.name}: missing standard section beginning {heading!r}")
@@ -294,14 +287,14 @@ def validate_sources(rendered: bool) -> list[str]:
             for heading in PYTHON_REQUIRED_SECTIONS:
                 if heading not in python_text:
                     fail(errors, f"{python_page.name}: missing standard section beginning {heading!r}")
-        elif number <= 13:
+        elif number <= 13 and number not in NON_TEACHING_SESSIONS:
             for heading in PYTHON_OUTLINE_SECTIONS:
                 if heading not in python_text:
                     fail(errors, f"{python_page.name}: missing provisional section {heading!r}")
 
-        if number <= 13 and f"../python/{session}.qmd" not in text:
+        if number <= 13 and number not in NON_TEACHING_SESSIONS and f"../python/{session}.qmd" not in text:
             fail(errors, f"{chapter.name}: missing link to separate Python page")
-        if number <= 13 and f"../weeks/{session}.qmd" not in python_text:
+        if number <= 13 and number not in NON_TEACHING_SESSIONS and f"../weeks/{session}.qmd" not in python_text:
             fail(errors, f"{python_page.name}: missing return link to weekly page")
 
         if number <= DEVELOPED_SESSION_MAX:
@@ -315,20 +308,20 @@ def validate_sources(rendered: bool) -> list[str]:
                 fail(errors, f"{python_page.name}: missing offline bundle download")
             if "screen recording" not in python_text:
                 fail(errors, f"{python_page.name}: missing narrated screen-recording instructions")
-        elif "_generated/slides" in text or ".ipynb" in text or ".ipynb" in python_text:
+        elif number not in NON_TEACHING_SESSIONS and ("_generated/slides" in text or ".ipynb" in text or ".ipynb" in python_text):
             fail(errors, f"{session}: provisional pages must not publish unfinished materials")
 
-        if number <= 13:
+        if number <= DEVELOPED_SESSION_MAX:
             if "../recording-and-submission.qmd" not in python_text:
                 fail(errors, f"{python_page.name}: missing link to the canonical submission guide")
             if "5:00 p.m. Eastern on the Tuesday before the next class" not in python_text:
                 fail(errors, f"{python_page.name}: missing weekly recording deadline")
 
         entries = weeks.get(session, [])
-        if number == 14:
+        if number == 14 or number in NON_TEACHING_SESSIONS:
             if entries:
-                fail(errors, "session14: presentation week must not assign readings")
-        else:
+                fail(errors, f"{session}: non-teaching date must not assign readings")
+        elif number <= DEVELOPED_SESSION_MAX:
             statuses = {entry.get("status") for entry in entries}
             if not {"essential", "additional"}.issubset(statuses):
                 fail(errors, f"{session}: manifest requires essential and additional readings")
@@ -379,7 +372,7 @@ def validate_sources(rendered: bool) -> list[str]:
                     ast.ClassDef,
                     ast.Lambda,
                 )
-                if any(isinstance(node, advanced_definitions) for node in ast.walk(task_tree)):
+                if number < 9 and any(isinstance(node, advanced_definitions) for node in ast.walk(task_tree)):
                     fail(errors, f"{task.name}: beginner completion tasks must not define functions or classes")
                 if '__name__ == "__main__"' in task_source or "__name__ == '__main__'" in task_source:
                     fail(errors, f"{task.name}: unexplained __main__ guard is not allowed")
@@ -396,7 +389,7 @@ def validate_sources(rendered: bool) -> list[str]:
             html = BOOK / "_book" / "weeks" / f"{session}.html"
             if not html.exists():
                 fail(errors, f"Rendered chapter missing: {html}")
-            if number <= 13:
+            if number <= 13 and number not in NON_TEACHING_SESSIONS:
                 python_html = BOOK / "_book" / "python" / f"{session}.html"
                 if not python_html.exists():
                     fail(errors, f"Rendered Python page missing: {python_html}")
@@ -429,8 +422,8 @@ def validate_sources(rendered: bool) -> list[str]:
                 fail(errors, "session08_task.py: Week 8 must not define a function")
             if "client.chat.send" not in source or "ollama.chat" not in source or "for experiment in experiments" not in source:
                 fail(errors, "session08_task.py: missing bounded dual-route loop")
-        if number == 9 and "def choose_action(" not in source:
-            fail(errors, "session09_task.py: Week 9 must introduce choose_action")
+        if number == 9 and "def request_assistance(" not in source:
+            fail(errors, "session09_task.py: Week 9 must introduce request_assistance")
         if len(notebooks) != 1:
             fail(errors, f"{session}: expected exactly one provisional coding notebook")
         else:
@@ -467,7 +460,7 @@ def main() -> None:
         for error in errors:
             print(f"- {error}")
         raise SystemExit(1)
-    print("Course-book validation passed: 14 weekly pages, 13 separate Python pages, and presentation-only Week 14.")
+    print("Course-book validation passed: 11 teaching-week Python pages, two non-teaching dates, and presentation-only Week 14.")
 
 
 if __name__ == "__main__":

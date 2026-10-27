@@ -73,4 +73,4 @@ The slides are available in the [online Week 8 chapter](https://cjbarrie.github.
 
 ## Summary and preparation for next week
 
-A model can be evaluated against answers it did not see, but the result is always relative to a stated target. Week 9 moves from repeated predictions to agents that update an action after observing another actor—and introduces functions only after the inputs and outputs of the model routine are familiar.
+A model can be evaluated against answers it did not see, but the result is always relative to a stated target. Week 9 changes the unit of analysis: the model supplies advice inside a labour process. The first student-edited function makes that workplace configuration explicit.

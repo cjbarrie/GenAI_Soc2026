@@ -1,21 +1,34 @@
-# Session 9 reading guide — Generative agent-based models I
+# Session 9 reading guide — LLMs at work
 
-## The disagreement to carry into class
+## The question to carry into class
 
-Classic ABM explanation emphasizes transparent rules; generative agents add memory, reflection, and language policies whose model tendencies may shape the macro result.
+When an LLM helps someone do their job, what changes: their performance, their knowledge, or their position within the organization?
 
-Do not summarize the papers serially. Compare the inferential target, the role assigned to an LLM, the human/reference evidence, and the failure mode each design can or cannot reveal.
+## Read the three articles for different kinds of evidence
 
-| Reading | Ask while reading | Bring to the code |
+| Reading | What it observes | Question for discussion |
 |---|---|---|
-| [Macy & Willer (2002), from factors to actors](https://doi.org/10.1146/annurev.soc.28.110601.141117) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Park et al. (2023), generative agents](https://doi.org/10.1145/3586183.3606763) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Chuang et al. (2024), LLM opinion dynamics](https://doi.org/10.18653/v1/2024.findings-naacl.211) | What inference does the paper seek? | What evidence could disconfirm it? |
+| Barley (1986) | Work interactions and operational decisions around the same CT scanner in two hospitals | Why did the technology become part of different occupational arrangements? |
+| Brynjolfsson, Li & Raymond (2025) | Customer-support performance while an LLM assistant was available | Which outcomes improved, for whom, and what was not tested? |
+| Wiles et al. (2026) | Assisted data-science performance and a later technical-knowledge test without ChatGPT | What is the difference between doing a task with assistance and retaining the underlying knowledge? |
 
 ## Before class
 
-Bring one passage that supports the strongest claim you think is warranted and one passage that makes you qualify it. Complete this sentence: **The output is useful for ___, but it would be invalid evidence for ___ unless ___.**
+Bring one passage or figure from each article. For every item, write down:
 
-## Reading → code
+1. the unit of analysis;
+2. the observed outcome;
+3. the strongest claim it supports;
+4. one claim for which it is insufficient evidence.
 
-The workbook implements `synchronous_update`. Its input is small enough to inspect manually. Predict the output, then decide which claim from the readings the check clarifies—and which larger claim it cannot settle.
+## Questions for the room
+
+- Where does occupational knowledge reside in each study?
+- Who performs the reasoning, who chooses the procedure and who has the final authority?
+- Why might less experienced workers gain more from assistance?
+- Would Barley expect the same assistant to have the same effect in another workplace?
+- How should our customer-support assistant be configured, and what evidence would assess that choice?
+
+## Reading to code
+
+The workbook holds the customer case and policy fixed while changing `assistance_mode`. This implements Barley’s warning that a technology has no single organizational form. It also preserves the distinction between a successful assisted output and evidence that a worker learned.

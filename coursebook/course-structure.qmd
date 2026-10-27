@@ -15,11 +15,11 @@ The seminar meets on Wednesdays from 9:30 a.m. to 12:15 p.m. The sequence is cum
 | — | 14 October | No Wednesday meeting; midterm project-proposal period |
 | 7 | 21 October | Whose attitudes do synthetic respondents represent? |
 | 8 | 28 October | Can LLMs recover missing or unobserved social worlds? |
-| 9 | 4 November | How can micro-level interactions generate macro-level order? |
-| 10 | 11 November | When can agent diversity and debate produce collective intelligence? |
-| 11 | 18 November | Who—or what—produces research data in an agentic workflow? |
-| 12 | 25 November | What can we reproduce, and what remains opaque? |
-| 13 | 2 December | What culture, ideology and hierarchy are encoded in models? |
+| 9 | 4 November | When an LLM helps someone do their job, what changes? |
+| 10 | 11 November | How do LLMs change writing, influence and relationships? |
+| 11 | 18 November | How do language models reproduce or alter inequality and institutional power? |
+| — | 25 November | **Class cancelled; no reading or coding task** |
+| — | 2 December | **Individual meetings with the instructor to discuss final-project proposals** |
 | 14 | 9 December | Project presentations; no new reading, lecture or weekly task |
 
 ## A typical week
@@ -38,6 +38,8 @@ The normal 165-minute meeting has three clearly different parts:
 
 The exact timing can move slightly when discussion is especially productive, but the middle of the class is reserved for collective discussion and the final part is reserved for working through the code together.
 
+The normal weekly format ends after the 18 November meeting. There is no class or weekly task on 25 November. On 2 December, the scheduled class period is used for individual proposal meetings rather than a lecture, reading discussion or coding exercise. The final meeting on 9 December is reserved for presentations.
+
 The coding strand teaches Python through actual LLM routines. Week 1 introduces values, strings and the anatomy of a call. From Week 2, students send a prompt to a model through OpenRouter or a supported local runtime. Later weeks add message lists, structured outputs, parsing, generation parameters, loops and, only after those are familiar, small functions with explicit parameters. Cached responses remain available when a service is unavailable, but they are the contingency rather than the main route.
 
 ### Weekly coding submission
@@ -52,4 +54,4 @@ The weekly completion task is submitted as a short **screen recording with audio
 
 Upload the recording to the [coding videos folder](recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. The recording and submission guide explains the filename and how to record on macOS, Windows and ChromeOS. A polished video is not expected; a clear, continuous walkthrough is enough.
 
-The book uses *AI and Research Methods* as a recurring map. It is not a substitute for the empirical papers. The chapter tells you which section to read and what question it helps answer. [Download the chapter PDF](downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) or consult the [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk).
+The opening weeks use *AI and Research Methods* as a map of research applications. Later weeks use it only when a specific section is needed, rather than assigning the chapter repeatedly. [Download the chapter PDF](downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf) or consult the [APSA Preprints record](https://doi.org/10.33774/apsa-2026-h59kk).

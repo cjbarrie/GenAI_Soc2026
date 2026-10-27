@@ -6,7 +6,7 @@
 
 What inference is the researcher trying to make, and what evidence would validate the use of an LLM for that inference?
 
-This graduate seminar studies generative AI both as a research technology and as a social object. The semester moves from measurement and interpretation through experimental intervention and social simulation to research agents, replication, and audits. The course is approximately 60% methodological and 40% substantive sociology of AI.
+This graduate seminar studies generative AI both as a research technology and as a social object. The semester moves from measurement and interpretation through experimental intervention and synthetic populations to work, relationships, language and institutional power. The course is approximately 60% methodological and 40% substantive sociology of AI.
 
 No prior programming course is required. Students must be willing to work through the Python foundations material and explain small pieces of code in plain language. Code sophistication is not an independent virtue.
 
@@ -29,8 +29,8 @@ By the end, students should be able to:
 |---|---:|---|---|---|
 | Evidence, measurement and interpretation | 1–4 | Turn social material into inspectable records and measures | strings, lists, dictionaries, JSON and multimodal messages | inspect inputs and source evidence |
 | Experiments and research encounters | 5–6 | Generate fixed and conversational treatments | call parameters and ordered conversation state | compare intended and experienced treatments |
-| Synthetic populations and social simulation | 7–10 | Represent people, distributions and interaction | schemas, loops, functions and repeated runs | validate at several levels and probe contamination |
-| Research agents, replication and model audits | 11–13 | Use tools while preserving evidence; study models socially | tool records, saved JSON and parameter grids | reproduce, document dependence and bound claims |
+| Synthetic populations and prediction | 7–8 | Represent people, distributions and experimental outcomes | schemas and loops | validate individual and aggregate claims separately |
+| Work, relationships and institutional power | 9–11 | Study LLMs inside labour processes, communication and unequal institutions | functions and small comparison grids | distinguish output changes from social consequences |
 | Presentations | 14 | Present and defend a research design | no new coding | identify validation and failure modes |
 
 ## Schedule
@@ -46,11 +46,11 @@ By the end, students should be able to:
 | — | Oct 14 | No Wednesday meeting: NYU legislative Monday | Midterm project-proposal period |
 | 7 | Oct 21 | Whose attitudes and experiences do synthetic populations represent? | [Session entry](session07.md) |
 | 8 | Oct 28 | Can LLMs recover missing or unobserved social worlds? | [Session entry](session08.md) |
-| 9 | Nov 4 | How can micro-level interactions generate macro-level order? | [Session entry](session09.md) |
-| 10 | Nov 11 | When can agent diversity and debate produce collective intelligence? | [Session entry](session10.md) |
-| 11 | Nov 18 | Who—or what—produces research data in an agentic workflow? | [Session entry](session11.md) |
-| 12 | Nov 25 | What can we reproduce, and what remains opaque? | [Session entry](session12.md); flexible attendance |
-| 13 | Dec 2 | What culture, ideology, and hierarchy are encoded in models? | [Session entry](session13.md) |
+| 9 | Nov 4 | When an LLM helps someone do their job, what changes? | [Session entry](session09.md) |
+| 10 | Nov 11 | How do LLMs change writing, influence and relationships? | [Session entry](session10.md) |
+| 11 | Nov 18 | How do language models reproduce or alter inequality and institutional power? | [Session entry](session11.md) |
+| — | Nov 25 | **Class cancelled** | [Calendar note](session12.md); no reading or weekly task |
+| — | Dec 2 | **Individual final-project proposal meetings** | [Meeting information](session13.md); no lecture, reading or weekly task |
 | 14 | Dec 9 | Project presentations | [Session entry](session14.md); no new reading, lecture or weekly task |
 
 ## Typical meeting
@@ -87,10 +87,10 @@ You remain responsible for every submitted claim and every line of code. If you 
 
 ## Computing and access
 
-Canonical notebooks run in local JupyterLab or VS Code, with Colab as an OpenRouter-only fallback. Every student attempts both OpenRouter and Ollama by the end of Week 2, chooses either route in Weeks 3–7, and compares both routes again in Week 8. OpenRouter is the hosted gateway; Ollama is the supported local runtime. Recorded outputs remain available when access fails, but are not the normal route. Never send identifiable or sensitive research data through the shared course key.
+Canonical notebooks run in local JupyterLab or VS Code, with Colab as an OpenRouter-only fallback. Every student attempts both OpenRouter and Ollama by the end of Week 2, chooses either route in Weeks 3–7, and compares both routes again in Week 8. OpenRouter is the hosted gateway; Ollama is the supported local runtime. Recorded outputs remain available when access fails, but are not the normal route. Never send identifiable or sensitive research data through the shared course key. There are no weekly coding tasks on 25 November, 2 December or 9 December.
 
 Start with [environment setup](../docs/ENVIRONMENT_SETUP.md), [Python foundations](../workbook/00_python_foundations/README.md), and the [local-LLM guide](../docs/LOCAL_LLM_GUIDE.md).
 
 ## Participation and accessibility
 
-Participation may take the form of a reading question, code explanation, validation critique, peer feedback, or a short written contribution. Speaking frequency alone does not determine the mark. Accessible remote or equivalent formats are available for the oral walkthrough and flexible Session 12 work.
+Participation may take the form of a reading question, code explanation, validation critique, peer feedback, or a short written contribution. Speaking frequency alone does not determine the mark. Accessible remote or equivalent formats are available for the oral walkthrough and individual proposal meeting.

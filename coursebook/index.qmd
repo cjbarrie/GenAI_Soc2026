@@ -20,11 +20,11 @@ No prior programming course is required. We introduce Python gradually through a
 
 1. **Evidence, measurement and interpretation (Weeks 1–4).** We begin with research records, text annotation, qualitative analysis and multimodal observation.
 2. **Experiments and research encounters (Weeks 5–6).** We examine generated treatments and interviews in which the next question depends on the preceding answer.
-3. **Synthetic populations and social simulation (Weeks 7–10).** We ask what model-generated respondents and interacting agents can represent.
-4. **Research agents, replication and model audits (Weeks 11–14).** We examine long-horizon research systems, reproducibility and LLMs as objects of sociological study.
+3. **Synthetic populations and prediction (Weeks 7–8).** We ask what model-generated respondents and forecasts can represent.
+4. **Work, relationships and institutional power (Weeks 9–11).** We study LLMs as technologies used inside organizations, communication and unequal institutions.
 
 The final project returns to the opening question. You will propose an LLM-related sociological study and show that its claims, data, model operations and validation plan fit together.
 
 ## What this book contains
 
-Each week is divided into two pages. The first gives you the sociological question, the readings and why they matter, the methodological background and the lecture slides. A separate Python page then gives you the worked input-to-output trace, complete workbook and take-home completion task. Week 14 is reserved for presentations and therefore has no Python page. The HTML edition is the canonical version: it is searchable and contains the live slide decks and downloads. The PDF is provided for reading and annotation away from the site.
+Each teaching week is divided into two pages. The first gives you the sociological question, the readings and why they matter, the methodological background and the lecture slides. A separate Python page then gives you the worked input-to-output trace, complete workbook and take-home completion task. There is no class on 25 November; 2 December is reserved for individual proposal meetings; and 9 December is reserved for presentations. These dates therefore have no Python page. The HTML edition is the canonical version: it is searchable and contains the live slide decks and downloads. The PDF is provided for reading and annotation away from the site.

@@ -1,45 +1,25 @@
-# Instructor notes — Session 9: Generative agent-based models I
+# Instructor notes — Session 9: LLMs at work
 
-## Intended endpoint
+## Central question
 
-Students should leave able to defend this bounded claim: **An emergent pattern is interpretable only when actor state, observation, policy, update timing, and stopping rules are explicit.** They should also explain `synchronous_update` line by line without live AI assistance.
+When an LLM helps someone do their job, what changes: performance, knowledge or organizational position?
 
-## 165-minute plan
+## Argument
 
-- **9:30–9:42 — retrieval and course map:** locate the session in **Simulate**; restate last week's validation habit.
-- **9:42–10:15 — reading disagreement:** compare inferential targets rather than collecting findings.
-- **10:15–10:38 — study anatomy:** input, transformation, evidence, failure mode, claim.
-- **10:38–10:48 — break.**
-- **10:48–11:00 — code block 1:** inspect inputs and types; students predict before execution.
-- **11:00–11:12 — code block 2:** trace initialization and the first loop/decision.
-- **11:12–11:20 — code block 3:** print output; connect each field to research meaning.
-- **11:20–11:45 — paired completion task:** driver reads; navigator explains every line and predicts each check; swap roles halfway.
-- **11:45–12:05 — validation diagnostic:** interpret a failure as a case, not merely a failed assertion.
-- **12:05–12:15 — exit record:** claim, evidence, uncertainty, next skill.
+Marx and Braverman place technology inside relations of production and managerial control over knowledge. Burawoy adds worker practice and consent inside the labour process. Barley shows that the same technology can become part of different occupational settlements. Zuboff adds the informational record produced by computer-mediated work.
 
-No instructor coding segment exceeds twelve minutes.
+Do not collapse the two contemporary findings. Brynjolfsson et al. estimate changes in workplace performance while assistance is available. Wiles et al. use a separate experiment to test retained knowledge without assistance. Their comparison shows why outcomes must be distinguished; it does not establish whether the customer-support workers learned.
 
-## Required code language
+## Timing
 
-Before typing, say: **input value and type → operation → output value and type → research meaning**. Avoid “this just processes the data.” Ask students to name exactly what changes and what stays unchanged.
+- 9:30–9:42 — opening customer case and exact LLM operation
+- 9:42–10:20 — historical argument
+- 10:20–10:30 — break
+- 10:30–11:15 — reading discussion
+- 11:15–11:25 — bounded synthesis
+- 11:25–12:05 — Python walkthrough
+- 12:05–12:15 — rerun, take-home task and close
 
-- `states.copy()` creates the future state without changing the prior state.
-- The loop visits each agent and retrieves the IDs of its neighbors.
-- The list comprehension looks every neighbor up in the old `states` dictionary.
-- Only after computing from prior state does the function assign the agent's next value.
+## Coding emphasis
 
-## Likely sticking points
-
-- Brackets: pause and distinguish list position `items[0]` from dictionary key `record["field"]`.
-- Assignment: `=` gives a name to a value; `==` asks whether two values are equal.
-- Loops: trace the first iteration with actual values before describing the general pattern.
-- Functions: arguments enter; local variables change; `return` produces the output.
-- Validation: a passing software check confirms the coded expectation, not the sociological claim.
-
-## Completion standard
-
-Prediction; functioning small algorithm; passing checks plus one interpreted disagreement/failure; 100–150 word connection to a required reading. Syntax elegance is irrelevant.
-
-## Contingency
-
-If environment setup fails, pair students around the rendered notebook and have them trace the provided output. Hardware or API access must not determine completion.
+The function is new; the underlying operations are not. Replace every parameter with its literal value before reading the function body. Keep both route branches visible. The software checks target specific unsupported claims and the mode contract. They do not validate the sociological argument.

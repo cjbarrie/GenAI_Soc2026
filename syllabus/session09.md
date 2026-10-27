@@ -1,42 +1,24 @@
-# Session 9 — How can micro-level interactions generate macro-level order?
+# Session 9 — LLMs at work
 
 **Date:** Wednesday, November 4, 2026 · 9:30 a.m.–12:15 p.m.  
-**Course movement:** Simulate  
-**Methodological domain:** Generative agent-based models I  
-**Chapter anchor:** *AI and Research Methods*, §§10.4.1–10.4.3
-
-## Substantive question
-
-How can micro-level interactions generate macro-level order?
+**Substantive question:** When an LLM helps someone do their job, what changes: performance, knowledge or organizational position?
 
 ## Learning objectives
 
-By the end, students should be able to:
-
-1. state the inferential target: implement one synchronous update so every agent responds to the same prior state.
-2. explain the reading disagreement in their own words;
-3. identify the Python type of every major input and output in the worked trace;
-4. explain every parameter and return value of `choose_action`;
-5. use the validation diagnostic to bound a sociological claim.
+Students will distinguish assisted performance from retained knowledge; explain why the same technology can enter different workplace arrangements; separate expertise, discretion and authority; and explain every input and output of `request_assistance(...)`.
 
 ## Required readings
 
-- [Macy & Willer (2002), from factors to actors](https://doi.org/10.1146/annurev.soc.28.110601.141117)
-- [Park et al. (2023), generative agents](https://doi.org/10.1145/3586183.3606763)
-- [Chuang et al. (2024), LLM opinion dynamics](https://doi.org/10.18653/v1/2024.findings-naacl.211)
+- Barley (1986), “Technology as an Occasion for Structuring.”
+- Brynjolfsson, Li and Raymond (2025), “Generative AI at Work.”
+- Wiles et al. (2026), “Generative AI and the Temporary Upskilling of Knowledge Workers.”
 
-## Lecture argument
+Read each complete article.
 
-An emergent pattern is interpretable only when actor state, observation, policy, update timing, and stopping rules are explicit. Classic ABM explanation emphasizes transparent rules; generative agents add memory, reflection, and language policies whose model tendencies may shape the macro result.
+## Class structure
 
-## Computational trace
-
-Planned: students use the course's first small function, `choose_action(state, observation, route, temperature)`, to send an agent state and observation to a model and return one structured action. Each parameter is first replaced by a literal value so its role is visible.
+The opening lecture develops the sociology of technology and work through Marx, Braverman, Burawoy, Barley and Zuboff. The middle portion is a discussion of the three required articles. The final portion walks through the Week 9 Python function and compares draft and coach assistance for one customer-support case.
 
 ## Weekly completion task
 
-Planned: change one observation and submit a narrated screen recording explaining the function call, each parameter, the model return and the updated state. Upload it through the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) by 5:00 p.m. Eastern on the Tuesday before the next class.
-
-## Validation focus
-
-Updating a dictionary in place lets later agents observe a future state, creating an accidental order effect.
+Change one sentence in the assistant instruction and rerun both modes. Submit a narrated screen recording explaining every function argument, the raw and parsed return, the checks and the limits of the comparison. Follow the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html).

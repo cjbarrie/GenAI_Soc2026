@@ -1,29 +1,66 @@
 ---
-title: "Week 9 — How can micro-level interactions generate macro-level order?"
-description: "Provisional outline"
+title: "Week 9 — LLMs at work"
+description: "Performance, knowledge and organizational position"
 ---
 
-## Question
+## This week’s sociological question
 
-<div class="chapter-question">What must we specify before an apparent group pattern can be explained as the result of interacting agents?</div>
+<div class="chapter-question">When an LLM helps someone do their job, what changes: their performance, their knowledge, or their position within the organization?</div>
 
-## Why this week belongs here
+## Connection to the preceding material
 
-The course moves from model-generated responses to actors that observe one another and update over time. The sociological problem is micro-to-macro explanation, not simply whether agents can produce dialogue.
+Weeks 7 and 8 asked whether model-generated responses reproduce observed human outcomes. Week 9 changes the unit of analysis. The model now supplies advice inside a labour process, and the empirical question concerns workers, tasks and organizations rather than synthetic respondents.
 
-## Provisional core readings
+The methodological continuity remains important. We must define the target, preserve the raw model return and compare the output with external evidence. The new issue is organizational: the same underlying model can redistribute knowledge, discretion and visibility differently depending on how it is introduced.
 
-- Barrie et al. (2026), §§10.4.1–10.4.3. [Download chapter PDF](../downloads/readings/ai-and-research-methods-barrie-et-al-2026.pdf). [@BarrieEtAl2026AIResearchMethods]
-- Macy and Willer (2002), “From Factors to Actors.” [@MacyWiller2002]
-- Park et al. (2023), “Generative Agents.” [@ParkEtAl2023]
-- Further comparison: Chuang et al. (2024) and Ashery, Aiello and Baronchelli (2025). [@ChuangEtAl2024; @AsheryAielloBaronchelli2025]
+## Learning outcomes
 
-## Planned chapter and class arc
+By the end of the class, you should be able to distinguish assisted performance from retained knowledge; explain why the same technology can become part of different working arrangements; separate expertise, discretion and authority; and trace the input and output of the first student-edited Python function.
 
-Reconstruct the explanatory logic of classical ABMs; define state, observation, policy, network and timing; examine what memory, reflection and language policies add; compare generative-agent claims with transparent rule-based baselines.
+## Essential readings and what each contributes
 
-[See the provisional Week 9 Python plan](../python/session09.qmd).
+::: {.reading-list}
+- **Historical and sociological anchor:** Barley (1986), “Technology as an Occasion for Structuring,” *Administrative Science Quarterly* 31(1): 78–108. Read the complete article. Barley follows the same model of CT scanner into two hospitals and shows how local occupational relations produce different divisions of labour and authority. [DOI](https://doi.org/10.2307/2392767). [@Barley1986]
+- **Contemporary workplace application:** Brynjolfsson, Li and Raymond (2025), “Generative AI at Work,” *Quarterly Journal of Economics* 140(2): 889–942. Read the complete article. The paper studies a staggered rollout of an LLM assistant to 5,172 customer-support agents and estimates changes in measured performance while assistance is available. [DOI](https://doi.org/10.1093/qje/qjae044). [@BrynjolfssonLiRaymond2025]
+- **Assisted performance and retained knowledge:** Wiles et al. (2026), “Generative AI and the Temporary Upskilling of Knowledge Workers,” *Nature Human Behaviour*. Read the complete article. Consultants perform unfamiliar data-science work with or without ChatGPT; a later assessment tests technical knowledge without assistance. [DOI](https://doi.org/10.1038/s41562-026-02566-6). [@WilesEtAl2026]
+:::
 
-## Development status
+## Additional readings grouped by purpose
 
-This is a planning page. Slides, the full literature synthesis, workbook and take-home exercise will be built and reviewed later.
+- **Algorithmic control before generative AI:** Kellogg, Valentine and Christin (2020), “Algorithms at Work.” [DOI](https://doi.org/10.5465/annals.2018.0174). [@KelloggValentineChristin2020]
+- **Worker experience beyond throughput:** Oder and Béland (2025), “Artificial Intelligence, Emotional Labor, and the Quest for Sociological and Political Imagination among Low-Skilled Workers.” [DOI](https://doi.org/10.1093/polsoc/puae034). [@OderBeland2025]
+- **Task boundaries and overreliance:** Dell’Acqua et al. (2026), “Navigating the Jagged Technological Frontier.” [DOI](https://doi.org/10.1287/orsc.2025.21838). [@DellAcquaEtAl2026Jagged]
+- **Time savings and organizational coordination:** Dillon et al. (2025), “Shifting Work Patterns with Generative AI.” [DOI](https://doi.org/10.3386/w33795). [@DillonEtAl2025]
+- **Labour behind AI systems:** Le Ludec, Cornet and Casilli (2023), “The Problem with Annotation.” [DOI](https://doi.org/10.1177/20539517231188723). [@LeLudecCornetCasilli2023]
+
+## Sociological and methodological background
+
+The lecture develops a cumulative argument rather than a sequence of unrelated classics. Marx and Braverman direct attention to the distribution of knowledge and control within production. Burawoy shows that workers are not passive recipients of managerial systems: consent and shop-floor practice are produced inside the organization of work. Barley demonstrates that identical technologies can become part of different occupational arrangements. Zuboff adds that computerization can perform work while creating new information about the labour process.
+
+These distinctions matter for LLM assistance. A worker may retain formal permission to reject a draft even though the system performed much of the reasoning. A coaching interface may require more expertise from the worker without increasing their formal authority. We therefore distinguish three questions: who performs the reasoning, who chooses how to carry out the task and who has the right to make the final decision.
+
+## Synthesis of the current LLM literature
+
+Brynjolfsson, Li and Raymond report that access to the customer-support assistant increased resolutions per hour by about 15 per cent on average, with larger gains among less experienced workers. This is evidence about performance while assistance is available in one firm. Wiles and colleagues study different workers, tasks and a different design. They find better performance on assisted tasks, but no evidence of greater technical knowledge on their later unassisted measure.
+
+The juxtaposition tells us why performance and retained knowledge must be measured separately. It does not establish that the gains in the customer-support study were unaccompanied by learning. Barley gives us another reason to remain cautious: the organizational consequences of an assistant depend on the relations, incentives and practices that form around it.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 9 lecture slides" src="../_generated/slides/session09.html"></iframe></div>
+[Open the Week 9 slides full screen](../_generated/slides/session09.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 9 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session09.html).
+:::
+
+[Continue to the Week 9 Python work](../python/session09.qmd).
+
+## Take-home exercise
+
+Compare draft and coach assistance for the same customer-support case. Change one sentence in the assistance instruction, rerun both modes and explain every input, output, parameter and returned object in a narrated screen recording. Use the [recording and submission instructions](../recording-and-submission.qmd) and name the file with your name and `Week09`.
+
+## Summary and preparation for next week
+
+Improved performance during LLM assistance does not, by itself, show retained knowledge or a change in worker discretion and authority. Week 10 turns from workplace advice to writing, influence and relationships.

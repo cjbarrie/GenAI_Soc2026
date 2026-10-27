@@ -66,11 +66,11 @@ The course follows a **sociological-inference sequence**. The titles below are w
 | — | Oct 14 | No Wednesday meeting: NYU legislative Monday | — |
 | 7 | Oct 21 | Whose attitudes and experiences do synthetic populations represent? | Silicon sampling and representation |
 | 8 | Oct 28 | Can LLMs recover missing or unobserved social worlds? | Opinion prediction, validation, and limits |
-| 9 | Nov 4 | How can micro-level interactions generate macro-level order? | Generative agent-based models I |
-| 10 | Nov 11 | When can agent diversity and debate produce collective intelligence? | Generative agent-based models II; substantive sociology of AI |
-| 11 | Nov 18 | Who—or what—produces research data in an agentic workflow? | Research agents, tools, and provenance |
-| 12 | Nov 25 | What can we reproduce, and what remains opaque? | Low-stakes replication/project studio; attendance-flexible |
-| 13 | Dec 2 | What culture, ideology, and hierarchy are encoded in models? | Auditing LLMs as objects of study |
+| 9 | Nov 4 | When an LLM helps someone do their job, what changes? | LLMs at work |
+| 10 | Nov 11 | How do LLMs change writing, influence and relationships? | Communication and social influence |
+| 11 | Nov 18 | How do language models reproduce or alter inequality and institutional power? | Language, inequality and institutions |
+| — | Nov 25 | Class cancelled | No reading or coding task |
+| — | Dec 2 | Individual proposal meetings | No lecture or coding task |
 | 14 | Dec 9 | Project presentations | No new reading, lecture content or weekly task |
 
 ## Architectural notes
@@ -78,7 +78,7 @@ The course follows a **sociological-inference sequence**. The titles below are w
 - The midterm project proposal will sit near the transition from measurement/intervention to representation and establish the student's final-project question and design.
 - Replication, validation, and transparency are recurring practices throughout the semester, not topics deferred entirely to Session 12 or 14.
 - Sessions 3, 6, and 7 now form a deliberate qualitative-data sequence: **interpret a corpus → co-produce a corpus through interaction → simulate a population**. Session 3 includes only a short bridge on AI-moderated data provenance; Session 6 gives AI-assisted and AI-moderated interviewing sustained treatment; Session 7 retains synthetic respondents and representation.
-- Junsol Kim's work is a strong candidate for Sessions 8 and 10 and possibly Session 13; placement depends on the systematic literature audit.
+- Weeks 10 and 11 will be developed through the same literature-led review used for Week 9. Their pages remain outlines until the readings, slides and code are approved together.
 - Session 14 is reserved entirely for 10–12 minute student project presentations and questions. It contains no new readings, lecture content, code walkthrough or weekly task.
 
 ## Phase 3 approved design

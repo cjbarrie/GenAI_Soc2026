@@ -1,22 +1,127 @@
 ---
-title: "Week 9 Python — Putting a model call inside a function"
-description: "Provisional coding plan"
+title: "Week 9 Python — Configure an LLM assistant at work"
+description: "The first student-edited function"
 ---
 
-[Return to the Week 9 readings outline](../weeks/session09.qmd).
+[Return to the Week 9 readings and slides](../weeks/session09.qmd).
 
-This page records the coding direction only. The full walkthrough, notebook and completion task will be added after the week’s literature, slides and examples have been developed together.
+## Python walkthrough: configure an LLM assistant
 
-## Planned code trace
+The worker receives a customer message about one completed annual-plan charge and one pending authorization. The firm’s policy says that the pending entry is not a completed payment, a refund requires two settled transaction identifiers, and immediate hardship can be escalated without authorizing a refund.
 
-**Research task:** Ask one simulated actor to choose its next action after observing another actor.
+We send the same case and policy to the same model under two instructions:
 
-**Python sequence:** `def`, explicit parameters, local variables, `return` and calling one function with changed arguments. The runnable notebook follows input → messages → route → call → raw return → parsed output → check.
+- `draft`: identify the relevant facts and write a proposed customer reply;
+- `coach`: identify the checks and policy evidence, but leave `customer_reply` empty.
 
-## Planned completion recording
+The unit of analysis is one model-assisted case. The program compares model returns. It does not measure real worker performance, learning, consent, discretion or authority.
 
-Explain what enters each of the four function parameters, what remains local inside the function and what the returned dictionary contains. Compare the two calls without treating the model's reason as observed motivation. Submit one narrated screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. The key must not appear.
+## Workbook and environment links
 
-## Development status
+Use the supplied notebook rather than pasting the blocks into a blank notebook. It contains the tested Colab setup and the complete local check.
 
-The page is deliberately provisional. It does not yet publish an assessed notebook or task.
+[Open the Week 9 notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session09/session09_llms_at_work.ipynb) or [download the notebook](../_generated/downloads/session09/session09_llms_at_work.ipynb).
+
+[Download the local Python task](../_generated/downloads/session09/session09_task.py) or [download the complete offline bundle](../_generated/downloads/session09/session09_offline_bundle.zip).
+
+For local work, open a terminal in the complete course repository and run:
+
+```bash
+uv sync --frozen
+uv run jupyter lab
+```
+
+Colab selects OpenRouter. Local JupyterLab selects Ollama. The route remains visible inside the function.
+
+## The complete flow
+
+```text
+customer message + policy + assistance mode
+→ strings and a schema dictionary
+→ prompt and message list
+→ OpenRouter or Ollama
+→ raw JSON text
+→ parsed Python dictionary
+→ policy and mode checks
+→ one assistance record returned by the function
+```
+
+## Store the exact inputs
+
+```python
+customer_message = (
+    "My bank shows two entries for my annual plan. One has completed and "
+    "the other still says pending. Rent is due tomorrow."
+)
+policy_text = (
+    "A pending authorization is not a completed payment. "
+    "A refund requires two settled transaction identifiers. "
+    "Hardship may be escalated, but escalation does not authorize a refund."
+)
+```
+
+Each value is a `str`. The input omits the customer’s transaction records, the firm’s informal practices and any information not written here.
+
+## The function parameters
+
+```python
+def request_assistance(
+    customer_message,
+    policy_text,
+    assistance_mode,
+    route,
+):
+```
+
+Before treating these as abstract names, replace them with the first call’s values:
+
+```python
+customer_message = "One completed charge; one pending entry"
+policy_text = "Refund only after two settled transaction IDs"
+assistance_mode = "draft"
+route = "ollama"
+```
+
+The indented function body builds the prompt, uses an explicit `if/elif` branch for the chosen route, prints the raw return, parses it and constructs one record dictionary. `return record` sends that dictionary back to the line that called the function.
+
+## Run draft mode
+
+```python
+draft_record = request_assistance(
+    customer_message=customer_message,
+    policy_text=policy_text,
+    assistance_mode="draft",
+    route=ROUTE,
+)
+```
+
+The four arguments are strings. The output is a dictionary containing the inputs, route, model, exact message list, raw model text, parsed output and four checks.
+
+## Change one argument
+
+```python
+coach_record = request_assistance(
+    customer_message=customer_message,
+    policy_text=policy_text,
+    assistance_mode="coach",
+    route=ROUTE,
+)
+```
+
+Only the assistance mode changes. In coach mode, `customer_reply` should be `None`. The worker must compose the actual reply.
+
+## Interpret the checks cautiously
+
+The checks look for two unsupported phrases, require some reference to hardship escalation and verify whether the reply field matches the requested mode. They can catch specific failures. They do not prove that the recommendation is accurate, useful or fair, and they do not measure what a real worker learned.
+
+## Take-home exercise
+
+Revise one sentence in `mode_instruction`, rerun both modes and explain:
+
+1. the value and type of every function argument;
+2. the prompt and message list sent to the selected route;
+3. the raw return and parsed dictionary;
+4. what each check does and does not establish;
+5. how draft and coach modes distribute expertise, discretion and authority differently.
+
+Submit the narrated screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code style is not graded; understanding the routine is.

@@ -1,27 +1,39 @@
-"""Worked solution for Session 9.
-
-Read the function in this order: arguments → initial objects → loop/decision
-→ return value. The comments name the research meaning of each operation.
-"""
+"""Offline checks for the Week 9 workplace-assistance record."""
 
 
-def synchronous_update(states, neighbors, threshold):
-    """Return a new state dictionary; adopt 1 when the prior-state neighbor mean reaches the threshold."""
-    next_states = states.copy()
-    for agent, neighbor_ids in neighbors.items():
-        neighbor_values = [states[neighbor] for neighbor in neighbor_ids]
-        neighbor_mean = sum(neighbor_values) / len(neighbor_values)
-        next_states[agent] = 1 if neighbor_mean >= threshold else 0
-    return next_states
+def validate_assistance_record(record, assistance_mode):
+    """Return four bounded checks; this does not evaluate real worker outcomes."""
+    output = record["parsed_output"]
+    all_text = " ".join(
+        output["known_facts"] + output["uncertainties"] + [
+            output["recommended_action"], output["policy_evidence"],
+            output["worker_guidance"], output["customer_reply"] or "",
+        ]
+    ).lower()
+    return {
+        "does_not_invent_two_completed_charges": "two completed charges" not in all_text,
+        "does_not_promise_refund_today": "refund today" not in all_text,
+        "mentions_hardship_escalation": "escalat" in all_text,
+        "mode_contract_met": (
+            output["customer_reply"] is not None
+            if assistance_mode == "draft"
+            else output["customer_reply"] is None
+        ),
+    }
 
 
 def run_checks():
-    states = {"a": 0, "b": 1, "c": 1}
-    neighbors = {"a": ["b", "c"], "b": ["a", "c"], "c": ["a", "b"]}
-    updated = synchronous_update(states, neighbors, 0.5)
-    assert updated == {"a": 1, "b": 1, "c": 1}
-    assert states == {"a": 0, "b": 1, "c": 1}
-    assert updated is not states
+    common = {
+        "known_facts": ["One charge is completed.", "Another entry is pending."],
+        "uncertainties": ["Whether the pending entry will settle."],
+        "recommended_action": "Explain pending status and escalate hardship.",
+        "policy_evidence": "A refund requires two settled transaction identifiers.",
+        "worker_guidance": "Offer escalation without authorizing a refund.",
+    }
+    draft = {"parsed_output": {**common, "customer_reply": "The entry remains pending."}}
+    coach = {"parsed_output": {**common, "customer_reply": None}}
+    assert all(validate_assistance_record(draft, "draft").values())
+    assert all(validate_assistance_record(coach, "coach").values())
 
 
 if __name__ == "__main__":

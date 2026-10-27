@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "coursebook"
 GENERATED = BOOK / "_generated"
-DEVELOPED_SESSIONS = range(1, 9)
+DEVELOPED_SESSIONS = range(1, 10)
 GLOSSARY_PAGES = [
     "model-call-basics",
     "context-and-memory",

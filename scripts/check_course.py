@@ -36,7 +36,7 @@ def main() -> None:
         if not syllabus.exists():
             problems.append(f"missing: {syllabus.relative_to(ROOT)}")
 
-    for week in range(1, 14):
+    for week in range(1, 12):
         session = f"session{week:02d}"
         task = ROOT / "assessments/weekly_coding" / f"{session}_task.py"
         if not task.exists():
@@ -71,7 +71,7 @@ def main() -> None:
         print("Course checks failed:")
         print("\n".join(f"- {problem}" for problem in problems))
         raise SystemExit(1)
-    print("Course structure, Weeks 1–13 notebook/task syntax, presentation week, and secret checks passed.")
+    print("Course structure, Weeks 1–11 notebook/task syntax, non-teaching dates, presentation week, and secret checks passed.")
 
 
 if __name__ == "__main__":
