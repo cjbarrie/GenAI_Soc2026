@@ -1,21 +1,19 @@
-# Session 10 reading guide — Generative ABMs II and sociology of AI
+# Session 10 reading guide — Writing, influence and relationships
 
-## The disagreement to carry into class
+## The distinction to carry into class
 
-Population experiments and societies-of-thought studies attribute collective outcomes to interaction; the leakage critique shows that the same observation can have a non-emergent explanation.
+A generated message, an effect on its writer and a consequence for a relationship are three different outcomes. The required readings help define and observe them without collapsing one into another.
 
-Do not summarize the papers serially. Compare the inferential target, the role assigned to an LLM, the human/reference evidence, and the failure mode each design can or cannot reveal.
-
-| Reading | Ask while reading | Bring to the code |
+| Reading | Main object | Question for discussion |
 |---|---|---|
-| [Ashery et al. (2025), conventions and collective bias](https://doi.org/10.1126/sciadv.adu9368) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Barrie & Törnberg (2025), observational equivalence to leakage](https://arxiv.org/abs/2505.23796) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Kim et al. (2026), societies of thought](https://arxiv.org/abs/2601.10825) | What inference does the paper seek? | What evidence could disconfirm it? |
+| Zelizer (2012) | How people match ties, transactions, media and meanings | What does using an LLM change about the act of apologizing, beyond its wording? |
+| Hohenstein et al. (2023) | AI suggestions inside a conversation | Which results concern actual use, suspected use, language and partner judgment? |
+| Williams-Ceci et al. (2026) | Influence on the writer during composition | Why is a shift in the writer's reported attitude not evidence of recipient persuasion? |
 
 ## Before class
 
-Bring one passage that supports the strongest claim you think is warranted and one passage that makes you qualify it. Complete this sentence: **The output is useful for ___, but it would be invalid evidence for ___ unless ___.**
+Bring one passage from Zelizer that helps interpret the broken-commitment case, one feature of the Hohenstein design that supports a causal claim, and one limitation on the Williams-Ceci conclusion. Be ready to say what additional evidence you would need to claim that AI assistance helped or harmed a relationship.
 
-## Reading → code
+## Reading to code
 
-The workbook implements `compare_interaction_runs`. Its input is small enough to inspect manually. Predict the output, then decide which claim from the readings the check clarifies—and which larger claim it cannot settle.
+The workbook holds the event facts fixed, compares two instructions, and then varies the relationship label. It records prompts and generated messages. It does not manufacture a score for sincerity or relationship quality. Use the readings to decide what is observable in those records and what remains a question for human-participant research.

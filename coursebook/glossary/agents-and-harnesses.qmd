@@ -32,7 +32,7 @@ print(agent["task"])
 
 ## Tool {#agent-tool}
 
-<span class="term-meta advanced">Advanced · Week 11</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A tool is a callable capability outside the model, such as searching a corpus, reading a file or calculating a statistic.
 
@@ -87,7 +87,7 @@ print(state)
 
 ## Planning {#planning}
 
-<span class="term-meta advanced">Advanced · Week 11</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** Planning is the production or selection of steps intended to reach a goal. A plan may be generated once or revised after observations.
 
@@ -107,7 +107,7 @@ print(plan[0], "→", plan[-1])
 
 ## Trajectory and trace {#trajectory-trace}
 
-<span class="term-meta advanced">Advanced · Weeks 11–12</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A trajectory is the sequence of states, decisions, actions and observations produced during a run. A trace is the saved record that allows us to inspect that sequence.
 
@@ -144,7 +144,7 @@ print(should_stop)
 
 ## Checkpoint and human approval {#checkpoint-human-approval}
 
-<span class="term-meta advanced">Advanced · Weeks 11–13</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A checkpoint pauses the workflow at a named stage. Human approval is one possible rule for deciding whether the next action may proceed.
 
@@ -164,7 +164,7 @@ print(may_continue)
 
 ## Skill {#agent-skill}
 
-<span class="term-meta advanced">Advanced · Week 11</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** In many agent systems, a skill is a reusable package for a kind of task. It can contain instructions, examples, resources and references to tools. The term is not standardized across platforms.
 
@@ -184,7 +184,7 @@ print(skill["name"])
 
 ## Harness and scaffold {#harness-scaffold}
 
-<span class="term-meta advanced">Advanced · Week 11</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A harness is the surrounding software that prepares model inputs, exposes tools, carries state, repeats calls, applies limits and records events. **Scaffold** is often used for a designed arrangement of prompts and steps. Usage varies, so researchers should describe the actual components rather than rely on the label.
 
@@ -207,7 +207,7 @@ print(harness["events"])
 
 ## Guardrail {#guardrail}
 
-<span class="term-meta advanced">Advanced · Weeks 11–13</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A guardrail is a rule or check intended to constrain inputs, outputs or actions.
 
@@ -224,7 +224,7 @@ print(guardrail_passed)
 
 ## Sandbox {#sandbox}
 
-<span class="term-meta advanced">Advanced · Week 11</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A sandbox is a restricted environment that limits what code or tools can access or change.
 
@@ -265,5 +265,4 @@ print(claim_record["source_ids"])
 
 - [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
 - [Ollama tool calling](https://docs.ollama.com/capabilities/tool-calling)
-- [Week 9 Python: the first course agent function](../python/session09.qmd)
-- [Week 11 Python: a transparent research-agent tool call](../python/session11.qmd)
+- [Week 9 Python: the first student-edited function](../python/session09.qmd)

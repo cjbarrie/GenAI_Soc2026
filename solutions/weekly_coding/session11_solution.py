@@ -1,32 +1,40 @@
-"""Worked solution for Session 11.
+"""Offline checks for the Week 11 dialect-comparison routine."""
 
-Read the function in this order: arguments → initial objects → loop/decision
-→ return value. The comments name the research meaning of each operation.
-"""
+import json
 
 
-def build_provenance_table(records):
-    """Keep the first complete record for each claim-and-URL pair and return rejected record IDs."""
-    seen = set()
-    accepted = []
-    rejected = []
-    for record in records:
-        if not record.get("url") or not record.get("excerpt"):
-            rejected.append(record["id"])
-            continue
-        key = (record["claim"], record["url"])
-        if key not in seen:
-            seen.add(key)
-            accepted.append(record)
-    return accepted, rejected
+def build_pair_comparisons(results):
+    """Summarize whether the two variants in each pair received the same choice."""
+    pair_ids = []
+    for row in results:
+        if row["pair_id"] not in pair_ids:
+            pair_ids.append(row["pair_id"])
+
+    comparisons = []
+    for pair_id in pair_ids:
+        rows = [row for row in results if row["pair_id"] == pair_id]
+        assert len(rows) == 2
+        by_variant = {row["variant"]: row for row in rows}
+        comparisons.append({
+            "pair_id": pair_id,
+            "aae_occupation": by_variant["aae"]["occupation"],
+            "sae_occupation": by_variant["sae"]["occupation"],
+            "different": by_variant["aae"]["occupation"] != by_variant["sae"]["occupation"],
+        })
+    return comparisons
 
 
 def run_checks():
-    records = [{"id": 1, "claim": "Turnout rose", "url": "https://example.org/a", "excerpt": "turnout rose by two points"}, {"id": 2, "claim": "Turnout rose", "url": "https://example.org/a", "excerpt": "turnout rose by two points"}, {"id": 3, "claim": "Trust fell", "url": "", "excerpt": "trust fell"}]
-    accepted, rejected = build_provenance_table(records)
-    assert [row["id"] for row in accepted] == [1]
-    assert rejected == [3]
-    assert accepted[0]["url"] == "https://example.org/a"
+    results = [
+        {"pair_id": "talking", "variant": "aae", "occupation": "cashier"},
+        {"pair_id": "talking", "variant": "sae", "occupation": "office clerk"},
+        {"pair_id": "cooking", "variant": "aae", "occupation": "cook"},
+        {"pair_id": "cooking", "variant": "sae", "occupation": "cook"},
+    ]
+    comparisons = build_pair_comparisons(results)
+    assert comparisons[0]["different"] is True
+    assert comparisons[1]["different"] is False
+    assert json.loads('{"occupation": "cook"}')["occupation"] == "cook"
 
 
 if __name__ == "__main__":

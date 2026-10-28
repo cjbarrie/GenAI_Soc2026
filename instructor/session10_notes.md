@@ -1,45 +1,53 @@
-# Instructor notes — Session 10: Generative ABMs II and sociology of AI
+# Instructor notes — Session 10: Writing, influence and relationships
 
 ## Intended endpoint
 
-Students should leave able to defend this bounded claim: **Convergence becomes evidence of emergence only after plausible inherited or leaked solutions are probed.** They should also explain `compare_interaction_runs` line by line without live AI assistance.
+Students should be able to explain why an LLM-mediated interpersonal message creates at least three empirical objects: generated writing, possible influence on the writer, and a recipient or relationship outcome. They should use Zelizer, Goffman and Hochschild to interpret the same broken-commitment case without treating the theories as interchangeable accounts of authenticity.
 
 ## 165-minute plan
 
-- **9:30–9:42 — retrieval and course map:** locate the session in **Simulate**; restate last week's validation habit.
-- **9:42–10:15 — reading disagreement:** compare inferential targets rather than collecting findings.
-- **10:15–10:38 — study anatomy:** input, transformation, evidence, failure mode, claim.
-- **10:38–10:48 — break.**
-- **10:48–11:00 — code block 1:** inspect inputs and types; students predict before execution.
-- **11:00–11:12 — code block 2:** trace initialization and the first loop/decision.
-- **11:12–11:20 — code block 3:** print output; connect each field to research meaning.
-- **11:20–11:45 — paired completion task:** driver reads; navigator explains every line and predicts each check; swap roles halfway.
-- **11:45–12:05 — validation diagnostic:** interpret a failure as a case, not merely a failed assertion.
-- **12:05–12:15 — exit record:** claim, evidence, uncertainty, next skill.
+- **9:30–9:42 — opening case:** show the fixed moving facts and two instructions. Ask what each prompt leaves the model to infer.
+- **9:42–10:05 — Zelizer:** separate spheres, hostile worlds, *Cole v. Lucas*, connected lives and the relational meaning of delegation.
+- **10:05–10:23 — Goffman:** line, face, incident, account, responsibility, proposed repair and recipient response.
+- **10:23–10:42 — Hochschild:** the 261 protocols, feeling rules, emotion work, expression and interpretation.
+- **10:42–10:48 — Gershon and Illouz:** medium choice and available cultural vocabularies.
+- **10:48–10:58 — break.**
+- **10:58–11:32 — reading discussion:** reconstruct Hohenstein's two studies and Williams-Ceci's outcome; compare all three readings using the opening case.
+- **11:32–12:08 — Python walkthrough:** dictionary, instruction strings, prompt, route call, returned string, function, first loop iteration, record and researcher notes.
+- **12:08–12:15 — close:** name what the demonstration shows and the human outcomes still requiring evidence.
 
-No instructor coding segment exceeds twelve minutes.
+## Core explanations
 
-## Required code language
+### Zelizer
 
-Before typing, say: **input value and type → operation → output value and type → research meaning**. Avoid “this just processes the data.” Ask students to name exactly what changes and what stays unchanged.
+Do not define relational work as tone adjustment. Start from the empirical challenge to separate spheres and hostile worlds. In *Cole v. Lucas*, the promissory notes did not carry a stable meaning independently of the legal definition of the tie. Apply this to the medium and performance of the apology: identical prose can be a different relational act if the sender reflects and revises, copies automatically, discloses assistance or conceals it.
 
-- The first dictionary groups outcomes by interaction structure.
-- The same loop performs a separate contamination check; it does not remove cases silently.
-- The second loop summarizes repeated runs rather than selecting the most impressive trajectory.
-- The function returns performance and probe evidence separately so the researcher must interpret both.
+### Goffman
 
-## Likely sticking points
+Use the broken promise as an interactional incident. The work requirement is an account; it does not by itself acknowledge the late notice or the reliance. The offers are possible corrective moves. The recipient's acceptance, refusal or renegotiation is another move and cannot be inferred from the message.
 
-- Brackets: pause and distinguish list position `items[0]` from dictionary key `record["field"]`.
-- Assignment: `=` gives a name to a value; `==` asks whether two values are equal.
-- Loops: trace the first iteration with actual values before describing the general pattern.
-- Functions: arguments enter; local variables change; `return` produces the output.
-- Validation: a passing software check confirms the coded expectation, not the sociological claim.
+### Hochschild
+
+Name the evidence: retrospective written protocols concerning attempts to manage emotion. Keep outward expression, attempted emotion management and recipient interpretation separate. AI may reduce expressive effort; prompting could also facilitate reflection. Neither process is visible in the text alone.
+
+## Contemporary studies
+
+For Hohenstein, draw the actual-use/suspected-use distinction precisely. Random access encouraged use and supports the instrumented actual-use estimates. Suspicion was measured after the interaction and the corresponding association is not a randomized disclosure effect. The outcomes are conversation language and immediate partner ratings, not long-term relationship maintenance.
+
+For Williams-Ceci, establish the writer outcome before showing the effect. The experiment shows that biased suggestions can shift the writer's reported attitude. It does not test whether another person was persuaded.
+
+## Python language
+
+For each block say: **input value and type → operation → output value and type → sociological meaning → unobserved outcome**.
+
+- The facts dictionary stores only supplied information.
+- The f-string turns the instruction, relationship and facts into one prompt string.
+- The function receives three strings and returns one raw message string.
+- The loop traces one relationship at a time and appends one record dictionary.
+- Researcher notes are written after inspection and remain separate from the model return.
+
+The live route is the ordinary path. Use `USE_RECORDED = True` only for an outage. In the recorded contingency, students should not invent new relationship labels because no recorded return exists for them.
 
 ## Completion standard
 
-Prediction; functioning small algorithm; passing checks plus one interpreted disagreement/failure; 100–150 word connection to a required reading. Syntax elegance is irrelevant.
-
-## Contingency
-
-If environment setup fails, pair students around the rendered notebook and have them trace the provided output. Hardware or API access must not determine completion.
+The recording must show the two-instruction comparison, the three-relationship loop, one meaningful change, the raw output and the researcher-notes object. The student must explain one connection to a required or core historical reading and state what writer or recipient evidence would be needed for a stronger claim. Code elegance is not graded.

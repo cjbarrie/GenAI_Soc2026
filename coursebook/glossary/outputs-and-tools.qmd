@@ -111,7 +111,7 @@ print(structure_ok, evidence_exists)
 
 ## Tool definition, call and result {#tool-calling}
 
-<span class="term-meta advanced">Advanced · Week 11</span>
+<span class="term-meta advanced">Advanced reference</span>
 
 **In plain English.** A tool definition tells a model what operation is available and what arguments it accepts. A tool call is the model's request to use it. A tool result is the value returned by the surrounding program.
 

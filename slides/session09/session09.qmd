@@ -18,54 +18,60 @@ format:
     embed-resources: true
 ---
 
-## A customer asks whether they have been charged twice
+## A consultant reviews an AI analysis of a prediction model
 
 <div class="opening-case">
-<div><span>Bank statement</span><b>Annual plan · completed</b><b>Annual plan · pending</b></div>
-<blockquote>“The pending amount has reduced the money available for my rent tomorrow. Have I been charged twice, and can you refund it today?”</blockquote>
+<div><span>Held-out test</span><b>Model accuracy · 80%</b><b>Always predict no mortgage · 60%</b></div>
+<blockquote>“The model is 80% accurate, so it is ready to guide an investment strategy. Its score shows that increasing a couple’s score causes them to take out a mortgage.”</blockquote>
 </div>
 
-<p class="plain-note">The worker needs to distinguish what the record establishes, what remains uncertain and what the firm permits.</p>
+<p class="plain-note">The consultant must decide which claims follow from the evidence before advising the client.</p>
+<p class="citation">Instructor-authored results and analysis, adapted from the statistical interpretation task in Wiles et al. (2026).</p>
 
 ---
 
-## The worker has this billing policy
+## What the supplied results establish
 
-<div class="policy-card">
-<p>A pending authorization is <strong>not a completed payment</strong> and normally disappears within three to five business days.</p>
-<p>Agents cannot manually release or refund a pending authorization.</p>
-<p>A duplicate-charge refund requires <strong>two distinct settled transaction identifiers</strong>.</p>
-<p>Immediate financial hardship may be escalated to a supervisor, but escalation does not itself authorize a refund.</p>
-</div>
+<table class="closed-table"><thead><tr><th>Result</th><th>What we can say</th><th>What remains unresolved</th></tr></thead><tbody><tr><td>80% accuracy on 200 held-out cases</td><td>The model classified more cases correctly than the stated baseline.</td><td>Accuracy does not show how well the predicted probabilities correspond to observed frequencies.</td></tr><tr><td>60% accuracy from always predicting no mortgage</td><td>The model exceeds this simple comparison by 20 percentage points.</td><td>The baseline is not “chance,” and the comparison does not establish decision value.</td></tr><tr><td>20 false negatives among 80 mortgage cases</td><td>The model missed one quarter of the observed mortgage cases.</td><td>We still lack the number of false positives and their consequences.</td></tr></tbody></table>
+
+<p class="plain-note">Held-out prediction does not show that changing the score would cause anyone to take out a mortgage.</p>
 
 ---
 
-## The assistant receives three pieces of text
+## The assistant receives the results, the analysis and an instruction
 
 <div class="input-flow">
-<div><span>1</span><b>Customer message</b><p>What the customer reports</p></div>
-<div><span>2</span><b>Internal policy</b><p>What the firm currently permits</p></div>
-<div><span>3</span><b>Assistance mode</b><p>What kind of help the system should provide</p></div>
+<div><span>1</span><b>Model results</b><p>The held-out figures supplied to the consultant</p></div>
+<div><span>2</span><b>AI analysis</b><p>The claims that require review</p></div>
+<div><span>3</span><b>Assistance mode</b><p>Draft the advice or coach the consultant</p></div>
 </div>
 <div class="flow-arrow">↓</div><div class="model-box">LLM request</div>
 
 ---
 
-## Draft mode writes a proposed reply
+## The assistant sits inside an existing division of labour
 
-<div class="mode-layout"><div><span class="mode-label">DRAFT</span><p>The model identifies the relevant policy, recommends an action and writes text that could be sent to the customer.</p></div><div class="output-card"><b>Recommended action</b><p>Explain that the pending entry is not evidence of a second settled charge. Offer a hardship escalation.</p><b>Customer reply</b><p>“I can see why this is urgent. The second entry is still pending…”</p></div></div>
+<div class="workplace-map"><div><b>General consultant</b><p>Frames the client problem and remains responsible for the advice.</p></div><div><b>LLM assistant</b><p>Reviews the supplied analysis under a draft or coach instruction.</p></div><div><b>Data-science team</b><p>Handles technical questions that the available evidence cannot settle.</p></div><div><b>Interaction record</b><p>Stores the prompt, recommendation, edits and escalation.</p></div></div>
+
+<p class="plain-note">The example concerns the organization of knowledge work as well as the quality of one answer.</p>
 
 ---
 
-## Coach mode leaves the reply to the worker
+## Draft mode writes a proposed client note
 
-<div class="mode-layout coach"><div><span class="mode-label">COACH</span><p>The model lists the checks, uncertainty and relevant policy. The worker must decide how to explain the case.</p></div><div class="output-card"><b>Worker guidance</b><p>Verify whether a second transaction has settled. Do not promise a refund. Consider hardship escalation.</p><b>Customer reply</b><p><code>None</code></p></div></div>
+<div class="mode-layout"><div><span class="mode-label">DRAFT</span><p>The model reviews the claims and writes text that the consultant could adapt for the client.</p></div><div class="output-card"><b>Assessment</b><p>The model exceeds the stated baseline, but the evidence is predictive rather than causal. Accuracy alone does not establish readiness for an investment decision.</p><b>Client note</b><p>“The initial result is promising, but we need error and calibration evidence before recommending use.”</p></div></div>
+
+---
+
+## Coach mode leaves the assessment to the consultant
+
+<div class="mode-layout coach"><div><span class="mode-label">COACH</span><p>The model identifies questions and missing evidence. The consultant must evaluate the analysis and write the advice.</p></div><div class="output-card"><b>Questions for the consultant</b><p>What does the baseline represent? Which errors matter for the client? Are the probabilities calibrated? What would support a causal claim?</p><b>Client note</b><p><code>None</code></p></div></div>
 
 ---
 
 ## What has changed in the worker’s job?
 
-<div class="three-question"><div><b>Performance</b><p>Does the worker handle the case more quickly or accurately?</p></div><div><b>Knowledge</b><p>Can the worker reason through a similar case without the assistant?</p></div><div><b>Organizational position</b><p>Who supplies the reasoning, chooses the procedure and makes the final decision?</p></div></div>
+<div class="three-question"><div><b>Performance</b><p>Does the consultant produce a more accurate assessment more quickly?</p></div><div><b>Knowledge</b><p>Can the consultant evaluate a new model without the assistant?</p></div><div><b>Organizational position</b><p>What happens to the consultant’s relation with the data-science team and management?</p></div></div>
 
 <p class="plain-note">These require different evidence. A fluent answer from the model settles none of them.</p>
 
@@ -97,8 +103,8 @@ format:
 
 ## A workplace assistant can return codified practice as an instruction
 
-<div class="knowledge-pipeline"><div>Earlier customer conversations</div><i>→</i><div>Training data and organizational documents</div><i>→</i><div>Advice during a new case</div></div>
-<div class="compare-note"><b>Continuity</b><p>Management collects and standardizes examples of successful work.</p><b>Difference</b><p>The system can generate situated natural-language advice during a live interaction.</p></div>
+<div class="knowledge-pipeline"><div>Earlier technical analyses</div><i>→</i><div>Documentation, examples and model training</div><i>→</i><div>Advice during a new review</div></div>
+<div class="compare-note"><b>Continuity</b><p>The organization collects and standardizes expert procedures.</p><b>Difference</b><p>The system can generate an assessment for a new case during the work itself.</p></div>
 
 ---
 
@@ -167,7 +173,7 @@ format:
 
 ## Expertise, discretion and authority describe different parts of the job
 
-<table class="closed-table"><thead><tr><th>Dimension</th><th>Question</th><th>Draft mode</th><th>Coach mode</th></tr></thead><tbody><tr><td>Expertise</td><td>Who performs the substantive reasoning?</td><td>Much may be in the generated draft</td><td>More may remain with the worker</td></tr><tr><td>Discretion</td><td>Who chooses how the task is carried out?</td><td>The worker may edit or reject</td><td>The worker composes the reply</td></tr><tr><td>Authority</td><td>Who can make the final decision?</td><td colspan="2">The organizational rule may be unchanged</td></tr></tbody></table>
+<table class="closed-table"><thead><tr><th>Dimension</th><th>Question</th><th>Draft mode</th><th>Coach mode</th></tr></thead><tbody><tr><td>Expertise</td><td>Who performs the substantive reasoning?</td><td>Much may be in the generated assessment</td><td>More may remain with the consultant</td></tr><tr><td>Discretion</td><td>Who chooses how the task is carried out?</td><td>The consultant may edit or reject</td><td>The consultant writes the assessment</td></tr><tr><td>Authority</td><td>Who can approve the client recommendation?</td><td colspan="2">The formal decision may remain with a manager</td></tr></tbody></table>
 
 <p class="plain-note">Coach mode does not necessarily increase formal authority. Draft mode can preserve formal discretion while shifting reasoning to the system.</p>
 
@@ -225,6 +231,14 @@ format:
 
 ---
 
+## One task involved reviewing a mortgage-prediction model
+
+<div class="figure-layout"><img src="images/wiles_task_description_crop.png" alt="Highlighted task descriptions from Wiles and colleagues"><div><p>General consultants had to fact-check statistical recommendations and interpret machine-learning output.</p><p>The authors designed the tasks so that ChatGPT could help, but an answer produced by ChatGPT alone would be wrong.</p><p>Our opening example simplifies this task and uses instructor-authored results.</p></div></div>
+
+<p class="citation">Wiles et al. (2026), Methods, “Task descriptions.”</p>
+
+---
+
 ## ChatGPT improved performance on the assisted tasks
 
 <div class="figure-layout"><img src="images/wiles_performance_crop.png" alt="Wiles Figure 1 showing assisted task performance"><div><p>Treated participants performed better than controls on coding, statistics and prediction tasks.</p><p>They still remained below the data-scientist benchmark represented by zero.</p></div></div>
@@ -255,114 +269,122 @@ format:
 
 ---
 
-## What counts as skill in each paper?
+## The readings examine different aspects of skill at work
 
-<div class="discussion-question">Where does practical knowledge appear in Barley? What is measured as performance in Brynjolfsson et al.? What additional evidence do Wiles et al. use to test retained knowledge?</div>
+<table class="closed-table reading-comparison"><thead><tr><th>Study</th><th>Evidence</th><th>Question for discussion</th></tr></thead><tbody><tr><td><b>Barley</b></td><td>Technologists using the same scanners in two hospitals</td><td>Why did the division of labour develop differently?</td></tr><tr><td><b>Brynjolfsson et al.</b></td><td>Customer-support performance while an assistant was available</td><td>Why did less experienced workers gain more?</td></tr><tr><td><b>Wiles et al.</b></td><td>Assisted consulting tasks and a later test without ChatGPT</td><td>What did the consultants learn, if anything?</td></tr></tbody></table>
 
----
-
-## Where does occupational knowledge reside?
-
-<div class="discussion-question">Compare the technologists’ “clandestine teaching,” the customer-service assistant trained on earlier conversations and the consultants using ChatGPT.</div>
+<p class="discussion-line">Which study gives us evidence about performance, retained knowledge or changes in the organization of work?</p>
 
 ---
 
-## Who exercises expertise, discretion and authority?
+## Possible explanations for the larger gains among less experienced workers
 
-<div class="discussion-question">Apply all three questions to draft and coach mode. Does permission to edit a generated answer mean that the worker performed the reasoning embodied in it?</div>
+<div class="explanation-layout"><div class="finding-statement"><span>Finding</span><b>Workers with less tenure and lower prior performance gained more.</b><p>The study identifies a difference in measured performance. It cannot by itself tell us why that difference arose.</p></div><div class="explanation-list"><p><b>Access to earlier workers’ practical knowledge</b><br>The assistant may make useful responses available sooner.</p><p><b>Closer adherence to the firm’s preferred style</b><br>The assistant may standardize how workers handle a case.</p><p><b>A lower starting point</b><br>Workers with more room to improve may show larger gains.</p></div></div>
 
----
-
-## Why might less experienced workers gain more?
-
-<div class="discussion-question">Consider access to codified expertise, standardization towards an organizational norm and a lower starting baseline. What evidence would distinguish these explanations?</div>
+<p class="discussion-line">What additional evidence would distinguish these explanations?</p>
 
 ---
 
-## Would the same assistant have the same effect in another workplace?
+## The mortgage-model review involves four kinds of work
 
-<div class="discussion-question">Which occupational relations, incentives, training arrangements and performance measures might change the result?</div>
+<div class="case-work"><div><span>Data-science team</span><p>Builds the prediction model and reports its test results.</p></div><div><span>AI assistant</span><p>Examines the results and the existing AI-written analysis.</p></div><div><span>Consultant</span><p>Interprets the evidence and decides what to tell the client.</p></div><div><span>Client organization</span><p>Decides whether and how to use the model.</p></div></div>
 
----
-
-## How should the customer-support assistant be configured?
-
-<div class="discussion-question">Choose draft mode, coach mode or a third design. State the intended outcome and the evidence needed to assess performance, learning, discretion and authority.</div>
+<div class="author-questions"><p><b>Barley:</b> Which part of the division of labour changes?</p><p><b>Zuboff:</b> What does the system allow the organization to record?</p><p><b>Wiles et al.:</b> What could the consultant do later without the assistant?</p></div>
 
 ---
 
-## The code compares two configurations
+## Draft and coach modes allocate the review differently
 
-<div class="code-purpose"><div><b>It does</b><p>Send the same case and policy under two assistance instructions; preserve and check the returned records.</p></div><div><b>It does not</b><p>Measure real productivity, learning, worker consent, discretion or managerial control.</p></div></div>
+<table class="closed-table mode-comparison"><thead><tr><th>Part of the task</th><th>Draft mode</th><th>Coach mode</th></tr></thead><tbody><tr><td>Assess the claims</td><td>The assistant supplies an assessment.</td><td>The assistant identifies issues and asks the consultant questions.</td></tr><tr><td>Write the client note</td><td>The assistant writes a proposed note.</td><td>The consultant writes it.</td></tr><tr><td>Make the final decision</td><td>The consultant still has formal authority in our example.</td><td>The consultant still has formal authority in our example.</td></tr><tr><td>Test later knowledge</td><td>Not measured by the assisted task.</td><td>Not measured by the assisted task.</td></tr></tbody></table>
 
----
-
-## The complete program in ordinary language
-
-<ol class="pseudocode"><li>Store the customer message, policy and assistance mode.</li><li>Combine them into the model instruction.</li><li>Send the request through OpenRouter or Ollama.</li><li>Print the raw text before parsing it.</li><li>Turn the JSON text into a dictionary.</li><li>Check the answer against policy and mode.</li><li>Repeat the operation inside a function.</li><li>Change only the mode and compare.</li></ol>
+<p class="discussion-line">Which configuration would you use, and what outcome would you measure?</p>
 
 ---
 
-## The program starts with one customer message
+## The coding exercise uses coach mode
+
+<div class="mode-code-bridge"><div><pre><code class="python">assistant_instruction = (
+    "Act as a coach. "
+    "Do not write the final advice."
+)</code></pre></div><div><p><b>The assistant performs an initial review</b><br>It checks the claims and proposes questions for the consultant.</p><p><b>The worker chooses what happens next</b><br>Ask the model again, consult the data-science team or begin writing the note.</p></div></div>
+
+<p class="plain-note">The exercise now follows a short work process rather than comparing two completed model returns.</p>
+
+---
+
+## The complete program
+
+<div class="program-map"><div><span>1</span><b>Initial review</b><p>Send the evidence and questionable analysis to the assistant.</p></div><div><span>2</span><b>Worker choice</b><p>Inspect the return and decide whether to ask again, escalate or start writing.</p></div><div><span>3</span><b>Optional follow-up</b><p>Add the worker's question to the conversation and call the model again.</p></div><div><span>4</span><b>Decision and reflection</b><p>Record the worker's final action and examine how the work was divided.</p></div></div>
+
+---
+
+## The program starts with a dictionary of results
 
 ```python
-customer_message = (
-    "My bank shows one completed annual-plan charge and "
-    "another entry that is still pending. Rent is due tomorrow."
+model_results = {
+    "test_cases": 200,
+    "model_accuracy": 0.80,
+    "always_predict_no_mortgage_accuracy": 0.60,
+    "false_negatives": 20,
+}
+
+print(model_results)
+print(type(model_results))
+```
+
+<div class="io-line"><b>Input:</b> named values<i>→</i><b>Output:</b> one <code>dict</code> containing integers and floats</div>
+
+---
+
+## The AI analysis is stored as a string
+
+```python
+ai_analysis = (
+    "The model is 80% accurate, so it is ready to guide "
+    "an investment strategy. Its score shows that increasing "
+    "a couple's score causes them to take out a mortgage."
+)
+```
+
+<p class="code-meaning">The text includes a causal claim that the held-out predictive evidence cannot support.</p>
+
+---
+
+## The coaching instruction is another string
+
+```python
+assistant_instruction = (
+    "Act as a coach. Check the analysis. "
+    "Do not write the final client advice."
 )
 
-print(customer_message)
-print(type(customer_message))
+print(assistant_instruction)
+print(type(assistant_instruction))
 ```
 
-<div class="io-line"><b>Input:</b> literal text · <code>str</code><i>→</i><b>Output:</b> stored text and <code>&lt;class 'str'&gt;</code></div>
+<p class="code-meaning">This value assigns an initial task to the model. The worker still decides what to do with the reply.</p>
 
 ---
 
-## The internal policy is a second string
+## The results dictionary becomes prompt text
 
 ```python
-policy_text = (
-    "A pending authorization is not a completed payment. "
-    "A refund requires two distinct settled transaction IDs. "
-    "Financial hardship may be escalated, but escalation "
-    "does not authorize a refund."
-)
-```
+results_text = json.dumps(model_results, indent=2)
 
-<p class="code-meaning">The program knows only the policy supplied here. Informal practice and undocumented exceptions are absent.</p>
-
----
-
-## The assistance mode is another string
-
-```python
-assistance_mode = "draft"
-
-print(assistance_mode)
-print(type(assistance_mode))
-```
-
-<p class="code-meaning">This value changes the organizational instruction. It does not change the underlying model.</p>
-
----
-
-## An f-string combines the three values
-
-```python
 prompt = f"""
-Customer message:
-{customer_message}
+Model results:
+{results_text}
 
-Internal policy:
-{policy_text}
+AI-written analysis:
+{ai_analysis}
 
-Assistance mode: {assistance_mode}
+Instruction:
+{assistant_instruction}
 Return the six required fields as JSON.
 """
 ```
 
-<p class="code-meaning">The braces insert the current string values into one new string.</p>
+<p class="code-meaning"><code>json.dumps()</code> produces a string. The braces insert the current evidence, analysis and instruction into the prompt.</p>
 
 ---
 
@@ -383,21 +405,45 @@ print(messages[0]["content"])
 
 ---
 
+## OpenRouter uses the same output schema {data-auto-stretch="false"}
+
+<div class="schema-code">
+
+```python
+response_format = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "work_review",
+        "strict": True,
+        "schema": output_schema,
+    },
+}
+```
+
+</div>
+
+<p class="code-meaning">This dictionary tells OpenRouter to require the fields already defined in <code>output_schema</code>.</p>
+
+---
+
 ## OpenRouter sends the request to a hosted model
 
 ```python
 if ROUTE == "openrouter":
-    client = OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"])
+    api_key = os.getenv("OPENROUTER_API_KEY") or getpass(
+        "OpenRouter course key (hidden): "
+    )
+    client = OpenRouter(api_key=api_key)
     response = client.chat.send(
         model=HOSTED_MODEL,
         messages=messages,
-        response_format=response_format,
         temperature=0,
+        response_format=response_format,
     )
-    raw_text = response.choices[0].message.content
+    raw_output = response.choices[0].message.content
 ```
 
-<p class="code-meaning">The text leaves the computer and is processed by the selected hosted provider.</p>
+<p class="code-meaning">The prompt leaves the computer and is processed by the selected hosted provider.</p>
 
 ---
 
@@ -412,7 +458,7 @@ else:
         format=output_schema,
         options={"temperature": 0},
     )
-    raw_text = response.message.content
+    raw_output = response.message.content
 ```
 
 <p class="code-meaning">The Python request goes to the Ollama server running locally. The model must already be downloaded.</p>
@@ -422,142 +468,193 @@ else:
 ## The raw return is text
 
 ```python
-print(raw_text)
-print(type(raw_text))
+print(raw_output)
+print(type(raw_output))
 ```
 
-<pre class="mini-output"><code>{"known_facts":["One charge is settled"],
- "uncertainties":["Whether the pending entry will settle"],
- "recommended_action":"Explain pending status; escalate hardship",
- "policy_evidence":"Refund requires two settled IDs",
- "worker_guidance":"Do not promise a refund",
- "customer_reply":"I can see why this is urgent..."}</code></pre>
+<pre class="mini-output"><code>{"baseline_comparison":"model_outperforms_baseline",
+ "causal_claim":"not_supported",
+ "decision_status":"needs_more_information",
+ "explanation":["Accuracy exceeds the stated baseline"],
+ "questions_for_worker":["Which errors matter for the decision?"],
+ "data_science_escalation":"Check calibration and error costs"}</code></pre>
 
 ---
 
 ## JSON parsing turns the text into a dictionary
 
 ```python
-result = json.loads(raw_text)
+parsed_output = json.loads(raw_output)
 
-print(result["known_facts"])
-print(result["uncertainties"])
-print(type(result))
+print(parsed_output["baseline_comparison"])
+print(parsed_output["causal_claim"])
+print(type(parsed_output))
 ```
 
 <div class="io-line"><b>Input:</b> JSON-formatted <code>str</code><i>→</i><b>Output:</b> Python <code>dict</code></div>
 
 ---
 
-## The policy checks are Boolean expressions
+## Three checks compare the output with stated requirements
 
 ```python
-combined_text = " ".join(
-    result["known_facts"] + [result["recommended_action"]]
-).lower()
+baseline_ok = (
+    parsed_output["baseline_comparison"]
+    == "model_outperforms_baseline"
+)
+causal_ok = parsed_output["causal_claim"] == "not_supported"
+decision_ok = parsed_output["decision_status"] == "needs_more_information"
 
-invented_second_charge = "two completed charges" in combined_text
-unsupported_refund = "refund today" in combined_text
-
-print(invented_second_charge)
-print(unsupported_refund)
+print(baseline_ok, causal_ok, decision_ok)
 ```
 
-<p class="code-meaning"><code>False</code> means the forbidden phrase was not found. It does not prove that the whole answer is correct.</p>
+<p class="code-meaning"><code>True</code> means the selected category matches the requirement written into the exercise. It does not validate the entire assessment.</p>
 
 ---
 
-## The mode check compares the return with the instruction
+## The worker chooses the next step
 
 ```python
-if assistance_mode == "draft":
-    mode_ok = result["customer_reply"] is not None
-else:
-    mode_ok = result["customer_reply"] is None
+available_actions = [
+    "ask_model_again",
+    "escalate_to_data_science",
+    "write_client_note",
+]
+worker_next_step = "ask_model_again"
 
-print(mode_ok)
+print(worker_next_step)
 ```
 
-<p class="code-meaning">For draft mode: is there a reply? For coach mode: was the reply left empty?</p>
+<p class="code-meaning">The selected string controls the next branch of the program. It represents a worker decision, not a model output.</p>
 
 ---
 
 ## First replace the function parameters with literal values
 
 ```python
-customer_message = "One completed charge; one pending entry"
-policy_text = "Refund only after two settled transaction IDs"
-assistance_mode = "draft"
+messages = [
+    {"role": "user", "content": initial_prompt}
+]
 route = "ollama"
 ```
 
-<p class="code-meaning">These four values will become the four arguments entering the function.</p>
+<p class="code-meaning">These two values will become the two arguments entering the function.</p>
 
 ---
 
-## The first function repeats the operation
+## The first function sends the current conversation
 
 ```python
-def request_assistance(
-    customer_message,
-    policy_text,
-    assistance_mode,
-    route,
-):
-    # Build prompt and messages
+def call_review_assistant(messages, route):
     # Call the selected model route
-    # Parse and check the return
-    return assistance_record
+    # Preserve the raw return
+    # Parse and check the JSON
+    return reply_record
 ```
 
 <p class="code-meaning"><code>def</code> stores a reusable procedure. The indented lines run only when the function is called.</p>
 
 ---
 
-## Arguments enter; one dictionary comes back
+## The worker receives the first reply
 
 ```python
-draft_record = request_assistance(
-    customer_message=customer_message,
-    policy_text=policy_text,
-    assistance_mode="draft",
+first_reply = call_review_assistant(
+    messages=messages,
     route=ROUTE,
 )
 
-print(draft_record["parsed_output"])
-print(type(draft_record))
+print(first_reply["parsed_output"])
+print(type(first_reply))
 ```
 
-<div class="io-line"><b>Input:</b> four arguments<i>→</i><b>Output:</b> one research-record <code>dict</code></div>
+<div class="io-line"><b>Input:</b> message list and route<i>→</i><b>Output:</b> one reply-record <code>dict</code></div>
 
 ---
 
-## Change one argument and run the operation again
+## A follow-up preserves the earlier exchange
 
 ```python
-coach_record = request_assistance(
-    customer_message=customer_message,
-    policy_text=policy_text,
-    assistance_mode="coach",
-    route=ROUTE,
-)
-
-print(coach_record["parsed_output"]["customer_reply"])
+if worker_next_step == "ask_model_again":
+    messages.append({
+        "role": "assistant",
+        "content": first_reply["raw_output"],
+    })
+    messages.append({
+        "role": "user",
+        "content": follow_up_question,
+    })
+    second_reply = call_review_assistant(messages, ROUTE)
 ```
 
-<p class="code-meaning">The customer message, policy, model and route remain fixed. Only the assistance instruction changes.</p>
+<p class="code-meaning">The second call receives three messages: the original request, the first reply and the worker's question.</p>
 
 ---
 
-## Compare the two configurations
+## The worker can stop without making a second call
 
-<table class="closed-table"><thead><tr><th>Question</th><th>Draft</th><th>Coach</th></tr></thead><tbody><tr><td>Who produced the customer-facing text?</td><td>The model</td><td>The worker must do so</td></tr><tr><td>Can the worker still edit or reject?</td><td>Possibly</td><td>Yes</td></tr><tr><td>Who can authorize a refund?</td><td colspan="2">The organizational policy remains the same</td></tr><tr><td>What did our run establish?</td><td colspan="2">How the two instructions changed model output</td></tr></tbody></table>
+```python
+elif worker_next_step in {
+    "escalate_to_data_science",
+    "write_client_note",
+}:
+    second_reply = None
+
+print("Second call made:", second_reply is not None)
+```
+
+<p class="code-meaning">The branch makes the worker's choice consequential. <code>None</code> records that no second model return exists.</p>
+
+---
+
+## The worker records a final action and reason
+
+```python
+worker_final_action = "escalate_to_data_science"
+worker_reason = (
+    "The result omits calibration and the costs "
+    "of different mistakes."
+)
+```
+
+<p class="code-meaning">Both values are written by the worker after inspecting the available evidence and model replies.</p>
+
+---
+
+## The work record contains model and worker contributions
+
+```python
+work_record = {
+    "first_model_reply": first_reply,
+    "worker_next_step": worker_next_step,
+    "worker_question": follow_up_question,
+    "second_model_reply": second_reply,
+    "worker_final_action": worker_final_action,
+    "worker_reason": worker_reason,
+}
+```
+
+<p class="code-meaning">The dictionary preserves the model's replies alongside the question and decision supplied by the worker.</p>
+
+---
+
+## What changed in the work?
+
+<table class="closed-table"><thead><tr><th>Question</th><th>What to inspect</th></tr></thead><tbody><tr><td>What reasoning did the model perform?</td><td>The two parsed replies</td></tr><tr><td>What choice remained with the worker?</td><td><code>worker_next_step</code>, the follow-up and final action</td></tr><tr><td>Did the follow-up support understanding?</td><td>What the worker can explain without the assistant</td></tr><tr><td>What became visible to the organization?</td><td>The question, reply, action and recorded reason</td></tr></tbody></table>
+
+---
+
+## A short question without model assistance
+
+<div class="discussion-question">Does 80% overall accuracy tell us what percentage of couples predicted to take out a mortgage actually did so? What additional numbers would you need?</div>
+
+<p class="plain-note">Answer this yourself. The question separates completing the review with assistance from explaining the statistical issue without it.</p>
 
 ---
 
 ## The take-home task
 
-<div class="task-brief"><span>Change</span><p>Revise one sentence of the advice given to the assistant, then run both modes again.</p><span>Check</span><p>Explain whether the outputs distinguish known facts, uncertainty, hardship escalation and refund authority.</p><span>Record</span><p>Show the inputs and outputs of each operation, then explain every parameter and returned object.</p><span>Submit</span><p>Upload the narrated screen recording using your name and <code>Week09</code> in the filename.</p></div>
+<div class="task-brief"><span>Change</span><p>Select another <code>worker_next_step</code> or rewrite the follow-up question, then rerun.</p><span>Decide</span><p>Choose a final action and explain why the available evidence supports it.</p><span>Reflect</span><p>Explain what the assistant did, what you decided and what the interaction record reveals.</p><span>Answer</span><p>Complete the final accuracy question without model assistance.</p><span>Record</span><p>Show each input and output, then explain the function parameters and both calls.</p><span>Submit</span><p>Upload the narrated screen recording using your name and <code>Week09</code> in the filename.</p></div>
 
 ---
 

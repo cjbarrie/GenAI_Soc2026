@@ -1,12 +1,86 @@
 ---
 title: "Week 11 — Language, inequality and institutional power"
-description: "Outline awaiting literature-led development"
+description: "How linguistic difference becomes evaluation and institutional consequence"
 ---
 
-## Planned question
+## This week’s sociological question
 
-How do language models reproduce or alter inequality and institutional power?
+<div class="chapter-question">How does language become a source of inequality when people and institutions use large language models?</div>
 
-This week will begin with sociological work on language, classification, discrimination and institutional decision-making. Readings, slides and the aligned coding task will be added after the literature review and instructor approval.
+## Connection to the preceding material
 
-[See the Week 11 coding outline](../python/session11.qmd).
+Week 10 examined LLM mediation between people. Week 11 asks what happens when language becomes material for evaluation. We distinguish three questions that require different evidence: whether generated language resembles observed human communication, whether models evaluate socially marked language unequally, and how institutions connect model outputs to access, ranking or exclusion.
+
+## Learning outcomes
+
+By the end of the class, you should be able to:
+
+- explain Bourdieu’s concepts of legitimate language, linguistic market and linguistic capital;
+- explain why Flores and Rosa move attention from the speaker’s “appropriateness” to racialized listening;
+- distinguish transcription performance, linguistic evaluation and institutional allocation;
+- reconstruct Hofmann et al.’s matched-guise probing design and its limits;
+- explain how Waight et al. combine corpus evidence, an intervention and model audits;
+- trace one meaning-matched pair through a small Python comparison without treating a generated explanation as a causal mechanism.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Linguistic markets:** Bourdieu (1977), “The Economics of Linguistic Exchanges,” *Social Science Information* 16(6): 645–668. Read the complete article. Bourdieu explains how institutions establish legitimate language and make linguistic competence valuable within unequal markets. [DOI](https://doi.org/10.1177/053901847701600601). [@Bourdieu1977Linguistic]
+- **Unequal model evaluation:** Hofmann, Kalluri, Jurafsky and King (2024), “AI Generates Covertly Racist Decisions about People Based on Their Dialect,” *Nature* 633: 147–154. Read the complete article. The paper adapts matched guise to model probabilities and separates overt racial descriptions from dialect-activated associations. [Open article](https://doi.org/10.1038/s41586-024-07856-5). [@HofmannEtAl2024Dialect]
+- **Institutional influence over training material:** Waight et al. (2026), “State Media Control Influences Large Language Models,” *Nature* 655: 685–693. Read the complete article. Six studies connect corpus presence, additional pretraining and audits of deployed systems. [Article](https://doi.org/10.1038/s41586-026-10506-7). [@WaightEtAl2026]
+:::
+
+## Additional readings grouped by purpose
+
+- **Racialized listening:** Flores and Rosa (2015), “Undoing Appropriateness.” [DOI](https://doi.org/10.17763/0017-8055.85.2.149). [@FloresRosa2015]
+- **Housing gatekeeping:** Purnell, Idsardi and Baugh (1999), “Perceptual and Phonetic Experiments on American English Dialect Identification.” [DOI](https://doi.org/10.1177/0261927X99018001002). [@PurnellEtAl1999]
+- **Unequal speech recognition:** Koenecke et al. (2020), “Racial Disparities in Automated Speech Recognition.” [DOI](https://doi.org/10.1073/pnas.1915768117). [@KoeneckeEtAl2020]
+- **Validation of generated communication:** Pagan, Törnberg, Bail and Barrie (2026), “AI-Generated Language Remains Systematically Distinguishable from Human Communication.” [DOI](https://doi.org/10.1073/pnas.2531748123). [@PaganEtAl2026]
+- **Classification infrastructure:** Bowker and Star (1999), *Sorting Things Out*. [Publisher](https://mitpress.mit.edu/9780262522953/sorting-things-out/). [@BowkerStar1999]
+
+## Sociological and methodological background
+
+Bourdieu treats speaking as action in a market. Schools, professions and bureaucracies do not merely transmit neutral grammar; they help establish which forms count as legitimate and who can speak with authority. Linguistic competence becomes capital only in relation to institutions that recognize and reward it.
+
+Flores and Rosa add a problem that an access-to-legitimate-language account can miss. A racialized listener may continue to hear a speaker as deficient after the speaker adopts the forms described as appropriate. The speaker’s linguistic resource and the listener’s social classification must therefore remain analytically separate.
+
+Matched-guise studies make evaluation observable by holding more of the speaker constant. Purnell and colleagues then connect linguistic guise to a housing response: the same caller received different appointment rates across dialect guises and locations. Koenecke and colleagues identify a different outcome. Commercial speech-recognition systems produced higher word-error rates for Black speakers than for white speakers. Recognition error and unequal social evaluation should not be collapsed into a generic category called bias.
+
+## Synthesis of the current LLM literature
+
+Pagan and colleagues address representation. Their Conversational Human Authenticity Test compares generated and observed human replies using classifier detectability, embedding similarity and interpretable stylistic, topical and affective features. A model can become harder to detect while becoming less similar to the observed reply. Human-likeness is therefore not one outcome.
+
+Hofmann and colleagues address evaluation. Their meaning-matched design compares 2,019 AAE texts with SAE translations. Continuation-token probabilities are converted into calibrated associations for traits, occupations and hypothetical judicial decisions. The paper reports more negative covert than overt associations, lower prestige for occupations associated with AAE, and more detrimental hypothetical judicial outcomes after AAE text. These are model-probing results, not observations of employers or courts.
+
+Waight and colleagues address institutional influence over training material. Their evidence moves from state-coordinated media in an open training corpus to additional pretraining of an open-weight model and then to audits of commercial systems. The intervention shows that changing training material can change response valence. The cross-national extension remains observational. Together, the studies show why a paired output difference, a training-data mechanism and an institutional consequence are separate claims.
+
+## Reading discussion
+
+Come prepared to discuss:
+
+1. What does a meaning-matched comparison identify, and what does it remove?
+2. How would Bourdieu and Flores–Rosa interpret the overt and covert results differently?
+3. Which parts of Waight et al.’s argument are causal, and which are observational?
+4. What organizational evidence would be needed to move from an unequal model output to a claim about unequal access?
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 11 lecture slides" src="../_generated/slides/session11.html"></iframe></div>
+[Open the Week 11 slides full screen](../_generated/slides/session11.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 11 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session11.html).
+:::
+
+[Continue to the Week 11 Python work](../python/session11.qmd).
+
+## Take-home exercise
+
+Run the small matched-input comparison using the supplied published pairs. Change one predeclared model or route while keeping the texts, prompt, occupation list and temperature fixed. Trace one pair through both runs. Explain the input value and Python type, the model call, raw JSON, parsed dictionary, result record and paired comparison. State whether the occupations differed and why the result does not establish a stable model-level pattern, a training mechanism or an institutional effect.
+
+Follow the [recording and submission instructions](../recording-and-submission.qmd), name the file with your name and `Week11`, and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
+
+## Summary and preparation
+
+Language models operate inside linguistic markets and information environments that institutions have already structured. They may reproduce human communication unevenly and attach unequal value to socially marked language. Unequal consequences for people depend on how organizations connect those outputs to actual decisions.

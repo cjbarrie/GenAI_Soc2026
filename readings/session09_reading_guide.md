@@ -27,8 +27,8 @@ Bring one passage or figure from each article. For every item, write down:
 - Who performs the reasoning, who chooses the procedure and who has the final authority?
 - Why might less experienced workers gain more from assistance?
 - Would Barley expect the same assistant to have the same effect in another workplace?
-- How should our customer-support assistant be configured, and what evidence would assess that choice?
+- How should the consulting assistant be configured when a general consultant reviews unfamiliar technical work?
 
 ## Reading to code
 
-The workbook holds the customer case and policy fixed while changing `assistance_mode`. This implements Barley’s warning that a technology has no single organizational form. It also preserves the distinction between a successful assisted output and evidence that a worker learned.
+The workbook implements coach mode as a short workplace interaction. The consultant reads the first response, chooses whether to ask the model again, consult the data-science team or begin writing, and then records a final action. This makes the worker's place in the process visible rather than treating them as the recipient of a completed output. Barley helps us examine the resulting division of labour. Zuboff directs attention to the new record of the worker's question and decision. A final unassisted question preserves Wiles et al.’s distinction between successful assisted work and evidence that a worker learned.

@@ -1,12 +1,84 @@
 ---
 title: "Week 10 — Writing, influence and relationships"
-description: "Outline awaiting literature-led development"
+description: "How LLM assistance enters interpersonal communication"
 ---
 
-## Planned question
+## This week’s sociological question
 
-How do LLMs change writing, interpersonal influence and social relationships?
+<div class="chapter-question">What happens to social relationships when people use LLMs to help them communicate, interpret others and manage interpersonal interactions?</div>
 
-This week will begin with the sociology of mediated communication, writing and influence before examining what is distinctive about generative suggestions and conversational systems. Readings, slides and the aligned coding task will be added after the literature review and instructor approval.
+## Connection to the preceding material
 
-[See the Week 10 coding outline](../python/session10.qmd).
+Week 9 examined LLM assistance inside a labour process. It separated performance while the system is available from knowledge demonstrated without it, and asked how assistance redistributes expertise, discretion and authority. Week 10 follows the model into interpersonal communication. Here the relevant social organization is the relationship between sender and recipient. A linguistically effective message can still be relationally inappropriate; a persuasive message can still fail to repair an obligation.
+
+The class does not concern AI companionship or the replacement of human confidants. Its object is communication between people when an LLM helps one of them formulate, interpret or manage the exchange.
+
+## Learning outcomes
+
+By the end of the class, you should be able to:
+
+- explain Zelizer’s argument against separate-spheres and hostile-worlds accounts;
+- use Goffman to identify the distinct moves in a corrective exchange;
+- distinguish outward expression, emotion work and recipient interpretation;
+- distinguish generated writing, influence on a writer and interpersonal consequences;
+- explain the difference between actual and suspected smart-reply use in Hohenstein et al.;
+- trace one relationship value through a Python function and loop without treating model output as evidence of human sincerity or relationship quality.
+
+## Essential readings and what each contributes
+
+::: {.reading-list}
+- **Relational sociology:** Zelizer (2012), “How I Became a Relational Economic Sociologist and What Does That Mean?”, *Politics & Society* 40(2): 145–174. Read the complete article. Zelizer asks how people differentiate ties and match them with transactions, media and meanings. This is the conceptual basis for asking what it means to delegate or mediate an apology, rather than merely whether the wording changes. [DOI](https://doi.org/10.1177/0032329212441591). [@Zelizer2012Relational]
+- **AI suggestions inside an interaction:** Hohenstein et al. (2023), “Artificial Intelligence in Communication Impacts Language and Social Relationships,” *Scientific Reports* 13: 5487. Read the complete article. The experiments distinguish smart-reply availability, actual use, suspected use, conversational language and partner judgments. [Open article](https://doi.org/10.1038/s41598-023-30938-9). [@HohensteinEtAl2023]
+- **Influence on the writer:** Williams-Ceci et al. (2026), “Biased AI Writing Assistants Shift Users’ Attitudes on Societal Issues,” *Science Advances* 12(11): eadw5578. Read the complete article. The outcome is the writer’s own attitude after assisted composition, not recipient persuasion or relationship maintenance. [Open article](https://doi.org/10.1126/sciadv.adw5578). [@WilliamsCeciEtAl2026]
+:::
+
+## Additional readings grouped by purpose
+
+- **Corrective interaction:** Goffman (1955), “On Face-Work.” [DOI](https://doi.org/10.1080/00332747.1955.11023008). [@Goffman1955FaceWork]
+- **Emotion work and feeling rules:** Hochschild (1979), “Emotion Work, Feeling Rules, and Social Structure.” [DOI](https://doi.org/10.1086/227049). [@Hochschild1979EmotionWork]
+- **Relational work in legal and historical evidence:** Zelizer (2005), *The Purchase of Intimacy*. [Publisher](https://press.princeton.edu/books/paperback/9780691139364/the-purchase-of-intimacy). [@Zelizer2005Purchase]
+- **Media ideologies:** Gershon (2010), *The Breakup 2.0*. [DOI](https://doi.org/10.7591/9780801458002). [@Gershon2010Breakup]
+- **Therapeutic vocabularies:** Illouz (2008), *Saving the Modern Soul*. [Publisher](https://www.ucpress.edu/books/saving-the-modern-soul/paper). [@Illouz2008Saving]
+- **Interpersonal influence:** Katz and Lazarsfeld (1955), *Personal Influence*. [@KatzLazarsfeld1955]
+
+## Sociological and methodological background
+
+The worked case is an ordinary broken commitment. The sender promised to help someone move at 8 a.m. on Saturday, learned at noon on Friday that work made this impossible, and waited until 9 p.m. to send the message. The other person had declined paid help because they expected the sender to come. The sender can pay half the cost of a last-minute mover or help on Sunday. We keep those facts fixed while varying the instruction and the relationship.
+
+Zelizer’s argument is the first reason not to treat this as a tone-adjustment problem. She rejects the idea that intimacy and calculation occupy separate social spheres and the further claim that contact between them necessarily contaminates both. Her evidence shows people continually combining relations and transactions while negotiating their meaning. In *Cole v. Lucas*, for example, the legal meaning of promissory notes depended on whether the court classified a tie as master–slave, concubinage or marriage. The transfer could not be understood independently of the relationship. In our case, the relevant question is therefore not only how the apology is worded. It is what it means to perform or delegate this obligation through an LLM, whether the assistance is disclosed, and how the recipient understands authorship and effort.
+
+Goffman helps reconstruct the act itself. A broken promise creates an incident because conduct is inconsistent with the line that the relationship previously supported. A corrective exchange can include recognition of the offence, an account, acknowledgment of responsibility, compensation or expiation, and a response by the other participant. An explanation may narrow blame without repairing the injury. A model can draft several moves, but it cannot make the recipient accept the account or the proposed repair.
+
+Hochschild prevents us from treating recognizable emotional language as evidence of inner feeling. Feeling rules specify what people ought to feel in a situation. Emotion work is the attempt to change the degree or quality of feeling in relation to those rules; the attempt may succeed or fail. Outward expression is analytically separate. An LLM can reduce the effort required to formulate remorse, but it might also prompt reflection by asking what commitment was made and what reliance followed. Which process occurred requires evidence about the writer. How the expression was interpreted requires evidence from the recipient.
+
+Gershon and Illouz extend these distinctions. Media ideologies give communicative media social meanings beyond their literal content. Therapeutic vocabularies provide familiar ways to describe injury, needs and repair. These extensions help identify questions for research; neither licenses an inference from one generated message to a relationship outcome.
+
+## Synthesis of the current LLM literature
+
+Hohenstein and colleagues place smart replies inside a live conversation. In Study 1, 219 pairs discussed a policy issue and each partner was independently assigned access or no access to smart replies. The system recorded actual use. Random availability was used as an instrument when estimating the effects of use. Partners of people who used smart replies reported greater cooperation and affiliation. The paper also measured whether participants suspected that their partner had used smart replies. Greater suspected use was associated with less cooperation and affiliation and greater dominance after accounting for actual use. Because suspicion was measured rather than randomly disclosed, this second comparison is correlational. Study 2 randomized the type of suggestions and showed that the suggestions altered the emotional language used in the conversation.
+
+Williams-Ceci and colleagues identify a different pathway. Across two preregistered experiments, participants wrote about societal issues with or without biased autocomplete suggestions and then reported their own attitudes. The suggestions shifted writers’ reported attitudes. The finding concerns influence during composition. It does not show that another person was persuaded, that a message was sincere or that a relationship changed.
+
+The three essential readings therefore perform different jobs. Zelizer specifies the relational object. Hohenstein et al. observe language and partner judgments in an interaction. Williams-Ceci et al. observe the writer after assisted composition. Keeping those outcomes separate is the central methodological discipline for the week.
+
+## Slides
+
+::: {.content-visible when-format="html"}
+<div class="slide-shell"><iframe loading="lazy" title="Week 10 lecture slides" src="../_generated/slides/session10.html"></iframe></div>
+[Open the Week 10 slides full screen](../_generated/slides/session10.html).
+:::
+::: {.content-visible when-format="pdf"}
+The slides are available in the [online Week 10 chapter](https://cjbarrie.github.io/GenAI_Soc2026/weeks/session10.html).
+:::
+
+[Continue to the Week 10 Python work](../python/session10.qmd).
+
+## Take-home exercise
+
+Run the broken-commitment routine. First compare the thin instruction with the instruction that names the broken commitment, late notice, reliance and available repairs. Then hold the second instruction and all facts fixed while running the routine for a colleague, close friend and romantic partner. Change one relationship description or one obligation and rerun. In your narrated recording, explain the input, Python type, operation and output for the facts dictionary, prompt, model call, function, first loop iteration, raw message and researcher-notes object. State what the exercise shows about generated writing and what remains unknown about the sender, recipient and relationship.
+
+Use the [recording and submission instructions](../recording-and-submission.qmd), name the file with your name and `Week10`, and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
+
+## Summary and preparation for next week
+
+LLM assistance can change the language used to perform an interpersonal obligation and may influence the person composing the message. The same output can also have different relational meanings depending on the tie, the use of the medium and what participants believe about authorship. Evidence about the generated message is not evidence that the recipient accepted it or that the relationship was repaired. Week 11 turns to language, inequality and institutional power.

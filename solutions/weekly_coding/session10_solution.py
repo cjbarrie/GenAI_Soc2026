@@ -1,30 +1,46 @@
-"""Worked solution for Session 10.
+"""Offline checks for the Week 10 relationship-mediation exercise."""
 
-Read the function in this order: arguments → initial objects → loop/decision
-→ return value. The comments name the research meaning of each operation.
-"""
+import json
+
+FACTS = {
+    "commitment": "help with a move at 8 a.m. Saturday",
+    "work_conflict_known": "noon Friday",
+    "message_sent": "9 p.m. Friday",
+    "reliance": "the recipient declined paid help because of the promise",
+    "repairs": ["pay half the cost of a last-minute mover", "help on Sunday"],
+}
 
 
-def compare_interaction_runs(runs, target_answer):
-    """Return structure means, run counts, and IDs whose probe answer already equals the target."""
-    values_by_structure = {}
-    contaminated = []
-    for run in runs:
-        values_by_structure.setdefault(run["structure"], []).append(run["outcome"])
-        if run.get("probe_answer") == target_answer:
-            contaminated.append(run["id"])
-    summary = {}
-    for structure, values in values_by_structure.items():
-        summary[structure] = {"n": len(values), "mean": sum(values) / len(values)}
-    return summary, contaminated
+def make_prompt(relationship, instruction, facts):
+    return f"""{instruction}
+
+Relationship: {relationship}
+
+Facts:
+{json.dumps(facts, indent=2)}
+
+Return only the message that could be sent."""
+
+
+def make_record(relationship, instruction_name, raw_message):
+    return {
+        "relationship": relationship,
+        "instruction": instruction_name,
+        "facts": FACTS.copy(),
+        "raw_message": raw_message,
+    }
 
 
 def run_checks():
-    runs = [{"id": 1, "structure": "debate", "outcome": 8, "probe_answer": "unknown"}, {"id": 2, "structure": "debate", "outcome": 10, "probe_answer": "42"}, {"id": 3, "structure": "solo", "outcome": 6, "probe_answer": "unknown"}]
-    summary, contaminated = compare_interaction_runs(runs, "42")
-    assert summary["debate"] == {"n": 2, "mean": 9}
-    assert summary["solo"]["mean"] == 6
-    assert contaminated == [2]
+    prompt = make_prompt("close friend", "Acknowledge the obligation.", FACTS)
+    assert "Relationship: close friend" in prompt
+    assert "declined paid help" in prompt
+    assert "help on Sunday" in prompt
+    record = make_record("colleague", "obligation", "A raw model return")
+    assert record["relationship"] == "colleague"
+    assert record["raw_message"] == "A raw model return"
+    assert record["facts"] is not FACTS
+    assert set(record) == {"relationship", "instruction", "facts", "raw_message"}
 
 
 if __name__ == "__main__":

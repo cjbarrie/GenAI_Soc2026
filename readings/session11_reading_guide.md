@@ -1,20 +1,25 @@
-# Session 11 reading guide — Research agents, tools, and provenance
+# Session 11 reading guide — Language, inequality and institutional power
 
-## The disagreement to carry into class
+## The question to carry across the readings
 
-End-to-end systems automate search, code, analysis, and writing; transparency arguments ask whether multiplying agents adds justified capability or merely obscures responsibility.
+How does language acquire unequal value, and what evidence connects that value to a model output or institutional consequence?
 
-Do not summarize the papers serially. Compare the inferential target, the role assigned to an LLM, the human/reference evidence, and the failure mode each design can or cannot reveal.
-
-| Reading | Ask while reading | Bring to the code |
+| Reading | Main object | Ask while reading |
 |---|---|---|
-| [Lu et al. (2026), end-to-end automation of AI research](https://doi.org/10.1038/s41586-026-10265-5) | What inference does the paper seek? | What evidence could disconfirm it? |
-| [Nature Machine Intelligence (2026), multi-agent systems need transparency](https://www.nature.com/articles/s42256-026-01183-2) | What inference does the paper seek? | What evidence could disconfirm it? |
+| Bourdieu (1977) | Linguistic markets and legitimate language | Which institutions establish the value of a linguistic form, and who has the authority to speak? |
+| Hofmann et al. (2024) | Dialect-activated model associations | What does the meaning-matched comparison identify, and how are the occupational and judicial outcomes constructed? |
+| Waight et al. (2026) | Institutional influence over training material | Which studies identify corpus presence, which intervene on training data, and which are observational audits? |
 
 ## Before class
 
-Bring one passage that supports the strongest claim you think is warranted and one passage that makes you qualify it. Complete this sentence: **The output is useful for ___, but it would be invalid evidence for ___ unless ___.**
+Bring one passage from each reading that helps distinguish:
 
-## Reading → code
+1. a linguistic form;
+2. a social evaluation;
+3. an institutional outcome.
 
-The workbook implements `build_provenance_table`. Its input is small enough to inspect manually. Predict the output, then decide which claim from the readings the check clarifies—and which larger claim it cannot settle.
+Be prepared to explain which link remains unobserved in each paper.
+
+## Reading and code
+
+The coding task compares one chat model’s structured output for published meaning-matched pairs. It is deliberately smaller and methodologically different from Hofmann et al. The point is to learn how to preserve inputs, raw returns and paired comparisons while keeping the inferential claim narrow.

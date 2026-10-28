@@ -157,7 +157,7 @@ print(chunks[1])
 
 ## Retrieval, vector search and RAG {#retrieval-rag}
 
-<span class="term-meta">Useful · Week 11</span>
+<span class="term-meta">Useful reference</span>
 
 **In plain English.** Retrieval selects stored material for a question. Vector search is one possible similarity-based retrieval method. Retrieval-augmented generation, or RAG, places retrieved material into a model request before generation.
 

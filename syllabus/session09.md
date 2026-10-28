@@ -5,7 +5,7 @@
 
 ## Learning objectives
 
-Students will distinguish assisted performance from retained knowledge; explain why the same technology can enter different workplace arrangements; separate expertise, discretion and authority; and explain every input and output of `request_assistance(...)`.
+Students will distinguish assisted performance from retained knowledge; explain why the same technology can enter different workplace arrangements; separate expertise, discretion and authority; and explain every input and output of `review_model_analysis(...)`.
 
 ## Required readings
 
@@ -17,8 +17,8 @@ Read each complete article.
 
 ## Class structure
 
-The opening lecture develops the sociology of technology and work through Marx, Braverman, Burawoy, Barley and Zuboff. The middle portion is a discussion of the three required articles. The final portion walks through the Week 9 Python function and compares draft and coach assistance for one customer-support case.
+The opening lecture develops the sociology of technology and work through Marx, Braverman, Burawoy, Barley and Zuboff. The middle portion is a discussion of the three required articles. The final portion walks through the Week 9 Python function and compares draft and coach assistance while a consultant reviews a mortgage-prediction analysis adapted from Wiles et al.
 
 ## Weekly completion task
 
-Change one sentence in the assistant instruction and rerun both modes. Submit a narrated screen recording explaining every function argument, the raw and parsed return, the checks and the limits of the comparison. Follow the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html).
+Change one sentence in the assistant instruction and rerun both modes. Answer the final knowledge question without model assistance. Submit a narrated screen recording explaining every function argument, the raw and parsed return, the checks and the limits of the comparison. Follow the [recording and submission guide](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html).

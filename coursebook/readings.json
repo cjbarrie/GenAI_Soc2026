@@ -71,8 +71,25 @@
       {"key": "DillonEtAl2025", "status": "additional", "section": "Full working paper", "purpose": "Distinguishes individual time savings from changes that require organizational coordination.", "url": "https://doi.org/10.3386/w33795"},
       {"key": "LeLudecCornetCasilli2023", "status": "additional", "section": "Full article", "purpose": "Locates the outsourced human labour required to build and maintain systems described as automated.", "url": "https://doi.org/10.1177/20539517231188723"}
     ],
-    "session10": [],
-    "session11": [],
+    "session10": [
+      {"key": "Zelizer2012Relational", "status": "essential", "section": "Full article", "purpose": "Provides a relational account of how ties, transactions, media and meanings are matched.", "url": "https://doi.org/10.1177/0032329212441591"},
+      {"key": "HohensteinEtAl2023", "status": "essential", "section": "Full article", "purpose": "Separates smart-reply availability, actual use, suspected use, conversational language and partner judgments.", "url": "https://doi.org/10.1038/s41598-023-30938-9"},
+      {"key": "WilliamsCeciEtAl2026", "status": "essential", "section": "Full article", "purpose": "Identifies influence on writers during AI-assisted composition rather than effects on recipients or relationships.", "url": "https://doi.org/10.1126/sciadv.adw5578"},
+      {"key": "Goffman1955FaceWork", "status": "additional", "section": "Full article", "purpose": "Specifies the moves through which participants handle an interactional offence.", "url": "https://doi.org/10.1080/00332747.1955.11023008"},
+      {"key": "Hochschild1979EmotionWork", "status": "additional", "section": "Full article", "purpose": "Distinguishes feeling rules, attempts to manage emotion and outward expression.", "url": "https://doi.org/10.1086/227049"},
+      {"key": "Gershon2010Breakup", "status": "additional", "section": "Full book", "purpose": "Shows how socially learned beliefs about media shape interpretations of communicative acts.", "url": "https://doi.org/10.7591/9780801458002"},
+      {"key": "Illouz2008Saving", "status": "additional", "section": "Full book", "purpose": "Traces therapeutic vocabularies used to describe selves, injuries and relationships.", "url": "https://www.ucpress.edu/books/saving-the-modern-soul/paper"}
+    ],
+    "session11": [
+      {"key": "Bourdieu1977Linguistic", "status": "essential", "section": "Full article", "purpose": "Explains how institutions establish legitimate language and make linguistic competence valuable within unequal markets.", "url": "https://doi.org/10.1177/053901847701600601"},
+      {"key": "HofmannEtAl2024Dialect", "status": "essential", "section": "Full article", "purpose": "Adapts matched guise to model probabilities and separates overt racial descriptions from dialect-activated associations.", "url": "https://doi.org/10.1038/s41586-024-07856-5"},
+      {"key": "WaightEtAl2026", "status": "essential", "section": "Full article", "purpose": "Connects corpus presence, additional pretraining and audits to study institutional influence over model training material.", "url": "https://doi.org/10.1038/s41586-026-10506-7"},
+      {"key": "FloresRosa2015", "status": "additional", "section": "Full article", "purpose": "Moves analysis from a speaker's appropriateness to racialized listening.", "url": "https://doi.org/10.17763/0017-8055.85.2.149"},
+      {"key": "PurnellEtAl1999", "status": "additional", "section": "Full article", "purpose": "Connects linguistic guise to appointment access in a housing field experiment.", "url": "https://doi.org/10.1177/0261927X99018001002"},
+      {"key": "KoeneckeEtAl2020", "status": "additional", "section": "Full article", "purpose": "Shows unequal transcription performance across Black and white speakers in five commercial ASR systems.", "url": "https://doi.org/10.1073/pnas.1915768117"},
+      {"key": "PaganEtAl2026", "status": "additional", "section": "Full article", "purpose": "Separates detectability, semantic fidelity and interpretable language features when validating generated communication.", "url": "https://doi.org/10.1073/pnas.2531748123"},
+      {"key": "BowkerStar1999", "status": "additional", "section": "Full book", "purpose": "Shows how classifications become consequential through standards and organizational routines.", "url": "https://mitpress.mit.edu/9780262522953/sorting-things-out/"}
+    ],
     "session12": [],
     "session13": [],
     "session14": []

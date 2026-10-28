@@ -36,8 +36,9 @@ The examples are intentionally short. Most run offline and contain no key. Entri
 | Week 4 | multimodal input and grounding |
 | Weeks 5–6 | function arguments, conversation state, STT and TTS |
 | Weeks 7–8 | probability output, calibration, batching and evaluation |
-| Weeks 9–10 | agent, state, action, agent loop and stopping condition |
-| Weeks 11–13 | retrieval, tools, skills, harnesses, traces, guardrails and reproducibility |
+| Weeks 9–10 | functions, repeated model calls and saved interaction records |
+| Week 11 | paired comparisons, fixed output fields and conditional model judgments |
+| Later reference | retrieval, tools, skills, harnesses, traces and guardrails |
 
 ## A note on terminology
 

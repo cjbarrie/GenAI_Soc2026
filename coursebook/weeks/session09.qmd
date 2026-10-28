@@ -39,6 +39,8 @@ The lecture develops a cumulative argument rather than a sequence of unrelated c
 
 These distinctions matter for LLM assistance. A worker may retain formal permission to reject a draft even though the system performed much of the reasoning. A coaching interface may require more expertise from the worker without increasing their formal authority. We therefore distinguish three questions: who performs the reasoning, who chooses how to carry out the task and who has the right to make the final decision.
 
+The worked case adapts the statistical task in Wiles et al. A general consultant reviews an AI interpretation of a mortgage-prediction model. The lecture compares draft and coach configurations. The coding exercise then implements coach mode as a short interaction: the consultant inspects the first reply, chooses whether to ask again, escalate or begin writing, and records a final decision. A data-science team handles unresolved technical issues. The system retains the prompt, replies, worker question and decision. This arrangement makes it possible to examine the distribution of expertise, the division of labour and the new information produced about the work.
+
 ## Synthesis of the current LLM literature
 
 Brynjolfsson, Li and Raymond report that access to the customer-support assistant increased resolutions per hour by about 15 per cent on average, with larger gains among less experienced workers. This is evidence about performance while assistance is available in one firm. Wiles and colleagues study different workers, tasks and a different design. They find better performance on assisted tasks, but no evidence of greater technical knowledge on their later unassisted measure.
@@ -59,7 +61,7 @@ The slides are available in the [online Week 9 chapter](https://cjbarrie.github.
 
 ## Take-home exercise
 
-Compare draft and coach assistance for the same customer-support case. Change one sentence in the assistance instruction, rerun both modes and explain every input, output, parameter and returned object in a narrated screen recording. Use the [recording and submission instructions](../recording-and-submission.qmd) and name the file with your name and `Week09`.
+Work through the mortgage-prediction review in coach mode. After the first reply, decide whether to ask the model again, escalate to the data-science team or begin writing the client note. Change that decision or rewrite the follow-up question, rerun, and explain every input, output, parameter and returned object in a narrated screen recording. Reflect on what reasoning the model performed, what decision remained yours and what the interaction record makes visible to the organization. Finish with the short unassisted question about what overall accuracy does and does not tell us. Use the [recording and submission instructions](../recording-and-submission.qmd) and name the file with your name and `Week09`.
 
 ## Summary and preparation for next week
 

@@ -59,7 +59,7 @@ PRESENTATION_SECTIONS = [
     "## What to bring",
 ]
 
-DEVELOPED_SESSION_MAX = 9
+DEVELOPED_SESSION_MAX = 11
 NON_TEACHING_SESSIONS = {12, 13}
 
 BANNED_PUBLIC_FRAGMENTS = [
@@ -401,8 +401,8 @@ def validate_sources(rendered: bool) -> list[str]:
                 if not bundle.exists():
                     fail(errors, f"Offline bundle missing: {bundle}")
 
-    # Coding artifacts exist for Weeks 8–13 even though their public book pages
-    # remain bare outlines until the literature and slides are developed.
+    # Coding artifacts exist for Weeks 8–13. Some later dates remain bare
+    # outlines until their literature and slides are developed.
     for number in range(8, 14):
         session = f"session{number:02d}"
         task = ROOT / "assessments" / "weekly_coding" / f"{session}_task.py"
@@ -422,8 +422,8 @@ def validate_sources(rendered: bool) -> list[str]:
                 fail(errors, "session08_task.py: Week 8 must not define a function")
             if "client.chat.send" not in source or "ollama.chat" not in source or "for experiment in experiments" not in source:
                 fail(errors, "session08_task.py: missing bounded dual-route loop")
-        if number == 9 and "def request_assistance(" not in source:
-            fail(errors, "session09_task.py: Week 9 must introduce request_assistance")
+        if number == 9 and "def call_review_assistant(" not in source:
+            fail(errors, "session09_task.py: Week 9 must introduce call_review_assistant")
         if len(notebooks) != 1:
             fail(errors, f"{session}: expected exactly one provisional coding notebook")
         else:

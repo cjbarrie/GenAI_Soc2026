@@ -1,20 +1,21 @@
 ---
-title: "Week 9 Python — Configure an LLM assistant at work"
-description: "The first student-edited function"
+title: "Week 9 Python — Work with an LLM assistant"
+description: "The first student-edited function and a worker-controlled follow-up"
 ---
 
 [Return to the Week 9 readings and slides](../weeks/session09.qmd).
 
-## Python walkthrough: configure an LLM assistant
+## Python walkthrough: review a model analysis
 
-The worker receives a customer message about one completed annual-plan charge and one pending authorization. The firm’s policy says that the pending entry is not a completed payment, a refund requires two settled transaction identifiers, and immediate hardship can be escalated without authorizing a refund.
+This exercise adapts the statistical task in Wiles et al. (2026). You are a general consultant reviewing an unfamiliar mortgage-prediction analysis before advising a client. The supplied AI interpretation mixes a correct comparison with claims that the evidence does not support.
 
-We send the same case and policy to the same model under two instructions:
+The assistant begins in coach mode. It checks the analysis and returns questions, but it does not make the final recommendation. After reading its first reply, you choose what happens next:
 
-- `draft`: identify the relevant facts and write a proposed customer reply;
-- `coach`: identify the checks and policy evidence, but leave `customer_reply` empty.
+- ask the model to explain one issue;
+- escalate the analysis to the data-science team;
+- begin writing your own client note.
 
-The unit of analysis is one model-assisted case. The program compares model returns. It does not measure real worker performance, learning, consent, discretion or authority.
+The supplied path asks the model one follow-up question. You then make and record the final decision. The unit of analysis is one model-assisted review, including the worker's choices. The program does not measure real productivity, learning, discretion or authority.
 
 ## Workbook and environment links
 
@@ -36,92 +37,164 @@ Colab selects OpenRouter. Local JupyterLab selects Ollama. The route remains vis
 ## The complete flow
 
 ```text
-customer message + policy + assistance mode
-→ strings and a schema dictionary
-→ prompt and message list
-→ OpenRouter or Ollama
-→ raw JSON text
-→ parsed Python dictionary
-→ policy and mode checks
-→ one assistance record returned by the function
+model results + questionable analysis
+→ first request to the coach
+→ raw return and parsed dictionary
+→ worker chooses what to do next
+→ optional follow-up question and second model call
+→ worker makes a final decision
+→ work record and reflection
 ```
 
-## Store the exact inputs
+## Store the research material
 
 ```python
-customer_message = (
-    "My bank shows two entries for my annual plan. One has completed and "
-    "the other still says pending. Rent is due tomorrow."
+model_results = {
+    "task": "Predict whether a couple will take out a mortgage",
+    "test_cases": 200,
+    "model_accuracy": 0.80,
+    "always_predict_no_mortgage_accuracy": 0.60,
+    "false_negatives": 20,
+}
+
+ai_analysis = (
+    "The model is 80% accurate, so it is ready to guide an investment strategy. "
+    "Its score shows that increasing a couple's score causes them to take out a mortgage."
 )
-policy_text = (
-    "A pending authorization is not a completed payment. "
-    "A refund requires two settled transaction identifiers. "
-    "Hardship may be escalated, but escalation does not authorize a refund."
+```
+
+`model_results` is a `dict`: a collection of named values. `ai_analysis` is a `str`: one piece of text. The numbers are instructor-authored for the exercise. They reproduce the kind of statistical interpretation task used by Wiles et al.; they are not results reported in that paper.
+
+## Store the assistant instruction
+
+```python
+assistant_instruction = (
+    "Act as a coach. Check the analysis and explain the problems you find. "
+    "Ask the consultant questions, but do not write the final client advice."
 )
 ```
 
-Each value is a `str`. The input omits the customer’s transaction records, the firm’s informal practices and any information not written here.
+This `str` allocates work. The model evaluates the supplied claims and proposes questions. The consultant remains responsible for deciding what to do and what to tell the client.
 
-## The function parameters
+## Define the first function
 
 ```python
-def request_assistance(
-    customer_message,
-    policy_text,
-    assistance_mode,
-    route,
-):
+def call_review_assistant(messages, route):
+    # Send the current message list through OpenRouter or Ollama
+    # Print and preserve the raw model return
+    # Parse the JSON text into a Python dictionary
+    return reply_record
 ```
 
-Before treating these as abstract names, replace them with the first call’s values:
+Before treating the parameters as abstract names, replace them with the first call's values:
 
 ```python
-customer_message = "One completed charge; one pending entry"
-policy_text = "Refund only after two settled transaction IDs"
-assistance_mode = "draft"
+messages = [{"role": "user", "content": initial_prompt}]
 route = "ollama"
 ```
 
-The indented function body builds the prompt, uses an explicit `if/elif` branch for the chosen route, prints the raw return, parses it and constructs one record dictionary. `return record` sends that dictionary back to the line that called the function.
+The function receives a `list` and a `str`. It returns one `dict` containing the message list, route, model, raw output, parsed output and three checks. The route-specific calls remain visible in the notebook.
 
-## Run draft mode
-
-```python
-draft_record = request_assistance(
-    customer_message=customer_message,
-    policy_text=policy_text,
-    assistance_mode="draft",
-    route=ROUTE,
-)
-```
-
-The four arguments are strings. The output is a dictionary containing the inputs, route, model, exact message list, raw model text, parsed output and four checks.
-
-## Change one argument
+## Ask for the first review
 
 ```python
-coach_record = request_assistance(
-    customer_message=customer_message,
-    policy_text=policy_text,
-    assistance_mode="coach",
+first_reply = call_review_assistant(
+    messages=messages,
     route=ROUTE,
 )
+
+print(first_reply["parsed_output"]["questions_for_worker"])
 ```
 
-Only the assistance mode changes. In coach mode, `customer_reply` should be `None`. The worker must compose the actual reply.
+The assistant compares the model with the stated baseline, rejects the unsupported causal interpretation and identifies missing information. This is advice to inspect, not a completed client decision.
+
+## The worker chooses the next step
+
+```python
+available_actions = [
+    "ask_model_again",
+    "escalate_to_data_science",
+    "write_client_note",
+]
+
+worker_next_step = "ask_model_again"
+```
+
+`available_actions` is a `list` of three strings. `worker_next_step` is one selected string. Editing that value changes what the program does next.
+
+## Ask a follow-up question
+
+```python
+follow_up_question = (
+    "Explain why 80% overall accuracy does not tell me whether the model is safe to use "
+    "for an investment decision. Use only the supplied results and name what is missing."
+)
+
+if worker_next_step == "ask_model_again":
+    messages.append({"role": "assistant", "content": first_reply["raw_output"]})
+    messages.append({"role": "user", "content": follow_up_question})
+    second_reply = call_review_assistant(messages=messages, route=ROUTE)
+```
+
+The comparison after `if` becomes `True` for the supplied value. `.append()` adds the first reply and the worker's new question to the message list. The second call therefore receives the earlier exchange as context. If the worker selects escalation or begins writing, the program makes no second model call.
+
+## Record the final worker decision
+
+```python
+worker_final_action = "escalate_to_data_science"
+worker_reason = (
+    "The supplied results do not show calibration, false-positive errors or the costs "
+    "of different mistakes, so the investment recommendation requires specialist review."
+)
+
+work_record = {
+    "first_model_reply": first_reply,
+    "worker_next_step": worker_next_step,
+    "worker_question": follow_up_question,
+    "second_model_reply": second_reply,
+    "worker_final_action": worker_final_action,
+    "worker_reason": worker_reason,
+}
+```
+
+The final action and reason are worker-authored strings. `work_record` is a dictionary that combines the model's contributions with the worker's choices. It also creates a record of the question asked, the help received and the decision made.
+
+## Reflect on the work
+
+Use the following questions while looking at your completed `work_record`:
+
+1. Which reasoning did the model perform before you made a choice?
+2. What decision did you retain as the worker?
+3. Did the second call improve your understanding, or did it move more reasoning to the model?
+4. What can an organization now observe about your question and decision?
+5. What could you explain later without the assistant?
+
+These questions connect the exercise to the readings. Barley directs attention to the division of labour. Zuboff asks what the computer-mediated process makes visible. Wiles et al. separate successful assisted work from knowledge demonstrated later without the system.
 
 ## Interpret the checks cautiously
 
-The checks look for two unsupported phrases, require some reference to hardship escalation and verify whether the reply field matches the requested mode. They can catch specific failures. They do not prove that the recommendation is accurate, useful or fair, and they do not measure what a real worker learned.
+The checks confirm that the returned categories match three requirements written into the exercise: 0.80 exceeds the stated 0.60 baseline, held-out prediction does not support the causal claim, and accuracy alone does not make the model ready for an investment decision.
+
+These are software checks against predeclared requirements. They do not prove that the explanation is useful, that the worker understood it, or that a real organization gave the worker meaningful discretion.
+
+## A short unassisted check
+
+After completing the review, answer this without asking the model:
+
+> Does 80% overall accuracy tell us what percentage of couples predicted to take out a mortgage actually did so? Explain why or why not.
+
+The answer is no. That quantity is precision. We would need the number of true and false positive predictions, which the exercise does not supply. The purpose is to distinguish assisted completion from what the student can explain without assistance.
 
 ## Take-home exercise
 
-Revise one sentence in `mode_instruction`, rerun both modes and explain:
+Change `worker_next_step` or rewrite `follow_up_question`, rerun the exercise and explain:
 
-1. the value and type of every function argument;
-2. the prompt and message list sent to the selected route;
-3. the raw return and parsed dictionary;
-4. what each check does and does not establish;
-5. how draft and coach modes distribute expertise, discretion and authority differently.
+1. the value and type of each function argument;
+2. the raw return and parsed dictionary from each model call;
+3. why your chosen action did or did not produce a second call;
+4. what the assistant contributed and what decision you retained;
+5. what the interaction record makes visible to the organization;
+6. whether the second call supported your understanding or encouraged dependence;
+7. your answer to the unassisted question.
 
 Submit the narrated screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code style is not graded; understanding the routine is.

@@ -1,39 +1,39 @@
-"""Offline checks for the Week 9 workplace-assistance record."""
+"""Offline checks for the Week 9 worker-controlled review record."""
 
 
-def validate_assistance_record(record, assistance_mode):
-    """Return four bounded checks; this does not evaluate real worker outcomes."""
+def validate_reply_record(record):
+    """Check the three requirements stated in the exercise."""
     output = record["parsed_output"]
-    all_text = " ".join(
-        output["known_facts"] + output["uncertainties"] + [
-            output["recommended_action"], output["policy_evidence"],
-            output["worker_guidance"], output["customer_reply"] or "",
-        ]
-    ).lower()
     return {
-        "does_not_invent_two_completed_charges": "two completed charges" not in all_text,
-        "does_not_promise_refund_today": "refund today" not in all_text,
-        "mentions_hardship_escalation": "escalat" in all_text,
-        "mode_contract_met": (
-            output["customer_reply"] is not None
-            if assistance_mode == "draft"
-            else output["customer_reply"] is None
-        ),
+        "compares_with_baseline": output["baseline_comparison"] == "model_outperforms_baseline",
+        "does_not_make_causal_claim": output["causal_claim"] == "not_supported",
+        "asks_for_more_evidence": output["decision_status"] == "needs_more_information",
     }
 
 
 def run_checks():
-    common = {
-        "known_facts": ["One charge is completed.", "Another entry is pending."],
-        "uncertainties": ["Whether the pending entry will settle."],
-        "recommended_action": "Explain pending status and escalate hardship.",
-        "policy_evidence": "A refund requires two settled transaction identifiers.",
-        "worker_guidance": "Offer escalation without authorizing a refund.",
+    parsed = {
+        "baseline_comparison": "model_outperforms_baseline",
+        "causal_claim": "not_supported",
+        "decision_status": "needs_more_information",
+        "explanation": ["Accuracy exceeds the baseline but does not establish causality."],
+        "questions_for_worker": ["Which errors matter for the decision?"],
+        "data_science_escalation": "Request calibration and false-positive results.",
     }
-    draft = {"parsed_output": {**common, "customer_reply": "The entry remains pending."}}
-    coach = {"parsed_output": {**common, "customer_reply": None}}
-    assert all(validate_assistance_record(draft, "draft").values())
-    assert all(validate_assistance_record(coach, "coach").values())
+    reply = {"parsed_output": parsed}
+    assert all(validate_reply_record(reply).values())
+
+    work_record = {
+        "first_model_reply": reply,
+        "worker_next_step": "ask_model_again",
+        "worker_question": "What information is missing?",
+        "second_model_reply": reply,
+        "worker_final_action": "escalate_to_data_science",
+        "worker_reason": "Specialist evidence is still required.",
+    }
+    assert work_record["worker_next_step"] == "ask_model_again"
+    assert work_record["second_model_reply"] is not None
+    assert work_record["worker_final_action"] == "escalate_to_data_science"
 
 
 if __name__ == "__main__":

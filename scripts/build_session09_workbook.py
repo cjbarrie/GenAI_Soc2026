@@ -36,11 +36,13 @@ setup_cell["id"] = "colab-setup"
 
 notebook["cells"] = [
     nbf.v4.new_markdown_cell(
-        "# Week 9 — Configure an LLM assistant at work\n\n"
-        "**Research task:** Compare draft and coach assistance for the same customer-support case. "
-        "The exercise separates a model output from claims about worker performance, knowledge, discretion or authority.\n\n"
+        "# Week 9 — Work with an LLM assistant\n\n"
+        "**Research task:** Review an unfamiliar mortgage-prediction analysis as a consultant. "
+        "After the first model reply, choose whether to ask another question, consult the "
+        "data-science team or write the client note. The exercise adapts the statistical task "
+        "in Wiles et al. (2026).\n\n"
         "**Python introduced:** the first student-edited function, parameters, local variables, "
-        "`return`, and calling the same function with one changed argument."
+        "`return`, calling a function twice and an `if/elif` branch controlled by a worker choice."
     ),
     nbf.v4.new_markdown_cell(
         "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
@@ -58,34 +60,54 @@ notebook["cells"] = [
     nbf.v4.new_code_cell(task_cells[0]),
     nbf.v4.new_markdown_cell(
         "## Store the exact research material\n\n"
-        "This cell creates two strings, one route string and a dictionary describing the six "
-        "fields the model must return. Read the customer message and policy before running it."
+        "This cell creates a dictionary of model results, the AI-written interpretation, the "
+        "coaching instruction and a schema describing the six fields the model must return. "
+        "Read the results and identify the questionable claims before running it."
     ),
     nbf.v4.new_code_cell(task_cells[1]),
     nbf.v4.new_markdown_cell(
         "## Define the function\n\n"
-        "Replace the four parameter names mentally with the current values before running. "
-        "The function builds the prompt, makes one visible route-specific call, prints the raw "
-        "return, parses it and returns one record dictionary."
+        "The function receives two values: the current message list and the selected route. It "
+        "makes one visible route-specific call, prints the raw return, parses it and returns one "
+        "reply-record dictionary. We use the same function again only if the worker asks another question."
     ),
     nbf.v4.new_code_cell(task_cells[2]),
     nbf.v4.new_markdown_cell(
-        "## Run draft mode\n\n"
-        "Input: customer message (`str`), policy (`str`), mode (`str`) and route (`str`). "
-        "Output: a record (`dict`) containing the raw and parsed returns plus four checks."
+        "## Ask for an initial review\n\n"
+        "The input is one message list containing the evidence, questionable analysis and coach "
+        "instruction. The output is a dictionary containing the raw and parsed reply plus three checks."
     ),
     nbf.v4.new_code_cell(task_cells[3]),
     nbf.v4.new_markdown_cell(
-        "## Change one argument\n\n"
-        "The final call keeps the customer, policy, route and model fixed. It changes only "
-        "`assistance_mode` from `draft` to `coach`. Compare the two returned dictionaries."
+        "## Choose what happens next\n\n"
+        "The worker now chooses among `ask_model_again`, `escalate_to_data_science` and "
+        "`write_client_note`. The supplied path asks one follow-up question. The program appends "
+        "the first reply and the worker's question to the conversation before calling the same function."
     ),
     nbf.v4.new_code_cell(task_cells[4]),
     nbf.v4.new_markdown_cell(
+        "## Record the worker's final decision\n\n"
+        "Inspect the second reply, select one final action and state your reason. The resulting "
+        "`work_record` preserves the model replies and the choices made by the worker."
+    ),
+    nbf.v4.new_code_cell(task_cells[5]),
+    nbf.v4.new_markdown_cell(
+        "## Reflect on the work\n\n"
+        "Use these questions to distinguish work performed by the model from reasoning and choices "
+        "retained by the consultant. Also consider what the stored interaction makes visible to the organization."
+    ),
+    nbf.v4.new_code_cell(task_cells[6]),
+    nbf.v4.new_markdown_cell(
+        "## A short unassisted check\n\n"
+        "Answer this question yourself before asking a model. It mirrors the distinction in "
+        "Wiles et al. between completing work with ChatGPT and demonstrating knowledge without it."
+    ),
+    nbf.v4.new_code_cell(task_cells[7]),
+    nbf.v4.new_markdown_cell(
         "## Your one change and recording\n\n"
-        "Revise one sentence in `mode_instruction`, rerun both modes and explain every input and "
-        "output. State whether the model distinguished known facts, uncertainty, hardship "
-        "escalation and refund authority. A passing software check is not evidence about real workers."
+        "Change `worker_next_step` or rewrite `follow_up_question`, rerun and explain every input "
+        "and output. Explain why you made the final decision and what the second model call did to "
+        "the nature of your work. A passing software check is not evidence about real workers."
     ),
 ]
 

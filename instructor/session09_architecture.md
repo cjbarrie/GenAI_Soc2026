@@ -16,7 +16,7 @@ The bounded substantive claim is:
 
 > Evidence of improved performance during LLM assistance is not evidence, by itself, of retained knowledge, worker expertise, discretion or authority. The same measured performance improvement could accompany different distributions of all four.
 
-The computational endpoint is that students can explain `request_assistance(customer_message, policy_text, assistance_mode, route)` by replacing each parameter with an actual value, tracing every local object and identifying the returned dictionary.
+The computational endpoint is that students can explain `call_review_assistant(messages, route)` by replacing each parameter with an actual value, tracing both model calls and identifying where the worker's choice changes the program.
 
 ## Connection to the course
 
@@ -26,22 +26,22 @@ The continuity is methodological: students must still define the target, preserv
 
 ## Cumulative example and provenance
 
-The example is an instructor-authored customer-support case at a fictional subscription-software company. It contains no participant data and makes no claim about a real firm.
+The example adapts the statistical task in Wiles et al. A general consultant reviews an AI interpretation of an unfamiliar mortgage-prediction model. The numerical results and AI analysis are instructor-authored, contain no participant data and are not presented as findings from the paper.
 
 ### Customer message
 
-> My bank shows two entries for my annual plan. One has completed and the other still says pending. The pending amount has reduced the money available for my rent tomorrow. Have I been charged twice, and can you refund it today?
+> The model is 80% accurate on 200 held-out historical cases. Always predicting no mortgage is 60% accurate, and the model has 20 false negatives among 80 observed mortgage cases.
 
 ### Internal policy
 
-> A pending authorization is not a completed payment and normally disappears within three to five business days. Agents cannot manually release or refund a pending authorization. A duplicate-charge refund requires two distinct settled transaction identifiers. A customer reporting immediate financial hardship may be escalated to a supervisor, but escalation does not itself authorize a refund.
+> The model is 80% accurate, so it is ready to guide an investment strategy. Its score shows that increasing a couple's score causes them to take out a mortgage. It also performs much better than the current baseline, which is no better than chance.
 
-### Organizational comparison
+### Organizational comparison and implemented workflow
 
-- In **draft mode**, the assistant recommends an action and writes the customer-facing reply.
-- In **coach mode**, the assistant lists the checks and relevant policy evidence but leaves the final reply to the worker.
+- In **draft mode**, the assistant reviews the claims and writes a proposed client note.
+- In **coach mode**, the assistant asks questions and identifies missing evidence but leaves the assessment and client note to the consultant.
 
-The exercise holds the case and policy constant. It changes only `assistance_mode`. The comparison is about the design of assistance, not about which generated passage sounds nicer.
+The lecture compares these two configurations. The coding exercise then implements coach mode as a short work process. The worker reads the first reply and chooses whether to ask the model again, escalate to the data-science team or begin writing. The supplied path asks a follow-up question. The worker then records a final action and reason.
 
 Draft mode may leave the worker with permission to edit or reject the response even though the system has performed much of the reasoning. Coach mode may require the worker to perform more reasoning without increasing the worker's formal authority. The comparison therefore separates:
 
@@ -57,28 +57,28 @@ The response contains:
 
 ```python
 {
-    "known_facts": ["..."],
-    "uncertainties": ["..."],
-    "recommended_action": "...",
-    "policy_evidence": "...",
-    "worker_guidance": "...",
-    "customer_reply": "... or None"
+    "baseline_comparison": "model_outperforms_baseline",
+    "causal_claim": "not_supported",
+    "decision_status": "needs_more_information",
+    "explanation": ["..."],
+    "questions_for_worker": ["..."],
+    "data_science_escalation": "..."
 }
 ```
 
-The model output is checked against the policy and the mode requirement. In particular, it must not treat the pending authorization as proof of a second settled charge or promise a refund without two settled transaction identifiers. It should distinguish hardship escalation from refund authorization. A valid dictionary and a policy-consistent answer do not establish productivity, learning, worker consent or autonomy.
+The model output is checked against three stated requirements. It should compare 0.80 with the 0.60 baseline, reject the unsupported causal claim and avoid treating accuracy alone as evidence that the model is ready for an investment decision. A valid dictionary and passing checks do not establish productivity, learning, worker consent or autonomy.
 
 ## 165-minute class architecture
 
 | Time | Section | Main question | Student activity | Evidence of understanding |
 |---|---|---|---|---|
-| 9:30–9:42 | Customer-support case and exact LLM operation | What is the assistant being asked to do? | Read the message, policy, prompt and one returned object | Students name the input, output and decision left to the worker |
+| 9:30–9:45 | Consulting case and exact LLM operation | What is the assistant being asked to do? | Read the model results, questionable AI analysis, prompt and one returned object | Students name the input, output and assessment left to the worker |
 | 9:42–10:20 | Historical lecture | How can technology redistribute knowledge, control and information at work? | Follow a cumulative argument across original sources from Marx and Braverman, Burawoy, Barley and Zuboff | Students explain how each stage changes the question carried into the next |
 | 10:20–10:30 | Break |  |  |  |
 | 10:30–11:15 | Reading discussion | What do the three required papers actually establish? | Compare unit, design and outcome; then separate expertise, discretion and authority in the teaching case | Students distinguish assisted performance, retained knowledge and organizational position |
 | 11:15–11:25 | Contemporary evidence synthesis | What can we say across the papers? | Revisit the results and state one bounded conclusion | Students identify which claims require evidence the papers do not provide |
-| 11:25–12:05 | Python and LLM walkthrough | How does the organization configure and record assistance? | Trace literal values, one route-specific call, the raw response, parsing, a policy check and the first function | Students explain every input, type, operation, output and limit |
-| 12:05–12:15 | Rerun, task and close | What changes when the assistance mode changes? | Run or inspect coach mode; return to the opening case | Students compare discretion across modes without claiming real worker effects |
+| 11:25–12:05 | Python and LLM walkthrough | What can the worker decide after receiving model advice? | Trace the first call, choose the next step, make an optional follow-up call and record a final decision | Students explain every input, type, operation, output and worker choice |
+| 12:02–12:15 | Reflection, unassisted question and close | What did the assistant change about the work? | Inspect the work record, answer the accuracy question and return to the opening case | Students distinguish model reasoning, worker decisions and organizational visibility |
 
 The opening lecture is 50 minutes including the concrete LLM operation. The middle 45 minutes are reserved for discussion of the assigned readings. The final 50 minutes develop the code, with ten minutes to rerun and close.
 
@@ -105,7 +105,7 @@ Barley is both a required reading and part of the historical lecture. It should 
 
 ## Reading discussion
 
-The discussion should use the customer-support case throughout.
+The discussion should use the consulting case throughout.
 
 ### Question 1 — What counts as skill in each paper?
 
@@ -121,7 +121,7 @@ Compare the technologists' “clandestine teaching” in Barley with the custome
 
 ### Question 3 — What can workers decide?
 
-For each study, identify who performs the reasoning, who can choose how to carry out the task and who has the right to make the final decision. Apply all three questions to draft and coach mode. Do not infer that permission to edit necessarily means the worker exercised the expertise embodied in the answer.
+For each study, identify who performs the reasoning, who can choose how to carry out the task and who has the right to make the final decision. Apply all three questions to draft and coach mode in the mortgage-model review. Do not infer that permission to edit necessarily means the consultant exercised the expertise embodied in the answer.
 
 ### Question 4 — Why do less experienced workers sometimes gain more?
 
@@ -143,21 +143,23 @@ Brynjolfsson, Li and Raymond and Wiles et al. must not be combined into a cross-
 
 | Reading | Code object | Research connection |
 |---|---|---|
-| Barley | `assistance_mode` | The same underlying model can be incorporated into different work arrangements; compare expertise, discretion and authority separately |
-| Brynjolfsson et al. | `customer_message`, `policy_text`, generated recommendation | The model receives a live problem and organizational knowledge and returns situated advice |
-| Wiles et al. | the explicit limits printed after the run | A successful assisted response does not test unassisted knowledge |
-| Zuboff | `assistance_record` containing input, mode, raw return and worker decision | Passing work through the system creates information about the task and worker response |
+| Barley | `worker_next_step` and the two model calls | The worker and system divide the review between them; compare expertise, discretion and authority separately |
+| Brynjolfsson et al. | the situated model replies | The model supplies advice during the task; our exercise does not estimate a performance effect |
+| Wiles et al. | `model_results`, `ai_analysis` and the final unassisted question | A successful assisted review does not test unassisted knowledge |
+| Zuboff | `work_record` containing both replies, the worker question and final decision | Passing work through the system creates information about the task and worker response |
 
 ## Human-method-to-code map
 
 | Workplace activity | Python representation | What is thinner in the code |
 |---|---|---|
-| Customer presents a problem | `customer_message` string | Tone, history, interaction and consequences are compressed into text |
-| Organization supplies policy | `policy_text` string | Informal practice, exceptions and tacit knowledge are omitted |
-| System is configured | `assistance_mode` string | Actual interface design, incentives and training are not represented |
+| Organization supplies technical evidence | `model_results` dictionary | A few summary figures omit the data, modelling choices and decision context |
+| Earlier AI analysis is presented for review | `ai_analysis` string | The text records claims but not how they were produced |
+| System begins in coach mode | `assistant_instruction` string | Actual interface design, incentives and training are not represented |
 | Assistant returns a suggestion | raw response string and parsed dictionary | Fluency does not show accuracy or usefulness to a worker |
-| Worker evaluates the suggestion | explicit policy checks and an accept/edit/reject field | Formal permission to edit does not reveal who performed the reasoning or held final authority |
-| Organization retains a record | `assistance_record` dictionary | The example shows possible visibility, not actual managerial use |
+| Worker chooses the next step | `worker_next_step` string and an `if/elif` branch | A selected string cannot reproduce workplace pressure or organizational authority |
+| Worker asks for more help | two messages appended to the conversation | A follow-up may support understanding or move more reasoning to the model |
+| Worker makes a final decision | `worker_final_action` and `worker_reason` strings | The example records a choice but cannot establish meaningful discretion |
+| Organization retains a record | `work_record` dictionary | The example shows possible visibility, not actual managerial use |
 
 ## Python progression and complete flow
 
@@ -167,7 +169,7 @@ Brynjolfsson, Li and Raymond and Wiles et al. must not be combined into a cross-
 - function parameters;
 - local variables;
 - `return`;
-- calling the same operation after changing one argument.
+- calling the same function again after a worker decision.
 
 ### What is deliberately reused
 
@@ -181,27 +183,29 @@ Brynjolfsson, Li and Raymond and Wiles et al. must not be combined into a cross-
 
 ### Digestible execution order
 
-1. Store the customer message in a string and print its value and type.
-2. Store the policy in a second string and print its value and type.
-3. Store `assistance_mode = "draft"` and explain that the string changes the organizational instruction.
-4. Build the complete prompt and show the exact text sent to the model.
+1. Store the model results in a dictionary and print its value and type.
+2. Store the AI-written analysis in a string and identify the claims requiring review.
+3. Store the coach instruction and explain which work remains with the consultant.
+4. Convert the results dictionary to text, build the complete prompt and show the exact text sent to the model.
 5. Build the message list and inspect the first dictionary.
 6. Execute the selected route with both route branches visible.
 7. Print the raw response before parsing.
 8. Parse the six requested fields into a dictionary.
-9. Inspect `known_facts` and `uncertainties` before reading the recommendation.
-10. Check that the output does not treat a pending authorization as a second settled payment.
-11. Check that a refund is withheld unless two settled transaction identifiers have been verified.
-12. Check that hardship escalation is kept separate from refund authorization.
-13. Check that draft mode returns a reply and coach mode does not.
-14. Save input, mode, route, model, raw response, parsed response and a placeholder worker decision in `assistance_record`.
-15. Repeat the already-understood lines inside `request_assistance(...)`.
-16. Replace each parameter with the actual value entering the first call.
-17. Print the local values inside the function during the first traced run.
-18. Show the returned dictionary and its type.
-19. Change only `assistance_mode` to `"coach"` and call the function again.
-20. Compare expertise, discretion and authority across the two configurations.
-21. State what the comparison cannot establish about real performance, learning or organizational control.
+9. Inspect the baseline, causal and decision-status fields.
+10. Check that 0.80 is compared with the stated 0.60 baseline.
+11. Check that held-out predictive evidence is not treated as causal evidence.
+12. Check that accuracy alone is not treated as sufficient for a deployment decision.
+13. Repeat the already-understood call inside `call_review_assistant(messages, route)`.
+14. Replace both parameters with the actual values entering the first call.
+15. Show the first returned dictionary and its type.
+16. Store three available worker actions and select one in `worker_next_step`.
+17. If the worker asks again, append the first reply and a follow-up question to `messages`.
+18. Call the same function with the three-message conversation.
+19. If the worker escalates or starts writing, store `None` instead of making another call.
+20. Record the worker's final action and reason.
+21. Save the model replies and worker choices together in `work_record`.
+22. Reflect on model reasoning, worker choice, organizational visibility and later unassisted knowledge.
+23. Answer one new accuracy question without model assistance.
 
 No loop, class, initializer, pandas object or hidden model helper is introduced. A small supplied route utility may prevent duplicated authentication code, but the actual request arguments and response extraction remain visible.
 
@@ -212,12 +216,13 @@ The titles are intentionally descriptive. Parenthetical labels identify the slid
 ### Opening object and exact LLM operation
 
 1. **LLMs at work**
-2. **A customer sees one completed charge and one pending authorization**
-3. **The worker has this billing policy**
-4. **The assistant receives the customer message, the policy and an instruction**
-5. **Draft mode writes a proposed reply**
-6. **Coach mode leaves the reply to the worker**
-7. **What has changed in the worker's job?**
+2. **A consultant reviews an AI analysis of a prediction model**
+3. **What the supplied results establish**
+4. **The assistant receives the results, the analysis and an instruction**
+5. **The assistant sits inside an existing division of labour**
+6. **Draft mode writes a proposed client note**
+7. **Coach mode leaves the assessment to the consultant**
+8. **What has changed in the worker's job?**
 
 Transition: the exact operation is now visible. The lecture can ask what sociology already gives us for interpreting it.
 
@@ -248,7 +253,7 @@ Transition: Barley shows how local interaction changes the organizational result
 ### The distinctions carried into the current literature
 
 20. **Expertise, discretion and authority describe different parts of the job**
-21. **The customer-support case raises questions about performance, knowledge and organizational position**
+21. **The consulting case raises questions about performance, knowledge and organizational position**
 
 Transition: the contemporary studies supply different evidence for these outcomes. They are not interchangeable tests of one general AI effect.
 
@@ -269,50 +274,44 @@ Transition: the contemporary studies supply different evidence for these outcome
 ### Break and reading discussion
 
 33. **Break**
-34. **What counts as skill in each paper?**
-35. **Where does occupational knowledge reside?**
-36. **Who exercises expertise, discretion and authority?**
-37. **Why might less experienced workers gain more?**
-38. **Would the same assistant have the same effect in another workplace?**
-39. **How should the customer-support assistant be configured?**
+34. **The readings examine different aspects of skill at work**
+35. **Possible explanations for the larger gains among less experienced workers**
+36. **The mortgage-model review involves four kinds of work**
+37. **Draft and coach modes allocate the review differently**
 
 Transition: the discussion produces a concrete design choice. The final section implements that choice and shows exactly what is recorded.
 
-### Contemporary synthesis
-
-40. **The papers measure different consequences of AI assistance**
-41. **The existing evidence does not establish one general effect on skill or control**
-42. **Our code compares two configurations rather than real worker outcomes**
-
 ### Python and LLM walkthrough
 
-43. **The program starts with one customer message**
-44. **The internal policy is stored as a second string**
-45. **The assistance mode is another string**
-46. **An f-string combines the three values into the model instruction**
-47. **The message list is the request sent to the model**
-48. **The selected route sends the request to OpenRouter or Ollama**
-49. **The raw return is text**
-50. **JSON parsing turns the text into a dictionary**
-51. **The dictionary separates known facts from unresolved questions**
-52. **The recommendation and policy evidence occupy separate fields**
-53. **The first check tests whether the output invented a second completed charge**
-54. **The second check tests whether the output promised an unsupported refund**
-55. **The mode check tests whether the assistant performed the requested kind of work**
-56. **The saved record includes the request, response and worker decision**
-57. **Every line inside the function has already been run once**
-58. **The function gives names to the four values that can change**
-59. **The first call replaces every parameter with an actual value**
-60. **`return` sends the completed record back to the notebook**
-61. **Changing one argument requests coaching instead of a draft**
-62. **We now compare who reasons, who chooses the procedure and who decides**
-63. **This comparison does not measure productivity, learning or autonomy**
+38. **The coding exercise uses coach mode**
+39. **The complete program**
+40. **The program starts with a dictionary of model results**
+41. **The AI analysis is stored as a string**
+42. **The coaching instruction is another string**
+43. **The results dictionary becomes prompt text**
+44. **The message list is the request sent to the model**
+45. **The selected route sends the request to OpenRouter or Ollama**
+46. **The raw return is text**
+47. **JSON parsing turns the text into a dictionary**
+48. **The dictionary separates the baseline, causal and decision assessments**
+49. **The explanation and worker questions occupy separate fields**
+50. **The first check tests the baseline comparison**
+51. **The next checks test the causal claim and decision status**
+52. **The worker chooses the next step**
+53. **The function receives the current conversation and route**
+54. **The worker receives the first reply**
+55. **A follow-up preserves the earlier exchange**
+56. **The worker can stop without making a second call**
+57. **The worker records a final action and reason**
+58. **The work record contains model and worker contributions**
+59. **What changed in the work?**
 
 ### Close and completion task
 
-64. **Return to the pending authorization**
-65. **Performance, knowledge, expertise, discretion and authority require different evidence**
-66. **Week 9 coding task**
+60. **Answer one accuracy question without the assistant**
+61. **Week 9 coding task**
+62. **What can we conclude?**
+63. **Questions that remain open**
 
 Sixty-six slides is a planning ceiling, not a target to preserve. The historical section has been reduced from twenty slides to twelve so that the class can inspect the primary evidence rather than move through author summaries. The code sequence remains granular because these are beginners encountering functions for the first time.
 
@@ -320,7 +319,7 @@ Sixty-six slides is a planning ceiling, not a target to preserve. The historical
 
 The title sequence makes the following movement without relying on body text:
 
-`exact workplace operation → redistribution of knowledge and control → worker practices within the labour process → organizational variation → information and visibility → contemporary performance evidence → a separate retained-knowledge test → comparison in discussion → two configurations implemented in Python → return to the opening case`
+`exact workplace operation → redistribution of knowledge and control → worker practices within the labour process → organizational variation → information and visibility → contemporary performance evidence → a separate retained-knowledge test → comparison in discussion → worker-controlled model interaction in Python → unassisted knowledge question → return to the opening case`
 
 No section begins with a generic course-stage map. Each historical author answers a question created by the preceding section. The contemporary studies enter only after performance, retained knowledge and control have been separated as outcomes.
 
@@ -328,15 +327,16 @@ No section begins with a generic course-stage map. Each historical author answer
 
 Students will use the provided Week 9 notebook or local script. They will:
 
-1. run one complete request using their selected route;
-2. explain the four function arguments using their actual values and types;
-3. change only `assistance_mode` and rerun;
-4. show the raw and parsed output for both modes;
-5. identify one policy-supported element and one element requiring worker judgment;
-6. distinguish expertise, discretion and authority in the two modes;
-7. explain why the comparison does not demonstrate learning, productivity or autonomy;
-8. connect that limit to one required reading;
-9. submit a narrated screen recording under the naming convention in the recording guide.
+1. run the initial request using their selected route;
+2. explain the two function arguments using their actual values and types;
+3. choose a worker next step or rewrite the follow-up question;
+4. show the raw and parsed output for every call actually made;
+5. record and explain the worker's final decision;
+6. identify one supported comparison and one claim requiring further evidence;
+7. explain what the assistant did, what the worker decided and what the record makes visible;
+8. answer the final accuracy question without model assistance;
+9. connect the limits of the exercise to one required reading;
+10. submit a narrated screen recording under the naming convention in the recording guide.
 
 Code style and compactness are not graded. A student can earn completion by using the supplied function and explaining it accurately; they are not asked to write a function from a blank page.
 
@@ -357,7 +357,7 @@ The obsolete files should remain untouched until the architecture is approved. D
 Before final slides or code are built, confirm:
 
 1. Should Barley, Brynjolfsson et al. and Wiles et al. remain the three complete required articles?
-2. Is the duplicate-charge customer-support case an acceptable cumulative example?
+2. Is the adapted Wiles mortgage-model review an acceptable cumulative example?
 3. Should draft mode and coach mode be the organizational comparison?
 4. Is the sequence Marx → Braverman → Burawoy → Barley → Zuboff the intended historical arc?
 5. Is the final function appropriately modest for the first student-edited function in the course?
@@ -371,6 +371,6 @@ Before final slides or code are built, confirm:
 - **Is the example accurately bounded?** Yes. It is labelled instructor-authored and supports comparison of system configurations only.
 - **Does the discussion prepare the code?** Yes. It ends by choosing how the assistant should be configured; the code makes that choice an explicit string argument.
 - **Is the Python addition appropriately small?** Yes. The only new syntax is a function, its parameters, local values and return. Previously taught strings, dictionaries, branches and parsing remain visible.
-- **Does the code preserve researcher judgment?** Yes. Students compare the recommendation with the policy and identify an element still requiring worker judgment.
+- **Does the code preserve worker judgment?** Yes. Students compare the recommendation with the supplied evidence and identify technical issues that still require worker or specialist judgment.
 - **Does the close answer the opening?** Yes. It separates the kinds of evidence needed for performance, knowledge and organizational position rather than claiming that the interface establishes a real workplace effect.
 - **What remains before final construction?** Source acquisition for the historical books and the two other required articles; exact figure and quotation checking; live and cached model outputs; aligned site, notebook, local script and task; rendered and end-to-end review.

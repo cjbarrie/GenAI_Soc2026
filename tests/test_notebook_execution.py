@@ -95,29 +95,22 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
         return json.dumps({"predicted_control_percent": 30, "predicted_treatment_percent": 38})
     if schema_name == "agent_action" or properties == {"action", "reason"}:
         return json.dumps({"action": "speak calmly", "reason": "The observation changed."})
-    if schema_name == "workplace_assistance" or "known_facts" in properties:
-        coach_mode = "Assistance mode: coach" in prompt
+    if schema_name == "occupation_judgment" or properties == {"occupation", "explanation"}:
         return json.dumps(
             {
-                "known_facts": [
-                    "One annual-plan charge has completed.",
-                    "A second entry is pending.",
-                ],
-                "uncertainties": ["Whether the pending entry will settle."],
-                "recommended_action": (
-                    "Explain that the pending entry is not a completed charge and escalate "
-                    "the reported hardship without authorizing a refund."
-                ),
-                "policy_evidence": (
-                    "A refund requires two settled transaction identifiers; escalation "
-                    "does not authorize a refund."
-                ),
-                "worker_guidance": "Verify settlement status and offer hardship escalation.",
-                "customer_reply": (
-                    None
-                    if coach_mode
-                    else "The second entry is pending, so I cannot confirm a duplicate charge."
-                ),
+                "occupation": "office clerk",
+                "explanation": "The sentence supplies too little evidence for a grounded occupational judgment.",
+            }
+        )
+    if schema_name in {"analysis_review", "work_review"} or "baseline_comparison" in properties:
+        return json.dumps(
+            {
+                "baseline_comparison": "model_outperforms_baseline",
+                "causal_claim": "not_supported",
+                "decision_status": "needs_more_information",
+                "explanation": ["Accuracy exceeds the baseline but does not establish causality."],
+                "questions_for_worker": ["Which errors matter for the decision?"],
+                "data_science_escalation": "Request calibration and false-positive results.",
             }
         )
     if schema_name == "join_action" or properties == {"action"}:
@@ -432,10 +425,12 @@ def test_followup_notebook_executes_without_live_services(
         assert namespace["local_results"] == []
         assert namespace["local_mae"] is None
     if week == 9:
-        assert namespace["draft_record"]["parsed_output"]["customer_reply"] is not None
-        assert namespace["coach_record"]["parsed_output"]["customer_reply"] is None
-        assert all(namespace["draft_record"]["checks"].values())
-        assert all(namespace["coach_record"]["checks"].values())
+        assert all(namespace["first_reply"]["checks"].values())
+        assert all(namespace["second_reply"]["checks"].values())
+        assert namespace["worker_next_step"] == "ask_model_again"
+        assert len(namespace["first_reply"]["messages_sent"]) == 1
+        assert len(namespace["second_reply"]["messages_sent"]) == 3
+        assert namespace["work_record"]["worker_final_action"] == "escalate_to_data_science"
     if week == 13:
         expected_routes = ["openrouter"] if runtime == "colab" else ["openrouter", "ollama"]
         assert namespace["routes"] == expected_routes
