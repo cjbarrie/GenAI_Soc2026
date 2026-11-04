@@ -20,7 +20,7 @@ By the end of the class, you should be able to:
 - distinguish transcription performance, linguistic evaluation and institutional allocation;
 - reconstruct Hofmann et al.’s matched-guise probing design and its limits;
 - explain how Waight et al. combine corpus evidence, an intervention and model audits;
-- trace one meaning-matched pair through a small Python comparison without treating a generated explanation as a causal mechanism.
+- trace one meaning-matched pair through `zip()`, tuple unpacking and a running count without treating a generated explanation as a causal mechanism.
 
 ## Essential readings and what each contributes
 
@@ -77,7 +77,7 @@ The slides are available in the [online Week 11 chapter](https://cjbarrie.github
 
 ## Take-home exercise
 
-Run the small matched-input comparison using the supplied published pairs. Change one predeclared model or route while keeping the texts, prompt, occupation list and temperature fixed. Trace one pair through both runs. Explain the input value and Python type, the model call, raw JSON, parsed dictionary, result record and paired comparison. State whether the occupations differed and why the result does not establish a stable model-level pattern, a training mechanism or an institutional effect.
+Run the small matched-input comparison using the supplied published pairs. Change one predeclared model or route while keeping the texts, prompt, occupation list and temperature fixed. Trace one pair through `zip()` in both runs. Explain tuple unpacking, the Boolean comparison, the `+=` update and the denominator. State whether the occupations differed and why the result does not establish a stable model-level pattern, a training mechanism or an institutional effect.
 
 Follow the [recording and submission instructions](../recording-and-submission.qmd), name the file with your name and `Week11`, and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
 

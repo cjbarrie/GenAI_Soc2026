@@ -1,78 +1,58 @@
-"""Assessed dual-route routine. Run from the repository root."""
+"""Optional project preparation for the cancelled 25 November class.
 
-# CELL: Load the course settings and SDKs
+There is no Week 12 coding submission. This offline extension introduces file
+I/O by saving and reopening one transparent model-call record. It makes no API
+call and can be used while preparing a final-project proposal.
+"""
+
 import json
-import os
-from getpass import getpass
 from pathlib import Path
 
-try:
-    import ollama
-    from openrouter import OpenRouter
-except ModuleNotFoundError as error:
-    raise ModuleNotFoundError(
-        "A course SDK is missing. Open a terminal in the complete GenAI_Soc2026 "
-        "folder, run 'uv sync --frozen', then run this task with 'uv run python'."
-    ) from error
+# New Python idea: a Path object names a file without assuming one operating system.
+output_directory = Path("student_outputs")
+output_directory.mkdir(exist_ok=True)
+record_path = output_directory / "project_model_call_record.json"
 
-ROOT = Path.cwd()
-while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
-    ROOT = ROOT.parent
+# Replace the example values with the planned routine for your own project.
+project_record = {
+    "research_question": "How does the wording of an apology vary by relationship?",
+    "input_description": "One broken commitment and one relationship label",
+    "model_route": "ollama",
+    "model_name": "replace-with-the-model-you-plan-to-use",
+    "prompt_version": "v1",
+    "temperature": 0,
+    "expected_output": "One generated message",
+    "validation_evidence": "Researcher comparison against supplied facts",
+}
 
-if not (ROOT / "config" / "course_models.json").exists():
-    raise FileNotFoundError(
-        "The complete GenAI_Soc2026 repository could not be found. A task or "
-        "notebook downloaded by itself is not enough for local work. Open a terminal "
-        "in the complete course folder and run this file from there."
-    )
-config = json.loads((ROOT / "config" / "course_models.json").read_text())
-HOSTED_MODEL = config["hosted"]["model"]
-LOCAL_MODEL = config["local"]["model"]
-if not os.getenv("OPENROUTER_API_KEY"):
-    os.environ["OPENROUTER_API_KEY"] = getpass("OpenRouter course key (hidden): ")
+# json.dumps returns a string. Path.write_text writes that string to disk.
+json_text = json.dumps(project_record, indent=2)
+record_path.write_text(json_text, encoding="utf-8")
+print("Saved:", record_path.resolve())
 
-# CELL: Choose a route and load an instructor-authored original trajectory
-ROUTE = "ollama"
-original_trajectory = [
-    {"stage":"plan","raw_output":"Search for evidence about replication records."},
-    {"stage":"inspect","raw_output":"The source names prompts, models, settings and outputs."},
-    {"stage":"write","raw_output":"Replication requires preserving the model-dependent research record."},
+# Path.read_text returns a string. json.loads turns it back into a dictionary.
+reopened_text = record_path.read_text(encoding="utf-8")
+reopened_record = json.loads(reopened_text)
+print("Reopened type:", type(reopened_record))
+print("Research question:", reopened_record["research_question"])
+
+required_fields = [
+    "research_question",
+    "input_description",
+    "model_route",
+    "model_name",
+    "prompt_version",
+    "temperature",
+    "expected_output",
+    "validation_evidence",
 ]
-stages = ["plan", "inspect", "write"]
-research_question = "What must be saved to understand a changed LLM-assisted result?"
+missing_fields = []
+for field in required_fields:
+    if field not in reopened_record:
+        missing_fields.append(field)
 
-# CELL: Run at most three model calls and preserve every event
-rerun_trajectory = []
-for stage in stages:
-    prompt = (
-        "Stage: " + stage + ". Research question: " + research_question +
-        ". Produce one sentence. Prior events: " + json.dumps(rerun_trajectory)
-    )
-    messages = [{"role":"user","content":prompt}]
-    if ROUTE == "openrouter":
-        with OpenRouter(api_key=os.environ["OPENROUTER_API_KEY"]) as client:
-            response = client.chat.send(model=HOSTED_MODEL,messages=messages,temperature=0,max_tokens=80)
-        raw_output = response.choices[0].message.content.strip()
-    else:
-        response = ollama.chat(think=False, model=LOCAL_MODEL,messages=messages,options={"temperature":0,"num_predict":80})
-        raw_output = response.message.content.strip()
-    event = {"stage":stage,"route":ROUTE,"prompt":prompt,"raw_output":raw_output}
-    rerun_trajectory.append(event)
-    print("Saved event:", event)
+print("Missing fields:", missing_fields)
+print("Record ready for proposal discussion:", len(missing_fields) == 0)
 
-# CELL: Write the rerun record to a clearly scoped student-output folder
-output_dir = ROOT / "student_outputs"
-output_dir.mkdir(exist_ok=True)
-output_path = output_dir / "week12_rerun.json"
-output_path.write_text(json.dumps(rerun_trajectory, indent=2))
-print("Saved to:", output_path)
-
-# CELL: Compare the original and rerun stage by stage
-discrepancies = []
-for original, rerun in zip(original_trajectory, rerun_trajectory):
-    same_stage = original["stage"] == rerun["stage"]
-    same_output = original["raw_output"] == rerun["raw_output"]
-    discrepancies.append({"stage":rerun["stage"],"same_stage":same_stage,"same_output":same_output})
-print(discrepancies)
-
-# ONE CHANGE: change temperature from 0 to 0.7 in the selected route and rerun.
+# OPTIONAL CHANGE: replace two fields with details from your proposal, save the
+# file again and reopen it. There is no recording or submission for this week.

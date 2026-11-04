@@ -1,4 +1,8 @@
-"""Week 9: work through a model review while retaining worker decisions."""
+"""Week 9: use a function and a branch to retain worker decisions.
+
+New Python ideas: ``def``, parameters, local variables, ``return``,
+``if``/``elif``/``else`` and ``None``.
+"""
 
 # CELL: Load the course settings and SDKs
 import json
@@ -165,6 +169,7 @@ if worker_next_step == "ask_model_again":
     messages.append({"role": "user", "content": follow_up_question})
     second_reply = call_review_assistant(messages=messages, route=ROUTE)
 elif worker_next_step in {"escalate_to_data_science", "write_client_note"}:
+    # None means that no second reply exists. It is not the text "None".
     second_reply = None
 else:
     raise ValueError("Choose one action from available_actions")

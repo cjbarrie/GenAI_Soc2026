@@ -217,6 +217,16 @@ format:
 
 ---
 
+## The highest-skilled agents followed the assistant more despite a small decline in conversation quality
+
+<img class="bryn-adherence-evidence" src="images/bryn_top_workers_adherence.png" alt="Highlighted passage reporting that top workers increased their adherence to AI recommendations although those recommendations marginally decreased conversation quality">
+
+<p class="plain-note">The paper measures adherence to the assistant’s recommendations. It does not show that these workers believed the recommendations were better.</p>
+
+<p class="citation">Brynjolfsson, Li & Raymond (2025), p. 893.</p>
+
+---
+
 ## The study measures performance while assistance is available
 
 <div class="measurement-card"><b>Observed</b><p>Resolution speed, resolution rates, customer sentiment and other outcomes during assisted work.</p><b>Not directly tested</b><p>Whether the same workers could reproduce the assistant’s reasoning after access was removed.</p></div>

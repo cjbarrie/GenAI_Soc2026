@@ -436,7 +436,7 @@ format:
 
 ## The coding task returns to the broken commitment
 
-<div class="code-task-map"><span>same facts</span><span>two instructions</span><span>three relationships</span><span>generated messages</span><span>researcher inspection</span></div>
+<div class="code-task-map"><span>same facts</span><span>writing instruction</span><span>relationship</span><span>disclosure setting</span><span>generated message</span><span>researcher inspection</span></div>
 
 <p>We will observe the model’s text. We will not ask the model to score sincerity, appropriateness or relationship quality.</p>
 
@@ -499,9 +499,12 @@ if ROUTE == "openrouter":
     )
     message = response.choices[0].message.content
 else:
-    response = ollama.chat(think=False, model=OLLAMA_MODEL,
-        messages=[{"role": "user", "content": prompt}])
-    message = response["message"]["content"]
+    response = ollama.chat(
+        think=False,
+        model=OLLAMA_MODEL,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    message = response.message.content
 ```
 
 ---
@@ -520,48 +523,86 @@ print(type(message))
 
 ---
 
-## The function receives three strings and returns one string
+## The fourth parameter has a default value
 
 ```python
-def draft_message(relationship, instruction_name, route):
+def draft_message(
+    relationship,
+    instruction_name,
+    route,
+    disclose_assistance=False,
+):
     if instruction_name == "thin":
         instruction = thin_instruction
     elif instruction_name == "obligation":
         instruction = obligation_instruction
-    prompt = f"{instruction}\nRelationship: {relationship}\n{facts}"
-    # the visible OpenRouter/Ollama branch produces raw_output
-    return raw_output
 ```
 
-<p><strong>Parameters:</strong> three strings enter. <strong>Return value:</strong> one generated string leaves. The notebook shows the complete route branch.</p>
+<p>The first three arguments are required. If the function call omits the final argument, Python uses the Boolean value <code>False</code>.</p>
 
 ---
 
-## A loop repeats the same request across relationships
+## A Boolean changes the disclosure instruction
+
+```python
+disclosure_request = ""
+if disclose_assistance:
+    disclosure_request = (
+        "Disclose that an AI writing assistant helped."
+    )
+```
+
+<p><code>False</code> leaves the string empty. <code>True</code> adds the disclosure request to the prompt.</p>
+
+---
+
+## Keyword arguments make the inputs visible
+
+```python
+disclosed_record = draft_message(
+    relationship="close friend",
+    instruction_name="obligation",
+    route=ROUTE,
+    disclose_assistance=True,
+)
+```
+
+<p>The names show which value fills each parameter. This call changes the disclosure setting without changing the facts or relationship.</p>
+
+---
+
+## enumerate numbers the relationship conditions
 
 ```python
 relationships = ["colleague", "close friend", "romantic partner"]
-records = []
+relationship_records = []
 
-for relationship in relationships:
-    message = draft_message(relationship, "obligation", ROUTE)
-    records.append({"relationship": relationship,
-                    "raw_message": message})
+for position, relationship in enumerate(relationships, start=1):
+    print("Condition", position, "of", len(relationships))
+    record = draft_message(
+        relationship=relationship,
+        instruction_name="obligation",
+        route=ROUTE,
+    )
+    relationship_records.append(record)
 ```
 
-<p>On the first iteration, `relationship` is `"colleague"`; one dictionary is appended to the list.</p>
+<p>On the first iteration, <code>position</code> is <code>1</code> and <code>relationship</code> is <code>"colleague"</code>.</p>
 
 ---
 
-## Each record stores the relationship and generated message
+## The returned dictionary stores inputs and generated text
 
 ```python
-for record in records:
-    print(record["relationship"])
-    print(record["message"])
+return {
+    "relationship": relationship,
+    "instruction_name": instruction_name,
+    "disclose_assistance": disclose_assistance,
+    "raw_message": raw_output,
+}
 ```
 
-<p>Each record contains the relationship label and raw generated message. It does not contain a model-produced validity score.</p>
+<p>The record keeps the condition beside the raw message. It does not contain a model-produced score for sincerity or relationship quality.</p>
 
 ---
 
@@ -570,10 +611,10 @@ for record in records:
 ```python
 researcher_notes = {
     "invented_facts": [],
-    "commitment_named": [],
-    "reliance_named": [],
-    "repairs_offered": [],
-    "other_observations": [],
+    "instruction_comparison": "",
+    "relationship_comparison": "",
+    "disclosure_comparison": "",
+    "human_evidence_needed": "",
 }
 ```
 
@@ -591,13 +632,13 @@ researcher_notes = {
 
 ## For the take-home task, change one input
 
-<ol class="task-list"><li>Run the two instructions for a close friend.</li><li>Run the relational instruction for all three relationships.</li><li>Change one relationship description or one obligation and rerun.</li><li>Explain what changed in the generated writing.</li><li>State what cannot be inferred about sincerity, persuasion or relationship repair.</li></ol>
+<ol class="task-list"><li>Run the two instructions for a close friend.</li><li>Run the obligation instruction for all three relationships.</li><li>Run the close-friend condition with <code>disclose_assistance=True</code>.</li><li>Change one relationship description or disclosure setting.</li><li>Explain the default argument, the first <code>enumerate()</code> iteration and the returned record.</li><li>State what remains unknown about sender and recipient outcomes.</li></ol>
 
 ---
 
 ## The screen recording explains inputs and outputs
 
-<div class="submission-box">Show the facts dictionary, the prompt string, one route-specific call, the returned string, one function call, the first loop iteration and the researcher-notes object. Explain the Python type and sociological meaning of each.</div>
+<div class="submission-box">Show the facts dictionary, the default Boolean, one keyword-argument call, the first <code>enumerate()</code> iteration, the returned record and the researcher-notes object. Explain what the generated text can and cannot show.</div>
 
 <p>Submit a 6–8 minute narrated recording to the course Coding Videos folder using the required week-and-name filename.</p>
 

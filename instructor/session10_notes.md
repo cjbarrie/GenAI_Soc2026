@@ -13,7 +13,7 @@ Students should be able to explain why an LLM-mediated interpersonal message cre
 - **10:42–10:48 — Gershon and Illouz:** medium choice and available cultural vocabularies.
 - **10:48–10:58 — break.**
 - **10:58–11:32 — reading discussion:** reconstruct Hohenstein's two studies and Williams-Ceci's outcome; compare all three readings using the opening case.
-- **11:32–12:08 — Python walkthrough:** dictionary, instruction strings, prompt, route call, returned string, function, first loop iteration, record and researcher notes.
+- **11:32–12:08 — Python walkthrough:** fixed facts, default Boolean parameter, keyword arguments, route call, `enumerate()`, returned record and researcher notes.
 - **12:08–12:15 — close:** name what the demonstration shows and the human outcomes still requiring evidence.
 
 ## Core explanations
@@ -42,12 +42,14 @@ For each block say: **input value and type → operation → output value and ty
 
 - The facts dictionary stores only supplied information.
 - The f-string turns the instruction, relationship and facts into one prompt string.
-- The function receives three strings and returns one raw message string.
-- The loop traces one relationship at a time and appends one record dictionary.
+- The function receives three required arguments and one Boolean whose default is `False`.
+- Keyword arguments make the relationship, instruction, route and disclosure setting visible at the call site.
+- `enumerate()` supplies a condition number and relationship label on each iteration.
+- The function returns a record dictionary containing the raw generated message and the inputs that produced it.
 - Researcher notes are written after inspection and remain separate from the model return.
 
 The live route is the ordinary path. Use `USE_RECORDED = True` only for an outage. In the recorded contingency, students should not invent new relationship labels because no recorded return exists for them.
 
 ## Completion standard
 
-The recording must show the two-instruction comparison, the three-relationship loop, one meaningful change, the raw output and the researcher-notes object. The student must explain one connection to a required or core historical reading and state what writer or recipient evidence would be needed for a stronger claim. Code elegance is not graded.
+The recording must show the two-instruction comparison, the three-relationship loop, the disclosed close-friend condition, one meaningful change, the raw output and the researcher-notes object. The student must explain the default value, one keyword-argument call, the first `enumerate()` iteration, one connection to a required or core historical reading and the writer or recipient evidence needed for a stronger claim. Code elegance is not graded.

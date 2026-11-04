@@ -17,6 +17,8 @@ The assistant begins in coach mode. It checks the analysis and returns questions
 
 The supplied path asks the model one follow-up question. You then make and record the final decision. The unit of analysis is one model-assisted review, including the worker's choices. The program does not measure real productivity, learning, discretion or authority.
 
+**New Python this week:** `def`, parameters, local variables, `return`, an `if`/`elif`/`else` branch and `None`. Earlier weeks used functions supplied by Python packages. This is the first exercise in which you read and edit a function that organizes the research routine.
+
 ## Workbook and environment links
 
 Use the supplied notebook rather than pasting the blocks into a blank notebook. It contains the tested Colab setup and the complete local check.
@@ -136,7 +138,7 @@ if worker_next_step == "ask_model_again":
     second_reply = call_review_assistant(messages=messages, route=ROUTE)
 ```
 
-The comparison after `if` becomes `True` for the supplied value. `.append()` adds the first reply and the worker's new question to the message list. The second call therefore receives the earlier exchange as context. If the worker selects escalation or begins writing, the program makes no second model call.
+The comparison after `if` becomes `True` for the supplied value. `.append()` adds the first reply and the worker's new question to the message list. The second call therefore receives the earlier exchange as context. If the worker selects escalation or begins writing, the program makes no second model call and stores `None` in `second_reply`. `None` is Python's value for the absence of a result. It differs from the string `"None"`, which contains four text characters.
 
 ## Record the final worker decision
 

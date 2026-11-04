@@ -1,47 +1,45 @@
 ---
 title: "Week 10 Python — Compare LLM-mediated messages"
-description: "One function and loop for the broken-commitment example"
+description: "Default arguments, Boolean values and the broken-commitment example"
 ---
 
 [Return to the Week 10 readings and slides](../weeks/session10.qmd).
 
-## Python walkthrough: compare LLM-mediated apologies
+## Python walkthrough: writing assistance as part of a relational act
 
-The research question is: **how does an LLM formulate the same broken commitment when the instruction or relationship changes?** The input is one fixed set of facts, one instruction and one relationship label. The operation is one model call. The output is a generated message stored as a Python string. You will then write researcher notes about observable features of the outputs.
+The research question is: **how does an LLM formulate the same broken commitment when the instruction, relationship or disclosure setting changes?** The facts remain fixed. The program produces generated messages and a research record. It does not observe sincerity, persuasion, recipient interpretation or relationship repair.
 
-The program does not measure sincerity, relational appropriateness, persuasion or relationship quality. Those outcomes would require data from human senders and recipients.
+**New Python this week:** a default parameter value, the Boolean values `True` and `False`, keyword arguments and `enumerate()`. Week 9 introduced a function and a branch. Week 10 uses those ideas to make a theoretically important choice explicit: whether the prompt asks the generated message to disclose AI writing assistance.
 
 ## Workbook and environment links
 
-Use the supplied notebook rather than pasting code into a blank notebook. It contains the tested Colab setup and the complete local check.
+Use the supplied notebook rather than pasting code into a blank notebook.
 
 [Open the Week 10 notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session10/session10_relationship_mediation.ipynb) or [download the notebook](../_generated/downloads/session10/session10_relationship_mediation.ipynb).
 
-[Download the local Python task](../_generated/downloads/session10/session10_task.py).
+[Download the local Python task](../_generated/downloads/session10/session10_task.py) or [download the offline bundle](../_generated/downloads/session10/session10_offline_bundle.zip).
 
-[Download the complete offline bundle](../_generated/downloads/session10/session10_offline_bundle.zip).
-
-For local work, open a terminal in the complete repository and run:
+For local work, run:
 
 ```bash
 uv sync --frozen
 uv run jupyter lab
 ```
 
-Colab selects OpenRouter. Local JupyterLab selects Ollama. The route and model call remain visible.
+Colab uses OpenRouter. Local JupyterLab uses Ollama by default. `COURSE_USE_RECORDED=1` activates a labelled outage fallback in the local task.
 
-## The complete flow
+## Complete flow
 
 ```text
-fixed facts + instruction + relationship
-→ one prompt string
+fixed facts + writing instruction + relationship + disclosure Boolean
+→ prompt string
 → OpenRouter or Ollama call
-→ raw message string
-→ one record dictionary
-→ researcher inspection
+→ raw generated message
+→ record dictionary
+→ researcher notes
 ```
 
-## Store the facts
+## Store facts separately from interpretation
 
 ```python
 facts = {
@@ -53,134 +51,97 @@ facts = {
 }
 ```
 
-The input values are strings, except `repairs`, which is a list containing two strings. The whole object is a dictionary. It stores the supplied facts under names. It does not contain any claim about how the sender feels.
+The dictionary contains supplied circumstances. It contains no claim about the sender's feelings or the recipient's likely reaction. Zelizer directs our attention to how a medium and transaction acquire meaning within a relationship. The dictionary does not settle that meaning in advance.
 
-## Store the instructions
+## A default value represents the ordinary call
 
 ```python
-thin_instruction = (
-    "Write a message telling this person that I cannot help them move tomorrow. "
-    "Use only the supplied facts and do not invent facts."
+def draft_message(
+    relationship,
+    instruction_name,
+    route,
+    disclose_assistance=False,
+):
+```
+
+The first three parameters require arguments. The fourth parameter has a default value. If the function call omits `disclose_assistance`, Python uses `False`.
+
+```python
+ordinary_record = draft_message(
+    relationship="close friend",
+    instruction_name="obligation",
+    route=ROUTE,
 )
+```
 
-obligation_instruction = (
-    "Write the message to this person. State the commitment that was broken, "
-    "acknowledge the late notice and the plan they made in reliance on the promise, "
-    "explain only the supplied facts, and offer both available forms of repair. "
-    "Do not invent feelings, relationship history or motives."
+The words before `=` are parameter names. The values after `=` are keyword arguments. Their order does not carry the meaning; the names do.
+
+## A Boolean controls the disclosure branch
+
+```python
+disclosure_request = ""
+if disclose_assistance:
+    disclosure_request = (
+        "\nEnd with this factual disclosure: I used an AI writing assistant "
+        "to help me draft this message."
+    )
+```
+
+With `False`, the indented assignment does not run and the prompt receives an empty string. With `True`, the disclosure request becomes part of the prompt.
+
+```python
+disclosed_record = draft_message(
+    relationship="close friend",
+    instruction_name="obligation",
+    route=ROUTE,
+    disclose_assistance=True,
 )
 ```
 
-Both values are strings. The first gives the model substantial discretion to infer what the message requires. The second specifies the obligations we want represented. It still does not prescribe the exact wording.
+This call changes one explicit input. Comparing the generated strings shows what the model wrote under each instruction. It does not show how a friend would interpret disclosure.
 
-## Read the function parameters as literal values
-
-The first call will be:
-
-```python
-relationship = "close friend"
-instruction_name = "thin"
-route = "ollama"
-```
-
-All three inputs are strings. In Colab, `route` will instead contain `"openrouter"`.
-
-## Define the function
-
-```python
-def draft_message(relationship, instruction_name, route):
-    if instruction_name == "thin":
-        instruction = thin_instruction
-    elif instruction_name == "obligation":
-        instruction = obligation_instruction
-    else:
-        raise ValueError("instruction_name must be 'thin' or 'obligation'")
-
-    prompt = f"""{instruction}
-
-Relationship: {relationship}
-
-Facts:
-{json.dumps(facts, indent=2)}
-
-Return only the message that could be sent."""
-```
-
-The comparisons after `if` and `elif` select one instruction string. The f-string then combines the instruction, relationship and facts into one prompt string. `json.dumps` does not call a model; it renders the dictionary as readable text inside the prompt.
-
-## Send the prompt through the selected route
-
-```python
-    if route == "openrouter":
-        with OpenRouter(api_key=api_key) as client:
-            response = client.chat.send(
-                model=OPENROUTER_MODEL,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0,
-            )
-        raw_output = response.choices[0].message.content
-    elif route == "ollama":
-        response = ollama.chat(think=False,
-            model=OLLAMA_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            options={"temperature": 0},
-        )
-        raw_output = response.message.content
-
-    return raw_output
-```
-
-The request contains a message list with one dictionary. The API or local server returns a response object. The next line extracts its visible content into `raw_output`. The function returns this string. The extraction syntax differs because the two SDKs shape their response objects differently.
-
-## Compare instructions
-
-```python
-thin_message = draft_message("close friend", "thin", ROUTE)
-obligation_message = draft_message("close friend", "obligation", ROUTE)
-```
-
-The relationship and facts stay fixed. Only the instruction changes. Read both strings and ask which parts of the obligation the thin instruction left the model to infer, omit or invent.
-
-## Repeat the relational instruction across three relationships
+## Enumerate the relationship conditions
 
 ```python
 relationships = ["colleague", "close friend", "romantic partner"]
-records = []
+relationship_records = []
 
-for relationship in relationships:
-    message = draft_message(relationship, "obligation", ROUTE)
-    records.append({
-        "relationship": relationship,
-        "instruction": "obligation",
-        "facts": facts.copy(),
-        "raw_message": message,
-    })
+for position, relationship in enumerate(relationships, start=1):
+    print("Condition", position, "of", len(relationships))
+    record = draft_message(
+        relationship=relationship,
+        instruction_name="obligation",
+        route=ROUTE,
+    )
+    relationship_records.append(record)
 ```
 
-`relationships` is a list of three strings. On the first iteration, `relationship` contains `"colleague"`. The function returns one message string. `.append()` adds one record dictionary to the initially empty list. After three iterations, `records` contains three dictionaries.
+`enumerate()` returns two values on each iteration. On the first iteration, `position` is `1` and `relationship` is `"colleague"`. The function returns one dictionary, which the program appends to the ordered list.
 
-## Keep researcher notes separate
+## Inspect generated writing without manufacturing outcomes
 
 ```python
 researcher_notes = {
+    "instruction_comparison": "",
+    "relationship_comparison": "",
+    "disclosure_comparison": "",
     "invented_facts": [],
-    "commitment_named": [],
-    "late_notice_named": [],
-    "reliance_named": [],
-    "repairs_offered": [],
-    "other_observations": [],
+    "human_evidence_needed": (
+        "Recipient interpretations, sender experience and later interaction data."
+    ),
 }
 ```
 
-These lists are for your notes after reading the generated messages. They are not returned by the model. You may record whether a feature is present and quote the relevant wording. Do not turn the model into the judge of whether its own message is sincere or relationally effective.
+Write observations after reading the messages. Hohenstein et al. provide evidence about actual smart-reply use and immediate partner judgments. A model demonstration alone cannot recreate those human outcomes. Williams-Ceci et al. measure influence on writers; our generated strings do not measure that pathway either.
 
 ## Take-home exercise
 
-1. Run the thin and relational-obligation instructions for a close friend.
-2. Run the relational-obligation instruction for all three relationships.
-3. Change one relationship description or one obligation, then rerun.
-4. Complete the researcher-notes object with references to the messages.
-5. Connect one observation to Zelizer, Goffman or Hochschild.
-6. State what recipient or writer evidence would be needed for a human-outcomes claim.
+1. Run the two writing instructions for a close friend.
+2. Run the obligation instruction across all three relationships.
+3. Run the close-friend condition with `disclose_assistance=True`.
+4. Change one relationship description or disclosure setting and rerun.
+5. Explain the default value, keyword arguments, first `enumerate()` iteration and returned record.
+6. Connect one observation to Zelizer, Goffman, Hochschild or Hohenstein et al.
+7. State which sender or recipient evidence would support a stronger claim.
 
-In a 6–8 minute narrated screen recording, show and explain the facts dictionary, prompt string, route-specific call, raw return, function parameters and return, first loop iteration, record dictionary and researcher-notes object. Explain the Python type and sociological meaning of each. Follow the [recording and submission instructions](../recording-and-submission.qmd) and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
+Submit a narrated 6–8 minute screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code style is not graded.

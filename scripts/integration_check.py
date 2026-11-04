@@ -21,7 +21,7 @@ def main() -> None:
     require(config["local"]["model"] == "gemma4:e2b-it-qat", "unexpected local model", problems)
     fixtures = json.loads((ROOT / "data/dual_route_recorded_outputs.json").read_text())
 
-    for week in range(1, 14):
+    for week in range(1, 12):
         session = f"session{week:02d}"
         task_path = ROOT / "assessments/weekly_coding" / f"{session}_task.py"
         notebooks = sorted((ROOT / "workbook" / session).glob("*.ipynb"))
@@ -63,6 +63,31 @@ def main() -> None:
                     cell_source = cell["source"] if isinstance(cell["source"], str) else "".join(cell["source"])
                     ast.parse(cell_source)
 
+    optional_task = ROOT / "assessments/weekly_coding/session12_task.py"
+    optional_notebooks = sorted((ROOT / "workbook/session12").glob("*.ipynb"))
+    require(optional_task.exists(), "missing optional project-record task", problems)
+    require(len(optional_notebooks) == 1, "expected one optional project-record notebook", problems)
+    if optional_task.exists():
+        optional_source = optional_task.read_text()
+        require(
+            "There is no Week 12 coding submission" in optional_source,
+            "Week 12 task must remain explicitly optional",
+            problems,
+        )
+        require("write_text" in optional_source and "read_text" in optional_source,
+                "optional project record must show a JSON file round trip", problems)
+    if len(optional_notebooks) == 1:
+        optional_notebook = json.loads(optional_notebooks[0].read_text())
+        require(
+            "There is no Week 12 coding submission" in json.dumps(optional_notebook),
+            "optional notebook must not imply an assignment",
+            problems,
+        )
+        for cell in optional_notebook["cells"]:
+            if cell["cell_type"] == "code":
+                cell_source = cell["source"] if isinstance(cell["source"], str) else "".join(cell["source"])
+                ast.parse(cell_source)
+
     combined_policy = (ROOT / "syllabus/SYLLABUS.md").read_text() + (ROOT / "workbook/PROGRESSION.md").read_text()
     for phrase in ("both OpenRouter and Ollama", "Week 8", "Week 9"):
         require(phrase in combined_policy, f"course policy missing {phrase!r}", problems)
@@ -72,7 +97,7 @@ def main() -> None:
         print("Dual-route integration checks failed:")
         print("\n".join(f"- {problem}" for problem in problems))
         raise SystemExit(1)
-    print("Dual-route progression passed: both routes in Weeks 1–2 and 8, route choice in 3–7, first function in 9, and Week 14 presentations only.")
+    print("Dual-route progression passed: both routes in Weeks 1–2 and 8, route choice in 3–7, function and control flow in 9, distinct syntax in 10–11, and no assessed task after 18 November.")
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ def setup_source(week: int) -> str:
     )
 
 
-@pytest.mark.parametrize("week", range(1, 14))
+@pytest.mark.parametrize("week", range(1, 12))
 def test_package_discovery_runs_in_a_fresh_python_process(week: int) -> None:
     """Do not let imports already performed by pytest conceal setup-cell errors."""
     discovery_prefix = setup_source(week).split("if IN_COLAB:", 1)[0]
@@ -42,7 +42,7 @@ def test_package_discovery_runs_in_a_fresh_python_process(week: int) -> None:
     assert "FRESH PACKAGE DISCOVERY COMPLETED" in result.stdout
 
 
-@pytest.mark.parametrize("week", range(1, 14))
+@pytest.mark.parametrize("week", range(1, 12))
 def test_local_setup_explains_missing_model(
     week: int,
     monkeypatch: pytest.MonkeyPatch,
@@ -62,7 +62,7 @@ def test_local_setup_explains_missing_model(
     assert "Course root:" in output
 
 
-@pytest.mark.parametrize("week", range(1, 14))
+@pytest.mark.parametrize("week", range(1, 12))
 def test_local_setup_explains_stopped_server(
     week: int,
     monkeypatch: pytest.MonkeyPatch,
@@ -84,7 +84,7 @@ def test_local_setup_explains_stopped_server(
     assert "connection refused" in output
 
 
-@pytest.mark.parametrize("week", range(1, 14))
+@pytest.mark.parametrize("week", range(1, 12))
 def test_local_setup_explains_standalone_notebook(
     week: int, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:

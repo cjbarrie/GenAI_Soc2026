@@ -22,7 +22,7 @@ By the end of the class, you should be able to:
 - distinguish outward expression, emotion work and recipient interpretation;
 - distinguish generated writing, influence on a writer and interpersonal consequences;
 - explain the difference between actual and suspected smart-reply use in Hohenstein et al.;
-- trace one relationship value through a Python function and loop without treating model output as evidence of human sincerity or relationship quality.
+- explain a default Boolean parameter, keyword arguments and the first `enumerate()` iteration without treating model output as evidence of human sincerity or relationship quality.
 
 ## Essential readings and what each contributes
 
@@ -75,7 +75,7 @@ The slides are available in the [online Week 10 chapter](https://cjbarrie.github
 
 ## Take-home exercise
 
-Run the broken-commitment routine. First compare the thin instruction with the instruction that names the broken commitment, late notice, reliance and available repairs. Then hold the second instruction and all facts fixed while running the routine for a colleague, close friend and romantic partner. Change one relationship description or one obligation and rerun. In your narrated recording, explain the input, Python type, operation and output for the facts dictionary, prompt, model call, function, first loop iteration, raw message and researcher-notes object. State what the exercise shows about generated writing and what remains unknown about the sender, recipient and relationship.
+Run the broken-commitment routine. First compare the thin instruction with the instruction that names the broken commitment, late notice, reliance and available repairs. Then hold the second instruction and all facts fixed while running the routine for a colleague, close friend and romantic partner. Finally, run the close-friend condition with assistance disclosure set to `True`. Change one relationship description or disclosure setting and rerun. In your narrated recording, explain the default value, keyword arguments, first `enumerate()` iteration, raw message, returned record and researcher-notes object. State what the exercise shows about generated writing and what remains unknown about the sender, recipient and relationship.
 
 Use the [recording and submission instructions](../recording-and-submission.qmd), name the file with your name and `Week10`, and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
 

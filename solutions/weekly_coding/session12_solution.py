@@ -1,32 +1,44 @@
-"""Worked solution for Session 12.
+"""Offline checks for the optional Week 12 JSON-record extension."""
 
-Read the function in this order: arguments → initial objects → loop/decision
-→ return value. The comments name the research meaning of each operation.
-"""
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 
-def compare_replication_records(original, rerun):
-    """Return changed configuration fields, whether output changed, and an interpretable dependence label."""
-    fields = ["model", "provider", "prompt", "temperature", "date"]
-    changed_fields = [field for field in fields if original.get(field) != rerun.get(field)]
-    output_changed = original.get("output") != rerun.get("output")
-    if not output_changed:
-        label = "same recorded output"
-    elif any(field in changed_fields for field in ["model", "provider", "prompt"]):
-        label = "workflow dependence"
-    else:
-        label = "unresolved run dependence"
-    return {"changed_fields": changed_fields, "output_changed": output_changed, "label": label}
+REQUIRED_FIELDS = [
+    "research_question",
+    "input_description",
+    "model_route",
+    "model_name",
+    "prompt_version",
+    "temperature",
+    "expected_output",
+    "validation_evidence",
+]
+
+
+def missing_fields(record):
+    missing = []
+    for field in REQUIRED_FIELDS:
+        if field not in record:
+            missing.append(field)
+    return missing
 
 
 def run_checks():
-    original = {"model": "m1", "provider": "p1", "prompt": "Q", "temperature": 0, "date": "2025", "output": "A"}
-    same = compare_replication_records(original, original.copy())
-    rerun = {**original, "model": "m2", "date": "2026", "output": "B"}
-    changed = compare_replication_records(original, rerun)
-    assert same["label"] == "same recorded output"
-    assert changed["changed_fields"] == ["model", "date"]
-    assert changed["label"] == "workflow dependence"
+    record = {field: "example" for field in REQUIRED_FIELDS}
+    record["temperature"] = 0
+    assert missing_fields(record) == []
+
+    incomplete = record.copy()
+    del incomplete["validation_evidence"]
+    assert missing_fields(incomplete) == ["validation_evidence"]
+
+    with TemporaryDirectory() as temporary_directory:
+        path = Path(temporary_directory) / "record.json"
+        path.write_text(json.dumps(record, indent=2), encoding="utf-8")
+        reopened = json.loads(path.read_text(encoding="utf-8"))
+    assert reopened == record
 
 
 if __name__ == "__main__":

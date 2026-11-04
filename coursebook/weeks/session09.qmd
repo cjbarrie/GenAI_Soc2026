@@ -43,7 +43,7 @@ The worked case adapts the statistical task in Wiles et al. A general consultant
 
 ## Synthesis of the current LLM literature
 
-Brynjolfsson, Li and Raymond report that access to the customer-support assistant increased resolutions per hour by about 15 per cent on average, with larger gains among less experienced workers. This is evidence about performance while assistance is available in one firm. Wiles and colleagues study different workers, tasks and a different design. They find better performance on assisted tasks, but no evidence of greater technical knowledge on their later unassisted measure.
+Brynjolfsson, Li and Raymond report that access to the customer-support assistant increased resolutions per hour by about 15 per cent on average, with larger gains among less experienced workers. Among the highest-skilled agents, the recommendations marginally reduced conversation quality, yet these workers increased their adherence to the recommendations. This is evidence about performance and use while assistance is available in one firm. It does not tell us why the highest-skilled workers continued to follow the system. Wiles and colleagues study different workers, tasks and a different design. They find better performance on assisted tasks, but no evidence of greater technical knowledge on their later unassisted measure.
 
 The juxtaposition tells us why performance and retained knowledge must be measured separately. It does not establish that the gains in the customer-support study were unaccompanied by learning. Barley gives us another reason to remain cautious: the organizational consequences of an assistant depend on the relations, incentives and practices that form around it.
 

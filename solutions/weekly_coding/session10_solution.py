@@ -4,43 +4,61 @@ import json
 
 FACTS = {
     "commitment": "help with a move at 8 a.m. Saturday",
-    "work_conflict_known": "noon Friday",
-    "message_sent": "9 p.m. Friday",
     "reliance": "the recipient declined paid help because of the promise",
-    "repairs": ["pay half the cost of a last-minute mover", "help on Sunday"],
 }
 
 
-def make_prompt(relationship, instruction, facts):
+def make_prompt(relationship, instruction, disclose_assistance=False):
+    disclosure_request = ""
+    if disclose_assistance:
+        disclosure_request = "\nDisclose that an AI writing assistant helped."
     return f"""{instruction}
 
 Relationship: {relationship}
 
 Facts:
-{json.dumps(facts, indent=2)}
+{json.dumps(FACTS, indent=2)}
+{disclosure_request}"""
 
-Return only the message that could be sent."""
 
-
-def make_record(relationship, instruction_name, raw_message):
+def make_record(relationship, raw_message, disclose_assistance=False):
     return {
         "relationship": relationship,
-        "instruction": instruction_name,
+        "disclose_assistance": disclose_assistance,
         "facts": FACTS.copy(),
         "raw_message": raw_message,
     }
 
 
 def run_checks():
-    prompt = make_prompt("close friend", "Acknowledge the obligation.", FACTS)
-    assert "Relationship: close friend" in prompt
-    assert "declined paid help" in prompt
-    assert "help on Sunday" in prompt
-    record = make_record("colleague", "obligation", "A raw model return")
-    assert record["relationship"] == "colleague"
-    assert record["raw_message"] == "A raw model return"
+    ordinary_prompt = make_prompt("close friend", "Acknowledge the obligation.")
+    disclosed_prompt = make_prompt(
+        "close friend",
+        "Acknowledge the obligation.",
+        disclose_assistance=True,
+    )
+    assert "Relationship: close friend" in ordinary_prompt
+    assert "AI writing assistant" not in ordinary_prompt
+    assert "AI writing assistant" in disclosed_prompt
+
+    record = make_record(
+        relationship="colleague",
+        raw_message="A raw model return",
+        disclose_assistance=True,
+    )
+    assert record["disclose_assistance"] is True
     assert record["facts"] is not FACTS
-    assert set(record) == {"relationship", "instruction", "facts", "raw_message"}
+    assert set(record) == {
+        "relationship",
+        "disclose_assistance",
+        "facts",
+        "raw_message",
+    }
+
+    numbered = []
+    for position, relationship in enumerate(["colleague", "friend"], start=1):
+        numbered.append((position, relationship))
+    assert numbered == [(1, "colleague"), (2, "friend")]
 
 
 if __name__ == "__main__":

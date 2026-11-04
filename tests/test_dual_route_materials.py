@@ -21,8 +21,8 @@ def task_source(week: int) -> str:
 
 def test_recorded_contingency_covers_every_coding_week() -> None:
     data = json.loads((ROOT / "data" / "dual_route_recorded_outputs.json").read_text())
-    assert all(f"session{week:02d}" in data for week in range(1, 14))
-    assert all({"openrouter", "ollama"} <= set(data[f"session{week:02d}"]) for week in range(1, 14))
+    assert all(f"session{week:02d}" in data for week in range(1, 12))
+    assert all({"openrouter", "ollama"} <= set(data[f"session{week:02d}"]) for week in range(1, 12))
 
 
 def test_route_progression_and_first_function() -> None:
@@ -42,14 +42,14 @@ def test_route_progression_and_first_function() -> None:
 
 
 def test_no_key_is_embedded_in_student_tasks() -> None:
-    for week in range(1, 14):
+    for week in range(1, 12):
         source = task_source(week)
         assert "sk-or-" not in source
-        assert "getpass(" in source or week in (11, 12)
+        assert "getpass(" in source
 
 
 def test_all_student_notebooks_prepare_colab_before_importing_sdks() -> None:
-    for week in range(1, 14):
+    for week in range(1, 12):
         sources = notebook_sources(week)
         setup_index = next(i for i, source in enumerate(sources) if "course_packages" in source)
         import_index = next(i for i, source in enumerate(sources) if "from openrouter import OpenRouter" in source)
@@ -71,8 +71,6 @@ def test_all_student_notebooks_prepare_colab_before_importing_sdks() -> None:
         assert "uv run jupyter lab" in setup
         if week >= 3:
             assert "setup_sys.path.insert(0, course_root_text)" in setup
-        if week == 13:
-            assert 'course_packages["pandas"]' in setup
 
 
 def test_intro_notebooks_do_not_contact_ollama_from_colab() -> None:
@@ -96,8 +94,8 @@ def test_intro_notebooks_do_not_contact_ollama_from_colab() -> None:
         assert "is None else" in comparisons
 
 
-def test_weeks_3_to_12_select_openrouter_in_colab() -> None:
-    for week in (3, 4, 5, 6, 7, 9, 10, 11, 12):
+def test_weeks_3_to_11_select_openrouter_in_colab() -> None:
+    for week in (3, 4, 5, 6, 7, 9, 10, 11):
         source = "\n".join(notebook_sources(week))
         assert 'ROUTE = "openrouter" if IN_COLAB else "ollama"' in source
 
@@ -108,17 +106,22 @@ def test_dual_route_weeks_degrade_explicitly_in_colab() -> None:
     assert "local_results = []" in week8
     assert "local_mae = None if IN_COLAB else" in week8
 
-    week13 = "\n".join(notebook_sources(13))
-    assert 'routes = ["openrouter"] if IN_COLAB else ["openrouter", "ollama"]' in week13
-    assert "Ollama rows" in week13
-
-
 def test_student_ollama_calls_return_visible_content() -> None:
     """Gemma 4 should not spend a short output allowance only on reasoning text."""
-    for week in range(1, 14):
+    for week in range(1, 12):
         notebook = "\n".join(notebook_sources(week))
         task = task_source(week)
         chapter = (ROOT / "coursebook" / "python" / f"session{week:02d}.qmd").read_text()
         for source in (notebook, task, chapter):
             unsafe_calls = re.findall(r"ollama\.chat\((?!think=False,|\.\.\.)", source)
             assert unsafe_calls == []
+
+
+def test_cancelled_week_has_only_an_optional_offline_notebook() -> None:
+    source = task_source(12)
+    notebook = "\n".join(notebook_sources(12))
+    assert "There is no Week 12 coding submission" in source
+    assert "There is no Week 12 coding submission" in notebook
+    assert "client.chat.send" not in source
+    assert "ollama.chat" not in source
+    assert "write_text" in source and "read_text" in source

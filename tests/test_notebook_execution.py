@@ -339,7 +339,7 @@ def test_week3_reports_missing_model_fields(
         runpy.run_path(str(ROOT / "assessments/weekly_coding/session03_task.py"))
 
 
-@pytest.mark.parametrize("week", range(3, 14))
+@pytest.mark.parametrize("week", range(3, 12))
 @pytest.mark.parametrize("runtime", ["local", "colab"])
 def test_followup_notebook_executes_without_live_services(
     week: int, runtime: str, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
@@ -395,11 +395,9 @@ def test_followup_notebook_executes_without_live_services(
     for source in code_cells[2:]:
         if week == 5 and "output_folder = ROOT" in source:
             namespace["ROOT"] = tmp_path
-        if week == 12 and "output_dir = ROOT" in source:
-            namespace["ROOT"] = tmp_path
         exec(source, namespace)
 
-    if runtime == "colab" and week in {3, 4, 5, 6, 7, 9, 10, 11, 12}:
+    if runtime == "colab" and week in {3, 4, 5, 6, 7, 9, 10, 11}:
         assert namespace["ROUTE"] == "openrouter"
     if week == 3:
         record = namespace["analysis_record"]
@@ -431,9 +429,6 @@ def test_followup_notebook_executes_without_live_services(
         assert len(namespace["first_reply"]["messages_sent"]) == 1
         assert len(namespace["second_reply"]["messages_sent"]) == 3
         assert namespace["work_record"]["worker_final_action"] == "escalate_to_data_science"
-    if week == 13:
-        expected_routes = ["openrouter"] if runtime == "colab" else ["openrouter", "ollama"]
-        assert namespace["routes"] == expected_routes
 
 
 @pytest.mark.parametrize("week", [1, 2])
@@ -473,7 +468,7 @@ def test_intro_notebook_executes_on_local_route(
     assert namespace["hosted_response"] is not None
 
 
-@pytest.mark.parametrize("week", range(1, 14))
+@pytest.mark.parametrize("week", range(1, 12))
 def test_downloadable_task_executes_on_local_route(
     week: int, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
@@ -525,5 +520,16 @@ def test_downloadable_task_executes_on_local_route(
         assert namespace["embeddings"].shape == (60, 8)
         assert namespace["coordinates"].shape == (60, 2)
         assert (tmp_path / "outputs" / "session05" / "week05_treatment_map.html").exists()
-    if week == 12:
-        assert (tmp_path / "student_outputs" / "week12_rerun.json").exists()
+
+
+def test_optional_project_record_executes_offline(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    namespace = runpy.run_path(
+        str(ROOT / "assessments" / "weekly_coding" / "session12_task.py")
+    )
+    output = tmp_path / "student_outputs" / "project_model_call_record.json"
+    assert output.exists()
+    assert namespace["missing_fields"] == []
+    assert namespace["reopened_record"] == namespace["project_record"]

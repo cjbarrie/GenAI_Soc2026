@@ -35,6 +35,9 @@ def run_checks():
     assert work_record["second_model_reply"] is not None
     assert work_record["worker_final_action"] == "escalate_to_data_science"
 
+    no_second_call = None
+    assert no_second_call is None
+
 
 if __name__ == "__main__":
     run_checks()

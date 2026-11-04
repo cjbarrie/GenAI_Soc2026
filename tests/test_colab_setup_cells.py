@@ -15,7 +15,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 
-@pytest.mark.parametrize("week", range(1, 14))
+@pytest.mark.parametrize("week", range(1, 12))
 def test_fresh_colab_setup_installs_then_imports(
     week: int, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -32,8 +32,6 @@ def test_fresh_colab_setup_installs_then_imports(
     monkeypatch.setitem(sys.modules, "google.colab", colab_module)
 
     required = {"openrouter", "ollama"}
-    if week == 13:
-        required.add("pandas")
     packages_installed = False
     original_find_spec = importlib.util.find_spec
 
@@ -73,9 +71,6 @@ def test_fresh_colab_setup_installs_then_imports(
         assert len(install_commands) == 1
         assert "openrouter>=0.6,<1" in install_commands[0]
         assert "ollama>=0.6,<1" in install_commands[0]
-        if week == 13:
-            assert "pandas>=2.2,<3" in install_commands[0]
-
         # This is the cell that previously raised immediately after setup.
         exec(code_cells[1], namespace)
         assert namespace["HOSTED_MODEL"]

@@ -16,4 +16,4 @@ The opening lecture introduces linguistic markets, racialized listening and matc
 
 ## Completion task
 
-Run the supplied matched-input comparison, change one model or route, and submit a narrated 6–8 minute screen recording by **5:00 p.m. Eastern on the Tuesday before the next class**.
+Run the supplied matched-input comparison, change one model or route, and submit a narrated 6–8 minute screen recording by **5:00 p.m. Eastern on the Tuesday before the next class**. Explain how `zip()` preserves the pair, how tuple unpacking names the two records and how the running count is calculated.

@@ -42,13 +42,13 @@ Flores and Rosa, Purnell et al., Koenecke et al., Pagan et al., and Bowker and S
 
 ## Coding task
 
-The task uses three published habitual-aspect pairs from Hofmann et al.'s authors' repository. Students ask one model to select an occupation from a fixed list for each AAE and SAE form. The program preserves the exact text, route, model, raw return and parsed fields before building a paired comparison.
+The task uses three published habitual-aspect pairs from Hofmann et al.'s authors' repository. Students ask one model to select an occupation from a fixed list for each AAE and SAE form. The program preserves the exact text, route, model, raw return and parsed fields in two ordered result lists. `zip()` then supplies corresponding AAE and SAE records, tuple unpacking names them and `+=` updates a running count of different forced choices.
 
 Before each block, use this language:
 
 **input value and type → operation → output value and type → sociological meaning → what the result does not establish**
 
-The new syntax is deliberately limited to a small function and loop. Trace the first call with literal values before showing parameters. The student changes one published pair and reruns the complete comparison. They should inspect the raw return before discussing the pair.
+The function and model-call branches now reuse prior material. The new syntax is `zip()`, tuple unpacking and `+=`. Trace the first paired iteration with actual dictionaries. Show why the identifiers must match before comparing occupations. The student changes one predeclared model or route while keeping the texts and prompt fixed. They should inspect the raw return before discussing the pair.
 
 Do not describe the exercise as a replication of Hofmann et al. It adapts published linguistic material to a smaller occupation-selection demonstration. A single run is not an estimate of a stable disparity, and the model's explanation is not evidence of its internal mechanism.
 
@@ -56,12 +56,14 @@ Do not describe the exercise as a replication of Hofmann et al. It adapts publis
 
 - A dictionary key retrieves a named value; a list index retrieves a position.
 - A function parameter receives a value when the function is called.
-- The loop repeats the same operation for each paired record.
+- `zip()` pairs items by position, so the two result lists must preserve the same order.
+- Tuple unpacking assigns the two records to separate names on each iteration.
+- `+=` updates the existing count rather than creating an independent total.
 - JSON parsing checks that the return has the requested shape; it does not validate the judgment.
 - Meaning matching narrows the comparison but does not erase all social information carried by a linguistic form.
 
 ## Completion evidence
 
-Students submit a narrated recording showing one changed pair, the raw and parsed return, and the paired comparison. They must explain the input and output of each operation and state one bounded finding plus at least two pieces of evidence that would be needed before making an institutional claim.
+Students submit a narrated recording showing one changed model or route, the raw and parsed return, and one pair moving through `zip()`. They must explain tuple unpacking, the running count and denominator, then state one bounded finding plus at least two pieces of evidence that would be needed before making an institutional claim.
 
 If a live route fails, the recorded return supports code tracing only. It should be identified as a contingency, not presented as new empirical evidence.

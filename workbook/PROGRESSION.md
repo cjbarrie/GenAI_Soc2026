@@ -1,6 +1,6 @@
-# Workbook and Coding Progression — Phase 3 Proposal
+# Workbook and Coding Progression
 
-**Status:** Implemented dual-route progression. Weeks 1–13 have aligned runnable notebooks and task files; Weeks 8–13 remain provisional as full literature-led chapters.
+**Status:** Implemented dual-route progression through Week 11. The 25 November class is cancelled; an optional offline project-record notebook is available but is not an assigned exercise. The 2 December proposal meetings and 9 December presentations introduce no new coding task.
 
 ## Pedagogical contract
 
@@ -18,7 +18,7 @@ Students predict the output before important cells run. Notebooks use short cell
 
 The student course book contains a separate Python page for every coding week. That page, rather than a separate notebook, contains the complete core exercise. Each new idea is introduced in its own short code block. Immediately before the block, the page names the exact input and its Python type. Immediately after it, the page explains every line and symbol, prints the expected output, and states what the output means for the research question. Exercises begin with runnable code and ask students to change one clearly identified value or line; they do not begin with an incomplete function or unexplained placeholder. The downloadable `.py` task is an exact copy of the Python-page exercise, not an advanced extension. Optional notebook material must be labelled as optional and must not quietly become part of the completion criteria.
 
-The Python progression is organized around the parts of an LLM routine rather than around generic programming exercises. Week 1 first makes two genuine calls, then uses their request and return objects to introduce strings, variables, lists, dictionaries, indexing, SDK attributes, string methods, integers, Booleans, `print`, `type` and `len`. Week 2 reuses these ideas for a codebook and label comparisons. Weeks 3–7 add route selection, JSON, multimodal inputs, call parameters, conversation state and schemas. Week 8 introduces the first loop around a call. Week 9 introduces the first student-defined function. Weeks 10–13 reuse those ideas for simulation, tools, reproducibility and a small audit grid. Compact code is not a learning objective.
+The Python progression is organized around the parts of an LLM routine rather than around generic programming exercises. Week 1 first makes two genuine calls, then uses their request and return objects to introduce strings, variables, lists, dictionaries, indexing, SDK attributes, string methods, integers, Booleans, `print`, `type` and `len`. Week 2 reuses these ideas for a codebook and label comparisons. Weeks 3–7 add route selection, JSON, multimodal inputs, call parameters, conversation state and schemas. Week 8 introduces the first loop around a call. Week 9 introduces the first student-defined function, branching and `None`. Week 10 adds default parameter values, keyword arguments, Booleans as explicit research inputs and `enumerate()`. Week 11 uses `zip()`, tuple unpacking and `+=` to preserve and summarize a matched-pair design. The optional project notebook adds file paths and a JSON round trip without creating another assessed task. Compact code is not a learning objective.
 
 ### Planned interactive for the final workbook
 
@@ -36,8 +36,8 @@ The workbook landing page will show four cumulative strands.
 |---|---|---|---|
 | Sessions 1–4: Evidence, measurement and interpretation | Turn social material into inspectable records and measurements | Prompt strings, message lists, calls, returned text, JSON and multimodal records | Inspect inputs; compare model returns with human labels and source evidence |
 | Sessions 5–6: Experiments and research encounters | Generate fixed and conversational treatments | Call parameters, structured records, conversation lists and `.append()` | Check construct fidelity and what respondents actually encounter |
-| Sessions 7–10: Synthetic populations and social simulation | Represent people, distributions and interaction processes | Structured outputs, loops and small functions with explicit parameters | Validate at multiple levels; probe sensitivity and contamination |
-| Sessions 11–13: Research agents, replication and model audits | Use tools while preserving evidence; study models as social objects | Tool records, function returns, saved settings and repeated parameter grids | Reproduce, document dependence and bound claims |
+| Sessions 7–8: Synthetic populations and prediction | Represent people and distributions | Structured outputs, loops and accumulators | Validate at individual and aggregate levels |
+| Sessions 9–11: Work, relationships and institutional power | Study models inside work, interpersonal communication and linguistic markets | Functions, branching, default arguments, paired iteration and counters | Separate generated output from worker, recipient and institutional outcomes |
 
 ## Python foundations
 
@@ -77,7 +77,7 @@ The local material is a continuing strand rather than a single installation hand
 4. **Session 3:** privacy clinic using synthetic interview data; explain why identifiable field data should not be sent to the shared gateway.
 5. **Sessions 3–7:** use the chosen route each week for JSON, constrained generation, conversation state and structured probability outputs. Students may repeat the same task with the other route for comparison.
 6. **Session 8:** compare local and hosted population predictions without treating either as a gold standard.
-7. **Session 12:** reproduce an earlier result from an exact local artifact where feasible; contrast this with a routed hosted model.
+7. **After Session 11:** students may use the optional project-record notebook to document a planned route and model before the proposal meeting. There is no class or weekly task on 25 November.
 
 The guide will cover model selection, memory versus parameter count, context and memory costs, quantization, CPU/GPU tradeoffs, download provenance, licenses, privacy limits, energy/cost tradeoffs, API serving, upgrades, cleanup, and troubleshooting. Students without suitable machines will use cached output and an instructor demonstration; hardware ownership will not affect assessment.
 
@@ -95,11 +95,11 @@ Each task uses one small LLM routine and adds one or two Python ideas. Students 
 | 6 | Generate one adaptive probe | Interview history list → appended participant answer → model-generated next question | Conversation lists, `.append()`, ordered state | Makes the model's role in the interview encounter visible | Check whether the probe follows the answer without introducing a cause |
 | 7 | Request a probability distribution | Exact survey item + population instruction → JSON-schema response → seven probabilities | Structured outputs, `json.loads`, list retrieval, `sum` | Makes aggregate synthetic prediction machine-readable | Check range and total; compare with human data separately |
 | 8 | Repeat a structured prediction across cases | Short profile list → repeated model calls → matched human/model records | First visible `for` loop around an LLM call | Distinguishes individual, aggregate and subgroup validation targets | Calculate only the target named in the claim |
-| 9 | Put an LLM call inside one update function | Agent state + neighbour message + threshold → next state | First student-edited function; explicit parameters and `return` | Separates actor attributes, interaction input and update rule | Change one parameter and explain the resulting state change |
-| 10 | Repeat an interaction under two conditions | Agent list + network/interaction parameter → repeated outcomes | Function calls, loops and result lists | Links micro interaction rules to claims about emergence | Compare runs and retain the conditions that produced each result |
-| 11 | Inspect one research-agent tool record | Research question → tool request → returned source/claim record | Function arguments, returned dictionaries and provenance fields | Makes long-horizon delegation auditable one step at a time | Reject a claim without a resolvable source and recorded transformation |
-| 12 | Re-run one saved routine | Saved prompt, model and parameters → second return → discrepancy record | Named parameters, reusable function call and record comparison | Turns replication dependence into visible code and metadata | Separate prompt, model, provider and stochastic differences |
-| 13 | Run a small parameter audit | Models × prompt frames → structured returns and condition records | Nested loops introduced only here; parameter grid | Connects patterned outputs to bounded audit claims | Describe an observed difference without assigning its social cause |
+| 9 | Let a worker decide whether an assistant receives another turn | Analysis + conversation + worker choice → reply record or `None` → final decision record | First student-edited function, parameters, local variables, `return`, branching and `None` | Distinguishes assisted performance, retained knowledge and what the organization can record | Explain which branch ran, what the model did and what decision remained with the worker |
+| 10 | Compare LLM-mediated apologies | Fixed facts + instruction + relationship + disclosure Boolean → generated message record | Default parameter values, keyword arguments, Boolean inputs and `enumerate()` | Connects relational work and smart-reply research to an explicit mediation choice | Keep generated text, researcher interpretation and unobserved human outcomes separate |
+| 11 | Compare meaning-matched language inputs | Published AAE/SAE pairs → two ordered result lists → paired comparison | `zip()`, tuple unpacking, `+=` and a bounded rate | Turns matched-guise logic into visible paired code | Verify pair identifiers; do not treat three pairs as a stable disparity estimate |
+| 12 | Optional project record; class cancelled | Project plan dictionary → JSON file → reopened dictionary | `Path`, `.write_text()`, `.read_text()` and JSON round trip | Supports reproducible proposal planning without a new model call | Check required fields; no recording or submission |
+| 13 | Individual proposal meetings | No coding task | — | Students discuss the final project design with the instructor | — |
 | 14 | Project presentations | No coding task | — | Students present and receive feedback on the final research design | — |
 
 ## Standard 165-minute meeting rhythm

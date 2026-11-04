@@ -10,4 +10,4 @@
 - Hohenstein et al. (2023), “Artificial Intelligence in Communication Impacts Language and Social Relationships.”
 - Williams-Ceci et al. (2026), “Biased AI Writing Assistants Shift Users' Attitudes on Societal Issues.”
 
-The coding task compares two instructions for the same broken commitment and then holds the facts and instruction fixed while changing the intended relationship. Students inspect generated wording and maintain separate researcher notes; they do not use the model to score sincerity or relationship quality.
+The coding task compares two instructions for the same broken commitment, changes the intended relationship and makes assistance disclosure an explicit Boolean input. Students learn default parameter values, keyword arguments and `enumerate()` while keeping researcher notes separate from generated text. They do not use the model to score sincerity or relationship quality.
