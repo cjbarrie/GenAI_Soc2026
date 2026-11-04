@@ -28,9 +28,9 @@ The sender promised to help another person move at 8 a.m. on Saturday. At noon o
 
 The same facts are used for three relationships:
 
-- a colleague;
-- a close friend;
-- a romantic partner.
+- a colleague from the sender's team;
+- a close friend of ten years;
+- the sender's romantic partner.
 
 This is consequential enough to create a real obligation, but ordinary enough for students to inspect without specialized knowledge. It makes four parts of an apology visible:
 
@@ -287,14 +287,14 @@ The code uses only strings, a dictionary, a list, a small function and a single 
 ### Visible progression
 
 1. Store the fixed scenario in a dictionary and print each field.
-2. Store `relationship = "close friend"` as a string.
+2. Store `relationship = "a close friend of ten years"` as a string.
 3. Build and run the unconstrained prompt with literal values.
 4. Build and run the relational-obligation prompt with the same literal values.
 5. Preserve both raw returns as strings.
 6. Ask the student—not another model—to note whether each output mentions the promise, late notice, reliance and the two available repairs, and to record any invented fact.
 7. Define `draft_apology(relationship, instruction)` only after the two literal calls are understood.
 8. Trace one call with the actual argument values entering and the returned string leaving.
-9. Use one loop to repeat the relational-obligation instruction for `colleague`, `close friend` and `romantic partner`.
+9. Use one loop to repeat the relational-obligation instruction for `a colleague from my team`, `a close friend of ten years` and `my romantic partner`.
 10. Save a list of dictionaries containing the relationship, instruction and raw output.
 11. Compare what changes in explanation, obligation, apology and repair.
 

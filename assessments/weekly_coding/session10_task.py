@@ -55,27 +55,27 @@ obligation_instruction = (
 # Recorded outputs demonstrate the code path during an outage. They are not
 # observations of human communication or relationship outcomes.
 recorded_returns = {
-    ("thin", "close friend", False): (
+    ("thin", "a close friend of ten years", False): (
         "I’m sorry, but I can’t help with the move tomorrow because I have to work. "
         "I can help on Sunday instead or pay half the cost of a mover."
     ),
-    ("obligation", "colleague", False): (
+    ("obligation", "a colleague from my team", False): (
         "I need to apologize for breaking my commitment to help at 8 tomorrow and "
         "for waiting until 9 tonight to tell you. I learned at noon that I must work. "
         "You declined paid help because you expected me, so I can either pay half the "
         "cost of a last-minute mover or help on Sunday."
     ),
-    ("obligation", "close friend", False): (
+    ("obligation", "a close friend of ten years", False): (
         "I’m sorry. I promised to help at 8 tomorrow, and I should have told you at "
         "noon when I learned I had to work. You turned down paid help because you were "
         "counting on me. I can pay half the cost of a mover or help on Sunday."
     ),
-    ("obligation", "romantic partner", False): (
+    ("obligation", "my romantic partner", False): (
         "I broke my promise to help at 8 tomorrow, and I waited too long to tell you. "
         "You declined paid help because you relied on me. I can pay half the cost of a "
         "last-minute mover or help on Sunday."
     ),
-    ("obligation", "close friend", True): (
+    ("obligation", "a close friend of ten years", True): (
         "I’m sorry. I promised to help at 8 tomorrow, and I should have told you at "
         "noon when I learned I had to work. You turned down paid help because you were "
         "counting on me. I can pay half the cost of a mover or help on Sunday. I used "
@@ -171,20 +171,28 @@ Return only the message that could be sent."""
 
 # CELL: Compare two instructions while holding the relationship fixed
 thin_record = draft_message(
-    relationship="close friend",
+    relationship="a close friend of ten years",
     instruction_name="thin",
     route=ROUTE,
 )
 obligation_record = draft_message(
-    relationship="close friend",
+    relationship="a close friend of ten years",
     instruction_name="obligation",
     route=ROUTE,
 )
 print("\nTHIN INSTRUCTION\n", thin_record["raw_message"])
 print("\nRELATIONAL-OBLIGATION INSTRUCTION\n", obligation_record["raw_message"])
 
+# CELL: Number the relationship conditions before making more calls
+relationships = [
+    "a colleague from my team",
+    "a close friend of ten years",
+    "my romantic partner",
+]
+for position, relationship in enumerate(relationships, start=1):
+    print(position, relationship)
+
 # CELL: Repeat the obligation instruction across three relationships
-relationships = ["colleague", "close friend", "romantic partner"]
 relationship_records = []
 for position, relationship in enumerate(relationships, start=1):
     print("\nCondition", position, "of", len(relationships))
@@ -198,7 +206,7 @@ for position, relationship in enumerate(relationships, start=1):
 # CELL: Make assistance disclosure an explicit input
 undisclosed_record = obligation_record
 disclosed_record = draft_message(
-    relationship="close friend",
+    relationship="a close friend of ten years",
     instruction_name="obligation",
     route=ROUTE,
     disclose_assistance=True,

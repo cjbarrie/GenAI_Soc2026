@@ -51,7 +51,7 @@ facts = {
 }
 ```
 
-The dictionary contains supplied circumstances. It contains no claim about the sender's feelings or the recipient's likely reaction. Zelizer directs our attention to how a medium and transaction acquire meaning within a relationship. The dictionary does not settle that meaning in advance.
+The dictionary contains supplied circumstances. It contains no claim about the sender's feelings or the recipient's likely reaction. Zelizer examines how ties, transactions, media and meanings are matched. Here we apply that relational question to a communicative act. The dictionary does not settle its meaning in advance.
 
 ## A default value represents the ordinary call
 
@@ -68,7 +68,7 @@ The first three parameters require arguments. The fourth parameter has a default
 
 ```python
 ordinary_record = draft_message(
-    relationship="close friend",
+    relationship="a close friend of ten years",
     instruction_name="obligation",
     route=ROUTE,
 )
@@ -91,7 +91,7 @@ With `False`, the indented assignment does not run and the prompt receives an em
 
 ```python
 disclosed_record = draft_message(
-    relationship="close friend",
+    relationship="a close friend of ten years",
     instruction_name="obligation",
     route=ROUTE,
     disclose_assistance=True,
@@ -100,10 +100,30 @@ disclosed_record = draft_message(
 
 This call changes one explicit input. Comparing the generated strings shows what the model wrote under each instruction. It does not show how a friend would interpret disclosure.
 
-## Enumerate the relationship conditions
+## Number the relationship conditions
 
 ```python
-relationships = ["colleague", "close friend", "romantic partner"]
+relationships = [
+    "a colleague from my team",
+    "a close friend of ten years",
+    "my romantic partner",
+]
+
+for position, relationship in enumerate(relationships, start=1):
+    print(position, relationship)
+```
+
+```text
+1 a colleague from my team
+2 a close friend of ten years
+3 my romantic partner
+```
+
+`enumerate()` returns two values on each iteration. On the first iteration, `position` is `1` and `relationship` is `"a colleague from my team"`.
+
+## Save one record per relationship
+
+```python
 relationship_records = []
 
 for position, relationship in enumerate(relationships, start=1):
@@ -116,7 +136,7 @@ for position, relationship in enumerate(relationships, start=1):
     relationship_records.append(record)
 ```
 
-`enumerate()` returns two values on each iteration. On the first iteration, `position` is `1` and `relationship` is `"colleague"`. The function returns one dictionary, which the program appends to the ordered list.
+The function returns one dictionary, which `.append()` adds to the ordered list. After the three iterations, `relationship_records` contains three dictionaries.
 
 ## Inspect generated writing without manufacturing outcomes
 
@@ -136,9 +156,9 @@ Write observations after reading the messages. Hohenstein et al. provide evidenc
 
 ## Take-home exercise
 
-1. Run the two writing instructions for a close friend.
+1. Run the two writing instructions for a close friend of ten years.
 2. Run the obligation instruction across all three relationships.
-3. Run the close-friend condition with `disclose_assistance=True`.
+3. Run the close-friend-of-ten-years condition with `disclose_assistance=True`.
 4. Change one relationship description or disclosure setting and rerun.
 5. Explain the default value, keyword arguments, first `enumerate()` iteration and returned record.
 6. Connect one observation to Zelizer, Goffman, Hochschild or Hohenstein et al.

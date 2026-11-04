@@ -48,9 +48,14 @@ headings = [
         "visible at the call site.",
     ),
     (
-        "## Repeat one instruction across relationships",
+        "## Number the relationship conditions",
         "`enumerate(..., start=1)` returns a condition number and a relationship label on each "
-        "iteration. The loop appends one record dictionary at a time.",
+        "iteration. This first loop only prints those two values so that they remain visible.",
+    ),
+    (
+        "## Repeat one instruction across relationships",
+        "The second loop calls the function for each relationship. It appends one record "
+        "dictionary at a time to the initially empty list.",
     ),
     (
         "## Make disclosure an explicit input",

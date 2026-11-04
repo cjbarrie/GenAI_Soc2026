@@ -31,18 +31,20 @@ def make_record(relationship, raw_message, disclose_assistance=False):
 
 
 def run_checks():
-    ordinary_prompt = make_prompt("close friend", "Acknowledge the obligation.")
+    ordinary_prompt = make_prompt(
+        "a close friend of ten years", "Acknowledge the obligation."
+    )
     disclosed_prompt = make_prompt(
-        "close friend",
+        "a close friend of ten years",
         "Acknowledge the obligation.",
         disclose_assistance=True,
     )
-    assert "Relationship: close friend" in ordinary_prompt
+    assert "Relationship: a close friend of ten years" in ordinary_prompt
     assert "AI writing assistant" not in ordinary_prompt
     assert "AI writing assistant" in disclosed_prompt
 
     record = make_record(
-        relationship="colleague",
+        relationship="a colleague from my team",
         raw_message="A raw model return",
         disclose_assistance=True,
     )
@@ -56,9 +58,14 @@ def run_checks():
     }
 
     numbered = []
-    for position, relationship in enumerate(["colleague", "friend"], start=1):
+    for position, relationship in enumerate(
+        ["a colleague from my team", "a close friend of ten years"], start=1
+    ):
         numbered.append((position, relationship))
-    assert numbered == [(1, "colleague"), (2, "friend")]
+    assert numbered == [
+        (1, "a colleague from my team"),
+        (2, "a close friend of ten years"),
+    ]
 
 
 if __name__ == "__main__":
