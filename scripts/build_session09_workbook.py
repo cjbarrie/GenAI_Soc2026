@@ -36,13 +36,12 @@ setup_cell["id"] = "colab-setup"
 
 notebook["cells"] = [
     nbf.v4.new_markdown_cell(
-        "# Week 9 — Work with an LLM assistant\n\n"
-        "**Research task:** Review an unfamiliar mortgage-prediction analysis as a consultant. "
-        "After the first model reply, choose whether to ask another question, consult the "
-        "data-science team or write the client note. The exercise adapts the statistical task "
-        "in Wiles et al. (2026).\n\n"
-        "**Python introduced:** the first student-edited function, parameters, local variables, "
-        "`return`, calling a function twice and an `if/elif` branch controlled by a worker choice."
+        "# Week 9 — Human judgment and model certainty\n\n"
+        "**Research task:** Inspect one model recommendation while its displayed certainty "
+        "changes from 0.55 to 0.75 to 0.95. The evidence and recommendation remain fixed. "
+        "Record whether the certainty display changes your decision.\n\n"
+        "**Python introduced:** the first small student-edited function, parameters, local "
+        "variables, `return` and an `if/elif/else` branch controlled by a human choice."
     ),
     nbf.v4.new_markdown_cell(
         "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
@@ -59,55 +58,57 @@ notebook["cells"] = [
     setup_cell,
     nbf.v4.new_code_cell(task_cells[0]),
     nbf.v4.new_markdown_cell(
-        "## Store the exact research material\n\n"
-        "This cell creates a dictionary of model results, the AI-written interpretation, the "
-        "coaching instruction and a schema describing the six fields the model must return. "
-        "Read the results and identify the questionable claims before running it."
+        "## Store the workplace decision and evidence\n\n"
+        "The consultant must advise on a limited internal pilot. The dictionary contains the "
+        "only evidence available to the model. It does not contain calibration, subgroup results "
+        "or information about the costs of different errors."
     ),
     nbf.v4.new_code_cell(task_cells[1]),
     nbf.v4.new_markdown_cell(
-        "## Define the function\n\n"
-        "The function receives two values: the current message list and the selected route. It "
-        "makes one visible route-specific call, prints the raw return, parses it and returns one "
-        "reply-record dictionary. We use the same function again only if the worker asks another question."
+        "## Ask the model for one recommendation\n\n"
+        "This cell makes the only model call. It prints the raw JSON string before parsing it. "
+        "The same parsed recommendation will appear beside all three certainty displays."
     ),
     nbf.v4.new_code_cell(task_cells[2]),
     nbf.v4.new_markdown_cell(
-        "## Ask for an initial review\n\n"
-        "The input is one message list containing the evidence, questionable analysis and coach "
-        "instruction. The output is a dictionary containing the raw and parsed reply plus three checks."
+        "## Store three displays of the same advice\n\n"
+        "Edit the human actions and reasons so that they reflect what you would do. The certainty "
+        "values change, but the evidence and recommendation do not."
     ),
     nbf.v4.new_code_cell(task_cells[3]),
     nbf.v4.new_markdown_cell(
-        "## Choose what happens next\n\n"
-        "The worker now chooses among `ask_model_again`, `escalate_to_data_science` and "
-        "`write_client_note`. The supplied path asks one follow-up question. The program appends "
-        "the first reply and the worker's question to the conversation before calling the same function."
+        "## Define the first small function\n\n"
+        "The function receives a recommendation, displayed certainty, human action and human "
+        "reason. Its branch translates the selected action into an organizational next step."
     ),
     nbf.v4.new_code_cell(task_cells[4]),
     nbf.v4.new_markdown_cell(
-        "## Record the worker's final decision\n\n"
-        "Inspect the second reply, select one final action and state your reason. The resulting "
-        "`work_record` preserves the model replies and the choices made by the worker."
+        "## Record one decision at each certainty level\n\n"
+        "The loop takes the action and reason at the same list position as the current certainty. "
+        "The function returns one judgment dictionary, which is appended to the results list."
     ),
     nbf.v4.new_code_cell(task_cells[5]),
     nbf.v4.new_markdown_cell(
-        "## Reflect on the work\n\n"
-        "Use these questions to distinguish work performed by the model from reasoning and choices "
-        "retained by the consultant. Also consider what the stored interaction makes visible to the organization."
+        "## Compare the worker's decisions\n\n"
+        "This cell prints all three records and verifies that the evidence and recommendation "
+        "remained unchanged. Any difference in the action therefore requires a human explanation."
     ),
     nbf.v4.new_code_cell(task_cells[6]),
     nbf.v4.new_markdown_cell(
-        "## A short unassisted check\n\n"
-        "Answer this question yourself before asking a model. It mirrors the distinction in "
-        "Wiles et al. between completing work with ChatGPT and demonstrating knowledge without it."
+        "## Reflect on judgment and organizational visibility\n\n"
+        "The questions connect reliance on the recommendation to Barley, Zuboff and Wiles et al."
     ),
     nbf.v4.new_code_cell(task_cells[7]),
     nbf.v4.new_markdown_cell(
+        "## A short unassisted check\n\n"
+        "Answer this without asking the model. A displayed certainty value has no frequency "
+        "interpretation unless someone has validated how that number relates to outcomes."
+    ),
+    nbf.v4.new_code_cell(task_cells[8]),
+    nbf.v4.new_markdown_cell(
         "## Your one change and recording\n\n"
-        "Change `worker_next_step` or rewrite `follow_up_question`, rerun and explain every input "
-        "and output. Explain why you made the final decision and what the second model call did to "
-        "the nature of your work. A passing software check is not evidence about real workers."
+        "Change one action or reason, rerun and explain the function inputs, branch and returned "
+        "record. State whether certainty language changed your judgment despite unchanged evidence."
     ),
 ]
 

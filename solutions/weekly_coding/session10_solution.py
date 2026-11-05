@@ -1,71 +1,52 @@
-"""Offline checks for the Week 10 relationship-mediation exercise."""
-
-import json
-
-FACTS = {
-    "commitment": "help with a move at 8 a.m. Saturday",
-    "reliance": "the recipient declined paid help because of the promise",
-}
+"""Offline checks for the Week 10 social-advice audit."""
 
 
-def make_prompt(relationship, instruction, disclose_assistance=False):
-    disclosure_request = ""
-    if disclose_assistance:
-        disclosure_request = "\nDisclose that an AI writing assistant helped."
-    return f"""{instruction}
-
-Relationship: {relationship}
-
-Facts:
-{json.dumps(FACTS, indent=2)}
-{disclosure_request}"""
-
-
-def make_record(relationship, raw_message, disclose_assistance=False):
+def record_audit(
+    situation,
+    student_response_before,
+    model_record,
+    audit_answer,
+    would_follow_model=False,
+):
     return {
-        "relationship": relationship,
-        "disclose_assistance": disclose_assistance,
-        "facts": FACTS.copy(),
-        "raw_message": raw_message,
+        "situation_id": situation["id"],
+        "relationship": situation["relationship"],
+        "student_response_before": student_response_before,
+        "model_response": model_record["parsed_output"],
+        "would_follow_model": would_follow_model,
+        "important_difference": audit_answer["important_difference"],
+        "student_response_after": audit_answer["student_response_after"],
+        "student_changed_response": (
+            audit_answer["student_response_after"] != student_response_before
+        ),
     }
 
 
 def run_checks():
-    ordinary_prompt = make_prompt(
-        "a close friend of ten years", "Acknowledge the obligation."
-    )
-    disclosed_prompt = make_prompt(
-        "a close friend of ten years",
-        "Acknowledge the obligation.",
-        disclose_assistance=True,
-    )
-    assert "Relationship: a close friend of ten years" in ordinary_prompt
-    assert "AI writing assistant" not in ordinary_prompt
-    assert "AI writing assistant" in disclosed_prompt
-
-    record = make_record(
-        relationship="a colleague from my team",
-        raw_message="A raw model return",
-        disclose_assistance=True,
-    )
-    assert record["disclose_assistance"] is True
-    assert record["facts"] is not FACTS
-    assert set(record) == {
-        "relationship",
-        "disclose_assistance",
-        "facts",
-        "raw_message",
+    situation = {"id": "broken_commitment", "relationship": "close friend"}
+    before = {"action": "call", "reason": "late notice"}
+    model_record = {"parsed_output": {"proposed_action": "call and offer repair"}}
+    unchanged_answer = {
+        "important_difference": "The model adds repair.",
+        "student_response_after": before,
     }
+    unchanged = record_audit(situation, before, model_record, unchanged_answer)
+    assert unchanged["would_follow_model"] is False
+    assert unchanged["student_changed_response"] is False
 
-    numbered = []
-    for position, relationship in enumerate(
-        ["a colleague from my team", "a close friend of ten years"], start=1
-    ):
-        numbered.append((position, relationship))
-    assert numbered == [
-        (1, "a colleague from my team"),
-        (2, "a close friend of ten years"),
-    ]
+    changed_answer = {
+        "important_difference": "The model identifies a financial cost.",
+        "student_response_after": {"action": "call and pay", "reason": "repair"},
+    }
+    changed = record_audit(
+        situation,
+        before,
+        model_record,
+        changed_answer,
+        would_follow_model=True,
+    )
+    assert changed["would_follow_model"] is True
+    assert changed["student_changed_response"] is True
 
 
 if __name__ == "__main__":

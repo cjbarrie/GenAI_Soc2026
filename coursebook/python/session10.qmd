@@ -1,15 +1,19 @@
 ---
-title: "Week 10 Python — Compare LLM-mediated messages"
-description: "Default arguments, Boolean values and the broken-commitment example"
+title: "Week 10 Python — Audit model advice about social situations"
+description: "Compare your intended response with model advice across three relationships and obligations"
 ---
 
 [Return to the Week 10 readings and slides](../weeks/session10.qmd).
 
-## Python walkthrough: writing assistance as part of a relational act
+## Python walkthrough: auditing social advice
 
-The research question is: **how does an LLM formulate the same broken commitment when the instruction, relationship or disclosure setting changes?** The facts remain fixed. The program produces generated messages and a research record. It does not observe sincerity, persuasion, recipient interpretation or relationship repair.
+The research question is: **how does an LLM interpret different social situations, and would you behave as it suggests?**
 
-**New Python this week:** a default parameter value, the Boolean values `True` and `False`, keyword arguments and `enumerate()`. Week 9 introduced a function and a branch. Week 10 uses those ideas to make a theoretically important choice explicit: whether the prompt asks the generated message to disclose AI writing assistance.
+The notebook contains three situations involving a close friend, a colleague and a sibling. Before viewing any model output, you record what you would do and why. The model then proposes an action, possible message, reasoning and missing information. You compare its response with your own.
+
+Your answer is a situated human judgment, not a gold standard. The model output does not reveal how another person would behave or react.
+
+**New Python this week:** default parameter values, Boolean values, keyword arguments and `enumerate()`. The exercise reuses functions, lists, dictionaries and loops from earlier weeks.
 
 ## Workbook and environment links
 
@@ -26,142 +30,135 @@ uv sync --frozen
 uv run jupyter lab
 ```
 
-Colab uses OpenRouter. Local JupyterLab uses Ollama by default. `COURSE_USE_RECORDED=1` activates a labelled outage fallback in the local task.
+Colab uses OpenRouter. Local JupyterLab uses Ollama by default. `COURSE_USE_RECORDED=1` activates the labelled fallback.
 
 ## Complete flow
 
 ```text
-fixed facts + writing instruction + relationship + disclosure Boolean
-→ prompt string
-→ OpenRouter or Ollama call
-→ raw generated message
-→ record dictionary
-→ researcher notes
+three social situations
+→ student records intended responses
+→ one model call per situation
+→ raw and parsed model advice
+→ student compares the advice with their own response
+→ one audit dictionary per situation
+→ list of audit records
 ```
 
-## Store facts separately from interpretation
+## Store the situations
+
+Each situation is a dictionary with three keys:
 
 ```python
-facts = {
-    "commitment": "help with a move at 8 a.m. Saturday",
-    "work_conflict_known": "noon Friday",
-    "message_sent": "9 p.m. Friday",
-    "reliance": "the recipient declined paid help because of the promise",
-    "repairs": ["pay half the cost of a last-minute mover", "help on Sunday"],
+{
+    "id": "broken_commitment",
+    "relationship": "a close friend of ten years",
+    "facts": "You promised to help them move...",
 }
 ```
 
-The dictionary contains supplied circumstances. It contains no claim about the sender's feelings or the recipient's likely reaction. Zelizer examines how ties, transactions, media and meanings are matched. Here we apply that relational question to a communicative act. The dictionary does not settle its meaning in advance.
+The full `situations` object is a `list` containing three dictionaries. The cases concern a broken commitment, workplace credit and private family information.
 
-## A default value represents the ordinary call
+## Record your response before seeing the model
 
 ```python
-def draft_message(
-    relationship,
-    instruction_name,
-    route,
-    disclose_assistance=False,
+student_responses_before = [
+    {
+        "action": "Call immediately and offer practical repair.",
+        "reason": "The late notice increased the cost of the broken promise.",
+    },
+    # two more responses
+]
+```
+
+Edit at least one entry before running the model cells. This order matters because model advice could change how you subsequently understand the situation.
+
+## Generate the model advice
+
+`ask_social_adviser(situation, route)` receives one situation dictionary and one route string. It prints the prompt and raw return, parses the JSON and returns a record containing both forms.
+
+```python
+model_records = []
+
+for position, situation in enumerate(situations, start=1):
+    model_record = ask_social_adviser(
+        situation=situation,
+        route=ROUTE,
+    )
+    model_records.append(model_record)
+```
+
+On the first iteration, `position` is `1` and `situation` is the broken-commitment dictionary. The returned model record is appended to the list.
+
+## Record your audit judgment
+
+After reading the model outputs, complete the supplied `audit_answers` list. For each situation, record:
+
+- whether you would follow the model;
+- the most important difference between its response and yours;
+- what you would now do.
+
+The Boolean records a judgment. It does not measure whether the model is socially correct.
+
+## A default Boolean
+
+```python
+def record_audit(
+    situation,
+    student_response_before,
+    model_record,
+    audit_answer,
+    would_follow_model=False,
 ):
 ```
 
-The first three parameters require arguments. The fourth parameter has a default value. If the function call omits `disclose_assistance`, Python uses `False`.
+If the function call omits `would_follow_model`, Python uses `False`. A call can override that default with a keyword argument:
 
 ```python
-ordinary_record = draft_message(
-    relationship="a close friend of ten years",
-    instruction_name="obligation",
-    route=ROUTE,
+audit_record = record_audit(
+    situation=situation,
+    student_response_before=student_responses_before[position],
+    model_record=model_records[position],
+    audit_answer=audit_answer,
+    would_follow_model=audit_answer["would_follow_model"],
 )
 ```
 
-The words before `=` are parameter names. The values after `=` are keyword arguments. Their order does not carry the meaning; the names do.
+## Build the audit dataset
 
-## A Boolean controls the disclosure branch
+The loop appends one returned dictionary to `audit_records`. Each record keeps together:
 
-```python
-disclosure_request = ""
-if disclose_assistance:
-    disclosure_request = (
-        "\nEnd with this factual disclosure: I used an AI writing assistant "
-        "to help me draft this message."
-    )
-```
+- the relationship and situation;
+- the student's response before seeing the model;
+- the parsed model response;
+- whether the student would follow it;
+- the most important difference;
+- the student's response after seeing it;
+- whether that response changed.
 
-With `False`, the indented assignment does not run and the prompt receives an empty string. With `True`, the disclosure request becomes part of the prompt.
+This creates a small audit dataset rather than a collection of disconnected messages.
 
-```python
-disclosed_record = draft_message(
-    relationship="a close friend of ten years",
-    instruction_name="obligation",
-    route=ROUTE,
-    disclose_assistance=True,
-)
-```
+## Interpret the comparison
 
-This call changes one explicit input. Comparing the generated strings shows what the model wrote under each instruction. It does not show how a friend would interpret disclosure.
+Use the audit questions to inspect whether the model:
 
-## Number the relationship conditions
+- recognized the relationship and relevant obligation;
+- distinguished an explanation from an excuse;
+- proposed a plausible repair or next step;
+- invented feelings, motives or relationship history;
+- omitted context that mattered to your judgment.
 
-```python
-relationships = [
-    "a colleague from my team",
-    "a close friend of ten years",
-    "my romantic partner",
-]
-
-for position, relationship in enumerate(relationships, start=1):
-    print(position, relationship)
-```
-
-```text
-1 a colleague from my team
-2 a close friend of ten years
-3 my romantic partner
-```
-
-`enumerate()` returns two values on each iteration. On the first iteration, `position` is `1` and `relationship` is `"a colleague from my team"`.
-
-## Save one record per relationship
-
-```python
-relationship_records = []
-
-for position, relationship in enumerate(relationships, start=1):
-    print("Condition", position, "of", len(relationships))
-    record = draft_message(
-        relationship=relationship,
-        instruction_name="obligation",
-        route=ROUTE,
-    )
-    relationship_records.append(record)
-```
-
-The function returns one dictionary, which `.append()` adds to the ordered list. After the three iterations, `relationship_records` contains three dictionaries.
-
-## Inspect generated writing without manufacturing outcomes
-
-```python
-researcher_notes = {
-    "instruction_comparison": "",
-    "relationship_comparison": "",
-    "disclosure_comparison": "",
-    "invented_facts": [],
-    "human_evidence_needed": (
-        "Recipient interpretations, sender experience and later interaction data."
-    ),
-}
-```
-
-Write observations after reading the messages. Hohenstein et al. provide evidence about actual smart-reply use and immediate partner judgments. A model demonstration alone cannot recreate those human outcomes. Williams-Ceci et al. measure influence on writers; our generated strings do not measure that pathway either.
+Zelizer helps us ask whether the advice fits the relationship and transaction. Goffman directs attention to offence, account and repair. Hochschild helps separate generated emotional expression from feeling and emotion work. Hohenstein et al. remind us that generated advice alone does not reveal recipient judgments.
 
 ## Take-home exercise
 
-1. Run the two writing instructions for a close friend of ten years.
-2. Run the obligation instruction across all three relationships.
-3. Run the close-friend-of-ten-years condition with `disclose_assistance=True`.
-4. Change one relationship description or disclosure setting and rerun.
-5. Explain the default value, keyword arguments, first `enumerate()` iteration and returned record.
-6. Connect one observation to Zelizer, Goffman, Hochschild or Hohenstein et al.
-7. State which sender or recipient evidence would support a stronger claim.
+1. Replace at least one initial response with what you would actually do.
+2. Run all three situations and preserve every raw model return.
+3. Complete the audit answers after reading the advice.
+4. Explain the first `enumerate()` iteration and one model-call record.
+5. Explain the default Boolean and keyword argument in `record_audit()`.
+6. Trace one situation into its final audit dictionary.
+7. Identify one place where the model understood the social situation and one important omission or disagreement.
+8. State whether the suggestion changed your response.
+9. Explain why your response is a comparison rather than an objective gold standard.
 
 Submit a narrated 6–8 minute screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code style is not graded.

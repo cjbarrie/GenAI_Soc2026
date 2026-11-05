@@ -33,39 +33,39 @@ headings = [
         "Colab uses OpenRouter; local JupyterLab uses Ollama by default.",
     ),
     (
-        "## Store the fixed facts and two instructions",
-        "The facts dictionary stays unchanged. The two strings allocate different work to the "
-        "model. Recorded returns provide an outage fallback, not evidence about people.",
+        "## Store the social situations and your responses",
+        "The three dictionaries describe different relationships and obligations. Edit at least "
+        "one human response before viewing the model output. Your response is a comparison, not an answer key.",
     ),
     (
-        "## Define a function with a default Boolean parameter",
-        "The first three parameters require values. `disclose_assistance=False` supplies a "
-        "default Boolean when the caller omits that keyword argument.",
+        "## Define the model-call function",
+        "The function receives one situation dictionary and a route. It preserves the raw return "
+        "before parsing the proposed action, possible message, reasoning and missing information.",
     ),
     (
-        "## Compare two instructions",
-        "Both calls use the same relationship and facts. Keyword arguments make each input "
-        "visible at the call site.",
+        "## Generate advice for each situation",
+        "`enumerate(..., start=1)` numbers the cases. The loop calls the same function once for "
+        "each situation and appends one model record to the initially empty list.",
     ),
     (
-        "## Number the relationship conditions",
-        "`enumerate(..., start=1)` returns a condition number and a relationship label on each "
-        "iteration. This first loop only prints those two values so that they remain visible.",
+        "## Store your audit judgments",
+        "Read each model output before editing these values. Record whether you would follow it, "
+        "the most important difference and what you would do after seeing the suggestion.",
     ),
     (
-        "## Repeat one instruction across relationships",
-        "The second loop calls the function for each relationship. It appends one record "
-        "dictionary at a time to the initially empty list.",
+        "## Define a function with a default Boolean",
+        "The audit function combines the situation, initial human response and model response. "
+        "The default records that the student would not automatically follow the model.",
     ),
     (
-        "## Make disclosure an explicit input",
-        "The final keyword argument changes from its default `False` to `True`. The resulting "
-        "text remains a generated message, not evidence of a recipient response.",
+        "## Build the audit dataset",
+        "The loop retrieves objects from matching list positions and passes them as keyword "
+        "arguments. Each returned audit dictionary is appended to `audit_records`.",
     ),
     (
-        "## Keep researcher notes separate",
-        "Write observations after inspecting the text. Do not ask the model to score sincerity, "
-        "appropriateness or relationship quality.",
+        "## Interpret the audit cautiously",
+        "The student response provides a situated comparison rather than a gold standard. The "
+        "model outputs do not establish how a real writer or recipient would behave.",
     ),
 ]
 
@@ -79,10 +79,10 @@ setup_cell["id"] = "colab-setup"
 
 notebook["cells"] = [
     nbf.v4.new_markdown_cell(
-        "# Week 10 — LLM-mediated interpersonal messages\n\n"
-        "**Research task:** Hold a broken commitment fixed while changing the writing "
-        "instruction, relationship and assistance-disclosure setting. Inspect generated "
-        "writing without claiming to observe sincerity or relationship repair.\n\n"
+        "# Week 10 — Auditing LLM advice about social situations\n\n"
+        "**Research task:** Record how you would respond to three social situations before "
+        "viewing model advice. Then audit how the model understands each relationship, "
+        "obligation and possible response.\n\n"
         "**Python introduced:** default parameter values, Boolean values, keyword arguments "
         "and `enumerate()`.\n\n"
         "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
@@ -103,10 +103,10 @@ for (heading, explanation), code in zip(headings, task_cells):
 
 notebook["cells"].append(
     nbf.v4.new_markdown_cell(
-        "## Your change and recording\n\nChange one relationship description or set "
-        "`disclose_assistance=True` for another relationship. Explain the default value, the "
-        "keyword argument, the first `enumerate()` iteration and the returned record. State "
-        "which human outcomes remain unobserved."
+        "## Your change and recording\n\nReplace at least one initial response and audit "
+        "answer with your own judgment. Explain the default Boolean, keyword arguments, first "
+        "`enumerate()` iteration and one complete audit record. State why your response is a "
+        "comparison rather than a gold standard."
     )
 )
 

@@ -1,202 +1,163 @@
 ---
-title: "Week 9 Python — Work with an LLM assistant"
-description: "The first student-edited function and a worker-controlled follow-up"
+title: "Week 9 Python — Human judgment and model certainty"
+description: "A small function records how workers respond to the same advice at different displayed certainty levels"
 ---
 
 [Return to the Week 9 readings and slides](../weeks/session09.qmd).
 
-## Python walkthrough: review a model analysis
+## Python walkthrough: deciding whether to rely on model advice
 
-This exercise adapts the statistical task in Wiles et al. (2026). You are a general consultant reviewing an unfamiliar mortgage-prediction analysis before advising a client. The supplied AI interpretation mixes a correct comparison with claims that the evidence does not support.
+The research question is: **does a worker respond differently when the same model recommendation appears with different levels of stated certainty?**
 
-The assistant begins in coach mode. It checks the analysis and returns questions, but it does not make the final recommendation. After reading its first reply, you choose what happens next:
+A consulting team must advise a lender about a limited internal pilot of a mortgage-prediction model. The model sees one fixed body of evidence and produces one recommendation. We then display that recommendation with certainty values of `0.55`, `0.75` and `0.95`. The evidence and recommendation do not change.
 
-- ask the model to explain one issue;
-- escalate the analysis to the data-science team;
-- begin writing your own client note.
+The certainty values are assigned for this teaching comparison. They are not calibrated probabilities. The exercise observes your decisions in the notebook; it does not measure workers in an organization.
 
-The supplied path asks the model one follow-up question. You then make and record the final decision. The unit of analysis is one model-assisted review, including the worker's choices. The program does not measure real productivity, learning, discretion or authority.
-
-**New Python this week:** `def`, parameters, local variables, `return`, an `if`/`elif`/`else` branch and `None`. Earlier weeks used functions supplied by Python packages. This is the first exercise in which you read and edit a function that organizes the research routine.
+**New Python this week:** the first small student-defined function, parameters, local variables, `return` and `if`/`elif`/`else`.
 
 ## Workbook and environment links
 
-Use the supplied notebook rather than pasting the blocks into a blank notebook. It contains the tested Colab setup and the complete local check.
+Use the supplied notebook rather than pasting these blocks into a blank notebook.
 
 [Open the Week 9 notebook in Colab](https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/workbook/session09/session09_llms_at_work.ipynb) or [download the notebook](../_generated/downloads/session09/session09_llms_at_work.ipynb).
 
 [Download the local Python task](../_generated/downloads/session09/session09_task.py) or [download the complete offline bundle](../_generated/downloads/session09/session09_offline_bundle.zip).
 
-For local work, open a terminal in the complete course repository and run:
+For local work, run:
 
 ```bash
 uv sync --frozen
 uv run jupyter lab
 ```
 
-Colab selects OpenRouter. Local JupyterLab selects Ollama. The route remains visible inside the function.
+Colab uses OpenRouter. Local JupyterLab uses Ollama by default. Set `COURSE_USE_RECORDED=1` when a live route is unavailable.
 
 ## The complete flow
 
 ```text
-model results + questionable analysis
-→ first request to the coach
-→ raw return and parsed dictionary
-→ worker chooses what to do next
-→ optional follow-up question and second model call
-→ worker makes a final decision
-→ work record and reflection
+fixed workplace evidence
+→ one model recommendation
+→ the same advice displayed at 0.55, 0.75 and 0.95 certainty
+→ one human action and reason for each display
+→ a list of judgment records
+→ comparison and unassisted interpretation
 ```
 
-## Store the research material
+## Store the evidence
 
 ```python
-model_results = {
-    "task": "Predict whether a couple will take out a mortgage",
-    "test_cases": 200,
+model_evidence = {
+    "held_out_cases": 200,
     "model_accuracy": 0.80,
     "always_predict_no_mortgage_accuracy": 0.60,
-    "false_negatives": 20,
-}
-
-ai_analysis = (
-    "The model is 80% accurate, so it is ready to guide an investment strategy. "
-    "Its score shows that increasing a couple's score causes them to take out a mortgage."
-)
-```
-
-`model_results` is a `dict`: a collection of named values. `ai_analysis` is a `str`: one piece of text. The numbers are instructor-authored for the exercise. They reproduce the kind of statistical interpretation task used by Wiles et al.; they are not results reported in that paper.
-
-## Store the assistant instruction
-
-```python
-assistant_instruction = (
-    "Act as a coach. Check the analysis and explain the problems you find. "
-    "Ask the consultant questions, but do not write the final client advice."
-)
-```
-
-This `str` allocates work. The model evaluates the supplied claims and proposes questions. The consultant remains responsible for deciding what to do and what to tell the client.
-
-## Define the first function
-
-```python
-def call_review_assistant(messages, route):
-    # Send the current message list through OpenRouter or Ollama
-    # Print and preserve the raw model return
-    # Parse the JSON text into a Python dictionary
-    return reply_record
-```
-
-Before treating the parameters as abstract names, replace them with the first call's values:
-
-```python
-messages = [{"role": "user", "content": initial_prompt}]
-route = "ollama"
-```
-
-The function receives a `list` and a `str`. It returns one `dict` containing the message list, route, model, raw output, parsed output and three checks. The route-specific calls remain visible in the notebook.
-
-## Ask for the first review
-
-```python
-first_reply = call_review_assistant(
-    messages=messages,
-    route=ROUTE,
-)
-
-print(first_reply["parsed_output"]["questions_for_worker"])
-```
-
-The assistant compares the model with the stated baseline, rejects the unsupported causal interpretation and identifies missing information. This is advice to inspect, not a completed client decision.
-
-## The worker chooses the next step
-
-```python
-available_actions = [
-    "ask_model_again",
-    "escalate_to_data_science",
-    "write_client_note",
-]
-
-worker_next_step = "ask_model_again"
-```
-
-`available_actions` is a `list` of three strings. `worker_next_step` is one selected string. Editing that value changes what the program does next.
-
-## Ask a follow-up question
-
-```python
-follow_up_question = (
-    "Explain why 80% overall accuracy does not tell me whether the model is safe to use "
-    "for an investment decision. Use only the supplied results and name what is missing."
-)
-
-if worker_next_step == "ask_model_again":
-    messages.append({"role": "assistant", "content": first_reply["raw_output"]})
-    messages.append({"role": "user", "content": follow_up_question})
-    second_reply = call_review_assistant(messages=messages, route=ROUTE)
-```
-
-The comparison after `if` becomes `True` for the supplied value. `.append()` adds the first reply and the worker's new question to the message list. The second call therefore receives the earlier exchange as context. If the worker selects escalation or begins writing, the program makes no second model call and stores `None` in `second_reply`. `None` is Python's value for the absence of a result. It differs from the string `"None"`, which contains four text characters.
-
-## Record the final worker decision
-
-```python
-worker_final_action = "escalate_to_data_science"
-worker_reason = (
-    "The supplied results do not show calibration, false-positive errors or the costs "
-    "of different mistakes, so the investment recommendation requires specialist review."
-)
-
-work_record = {
-    "first_model_reply": first_reply,
-    "worker_next_step": worker_next_step,
-    "worker_question": follow_up_question,
-    "second_model_reply": second_reply,
-    "worker_final_action": worker_final_action,
-    "worker_reason": worker_reason,
+    "calibration_reported": False,
+    "subgroup_performance_reported": False,
+    "error_costs_reported": False,
 }
 ```
 
-The final action and reason are worker-authored strings. `work_record` is a dictionary that combines the model's contributions with the worker's choices. It also creates a record of the question asked, the help received and the decision made.
+The input is one `dict`. The keys name the evidence available to the model. The three Boolean values record evidence that has not been reported.
 
-## Reflect on the work
+## Ask for one recommendation
 
-Use the following questions while looking at your completed `work_record`:
+The prompt asks the model to choose one of three actions and identify the evidence and omissions. The notebook prints the raw JSON string before parsing it:
 
-1. Which reasoning did the model perform before you made a choice?
-2. What decision did you retain as the worker?
-3. Did the second call improve your understanding, or did it move more reasoning to the model?
-4. What can an organization now observe about your question and decision?
-5. What could you explain later without the assistant?
+```python
+print(raw_output)
+model_advice = json.loads(raw_output)
+print(model_advice["recommendation"])
+```
 
-These questions connect the exercise to the readings. Barley directs attention to the division of labour. Zuboff asks what the computer-mediated process makes visible. Wiles et al. separate successful assisted work from knowledge demonstrated later without the system.
+`raw_output` is a `str`. `json.loads()` converts it into the `dict` named `model_advice`.
 
-## Interpret the checks cautiously
+## Hold the recommendation fixed
 
-The checks confirm that the returned categories match three requirements written into the exercise: 0.80 exceeds the stated 0.60 baseline, held-out prediction does not support the causal claim, and accuracy alone does not make the model ready for an investment decision.
+```python
+certainty_levels = [0.55, 0.75, 0.95]
+```
 
-These are software checks against predeclared requirements. They do not prove that the explanation is useful, that the worker understood it, or that a real organization gave the worker meaningful discretion.
+This is a `list` of three `float` values. The same evidence and parsed recommendation appear in all three conditions. Only the certainty display changes.
+
+Before continuing, edit `human_actions` and `human_reasons` so they describe what you would actually do.
+
+## Define the first small function
+
+```python
+def record_human_judgment(
+    recommendation,
+    stated_certainty,
+    human_action,
+    human_reason,
+):
+    if human_action == "accept_recommendation":
+        next_step = "Proceed with the recommendation."
+    elif human_action == "ask_for_more_information":
+        next_step = "Request additional evidence before deciding."
+    elif human_action == "escalate_to_specialist":
+        next_step = "Send the evidence and advice to a specialist."
+    elif human_action == "reject_recommendation":
+        next_step = "Do not proceed with the recommendation."
+    else:
+        raise ValueError("Choose one permitted human action")
+
+    return {
+        "recommendation": recommendation,
+        "stated_certainty": stated_certainty,
+        "human_action": human_action,
+        "human_reason": human_reason,
+        "next_step": next_step,
+    }
+```
+
+The function receives four values. The comparison after each `if` or `elif` produces a Boolean. Python runs the first branch whose comparison is `True`. `return` sends one dictionary back to the line that called the function.
+
+## Record the three judgments
+
+```python
+judgment_records = []
+
+for position, stated_certainty in enumerate(certainty_levels):
+    record = record_human_judgment(
+        recommendation=model_advice["recommendation"],
+        stated_certainty=stated_certainty,
+        human_action=human_actions[position],
+        human_reason=human_reasons[position],
+    )
+    judgment_records.append(record)
+```
+
+On the first iteration, `position` is `0` and `stated_certainty` is `0.55`. Index `[0]` retrieves the first human action and reason. The function returns one `dict`, and `.append()` adds it to the initially empty list.
+
+## Compare the decisions
+
+The final cells print each decision and confirm:
+
+```python
+evidence_changed = False
+recommendation_changed = False
+```
+
+If the human action changes, the certainty display may have influenced the judgment even though the underlying evidence did not change. This exercise cannot establish how workers generally respond to model confidence.
+
+The stored record also raises Zuboff's question: an organization could preserve the advice, confidence display, worker decision and stated reason together.
 
 ## A short unassisted check
 
-After completing the review, answer this without asking the model:
+Answer without asking the model:
 
-> Does 80% overall accuracy tell us what percentage of couples predicted to take out a mortgage actually did so? Explain why or why not.
+> Does a displayed certainty of 0.95 mean that the recommendation is correct 95% of the time? What evidence would be needed to interpret that number?
 
-The answer is no. That quantity is precision. We would need the number of true and false positive predictions, which the exercise does not supply. The purpose is to distinguish assisted completion from what the student can explain without assistance.
+No frequency interpretation follows from the display alone. We would need to know how the certainty was produced and whether recommendations assigned similar values were correct at corresponding rates in relevant cases.
 
 ## Take-home exercise
 
-Change `worker_next_step` or rewrite `follow_up_question`, rerun the exercise and explain:
+1. Edit the three human actions and reasons before running the comparison.
+2. Run the model call and preserve the raw return.
+3. Explain the value and type entering every function parameter.
+4. Trace the branch taken for one certainty level.
+5. Explain the returned dictionary and the completed list.
+6. State whether your decision changed while the evidence remained fixed.
+7. Explain what the exercise shows about your judgment and what it cannot show about workers generally.
+8. Answer the certainty question without model assistance.
 
-1. the value and type of each function argument;
-2. the raw return and parsed dictionary from each model call;
-3. why your chosen action did or did not produce a second call;
-4. what the assistant contributed and what decision you retained;
-5. what the interaction record makes visible to the organization;
-6. whether the second call supported your understanding or encouraged dependence;
-7. your answer to the unassisted question.
-
-Submit the narrated screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code style is not graded; understanding the routine is.
+Submit the narrated screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code style is not graded.

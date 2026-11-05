@@ -434,229 +434,186 @@ format:
 
 ---
 
-## Coding exercise: drafting an apology
+## Coding exercise: auditing social advice
 
-<div class="code-task-map"><span>same facts</span><span>writing instruction</span><span>relationship</span><span>disclosure setting</span><span>generated message</span><span>researcher inspection</span></div>
+<div class="code-task-map"><span>social situation</span><span>student response</span><span>model advice</span><span>comparison</span><span>audit record</span></div>
 
-<p>The exercise examines the model’s text. Sincerity, appropriateness and relationship quality would require human evidence.</p>
+<p>Students decide what they would do before seeing the model output. Their response provides a comparison, not an answer key.</p>
 
 ---
 
-## The facts are stored in a dictionary
+## Three social situations
+
+<table class="closed-table"><thead><tr><th>Relationship</th><th>Situation</th><th>Question for the audit</th></tr></thead><tbody><tr><td>Close friend</td><td>A broken promise created practical costs</td><td>Does the advice recognize reliance and repair?</td></tr><tr><td>Project colleague</td><td>Joint work was presented without credit</td><td>How does the model handle correction and escalation?</td></tr><tr><td>Adult sibling</td><td>Private information conflicts with a parent's question</td><td>Which obligation does the model prioritize?</td></tr></tbody></table>
+
+---
+
+## Each situation is a dictionary
 
 ```python
-facts = {
-    "commitment": "help with a move at 8 a.m. Saturday",
-    "work_conflict_known": "noon Friday",
-    "message_sent": "9 p.m. Friday",
-    "reliance": "they declined paid help",
-    "repairs": ["pay half of a mover", "help Sunday"],
+{
+    "id": "broken_commitment",
+    "relationship": "a close friend of ten years",
+    "facts": (
+        "You promised to help them move..."
+    ),
 }
 ```
 
-<p><strong>Input type:</strong> `dict` containing strings and one list. <strong>Output:</strong> a named record Python can insert into the prompt.</p>
+<p>The full <code>situations</code> object is a list containing three dictionaries.</p>
 
 ---
 
-## A relationship description is a string
+## Record your response before the model call
 
 ```python
-relationship = "a close friend of ten years"
-print(relationship)
-print(type(relationship))
+student_responses_before = [
+    {
+        "action": "Call immediately and offer repair.",
+        "reason": "The late notice increased the cost.",
+    },
+    # two more responses
+]
 ```
 
-<pre class="output">a close friend of ten years
-&lt;class 'str'&gt;</pre>
-
-<p>The value gives the model a description of the tie. The researcher supplied it, so it provides no evidence about an actual friendship.</p>
+<p class="code-meaning">This order lets us see whether reading the model suggestion changes the student's judgment.</p>
 
 ---
 
-## Building the prompt
+## The model receives the relationship and facts
 
 ```python
 prompt = f"""
-{obligation_instruction}
+Relationship: {situation['relationship']}
+Facts: {situation['facts']}
 
-Relationship: {relationship}
-Facts: {json.dumps(facts, indent=2)}
+Propose one action and one possible message.
+Explain which obligation or expectation matters.
+Identify important missing information.
 """
-print(prompt)
 ```
 
-<p>The f-string produces one `str`. `json.dumps` makes the dictionary legible inside that string.</p>
+<p>The prompt prohibits invented feelings, motives and relationship history.</p>
 
 ---
 
-## Reading the OpenRouter and Ollama responses
+## The raw return is preserved
 
 ```python
-if ROUTE == "openrouter":
-    response = openrouter_client.chat.send(
-        model=OPENROUTER_MODEL,
-        messages=[{"role": "user", "content": prompt}],
+print(raw_output)
+parsed_output = json.loads(raw_output)
+
+model_record = {
+    "situation_id": situation["id"],
+    "raw_output": raw_output,
+    "parsed_output": parsed_output,
+}
+```
+
+<p class="code-meaning"><b>Input:</b> one situation dictionary. <b>Output:</b> one model-record dictionary containing the raw and parsed return.</p>
+
+---
+
+## Generate advice for all three situations
+
+```python
+model_records = []
+
+for position, situation in enumerate(situations, start=1):
+    model_record = ask_social_adviser(
+        situation=situation,
+        route=ROUTE,
     )
-    message = response.choices[0].message.content
-else:
-    response = ollama.chat(
-        think=False,
-        model=OLLAMA_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    message = response.message.content
+    model_records.append(model_record)
 ```
+
+<p>On the first iteration, <code>position</code> is <code>1</code> and <code>situation</code> is the broken-commitment dictionary.</p>
 
 ---
 
-## The generated message is a string
+## The audit requires another human judgment
 
 ```python
-print(message)
-print(type(message))
+audit_answers = [
+    {
+        "would_follow_model": True,
+        "important_difference": "...",
+        "student_response_after": {...},
+    },
+    # two more audit answers
+]
 ```
 
-<pre class="output">I’m sorry. I said I would help at 8 tomorrow...
-&lt;class 'str'&gt;</pre>
-
-<p>This is generated writing. We have not observed the sender’s feeling or the recipient’s response.</p>
+<p>The student completes these fields after reading the model outputs.</p>
 
 ---
 
-## A default parameter
+## A default Boolean
 
 ```python
-def draft_message(
-    relationship,
-    instruction_name,
-    route,
-    disclose_assistance=False,
+def record_audit(
+    situation,
+    student_response_before,
+    model_record,
+    audit_answer,
+    would_follow_model=False,
 ):
-    if instruction_name == "thin":
-        instruction = thin_instruction
-    elif instruction_name == "obligation":
-        instruction = obligation_instruction
 ```
 
-<p>The first three arguments are required. If the function call omits the final argument, Python uses the Boolean value <code>False</code>.</p>
+<p>If the call omits the final argument, Python records <code>False</code>. The Boolean represents the student's decision, not a model score.</p>
 
 ---
 
-## Using a Boolean for disclosure
+## Keyword arguments make the comparison visible
 
 ```python
-disclosure_request = ""
-if disclose_assistance:
-    disclosure_request = (
-        "Disclose that an AI writing assistant helped."
-    )
-```
-
-<p><code>False</code> leaves the string empty. <code>True</code> adds the disclosure request to the prompt.</p>
-
----
-
-## Calling the function with keyword arguments
-
-```python
-disclosed_record = draft_message(
-    relationship="a close friend of ten years",
-    instruction_name="obligation",
-    route=ROUTE,
-    disclose_assistance=True,
+audit_record = record_audit(
+    situation=situation,
+    student_response_before=student_responses_before[position],
+    model_record=model_records[position],
+    audit_answer=audit_answer,
+    would_follow_model=audit_answer["would_follow_model"],
 )
 ```
 
-<p>The names show which value fills each parameter. This call changes the disclosure setting without changing the facts or relationship.</p>
+<p>Each name shows exactly which object enters the function parameter.</p>
 
 ---
 
-## Numbering the relationships with enumerate()
-
-```python
-relationships = [
-    "a colleague from my team",
-    "a close friend of ten years",
-    "my romantic partner",
-]
-
-for position, relationship in enumerate(relationships, start=1):
-    print(position, relationship)
-```
-
-<pre class="output">1 a colleague from my team
-2 a close friend of ten years
-3 my romantic partner</pre>
-
----
-
-## Saving one result for each relationship
-
-```python
-relationship_records = []
-
-for position, relationship in enumerate(relationships, start=1):
-    print("Condition", position, "of", len(relationships))
-    record = draft_message(
-        relationship=relationship,
-        instruction_name="obligation",
-        route=ROUTE,
-    )
-    relationship_records.append(record)
-```
-
-<p>On the first iteration, <code>position</code> is <code>1</code> and <code>relationship</code> is <code>"a colleague from my team"</code>. The new dictionary is then appended to the empty list.</p>
-
----
-
-## The returned dictionary
+## One audit dictionary per situation
 
 ```python
 return {
-    "relationship": relationship,
-    "instruction_name": instruction_name,
-    "disclose_assistance": disclose_assistance,
-    "raw_message": raw_output,
+    "situation_id": situation["id"],
+    "student_response_before": student_response_before,
+    "model_response": model_record["parsed_output"],
+    "would_follow_model": would_follow_model,
+    "important_difference": audit_answer["important_difference"],
+    "student_response_after": audit_answer["student_response_after"],
+    "student_changed_response": (
+        audit_answer["student_response_after"]
+        != student_response_before
+    ),
 }
 ```
 
-<p>The dictionary stores the condition beside the raw message. It contains no model-produced score for sincerity or relationship quality.</p>
+---
+
+## What to inspect
+
+<table class="closed-table"><thead><tr><th>Audit question</th><th>Evidence</th></tr></thead><tbody><tr><td>Did the model identify the relevant obligation?</td><td>Its reasoning and proposed action</td></tr><tr><td>Did it understand the relationship?</td><td>The advice and possible message</td></tr><tr><td>Did it invent context?</td><td>Compare every claim with the situation dictionary</td></tr><tr><td>Would you behave this way?</td><td>Your before and after responses</td></tr></tbody></table>
 
 ---
 
-## Recording the researcher’s observations
+## The take-home task
 
-```python
-researcher_notes = {
-    "invented_facts": [],
-    "instruction_comparison": "",
-    "relationship_comparison": "",
-    "disclosure_comparison": "",
-    "human_evidence_needed": "",
-}
-```
-
-<p>The student fills these after reading the messages. The notes are interpretations, not fields returned by the model.</p>
-
----
-
-## First compare the instructions
-
-<div class="inspection-grid"><div><h3>Thin instruction</h3><p>Which obligations did the model infer? What did it omit or invent?</p></div><div><h3>Relational instruction</h3><p>Which parts of the commitment, reliance and repair became visible?</p></div></div>
-
-<p>Only after this comparison do we hold the second instruction fixed and vary the relationship.</p>
-
----
-
-## Take-home task
-
-<ol class="task-list"><li>Run the two instructions for a close friend of ten years.</li><li>Run the obligation instruction for all three relationships.</li><li>Run that close-friend condition with <code>disclose_assistance=True</code>.</li><li>Change one relationship description or disclosure setting.</li><li>Explain the default argument, the first <code>enumerate()</code> iteration and the returned record.</li><li>State what remains unknown about sender and recipient outcomes.</li></ol>
+<ol class="task-list"><li>Replace at least one initial response with what you would do.</li><li>Run the three social situations and preserve every raw return.</li><li>Complete an audit answer after reading each response.</li><li>Explain the first <code>enumerate()</code> iteration and the default Boolean.</li><li>Trace one case into its final audit dictionary.</li><li>Identify one useful interpretation and one disagreement or omission.</li><li>State whether the suggestion changed your response.</li></ol>
 
 ---
 
 ## What to explain in the recording
 
-<div class="submission-box">Show the facts dictionary, the default Boolean, one keyword-argument call, the first <code>enumerate()</code> iteration, the returned record and the researcher-notes object. Explain what the generated text can and cannot show.</div>
+<div class="submission-box">Show one situation dictionary, your response before the model call, the raw return, the parsed output and the completed audit record. Explain why your response is a comparison rather than a gold standard.</div>
 
 <p>Submit a 6–8 minute narrated recording to the course Coding Videos folder using the required week-and-name filename.</p>
 
@@ -664,19 +621,19 @@ researcher_notes = {
 
 ## What this exercise shows
 
-<div class="evidence-boundary"><p><strong>It can show:</strong> how instructions and relationship labels change the model’s wording, explanation and proposed repair.</p><p><strong>It cannot show:</strong> that a message is sincere, appropriate, persuasive, accepted or effective in maintaining a relationship.</p></div>
+<div class="evidence-boundary"><p><strong>It can show:</strong> how the model interprets three supplied situations and where one student agrees or disagrees.</p><p><strong>It cannot show:</strong> the correct social response, how people generally behave or how a real recipient would interpret the advice.</p></div>
 
 ---
 
 ## Evidence we would still need
 
-<div class="final-questions"><p>How do senders actually use and revise suggestions?</p><p>What do recipients infer when assistance is disclosed or suspected?</p><p>When does mediation help people reflect, and when does it replace expressive effort?</p><p>How do these effects vary across relationships and over time?</p></div>
+<div class="final-questions"><p>How do people revise their initial judgment after seeing a suggestion?</p><p>Which disagreements recur across participants and models?</p><p>How do recipients interpret messages produced from this advice?</p><p>Which contextual omissions matter outside these three cases?</p></div>
 
 ---
 
-## The broken commitment revisited
+## Social advice as an object of study
 
-<div class="closing-answer">An LLM can change how the message describes the obligation and proposes a repair. We need evidence from writers and recipients to know whether it changes either person or the relationship.</div>
+<div class="closing-answer">An LLM can propose an action and message for a social situation. The audit records how it interpreted the relationship and how one student responded to its advice.</div>
 
 ::: {.notes}
 [Sources]

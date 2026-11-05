@@ -309,362 +309,184 @@ format:
 
 <p class="discussion-line">Which configuration would you use, and what outcome would you measure?</p>
 
+<p class="plain-note">The coding exercise now holds the model's recommendation fixed and asks whether displaying different levels of certainty changes what the worker decides to do.</p>
+
 ---
 
-## The coding exercise uses coach mode
+## Coding exercise: model certainty and human judgment
 
-<div class="mode-code-bridge"><div><pre><code class="python">assistant_instruction = (
-    "Act as a coach. "
-    "Do not write the final advice."
-)</code></pre></div><div><p><b>The assistant performs an initial review</b><br>It checks the claims and proposes questions for the consultant.</p><p><b>The worker chooses what happens next</b><br>Ask the model again, consult the data-science team or begin writing the note.</p></div></div>
+<div class="mode-code-bridge"><div><pre><code class="python">certainty_levels = [
+    0.55,
+    0.75,
+    0.95,
+]</code></pre></div><div><p><b>The evidence stays fixed</b><br>The model sees the same test results once.</p><p><b>The recommendation stays fixed</b><br>Only the displayed certainty changes.</p><p><b>The worker decides</b><br>Students record what they would do and why.</p></div></div>
 
-<p class="plain-note">The exercise now follows a short work process rather than comparing two completed model returns.</p>
+<p class="plain-note">A displayed certainty value is not necessarily a calibrated probability.</p>
 
 ---
 
 ## The complete program
 
-<div class="program-map"><div><span>1</span><b>Initial review</b><p>Send the evidence and questionable analysis to the assistant.</p></div><div><span>2</span><b>Worker choice</b><p>Inspect the return and decide whether to ask again, escalate or start writing.</p></div><div><span>3</span><b>Optional follow-up</b><p>Add the worker's question to the conversation and call the model again.</p></div><div><span>4</span><b>Decision and reflection</b><p>Record the worker's final action and examine how the work was divided.</p></div></div>
+<div class="program-map"><div><span>1</span><b>One recommendation</b><p>Send the fixed evidence to the model and preserve the raw return.</p></div><div><span>2</span><b>Three displays</b><p>Show the same advice with certainty values of 0.55, 0.75 and 0.95.</p></div><div><span>3</span><b>Human decisions</b><p>Record an action and reason for each display.</p></div><div><span>4</span><b>Comparison</b><p>Check whether judgment changed when the evidence did not.</p></div></div>
 
 ---
 
-## The program starts with a dictionary of results
+## The evidence is stored in a dictionary
 
 ```python
-model_results = {
-    "test_cases": 200,
+model_evidence = {
+    "held_out_cases": 200,
     "model_accuracy": 0.80,
-    "always_predict_no_mortgage_accuracy": 0.60,
-    "false_negatives": 20,
-}
-
-print(model_results)
-print(type(model_results))
-```
-
-<div class="io-line"><b>Input:</b> named values<i>→</i><b>Output:</b> one <code>dict</code> containing integers and floats</div>
-
----
-
-## The AI analysis is stored as a string
-
-```python
-ai_analysis = (
-    "The model is 80% accurate, so it is ready to guide "
-    "an investment strategy. Its score shows that increasing "
-    "a couple's score causes them to take out a mortgage."
-)
-```
-
-<p class="code-meaning">The text includes a causal claim that the held-out predictive evidence cannot support.</p>
-
----
-
-## The coaching instruction is another string
-
-```python
-assistant_instruction = (
-    "Act as a coach. Check the analysis. "
-    "Do not write the final client advice."
-)
-
-print(assistant_instruction)
-print(type(assistant_instruction))
-```
-
-<p class="code-meaning">This value assigns an initial task to the model. The worker still decides what to do with the reply.</p>
-
----
-
-## The results dictionary becomes prompt text
-
-```python
-results_text = json.dumps(model_results, indent=2)
-
-prompt = f"""
-Model results:
-{results_text}
-
-AI-written analysis:
-{ai_analysis}
-
-Instruction:
-{assistant_instruction}
-Return the six required fields as JSON.
-"""
-```
-
-<p class="code-meaning"><code>json.dumps()</code> produces a string. The braces insert the current evidence, analysis and instruction into the prompt.</p>
-
----
-
-## The message list is sent to the model
-
-```python
-messages = [
-    {
-        "role": "user",
-        "content": prompt,
-    }
-]
-
-print(messages[0]["content"])
-```
-
-<div class="io-line"><b>Input:</b> prompt · <code>str</code><i>→</i><b>Output:</b> one-item <code>list</code> containing a <code>dict</code></div>
-
----
-
-## OpenRouter uses the same output schema {data-auto-stretch="false"}
-
-<div class="schema-code">
-
-```python
-response_format = {
-    "type": "json_schema",
-    "json_schema": {
-        "name": "work_review",
-        "strict": True,
-        "schema": output_schema,
-    },
+    "baseline_accuracy": 0.60,
+    "calibration_reported": False,
+    "subgroup_performance_reported": False,
+    "error_costs_reported": False,
 }
 ```
 
-</div>
-
-<p class="code-meaning">This dictionary tells OpenRouter to require the fields already defined in <code>output_schema</code>.</p>
+<p class="code-meaning">The three Boolean values identify evidence that has not been reported.</p>
 
 ---
 
-## OpenRouter sends the request to a hosted model
-
-```python
-if ROUTE == "openrouter":
-    api_key = os.getenv("OPENROUTER_API_KEY") or getpass(
-        "OpenRouter course key (hidden): "
-    )
-    client = OpenRouter(api_key=api_key)
-    response = client.chat.send(
-        model=HOSTED_MODEL,
-        messages=messages,
-        temperature=0,
-        response_format=response_format,
-    )
-    raw_output = response.choices[0].message.content
-```
-
-<p class="code-meaning">The prompt leaves the computer and is processed by the selected hosted provider.</p>
-
----
-
-## Ollama sends the request to a model on the computer
-
-```python
-else:
-    response = ollama.chat(
-        think=False,
-        model=LOCAL_MODEL,
-        messages=messages,
-        format=output_schema,
-        options={"temperature": 0},
-    )
-    raw_output = response.message.content
-```
-
-<p class="code-meaning">The Python request goes to the Ollama server running locally. The model must already be downloaded.</p>
-
----
-
-## The raw return is text
+## The model produces one recommendation
 
 ```python
 print(raw_output)
-print(type(raw_output))
+model_advice = json.loads(raw_output)
+
+print(model_advice["recommendation"])
+print(model_advice["missing_information"])
 ```
 
-<pre class="mini-output"><code>{"baseline_comparison":"model_outperforms_baseline",
- "causal_claim":"not_supported",
- "decision_status":"needs_more_information",
- "explanation":["Accuracy exceeds the stated baseline"],
- "questions_for_worker":["Which errors matter for the decision?"],
- "data_science_escalation":"Check calibration and error costs"}</code></pre>
+<pre class="mini-output"><code>{"recommendation":"request_more_evidence",
+ "missing_information":["calibration",
+ "subgroup performance","error costs"]}</code></pre>
 
 ---
 
-## JSON parsing turns the text into a dictionary
+## The certainty display changes
 
 ```python
-parsed_output = json.loads(raw_output)
+certainty_levels = [0.55, 0.75, 0.95]
 
-print(parsed_output["baseline_comparison"])
-print(parsed_output["causal_claim"])
-print(type(parsed_output))
+print("Evidence:", model_evidence)
+print("Recommendation:", model_advice["recommendation"])
+print("Certainty displays:", certainty_levels)
 ```
 
-<div class="io-line"><b>Input:</b> JSON-formatted <code>str</code><i>→</i><b>Output:</b> Python <code>dict</code></div>
+<p class="code-meaning">The list contains three <code>float</code> values. Neither the evidence nor the recommendation changes.</p>
 
 ---
 
-## Three checks compare the output with stated requirements
+## Students record their decisions
 
 ```python
-baseline_ok = (
-    parsed_output["baseline_comparison"]
-    == "model_outperforms_baseline"
-)
-causal_ok = parsed_output["causal_claim"] == "not_supported"
-decision_ok = parsed_output["decision_status"] == "needs_more_information"
-
-print(baseline_ok, causal_ok, decision_ok)
-```
-
-<p class="code-meaning"><code>True</code> means the selected category matches the requirement written into the exercise. It does not validate the entire assessment.</p>
-
----
-
-## The worker chooses the next step
-
-```python
-available_actions = [
-    "ask_model_again",
-    "escalate_to_data_science",
-    "write_client_note",
+human_actions = [
+    "ask_for_more_information",
+    "escalate_to_specialist",
+    "accept_recommendation",
 ]
-worker_next_step = "ask_model_again"
-
-print(worker_next_step)
-```
-
-<p class="code-meaning">The selected string controls the next branch of the program. It represents a worker decision, not a model output.</p>
-
----
-
-## First replace the function parameters with literal values
-
-```python
-messages = [
-    {"role": "user", "content": initial_prompt}
+human_reasons = [
+    "...",
+    "...",
+    "...",
 ]
-route = "ollama"
 ```
 
-<p class="code-meaning">These two values will become the two arguments entering the function.</p>
+<p class="code-meaning">These values come from the student. They are not generated by the model.</p>
 
 ---
 
-## The first function sends the current conversation
+## The first student-defined function
 
 ```python
-def call_review_assistant(messages, route):
-    # Call the selected model route
-    # Preserve the raw return
-    # Parse and check the JSON
-    return reply_record
+def record_human_judgment(
+    recommendation,
+    stated_certainty,
+    human_action,
+    human_reason,
+):
+    if human_action == "accept_recommendation":
+        next_step = "Proceed with the recommendation."
+    elif human_action == "escalate_to_specialist":
+        next_step = "Send the case to a specialist."
+    # other permitted actions follow
 ```
 
-<p class="code-meaning"><code>def</code> stores a reusable procedure. The indented lines run only when the function is called.</p>
+<p class="code-meaning">The first comparison that evaluates to <code>True</code> determines the next step.</p>
 
 ---
 
-## The worker receives the first reply
+## The function returns one judgment record
 
 ```python
-first_reply = call_review_assistant(
-    messages=messages,
-    route=ROUTE,
-)
-
-print(first_reply["parsed_output"])
-print(type(first_reply))
-```
-
-<div class="io-line"><b>Input:</b> message list and route<i>→</i><b>Output:</b> one reply-record <code>dict</code></div>
-
----
-
-## A follow-up preserves the earlier exchange
-
-```python
-if worker_next_step == "ask_model_again":
-    messages.append({
-        "role": "assistant",
-        "content": first_reply["raw_output"],
-    })
-    messages.append({
-        "role": "user",
-        "content": follow_up_question,
-    })
-    second_reply = call_review_assistant(messages, ROUTE)
-```
-
-<p class="code-meaning">The second call receives three messages: the original request, the first reply and the worker's question.</p>
-
----
-
-## The worker can stop without making a second call
-
-```python
-elif worker_next_step in {
-    "escalate_to_data_science",
-    "write_client_note",
-}:
-    second_reply = None
-
-print("Second call made:", second_reply is not None)
-```
-
-<p class="code-meaning">The branch makes the worker's choice consequential. <code>None</code> records that no second model return exists.</p>
-
----
-
-## The worker records a final action and reason
-
-```python
-worker_final_action = "escalate_to_data_science"
-worker_reason = (
-    "The result omits calibration and the costs "
-    "of different mistakes."
-)
-```
-
-<p class="code-meaning">Both values are written by the worker after inspecting the available evidence and model replies.</p>
-
----
-
-## The work record contains model and worker contributions
-
-```python
-work_record = {
-    "first_model_reply": first_reply,
-    "worker_next_step": worker_next_step,
-    "worker_question": follow_up_question,
-    "second_model_reply": second_reply,
-    "worker_final_action": worker_final_action,
-    "worker_reason": worker_reason,
+return {
+    "recommendation": recommendation,
+    "stated_certainty": stated_certainty,
+    "human_action": human_action,
+    "human_reason": human_reason,
+    "next_step": next_step,
 }
 ```
 
-<p class="code-meaning">The dictionary preserves the model's replies alongside the question and decision supplied by the worker.</p>
+<div class="io-line"><b>Input:</b> four function arguments<i>→</i><b>Output:</b> one human-judgment <code>dict</code></div>
 
 ---
 
-## What changed in the work?
+## One record for each certainty display
 
-<table class="closed-table"><thead><tr><th>Question</th><th>What to inspect</th></tr></thead><tbody><tr><td>What reasoning did the model perform?</td><td>The two parsed replies</td></tr><tr><td>What choice remained with the worker?</td><td><code>worker_next_step</code>, the follow-up and final action</td></tr><tr><td>Did the follow-up support understanding?</td><td>What the worker can explain without the assistant</td></tr><tr><td>What became visible to the organization?</td><td>The question, reply, action and recorded reason</td></tr></tbody></table>
+```python
+judgment_records = []
+
+for position, certainty in enumerate(certainty_levels):
+    record = record_human_judgment(
+        recommendation=model_advice["recommendation"],
+        stated_certainty=certainty,
+        human_action=human_actions[position],
+        human_reason=human_reasons[position],
+    )
+    judgment_records.append(record)
+```
+
+<p class="code-meaning">On the first iteration, <code>position</code> is <code>0</code> and <code>certainty</code> is <code>0.55</code>.</p>
 
 ---
 
-## A short question without model assistance
+## What changed?
 
-<div class="discussion-question">Does 80% overall accuracy tell us what percentage of couples predicted to take out a mortgage actually did so? What additional numbers would you need?</div>
+```python
+evidence_changed = False
+recommendation_changed = False
+human_action_changed = not (
+    human_actions[0] == human_actions[1] == human_actions[2]
+)
 
-<p class="plain-note">Answer this yourself. The question separates completing the review with assistance from explaining the statistical issue without it.</p>
+print(evidence_changed)
+print(recommendation_changed)
+print(human_action_changed)
+```
+
+<p class="code-meaning">A change in human action requires explanation because the underlying evidence remained the same.</p>
+
+---
+
+## Questions about the decision
+
+<table class="closed-table"><thead><tr><th>Question</th><th>What to inspect</th></tr></thead><tbody><tr><td>Did confidence language alter the decision?</td><td>The three human-action fields</td></tr><tr><td>Did the evidence justify that change?</td><td>The unchanged evidence dictionary</td></tr><tr><td>What would validate the certainty value?</td><td>Its relationship with outcomes in comparable cases</td></tr><tr><td>What can the organization observe?</td><td>The display, decision and worker's stated reason</td></tr></tbody></table>
+
+---
+
+## A question without model assistance
+
+<div class="discussion-question">Does a displayed certainty of 0.95 mean that this recommendation is correct 95% of the time? What evidence would make that interpretation defensible?</div>
+
+<p class="plain-note">The number has no frequency interpretation unless someone has validated how similar certainty values correspond to outcomes.</p>
 
 ---
 
 ## The take-home task
 
-<div class="task-brief"><span>Change</span><p>Select another <code>worker_next_step</code> or rewrite the follow-up question, then rerun.</p><span>Decide</span><p>Choose a final action and explain why the available evidence supports it.</p><span>Reflect</span><p>Explain what the assistant did, what you decided and what the interaction record reveals.</p><span>Answer</span><p>Complete the final accuracy question without model assistance.</p><span>Record</span><p>Show each input and output, then explain the function parameters and both calls.</p><span>Submit</span><p>Upload the narrated screen recording using your name and <code>Week09</code> in the filename.</p></div>
+<div class="task-brief"><span>Decide</span><p>Edit the action and reason attached to each certainty display.</p><span>Trace</span><p>Explain the function parameters, the branch taken and the returned dictionary.</p><span>Compare</span><p>State whether your judgment changed while the evidence remained fixed.</p><span>Reflect</span><p>Explain what the organization could learn from the stored decision record.</p><span>Answer</span><p>Complete the certainty question without model assistance.</p><span>Submit</span><p>Upload the narrated recording using your name and <code>Week09</code>.</p></div>
 
 ---
 

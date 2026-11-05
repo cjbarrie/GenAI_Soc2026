@@ -8,16 +8,21 @@
   "session06": {"openrouter": "Can you describe a particular occasion when that happened?", "ollama": "What happened on one specific occasion?"},
   "session07": {"openrouter": "{\"category\":4,\"probabilities\":[0.05,0.10,0.15,0.30,0.20,0.15,0.05]}", "ollama": "{\"category\":4,\"probabilities\":[0.08,0.16,0.22,0.24,0.16,0.09,0.05]}"},
   "session08": {"openrouter": [2,4,6,3,6], "ollama": [3,4,6,3,5]},
-  "session09": {"openrouter": "{\"baseline_comparison\":\"model_outperforms_baseline\",\"causal_claim\":\"not_supported\",\"decision_status\":\"needs_more_information\",\"explanation\":[\"Accuracy exceeds the stated baseline but does not establish decision value.\"],\"questions_for_worker\":[\"Which errors matter for the investment decision?\"],\"data_science_escalation\":\"Request calibration, false-positive and decision-cost evidence.\"}", "ollama": "{\"baseline_comparison\":\"model_outperforms_baseline\",\"causal_claim\":\"not_supported\",\"decision_status\":\"needs_more_information\",\"explanation\":[\"Accuracy exceeds the stated baseline but does not establish decision value.\"],\"questions_for_worker\":[\"Which errors matter for the investment decision?\"],\"data_science_escalation\":\"Request calibration, false-positive and decision-cost evidence.\"}"},
+  "session09": {
+    "openrouter": "{\"recommendation\":\"request_more_evidence\",\"evidence_used\":[\"Accuracy is 0.80 on 200 held-out cases\",\"The stated baseline is 0.60\"],\"missing_information\":[\"calibration\",\"subgroup performance\",\"error costs\"],\"explanation\":\"The model exceeds the baseline, but the supplied evidence does not show whether its errors are acceptable for the pilot.\"}",
+    "ollama": "{\"recommendation\":\"request_more_evidence\",\"evidence_used\":[\"Accuracy is 0.80 on 200 held-out cases\",\"The stated baseline is 0.60\"],\"missing_information\":[\"calibration\",\"subgroup performance\",\"error costs\"],\"explanation\":\"The model exceeds the baseline, but the supplied evidence does not show whether its errors are acceptable for the pilot.\"}"
+  },
   "session10": {
-    "openrouter": [
-      "I broke my promise to help at 8 tomorrow and waited until 9 tonight to tell you.",
-      "You declined paid help because you expected me; I can pay half a mover or help Sunday."
-    ],
-    "ollama": [
-      "I am sorry that I broke the commitment and gave you late notice.",
-      "I can pay half the last-minute mover or help on Sunday; you can refuse either offer."
-    ]
+    "openrouter": {
+      "broken_commitment": "Call promptly, acknowledge the late notice and offer practical repair.",
+      "workplace_credit": "Speak privately with the colleague and request a correction.",
+      "private_information": "Do not disclose the job loss without the sibling's permission."
+    },
+    "ollama": {
+      "broken_commitment": "Call promptly, acknowledge the late notice and offer practical repair.",
+      "workplace_credit": "Speak privately with the colleague and request a correction.",
+      "private_information": "Do not disclose the job loss without the sibling's permission."
+    }
   },
   "session11": {"openrouter": "{\"occupation\":\"artist\",\"explanation\":\"Recorded teaching return.\"}", "ollama": "{\"occupation\":\"artist\",\"explanation\":\"Recorded teaching return.\"}"},
   "session12": {"openrouter": "The rerun retained the source but changed the wording of the bounded claim.", "ollama": "The same source was retrieved, while the claim wording differed."},

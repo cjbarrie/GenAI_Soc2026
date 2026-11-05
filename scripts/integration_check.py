@@ -36,8 +36,8 @@ def main() -> None:
             require(not functions, f"{session}: function introduced before Week 9", problems)
         if week == 9:
             require(
-                "def call_review_assistant(" in source,
-                "Week 9 must introduce call_review_assistant",
+                "def record_human_judgment(" in source,
+                "Week 9 must introduce record_human_judgment",
                 problems,
             )
         require("raw" in source.lower(), f"{session}: raw return is not visibly preserved", problems)

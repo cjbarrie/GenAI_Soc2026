@@ -1,7 +1,8 @@
-"""Week 9: use a function and a branch to retain worker decisions.
+"""Week 9: record human judgments under different displayed certainty levels.
 
-New Python ideas: ``def``, parameters, local variables, ``return``,
-``if``/``elif``/``else`` and ``None``.
+New Python ideas: ``def``, parameters, local variables, ``return`` and
+``if``/``elif``/``else``. The model produces one recommendation. The evidence
+and recommendation stay fixed while the displayed certainty changes.
 """
 
 # CELL: Load the course settings and SDKs
@@ -13,11 +14,9 @@ from pathlib import Path
 try:
     import ollama
     from openrouter import OpenRouter
-except ModuleNotFoundError as error:
-    raise ModuleNotFoundError(
-        "A course SDK is missing. In the complete course folder run 'uv sync --frozen', "
-        "then run this task with 'uv run python'."
-    ) from error
+except ModuleNotFoundError:
+    ollama = None
+    OpenRouter = None
 
 ROOT = Path.cwd()
 while not (ROOT / "config" / "course_models.json").exists() and ROOT != ROOT.parent:
@@ -28,188 +27,197 @@ if not (ROOT / "config" / "course_models.json").exists():
 config = json.loads((ROOT / "config" / "course_models.json").read_text())
 HOSTED_MODEL = config["hosted"]["model"]
 LOCAL_MODEL = config["local"]["model"]
+USE_RECORDED = os.getenv("COURSE_USE_RECORDED", "0") == "1"
 
-# CELL: Store the consulting task and the response fields
+# CELL: Store the workplace decision and the evidence
 ROUTE = "ollama"  # change to "openrouter" to use the hosted route
-model_results = {
-    "task": "Predict whether a couple will take out a mortgage",
-    "test_cases": 200,
-    "actual_mortgage_cases": 80,
+decision_context = (
+    "A consulting team must advise a lender about whether to begin a three-month "
+    "internal pilot of a mortgage-prediction model. Staff would review every model "
+    "recommendation during the pilot."
+)
+model_evidence = {
+    "held_out_cases": 200,
     "model_accuracy": 0.80,
     "always_predict_no_mortgage_accuracy": 0.60,
-    "false_negatives": 20,
-    "evidence": "Performance on held-out historical applications",
+    "calibration_reported": False,
+    "subgroup_performance_reported": False,
+    "error_costs_reported": False,
 }
-ai_analysis = (
-    "The model is 80% accurate, so it is ready to guide an investment strategy. "
-    "Its score shows that increasing a couple's score causes them to take out a mortgage. "
-    "It also performs much better than the current baseline, which is no better than chance."
-)
-assistant_instruction = (
-    "Act as a coach. Check the analysis and explain the problems you find. "
-    "Ask the consultant questions, but do not write the final client advice."
-)
 output_schema = {
     "type": "object",
     "properties": {
-        "baseline_comparison": {
+        "recommendation": {
             "type": "string",
-            "enum": ["model_outperforms_baseline", "no_difference", "insufficient_information"],
+            "enum": ["begin_limited_pilot", "request_more_evidence", "do_not_use"],
         },
-        "causal_claim": {"type": "string", "enum": ["supported", "not_supported"]},
-        "decision_status": {"type": "string", "enum": ["ready", "needs_more_information"]},
-        "explanation": {"type": "array", "items": {"type": "string"}},
-        "questions_for_worker": {"type": "array", "items": {"type": "string"}},
-        "data_science_escalation": {"type": "string"},
+        "evidence_used": {"type": "array", "items": {"type": "string"}},
+        "missing_information": {"type": "array", "items": {"type": "string"}},
+        "explanation": {"type": "string"},
     },
-    "required": [
-        "baseline_comparison", "causal_claim", "decision_status", "explanation",
-        "questions_for_worker", "data_science_escalation",
-    ],
+    "required": ["recommendation", "evidence_used", "missing_information", "explanation"],
     "additionalProperties": False,
 }
+recorded_raw_output = json.dumps({
+    "recommendation": "request_more_evidence",
+    "evidence_used": [
+        "The model achieved 0.80 accuracy on 200 held-out cases.",
+        "The stated baseline accuracy is 0.60.",
+    ],
+    "missing_information": [
+        "calibration",
+        "subgroup performance",
+        "the costs of different errors",
+    ],
+    "explanation": (
+        "The model exceeds the stated baseline, but the supplied evidence does not "
+        "show whether its errors are acceptable for the proposed pilot."
+    ),
+})
 
-# CELL: Define the first student-edited function
-def call_review_assistant(messages, route):
-    """Send the current conversation to one model route and preserve its return."""
-    print("Function input — messages:", type(messages), "with", len(messages), "items")
-    print("Function input — route:", route, type(route))
-    print("Latest message:\n", messages[-1]["content"])
+# CELL: Ask the model for one recommendation
+evidence_text = json.dumps(model_evidence, indent=2)
+prompt = f"""You are assisting a consultant with this workplace decision:
 
-    if route == "openrouter":
-        api_key = os.getenv("OPENROUTER_API_KEY") or getpass("OpenRouter course key (hidden): ")
-        response_format = {"type": "json_schema", "json_schema": {
-            "name": "work_review", "strict": True,
-            "schema": output_schema,
-        }}
-        with OpenRouter(api_key=api_key) as client:
-            response = client.chat.send(
-                model=HOSTED_MODEL,
-                messages=messages,
-                temperature=0,
-                response_format=response_format,
-            )
-        raw_output = response.choices[0].message.content
-        model_used = HOSTED_MODEL
-    elif route == "ollama":
-        response = ollama.chat(think=False,
-            model=LOCAL_MODEL,
+{decision_context}
+
+Available evidence:
+{evidence_text}
+
+Use only the supplied evidence. Choose one of the three permitted recommendations.
+Identify the evidence you used and information that remains missing. Return JSON."""
+messages = [{"role": "user", "content": prompt}]
+
+if USE_RECORDED:
+    raw_output = recorded_raw_output
+    model_used = "recorded-teaching-return"
+elif ROUTE == "openrouter":
+    if OpenRouter is None:
+        raise ModuleNotFoundError("Run 'uv sync --frozen' before using OpenRouter.")
+    api_key = os.getenv("OPENROUTER_API_KEY") or getpass("OpenRouter course key (hidden): ")
+    response_format = {"type": "json_schema", "json_schema": {
+        "name": "workplace_recommendation",
+        "strict": True,
+        "schema": output_schema,
+    }}
+    with OpenRouter(api_key=api_key) as client:
+        response = client.chat.send(
+            model=HOSTED_MODEL,
             messages=messages,
-            format=output_schema,
-            options={"temperature": 0},
+            temperature=0,
+            response_format=response_format,
         )
-        raw_output = response.message.content
-        model_used = LOCAL_MODEL
-    else:
-        raise ValueError("route must be 'openrouter' or 'ollama'")
-
-    print("Raw model return:\n", raw_output)
-    print("Raw return type:", type(raw_output))
-    parsed_output = json.loads(raw_output)
-    checks = {
-        "compares_with_baseline": (
-            parsed_output["baseline_comparison"] == "model_outperforms_baseline"
-        ),
-        "does_not_make_causal_claim": parsed_output["causal_claim"] == "not_supported",
-        "asks_for_more_evidence": parsed_output["decision_status"] == "needs_more_information",
-    }
-    reply_record = {
-        "messages_sent": messages.copy(),
-        "route": route,
-        "model": model_used,
-        "raw_output": raw_output,
-        "parsed_output": parsed_output,
-        "checks": checks,
-    }
-    print("Function output type:", type(reply_record))
-    print("Checks:", checks)
-    return reply_record
-
-# CELL: Ask for an initial review
-results_text = json.dumps(model_results, indent=2)
-initial_prompt = f"""
-You assist a general consultant who is reviewing an unfamiliar data-science analysis.
-The consultant remains responsible for the advice given to the client. A data-science
-team can investigate technical questions that the supplied evidence cannot settle.
-
-Model results:
-{results_text}
-
-AI-written analysis to review:
-{ai_analysis}
-
-Instruction:
-{assistant_instruction}
-
-Compare 0.80 accuracy with the 0.60 baseline. Treat held-out predictive evidence as
-predictive rather than causal. Explain whether accuracy alone makes the model ready for
-an investment decision. Return the six required fields as JSON.
-""".strip()
-messages = [{"role": "user", "content": initial_prompt}]
-first_reply = call_review_assistant(messages=messages, route=ROUTE)
-print("Questions offered to the worker:", first_reply["parsed_output"]["questions_for_worker"])
-
-# CELL: Let the worker choose what happens next
-available_actions = [
-    "ask_model_again",
-    "escalate_to_data_science",
-    "write_client_note",
-]
-worker_next_step = "ask_model_again"  # choose one value from available_actions
-print("Available actions:", available_actions)
-print("Worker chose:", worker_next_step)
-
-follow_up_question = (
-    "Explain why 80% overall accuracy does not tell me whether the model is safe to use "
-    "for an investment decision. Use only the supplied results and name what is missing."
-)
-
-if worker_next_step == "ask_model_again":
-    messages.append({"role": "assistant", "content": first_reply["raw_output"]})
-    messages.append({"role": "user", "content": follow_up_question})
-    second_reply = call_review_assistant(messages=messages, route=ROUTE)
-elif worker_next_step in {"escalate_to_data_science", "write_client_note"}:
-    # None means that no second reply exists. It is not the text "None".
-    second_reply = None
+    raw_output = response.choices[0].message.content
+    model_used = HOSTED_MODEL
+elif ROUTE == "ollama":
+    if ollama is None:
+        raise ModuleNotFoundError("Run 'uv sync --frozen' before using Ollama.")
+    response = ollama.chat(think=False,
+        model=LOCAL_MODEL,
+        messages=messages,
+        format=output_schema,
+        options={"temperature": 0},
+    )
+    raw_output = response.message.content
+    model_used = LOCAL_MODEL
 else:
-    raise ValueError("Choose one action from available_actions")
+    raise ValueError("ROUTE must be 'openrouter' or 'ollama'")
 
-print("Second model call made:", second_reply is not None)
+print("Raw model return:\n", raw_output)
+print("Raw return type:", type(raw_output))
+model_advice = json.loads(raw_output)
+print("Parsed recommendation:", model_advice["recommendation"])
+print("Parsed return type:", type(model_advice))
 
-# CELL: Record the worker's final decision
-final_actions = [
-    "escalate_to_data_science",
-    "write_cautious_client_note",
-    "recommend_against_use",
+# CELL: Store three displays of the same advice
+certainty_levels = [0.55, 0.75, 0.95]
+print("Displayed certainty levels:", certainty_levels)
+print("Evidence remains fixed:", model_evidence)
+print("Recommendation remains fixed:", model_advice["recommendation"])
+
+# These are editable placeholders. Replace them with your own decisions and reasons.
+human_actions = [
+    "ask_for_more_information",
+    "escalate_to_specialist",
+    "accept_recommendation",
 ]
-worker_final_action = "escalate_to_data_science"  # choose after inspecting the reply
-worker_reason = (
-    "The supplied results do not show calibration, false-positive errors or the costs "
-    "of different mistakes, so the investment recommendation requires specialist review."
+human_reasons = [
+    "The recommendation names missing evidence, so I would ask what can be supplied.",
+    "The displayed certainty is higher, but a specialist should still assess the missing tests.",
+    "I noticed that the high displayed certainty made me more willing to accept the advice.",
+]
+
+# CELL: Define the first small student-edited function
+def record_human_judgment(
+    recommendation,
+    stated_certainty,
+    human_action,
+    human_reason,
+):
+    """Return one record of a worker's response to displayed model advice."""
+    if human_action == "accept_recommendation":
+        next_step = "Proceed with the recommendation."
+    elif human_action == "ask_for_more_information":
+        next_step = "Request additional evidence before deciding."
+    elif human_action == "escalate_to_specialist":
+        next_step = "Send the evidence and advice to a specialist."
+    elif human_action == "reject_recommendation":
+        next_step = "Do not proceed with the recommendation."
+    else:
+        raise ValueError(
+            "human_action must be accept_recommendation, ask_for_more_information, "
+            "escalate_to_specialist or reject_recommendation"
+        )
+
+    judgment_record = {
+        "recommendation": recommendation,
+        "stated_certainty": stated_certainty,
+        "human_action": human_action,
+        "human_reason": human_reason,
+        "next_step": next_step,
+    }
+    return judgment_record
+
+# CELL: Record the decision at each displayed certainty level
+judgment_records = []
+for position, stated_certainty in enumerate(certainty_levels):
+    human_action = human_actions[position]
+    human_reason = human_reasons[position]
+    record = record_human_judgment(
+        recommendation=model_advice["recommendation"],
+        stated_certainty=stated_certainty,
+        human_action=human_action,
+        human_reason=human_reason,
+    )
+    judgment_records.append(record)
+    print("\nDisplayed certainty:", stated_certainty)
+    print("Human action:", record["human_action"])
+    print("Next step:", record["next_step"])
+
+# CELL: Compare the worker's decisions
+for record in judgment_records:
+    print(
+        record["stated_certainty"],
+        record["human_action"],
+        "—",
+        record["human_reason"],
+    )
+
+evidence_changed = False
+recommendation_changed = False
+print("Did the evidence change?", evidence_changed)
+print("Did the recommendation change?", recommendation_changed)
+human_action_changed = not (
+    human_actions[0] == human_actions[1] == human_actions[2]
 )
+print("Did the human action change?", human_action_changed)
 
-if worker_final_action not in final_actions:
-    raise ValueError("Choose one action from final_actions")
-
-work_record = {
-    "source_material": {"model_results": model_results, "ai_analysis": ai_analysis},
-    "first_model_reply": first_reply,
-    "worker_next_step": worker_next_step,
-    "worker_question": follow_up_question if second_reply is not None else None,
-    "second_model_reply": second_reply,
-    "worker_final_action": worker_final_action,
-    "worker_reason": worker_reason,
-}
-print("Final worker action:", work_record["worker_final_action"])
-print("Worker reason:", work_record["worker_reason"])
-print("Work record type:", type(work_record))
-
-# CELL: Reflect on the organization of the work
+# CELL: Reflect on human judgment and organizational visibility
 reflection_questions = [
-    "Which reasoning did the model perform before you made a choice?",
-    "What decision did you retain as the worker?",
-    "Did the second call improve your understanding or move more reasoning to the model?",
-    "What can an organization now observe about your question and decision?",
+    "Did higher displayed certainty change your willingness to follow the recommendation?",
+    "Did the evidence justify that change?",
+    "What validation would make the certainty value meaningful?",
+    "What can the organization now observe about your decisions and reasons?",
     "What could you explain later without the assistant?",
 ]
 for question in reflection_questions:
@@ -217,9 +225,9 @@ for question in reflection_questions:
 
 # CELL: Answer one question without model assistance
 knowledge_check = (
-    "Does 80% overall accuracy tell us what percentage of couples predicted to take "
-    "out a mortgage actually did so? Explain why or why not."
+    "Does a displayed certainty of 0.95 mean that this recommendation is correct 95% "
+    "of the time? What evidence would be needed to interpret that number?"
 )
 print(knowledge_check)
 
-# ONE CHANGE: edit worker_next_step or follow_up_question, rerun, and compare the work record.
+# ONE CHANGE: edit one value in human_actions or human_reasons, rerun, and compare.

@@ -102,6 +102,24 @@ def response_text(messages: list[dict], schema_name: str | None = None, schema: 
                 "explanation": "The sentence supplies too little evidence for a grounded occupational judgment.",
             }
         )
+    if schema_name == "workplace_recommendation" or "recommendation" in properties:
+        return json.dumps(
+            {
+                "recommendation": "request_more_evidence",
+                "evidence_used": ["Accuracy exceeds the stated baseline."],
+                "missing_information": ["calibration", "subgroup performance", "error costs"],
+                "explanation": "The supplied evidence does not establish whether the errors are acceptable.",
+            }
+        )
+    if schema_name == "social_advice" or "proposed_action" in properties:
+        return json.dumps(
+            {
+                "proposed_action": "Ask the other person directly and explain your concern.",
+                "possible_message": "Could we talk about what happened?",
+                "reasoning": "The relationship and obligation require clarification.",
+                "missing_information": ["How the other person understood the event"],
+            }
+        )
     if schema_name in {"analysis_review", "work_review"} or "baseline_comparison" in properties:
         return json.dumps(
             {
@@ -423,12 +441,22 @@ def test_followup_notebook_executes_without_live_services(
         assert namespace["local_results"] == []
         assert namespace["local_mae"] is None
     if week == 9:
-        assert all(namespace["first_reply"]["checks"].values())
-        assert all(namespace["second_reply"]["checks"].values())
-        assert namespace["worker_next_step"] == "ask_model_again"
-        assert len(namespace["first_reply"]["messages_sent"]) == 1
-        assert len(namespace["second_reply"]["messages_sent"]) == 3
-        assert namespace["work_record"]["worker_final_action"] == "escalate_to_data_science"
+        assert len(namespace["judgment_records"]) == 3
+        assert {record["recommendation"] for record in namespace["judgment_records"]} == {
+            "request_more_evidence"
+        }
+        assert [record["stated_certainty"] for record in namespace["judgment_records"]] == [
+            0.55,
+            0.75,
+            0.95,
+        ]
+        assert namespace["evidence_changed"] is False
+        assert namespace["recommendation_changed"] is False
+    if week == 10:
+        assert len(namespace["model_records"]) == 3
+        assert len(namespace["audit_records"]) == 3
+        assert namespace["audit_records"][0]["situation_id"] == "broken_commitment"
+        assert namespace["audit_records"][2]["situation_id"] == "private_information"
 
 
 @pytest.mark.parametrize("week", [1, 2])
