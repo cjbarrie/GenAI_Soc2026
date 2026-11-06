@@ -16,7 +16,7 @@ The currently agreed remaining teaching sequence is:
 - **11 November / Week 10:** writing, influence, and relationships.
 - **18 November / Week 11:** language, inequality, and institutional power.
 - **25 November:** class cancelled.
-- **2 December:** individual proposal meetings; no lecture or coding task.
+- **2 December:** individual research-design meetings after memo submission; no lecture or coding task.
 - **9 December:** project presentations; no new lecture or coding task.
 
 For the week being built, begin from the approved topic and current course files. Do not restore the superseded sequence on generative agents, collective intelligence, or research agents. Agentic systems may appear briefly where they illuminate the week’s substantive question, but they are not the organizing subject.

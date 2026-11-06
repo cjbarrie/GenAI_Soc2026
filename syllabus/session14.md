@@ -4,4 +4,4 @@
 
 This meeting is reserved for student project presentations. There is no new required reading, lecture, coding walkthrough or weekly completion task.
 
-Each student presents for 10–12 minutes, followed by questions and brief feedback from the group. The final research-design package is submitted separately during the examination period.
+Each student presents for 10–12 minutes, followed by questions and brief feedback from the group. The presentation develops the final research-design memo submitted before the 2 December individual meeting.

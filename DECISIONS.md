@@ -531,3 +531,8 @@ This file records decisions for the collaborative redesign of **Generative AI in
 - Downloadable weekly task files are executed end to end with controlled OpenRouter and Ollama responses during release testing; syntax-only validation is not sufficient.
 - Local course calls explicitly set `think=False`. The configured Gemma 4 model can otherwise spend a short `num_predict` allowance on its separate reasoning field and return empty visible content.
 - The documented reproducible installation command is `uv sync --frozen`. Course model defaults remain in `config/course_models.json`, so `.env.example` does not require redundant model variables that can block local Quarto rendering.
+
+## 2026-11-06 — Simplified assessment structure
+
+- **Decision:** Replace the staged assessment model with five components: weekly coding exercises 20%, midterm project proposal 20%, final research-design memo 20%, project presentation 30%, and participation 10%.
+- **Implications:** Remove the separate oral code walkthrough, graded project milestones, and post-presentation final package. Students submit the final research-design memo before their individually scheduled meeting on 2 December and present the design on 9 December.

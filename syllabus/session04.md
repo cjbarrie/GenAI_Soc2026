@@ -52,7 +52,7 @@ Run the supplied call, replace the 8.5-second endpoint with the supplied 11.5-se
 
 The task receives a completion mark. Syntax elegance is not assessed. AI use is permitted with responsibility and disclosure, but each student must be able to explain every submitted line and output without AI assistance.
 
-## Preparation for the oral component
+## Questions to prepare for the coding recording
 
 Be ready to answer:
 

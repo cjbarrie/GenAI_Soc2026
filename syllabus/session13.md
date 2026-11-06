@@ -1,7 +1,7 @@
-# 2 December — Individual proposal meetings
+# 2 December — Individual research-design meetings
 
 **Date:** Wednesday, December 2, 2026 · scheduled individually
 
-The normal class period is reserved for one-on-one meetings with the instructor about final-project proposals. There is no lecture, collective reading discussion, coding walkthrough or weekly recording.
+The normal class period is reserved for one-on-one meetings with the instructor about the final research design. There is no lecture, collective reading discussion, coding walkthrough or weekly recording.
 
-Students should bring the current proposal and be ready to discuss the sociological contribution, evidence, role of the LLM, validation problem and feasible final deliverable. Scheduling details will be circulated separately.
+Submit the final research-design memo before your scheduled meeting. Be ready to discuss the sociological contribution, evidence, role of the LLM, validation problem and presentation plan. Submission and scheduling details will be circulated separately.

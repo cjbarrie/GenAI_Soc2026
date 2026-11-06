@@ -70,7 +70,7 @@ The course follows a **sociological-inference sequence**. The titles below are w
 | 10 | Nov 11 | How do LLMs change writing, influence and relationships? | Communication and social influence |
 | 11 | Nov 18 | How do language models reproduce or alter inequality and institutional power? | Language, inequality and institutions |
 | — | Nov 25 | Class cancelled | No reading or coding task |
-| — | Dec 2 | Individual proposal meetings | No lecture or coding task |
+| — | Dec 2 | Individual research-design meetings | Final memo submitted before the meeting; no lecture or coding task |
 | 14 | Dec 9 | Project presentations | No new reading, lecture content or weekly task |
 
 ## Architectural notes
@@ -87,17 +87,17 @@ The course follows a **sociological-inference sequence**. The titles below are w
 - The beginner Python foundations unit covers values and types, collections, logic, loops, functions, research data, and transparent research algorithms.
 - Each session has one 10–25 minute task with 2–4 checks, a commented solution, and a reading-linked interpretation.
 - The approved environment is a supported hybrid: canonical Jupyter notebooks runnable locally, a Colab fallback, the official OpenRouter Python SDK for hosted calls, cached outputs for all required work, and Ollama as the default local runtime.
-- Assessment Model A is approved: weekly trace tasks 20%, midterm project proposal 20%, individual oral code walkthrough 5%, project milestones 10%, final project package/presentation 35%, and participation/reading preparation 10%.
-- The midterm project proposal falls across the October 14 legislative-week break and is the first substantial stage of the final project. It specifies the sociological question, focused literature position, evidence and design, role of the LLM, one worked example, validation, ethics, reproducibility and next steps. Every student then completes a separate 10–12 minute oral walkthrough explaining a short code extract line by line, predicting its output and one modification, and connecting it to the research design.
-- AI use is permitted with responsibility and disclosure. Students remain responsible for every claim and line of code and must demonstrate understanding in the oral walkthrough.
+- The assessment scheme is: weekly coding exercises 20%, midterm project proposal 20%, final research-design memo 20%, project presentation 30%, and participation 10%.
+- The midterm project proposal falls across the October 14 legislative-week break and is the first substantial stage of the final project. It specifies the sociological question, focused literature position, evidence and design, role of the LLM, one worked example, validation, ethics, reproducibility and next steps.
+- AI use is permitted with responsibility and disclosure. Students remain responsible for every claim and line of code and demonstrate understanding in weekly coding recordings, the individual research-design meeting and the presentation.
 - Weekly coding tasks receive completion marks only, with an opportunity to complete missing elements within one week.
-- The final project is a sociological research design and presentation, staged through an inferential-target note, validation clinic, November 25 replication/progress record, December 9 presentation, and final research-design package during the exam period.
+- The final project consists of a research-design memo submitted before the 2 December individual meeting and a presentation on 9 December. These are the only two final-project submissions.
 
 ## Phase 6 implementation matrix
 
 Every session now has a syllabus record, reading guide, instructor notes, executable workbook, completion task, commented solution, automated test, and Reveal.js deck. Session 2 was originally the 29-slide visual-system pilot and was subsequently rebuilt as a 64-slide literature-led session; its collaborative workflow and beginner-facing standards now guide the remaining weekly revisions. The canonical file pattern is `sessionXX` within each artifact directory.
 
-| Sessions | Student workbook routine | Reading/code link | Oral-understanding check | Build status |
+| Sessions | Student workbook routine | Reading/code link | Understanding check | Build status |
 |---|---|---|---|---|
 | 1 | research record from Python values | claims about LLMs as research technologies become record fields and checks | explain each value, type, key, and return value | Built and executed |
 | 2 | annotation and measurement pipeline | construct validity motivates labels, comparisons, and disagreement checks | trace the focal functions and research record line by line | Literature-led rebuild approved; built, executed, rendered, and visually reviewed |
@@ -110,7 +110,7 @@ Every session now has a syllabus record, reading guide, instructor notes, execut
 | 11–12 | provenance and replication | transparency claims become provenance tables and replication comparisons | explain what each recorded field permits a researcher to audit | Built and executed |
 | 13–14 | model audits and evidence standards | substantive claims become factorial comparisons and claim audits | defend what the code establishes and what it cannot establish | Built and executed |
 
-Across the scaled materials, every code example follows the same novice-facing sequence: research target → exact input and Python type → named operation → output → substantive interpretation → check → limitation. Code that would be too dense for projection is split across slides; the complete version remains in the workbook with a worked trace and an oral rehearsal prompt.
+Across the scaled materials, every code example follows the same novice-facing sequence: research target → exact input and Python type → named operation → output → substantive interpretation → check → limitation. Code that would be too dense for projection is split across slides; the complete version remains in the workbook with a worked trace and a recording prompt.
 
 ## Standing slide-review requirement
 

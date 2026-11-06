@@ -33,7 +33,7 @@ Students should reject “Is AI a good interviewer?” as underspecified. They s
 
 Use **input and type → current line → state before and after → research meaning**. The worked example must first generate one adaptive probe, then append it to the interview record. A list preserves order; one dictionary is one turn; `enumerate(..., start=1)` yields a turn number and dictionary; `source` comes from the decision log; `topic` is researcher annotation; `.append()` preserves the probe and link; `return` produces a path record, not a quality score.
 
-## Oral assessment
+## Questions to ask during the coding walkthrough
 
 Ask students to explain a turn dictionary, `enumerate`, `source` versus `topic`, what changes on an adaptive probe, and why a passing assertion cannot validate an interview.
 

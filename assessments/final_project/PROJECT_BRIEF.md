@@ -1,29 +1,26 @@
-# Final project — sociological research design and presentation
+# Final project — research-design memo and presentation
 
-Design an LLM-related sociological study whose claim, inferential target, proposed implementation, validation evidence, and reproducibility record fit one another. A minimal input/output trace or prototype is expected where feasible; definitive empirical results are not.
+Design an LLM-related sociological study whose claim, inferential target, proposed implementation, validation evidence and reproducibility record fit one another. A minimal input/output trace or prototype is expected where feasible; definitive empirical results are not.
 
-## Milestones — 10%
+## Final research-design memo — 20%
 
-- **October 28:** one-page question, inferential target, proposed data, and risk screen.
-- **November 11:** five-minute design clinic, validation plan, and one minimal trace.
-- **November 25:** recoverable replication/progress discrepancy record; synchronous attendance optional.
+Submit the memo before your individually scheduled meeting with the instructor on **2 December**. Submission details will be circulated to the class.
 
-## Presentation — 10%
-
-On December 9, give a 10–12 minute presentation followed by questions. Lead with the sociological problem, show one inspectable trace, identify the most consequential failure mode, and state what evidence would change the claim.
-
-## Final research-design package — 25%
-
-Due during the December 16–22 exam period:
+The memo should contain:
 
 1. research question and sociological motivation;
-2. inferential target and bounded claim;
-3. data, sampling, privacy, and ethics plan;
-4. proposed LLM workflow with exact input/output trace;
-5. validation strategy and non-LLM/human comparison where appropriate;
-6. characteristic failure modes and downstream consequences;
-7. reproducibility record;
-8. material AI-use disclosure.
+2. focused position in the relevant literature;
+3. inferential target and bounded claim;
+4. data, sampling, privacy and ethics plan;
+5. proposed LLM workflow with an exact input/output trace where feasible;
+6. validation strategy and non-LLM or human comparison where appropriate;
+7. characteristic failure modes and downstream consequences;
+8. reproducibility record and material AI-use disclosure;
+9. a brief explanation of how the design changed after the midterm.
 
-Criteria are sociological importance, match between claim and design, transparent implementation, validation, substantive interpretation, reproducibility, and communication. Code complexity is not rewarded for its own sake.
+The memo is assessed for sociological importance, fit between claim and design, transparent implementation, validation, substantive interpretation and reproducibility. Code complexity is not rewarded for its own sake.
+
+## Presentation — 30%
+
+On **9 December**, give a 10–12 minute presentation followed by questions. Lead with the sociological problem, show the proposed design and one inspectable trace where feasible, identify the most consequential failure mode, and state what evidence would change the claim. The presentation is assessed for clarity, organization, effective use of evidence and the ability to explain and defend the design in discussion.
 

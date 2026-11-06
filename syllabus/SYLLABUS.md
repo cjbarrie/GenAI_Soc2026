@@ -50,7 +50,7 @@ By the end, students should be able to:
 | 10 | Nov 11 | How do LLMs change writing, influence and relationships? | [Session entry](session10.md) |
 | 11 | Nov 18 | How do language models reproduce or alter inequality and institutional power? | [Session entry](session11.md) |
 | — | Nov 25 | **Class cancelled** | [Calendar note](session12.md); no reading or weekly task |
-| — | Dec 2 | **Individual final-project proposal meetings** | [Meeting information](session13.md); no lecture, reading or weekly task |
+| — | Dec 2 | **Individual meetings about the final research-design memo** | [Meeting information](session13.md); no lecture, reading or weekly task |
 | 14 | Dec 9 | Project presentations | [Session entry](session14.md); no new reading, lecture or weekly task |
 
 ## Typical meeting
@@ -63,27 +63,23 @@ The normal schedule is 9:30–10:00 for framing and background, 10:00–10:50 fo
 
 | Component | Weight |
 |---|---:|
-| Weekly trace tasks: ten best submissions | 20% |
+| Weekly coding exercises: ten best submissions | 20% |
 | Midterm project proposal | 20% |
-| Individual oral code walkthrough | 5% |
-| Final-project milestones | 10% |
-| Final research-design package | 25% |
-| Final presentation | 10% |
-| Participation and reading preparation | 10% |
+| Final research-design memo | 20% |
+| Project presentation | 30% |
+| Participation | 10% |
 
 Weekly tasks receive completion marks and are submitted as narrated screen recordings. Students record themselves running the exercise and explain aloud the input and output of every operation, the model call and returned object, the named change, the methodological meaning and one limit. Each recording is due by **5:00 p.m. Eastern on the Tuesday before the next class**. The [recording guide and coding videos folder](https://cjbarrie.github.io/GenAI_Soc2026/recording-and-submission.html) give the upload link, filename convention and recording instructions for macOS, Windows and ChromeOS. Editing quality and code elegance are not assessed. Missing elements may be supplied within one week.
 
 The midterm project proposal is released after Session 6 and is due at the end of Week 7: **Friday 23 October at 23:59 Eastern**. Submit it through the [Midterm project proposal page on NYU Brightspace](https://brightspace.nyu.edu/d2l/lms/dropbox/admin/folders_manage.d2l?ou=599622). In 1,200–1,500 words, students set out a sociological question, locate it in a focused body of literature, specify the evidence and design, explain the proposed role of an LLM, and give one worked input → operation → output → validation example. The proposal also identifies likely failures, ethical issues, the reproducibility record, and the next steps toward the final project. It is a formative stage of the final project, not a Python test or a commitment to complete a full empirical study.
 
-The separate 10–12 minute oral walkthrough follows shortly afterward and provides the direct check of code understanding. With a short code extract visible, each student explains inputs and types, every line or small block, output and one modification, and the sociological meaning. No live generative assistance is used during the oral walkthrough.
-
-The final project is a self-designed LLM-related sociological research design and class presentation. A minimal input/output trace or proof of concept is expected where feasible; a completed empirical paper is not.
+The final project has two assessed parts. The **final research-design memo (20%)** develops the midterm into a complete design and must be submitted before the student's individually scheduled meeting on 2 December. The **presentation (30%)** takes place on 9 December. A minimal input/output trace or proof of concept is expected where feasible; a completed empirical paper is not.
 
 ## AI use: do not outsource your learning
 
 Generative AI use is permitted with responsibility and disclosure. These tools can help explain an error, compare approaches, or challenge an argument. They can also remove precisely the difficult work through which you learn to program, interpret evidence, and discover what you do not yet understand.
 
-You remain responsible for every submitted claim and every line of code. If you cannot explain what a line takes as input, what it does, what it returns, and why it belongs in the research design, it is not yet ready to submit. Material assistance requires a short disclosure naming the tool/model, its purpose, what was incorporated, and how it was checked. When an LLM is part of the research method, preserve the full research record. The oral walkthrough is completed without live AI assistance. See [the full policy](AI_USE_POLICY.md).
+You remain responsible for every submitted claim and every line of code. If you cannot explain what a line takes as input, what it does, what it returns, and why it belongs in the research design, it is not yet ready to submit. Material assistance requires a short disclosure naming the tool/model, its purpose, what was incorporated, and how it was checked. When an LLM is part of the research method, preserve the full research record. See [the full policy](AI_USE_POLICY.md).
 
 ## Computing and access
 
@@ -93,4 +89,4 @@ Start with [environment setup](../docs/ENVIRONMENT_SETUP.md), [Python foundation
 
 ## Participation and accessibility
 
-Participation may take the form of a reading question, code explanation, validation critique, peer feedback, or a short written contribution. Speaking frequency alone does not determine the mark. Accessible remote or equivalent formats are available for the oral walkthrough and individual proposal meeting.
+Participation may take the form of a reading question, code explanation, validation critique, peer feedback or a short written contribution. Speaking frequency alone does not determine the mark. Accessible remote or equivalent formats are available for the individual research-design meeting.

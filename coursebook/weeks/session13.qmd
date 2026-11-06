@@ -1,9 +1,11 @@
 ---
-title: "2 December — Individual proposal meetings"
+title: "2 December — Individual research-design meetings"
 description: "One-on-one meetings with the instructor"
 ---
 
-The scheduled class period is used for individual meetings with the instructor about final-project proposals. There is no lecture, collective reading discussion, coding walkthrough or weekly recording.
+The scheduled class period is used for individual meetings with the instructor about the final research design. There is no lecture, collective reading discussion, coding walkthrough or weekly recording.
+
+Submit the final research-design memo before your scheduled meeting. Submission and scheduling details will be circulated to the class.
 
 Come prepared to discuss:
 
@@ -12,6 +14,6 @@ Come prepared to discuss:
 - the precise role of the LLM;
 - one concrete input → operation → output example;
 - the most important validation problem;
-- what can realistically be completed for the final package.
+- what should be emphasized in the presentation.
 
 The meeting is developmental rather than separately graded. Scheduling details will be circulated to the class.

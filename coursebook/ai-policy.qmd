@@ -10,6 +10,6 @@ I am not here to discipline and punish. I am not interested in doing so. I think
 
 Use of generative AI is permitted in this course, with responsibility and disclosure. If AI materially assists submitted work, include a brief note naming the tool or model, explaining what you used it for, what you incorporated, and how you checked it. When an LLM is itself part of the research method, prompts, outputs, settings, dates, provider or local runtime, and validation decisions belong in the research record. You remain responsible for every claim and every line of code you submit.
 
-Finally, the assignments for this course are principally based on class work and explanation. We will go through notebooks together, check one another's work, and ask you to explain code in full. The individual oral code walkthrough requires you to explain the code yourself without live AI assistance. You may use AI to help you learn, debug, and develop your work, but you must still understand what the work does—so do not outsource your learning.
+Finally, the assignments for this course are principally based on class work and explanation. We will go through notebooks together, check one another's work, and ask you to explain code in full. The weekly coding recordings, individual research-design meeting and presentation all require you to explain your own decisions. You may use AI to help you learn, debug and develop your work, but you must still understand what the work does—so do not outsource your learning.
 
 Sermon over. Let’s get to work!

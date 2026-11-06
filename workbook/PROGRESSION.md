@@ -1,6 +1,6 @@
 # Workbook and Coding Progression
 
-**Status:** Implemented dual-route progression through Week 11. The 25 November class is cancelled; an optional offline project-record notebook is available but is not an assigned exercise. The 2 December proposal meetings and 9 December presentations introduce no new coding task.
+**Status:** Implemented dual-route progression through Week 11. The 25 November class is cancelled; an optional offline project-record notebook is available but is not an assigned exercise. The 2 December research-design meetings and 9 December presentations introduce no new coding task.
 
 ## Pedagogical contract
 
@@ -99,7 +99,7 @@ Each task uses one small LLM routine and adds one or two Python ideas. Students 
 | 10 | Audit model advice about social situations | Student response + relationship and facts + model advice → one audit record per situation | Default parameter values, keyword arguments, Boolean judgments and `enumerate()` | Applies relational work, face-work and emotion work to model interpretations | Identify agreement and disagreement without treating either answer as a gold standard |
 | 11 | Compare meaning-matched language inputs | Published AAE/SAE pairs → two ordered result lists → paired comparison | `zip()`, tuple unpacking, `+=` and a bounded rate | Turns matched-guise logic into visible paired code | Verify pair identifiers; do not treat three pairs as a stable disparity estimate |
 | 12 | Optional project record; class cancelled | Project plan dictionary → JSON file → reopened dictionary | `Path`, `.write_text()`, `.read_text()` and JSON round trip | Supports reproducible proposal planning without a new model call | Check required fields; no recording or submission |
-| 13 | Individual proposal meetings | No coding task | — | Students discuss the final project design with the instructor | — |
+| 13 | Individual research-design meetings | No coding task | — | Students discuss the submitted final memo and presentation plan with the instructor | — |
 | 14 | Project presentations | No coding task | — | Students present and receive feedback on the final research design | — |
 
 ## Standard 165-minute meeting rhythm

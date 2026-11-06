@@ -327,7 +327,7 @@ With the adjacent-moment comparison visible, a student should be able to explain
 6. what temporal reconstruction practice the comparison represents; and
 7. why an observed sequence does not establish causality or intention.
 
-This is an appropriate rehearsal for the later individual oral code walkthrough.
+This is appropriate preparation for the narrated coding recording.
 
 ## Reading-to-code alignment
 

@@ -7,7 +7,7 @@ description: "File paths and JSON round trips for proposal preparation"
 
 ## No Week 12 submission
 
-The class on **25 November is cancelled**. There is no assigned reading, coding exercise or weekly recording. This optional page supports preparation for the individual proposal meeting on 2 December.
+The class on **25 November is cancelled**. There is no assigned reading, coding exercise or weekly recording. This optional page supports preparation of the final research-design memo, which must be submitted before the individual meeting on 2 December.
 
 **New Python in the optional extension:** `Path` objects, `.write_text()`, `.read_text()` and a JSON round trip. The notebook makes no live model call.
 

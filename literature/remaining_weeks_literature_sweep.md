@@ -2,7 +2,7 @@
 
 **Prepared:** 27 October 2026
 **Scope:** research published or publicly available through 27 October 2026
-**Purpose:** reconsider the 4, 11 and 18 November meetings; 25 November is cancelled, 2 December is reserved for individual proposal meetings, and 9 December is reserved for presentations.
+**Purpose:** reconsider the 4, 11 and 18 November meetings; 25 November is cancelled, 2 December is reserved for individual research-design meetings after memo submission, and 9 December is reserved for presentations.
 
 ## Diagnosis
 

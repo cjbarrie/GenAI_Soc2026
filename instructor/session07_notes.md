@@ -35,7 +35,7 @@ If Ollama is available, demonstrate one live request. If it is unavailable or sl
 
 ## Completion and oral standard
 
-Completion requires a prediction, working function, passing checks, a 100–150 word bounded comparison and disclosure of material AI assistance. For the oral component, give the student one input record and four consecutive loop lines. Ask for every current value and type, what changes, and what would happen if the response or elicitation label changed.
+Completion requires a prediction, working function, passing checks, a 100–150 word bounded comparison and disclosure of material AI assistance. In the coding walkthrough and recording, ask the student to explain one input record and four consecutive loop lines: every current value and type, what changes, and what would happen if the response or elicitation label changed.
 
 ## Retrospective after collaborative review
 

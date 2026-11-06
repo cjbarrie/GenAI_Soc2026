@@ -19,7 +19,7 @@ The seminar meets on Wednesdays from 9:30 a.m. to 12:15 p.m. The sequence is cum
 | 10 | 11 November | How do LLMs change writing, influence and relationships? |
 | 11 | 18 November | How do language models reproduce or alter inequality and institutional power? |
 | — | 25 November | **Class cancelled; no reading or coding task** |
-| — | 2 December | **Individual meetings with the instructor to discuss final-project proposals** |
+| — | 2 December | **Individual meetings about the submitted final research-design memo** |
 | 14 | 9 December | Project presentations; no new reading, lecture or weekly task |
 
 ## A typical week
@@ -38,7 +38,7 @@ The normal 165-minute meeting has three clearly different parts:
 
 The exact timing can move slightly when discussion is especially productive, but the middle of the class is reserved for collective discussion and the final part is reserved for working through the code together.
 
-The normal weekly format ends after the 18 November meeting. There is no class or weekly task on 25 November. On 2 December, the scheduled class period is used for individual proposal meetings rather than a lecture, reading discussion or coding exercise. The final meeting on 9 December is reserved for presentations.
+The normal weekly format ends after the 18 November meeting. There is no class or weekly task on 25 November. Students submit the final research-design memo before their individually scheduled meeting on 2 December. The final meeting on 9 December is reserved for presentations.
 
 The coding strand teaches Python through actual LLM routines. Week 1 introduces values, strings and the anatomy of a call. From Week 2, students send a prompt to a model through OpenRouter or a supported local runtime. Later weeks add message lists, structured outputs, parsing, generation parameters, loops and, only after those are familiar, small functions with explicit parameters. Cached responses remain available when a service is unavailable, but they are the contingency rather than the main route.
 

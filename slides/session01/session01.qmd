@@ -726,7 +726,7 @@ record = {
 
 <div class="task-sequence"><div><b>1</b><span>Identify every input value and Python type.</span></div><div><b>2</b><span>Predict the output of each inspection line.</span></div><div><b>3</b><span>Run the supplied call and preserve the raw response.</span></div><div><b>4</b><span>Build the explicit research-record dictionary.</span></div><div><b>5</b><span>State one claim the score cannot yet support.</span></div></div>
 
-<div class="semantic-line warning">For the oral component, you must explain every name, bracket and type in four consecutive lines of code.</div>
+<div class="semantic-line warning">In the coding recording, you must explain every name, bracket and type in the code you run.</div>
 
 ---
 
