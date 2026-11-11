@@ -457,6 +457,13 @@ def test_followup_notebook_executes_without_live_services(
         assert len(namespace["audit_records"]) == 3
         assert namespace["audit_records"][0]["situation_id"] == "condolence_message"
         assert namespace["audit_records"][2]["situation_id"] == "private_information"
+    if week == 11:
+        conditions = namespace["conditions"]
+        assert len(conditions) == 4
+        assert [item["condition_id"] for item in conditions] == [1, 2, 3, 4]
+        assert all(item["report_text"] == namespace["REVISED_PARAGRAPH"] for item in conditions)
+        assert len({(item["role_cue"], item["ai_use_label"]) for item in conditions}) == 4
+        assert namespace["editing_record"]["raw_return"] == namespace["REVISED_PARAGRAPH"]
 
 
 @pytest.mark.parametrize("week", [1, 2])

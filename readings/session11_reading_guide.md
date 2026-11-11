@@ -1,25 +1,24 @@
-# Session 11 reading guide — Language, inequality and institutional power
+# Week 11 reading guide — AI use and judgments of competence
 
-## The question to carry across the readings
+**Question:** When is AI use read as resourceful, and when as lazy or incompetent? Does the writer’s status change that judgment?
 
-How does language acquire unequal value, and what evidence connects that value to a model output or institutional consequence?
+## Required reading
 
-| Reading | Main object | Ask while reading |
+| Reading | Evidence | Question for class |
 |---|---|---|
-| Bourdieu (1977) | Linguistic markets and legitimate language | Which institutions establish the value of a linguistic form, and who has the authority to speak? |
-| Hofmann et al. (2024) | Dialect-activated model associations | What does the meaning-matched comparison identify, and how are the occupational and judicial outcomes constructed? |
-| Waight et al. (2026) | Institutional influence over training material | Which studies identify corpus presence, which intervene on training data, and which are observational audits? |
+| Foschi (2000), “Double Standards for Competence” | Review of status and competence experiments | Can the same performance satisfy different standards for different people? Under what conditions might the direction reverse? |
+| Reif, Larrick and Soll (2025), “Evidence of a Social Evaluation Penalty for Using Artificial Intelligence” | Four preregistered experiments, including AI help versus human help | Which judgments changed? What did the study *not* find about moderation by age, gender or occupation? |
+| Rafalow (2018), “Disciplining Play” | Ethnography of digital youth culture in three schools | Who decided whether a digital practice counted as an educational asset? What varies across the schools besides class? |
+| Schilke and Reimann (2025), “The Transparency Dilemma” | Experiments on AI disclosure and trust; Study 11 uses a competitor report | How is trust in the worker different from confidence in the report? |
 
-## Before class
+Read each complete article. DOI links and full citations are on the [Week 11 course-book page](../coursebook/weeks/session11.qmd).
 
-Bring one passage from each reading that helps distinguish:
+## Additional reading
 
-1. a linguistic form;
-2. a social evaluation;
-3. an institutional outcome.
+Bourdieu (1977) and Lamont and Lareau (1988) supply the wider theory of institutional valuation. Alvero et al. (2021), Huang (2024), and Lee et al. (2026) remain optional admissions applications; they are no longer the lecture’s main case.
 
-Be prepared to explain which link remains unobserved in each paper.
+## Prepare for discussion
 
-## Reading and code
+Imagine the same monthly competitor report submitted by a senior director and a junior analyst. In each case the evaluator may or may not be told that ChatGPT edited it. Come prepared with one prediction about competence, one about trust, and a reason the two judgments might differ. Treat any claim about a class gradient as a hypothesis, not as a finding of the assigned papers.
 
-The coding task compares one chat model’s structured output for published meaning-matched pairs. It is deliberately smaller and methodologically different from Hofmann et al. The point is to learn how to preserve inputs, raw returns and paired comparisons while keeping the inferential claim narrow.
+The coding task edits one fictional report and constructs the four reader descriptions. It collects no human ratings.

@@ -83,14 +83,15 @@
       {"key": "Gershon2010Breakup", "status": "additional", "section": "Full book", "purpose": "Shows how socially learned beliefs about media shape interpretations of communicative acts.", "url": "https://doi.org/10.7591/9780801458002"}
     ],
     "session11": [
-      {"key": "Bourdieu1977Linguistic", "status": "essential", "section": "Full article", "purpose": "Explains how institutions establish legitimate language and make linguistic competence valuable within unequal markets.", "url": "https://doi.org/10.1177/053901847701600601"},
-      {"key": "HofmannEtAl2024Dialect", "status": "essential", "section": "Full article", "purpose": "Adapts matched guise to model probabilities and separates overt racial descriptions from dialect-activated associations.", "url": "https://doi.org/10.1038/s41586-024-07856-5"},
-      {"key": "WaightEtAl2026", "status": "essential", "section": "Full article", "purpose": "Connects corpus presence, additional pretraining and audits to study institutional influence over model training material.", "url": "https://doi.org/10.1038/s41586-026-10506-7"},
-      {"key": "FloresRosa2015", "status": "additional", "section": "Full article", "purpose": "Moves analysis from a speaker's appropriateness to racialized listening.", "url": "https://doi.org/10.17763/0017-8055.85.2.149"},
-      {"key": "PurnellEtAl1999", "status": "additional", "section": "Full article", "purpose": "Connects linguistic guise to appointment access in a housing field experiment.", "url": "https://doi.org/10.1177/0261927X99018001002"},
-      {"key": "KoeneckeEtAl2020", "status": "additional", "section": "Full article", "purpose": "Shows unequal transcription performance across Black and white speakers in five commercial ASR systems.", "url": "https://doi.org/10.1073/pnas.1915768117"},
-      {"key": "PaganEtAl2026", "status": "additional", "section": "Full article", "purpose": "Separates detectability, semantic fidelity and interpretable language features when validating generated communication.", "url": "https://doi.org/10.1073/pnas.2531748123"},
-      {"key": "BowkerStar1999", "status": "additional", "section": "Full book", "purpose": "Shows how classifications become consequential through standards and organizational routines.", "url": "https://mitpress.mit.edu/9780262522953/sorting-things-out/"}
+      {"key": "Foschi2000DoubleStandards", "status": "essential", "section": "Full article", "purpose": "Reviews status-based double standards for competence and their possible reversals.", "url": "https://doi.org/10.1146/annurev.soc.26.1.21"},
+      {"key": "ReifLarrickSoll2025", "status": "essential", "section": "Full article", "purpose": "Identifies an AI-use evaluation penalty in experiments, without testing our senior–junior interaction.", "url": "https://doi.org/10.1073/pnas.2426766122"},
+      {"key": "Rafalow2018DiscipliningPlay", "status": "essential", "section": "Full article", "purpose": "Shows how three schools assigned different educational value to similar digital practices.", "url": "https://doi.org/10.1086/695766"},
+      {"key": "SchilkeReimann2025Transparency", "status": "essential", "section": "Full article", "purpose": "Studies how AI disclosure changes trust, including evaluation of a competitor-analysis report.", "url": "https://doi.org/10.1016/j.obhdp.2025.104405"},
+      {"key": "Bourdieu1977Linguistic", "status": "additional", "section": "Full article", "purpose": "Explains why the value of writing depends on its market and the writer's recognized position.", "url": "https://doi.org/10.1177/053901847701600601"},
+      {"key": "LamontLareau1988CulturalCapital", "status": "additional", "section": "Full article", "purpose": "Clarifies which high-status cultural signals institutions recognize and reward in the U.S. context.", "url": "https://doi.org/10.2307/202113"},
+      {"key": "AlveroEtAl2021Essays", "status": "additional", "section": "Full article", "purpose": "Optional earlier case on the class patterning of admissions essays.", "url": "https://doi.org/10.1126/sciadv.abi9031"},
+      {"key": "Huang2024AuthenticApplications", "status": "additional", "section": "Full article", "purpose": "Shows how private consultants help applicants produce an apparently authentic application; predates AI.", "url": "https://doi.org/10.1177/00380407231202975"},
+      {"key": "LeeEtAl2026Admissions", "status": "additional", "section": "Full article", "purpose": "Optional observational study of AI-like writing in admissions.", "url": "https://doi.org/10.1145/3774398.3811620"}
     ],
     "session12": [],
     "session13": [],

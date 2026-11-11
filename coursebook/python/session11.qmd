@@ -1,17 +1,17 @@
 ---
-title: "Week 11 Python — Compare meaning-matched inputs"
-description: "zip, tuple unpacking and a small paired-output audit"
+title: "Week 11 Python — One report, four reader descriptions"
+description: "Edit a fictional report and prepare a senior/junior by AI-disclosure experiment"
 ---
 
 [Return to the Week 11 readings and slides](../weeks/session11.qmd).
 
-## Python walkthrough: preserve the matched-pair design
+## Python walkthrough: prepare four versions of one report
 
-The question is: **does one selected chat model return the same forced occupation choice for three published meaning-matched AAE and SAE pairs?** The model returns one occupation and explanation as JSON. Python preserves the two variants in separate ordered lists, pairs corresponding records and counts how many forced choices differ.
+**Research question:** Would readers judge the same report differently depending on the author’s rank and whether AI assistance is disclosed?
 
-This classroom routine does not reproduce Hofmann et al.'s probability-based audit. Their paper uses many prompts, calibrated association scores and twelve model versions. Our three pairs teach the logic of a matched comparison.
+We give a model one fictional competitor report and ask it to edit for clarity. We inspect the revision. Python then places the **same revised report** in four hypothetical descriptions. This program prepares experimental materials. It does not ask an LLM to rate the workers or measure any human response.
 
-**New Python this week:** `zip()`, tuple unpacking and a running counter with `+=`. Weeks 9 and 10 introduced functions and keyword arguments. The function is now familiar infrastructure. The new task concerns how paired evidence is represented and compared.
+The new Python idea is a **nested loop**: a loop inside another loop. Weeks 9 and 10 introduced functions and simpler loops; the model call remains visible in the supplied code.
 
 ## Workbook and environment links
 
@@ -19,97 +19,110 @@ This classroom routine does not reproduce Hofmann et al.'s probability-based aud
 
 [Download the local task](../_generated/downloads/session11/session11_task.py) or [download the offline bundle](../_generated/downloads/session11/session11_offline_bundle.zip).
 
-For an offline trace, run:
+For a local run, open a terminal in the complete course repository, start Ollama, and run:
 
 ```bash
 uv sync --frozen
-COURSE_USE_RECORDED=1 uv run python assessments/weekly_coding/session11_task.py
+uv run python assessments/weekly_coding/session11_task.py
 ```
 
-Remove `COURSE_USE_RECORDED=1` for live Ollama calls. Colab uses OpenRouter.
+The script uses Ollama by default. Set `ROUTE = "openrouter"` to use the shared key; Colab selects OpenRouter. During a service outage, `COURSE_USE_RECORDED=1` uses a labelled **instructor-written example** rather than a live model response:
+
+```bash
+COURSE_USE_RECORDED=1 uv run python assessments/weekly_coding/session11_task.py
+```
 
 ## Complete flow
 
 ```text
-published meaning-matched pair
-→ AAE model call and SAE model call
-→ two ordered result lists
-→ zip corresponding records
-→ paired Boolean comparison
-→ running count and bounded interpretation
+fictional report → Python string → editing prompt → model call
+→ raw revision → your fact check → four reader descriptions
+→ a possible human experiment, not run here
 ```
 
-## Keep the two variants in corresponding positions
+## Store the report and instruction
 
 ```python
-aae_results = []
-sae_results = []
+SOURCE_PARAGRAPH = (
+    "RivalCo launched a monthly subscription in April at $18. "
+    "Our comparable plan costs $20. RivalCo advertises a free trial. "
+    "We do not yet have data on customer switching after the launch."
+)
 
-for pair in PAIRS:
-    aae_results.append(
-        judge_utterance(pair["pair_id"], "aae", pair["aae"], ROUTE)
-    )
-    sae_results.append(
-        judge_utterance(pair["pair_id"], "sae", pair["sae"], ROUTE)
-    )
+EDITING_INSTRUCTION = (
+    "Edit this short competitor report for clarity. Preserve every stated fact "
+    "and the uncertainty about customer switching. Do not infer a market effect, "
+    "invent data, or add a recommendation. Return only the revised report."
+)
 ```
 
-After the first iteration, index `0` in each list refers to the `talking` pair. The lists must retain the same order because the next operation pairs items by position.
+Both values are strings (`str`). Python joins the quoted pieces inside parentheses. The report states five things to check: April launch, $18 rival plan, $20 comparable plan, advertised free trial, and **no customer-switching data yet**.
 
-## zip supplies one item from each list
+## See what the model receives and returns
+
+The function in the notebook puts literal values into these local variables:
 
 ```python
-for aae_record, sae_record in zip(aae_results, sae_results):
-    print(aae_record["pair_id"], sae_record["pair_id"])
+source_text = SOURCE_PARAGRAPH
+instruction = EDITING_INSTRUCTION
+route = "ollama"
+separator = "\n\nOriginal report:\n"
+prompt = instruction + separator + source_text
+messages = [{"role": "user", "content": prompt}]
+print(messages)
 ```
 
-`zip()` produces pairs. Tuple unpacking gives the two elements separate names. On the first iteration, `aae_record` contains the AAE result for `talking` and `sae_record` contains its SAE result.
-
-The program checks the identifiers before comparing the outputs:
+`messages` is a list containing one dictionary. The `content` value is the full instruction and the full report. The supplied function shows the Ollama and OpenRouter branches. It prints the **raw returned text** before storing it in a record.
 
 ```python
-if aae_record["pair_id"] != sae_record["pair_id"]:
-    raise ValueError("The paired lists are not in the same order.")
+editing_record = edit_paragraph(SOURCE_PARAGRAPH, EDITING_INSTRUCTION, ROUTE)
+REVISED_PARAGRAPH = editing_record["raw_return"].strip()
+print(REVISED_PARAGRAPH)
 ```
 
-This software check protects the pairing logic. It does not validate the model judgment.
+`editing_record` is a dictionary with the source, instruction, message, raw return, route and model. `REVISED_PARAGRAPH` is a string. Your live wording may differ from the instructor-written fallback. Compare it with the source: did the model preserve all five points? Reject an edit claiming that customers switched or that the rival’s launch caused a loss of sales.
 
-## Count observed output differences
+## Make four descriptions with a nested loop
 
 ```python
-pair_comparisons = []
-different_count = 0
+ROLE_CUES = [
+    "The report author is the senior director of strategy.",
+    "The report author is a junior market analyst.",
+]
+AI_USE_LABELS = [
+    "The description gives no information about AI writing assistance.",
+    "The author reports using ChatGPT to edit the report for clarity.",
+]
 
-for aae_record, sae_record in zip(aae_results, sae_results):
-    different = aae_record["occupation"] != sae_record["occupation"]
-    different_count += int(different)
-    pair_comparisons.append({
-        "pair_id": aae_record["pair_id"],
-        "aae_occupation": aae_record["occupation"],
-        "sae_occupation": sae_record["occupation"],
-        "different": different,
-    })
+conditions = []
+for role_cue in ROLE_CUES:
+    for ai_use_label in AI_USE_LABELS:
+        condition = {
+            "condition_id": len(conditions) + 1,
+            "role_cue": role_cue,
+            "ai_use_label": ai_use_label,
+            "report_text": REVISED_PARAGRAPH,
+        }
+        conditions.append(condition)
 ```
 
-`different` is a Boolean. `int(True)` is `1` and `int(False)` is `0`. `+=` adds that value to the existing count. The count describes these three pairs in this run. It does not estimate a population disparity.
+Each cue list contains two strings. `conditions` starts as an empty list. On the first pass, `role_cue` is the senior director and `ai_use_label` says no AI was used. The new dictionary gets ID `1`; `append()` adds it to the list, so `len(conditions)` becomes `1`. On the second pass, the role stays senior while the AI label changes. The junior role appears on passes 3 and 4.
 
-```python
-difference_rate = different_count / len(pair_comparisons)
-```
+| Condition | Author | Reported AI use | Report |
+|---|---|---|---|
+| 1 | Senior director | Not mentioned | Same revision |
+| 2 | Senior director | Yes | Same revision |
+| 3 | Junior analyst | Not mentioned | Same revision |
+| 4 | Junior analyst | Yes | Same revision |
 
-The denominator is three. A value such as `0.67` would mean that two of these three pairs received different forced choices. It would not mean that the model discriminates 67 per cent of the time.
-
-## Interpretation follows the evidence level
-
-The code supplies evidence about conditional model outputs. Bourdieu helps interpret why linguistic forms acquire value in a market. Hofmann et al. demonstrate a much larger model audit. Waight et al. investigate one route through which training corpora may shape model outputs. Our small program establishes none of those mechanisms by itself.
+The assertions in the script check that four records exist, IDs are distinct, and every `report_text` is identical. The undisclosed version makes no claim that the writer used no AI; it simply says nothing about assistance. These checks establish that the *materials* match our design. They do not show whether readers would judge the senior or junior worker as more competent, lazy, trustworthy, or legitimate.
 
 ## Take-home exercise
 
-1. Run the three supplied pairs.
-2. Change one predeclared model or route while holding the texts, prompt, occupation list and temperature fixed.
-3. Trace one pair through `zip()` in both runs.
-4. Explain tuple unpacking, the Boolean comparison, `+=` and the final denominator.
-5. Inspect malformed returns or refusals rather than deleting them.
-6. State why the result does not estimate a stable model-level disparity or an institutional effect.
+1. Run the model edit using Ollama locally or OpenRouter in Colab. Show the raw return.
+2. Compare the revision with the five source points. Identify any new or altered claim.
+3. Run the nested loop. Explain `role_cue`, `ai_use_label`, and `len(conditions)` on its first two passes.
+4. Make the instruction **more conservative**, rerun the model call, and compare the two revisions while keeping the source fixed.
+5. Explain how human readers could be used to test the two competing status predictions. Be clear that organizational rank is not a direct measure of social class.
 
-Submit a narrated 6–8 minute screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**.
+Submit a narrated 6–8 minute screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code elegance is not graded. State whether you used outside AI help to prepare or debug the exercise.

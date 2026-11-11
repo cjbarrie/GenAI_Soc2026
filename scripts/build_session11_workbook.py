@@ -27,36 +27,12 @@ task_cells[0] = task_cells[0].replace(
 )
 
 headings = [
-    (
-        "## Import tools and select the route",
-        "The cell locates the complete repository and names the selected route and model. "
-        "The recorded-return path supports tracing during an outage.",
-    ),
-    (
-        "## Store the published pairs and output schema",
-        "Each dictionary contains one identifier and two meaning-matched strings. The schema "
-        "limits the forced occupation choice to the same list for every condition.",
-    ),
-    (
-        "## Define the model-call function",
-        "This function reuses ideas from Weeks 9 and 10. The new lesson comes after the calls: "
-        "how to preserve the paired design in Python.",
-    ),
-    (
-        "## Create two ordered result lists",
-        "Each source pair contributes one AAE result and one SAE result in the same position. "
-        "The ordering becomes important when the lists are paired.",
-    ),
-    (
-        "## Pair records with zip and count differences",
-        "`zip()` supplies one item from each list. Tuple unpacking names those two items. "
-        "`+=` updates the running count when a forced occupation choice differs.",
-    ),
-    (
-        "## State the interpretation boundary",
-        "The code reports what happened for three pairs in one run. It does not estimate a "
-        "stable disparity or measure an institutional consequence for a person.",
-    ),
+    ("## Load tools and select a route", "The script reads the two course model names. Colab selects OpenRouter; a local notebook selects Ollama."),
+    ("## Store one fictional report", "The report and editing instruction are strings. The report contains no confidential business information."),
+    ("## Ask the model for one edit", "The function shows the complete message, calls the chosen route, prints the raw return and keeps a record of the call."),
+    ("## Check the revision", "Read the source and revision together. Preserve all five points, including that customer switching is unknown."),
+    ("## Make the four conditions", "The outer loop selects one worker role. For each role, the inner loop selects each AI-use label. The same report goes into all four records."),
+    ("## Inspect and check the materials", "The assertions verify the four-record structure and identical report text. Human readers would still be needed to measure evaluation."),
 ]
 
 notebook = nbf.v4.new_notebook()
@@ -69,11 +45,11 @@ setup_cell["id"] = "colab-setup"
 
 notebook["cells"] = [
     nbf.v4.new_markdown_cell(
-        "# Week 11 — Language, inequality and institutional power\n\n"
-        "**Research task:** Compare one model's forced occupation choice for three "
-        "published meaning-matched AAE and SAE pairs. This classroom routine is not a "
-        "replication of Hofmann et al.'s probability-based audit.\n\n"
-        "**Python introduced:** `zip()`, tuple unpacking and a running counter with `+=`.\n\n"
+        "# Week 11 — AI use and judgments of competence\n\n"
+        "**Research task:** Use an LLM to edit a fictional competitor report. "
+        "Check the edit and use Python to prepare four conditions for a possible "
+        "human-reader study.\n\n"
+        "**Python introduced:** one nested loop that crosses two lists of conditions.\n\n"
         "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]"
         "(https://colab.research.google.com/github/cjbarrie/GenAI_Soc2026/blob/main/"
         "workbook/session11/session11_language_inequality.ipynb)"
@@ -91,10 +67,10 @@ for (heading, explanation), code in zip(headings, task_cells):
 
 notebook["cells"].append(
     nbf.v4.new_markdown_cell(
-        "## Your change and recording\n\nChange one predeclared model or route while "
-        "holding the texts, prompt, occupation list and temperature fixed. Trace one pair "
-        "through `zip()`, explain the running counter and state why the result does not "
-        "establish a stable model-level or institutional effect."
+        "## Your change and recording\n\nMake the editing instruction more conservative "
+        "while keeping the source report fixed. Rerun and compare the raw revision. "
+        "Then trace one complete pass through the outer and inner loops. Explain why "
+        "the four materials cannot tell us what human readers would think about either worker."
     )
 )
 

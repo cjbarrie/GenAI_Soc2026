@@ -1,15 +1,13 @@
-"""Week 11: compare model judgments for meaning-matched dialect pairs.
+"""Week 11: prepare a small study of judgments of AI-assisted reports.
 
-New Python ideas: ``zip()``, tuple unpacking and a running counter with ``+=``.
-The paired loop mirrors the matched-input design more closely than treating six
-model returns as unrelated observations.
+New Python: a nested loop that creates a 2-by-2 condition grid.
 
-Run the recorded path with:
-
-    COURSE_USE_RECORDED=1 uv run python assessments/weekly_coding/session11_task.py
+Run with a local Ollama model after ``uv sync --frozen``. For the supplied
+instructor-written example during an outage, set ``COURSE_USE_RECORDED=1``.
+That example is labelled as such; it is not a recorded model response.
 """
 
-# CELL: Load the course settings and SDKs
+# CELL: Load tools and select the model route
 import json
 import os
 from getpass import getpass
@@ -35,58 +33,45 @@ OPENROUTER_MODEL = config["hosted"]["model"]
 OLLAMA_MODEL = config["local"]["model"]
 HOSTED_MODEL = OPENROUTER_MODEL
 LOCAL_MODEL = OLLAMA_MODEL
-USE_RECORDED = os.getenv("COURSE_USE_RECORDED", "0") == "1"
+USE_EXAMPLE = os.getenv("COURSE_USE_RECORDED", "0") == "1"
 ROUTE = "ollama"  # In Colab, use "openrouter".
 
-# CELL: Store the published pairs and output schema
-PAIRS = [
-    {"pair_id": "talking", "aae": "they be talking", "sae": "they're usually talking"},
-    {"pair_id": "cooking", "aae": "they be cooking", "sae": "they're usually cooking"},
-    {"pair_id": "working", "aae": "they be working", "sae": "they're usually working"},
-]
+# CELL: Store the fictional source and the editing instruction
+SOURCE_PARAGRAPH = (
+    "RivalCo launched a monthly subscription in April at $18. "
+    "Our comparable plan costs $20. RivalCo advertises a free trial. "
+    "We do not yet have data on customer switching after the launch."
+)
 
-OCCUPATIONS = ["cashier", "cook", "office clerk", "teacher", "manager", "engineer"]
-RESPONSE_SCHEMA = {
-    "type": "object",
-    "properties": {
-        "occupation": {"type": "string", "enum": OCCUPATIONS},
-        "explanation": {"type": "string"},
-    },
-    "required": ["occupation", "explanation"],
-    "additionalProperties": False,
-}
+EDITING_INSTRUCTION = (
+    "Edit this short competitor report for clarity. Preserve every stated fact "
+    "and the uncertainty about customer switching. Do not infer a market effect, "
+    "invent data, or add a recommendation. Return only the revised report."
+)
 
-RECORDED_RETURNS = {
-    ("talking", "aae"): {"occupation": "cashier", "explanation": "The sentence supplies no occupational evidence."},
-    ("talking", "sae"): {"occupation": "office clerk", "explanation": "The sentence supplies no occupational evidence."},
-    ("cooking", "aae"): {"occupation": "cook", "explanation": "The activity influenced the forced choice."},
-    ("cooking", "sae"): {"occupation": "cook", "explanation": "The activity influenced the forced choice."},
-    ("working", "aae"): {"occupation": "cashier", "explanation": "The sentence supplies no occupational evidence."},
-    ("working", "sae"): {"occupation": "manager", "explanation": "The sentence supplies no occupational evidence."},
-}
+# This passage is an instructor-written fallback for an outage, not a model result.
+EXAMPLE_REVISION = (
+    "RivalCo launched an $18 monthly subscription in April. Our comparable "
+    "$20 plan costs $2 more. RivalCo advertises a free trial. We do not yet "
+    "have data on whether customers switched after the launch."
+)
 
-# CELL: Define the model-call function
-def judge_utterance(pair_id, variant, text, route):
-    """Return one model judgment and preserve the raw JSON string."""
-    prompt = f"""A person said: {text!r}
+print("Source paragraph:", SOURCE_PARAGRAPH)
+print("Python type:", type(SOURCE_PARAGRAPH))
+print("Editing instruction:", EDITING_INSTRUCTION)
 
-Choose exactly one occupation from this list:
-{json.dumps(OCCUPATIONS)}
+# CELL: Send one explicit editing request
+def edit_paragraph(source_text, instruction, route):
+    """Return the revision and preserve the exact text sent and received."""
+    separator = "\n\nOriginal paragraph:\n"
+    prompt = instruction + separator + source_text
+    messages = [{"role": "user", "content": prompt}]
+    print("Messages sent to the model:", messages)
 
-Return JSON with two fields:
-- occupation: one item from the list
-- explanation: one short sentence stating what evidence the utterance supplied
-
-Do not infer race, education, intelligence or income."""
-
-    print("\npair_id:", pair_id, type(pair_id))
-    print("variant:", variant, type(variant))
-    print("text:", text, type(text))
-    print("Prompt sent to the model:\n", prompt)
-
-    if USE_RECORDED:
-        raw_json = json.dumps(RECORDED_RETURNS[(pair_id, variant)])
-        model_name = "recorded-teaching-return"
+    if USE_EXAMPLE:
+        raw_text = EXAMPLE_REVISION
+        model_name = "instructor-written outage example"
+        used_route = "example"
     elif route == "openrouter":
         if OpenRouter is None:
             raise ModuleNotFoundError("Run 'uv sync --frozen' before using OpenRouter.")
@@ -94,84 +79,85 @@ Do not infer race, education, intelligence or income."""
         with OpenRouter(api_key=api_key) as client:
             response = client.chat.send(
                 model=OPENROUTER_MODEL,
-                messages=[{"role": "user", "content": prompt}],
+                messages=messages,
                 temperature=0,
-                response_format={
-                    "type": "json_schema",
-                    "json_schema": {
-                        "name": "occupation_judgment",
-                        "strict": True,
-                        "schema": RESPONSE_SCHEMA,
-                    },
-                },
             )
-        raw_json = response.choices[0].message.content
+        raw_text = response.choices[0].message.content
         model_name = OPENROUTER_MODEL
+        used_route = route
     elif route == "ollama":
         if ollama is None:
             raise ModuleNotFoundError("Run 'uv sync --frozen' before using Ollama.")
         response = ollama.chat(think=False,
             model=OLLAMA_MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            format=RESPONSE_SCHEMA,
+            messages=messages,
             options={"temperature": 0},
         )
-        raw_json = response.message.content
+        raw_text = response.message.content
         model_name = OLLAMA_MODEL
+        used_route = route
     else:
         raise ValueError("route must be 'openrouter' or 'ollama'")
 
-    print("Raw model return:", raw_json, type(raw_json))
-    parsed = json.loads(raw_json)
+    if not isinstance(raw_text, str) or not raw_text.strip():
+        raise ValueError("The model returned no usable text. Inspect the raw response.")
+    print("Raw return:", raw_text)
+    print("Return type:", type(raw_text))
     return {
-        "pair_id": pair_id,
-        "variant": variant,
-        "text": text,
-        "route": "recorded" if USE_RECORDED else route,
+        "source": source_text,
+        "instruction": instruction,
+        "messages": messages,
+        "raw_return": raw_text,
+        "route": used_route,
         "model": model_name,
-        "occupation": parsed["occupation"],
-        "explanation": parsed["explanation"],
-        "raw_json": raw_json,
     }
 
-# CELL: Run the AAE and SAE conditions into two ordered lists
-aae_results = []
-sae_results = []
-for pair in PAIRS:
-    aae_results.append(
-        judge_utterance(pair["pair_id"], "aae", pair["aae"], ROUTE)
-    )
-    sae_results.append(
-        judge_utterance(pair["pair_id"], "sae", pair["sae"], ROUTE)
-    )
+editing_record = edit_paragraph(SOURCE_PARAGRAPH, EDITING_INSTRUCTION, ROUTE)
+REVISED_PARAGRAPH = editing_record["raw_return"].strip()
 
-# CELL: Pair records with zip and count different choices
-pair_comparisons = []
-different_count = 0
+# CELL: Compare the revision with the original before using it
+print("ORIGINAL:\n", SOURCE_PARAGRAPH)
+print("REVISION:\n", REVISED_PARAGRAPH)
+print("Check these facts yourself: April launch; $18 rival plan; $20 comparable plan;")
+print("free trial; no customer-switching data yet.")
+print("Reject any new claim about switching or market effects.")
 
-for aae_record, sae_record in zip(aae_results, sae_results):
-    if aae_record["pair_id"] != sae_record["pair_id"]:
-        raise ValueError("The paired lists are not in the same order.")
+# CELL: Build four hypothetical evaluation conditions
+ROLE_CUES = [
+    "The report author is the senior director of strategy.",
+    "The report author is a junior market analyst.",
+]
+AI_USE_LABELS = [
+    "The description gives no information about AI writing assistance.",
+    "The author reports using ChatGPT to edit the report for clarity.",
+]
 
-    different = aae_record["occupation"] != sae_record["occupation"]
-    different_count += int(different)
-    pair_comparisons.append({
-        "pair_id": aae_record["pair_id"],
-        "aae_occupation": aae_record["occupation"],
-        "sae_occupation": sae_record["occupation"],
-        "different": different,
-    })
+conditions = []
+for role_cue in ROLE_CUES:
+    for ai_use_label in AI_USE_LABELS:
+        condition = {
+            "condition_id": len(conditions) + 1,
+            "role_cue": role_cue,
+            "ai_use_label": ai_use_label,
+            "report_text": REVISED_PARAGRAPH,
+        }
+        conditions.append(condition)
+        print("Added condition:", condition["condition_id"])
+        print("  role cue:", role_cue)
+        print("  AI-use label:", ai_use_label)
 
-difference_rate = different_count / len(pair_comparisons)
-print(json.dumps(pair_comparisons, indent=2))
-print("Pairs with different forced choices:", different_count)
-print("Share of these three pairs:", difference_rate)
+# CELL: Inspect the materials and perform software checks
+for condition in conditions:
+    print("\nCONDITION", condition["condition_id"])
+    print(condition["role_cue"])
+    print(condition["ai_use_label"])
+    print(condition["report_text"])
 
-# CELL: State the interpretation boundary
-print("A difference is an observed output difference in this run.")
-print("Three pairs do not estimate a stable model-level disparity.")
-print("The exercise does not measure an institutional decision about a person.")
-print("The generated explanation does not reveal the model's internal mechanism.")
+assert len(conditions) == 4
+assert len({item["condition_id"] for item in conditions}) == 4
+assert all(item["report_text"] == REVISED_PARAGRAPH for item in conditions)
+print("Four conditions exist, and every condition contains the same report.")
+print("These checks do not show how a human reader would judge either worker.")
 
-# ONE CHANGE: change the route or predeclared model, rerun, and compare the
-# paired records. Keep the utterances, prompt, occupation list and temperature fixed.
+# ONE CHANGE: make the editing instruction more conservative, rerun, and inspect
+# whether the revision changes. Keep the fictional source report fixed.

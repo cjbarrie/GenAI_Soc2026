@@ -1,67 +1,66 @@
 ---
-title: "Week 11 — Language, inequality and institutional power"
-description: "How linguistic difference becomes evaluation and institutional consequence"
+title: "Week 11 — AI use and judgments of competence"
+description: "How evaluators judge AI-assisted work, and whether status changes those judgments"
 ---
 
 ## This week’s sociological question
 
-<div class="chapter-question">How does language become a source of inequality when people and institutions use large language models?</div>
+<div class="chapter-question">When is using AI perceived as resourceful, and when is it perceived as lazy or incompetent? Does the worker’s status affect that judgment?</div>
 
 ## Connection to the preceding material
 
-Week 10 examined LLM mediation between people. Week 11 asks what happens when language becomes material for evaluation. We distinguish three questions that require different evidence: whether generated language resembles observed human communication, whether models evaluate socially marked language unequally, and how institutions connect model outputs to access, ranking or exclusion.
+Week 10 considered how people interpret AI-assisted messages between friends and colleagues. This week moves to evaluation at work. An employee’s report may be accurate and useful, yet readers may judge the writer differently when told that AI helped produce it. We ask whether such judgments also depend on who the writer is.
 
 ## Learning outcomes
 
-By the end of the class, you should be able to:
+By the end of class, you should be able to:
 
-- explain Bourdieu’s concepts of legitimate language, linguistic market and linguistic capital;
-- explain why Flores and Rosa move attention from the speaker’s “appropriateness” to racialized listening;
-- distinguish transcription performance, linguistic evaluation and institutional allocation;
-- reconstruct Hofmann et al.’s matched-guise probing design and its limits;
-- explain how Waight et al. combine corpus evidence, an intervention and model audits;
-- trace one meaning-matched pair through `zip()`, tuple unpacking and a running count without treating a generated explanation as a causal mechanism.
+- explain the AI-use evaluation penalty identified by Reif and colleagues, without treating it as evidence of a class difference;
+- describe Foschi’s account of status-based standards for competence;
+- explain how Rafalow’s schools assigned different value to similar digital practices;
+- distinguish competence, laziness, trust and the perceived legitimacy of AI assistance;
+- use a nested Python loop to prepare four versions of one report for a proposed human-reader experiment.
 
 ## Essential readings and what each contributes
 
 ::: {.reading-list}
-- **Linguistic markets:** Bourdieu (1977), “The Economics of Linguistic Exchanges,” *Social Science Information* 16(6): 645–668. Read the complete article. Bourdieu explains how institutions establish legitimate language and make linguistic competence valuable within unequal markets. [DOI](https://doi.org/10.1177/053901847701600601). [@Bourdieu1977Linguistic]
-- **Unequal model evaluation:** Hofmann, Kalluri, Jurafsky and King (2024), “AI Generates Covertly Racist Decisions about People Based on Their Dialect,” *Nature* 633: 147–154. Read the complete article. The paper adapts matched guise to model probabilities and separates overt racial descriptions from dialect-activated associations. [Open article](https://doi.org/10.1038/s41586-024-07856-5). [@HofmannEtAl2024Dialect]
-- **Institutional influence over training material:** Waight et al. (2026), “State Media Control Influences Large Language Models,” *Nature* 655: 685–693. Read the complete article. Six studies connect corpus presence, additional pretraining and audits of deployed systems. [Article](https://doi.org/10.1038/s41586-026-10506-7). [@WaightEtAl2026]
+- **Status and competence:** Martha Foschi (2000), “Double Standards for Competence: Theory and Research,” *Annual Review of Sociology* 26: 21–42. A review of research on how status can change the evidence observers require before judging someone competent. [DOI](https://doi.org/10.1146/annurev.soc.26.1.21). [@Foschi2000DoubleStandards]
+- **Judging AI users:** Jessica A. Reif, Richard P. Larrick and Jack B. Soll (2025), “Evidence of a Social Evaluation Penalty for Using Artificial Intelligence,” *Proceedings of the National Academy of Sciences* 122: e2426766122. Experiments in which observers rate workers who use AI, receive human help or work without described help. [DOI](https://doi.org/10.1073/pnas.2426766122). [@ReifLarrickSoll2025]
+- **Digital skill in schools:** Matthew H. Rafalow (2018), “Disciplining Play: Digital Youth Culture as Capital at School,” *American Journal of Sociology* 123(5): 1416–1452. Ethnographic evidence that teachers in three schools attached different educational value to students’ digital practices. [DOI](https://doi.org/10.1086/695766). [@Rafalow2018DiscipliningPlay]
+- **Disclosure and trust:** Oliver Schilke and Martin Reimann (2025), “The Transparency Dilemma: How AI Disclosure Erodes Trust,” *Organizational Behavior and Human Decision Processes* 188: 104405. Experiments on trust in people who disclose AI assistance; Study 11 concerns a monthly competitor report. [DOI](https://doi.org/10.1016/j.obhdp.2025.104405). [@SchilkeReimann2025Transparency]
 :::
 
 ## Additional readings grouped by purpose
 
-- **Racialized listening:** Flores and Rosa (2015), “Undoing Appropriateness.” [DOI](https://doi.org/10.17763/0017-8055.85.2.149). [@FloresRosa2015]
-- **Housing gatekeeping:** Purnell, Idsardi and Baugh (1999), “Perceptual and Phonetic Experiments on American English Dialect Identification.” [DOI](https://doi.org/10.1177/0261927X99018001002). [@PurnellEtAl1999]
-- **Unequal speech recognition:** Koenecke et al. (2020), “Racial Disparities in Automated Speech Recognition.” [DOI](https://doi.org/10.1073/pnas.1915768117). [@KoeneckeEtAl2020]
-- **Validation of generated communication:** Pagan, Törnberg, Bail and Barrie (2026), “AI-Generated Language Remains Systematically Distinguishable from Human Communication.” [DOI](https://doi.org/10.1073/pnas.2531748123). [@PaganEtAl2026]
-- **Classification infrastructure:** Bowker and Star (1999), *Sorting Things Out*. [Publisher](https://mitpress.mit.edu/9780262522953/sorting-things-out/). [@BowkerStar1999]
+- **Language and institutional evaluation:** Pierre Bourdieu (1977), “The Economics of Linguistic Exchanges,” *Social Science Information* 16(6): 645–668. [DOI](https://doi.org/10.1177/053901847701600601). [@Bourdieu1977Linguistic]
+- **Cultural capital in U.S. institutions:** Michèle Lamont and Annette Lareau (1988), “Cultural Capital: Allusions, Gaps and Glissandos in Recent Theoretical Developments,” *Sociological Theory* 6(2): 153–168. [DOI](https://doi.org/10.2307/202113). [@LamontLareau1988CulturalCapital]
+- **Admissions essays before LLMs:** AJ Alvero and colleagues (2021), “Essay Content and Style Are Strongly Related to Household Income and SAT Scores,” *Science Advances* 7(42): eabi9031. [DOI](https://doi.org/10.1126/sciadv.abi9031). [@AlveroEtAl2021Essays]
+- **Paid writing advice:** Tiffany J. Huang (2024), “Translating Authentic Selves into Authentic Applications,” *Sociology of Education* 97(2): 174–192. [DOI](https://doi.org/10.1177/00380407231202975). [@Huang2024AuthenticApplications]
+- **AI-like writing in admissions:** Jinsook Lee and colleagues (2026), “The Digital Divide in Generative AI,” *Proceedings of the Thirteenth ACM Conference on Learning at Scale*, 179–190. [DOI](https://doi.org/10.1145/3774398.3811620). [@LeeEtAl2026Admissions]
 
 ## Sociological and methodological background
 
-Bourdieu treats speaking as action in a market. Schools, professions and bureaucracies do not merely transmit neutral grammar; they help establish which forms count as legitimate and who can speak with authority. Linguistic competence becomes capital only in relation to institutions that recognize and reward it.
+Foschi reviews studies in which observers apply different standards of competence to people with different social statuses. A performance does not necessarily carry the same evidentiary weight when the performer changes. This is a reason to test how a senior executive and a junior employee are judged for the same AI-assisted report, not a prediction whose direction we already know. A senior professional might receive more credit for using a tool efficiently; that professional might instead be penalized more for failing to exercise expected independent expertise. Foschi discusses both ordinary and reverse double standards. [@Foschi2000DoubleStandards]
 
-Flores and Rosa add a problem that an access-to-legitimate-language account can miss. A racialized listener may continue to hear a speaker as deficient after the speaker adopts the forms described as appropriate. The speaker’s linguistic resource and the listener’s social classification must therefore remain analytically separate.
+Bourdieu’s linguistic market asks how speech and writing acquire value in a particular setting and why speakers do not enter that setting with equal authority. Lamont and Lareau press us to identify which signals an institution actually recognizes as valuable. These arguments suggest that a polished report alone will not tell us what readers infer about its author. They do not establish an AI-specific penalty. [@Bourdieu1977Linguistic; @LamontLareau1988CulturalCapital]
 
-Matched-guise studies make evaluation observable by holding more of the speaker constant. Purnell and colleagues then connect linguistic guise to a housing response: the same caller received different appointment rates across dialect guises and locations. Koenecke and colleagues identify a different outcome. Commercial speech-recognition systems produced higher word-error rates for Black speakers than for white speakers. Recognition error and unequal social evaluation should not be collapsed into a generic category called bias.
+Rafalow observed three schools in which teachers responded differently to students’ digital creativity: as irrelevant, threatening or useful for learning. The schools differed in race, class and institutional context together. His study does not isolate a class effect or examine ChatGPT. It does show why we should study the evaluator and setting rather than assume that a digital practice has the same meaning wherever it appears. [@Rafalow2018DiscipliningPlay]
 
 ## Synthesis of the current LLM literature
 
-Pagan and colleagues address representation. Their Conversational Human Authenticity Test compares generated and observed human replies using classifier detectability, embedding similarity and interpretable stylistic, topical and affective features. A model can become harder to detect while becoming less similar to the observed reply. Human-likeness is therefore not one outcome.
+Reif, Larrick and Soll ran four preregistered experiments on how people judge AI users. In Study 2, workers described as using AI were rated lazier than workers receiving comparable human help or no described help; they were also rated lower on competence and related traits. The study did not find significant moderation by age, gender or occupation. It therefore gives us evidence of an AI-use evaluation penalty, but not of the specific senior–junior interaction proposed for this class. [@ReifLarrickSoll2025]
 
-Hofmann and colleagues address evaluation. Their meaning-matched design compares 2,019 AAE texts with SAE translations. Continuation-token probabilities are converted into calibrated associations for traits, occupations and hypothetical judicial decisions. The paper reports more negative covert than overt associations, lower prestige for occupations associated with AAE, and more detrimental hypothetical judicial outcomes after AAE text. These are model-probing results, not observations of employers or courts.
+Schilke and Reimann study trust in people who disclose AI assistance. In their Study 11, participants judged a market research analyst’s monthly competitor report. The design varied both prior knowledge of AI use and disclosure with the report. Mean trust was 4.10 with disclosure and 4.62 without it; the no-disclosure condition did not affirmatively claim that no AI was used. Their wider series examines whether the assistance is considered a legitimate way to complete the task. This is not a test of different occupational ranks. Trust and competence should be measured separately in a new study. [@SchilkeReimann2025Transparency]
 
-Waight and colleagues address institutional influence over training material. Their evidence moves from state-coordinated media in an open training corpus to additional pretraining of an open-weight model and then to audits of commercial systems. The intervention shows that changing training material can change response valence. The cross-national extension remains observational. Together, the studies show why a paired output difference, a training-data mechanism and an institutional consequence are separate claims.
+Our proposed experiment keeps a fictional competitor report identical while changing two descriptions: whether the author is a senior executive or junior employee, and whether AI use is disclosed. Human readers could rate competence, laziness, trust and the acceptability of AI assistance. The Python exercise prepares these four materials; it does not collect ratings. Occupational rank is a status cue, not a direct measure of social class. A real study would need to pretest what readers infer from the roles and consider whether different job duties change what they expect.
 
 ## Reading discussion
 
-Come prepared to discuss:
-
-1. What does a meaning-matched comparison identify, and what does it remove?
-2. How would Bourdieu and Flores–Rosa interpret the overt and covert results differently?
-3. Which parts of Waight et al.’s argument are causal, and which are observational?
-4. What organizational evidence would be needed to move from an unequal model output to a claim about unequal access?
+1. What exactly do Reif’s participants evaluate? How is that different from judging the quality of the work itself?
+2. Foschi allows more than one prediction about a senior and a junior worker. Which expectations would produce each result?
+3. What does Rafalow show about who gets to define digital skill as valuable? Which parts of his comparison cannot be attributed to class alone?
+4. Why might the AI disclosure in Schilke and Reimann’s competitor-report study lower trust? Would that necessarily imply lower perceived competence?
+5. What would we need to observe before concluding that the AI penalty differs by class rather than by job rank or task expectations?
 
 ## Slides
 
@@ -77,10 +76,10 @@ The slides are available in the [online Week 11 chapter](https://cjbarrie.github
 
 ## Take-home exercise
 
-Run the small matched-input comparison using the supplied published pairs. Change one predeclared model or route while keeping the texts, prompt, occupation list and temperature fixed. Trace one pair through `zip()` in both runs. Explain tuple unpacking, the Boolean comparison, the `+=` update and the denominator. State whether the occupations differed and why the result does not establish a stable model-level pattern, a training mechanism or an institutional effect.
+Use the fictional report to request one careful model edit. Check the raw response against the stated facts, including the absence of customer-switching data. Then use a nested loop to place the same revised report in four hypothetical descriptions varying the author’s role and reported AI use. Trace the first two passes and explain what human judgments a real experiment would still need.
 
 Follow the [recording and submission instructions](../recording-and-submission.qmd), name the file with your name and `Week11`, and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
 
 ## Summary and preparation
 
-Language models operate inside linguistic markets and information environments that institutions have already structured. They may reproduce human communication unevenly and attach unequal value to socially marked language. Unequal consequences for people depend on how organizations connect those outputs to actual decisions.
+The existing experiments document penalties in how AI users are judged. Foschi, Bourdieu, Lamont and Lareau, and Rafalow help us ask whether those judgments depend on social position and institutional standards. We do not yet have evidence that the penalty is larger for a junior employee. The proposed four-condition study would test that question against the possibility of a larger penalty for the senior employee.

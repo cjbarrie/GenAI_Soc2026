@@ -1,19 +1,12 @@
-# Session 11 — Language, inequality and institutional power
+# Week 11 — AI use and judgments of competence
 
-**Date:** Wednesday, November 18, 2026 · 9:30 a.m.–12:15 p.m.
+**Question:** When is AI use perceived as resourceful, and when as lazy or incompetent? Does social status affect that judgment?
 
-**Question:** How does language become a source of inequality when people and institutions use large language models?
+**Essential readings (complete articles):**
 
-## Required reading
+- Martha Foschi (2000), “Double Standards for Competence: Theory and Research,” *Annual Review of Sociology* 26: 21–42.
+- Jessica A. Reif, Richard P. Larrick and Jack B. Soll (2025), “Evidence of a Social Evaluation Penalty for Using Artificial Intelligence,” *PNAS* 122: e2426766122.
+- Matthew H. Rafalow (2018), “Disciplining Play: Digital Youth Culture as Capital at School,” *AJS* 123(5): 1416–1452.
+- Oliver Schilke and Martin Reimann (2025), “The Transparency Dilemma: How AI Disclosure Erodes Trust,” *OBHDP* 188: 104405.
 
-- Pierre Bourdieu (1977), “The Economics of Linguistic Exchanges.”
-- Valentin Hofmann, Pratyusha Ria Kalluri, Dan Jurafsky and Sharese King (2024), “AI Generates Covertly Racist Decisions about People Based on Their Dialect.”
-- Hannah Waight et al. (2026), “State Media Control Influences Large Language Models.”
-
-## Class structure
-
-The opening lecture introduces linguistic markets, racialized listening and matched-guise research. The middle of the class compares the required readings. The final section walks through a beginner-facing Python routine using published meaning-matched language pairs.
-
-## Completion task
-
-Run the supplied matched-input comparison, change one model or route, and submit a narrated 6–8 minute screen recording by **5:00 p.m. Eastern on the Tuesday before the next class**. Explain how `zip()` preserves the pair, how tuple unpacking names the two records and how the running count is calculated.
+The opening lecture uses a fictional competitor report to distinguish the quality of work from judgments of its author. The middle of class discusses status-based competence standards, AI-use stigma, institutional valuation of digital practices and disclosure. The final Python walkthrough edits the report and prepares four reader descriptions crossing worker rank and reported AI use. It does not collect human judgments. Organizational rank is not a direct measure of class.

@@ -1,69 +1,29 @@
-# Instructor notes — Session 11: Language, inequality and institutional power
+# Week 11 instructor notes
 
 ## Central question
 
-How does language become a source of inequality when people and institutions use LLMs?
+When is AI use read as resourceful, and when as lazy or incompetent? Does status change that reading? The class does **not** claim that junior employees face a larger penalty; the opposite is possible.
 
-The class distinguishes three outcomes that should not be collapsed:
+## 165-minute teaching arc
 
-1. **Representation:** whether generated language resembles observed human communication.
-2. **Evaluation:** whether a model attaches different judgments to meaning-matched linguistic forms.
-3. **Institutional consequence:** how an output enters advice, ranking or an allocation rule.
+- **Opening lecture, 45 minutes:** Show the identical fictional competitor report under two job titles. Separate judgments of competence, laziness, trust and legitimate assistance. Explain Reif’s Study 2 before its reported means. Introduce Foschi’s double standards and possible reversal. Use Bourdieu and Lamont/Lareau briefly to identify the evaluator and setting. Rafalow supplies an empirical pre-LLM example in which digital practice receives different recognition. Finish with Schilke and Reimann’s competitor-report disclosure experiment and the proposed 2×2 reader study.
+- **Reading discussion, 60 minutes:** Compare what each study observes. Reif measures judgments of AI users; Foschi theorizes status standards; Rafalow observes three differently situated schools; Schilke and Reimann vary disclosure. Ask which result supports which claim and where new reader data are needed.
+- **Break and Python walkthrough, 60 minutes:** Run the fictional report through one editing call. Print the raw return and check all five source points, especially the absence of switching data. Trace the first two passes through the nested loop and show the same report in all four versions. Students rerun one more conservative prompt. The code constructs materials; it does not produce ratings.
 
-The bounded conclusion is that language-model disparities become consequential through linguistic markets, model design and institutional use. A paired model comparison identifies a conditional output difference; it does not by itself show that a person lost an opportunity or establish the historical mechanism that produced the association.
+## Source cautions
 
-## 165-minute plan
+- **Reif et al. (2025):** Study 2 reported mean laziness ratings 2.50 (AI help), 2.16 (human help), and 2.02 (no help). It found no significant moderation by age, gender or occupation. Its occupations are not our within-organization senior/junior manipulation.
+- **Foschi (2000):** A status-based threshold is a theoretical illustration. The diagram is not a measured AI effect; reverse double standards are possible.
+- **Rafalow (2018):** Class, race and school context vary together. Do not call the three-school comparison a causal estimate of class.
+- **Schilke and Reimann (2025):** Study 11’s trust means were 4.10 with AI disclosure and 4.62 without. It did not vary worker rank.
+- **Bourdieu / Lamont and Lareau:** Their work frames the institutional evaluation problem. Neither predicts a specific AI-disclosure effect.
 
-- **9:30–9:42 — opening object:** introduce the published AAE/SAE habitual pair, the fixed occupation task and the three outcomes.
-- **9:42–10:15 — sociological lineage:** Bourdieu on linguistic markets; Flores and Rosa on racialized listening; matched guise as a way to study evaluation.
-- **10:15–10:32 — institutional evidence:** Purnell et al. on housing inquiries and Koenecke et al. on speech recognition. Keep allocation and transcription outcomes separate.
-- **10:32–10:47 — representation:** Pagan et al. on model-generated social-media replies. Ask what a plausible reply can still fail to reproduce.
-- **10:47–10:57 — break.**
-- **10:57–11:27 — required-reading discussion:** Hofmann et al. design, matched and non-matched analyses, overt and covert stereotypes, and the distinction between association and deployment.
-- **11:27–11:50 — training data and power:** Waight et al. corpus evidence, controlled additional pretraining, commercial audits and observational country comparison.
-- **11:50–12:08 — coding walkthrough:** trace one published meaning-matched pair through a fixed occupation task, the route-specific model call and the comparison record.
-- **12:08–12:15 — closing discussion:** name the evidence needed for representation, evaluation and institutional consequence.
+## Discussion prompts
 
-## Reading jobs
+1. Which outcome in Reif is closest to Foschi’s competence question? Which is not?
+2. Could the senior executive receive a larger AI penalty? Why?
+3. What did Rafalow observe that an experiment with fixed text would miss?
+4. If Schilke and Reimann find lower trust after disclosure, what additional evidence would show whether the report was considered less accurate?
+5. What role descriptions would isolate rank without also changing expectations about the employee’s job?
 
-- **Bourdieu (1977):** establishes that linguistic competence has no fixed value outside a social market and connects recognized language with authority and material returns.
-- **Hofmann et al. (2024):** supplies the focal matched-guise model audit and separates overt from covert stereotypes.
-- **Waight et al. (2026):** shows how corpus analysis, controlled additional training and deployed-model audits can be combined when investigating training-data influence.
-
-Flores and Rosa, Purnell et al., Koenecke et al., Pagan et al., and Bowker and Star provide supporting extensions rather than a second required-reading list.
-
-## Questions for the reading discussion
-
-1. What does translation between AAE and SAE hold constant, and what social information does it remove?
-2. What alternative explanations return in the non-meaning-matched analysis?
-3. How would Bourdieu and Flores–Rosa interpret the same paired result differently?
-4. Which parts of Waight et al.'s argument depend on controlled intervention, and which depend on observational extension?
-5. What additional evidence would be required before making a claim about hiring, housing, education or criminal justice?
-
-## Coding task
-
-The task uses three published habitual-aspect pairs from Hofmann et al.'s authors' repository. Students ask one model to select an occupation from a fixed list for each AAE and SAE form. The program preserves the exact text, route, model, raw return and parsed fields in two ordered result lists. `zip()` then supplies corresponding AAE and SAE records, tuple unpacking names them and `+=` updates a running count of different forced choices.
-
-Before each block, use this language:
-
-**input value and type → operation → output value and type → sociological meaning → what the result does not establish**
-
-The function and model-call branches now reuse prior material. The new syntax is `zip()`, tuple unpacking and `+=`. Trace the first paired iteration with actual dictionaries. Show why the identifiers must match before comparing occupations. The student changes one predeclared model or route while keeping the texts and prompt fixed. They should inspect the raw return before discussing the pair.
-
-Do not describe the exercise as a replication of Hofmann et al. It adapts published linguistic material to a smaller occupation-selection demonstration. A single run is not an estimate of a stable disparity, and the model's explanation is not evidence of its internal mechanism.
-
-## Likely sticking points
-
-- A dictionary key retrieves a named value; a list index retrieves a position.
-- A function parameter receives a value when the function is called.
-- `zip()` pairs items by position, so the two result lists must preserve the same order.
-- Tuple unpacking assigns the two records to separate names on each iteration.
-- `+=` updates the existing count rather than creating an independent total.
-- JSON parsing checks that the return has the requested shape; it does not validate the judgment.
-- Meaning matching narrows the comparison but does not erase all social information carried by a linguistic form.
-
-## Completion evidence
-
-Students submit a narrated recording showing one changed model or route, the raw and parsed return, and one pair moving through `zip()`. They must explain tuple unpacking, the running count and denominator, then state one bounded finding plus at least two pieces of evidence that would be needed before making an institutional claim.
-
-If a live route fails, the recorded return supports code tracing only. It should be identified as a contingency, not presented as new empirical evidence.
+The complete citations and student-facing reading rationale are in `coursebook/weeks/session11.qmd`. Admissions papers remain optional; they are not the current running case.
