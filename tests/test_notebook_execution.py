@@ -455,7 +455,7 @@ def test_followup_notebook_executes_without_live_services(
     if week == 10:
         assert len(namespace["model_records"]) == 3
         assert len(namespace["audit_records"]) == 3
-        assert namespace["audit_records"][0]["situation_id"] == "broken_commitment"
+        assert namespace["audit_records"][0]["situation_id"] == "condolence_message"
         assert namespace["audit_records"][2]["situation_id"] == "private_information"
 
 

@@ -23,11 +23,11 @@ def record_audit(
 
 
 def run_checks():
-    situation = {"id": "broken_commitment", "relationship": "close friend"}
-    before = {"action": "call", "reason": "late notice"}
-    model_record = {"parsed_output": {"proposed_action": "call and offer repair"}}
+    situation = {"id": "condolence_message", "relationship": "close colleague"}
+    before = {"action": "write privately", "reason": "recognize the loss"}
+    model_record = {"parsed_output": {"proposed_action": "write and offer practical help"}}
     unchanged_answer = {
-        "important_difference": "The model adds repair.",
+        "important_difference": "The model adds a specific offer of help.",
         "student_response_after": before,
     }
     unchanged = record_audit(situation, before, model_record, unchanged_answer)
@@ -35,8 +35,8 @@ def run_checks():
     assert unchanged["student_changed_response"] is False
 
     changed_answer = {
-        "important_difference": "The model identifies a financial cost.",
-        "student_response_after": {"action": "call and pay", "reason": "repair"},
+        "important_difference": "The model makes clear that no reply is required.",
+        "student_response_after": {"action": "write and offer help", "reason": "reduce demands"},
     }
     changed = record_audit(
         situation,

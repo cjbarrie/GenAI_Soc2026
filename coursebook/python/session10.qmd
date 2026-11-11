@@ -9,7 +9,7 @@ description: "Compare your intended response with model advice across three rela
 
 The research question is: **how does an LLM interpret different social situations, and would you behave as it suggests?**
 
-The notebook contains three situations involving a close friend, a colleague and a sibling. Before viewing any model output, you record what you would do and why. The model then proposes an action, possible message, reasoning and missing information. You compare its response with your own.
+The notebook contains three situations involving a bereaved colleague, a project colleague and a sibling. Before viewing any model output, you record what you would do and why. The model then proposes an action, possible message, reasoning and missing information. You compare its response with your own.
 
 Your answer is a situated human judgment, not a gold standard. The model output does not reveal how another person would behave or react.
 
@@ -50,21 +50,21 @@ Each situation is a dictionary with three keys:
 
 ```python
 {
-    "id": "broken_commitment",
-    "relationship": "a close friend of ten years",
-    "facts": "You promised to help them move...",
+    "id": "condolence_message",
+    "relationship": "a close colleague",
+    "facts": "Their mother has died after a short illness...",
 }
 ```
 
-The full `situations` object is a `list` containing three dictionaries. The cases concern a broken commitment, workplace credit and private family information.
+The full `situations` object is a `list` containing three dictionaries. The cases concern condolence, workplace credit and private family information.
 
 ## Record your response before seeing the model
 
 ```python
 student_responses_before = [
     {
-        "action": "Call immediately and offer practical repair.",
-        "reason": "The late notice increased the cost of the broken promise.",
+        "action": "Write privately and offer practical help.",
+        "reason": "The message should recognize the loss without requiring a reply.",
     },
     # two more responses
 ]
@@ -87,7 +87,7 @@ for position, situation in enumerate(situations, start=1):
     model_records.append(model_record)
 ```
 
-On the first iteration, `position` is `1` and `situation` is the broken-commitment dictionary. The returned model record is appended to the list.
+On the first iteration, `position` is `1` and `situation` is the condolence dictionary. The returned model record is appended to the list.
 
 ## Record your audit judgment
 
@@ -142,12 +142,12 @@ This creates a small audit dataset rather than a collection of disconnected mess
 Use the audit questions to inspect whether the model:
 
 - recognized the relationship and relevant obligation;
-- distinguished an explanation from an excuse;
-- proposed a plausible repair or next step;
+- identified what the situation called for without overstating intimacy;
+- proposed a plausible action or next step;
 - invented feelings, motives or relationship history;
 - omitted context that mattered to your judgment.
 
-Zelizer helps us ask whether the advice fits the relationship and transaction. Goffman directs attention to offence, account and repair. Hochschild helps separate generated emotional expression from feeling and emotion work. Hohenstein et al. remind us that generated advice alone does not reveal recipient judgments.
+Goffman and Garfinkel direct attention to the background expectations organizing the interaction. Hochschild helps separate generated emotional expression from feeling and emotion work. Zelizer and Gershon help us ask how the relationship and production medium affect the meaning of the act. Hohenstein et al. remind us that generated advice alone does not reveal recipient judgments.
 
 ## Take-home exercise
 

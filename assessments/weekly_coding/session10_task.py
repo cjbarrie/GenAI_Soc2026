@@ -36,12 +36,12 @@ ROUTE = "ollama"  # use "openrouter" for the hosted route
 # CELL: Store three social situations
 situations = [
     {
-        "id": "broken_commitment",
-        "relationship": "a close friend of ten years",
+        "id": "condolence_message",
+        "relationship": "a close colleague",
         "facts": (
-            "You promised to help them move at 8 a.m. Saturday. You learned at noon "
-            "Friday that you had to work but waited until 9 p.m. to tell them. They had "
-            "declined paid help because they relied on your promise."
+            "Their mother has died after a short illness. You knew she had been ill but "
+            "never met her. You want to send a private message before the funeral and can "
+            "offer to take the seminar notes this week."
         ),
     },
     {
@@ -66,8 +66,8 @@ situations = [
 # not answer keys.
 student_responses_before = [
     {
-        "action": "Call immediately, apologize for the late notice and offer to pay for help.",
-        "reason": "My delay increased the practical cost created by the broken promise.",
+        "action": "Write privately, recognize the loss and offer practical help.",
+        "reason": "I would not require a reply or invent familiarity with the deceased.",
     },
     {
         "action": "Speak to the colleague privately before raising it with the manager.",
@@ -92,14 +92,14 @@ output_schema = {
 }
 
 recorded_returns = {
-    "broken_commitment": json.dumps({
-        "proposed_action": "Call promptly, acknowledge the late notice and offer practical repair.",
+    "condolence_message": json.dumps({
+        "proposed_action": "Send a private message that recognizes the loss and offers specific help.",
         "possible_message": (
-            "I broke my promise and told you far too late. I can pay half the cost of "
-            "last-minute help or help on Sunday."
+            "I am so sorry to hear about your mother. There is no need to reply. I can "
+            "take care of the seminar notes this week if that would help."
         ),
-        "reasoning": "The friend relied on the promise and the late notice increased the harm.",
-        "missing_information": ["Whether last-minute paid help remains available"],
+        "reasoning": "A brief private message can acknowledge the loss without inventing intimacy.",
+        "missing_information": ["Whether the colleague has expressed a preference for privacy"],
     }),
     "workplace_credit": json.dumps({
         "proposed_action": "Speak privately with the colleague and request a correction.",

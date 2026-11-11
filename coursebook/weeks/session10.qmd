@@ -18,8 +18,8 @@ The class does not concern AI companionship or the replacement of human confidan
 By the end of the class, you should be able to:
 
 - explain Zelizer’s argument against separate-spheres and hostile-worlds accounts;
-- use Goffman to identify the distinct moves in a corrective exchange;
-- distinguish outward expression, emotion work and recipient interpretation;
+- use Goffman and Garfinkel to identify the expectations that organize an interpersonal message;
+- distinguish surface acting, deep acting, outward expression and recipient interpretation;
 - distinguish generated writing, influence on a writer and interpersonal consequences;
 - explain the difference between actual and suspected smart-reply use in Hohenstein et al.;
 - explain a default Boolean parameter, keyword arguments and the first `enumerate()` iteration without treating model output as evidence of human sincerity or relationship quality.
@@ -35,25 +35,25 @@ By the end of the class, you should be able to:
 ## Additional readings grouped by purpose
 
 - **Corrective interaction:** Goffman (1955), “On Face-Work.” [DOI](https://doi.org/10.1080/00332747.1955.11023008). [@Goffman1955FaceWork]
+- **Background expectations in ordinary interaction:** Garfinkel (1967), *Studies in Ethnomethodology*, chapter 2. [@Garfinkel1967Studies]
 - **Emotion work and feeling rules:** Hochschild (1979), “Emotion Work, Feeling Rules, and Social Structure.” [DOI](https://doi.org/10.1086/227049). [@Hochschild1979EmotionWork]
+- **Surface and deep acting:** Hochschild (1983), *The Managed Heart*, chapter 3. [@Hochschild1983ManagedHeart]
 - **Relational work in legal and historical evidence:** Zelizer (2005), *The Purchase of Intimacy*. [Publisher](https://press.princeton.edu/books/paperback/9780691139364/the-purchase-of-intimacy). [@Zelizer2005Purchase]
 - **Media ideologies:** Gershon (2010), *The Breakup 2.0*. [DOI](https://doi.org/10.7591/9780801458002). [@Gershon2010Breakup]
-- **Therapeutic vocabularies:** Illouz (2008), *Saving the Modern Soul*. [Publisher](https://www.ucpress.edu/books/saving-the-modern-soul/paper). [@Illouz2008Saving]
-- **Interpersonal influence:** Katz and Lazarsfeld (1955), *Personal Influence*. [@KatzLazarsfeld1955]
 
 ## Sociological and methodological background
 
-The worked case is an ordinary broken commitment. The sender promised to help someone move at 8 a.m. on Saturday, learned at noon on Friday that work made this impossible, and waited until 9 p.m. to send the message. The other person had declined paid help because they expected the sender to come. The sender can pay half the cost of a last-minute mover or help on Sunday. We keep those facts fixed while varying the instruction and the relationship.
+The worked case is a condolence message. A close colleague's mother has died after a short illness. The sender knew that she had been ill but never met her. The sender asks an LLM to draft a private message and to offer practical help with seminar notes. The resulting message could have been written entirely by the sender, substantially revised, copied without revision or sent automatically by a system trained on the sender's writing. The recipient could receive the same words in every case.
 
-Zelizer’s argument is the first reason not to treat this as a tone-adjustment problem. She rejects the idea that intimacy and calculation occupy separate social spheres and the further claim that contact between them necessarily contaminates both. Her evidence shows people continually combining relations and transactions while negotiating their meaning. In *Cole v. Lucas*, for example, the legal meaning of promissory notes depended on whether the court classified a tie as master–slave, concubinage or marriage. The transfer could not be understood independently of the relationship. In our case, the relevant question is therefore not only how the apology is worded. It is what it means to perform or delegate this obligation through an LLM, whether the assistance is disclosed, and how the recipient understands authorship and effort.
+Goffman helps identify condolence as an interactional obligation. The message recognizes a loss and displays an appropriate orientation towards the bereaved person. Garfinkel's breaching demonstrations appear as a short methodological sidebar. Acting like a lodger at home, demanding precise definitions of ordinary remarks or bargaining over fixed prices produces confusion because it violates rules that participants normally take for granted. A recent social-media prank offers a lighter contemporary illustration: men call male friends simply to say good night, producing laughter, suspicion or concern because the call violates expectations about ordinary reasons for contacting one another. The lecture then returns to the condolence case without treating it as a breaching experiment.
 
-Goffman helps reconstruct the act itself. A broken promise creates an incident because conduct is inconsistent with the line that the relationship previously supported. A corrective exchange can include recognition of the offence, an account, acknowledgment of responsibility, compensation or expiation, and a response by the other participant. An explanation may narrow blame without repairing the injury. A model can draft several moves, but it cannot make the recipient accept the account or the proposed repair.
+Hochschild moves the analysis from public expression to the management of feeling. Surface acting changes the display. Deep acting attempts to produce or intensify the feeling that the situation calls for. An LLM may merely supply conventional language, help a sympathetic person find words, prompt reflection on the recipient's loss or allow the sender to avoid the expressive task. The generated message cannot distinguish these processes. Evidence about the sender is required. Evidence from the recipient is required to establish how the message was interpreted.
 
-Hochschild prevents us from treating recognizable emotional language as evidence of inner feeling. Feeling rules specify what people ought to feel in a situation. Emotion work is the attempt to change the degree or quality of feeling in relation to those rules; the attempt may succeed or fail. Outward expression is analytically separate. An LLM can reduce the effort required to formulate remorse, but it might also prompt reflection by asking what commitment was made and what reliance followed. Which process occurred requires evidence about the writer. How the expression was interpreted requires evidence from the recipient.
+Zelizer's direct object is economic exchange, not AI-mediated communication. Her contribution is the observation that the meaning of a transfer depends on the relationship, payment medium and shared understanding. The same sum can be reimbursement, a gift or repayment. We extend that question cautiously to a condolence message: what act is being performed, through which medium and within which relationship?
 
-Gershon and Illouz extend these distinctions. Media ideologies give communicative media social meanings beyond their literal content. Therapeutic vocabularies provide familiar ways to describe injury, needs and repair. These extensions help identify questions for research; neither licenses an inference from one generated message to a relationship outcome.
+Gershon supplies the more direct bridge to AI. Media ideologies are socially learned beliefs about what a medium communicates in addition to its literal content. AI assistance introduces another part of the production process. Its meaning may depend on whether the sender edited the message, whether assistance was disclosed and what the recipient believes about authorship and effort. A model that perfectly mimics the sender's voice would hide stylistic evidence of assistance without resolving these relational questions.
 
-The coding exercise broadens the comparison beyond the opening apology. Students record how they would respond to a broken commitment, a dispute over workplace credit and a request to protect private family information. They then audit model advice about the same cases. This lets us examine whether the model identifies different obligations across relationships while keeping the student response separate from both the model output and any claim about a correct social response.
+The coding exercise broadens the comparison beyond the opening message. Students record how they would respond to a bereaved colleague, a dispute over workplace credit and a request to protect private family information. They then audit model advice about the same cases. This keeps the student's judgment separate from model output and from any claim about a correct social response.
 
 ## Synthesis of the current LLM literature
 
@@ -61,7 +61,7 @@ Hohenstein and colleagues place smart replies inside a live conversation. In Stu
 
 Williams-Ceci and colleagues identify a different pathway. Across two preregistered experiments, participants wrote about societal issues with or without biased autocomplete suggestions and then reported their own attitudes. The suggestions shifted writers’ reported attitudes. The finding concerns influence during composition. It does not show that another person was persuaded, that a message was sincere or that a relationship changed.
 
-The three essential readings therefore perform different jobs. Zelizer specifies the relational object. Hohenstein et al. observe language and partner judgments in an interaction. Williams-Ceci et al. observe the writer after assisted composition. Keeping those outcomes separate is the central methodological discipline for the week.
+Neither contemporary paper offers a sociology of established relationships. Hohenstein et al. observe language and immediate partner judgments in a bounded interaction. Williams-Ceci et al. observe the writer after assisted composition. The historical sociology identifies what remains unmeasured: relationship-specific obligations, feeling rules, beliefs about the production medium and consequences over time.
 
 ## Slides
 
@@ -77,7 +77,7 @@ The slides are available in the [online Week 10 chapter](https://cjbarrie.github
 
 ## Take-home exercise
 
-Record how you would respond to at least one of three social situations before viewing model advice. Run the model for the broken commitment, workplace credit and private-information cases, then complete one audit record for each. In your narrated recording, explain the first `enumerate()` iteration, default Boolean, keyword arguments, raw return and final audit dictionary. Identify where the model's response fits or differs from your own, whether it changed your judgment and why your answer is a situated comparison rather than a gold standard.
+Record how you would respond to at least one of three social situations before viewing model advice. Run the model for the condolence, workplace-credit and private-information cases, then complete one audit record for each. In your narrated recording, explain the first `enumerate()` iteration, default Boolean, keyword arguments, raw return and final audit dictionary. Identify where the model's response fits or differs from your own, whether it changed your judgment and why your answer is a situated comparison rather than a gold standard.
 
 Use the [recording and submission instructions](../recording-and-submission.qmd), name the file with your name and `Week10`, and submit by **5:00 p.m. Eastern on the Tuesday before the next class**.
 

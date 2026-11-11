@@ -14,12 +14,12 @@
   },
   "session10": {
     "openrouter": {
-      "broken_commitment": "Call promptly, acknowledge the late notice and offer practical repair.",
+      "condolence_message": "Send a private message that recognizes the loss and offers specific help.",
       "workplace_credit": "Speak privately with the colleague and request a correction.",
       "private_information": "Do not disclose the job loss without the sibling's permission."
     },
     "ollama": {
-      "broken_commitment": "Call promptly, acknowledge the late notice and offer practical repair.",
+      "condolence_message": "Send a private message that recognizes the loss and offers specific help.",
       "workplace_credit": "Speak privately with the colleague and request a correction.",
       "private_information": "Do not disclose the job loss without the sibling's permission."
     }

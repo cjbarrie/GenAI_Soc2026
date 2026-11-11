@@ -39,6 +39,30 @@
 .method-box { display: grid; grid-template-columns: 250px 1fr; gap: 48px; align-items: center; margin-top: 90px; }
 .big-number { font-size: 5em; color: #167d8d; font-weight: 700; }
 .message-example { font-size: 1.5em; line-height: 1.35; max-width: 950px; padding: 35px; margin: 80px auto 36px; border-left: 8px solid #b44d34; background: #f4f0e8; }
+.message-example.compact { font-size: 1.04em; margin: 24px auto 0; padding: 20px 26px; }
+.production-list, .offload-list, .media-comparison { margin-top: 28px; }
+.production-list p, .offload-list p, .media-comparison p { display: grid; grid-template-columns: 34% 1fr; gap: 24px; align-items: baseline; border-bottom: 1px solid #cfc6ba; margin: 0; padding: 13px 8px; }
+.production-list strong, .offload-list strong, .media-comparison strong { color: #167d8d; }
+.production-list span, .offload-list span, .media-comparison span { font-size: .84em; }
+.breach-examples, .transaction-examples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px; }
+.breach-examples p, .transaction-examples p { border-top: 6px solid #167d8d; padding-top: 16px; margin: 0; }
+.breach-examples strong, .breach-examples span, .transaction-examples strong, .transaction-examples span { display: block; }
+.breach-examples span, .transaction-examples span { font-size: .76em; line-height: 1.35; margin-top: 10px; }
+.trend-slide { display: grid; grid-template-columns: 38% 1fr; gap: 54px; align-items: center; margin-top: 18px; }
+.trend-video { position: relative; height: 470px; text-align: center; }
+.trend-video a { display: inline-block; position: relative; height: 100%; }
+.trend-video img { display: block; height: 100%; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 24px rgba(29, 35, 39, .18); }
+.play-badge { position: absolute; left: 50%; top: 53%; transform: translate(-50%, -50%); width: 78px; height: 78px; border-radius: 50%; background: rgba(18, 25, 30, .78); color: white; font-size: 42px; line-height: 78px; padding-left: 5px; box-sizing: border-box; }
+.trend-copy > div { border-top: 6px solid #167d8d; padding-top: 14px; margin-bottom: 36px; }
+.trend-copy h3 { font-size: 1.05em; margin-bottom: 10px; }
+.trend-copy p { font-size: .88em; line-height: 1.36; }
+.trend-copy .click-note { color: #5e5750; font-size: .65em; margin-top: 8px; }
+.theory-comparison, .acting-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 62px; }
+.theory-comparison > div, .acting-comparison > div { border-top: 6px solid #167d8d; padding-top: 16px; }
+.theory-comparison h3, .acting-comparison h3 { font-size: 1.08em; }
+.theory-comparison p, .acting-comparison p { font-size: .88em; line-height: 1.38; }
+.voice-case { max-width: 1000px; margin: 50px auto 0; }
+.voice-case p { border-bottom: 1px solid #cfc6ba; padding: 16px 8px; margin: 0; font-size: 1.02em; }
 .unobserved { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 85px; }
 .unobserved span { font-size: 1.15em; border-bottom: 4px solid #167d8d; padding: 15px; }
 .supporting-theory { max-width: 1000px; margin: 60px auto; border-left: 7px solid #167d8d; padding: 8px 28px; }

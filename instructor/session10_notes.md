@@ -2,15 +2,15 @@
 
 ## Intended endpoint
 
-Students should be able to explain why an LLM-mediated interpersonal message creates at least three empirical objects: generated writing, possible influence on the writer, and a recipient or relationship outcome. They should use Zelizer, Goffman and Hochschild to interpret the same broken-commitment case without treating the theories as interchangeable accounts of authenticity.
+Students should be able to explain why an LLM-mediated condolence creates at least three empirical objects: generated writing, the sender's process and the recipient's interpretation. They should use Goffman, Garfinkel, Hochschild, Zelizer and Gershon without treating them as interchangeable accounts of authenticity.
 
 ## 165-minute plan
 
-- **9:30–9:42 — opening case:** show the fixed moving facts and two instructions. Ask what each prompt leaves the model to infer.
-- **9:42–10:05 — Zelizer:** separate spheres, hostile worlds, *Cole v. Lucas*, connected lives and the relational meaning of delegation.
-- **10:05–10:23 — Goffman:** line, face, incident, account, responsibility, proposed repair and recipient response.
-- **10:23–10:42 — Hochschild:** the 261 protocols, feeling rules, emotion work, expression and interpretation.
-- **10:42–10:48 — Gershon and Illouz:** medium choice and available cultural vocabularies.
+- **9:30–9:42 — opening case:** compare four production histories for the same condolence message.
+- **9:42–10:00 — Goffman and Garfinkel:** establish the expected interpersonal act and use breaching demonstrations to make its background rules visible.
+- **10:00–10:23 — Hochschild:** move from public expression to feeling rules, surface acting, deep acting and possible forms of offloading.
+- **10:23–10:40 — Zelizer and Gershon:** use concrete exchanges to establish relational meaning, then treat AI assistance as part of the production medium.
+- **10:40–10:48 — opening-case discussion:** ask what changes if a model mimics the sender's voice perfectly.
 - **10:48–10:58 — break.**
 - **10:58–11:32 — reading discussion:** reconstruct Hohenstein's two studies and Williams-Ceci's outcome; compare all three readings using the opening case.
 - **11:32–12:08 — Python walkthrough:** fixed facts, default Boolean parameter, keyword arguments, route call, `enumerate()`, returned record and researcher notes.
@@ -18,17 +18,23 @@ Students should be able to explain why an LLM-mediated interpersonal message cre
 
 ## Core explanations
 
-### Zelizer
-
-Do not define relational work as tone adjustment. Start from the empirical challenge to separate spheres and hostile worlds. In *Cole v. Lucas*, the promissory notes did not carry a stable meaning independently of the legal definition of the tie. Apply this to the medium and performance of the apology: identical prose can be a different relational act if the sender reflects and revises, copies automatically, discloses assistance or conceals it.
-
 ### Goffman
 
-Use the broken promise as an interactional incident. The work requirement is an account; it does not by itself acknowledge the late notice or the reliance. The offers are possible corrective moves. The recipient's acceptance, refusal or renegotiation is another move and cannot be inferred from the message.
+Treat condolence as a public interpersonal act. Silence, delay or a conspicuously generic response can be interpreted as evidence about the relationship. Goffman identifies the visible performance; he does not establish the sender's private feeling.
+
+### Garfinkel
+
+Use only documented demonstrations: acting like a lodger at home, demanding precise clarification of ordinary remarks and bargaining over fixed prices. Garfinkel called these demonstrations rather than conventional experiments. Keep this as a brief sidebar rather than treating the condolence case as a breaching experiment.
+
+The “call your friend to say good night” trend is a useful contemporary sidebar. In the widely circulated version, an adult man calls a male friend only to wish him good night. Friends often laugh, become suspicious or check that he is safe. Do not present this as a scientific study or as evidence about men in general. Its teaching value is that participants themselves display the norm: affection is not necessarily objectionable, but a purposeless bedtime call is treated as requiring an explanation within these friendships.
 
 ### Hochschild
 
-Name the evidence: retrospective written protocols concerning attempts to manage emotion. Keep outward expression, attempted emotion management and recipient interpretation separate. AI may reduce expressive effort; prompting could also facilitate reflection. Neither process is visible in the text alone.
+Name the evidence: retrospective written protocols concerning attempts to manage emotion. Explain surface acting as a change in expression and deep acting as an attempt to change feeling. An LLM may supply words, facilitate reflection or allow the sender to avoid the expressive task. The message alone cannot distinguish these processes.
+
+### Zelizer and Gershon
+
+Do not define relational work as tone adjustment. Use ordinary transfers: the same sum can be reimbursement, a gift or repayment depending on the relationship and shared understanding. State the limit directly: Zelizer studies economic exchange rather than AI-mediated messages. Gershon supplies the more direct bridge because media ideologies concern what a medium communicates in addition to its literal content. AI assistance becomes part of the production history that may be known, suspected or concealed.
 
 ## Contemporary studies
 
@@ -40,16 +46,16 @@ For Williams-Ceci, establish the writer outcome before showing the effect. The e
 
 For each block say: **input value and type → operation → output value and type → sociological meaning → unobserved outcome**.
 
-- The facts dictionary stores only supplied information.
-- The f-string turns the instruction, relationship and facts into one prompt string.
-- The function receives three required arguments and one Boolean whose default is `False`.
-- Keyword arguments make the relationship, instruction, route and disclosure setting visible at the call site.
-- `enumerate()` supplies a condition number and relationship label on each iteration.
-- The function returns a record dictionary containing the raw generated message and the inputs that produced it.
-- Researcher notes are written after inspection and remain separate from the model return.
+- Each situation dictionary stores the relationship and supplied facts.
+- Students record their proposed action before seeing model advice.
+- The f-string turns one situation into a prompt string.
+- `enumerate()` supplies the position and situation on each iteration.
+- The function returns a record containing the raw and parsed model response.
+- A default Boolean records whether the student would follow the advice.
+- The final audit dictionary keeps the student's before and after responses separate from the model return.
 
 The live route is the ordinary path. Use `USE_RECORDED = True` only for an outage. In the recorded contingency, students should not invent new relationship labels because no recorded return exists for them.
 
 ## Completion standard
 
-The recording must show the two-instruction comparison, the three-relationship loop, the disclosed close-friend condition, one meaningful change, the raw output and the researcher-notes object. The student must explain the default value, one keyword-argument call, the first `enumerate()` iteration, one connection to a required or core historical reading and the writer or recipient evidence needed for a stronger claim. Code elegance is not graded.
+The recording must show one situation dictionary, the student's response before the model call, one raw return, the parsed output and a completed audit dictionary. The student must explain the default value, one keyword-argument call, the first `enumerate()` iteration, one connection to a required or core historical reading and the writer or recipient evidence needed for a stronger claim. Code elegance is not graded.

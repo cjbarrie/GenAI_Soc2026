@@ -18,138 +18,50 @@ format:
     embed-resources: true
 ---
 
-## LLM-assisted interpersonal communication
+## AI assistance in interpersonal communication
 
-<div class="opening-question">People now use language models to draft apologies, explain decisions and prepare for difficult exchanges. This class asks how that assistance changes the message, the writer and the relationship.</div>
+<div class="opening-question">What happens to a social relationship when someone uses an LLM to formulate an interpersonal message?</div>
 
 ---
 
-## A broken commitment
+## A condolence message
 
 <div class="scenario">
-<p>You promised to help someone move at <strong>8 a.m. on Saturday</strong>.</p>
-<p>At noon on Friday, your employer required you to work from 8 a.m. to 4 p.m. You waited until <strong>9 p.m.</strong> to tell them.</p>
-<p>They had declined paid help because they expected you to come.</p>
+<p>A close colleague's mother has died after a short illness.</p>
+<p>You knew that she had been ill, but you never met her.</p>
+<p>You want to send a private message before the funeral. You are unsure what to write.</p>
 </div>
 
 ---
 
-## What happened
+## An LLM writes the message
 
-<div class="facts-repairs">
-<div><h3>Facts</h3><ul><li>The work requirement arrived at noon.</li><li>The message is being sent nine hours later.</li><li>The other person relied on the promise.</li><li>No feelings or motives have been supplied.</li></ul></div>
-<div><h3>Possible repairs</h3><ul><li>Pay half the cost of a last-minute mover.</li><li>Help on Sunday instead.</li><li>The recipient can accept, refuse or renegotiate either offer.</li></ul></div>
+<div class="prompt-box">Write a short condolence message to a close colleague whose mother has died. I knew she had been ill but never met her. Do not invent memories or feelings. Offer to take the seminar notes this week. Make clear that no reply is required.</div>
+
+<div class="message-example compact">“I’m so sorry to hear about your mother. I’m thinking of you and your family. There is no need to reply. I can take care of the seminar notes this week if that would help.”</div>
+
+---
+
+## The same words can be produced in different ways
+
+<div class="production-list">
+<p><strong>Written by the sender</strong><span>The sender chooses every word.</span></p>
+<p><strong>Suggested by the model</strong><span>The sender rewrites the draft.</span></p>
+<p><strong>Copied from the model</strong><span>The sender checks it and presses send.</span></p>
+<p><strong>Sent automatically</strong><span>A system trained on the sender's writing produces and sends it.</span></p>
 </div>
 
----
-
-## A minimal instruction
-
-<div class="prompt-box">Write a message telling a close friend that I cannot help them move tomorrow. Use the facts supplied below and do not invent facts.</div>
-
-<p class="plain-question">What does the model have to infer about the relationship and the obligation?</p>
+<p class="plain-question">The recipient could receive exactly the same text in all four cases.</p>
 
 ---
 
-## An instruction that specifies the broken obligation
-
-<div class="prompt-box accent">Write the message to a close friend. State the commitment that was broken, acknowledge the late notice and the plan they made in reliance on the promise, explain only the facts supplied, and offer the two available forms of repair. Do not invent feelings, relationship history or motives.</div>
-
----
-
-## Writing, writer attitudes and relationship outcomes
+## Three different outcomes
 
 <div class="outcome-columns">
-<div><h3>Generated writing</h3><p>What wording, explanation and repair did the system produce?</p><p class="evidence">Evidence: prompt and output</p></div>
-<div><h3>Influence on the writer</h3><p>Did assistance change what the writer thought, selected or reported?</p><p class="evidence">Evidence: human outcomes and a comparison</p></div>
-<div><h3>Interpersonal consequence</h3><p>How did the recipient interpret the act, and what happened next?</p><p class="evidence">Evidence: recipient and interactional data</p></div>
+<div><h3>The message</h3><p>What language did the system produce?</p><p class="evidence">Evidence: prompt and output</p></div>
+<div><h3>The sender</h3><p>What did the writer think, feel, select or revise?</p><p class="evidence">Evidence: the writer's process and outcomes</p></div>
+<div><h3>The recipient</h3><p>How was the message understood, and what happened next?</p><p class="evidence">Evidence: recipient and interactional data</p></div>
 </div>
-
----
-
-## Zelizer on intimacy and economic exchange
-
-<div class="two-col-text">
-<div><h3>Separate spheres</h3><p>This view treats intimate relations as a realm of sentiment and economic activity as a realm of rational calculation.</p></div>
-<div><h3>The empirical problem</h3><p>Families, partners and carers routinely exchange money, labour and gifts. The exchanges do not all mean the same thing.</p></div>
-</div>
-
-<p class="citation">Zelizer, <em>The Purchase of Intimacy</em> (2005), ch. 1.</p>
-
----
-
-## The “hostile worlds” argument
-
-<div class="source-layout">
-<img class="source-focus" src="images/zelizer_hostile_worlds_focus.png" alt="Zelizer passage describing hostile worlds">
-<div><p>On this account, money corrupts intimacy and intimacy compromises rational exchange.</p><p>Zelizer instead asks how people combine the two while distinguishing one relationship from another.</p></div>
-</div>
-
-<p class="citation">Zelizer (2005), pp. 20–22.</p>
-
----
-
-## Cole v. Lucas
-
-<div class="source-layout wide-source">
-<img src="images/zelizer_cole_case.png" alt="Zelizer's account of Cole v Lucas">
-<div><p>Josiah Miller gave promissory notes to Patsy, an enslaved woman with whom he had an intimate relationship.</p><p>After his death, the court had to decide what kind of obligation those notes represented.</p></div>
-</div>
-
-<p class="citation">Zelizer (2005), pp. 7–8.</p>
-
----
-
-## The legal meaning depended on the relationship
-
-<div class="source-layout wide-source">
-<img class="source-focus" src="images/zelizer_cole_decision_focus.png" alt="Zelizer's discussion of the court's classification">
-<div><p>The same transfer acquired a different legal meaning if the relationship was classified as master–slave, concubinage or marriage.</p><p>The court could not interpret the transfer until it classified the relationship.</p></div>
-</div>
-
-<p class="citation">Zelizer (2005), pp. 8–9.</p>
-
----
-
-## How Zelizer defines relational work
-
-<div class="relation-map"><div class="node">relationship</div><div class="arrow">↔</div><div class="node">transaction</div><div class="arrow">↔</div><div class="node">medium</div><div class="arrow">↔</div><div class="node">meaning</div></div>
-
-<p>People differentiate social ties, mark their boundaries and match them with transactions and media they regard as appropriate. The four terms above summarize Zelizer's published definition.</p>
-
----
-
-## Connected lives
-
-<div class="source-layout">
-<img class="source-focus" src="images/zelizer_connected_lives_focus.png" alt="Zelizer passage on connected lives">
-<div><p>People combine intimacy and economic activity while negotiating what particular exchanges mean.</p></div>
-</div>
-
-<p class="citation">Zelizer (2005), pp. 28–30; Zelizer (2012).</p>
-
----
-
-## The apology as a relational act
-
-<p>Zelizer studies ties, economic transactions, media and meanings. Our example applies the same relational question to a communicative act:</p>
-
-<div class="observation-list">
-<p><strong>Tie:</strong> What kind of relationship is this?</p>
-<p><strong>Act:</strong> What obligation is being performed?</p>
-<p><strong>Medium:</strong> How is it being performed, and with whose assistance?</p>
-<p><strong>Meaning:</strong> What do participants understand the act to express?</p>
-</div>
-
----
-
-## Different ways to use AI assistance
-
-<div class="comparison-strip">
-<div><strong>Model drafts</strong><span>Sender revises substantially</span></div><div><strong>Model drafts</strong><span>Sender copies without review</span></div><div><strong>Assistance disclosed</strong><span>Recipient knows how it was made</span></div><div><strong>Assistance concealed</strong><span>Recipient attributes the words to the sender</span></div>
-</div>
-
-<p>Two senders could use the same words while making different choices about effort, revision and disclosure.</p>
 
 ---
 
@@ -164,71 +76,60 @@ format:
 
 ---
 
-## The broken promise as an incident
+## Condolence as an interactional obligation
 
-<div class="incident"><div>Earlier line<br><strong>“You can rely on me.”</strong></div><div class="break-mark">≠</div><div>Observed conduct<br><strong>Late cancellation after reliance</strong></div></div>
-
-<p>Saturday’s plan changes, but the interactional problem is broader. The conduct conflicts with the earlier claim that the friend could rely on the promise.</p>
-
----
-
-## Recognizing the offence
-
-<div class="source-layout">
-<img class="source-focus" src="images/goffman_corrective_start_focus.png" alt="Goffman on the beginning of a corrective process">
-<div><p>A participant may challenge the event, or the offender may recognize it without being prompted.</p><p>The opening establishes that something requires repair.</p></div>
+<div class="two-col-text">
+<div><h3>The expected act</h3><p>The sender recognizes the loss and displays an appropriate orientation towards the bereaved person.</p></div>
+<div><h3>Possible breaches</h3><p>No message, a very late message or a conspicuously generic message may be interpreted as evidence about the relationship.</p></div>
 </div>
 
-<p class="citation">Goffman (1955), pp. 219–220.</p>
+<p>Goffman helps us examine public conduct in the encounter. Evidence about the sender’s private feelings would have to come from elsewhere.</p>
 
 ---
 
-## Accounts and excuses
+## Garfinkel's breaching demonstrations
 
-<div class="source-layout">
-<img class="source-focus" src="images/goffman_corrective_offer_focus.png" alt="Goffman on accounts, compensation and punishment">
-<div><p>“My employer required me to work” explains the conflict.</p><p>It does not acknowledge the nine-hour delay, the reliance on the promise or the cost imposed on the other person.</p></div>
+<div class="breach-examples">
+<p><strong>At home</strong><span>Behave like a polite lodger rather than a family member.</span></p>
+<p><strong>In conversation</strong><span>Demand precise definitions of ordinary remarks.</span></p>
+<p><strong>In a shop</strong><span>Bargain over merchandise marked with a fixed price.</span></p>
 </div>
 
-<p class="citation">Goffman (1955), pp. 220–221.</p>
+<p>The awkward response reveals an expectation that ordinarily remains unstated.</p>
+<p class="citation">Garfinkel, <em>Studies in Ethnomethodology</em> (1967), ch. 2.</p>
 
 ---
 
-## The stages of a corrective exchange
-
-<div class="process-line"><div>offence<br>recognized</div><div>account</div><div>responsibility<br>acknowledged</div><div>repair<br>offered</div><div>recipient<br>responds</div></div>
-
-<p>The model can draft an account and an offer. It cannot make the recipient accept either.</p>
-
----
-
-## Acceptance is the recipient’s decision
+## “What do you mean, you had a flat tire?”
 
 <div class="source-layout">
-<img class="source-focus" src="images/goffman_corrective_phases_focus.png" alt="Goffman on the phases of the corrective process">
-<div><p>Compensation or expiation forms part of the exchange. The recipient then decides whether to accept the account and the proposed repair.</p></div>
+<img class="source-focus" src="images/garfinkel_clarification_case.png" alt="Garfinkel's clarification demonstration and flat-tire exchange">
+<div><p>The experimenter treats an ordinary remark as if its meaning were unclear.</p><p>The other speaker responds with confusion and hostility because the request violates the ordinary terms of conversation.</p></div>
 </div>
 
-<p class="citation">Goffman (1955), pp. 221–222.</p>
+<p class="citation">Garfinkel (1967), pp. 42–43.</p>
 
 ---
 
-## Authorship and responsibility in an AI-assisted message
+## Calling a friend just to say good night
 
-<div class="ownership-questions"><p>Who selected the explanation?</p><p>Who decided what responsibility to acknowledge?</p><p>Who chose the repair?</p><p>What does the recipient believe about authorship?</p></div>
+<div class="trend-slide">
+<div class="trend-video"><a href="https://www.facebook.com/TheJRECompanion/posts/dudes-calling-friends-to-say-good-night-just-may-be-the-best-social-media-trend-/711260041408367/" target="_blank"><img src="images/goodnight_trend_thumbnail.png" alt="Video thumbnail reading Told my husband to call his friends to say goodnight"><span class="play-badge">▶</span></a></div>
+<div class="trend-copy"><div><h3>The call</h3><p>“I’m about to go to sleep. I just wanted to call and say good night.”</p></div><div><h3>The recurring reaction</h3><p>Friends laugh, ask what is wrong or call back to check that the caller is all right.</p></div><p class="click-note">Click the thumbnail to open the video.</p></div>
+</div>
 
-<p>The sender remains responsible for sending the message. A recipient may interpret it differently if they later learn how it was written.</p>
+<p class="citation">Video posted by The JRE Companion on Facebook.</p>
 
 ---
 
 ## Hochschild on feeling rules and emotion work
 
 <div class="source-layout">
-<img src="images/hochschild_title.png" alt="Title page of Hochschild's article">
-<div><p>Hochschild asks how people try to manage feeling in relation to social expectations, rather than studying emotional display alone.</p></div>
+<img class="source-focus" src="images/hochschild_goffman_bridge.png" alt="Hochschild's discussion of Goffman and the social organization of feeling">
+<div><p>Hochschild starts with a question about social order: why are feelings at funerals, weddings and parties as patterned as they are?</p><p>She takes Goffman's account of conduct in encounters into the study of what people think they should feel.</p></div>
 </div>
 
-<p class="citation">Hochschild, “Emotion Work, Feeling Rules, and Social Structure” (1979).</p>
+<p class="citation">Hochschild, “Emotion Work, Feeling Rules, and Social Structure” (1979), p. 552.</p>
 
 ---
 
@@ -244,7 +145,7 @@ format:
 
 <div class="source-layout">
 <img class="source-focus" src="images/hochschild_feeling_rules_focus.png" alt="Hochschild passage defining feeling rules">
-<div><p>Rules concern the direction, intensity and duration of feeling treated as appropriate to a situation.</p><p>An apology carries expectations about remorse, concern and responsibility.</p></div>
+<div><p>Rules concern the direction, intensity and duration of feeling treated as appropriate to a situation.</p><p>A condolence carries expectations about sympathy, seriousness and attention to another person's loss.</p></div>
 </div>
 
 <p class="citation">Hochschild (1979), pp. 563–564.</p>
@@ -255,66 +156,143 @@ format:
 
 <div class="source-layout">
 <img class="source-focus" src="images/hochschild_emotion_work_focus.png" alt="Hochschild passage defining emotion work">
-<div><p>Emotion work is the attempt to change the degree or quality of emotion. The term describes the effort, not a guaranteed result.</p></div>
+<div><p>Emotion work is the attempt to change the degree or quality of emotion. The attempt may succeed or fail.</p></div>
 </div>
 
 <p class="citation">Hochschild (1979), p. 561.</p>
 
 ---
 
-## Expression, feeling and interpretation
+## Goffman and Hochschild
 
-<div class="outcome-columns"><div><h3>Expression</h3><p>The words and display produced in the message</p></div><div><h3>Emotion work</h3><p>The sender’s attempt to change or clarify feeling</p></div><div><h3>Interpretation</h3><p>What the recipient understands the expression to mean</p></div></div>
-
----
-
-## What the model can generate
-
-<div class="message-example">“I’m really sorry. I know you were counting on me, and I should have told you sooner.”</div>
-
-<p>The model can produce recognizable language of remorse. The words alone provide no evidence about the sender’s feeling or effort.</p>
+<div class="theory-comparison">
+<div><h3>Goffman</h3><p>How does a person sustain an appropriate line before others?</p><p>The evidence is visible conduct within an encounter.</p></div>
+<div><h3>Hochschild</h3><p>How do social expectations reach into what a person thinks they should feel?</p><p>The evidence must include the person's effort to manage feeling.</p></div>
+</div>
 
 ---
 
-## Prompts that ask the writer to reflect
+## Surface acting and deep acting
 
-<div class="reflection-prompts"><p>What commitment did you make?</p><p>What did the other person do in reliance on it?</p><p>What resulted from your delayed notice?</p><p>Which repair can you actually carry out?</p></div>
+<div class="acting-comparison">
+<div><h3>Surface acting</h3><p>Change the outward expression while leaving the current feeling unchanged.</p></div>
+<div><h3>Deep acting</h3><p>Try to produce or intensify the feeling that the situation calls for.</p></div>
+</div>
 
-<p>These questions could facilitate emotion work. Whether they do so requires evidence about the writer’s process.</p>
-
----
-
-## What we do not observe
-
-<div class="unobserved"><span>generated text ✓</span><span>sender’s feeling ?</span><span>recipient’s interpretation ?</span><span>relationship after the exchange ?</span></div>
+<p>An appropriate condolence can result from either process. Distinguishing them requires evidence about the sender.</p>
+<p class="citation">Hochschild, <em>The Managed Heart</em> (1983), ch. 3.</p>
 
 ---
 
-## Gershon on media choice
+## What might the sender offload?
 
-<div class="supporting-theory"><h3>Ilana Gershon: media ideologies</h3><p>Interviews about relationship dissolution showed that people hold socially learned beliefs about what a text, call or face-to-face exchange communicates about seriousness, effort and obligation.</p><p>AI assistance adds another production choice whose meaning may depend on local norms and disclosure.</p></div>
+<div class="offload-list">
+<p><strong>Formulation</strong><span>The sender feels sympathy but cannot find the words.</span></p>
+<p><strong>Reflection</strong><span>The prompt asks the sender to consider the loss and what practical help is appropriate.</span></p>
+<p><strong>Expression</strong><span>The model supplies the conventional language of sympathy.</span></p>
+<p><strong>The act itself</strong><span>The sender delegates the message without reading or revising it.</span></p>
+</div>
 
-<p class="citation">Gershon, <em>The Breakup 2.0</em> (2010).</p>
-
----
-
-## Illouz on therapeutic language
-
-<div class="supporting-theory"><h3>Eva Illouz: therapeutic culture</h3><p>Psychological language supplies widely available ways to describe selves, injuries, needs and relationships.</p><p>Words such as “boundaries,” “validation” and “emotional availability” may organize a generated explanation. One output cannot show cultural standardization.</p></div>
-
-<p class="citation">Illouz, <em>Saving the Modern Soul</em> (2008).</p>
+<p>These processes require different evidence about the sender.</p>
 
 ---
 
-## Questions for the opening example
+## What the recipient can observe
 
-<div class="five-questions"><p><strong>Zelizer:</strong> What tie, act, medium and meaning are being matched?</p><p><strong>Goffman:</strong> What offence and corrective moves organize the exchange?</p><p><strong>Hochschild:</strong> Are we observing expression, emotion work or interpretation?</p><p><strong>Gershon:</strong> What does choosing this medium communicate?</p><p><strong>Illouz:</strong> Which cultural vocabulary defines the injury and repair?</p></div>
+<div class="outcome-columns"><div><h3>Expression</h3><p>The words and medium are observable.</p></div><div><h3>Production</h3><p>Authorship, revision and disclosure may be hidden.</p></div><div><h3>Interpretation</h3><p>The recipient decides what the act says about the relationship.</p></div></div>
+
+---
+
+## Zelizer's concrete problem
+
+<div class="transaction-examples">
+<p><strong>£50 sent to a colleague</strong><span>Reimbursement for expenses</span></p>
+<p><strong>£50 sent to a sibling</strong><span>A birthday gift</span></p>
+<p><strong>£50 sent to a friend</strong><span>Repayment of a loan</span></p>
+</div>
+
+<p>The amount alone does not tell us what happened. The relationship, the payment medium and the shared understanding give the transfer its meaning.</p>
+<p class="citation">Zelizer, <em>The Purchase of Intimacy</em> (2005); Zelizer (2012).</p>
+
+---
+
+## Connected lives
+
+<div class="source-layout">
+<img class="source-focus" src="images/zelizer_connected_lives_focus.png" alt="Zelizer passage on connected lives">
+<div><p>Zelizer rejects the idea that intimacy and calculation occupy separate social worlds.</p><p>People routinely negotiate the meaning of transfers within particular relationships.</p></div>
+</div>
+
+<p class="citation">Zelizer (2005), pp. 28–30.</p>
+
+---
+
+## Applying Zelizer to the condolence message
+
+<p>Zelizer studies economic exchanges. The condolence example extends her question to a communicative act:</p>
+
+<div class="observation-list">
+<p><strong>Relationship:</strong> close friend, colleague or distant acquaintance</p>
+<p><strong>Act:</strong> recognizing a loss and offering support</p>
+<p><strong>Medium:</strong> card, call, text or AI-assisted message</p>
+<p><strong>Meaning:</strong> what the recipient understands the act to express</p>
+</div>
+
+---
+
+## Gershon on media ideologies
+
+<div class="source-layout">
+<img class="source-focus" src="images/gershon_media_ideologies_passage.png" alt="Gershon's discussion of media ideologies and second-order information">
+<div><p>A medium supplies information about how the recipient should interpret the words.</p><p>People learn these meanings socially, and the meanings attached to texts and calls vary across groups.</p></div>
+</div>
+
+<p class="citation">Gershon, <em>The Breakup 2.0</em> (2010), p. 18.</p>
+
+---
+
+## AI assistance and media ideologies
+
+<div class="media-comparison">
+<p><strong>What arrived?</strong><span>A text, email, card or voice message</span></p>
+<p><strong>How was it produced?</strong><span>Written, suggested, copied or automated</span></p>
+<p><strong>What does the recipient believe?</strong><span>The production process may be known, suspected or concealed</span></p>
+</div>
+
+<p>Gershon gives us the clearer bridge from relational norms to AI-assisted communication.</p>
+
+---
+
+## What if the model sounds exactly like you?
+
+<div class="voice-case">
+<p>The recipient can no longer identify assistance from the style of the message.</p>
+<p>Questions about effort, authorship and responsibility remain.</p>
+<p>The effect of disclosure becomes an empirical question.</p>
+</div>
+
+---
+
+## Questions raised by the condolence example
+
+<div class="five-questions"><p><strong>Goffman:</strong> What response does the situation call for?</p><p><strong>Garfinkel sidebar:</strong> What expectation did the good-night call reveal?</p><p><strong>Hochschild:</strong> Did the sender manage feeling, expression or both?</p><p><strong>Zelizer:</strong> How does the relationship change the meaning of the act?</p><p><strong>Gershon:</strong> What does the production medium communicate?</p></div>
 
 ---
 
 ## Break
 
 <div class="break-slide">10 minutes</div>
+
+---
+
+## Two studies of AI-assisted communication
+
+<div class="two-col-text">
+<div><h3>Hohenstein et al.</h3><p>Do smart replies change language and partners' immediate ratings during a conversation?</p></div>
+<div><h3>Williams-Ceci et al.</h3><p>Can biased autocomplete suggestions influence the person using them to write?</p></div>
+</div>
+
+<p>These experiments examine bounded interactions and writing tasks. A sociological study of established relationships would need additional outcomes and a longer time frame.</p>
 
 ---
 
@@ -328,7 +306,7 @@ format:
 
 ## Study 1: randomized access to smart replies
 
-<div class="source-layout figure-source"><img src="images/hohenstein_fig1.jpg" alt="Hohenstein study design and interface"><div><p><strong>219 pairs</strong> discussed a policy issue.</p><p>Each participant was independently assigned smart replies available or unavailable, producing four pair combinations.</p><p>Availability encouraged use; not everyone with access selected a suggestion.</p></div></div>
+<div class="source-layout figure-source"><img src="images/hohenstein_fig1.jpg" alt="Hohenstein study design and interface"><div><p><strong>219 pairs</strong> discussed a policy issue.</p><p>Each participant was independently assigned smart replies available or unavailable, producing four pair combinations.</p><p>Availability encouraged use; some participants with access chose to type their own response.</p></div></div>
 
 <p class="citation">Hohenstein et al. (2023), Fig. 1.</p>
 
@@ -336,7 +314,7 @@ format:
 
 ## Actual use and suspected use
 
-<div class="two-col-text"><div><h3>Actual use</h3><p>The system recorded use. The authors used randomized availability as an instrument when estimating its effects.</p></div><div><h3>Suspected use</h3><p>Partners reported suspected use after the exchange. The researchers did not randomly disclose AI assistance.</p></div></div>
+<div class="two-col-text"><div><h3>Actual use</h3><p>The system recorded use. The authors used randomized availability as an instrument when estimating its effects.</p></div><div><h3>Suspected use</h3><p>Partners reported suspected use after the exchange. Disclosure of AI assistance was not randomized.</p></div></div>
 
 <p class="plain-question">The suspected-use comparison is correlational.</p>
 
@@ -392,7 +370,7 @@ format:
 
 <div class="figure-full"><img src="images/williams_fig3.jpg" alt="Williams-Ceci Experiment 1 results"></div>
 
-<p>The outcome is the writer’s reported attitude after composition. The study did not test whether the message persuaded a recipient.</p>
+<p>The outcome is the writer’s reported attitude after composition. Recipient persuasion was outside the study.</p>
 <p class="citation">Williams-Ceci et al. (2026), Fig. 3.</p>
 
 ---
@@ -401,26 +379,24 @@ format:
 
 <div class="figure-full"><img src="images/williams_fig4.jpg" alt="Williams-Ceci Experiment 2 results"></div>
 
-<p>The suggestions may have affected what participants reported, rather than simply changing how they expressed an existing view.</p>
+<p>The suggestions were followed by changes in participants’ reported attitudes. The experiment leaves open how durable those changes were.</p>
 <p class="citation">Williams-Ceci et al. (2026), Fig. 4.</p>
 
 ---
 
-## What each reading observes
+## Comparing the two experiments
 
-<table class="comparison-table"><thead><tr><th>Reading</th><th>What is observed?</th><th>What remains open?</th></tr></thead><tbody><tr><td>Zelizer</td><td>How ties, transactions, media and meanings are matched</td><td>How recipients interpret AI mediation in this case</td></tr><tr><td>Hohenstein et al.</td><td>Conversation language and partner ratings</td><td>Consequences for existing relationships over time</td></tr><tr><td>Williams-Ceci et al.</td><td>Writer attitudes after assisted composition</td><td>Recipient persuasion or relational consequences</td></tr></tbody></table>
+<table class="comparison-table"><thead><tr><th>Study</th><th>Observed outcome</th><th>What remains open?</th></tr></thead><tbody><tr><td>Hohenstein et al.</td><td>Language and partner ratings immediately after a bounded conversation</td><td>Meaning within an established relationship and consequences over time</td></tr><tr><td>Williams-Ceci et al.</td><td>The writer's reported attitude after assisted composition</td><td>Recipient response, emotion work and relationship outcomes</td></tr></tbody></table>
 
-<p class="comparison-note">Katz and Lazarsfeld’s study of interpersonal influence helps separate effects on writers, messages and recipients. Evidence about one does not establish effects on the other two.</p>
-
-<p class="citation">Katz and Lazarsfeld, <em>Personal Influence</em> (1955).</p>
+<p class="comparison-note">The experiments measure language, writers and immediate judgments. Research on established relationships would also need relationship-specific obligations and consequences over time.</p>
 
 ---
 
 ## Discussion: delegation and disclosure
 
 <div class="discussion-evidence">
-<div><h3>The broken commitment</h3><p>Is the sender delegating wording, reflection, acknowledgment of obligation or the interpersonal act itself?</p></div>
-<div><h3>The medium</h3><p>Would disclosure change the meaning of the apology? Use Zelizer and Gershon to specify when and why.</p></div>
+<div><h3>The sender</h3><p>In the condolence case, is the sender delegating formulation, reflection, emotional expression or the interpersonal act itself?</p></div>
+<div><h3>The recipient</h3><p>Would disclosure change the meaning of the message? Specify what evidence would answer the question.</p></div>
 </div>
 
 ---
@@ -438,13 +414,13 @@ format:
 
 <div class="code-task-map"><span>social situation</span><span>student response</span><span>model advice</span><span>comparison</span><span>audit record</span></div>
 
-<p>Students decide what they would do before seeing the model output. Their response provides a comparison, not an answer key.</p>
+<p>Students decide what they would do before seeing the model output. The exercise then compares that judgment with the model’s advice. There is no prescribed correct response.</p>
 
 ---
 
 ## Three social situations
 
-<table class="closed-table"><thead><tr><th>Relationship</th><th>Situation</th><th>Question for the audit</th></tr></thead><tbody><tr><td>Close friend</td><td>A broken promise created practical costs</td><td>Does the advice recognize reliance and repair?</td></tr><tr><td>Project colleague</td><td>Joint work was presented without credit</td><td>How does the model handle correction and escalation?</td></tr><tr><td>Adult sibling</td><td>Private information conflicts with a parent's question</td><td>Which obligation does the model prioritize?</td></tr></tbody></table>
+<table class="closed-table"><thead><tr><th>Relationship</th><th>Situation</th><th>Question for the audit</th></tr></thead><tbody><tr><td>Close colleague</td><td>Their mother has died</td><td>Does the advice recognize the loss without inventing intimacy?</td></tr><tr><td>Project colleague</td><td>Joint work was presented without credit</td><td>How does the model handle correction and escalation?</td></tr><tr><td>Adult sibling</td><td>Private information conflicts with a parent's question</td><td>Which obligation does the model prioritize?</td></tr></tbody></table>
 
 ---
 
@@ -452,10 +428,10 @@ format:
 
 ```python
 {
-    "id": "broken_commitment",
-    "relationship": "a close friend of ten years",
+    "id": "condolence_message",
+    "relationship": "a close colleague",
     "facts": (
-        "You promised to help them move..."
+        "Their mother has died after a short illness..."
     ),
 }
 ```
@@ -469,8 +445,8 @@ format:
 ```python
 student_responses_before = [
     {
-        "action": "Call immediately and offer repair.",
-        "reason": "The late notice increased the cost.",
+        "action": "Write a private message and offer practical help.",
+        "reason": "The message should recognize the loss without requiring a reply.",
     },
     # two more responses
 ]
@@ -497,7 +473,7 @@ Identify important missing information.
 
 ---
 
-## The raw return is preserved
+## Print the raw model return
 
 ```python
 print(raw_output)
@@ -527,11 +503,11 @@ for position, situation in enumerate(situations, start=1):
     model_records.append(model_record)
 ```
 
-<p>On the first iteration, <code>position</code> is <code>1</code> and <code>situation</code> is the broken-commitment dictionary.</p>
+<p>On the first iteration, <code>position</code> is <code>1</code> and <code>situation</code> is the condolence dictionary.</p>
 
 ---
 
-## The audit requires another human judgment
+## Students review the model advice
 
 ```python
 audit_answers = [
@@ -560,11 +536,11 @@ def record_audit(
 ):
 ```
 
-<p>If the call omits the final argument, Python records <code>False</code>. The Boolean represents the student's decision, not a model score.</p>
+<p>If the call omits the final argument, Python records <code>False</code>. The student supplies this Boolean after reviewing the advice.</p>
 
 ---
 
-## Keyword arguments make the comparison visible
+## Keyword arguments in the function call
 
 ```python
 audit_record = record_audit(
@@ -613,15 +589,15 @@ return {
 
 ## What to explain in the recording
 
-<div class="submission-box">Show one situation dictionary, your response before the model call, the raw return, the parsed output and the completed audit record. Explain why your response is a comparison rather than a gold standard.</div>
+<div class="submission-box">Show one situation dictionary, your response before the model call, the raw return, the parsed output and the completed audit record. Explain why students may reasonably reach different judgments.</div>
 
 <p>Submit a 6–8 minute narrated recording to the course Coding Videos folder using the required week-and-name filename.</p>
 
 ---
 
-## What this exercise shows
+## Scope of the exercise
 
-<div class="evidence-boundary"><p><strong>It can show:</strong> how the model interprets three supplied situations and where one student agrees or disagrees.</p><p><strong>It cannot show:</strong> the correct social response, how people generally behave or how a real recipient would interpret the advice.</p></div>
+<div class="evidence-boundary"><p><strong>Observed here:</strong> how the model interprets three supplied situations and where one student agrees or disagrees.</p><p><strong>Requires additional evidence:</strong> how people generally behave and how recipients interpret advice-based messages.</p></div>
 
 ---
 
@@ -639,7 +615,12 @@ return {
 [Sources]
 - Zelizer (2012), https://doi.org/10.1177/0032329212441591
 - Goffman (1955), https://doi.org/10.1080/00332747.1955.11023008
+- Garfinkel (1967), Studies in Ethnomethodology, chapter 2
+- “Calling Friends to Say Goodnight Prank” (2025), https://knowyourmeme.com/memes/calling-friends-to-say-goodnight-prank
+- “TikTok men wishing friends goodnight” (2025), https://www.fastcompany.com/91342944/men-wishing-friends-good-night-tiktok-trend-male-loneliness-epidemic
 - Hochschild (1979), https://doi.org/10.1086/227049
+- Hochschild (1983), The Managed Heart, chapter 3
+- Gershon (2010), https://doi.org/10.7591/9780801458002
 - Hohenstein et al. (2023), https://doi.org/10.1038/s41598-023-30938-9
 - Williams-Ceci et al. (2026), https://doi.org/10.1126/sciadv.adw5578
 [/Sources]
