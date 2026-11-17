@@ -30,7 +30,7 @@ format:
 
 <div class="role-pair"><div><strong>Working-class upbringing</strong><span>Alex was the first in the family to attend university. Both parents held hourly-paid jobs.</span></div><div><strong>Professional-class upbringing</strong><span>Both of Alex’s parents had university degrees and worked in professional jobs.</span></div></div>
 
-<p class="small-note">Alex has the same degree, job and three years of experience in both descriptions. The report is identical. We also vary whether Alex discloses using ChatGPT to edit it. These proposed background cues need pretesting.</p>
+<p class="small-note">Alex has the same degree, job and three years of experience in both descriptions. The report is identical. We also vary whether Alex discloses using ChatGPT to edit it.</p>
 
 ---
 
@@ -38,7 +38,7 @@ format:
 
 <div class="market-visual"><div><strong>Writer</strong><span>What does the reader infer from Alex’s family background?</span></div><div><strong>Report</strong><span>The text and the job are held fixed.</span></div><div><strong>Evaluator</strong><span>What counts as competent work in this workplace?</span></div></div>
 
-<p>Bourdieu’s “linguistic market” directs attention to who is speaking and who has the power to judge the writing. It does not predict a particular verdict on ChatGPT.</p>
+<p>Bourdieu’s “linguistic market” directs attention to who is speaking, the audience and the setting in which the writing is judged.</p>
 
 <p class="citation">Bourdieu (1977), “The Economics of Linguistic Exchanges,” <em>Social Science Information</em> 16(6): 645–668. <a href="https://doi.org/10.1177/053901847701600601">doi:10.1177/053901847701600601</a>.</p>
 
@@ -50,7 +50,7 @@ format:
 
 <p>A reader may find the report clear while making a different judgment about its author once the author’s background or use of AI is disclosed.</p>
 
-<p class="citation">Bourdieu (1977), p. 646. The application to AI-assisted reports is ours.</p>
+<p class="citation">Bourdieu (1977), p. 646.</p>
 
 ---
 
@@ -60,7 +60,7 @@ format:
 
 <p>Lamont and Lareau ask which cultural signals institutions recognize and reward. Here we ask whether a family-background cue changes what an evaluator infers from the same use of a writing tool.</p>
 
-<p class="citation">Lamont and Lareau (1988), “Cultural Capital: Allusions, Gaps and Glissandos in Recent Theoretical Developments,” <em>Sociological Theory</em> 6(2): 153–168. <a href="https://doi.org/10.2307/202113">doi:10.2307/202113</a>. The AI question is an application, not their finding.</p>
+<p class="citation">Lamont and Lareau (1988), “Cultural Capital: Allusions, Gaps and Glissandos in Recent Theoretical Developments,” <em>Sociological Theory</em> 6(2): 153–168. <a href="https://doi.org/10.2307/202113">doi:10.2307/202113</a>.</p>
 
 ---
 
@@ -94,7 +94,7 @@ format:
 
 ## Study 2: ratings of workers who received AI help
 
-<div class="figure-explain"><img src="images/reif_2025_fig2_pdf.png" alt="Reif et al. Figure 2, effect sizes for evaluations of workers receiving AI help versus human help or no described help"><div><p>Positive values mean a higher rating for AI help; negative values mean a lower one.</p><p>AI users were rated as lazier and less competent, diligent, independent and self-assured. These are observers’ judgments, not tests of the workers’ skills.</p></div></div>
+<div class="figure-explain"><img src="images/reif_2025_fig2_pdf.png" alt="Reif et al. Figure 2, effect sizes for evaluations of workers receiving AI help versus human help or no described help"><div><p>Positive values mean a higher rating for AI help; negative values mean a lower one.</p><p>Observers rated AI users as lazier and less competent, diligent, independent and self-assured.</p></div></div>
 
 <p class="citation">Reif, Larrick and Soll (2025), published article, Fig. 2, Study 2. Blue circles compare AI with non-AI help; red triangles compare AI with no described help. Error bars are 95% confidence intervals.</p>
 
@@ -102,9 +102,9 @@ format:
 
 ## Evaluators’ own AI use also mattered
 
-<div class="figure-explain reif-figure"><img src="images/reif_2025_fig3_evaluator_use.png" alt="Reif et al. Figure 3: predicted task fit and hiring decisions by evaluator AI use and candidate AI use"><div><p>In Study 3, participants who used AI more often evaluated an AI-using candidate more favorably than participants who used AI less often.</p><p>Study 2 found no significant moderation by worker age, gender or occupation. Neither study tested the family-background comparison proposed here.</p></div></div>
+<div class="figure-explain reif-figure"><img src="images/reif_2025_fig3_evaluator_use.png" alt="Reif et al. Figure 3: predicted task fit and hiring decisions by evaluator AI use and candidate AI use"><div><p>In Study 3, participants who used AI more often evaluated an AI-using candidate more favorably than participants who used AI less often.</p><p>The evaluator’s experience with AI helped shape the judgment of the applicant.</p></div></div>
 
-<p class="citation">Reif et al. (2025), Fig. 3, Study 3 (<em>N</em> = 1,667), and Study 2 supplementary analyses. Figure 3 shows model-predicted outcomes, not a class comparison.</p>
+<p class="citation">Reif et al. (2025), Fig. 3, Study 3 (<em>N</em> = 1,667). Plotted values are model predictions from the study.</p>
 
 ---
 
@@ -132,9 +132,9 @@ format:
 
 <div class="foschi-fork"><div class="foschi-score"><small>SAME PERFORMANCE</small><strong>14 correct<br>out of 20</strong></div><svg class="foschi-connector" viewBox="0 0 110 320" aria-hidden="true"><path d="M 4 160 L 104 80 M 4 160 L 104 240" /></svg><div class="foschi-branches"><div><small>STANDARD: AT LEAST 12</small><strong>14 ≥ 12</strong><span>Meets the standard → evidence of ability</span></div><div class="strict"><small>STANDARD: AT LEAST 17</small><strong>14 &lt; 17</strong><span>Falls short → ability remains unproven</span></div></div></div>
 
-<p>The performance is identical. Foschi argues that status can affect which standard an observer applies. We do not yet know whether Alex’s family background changes that judgment.</p>
+<p>The performance is identical. Foschi argues that status can affect which standard an observer applies. We will ask whether readers apply different standards to Alex.</p>
 
-<p class="citation">Foschi (2000), p. 25. The score of 14 and standards of 12 and 17 are her example; the application to Alex is ours.</p>
+<p class="citation">Foschi (2000), p. 25; numerical example from the article.</p>
 
 ---
 
@@ -142,9 +142,9 @@ format:
 
 <div class="margin-comments"><div><small>POSSIBILITY 1</small><strong>“Alex used a useful writing tool.”</strong><span>A reader gives credit for using an available resource.</span></div><div><small>POSSIBILITY 2</small><strong>“Alex needed help with basic writing.”</strong><span>A reader treats the same disclosure as evidence of weak skill.</span></div></div>
 
-<p>These are hypothetical reader reactions. Foschi’s account allows the standard to differ by perceived status, but it does not tell us which reaction a class-background cue will produce.</p>
+<p>Would either reaction be more common when readers know about Alex’s family background?</p>
 
-<p class="citation">Foschi (2000), discussion of double standards and reverse double standards. The reader reactions above are teaching examples, not quotations from participants.</p>
+<p class="citation">Foschi (2000), discussion of double standards and reverse double standards. Reader reactions above are proposed examples.</p>
 
 ---
 
@@ -164,7 +164,7 @@ format:
 
 <p>At working-class César Chávez Middle School, a teacher acknowledged students’ gaming abilities but said school should teach keyboarding, research and written assignments.</p>
 
-<p class="citation">Rafalow (2018), p. 1442. These are two episodes from a three-school ethnography, not matched observations of identical students.</p>
+<p class="citation">Rafalow (2018), p. 1442.</p>
 
 ---
 
@@ -172,7 +172,7 @@ format:
 
 <div class="school-comparison"><div><strong>Heathcliff</strong><span>Teachers brought students’ games and media projects into lessons.</span></div><div><strong>Sheldon</strong><span>Teachers treated social media and games as risks to academic work.</span></div><div><strong>César Chávez</strong><span>Teachers taught digital basics but separated them from students’ own online play.</span></div></div>
 
-<p>The schools differed in class composition, race and institutional practice at the same time. Rafalow shows how teachers assign value to digital activity. His comparison does not isolate the effect of class.</p>
+<p>Across the three schools, teachers decided which of the students’ digital practices counted as academic skill.</p>
 
 <p class="citation">Rafalow (2018), fieldwork and discussion.</p>
 
@@ -184,15 +184,15 @@ format:
 
 <p>When would a reader expect the writer to mention the tool? That expectation may differ between editing a sentence and asking a model to draft a report.</p>
 
-<p class="citation">Google (2018), <a href="https://blog.google/products-and-platforms/products/gmail/subject-write-emails-faster-smart-compose-gmail/">Smart Compose announcement</a>. Tool descriptions are illustrative; no claim about comparative stigma is made here.</p>
+<p class="citation">Google (2018), <a href="https://blog.google/products-and-platforms/products/gmail/subject-write-emails-faster-smart-compose-gmail/">Smart Compose announcement</a>.</p>
 
 ---
 
-## The class comparison we have not observed
+## A class-background comparison
 
 <div class="role-pair big"><div><strong>Working-class upbringing</strong><span>Does AI use suggest resourcefulness, or make a reader question Alex’s writing skill?</span></div><div><strong>Professional-class upbringing</strong><span>Does the same disclosure prompt the same judgment?</span></div></div>
 
-<p>The two backgrounds are proposed experimental descriptions. No study in today’s readings estimates this comparison.</p>
+<p>We can ask readers to judge the same report while varying Alex’s family background and AI disclosure.</p>
 
 ---
 
@@ -210,9 +210,9 @@ format:
 
 <div class="study-grid"><div class="study-grid-head">What the evaluator knew beforehand</div><div class="study-grid-head">What appeared with the report</div><div>Either told Alex used AI tools to summarize competitors, or given no such information</div><div>Either told the report used GrowthBar generative AI, or shown no disclosure</div></div>
 
-<p>Participants played the head of marketing and then rated trust in Alex, a market research analyst. The no-disclosure control did not say Alex used no AI. The study did not vary Alex’s class background.</p>
+<p>Participants played the head of marketing and then rated trust in Alex, a market research analyst. In the control condition, the report carried no AI disclosure.</p>
 
-<p class="citation">Schilke and Reimann (2025), Study 11, p. 10. The published experiment used GrowthBar; our classroom report uses a different model.</p>
+<p class="citation">Schilke and Reimann (2025), Study 11, p. 10.</p>
 
 ---
 
@@ -222,7 +222,7 @@ format:
 
 <p>Mean trust was 0.52 points lower with disclosure on a 1–7 scale; the reported standardized difference was <em>d</em> = 0.50. The authors connect the effect to whether AI assistance was seen as a legitimate way to do the work.</p>
 
-<p class="citation">Schilke and Reimann (2025), Study 11. Bars recreate reported mean trust ratings (4.62 and 4.10); not a reproduction of the published figure.</p>
+<p class="citation">Schilke and Reimann (2025), Study 11. Bars plotted from reported mean trust ratings of 4.62 and 4.10.</p>
 
 ---
 
@@ -230,7 +230,7 @@ format:
 
 <img class="forest-plot" src="images/schilke_reimann_fig_sm1.png" alt="Schilke and Reimann supplementary Figure SM-1, a forest plot of AI disclosure effects on trust across twelve studies">
 
-<p class="citation">Schilke and Reimann (2025), supplementary Fig. SM-1. The figure summarizes trust effects across studies; it is not a plot of Study 11 alone. The supplement numbers its included studies differently from the main article.</p>
+<p class="citation">Schilke and Reimann (2025), supplementary Fig. SM-1; trust effects across their studies.</p>
 
 ---
 
@@ -238,7 +238,7 @@ format:
 
 <div class="judgment-list"><div><strong>Competence</strong><span>Could Alex produce a good report without this help?</span></div><div><strong>Trust</strong><span>Would you rely on Alex’s next report?</span></div><div><strong>Report quality</strong><span>Is the report itself accurate and useful?</span></div><div><strong>Acceptability</strong><span>Was AI editing acceptable for this task?</span></div></div>
 
-<p>These are proposed survey questions, not items copied from either study. Reif examined judgments of the AI user; Schilke and Reimann examined trust after disclosure.</p>
+<p>A reader experiment could measure these separately. Reif examined judgments of AI users; Schilke and Reimann examined trust after disclosure.</p>
 
 ---
 
@@ -246,7 +246,7 @@ format:
 
 <div class="hypotheses"><div><strong>Prediction A</strong><span>Readers penalize an AI-using worker from a working-class background more, interpreting the help as evidence of weak skill.</span></div><div><strong>Prediction B</strong><span>Readers penalize an AI-using worker from a professional-class background more, expecting independent expertise.</span></div></div>
 
-<p>Either pattern is possible. We need reader data before claiming a class difference in the AI-use penalty.</p>
+<p>The four-condition experiment on the next slide would distinguish these predictions.</p>
 
 ---
 
@@ -257,7 +257,7 @@ format:
 | **Working-class upbringing** | A | B |
 | **Professional-class upbringing** | C | D |
 
-<p>Randomly assign a reader to one profile. Alex’s job, degree, experience and report stay the same. The no-disclosure version says nothing about AI; it does not claim Alex used none. Ask separately about competence, trust, report quality and the acceptability of assistance.</p>
+<p>Randomly assign a reader to one profile. Alex’s job, degree, experience and report stay the same. The no-disclosure version leaves AI use unmentioned. Ask separately about competence, trust, report quality and the acceptability of assistance.</p>
 
 ---
 
@@ -265,7 +265,7 @@ format:
 
 <div class="pretest-strip"><div><strong>What readers see</strong><span>The same job, credentials, experience and report, with one of two family-background descriptions</span></div><div><strong>What we must ask</strong><span>Do the descriptions change perceived class background? Do they also change assumptions about ability or effort before AI is mentioned?</span></div></div>
 
-<p>The profile cues bundle parental work and education. A pretest can reveal what readers infer from them. The classroom code prepares materials but collects no reader judgments.</p>
+<p>The profile cues bundle parental work and education. A pretest shows what readers infer from them before the main study.</p>
 
 ---
 
@@ -279,7 +279,7 @@ format:
 
 <div class="flow-line"><span>fictional report</span><span>model editing request</span><span>raw revision</span><span>human fact check</span><span>four reader versions</span></div>
 
-<p>The LLM edits text. Python prepares the four descriptions. We do not collect human judgments in this exercise.</p>
+<p>The LLM edits text. Python prepares the four descriptions for human readers to evaluate.</p>
 
 ---
 
@@ -338,7 +338,7 @@ print("Raw return:", raw_text)
 
 <div class="report-page raw-return"><div class="report-heading">Instructor-written fallback for an outage</div><p>RivalCo launched an $18 monthly subscription in April. Our comparable $20 plan costs $2 more. RivalCo advertises a free trial. We do not yet have data on whether customers switched after the launch.</p></div>
 
-<p>This is the script’s fallback text, not a live model result. A live return may use different wording. Compare each return with the source before using it in the reader descriptions.</p>
+<p>A live return may use different wording. Compare it with the source before using it in the reader descriptions.</p>
 
 ---
 
@@ -346,7 +346,7 @@ print("Raw return:", raw_text)
 
 <div class="fact-check"><span>April launch</span><span>$18 rival plan</span><span>$20 comparable plan</span><span>Free trial</span><span>No switching data yet</span></div>
 
-<p>Reject a revision that claims customers switched, that the rival is winning, or that our plan has the same features. The model has no evidence for those claims.</p>
+<p>Reject a revision that claims customers switched, that the rival is winning, or that our plan has the same features. The source provides no evidence for those claims.</p>
 
 ---
 
@@ -377,7 +377,7 @@ for background in CLASS_BACKGROUND_CUES:
         conditions.append(condition)
 ```
 
-<p><code>reader_text</code> is the exact description a reader would see. The empty disclosure string is omitted; it does not claim Alex used no AI.</p>
+<p><code>reader_text</code> is the exact description a reader would see. The empty string leaves AI use unmentioned.</p>
 
 ---
 
@@ -397,7 +397,7 @@ assert all(item["report_text"] == REVISED_PARAGRAPH
            for item in conditions)
 ```
 
-<p>Python confirms that all four records exist and use identical report text. It cannot tell us how readers would judge the workers.</p>
+<p>Python confirms that all four records exist and use identical report text. Human readers would provide the judgments in the proposed study.</p>
 
 ---
 
@@ -413,4 +413,4 @@ assert all(item["report_text"] == REVISED_PARAGRAPH
 
 <div class="closing-report"><div class="report-page"><div class="report-heading">Same report and same job</div><p>RivalCo launched a monthly subscription in April at $18. Our comparable plan costs $20. RivalCo advertises a free trial. We do not yet have data on customer switching.</p></div><div class="role-pair"><div><strong>Working-class upbringing</strong><span>First-generation graduate; parents in hourly-paid work</span></div><div><strong>Professional-class upbringing</strong><span>Parents with degrees and professional jobs</span></div></div></div>
 
-<p>Reif and Schilke and Reimann find penalties for AI use and disclosure in their settings. None of today’s studies tells us whether the penalty differs by family background. A reader experiment could test that question.</p>
+<p>Reif and Schilke and Reimann find penalties for AI use and disclosure in their settings. Our proposed reader experiment asks how those judgments vary with family background.</p>

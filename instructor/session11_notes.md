@@ -2,21 +2,21 @@
 
 ## Central question
 
-Does class background change how AI use is judged? The class does **not** claim that workers from working-class backgrounds face a larger penalty; the opposite is possible.
+Does class background change how AI use is judged? Discuss both possible directions of the class difference before introducing the reader experiment.
 
 ## 165-minute teaching arc
 
 - **Opening lecture, 45 minutes:** Show the identical fictional competitor report with two family-background descriptions. Begin with Bourdieu’s linguistic market, then separate judgments of competence, laziness, trust and legitimate assistance. Explain Reif’s design and results. Introduce Foschi’s double standards. Rafalow’s fieldnotes show how teachers recognized digital practice differently across schools. Finish with Schilke and Reimann’s competitor-report disclosure experiment and the proposed 2×2 reader study.
 - **Reading discussion, 60 minutes:** Compare what each study observes. Reif measures judgments of AI users; Foschi theorizes status standards; Rafalow observes three differently situated schools; Schilke and Reimann vary disclosure. Ask which result supports which claim and where new reader data are needed.
-- **Break and Python walkthrough, 60 minutes:** Run the fictional report through one editing call. Print the raw return and check all five source points, especially the absence of switching data. Trace the first two passes through the nested loop and show the same report in all four versions. Discuss pretesting the family-background descriptions. The code constructs materials; it does not produce ratings. No Week 11 video is due, and no work is assigned for the cancelled 25 November class.
+- **Break and Python walkthrough, 60 minutes:** Run the fictional report through one editing call. Print the raw return and check all five source points, especially the absence of switching data. Trace the first two passes through the nested loop and show the same report in all four versions. Discuss pretesting the family-background descriptions and gathering reader ratings. No Week 11 video is due, and no work is assigned for the cancelled 25 November class.
 
-## Source cautions
+## Source details
 
-- **Reif et al. (2025):** Study 2 reported mean laziness ratings 2.50 (AI help), 2.16 (human help), and 2.02 (no help). It found no significant moderation by age, gender or occupation. These tests do not answer our class-background question. Study 3 finds the evaluator’s own AI use matters.
-- **Foschi (2000):** A status-based threshold is a theoretical illustration. The diagram is not a measured AI effect; reverse double standards are possible.
-- **Rafalow (2018):** Class, race and school context vary together. Do not call the three-school comparison a causal estimate of class.
-- **Schilke and Reimann (2025):** Study 11’s trust means were 4.10 with AI disclosure and 4.62 without, on a 1–7 scale. It independently varied prior AI knowledge and disclosure accompanying the report; the reported disclosure named GrowthBar. It did not vary class background.
-- **Bourdieu / Lamont and Lareau:** Their work frames the institutional evaluation problem. Neither predicts a specific AI-disclosure effect.
+- **Reif et al. (2025):** Study 2 reported mean laziness ratings 2.50 (AI help), 2.16 (human help), and 2.02 (no help). Study 3 examines how the evaluator’s own AI use affects judgment.
+- **Foschi (2000):** The slide uses her numerical example of a 14/20 performance judged against standards of 12 and 17. Discuss both ordinary and reverse double standards.
+- **Rafalow (2018):** His fieldnotes follow teachers in three schools with different class composition, race and institutional settings. Focus on how teachers responded to students’ digital activity.
+- **Schilke and Reimann (2025):** Study 11’s trust means were 4.10 with AI disclosure and 4.62 without, on a 1–7 scale. It varied prior AI knowledge and disclosure accompanying the report; the disclosure named GrowthBar.
+- **Bourdieu / Lamont and Lareau:** Their work frames how evaluators assign value to writing and to the person producing it.
 
 ## Discussion prompts
 

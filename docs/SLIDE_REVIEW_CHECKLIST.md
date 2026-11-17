@@ -90,6 +90,7 @@ Before building the paper sequence, identify the exact published figure, table, 
 - Search for slogan-like contrasts, abstract noun clusters, unnecessary “not X but Y” formulas, and phrases such as “our route,” “the answer becomes input,” “trade external transfer,” “realized path,” or “not clerical tidying.”
 - Avoid production notes in visible copy: “instructor synthesis,” “this slide shows,” or defensive explanations of how the deck was made.
 - Remove captions that merely repeat the title or add a generic methodological warning without advancing the argument.
+- Remove repeated caveats such as “this does not isolate the effect of class” when the slide already states the design and evidence. Describe what researchers observed and the comparison they made. Keep any essential limit once, where it changes the interpretation.
 - Prefer enough ordinary language to a sparse one-sentence slide. Do not confuse brevity with clarity.
 - Remove instructor-facing phrases such as “reason for using it here,” “role today,” “the direct bridge,” “this is the complete input,” and “this slide summarizes.” Make the substantive connection visible without narrating deck construction.
 

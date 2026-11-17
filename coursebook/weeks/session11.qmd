@@ -9,13 +9,13 @@ description: "How readers judge the same report when the author's background and
 
 ## Connection to the preceding material
 
-Week 10 considered how people interpret AI-assisted messages between friends and colleagues. This week turns to a report at work. Two writers with the same job and the same report may be judged differently if readers know about their family backgrounds or their use of AI. The proposed class comparison is a question for a new study; the assigned experiments have not tested it.
+Week 10 considered how people interpret AI-assisted messages between friends and colleagues. This week turns to a report at work. Two writers with the same job and the same report may be judged differently if readers know about their family backgrounds or their use of AI. We use the assigned studies to design that comparison.
 
 ## Learning outcomes
 
 By the end of class, you should be able to:
 
-- explain the AI-use evaluation penalty identified by Reif and colleagues, without treating it as evidence of a class difference;
+- explain the AI-use evaluation penalty identified by Reif and colleagues and describe the outcome they measured;
 - describe Foschi’s account of status-based standards for competence;
 - explain how Rafalow’s schools assigned different value to similar digital practices;
 - distinguish competence, laziness, trust and the perceived legitimacy of AI assistance;
@@ -40,27 +40,27 @@ By the end of class, you should be able to:
 
 ## Sociological and methodological background
 
-Foschi reviews studies in which observers apply different standards of competence to people with different social statuses. The same performance can carry different evidentiary weight depending on who produced it. For our proposed study, family background might change whether AI use is read as resourceful or as a sign of weak skill. Foschi does not predict the direction of this particular class difference; the profiles must first be shown to convey the intended status information. [@Foschi2000DoubleStandards]
+Foschi reviews studies in which observers apply different standards of competence to people with different social statuses. The same performance can carry different evidentiary weight depending on who produced it. For our proposed study, family background might change whether AI use is read as resourceful or as a sign of weak skill. The pretest will ask what readers infer from the family-background descriptions. [@Foschi2000DoubleStandards]
 
-Bourdieu’s linguistic market asks how speech and writing acquire value in a particular setting and why speakers do not enter that setting with equal authority. Lamont and Lareau press us to identify which signals an institution actually recognizes as valuable. These arguments suggest that a polished report alone will not tell us what readers infer about its author. They do not establish an AI-specific penalty. [@Bourdieu1977Linguistic; @LamontLareau1988CulturalCapital]
+Bourdieu’s linguistic market asks how speech and writing acquire value in a particular setting and why speakers enter that setting with different authority. Lamont and Lareau press us to identify which signals an institution recognizes as valuable. These arguments direct attention to the reader’s judgment of the report’s author. [@Bourdieu1977Linguistic; @LamontLareau1988CulturalCapital]
 
-Rafalow observed three schools in which teachers assigned different value to students’ digital practices. At affluent Heathcliff, a teacher brought a student’s periodic-table game into a lesson. At working-class César Chávez, a teacher acknowledged students’ gaming abilities but emphasized keyboarding, research and written assignments. The schools differed in race, class and institutional context together, so the fieldwork does not isolate a class effect. It does show teachers actively deciding which digital practices count as educational skill. [@Rafalow2018DiscipliningPlay]
+Rafalow observed three schools in which teachers assigned different value to students’ digital practices. At affluent Heathcliff, a teacher brought a student’s periodic-table game into a lesson. At working-class César Chávez, a teacher acknowledged students’ gaming abilities but emphasized keyboarding, research and written assignments. His fieldnotes show teachers deciding which digital practices count as educational skill. [@Rafalow2018DiscipliningPlay]
 
 ## Synthesis of the current LLM literature
 
-Reif, Larrick and Soll ran four preregistered experiments on how people judge AI users. In Study 2, workers described as using AI were rated lazier than workers receiving comparable human help or no described help; they were also rated lower on competence and related traits. The study did not find significant moderation by age, gender or occupation. Study 3 showed that evaluators’ own AI use also mattered. These studies give us evidence of an AI-use evaluation penalty, but neither tests whether the penalty differs by family background. [@ReifLarrickSoll2025]
+Reif, Larrick and Soll ran four preregistered experiments on how people judge AI users. In Study 2, workers described as using AI were rated lazier than workers receiving comparable human help or no described help; they were also rated lower on competence and related traits. Study 3 showed that evaluators’ own AI use mattered when they judged an AI-using applicant. These results lead us to ask how an evaluator’s reading of AI use might change with information about a worker’s background. [@ReifLarrickSoll2025]
 
-Schilke and Reimann study trust in people who disclose AI assistance. In Study 11, participants played a head of marketing evaluating a market research analyst’s monthly competitor report. Prior information about the analyst’s use of AI tools and a statement with the report that GrowthBar had been used were varied separately. Mean trust was 4.10 with disclosure and 4.62 without it, on a 1–7 scale. The no-disclosure condition did not claim that no AI was used. This study did not vary class background; a new study should measure trust and competence separately. [@SchilkeReimann2025Transparency]
+Schilke and Reimann study trust in people who disclose AI assistance. In Study 11, participants played a head of marketing evaluating a market research analyst’s monthly competitor report. Prior information about the analyst’s use of AI tools and a statement with the report that GrowthBar had been used were varied separately. Mean trust was 4.10 with disclosure and 4.62 without it, on a 1–7 scale. The control report left AI use unmentioned. Our proposed study measures trust and competence separately. [@SchilkeReimann2025Transparency]
 
-Our proposed experiment keeps Alex Harper’s job, degree, three years of experience and fictional competitor report identical. It varies a family-background description and whether Alex discloses using ChatGPT to edit the wording. Human readers could rate competence, trust, report quality and the acceptability of assistance. The Python exercise prepares the four descriptions; it does not collect ratings. The background descriptions bundle parental education and work, so a real study would need to pretest what readers infer from them and what else the cues suggest about ability or effort.
+Our proposed experiment keeps Alex Harper’s job, degree, three years of experience and fictional competitor report identical. It varies a family-background description and whether Alex discloses using ChatGPT to edit the wording. Human readers could rate competence, trust, report quality and the acceptability of assistance. The Python exercise prepares the four descriptions. A pretest asks what readers infer from the descriptions of parental education and work.
 
 ## Reading discussion
 
 1. What exactly do Reif’s participants evaluate? How is that different from judging the quality of the work itself?
 2. Foschi allows more than one prediction about workers from different class backgrounds. Which expectations would produce each result?
-3. What does Rafalow show about who gets to define digital skill as valuable? Which parts of his comparison cannot be attributed to class alone?
+3. What did the teachers in Rafalow’s fieldnotes recognize as useful digital skill? How did their practices differ across schools?
 4. Why might the AI disclosure in Schilke and Reimann’s competitor-report study lower trust? Would that necessarily imply lower perceived competence?
-5. What would we need to observe before concluding that the AI penalty differs by class background, rather than by other assumptions triggered by our profiles?
+5. How would you check that readers interpret the background descriptions as intended?
 
 ## Slides
 
@@ -76,10 +76,10 @@ The slides are available in the [online Week 11 chapter](https://cjbarrie.github
 
 ## In-class Python walkthrough
 
-Use the fictional report to request one careful model edit. Check the raw response against the stated facts, including the absence of customer-switching data. Then use a nested loop to place the same revised report in four hypothetical descriptions varying family background and AI disclosure. Trace the first two passes and discuss what human judgments a real experiment would still need.
+Use the fictional report to request one careful model edit. Check the raw response against the stated facts, including the absence of customer-switching data. Then use a nested loop to place the same revised report in four descriptions varying family background and AI disclosure. Trace the first two passes and discuss the questions you would ask human readers.
 
 This is an in-class walkthrough and optional practice. **No Week 11 video is due. No reading, coding or other work is assigned for the cancelled class on 25 November.**
 
 ## Summary and preparation
 
-The existing experiments document penalties in how AI users are judged. Bourdieu, Foschi and Rafalow help us ask whether the same AI use is valued differently when readers know a worker’s family background. We do not yet have evidence for the direction or size of such a class difference. The proposed four-condition study would test it.
+The existing experiments document penalties in how AI users are judged. Bourdieu, Foschi and Rafalow help us ask whether readers value the same AI use differently when they know a worker’s family background. The proposed four-condition study would test the size and direction of that difference.
