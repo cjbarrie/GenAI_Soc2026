@@ -128,13 +128,13 @@ format:
 
 ---
 
-## What a double standard would look like here
+## Foschi’s example: the same score, two standards
 
-<div class="threshold-diagram"><div class="threshold-axis"><span>Less evidence of ability</span><span>More evidence of ability</span></div><div class="threshold-row"><strong>Higher-status worker</strong><span class="threshold-line"><i style="left:38%"></i></span><em>competent</em></div><div class="threshold-row"><strong>Lower-status worker</strong><span class="threshold-line"><i style="left:65%"></i></span><em>competent</em></div></div>
+<div class="foschi-example"><div class="foschi-observed"><small>OBSERVED PERFORMANCE</small><strong>14 / 20</strong><span>Correct answers on a task</span></div><div class="foschi-standard"><small>LENIENT STANDARD</small><strong>12 or more</strong><span>14 meets the standard: evidence of ability.</span></div><div class="foschi-standard strict"><small>STRICT STANDARD</small><strong>17 or more</strong><span>14 falls short: ability remains unproven.</span></div></div>
 
-<p>Foschi’s framework suggests that a status cue can change how much evidence an observer requires before judging someone competent. The positions above are schematic. Family background would have to be shown to act as a status cue in our setting.</p>
+<p>Foschi argues that status can affect the standard observers apply to the same performance. Our question is whether family background changes the standard applied to Alex’s report and AI use.</p>
 
-<p class="citation">Conceptual diagram based on Foschi (2000); threshold positions are illustrative.</p>
+<p class="citation">Foschi (2000), p. 25. The score of 14 and standards of 12 and 17 are her example; the application to Alex is ours.</p>
 
 ---
 

@@ -89,13 +89,13 @@
 .bar-chart > div:first-child i { background: #ab6f4d; }
 .bar-chart b { font-size: 1em; }
 .bar-chart.two { margin-top: 105px; }
-.threshold-diagram { margin: 54px auto 36px; max-width: 1060px; }
-.threshold-axis { display: flex; justify-content: space-between; font-size: .66em; margin-left: 265px; padding-bottom: 10px; border-bottom: 1px solid #888; }
-.threshold-row { display: grid; grid-template-columns: 250px 1fr 115px; gap: 15px; align-items: center; margin-top: 30px; }
-.threshold-row strong { font-size: .77em; }
-.threshold-row em { font-size: .68em; }
-.threshold-line { display: block; height: 12px; background: linear-gradient(to right,#ddd 0%,#ddd 100%); position: relative; }
-.threshold-line i { position: absolute; top: -16px; height: 44px; width: 6px; background: #ab6f4d; }
+.foschi-example { display: grid; grid-template-columns: 0.8fr 1fr 1fr; gap: 24px; margin: 72px 0 34px; }
+.foschi-example > div { background: #fffdfa; border-top: 7px solid #167d8d; padding: 25px 22px; min-height: 222px; }
+.foschi-example .foschi-observed { background: #e6eeed; }
+.foschi-example .strict { border-color: #ab6f4d; }
+.foschi-example small { display: block; font-size: .55em; letter-spacing: .06em; color: #59534c; margin-bottom: 17px; }
+.foschi-example strong { display: block; font-size: 1.25em; margin-bottom: 13px; }
+.foschi-example span { display: block; font-size: .76em; line-height: 1.31; }
 .market-visual { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; margin: 85px 0 34px; }
 .market-visual > div { background: #e6eeed; padding: 29px 23px; min-height: 160px; }
 .market-visual > div:nth-child(2) { background: #f3eee6; }
