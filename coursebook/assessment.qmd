@@ -12,7 +12,7 @@ title: "Assessment and marking"
 
 ## Weekly coding exercises
 
-The ten best submissions from the weekly tasks offered through the 18 November meeting count. There is no weekly coding task on 25 November, 2 December or 9 December. Each narrated screen recording is due by **5:00 p.m. Eastern on the Tuesday before the next class** unless the relevant weekly page states otherwise. Use the [recording instructions and coding videos folder](recording-and-submission.qmd).
+The ten weekly coding submissions are from Weeks 1–10. Week 11 has an in-class walkthrough but no video submission. **No work is assigned for the cancelled class on 25 November.** There is no coding task for the individual meetings on 2 December or presentations on 9 December. Each required narrated screen recording is due by **5:00 p.m. Eastern on the Tuesday before the next class** unless the relevant weekly page states otherwise. Use the [recording instructions and coding videos folder](recording-and-submission.qmd).
 
 In the recording, students run the complete block supplied on the week's Python page, explain the input and output of every operation, change one named input or parameter, and explain what the model return means for the week's methodological question. From Week 2, the normal route is a live call through OpenRouter or a supported local model; a supplied cached response may be used when access fails. Students are not graded for editing quality, code elegance or efficient abstraction.
 

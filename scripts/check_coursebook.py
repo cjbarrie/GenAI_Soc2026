@@ -51,6 +51,7 @@ PYTHON_REQUIRED_SECTIONS = [
     "## Workbook and environment links",
     "## Take-home exercise",
 ]
+IN_CLASS_ONLY_SESSIONS = {11}
 
 PYTHON_OUTLINE_SECTIONS: list[str] = []
 
@@ -284,9 +285,15 @@ def validate_sources(rendered: bool) -> list[str]:
                 fail(errors, f"{python_page.name}: banned public fragment {fragment!r}")
 
         if number <= DEVELOPED_SESSION_MAX:
-            for heading in PYTHON_REQUIRED_SECTIONS:
+            required_python_sections = [
+                heading for heading in PYTHON_REQUIRED_SECTIONS
+                if number not in IN_CLASS_ONLY_SESSIONS or heading != "## Take-home exercise"
+            ]
+            for heading in required_python_sections:
                 if heading not in python_text:
                     fail(errors, f"{python_page.name}: missing standard section beginning {heading!r}")
+            if number in IN_CLASS_ONLY_SESSIONS and "## In-class walkthrough and optional practice" not in python_text:
+                fail(errors, f"{python_page.name}: missing in-class walkthrough section")
         elif number <= 13 and number not in NON_TEACHING_SESSIONS:
             for heading in PYTHON_OUTLINE_SECTIONS:
                 if heading not in python_text:
@@ -306,16 +313,18 @@ def validate_sources(rendered: bool) -> list[str]:
                 fail(errors, f"{python_page.name}: missing task download")
             if f"{session}_offline_bundle.zip" not in python_text:
                 fail(errors, f"{python_page.name}: missing offline bundle download")
-            if "screen recording" not in python_text:
+            if number not in IN_CLASS_ONLY_SESSIONS and "screen recording" not in python_text:
                 fail(errors, f"{python_page.name}: missing narrated screen-recording instructions")
         elif number not in NON_TEACHING_SESSIONS and ("_generated/slides" in text or ".ipynb" in text or ".ipynb" in python_text):
             fail(errors, f"{session}: provisional pages must not publish unfinished materials")
 
-        if number <= DEVELOPED_SESSION_MAX:
+        if number <= DEVELOPED_SESSION_MAX and number not in IN_CLASS_ONLY_SESSIONS:
             if "../recording-and-submission.qmd" not in python_text:
                 fail(errors, f"{python_page.name}: missing link to the canonical submission guide")
             if "5:00 p.m. Eastern on the Tuesday before the next class" not in python_text:
                 fail(errors, f"{python_page.name}: missing weekly recording deadline")
+        if number in IN_CLASS_ONLY_SESSIONS and "No Week 11 video submission is required" not in python_text:
+            fail(errors, f"{python_page.name}: missing no-submission notice")
 
         entries = weeks.get(session, [])
         if number == 14 or number in NON_TEACHING_SESSIONS:

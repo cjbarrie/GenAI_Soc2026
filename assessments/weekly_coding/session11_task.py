@@ -123,41 +123,61 @@ print("free trial; no customer-switching data yet.")
 print("Reject any new claim about switching or market effects.")
 
 # CELL: Build four hypothetical evaluation conditions
-ROLE_CUES = [
-    "The report author is the senior director of strategy.",
-    "The report author is a junior market analyst.",
+SHARED_PROFILE = (
+    "Alex Harper is a market research analyst with a university degree "
+    "and three years of experience."
+)
+CLASS_BACKGROUND_CUES = [
+    {
+        "label": "working-class upbringing",
+        "text": "Alex was the first in the family to attend university. "
+        "Both parents held hourly-paid jobs.",
+    },
+    {
+        "label": "professional-class upbringing",
+        "text": "Both of Alex's parents had university degrees and worked "
+        "in professional jobs.",
+    },
 ]
-AI_USE_LABELS = [
-    "The description gives no information about AI writing assistance.",
-    "The author reports using ChatGPT to edit the report for clarity.",
+DISCLOSURE_LINES = [
+    "",  # The reader receives no statement about AI use.
+    "Alex reports using ChatGPT to edit the wording of this report for clarity.",
 ]
 
 conditions = []
-for role_cue in ROLE_CUES:
-    for ai_use_label in AI_USE_LABELS:
+for background in CLASS_BACKGROUND_CUES:
+    for disclosure_line in DISCLOSURE_LINES:
+        reader_text = "\n\n".join(
+            part for part in [SHARED_PROFILE, background["text"], disclosure_line, REVISED_PARAGRAPH]
+            if part
+        )
         condition = {
             "condition_id": len(conditions) + 1,
-            "role_cue": role_cue,
-            "ai_use_label": ai_use_label,
+            "class_background": background["label"],
+            "background_cue": background["text"],
+            "ai_disclosed": bool(disclosure_line),
+            "disclosure_line": disclosure_line,
             "report_text": REVISED_PARAGRAPH,
+            "reader_text": reader_text,
         }
         conditions.append(condition)
         print("Added condition:", condition["condition_id"])
-        print("  role cue:", role_cue)
-        print("  AI-use label:", ai_use_label)
+        print("  class background:", background["label"])
+        print("  AI disclosure:", bool(disclosure_line))
 
 # CELL: Inspect the materials and perform software checks
 for condition in conditions:
     print("\nCONDITION", condition["condition_id"])
-    print(condition["role_cue"])
-    print(condition["ai_use_label"])
-    print(condition["report_text"])
+    print(condition["reader_text"])
 
 assert len(conditions) == 4
 assert len({item["condition_id"] for item in conditions}) == 4
 assert all(item["report_text"] == REVISED_PARAGRAPH for item in conditions)
+assert all(item["reader_text"].startswith(SHARED_PROFILE) for item in conditions)
+assert sum(item["ai_disclosed"] for item in conditions) == 2
+assert all(("ChatGPT" in item["reader_text"]) == item["ai_disclosed"] for item in conditions)
 print("Four conditions exist, and every condition contains the same report.")
-print("These checks do not show how a human reader would judge either worker.")
+print("The profiles need pretesting. These checks do not show how a reader would judge Alex.")
 
 # ONE CHANGE: make the editing instruction more conservative, rerun, and inspect
 # whether the revision changes. Keep the fictional source report fixed.

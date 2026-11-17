@@ -1,5 +1,5 @@
 ---
-title: "AI-assisted work and judgments of competence"
+title: "AI-assisted writing and social class"
 subtitle: "Generative AI in Sociology · Week 11"
 author: "Christopher Barrie"
 date: "November 18, 2026"
@@ -18,27 +18,27 @@ format:
     embed-resources: true
 ---
 
-## When is AI use taken as a sign of ability?
+## Does class background change how AI use is judged?
 
-<p class="large-question">The same writing assistance might be called efficient delegation or evidence that the writer cannot do the work. Who gets each interpretation?</p>
+<p class="large-question">Two people do the same job and submit the same report. Would readers judge their AI use differently if they knew about each person’s family background?</p>
 
 ---
 
-## One report, two employees
+## The same report, two class backgrounds
 
 <div class="report-page"><div class="report-heading">Monthly competitor report · fictional teaching example</div><p>RivalCo launched a monthly subscription in April at $18. Our comparable plan costs $20. RivalCo advertises a free trial. We do not yet have data on customer switching after the launch.</p></div>
 
-<div class="role-pair"><div><strong>Senior executive</strong><span>Director of strategy, presenting the report to colleagues</span></div><div><strong>Junior employee</strong><span>Market analyst, presenting the same report to colleagues</span></div></div>
+<div class="role-pair"><div><strong>Working-class upbringing</strong><span>Alex was the first in the family to attend university. Both parents held hourly-paid jobs.</span></div><div><strong>Professional-class upbringing</strong><span>Both of Alex’s parents had university degrees and worked in professional jobs.</span></div></div>
 
-<p class="small-note">The text is identical. We can vary whether readers are told the writer used ChatGPT to edit it.</p>
+<p class="small-note">Alex has the same degree, job and three years of experience in both descriptions. The report is identical. We also vary whether Alex discloses using ChatGPT to edit it. These proposed background cues need pretesting.</p>
 
 ---
 
 ## Bourdieu: the value of writing depends on its setting
 
-<div class="market-visual"><div><strong>Writer</strong><span>What skills and resources do they bring?</span></div><div><strong>Report</strong><span>What does the text say, and how was it produced?</span></div><div><strong>Evaluator</strong><span>Which forms of work count as credible here?</span></div></div>
+<div class="market-visual"><div><strong>Writer</strong><span>What does the reader infer from Alex’s family background?</span></div><div><strong>Report</strong><span>The text and the job are held fixed.</span></div><div><strong>Evaluator</strong><span>What counts as competent work in this workplace?</span></div></div>
 
-<p>Bourdieu’s “linguistic market” directs attention to the institution that values the writing and to the social position of the writer. It does not predict a particular verdict on ChatGPT.</p>
+<p>Bourdieu’s “linguistic market” directs attention to who is speaking and who has the power to judge the writing. It does not predict a particular verdict on ChatGPT.</p>
 
 <p class="citation">Bourdieu (1977), “The Economics of Linguistic Exchanges,” <em>Social Science Information</em> 16(6): 645–668. <a href="https://doi.org/10.1177/053901847701600601">doi:10.1177/053901847701600601</a>.</p>
 
@@ -48,17 +48,17 @@ format:
 
 <img class="passage" src="images/bourdieu_legitimate_crop.png" alt="Passage from Bourdieu on grammaticalness, acceptability and legitimate language">
 
-<p>A report may be accurate and clear while its method of production is judged differently across jobs or organizations.</p>
+<p>A reader may find the report clear while making a different judgment about its author once the author’s background or use of AI is disclosed.</p>
 
 <p class="citation">Bourdieu (1977), p. 646. The application to AI-assisted reports is ours.</p>
 
 ---
 
-## Cultural capital and recognized forms of skill
+## What the reader knows about Alex
 
-<p class="lead">Lamont and Lareau ask how institutions recognize some cultural signals as valuable and use them in processes of inclusion and exclusion.</p>
+<div class="profile-sheet"><div><small>HELD FIXED</small><strong>Market research analyst</strong><span>Same degree · three years in the role · identical report</span></div><div><small>VARIED</small><strong>Family background</strong><span>First-generation graduate from an hourly-paid household, or graduate from a professional household</span></div><div><small>VARIED</small><strong>AI disclosure</strong><span>Alex either states that ChatGPT edited the wording or makes no statement about AI.</span></div></div>
 
-<p>That helps specify the question here: does “knows how to use AI” count as professional judgment, or as a failure to possess a skill the job is expected to require?</p>
+<p>Lamont and Lareau ask which cultural signals institutions recognize and reward. Here we ask whether a family-background cue changes what an evaluator infers from the same use of a writing tool.</p>
 
 <p class="citation">Lamont and Lareau (1988), “Cultural Capital: Allusions, Gaps and Glissandos in Recent Theoretical Developments,” <em>Sociological Theory</em> 6(2): 153–168. <a href="https://doi.org/10.2307/202113">doi:10.2307/202113</a>. The AI question is an application, not their finding.</p>
 
@@ -68,7 +68,7 @@ format:
 
 <div class="judgment-list"><div><strong>Competence</strong><span>Can this employee do the work?</span></div><div><strong>Laziness</strong><span>Did they avoid effort expected of them?</span></div><div><strong>Trust</strong><span>Would I rely on this person?</span></div><div><strong>Legitimacy</strong><span>Was this an acceptable way to complete the task?</span></div></div>
 
-<p>The report stays the same. We want to know whether the writer’s position and the use of AI change these judgments.</p>
+<p>The report and job stay the same. We want to know whether family-background information and AI disclosure change these judgments.</p>
 
 ---
 
@@ -100,13 +100,11 @@ format:
 
 ---
 
-## Reif does not establish a class difference
+## Evaluators’ own AI use also mattered
 
-<p class="lead">Study 2 did not find significant moderation of the AI-use penalty by the vignette worker’s age, gender or occupation.</p>
+<div class="figure-explain reif-figure"><img src="images/reif_2025_fig3_evaluator_use.png" alt="Reif et al. Figure 3: predicted task fit and hiring decisions by evaluator AI use and candidate AI use"><div><p>In Study 3, participants who used AI more often evaluated an AI-using candidate more favorably than participants who used AI less often.</p><p>Study 2 found no significant moderation by worker age, gender or occupation. Neither study tested the family-background comparison proposed here.</p></div></div>
 
-<p>Occupation in that study is also different from a senior–junior comparison within the same organization. We need a separate test of whether status changes the interpretation of AI use.</p>
-
-<p class="citation">Reif et al. (2025), Study 2 and supplementary analyses.</p>
+<p class="citation">Reif et al. (2025), Fig. 3, Study 3 (<em>N</em> = 1,667), and Study 2 supplementary analyses. Figure 3 shows model-predicted outcomes, not a class comparison.</p>
 
 ---
 
@@ -134,65 +132,67 @@ format:
 
 <div class="threshold-diagram"><div class="threshold-axis"><span>Less evidence of ability</span><span>More evidence of ability</span></div><div class="threshold-row"><strong>Higher-status worker</strong><span class="threshold-line"><i style="left:38%"></i></span><em>competent</em></div><div class="threshold-row"><strong>Lower-status worker</strong><span class="threshold-line"><i style="left:65%"></i></span><em>competent</em></div></div>
 
-<p>Foschi’s framework suggests a testable possibility: observers may demand more proof of competence from a lower-status worker. The positions above are schematic, not estimates from an AI study.</p>
+<p>Foschi’s framework suggests that a status cue can change how much evidence an observer requires before judging someone competent. The positions above are schematic. Family background would have to be shown to act as a status cue in our setting.</p>
 
 <p class="citation">Conceptual diagram based on Foschi (2000); threshold positions are illustrative.</p>
 
 ---
 
-## The opposite result is also possible
+## Two possible readings of the same AI disclosure
 
-<p class="lead">A senior executive may be expected to exercise independent judgment. Readers could penalize that person <em>more</em> for outsourcing the report.</p>
+<div class="margin-comments"><div><small>POSSIBILITY 1</small><strong>“Alex used a useful writing tool.”</strong><span>A reader gives credit for using an available resource.</span></div><div><small>POSSIBILITY 2</small><strong>“Alex needed help with basic writing.”</strong><span>A reader treats the same disclosure as evidence of weak skill.</span></div></div>
 
-<p>Foschi discusses conditions under which status-linked standards can reverse. The direction of any AI-use effect should be measured, not assumed from the theory.</p>
+<p>These are hypothetical reader reactions. Foschi’s account allows the standard to differ by perceived status, but it does not tell us which reaction a class-background cue will produce.</p>
 
-<p class="citation">Foschi (2000), discussion of double standards and reverse double standards. The executive example is our proposed hypothesis.</p>
-
----
-
-## Rafalow observed three schools
-
-<img class="rafalow-abstract" src="images/rafalow_2018_abstract.png" alt="Published article abstract summarizing Rafalow's three-school ethnography and teachers' different responses to similar digital skills">
-
-<p>In the working-class Latino school, teachers treated students’ digital expression as irrelevant. In the middle-class Asian American school, they saw it as a risk to achievement. In the affluent, mostly white school, they made it an educational asset.</p>
-
-<p class="citation">Rafalow (2018), “Disciplining Play: Digital Youth Culture as Capital at School,” <em>American Journal of Sociology</em> 123(5): 1416–1452, p. 1416. <a href="https://doi.org/10.1086/695766">doi:10.1086/695766</a>.</p>
+<p class="citation">Foschi (2000), discussion of double standards and reverse double standards. The reader reactions above are teaching examples, not quotations from participants.</p>
 
 ---
 
-## Students had digital skills in all three schools
+## A student’s game became part of the lesson
 
-<div class="figure-explain rafalow-figure"><img src="images/rafalow_2018_fig1.png" alt="Rafalow Figure 1, showing smartphone access, home technology and reported family technology expertise in each school"><div><p>Access to devices and students’ reported expertise were broadly similar across the interviewed groups.</p><p>The ethnography then asks why teachers valued comparable digital activity differently.</p></div></div>
+<img class="fieldnote" src="images/rafalow_2018_heathcliff_fieldnote.png" alt="Rafalow's account of a teacher at Heathcliff Academy using a student's periodic-table game in class">
 
-<p class="citation">Rafalow (2018), Fig. 1, p. 1428. Bars describe interviewed students: Chávez <em>n</em> = 14, Sheldon <em>n</em> = 14, Heathcliff <em>n</em> = 12; they are not representative school-wide estimates.</p>
+<p>At affluent Heathcliff Academy, a teacher adopted a student’s iPad game for her science lesson and asked him to help classmates use it.</p>
+
+<p class="citation">Rafalow (2018), “Disciplining Play: Digital Youth Culture as Capital at School,” <em>American Journal of Sociology</em> 123(5): 1416–1452, p. 1431. <a href="https://doi.org/10.1086/695766">doi:10.1086/695766</a>.</p>
 
 ---
 
-## Rafalow’s comparison changes our question
+## Another teacher called for basic skills instead
 
-<p class="lead">The schools evaluated similar kinds of digital practice differently. What counted as useful creativity depended on the school setting.</p>
+<img class="fieldnote" src="images/rafalow_2018_chavez_fieldnote.png" alt="Rafalow's account of a Chávez teacher distinguishing students' games from school-valued keyboarding and research skills">
 
-<p>Class, race and school context varied together, so this is not an isolated causal effect of class. Rafalow did not study ChatGPT. His study shows why we should examine the institution doing the evaluation, alongside the tool user.</p>
+<p>At working-class César Chávez Middle School, a teacher acknowledged students’ gaming abilities but said school should teach keyboarding, research and written assignments.</p>
+
+<p class="citation">Rafalow (2018), p. 1442. These are two episodes from a three-school ethnography, not matched observations of identical students.</p>
+
+---
+
+## How the three schools treated digital play
+
+<div class="school-comparison"><div><strong>Heathcliff</strong><span>Teachers brought students’ games and media projects into lessons.</span></div><div><strong>Sheldon</strong><span>Teachers treated social media and games as risks to academic work.</span></div><div><strong>César Chávez</strong><span>Teachers taught digital basics but separated them from students’ own online play.</span></div></div>
+
+<p>The schools differed in class composition, race and institutional practice at the same time. Rafalow shows how teachers assign value to digital activity. His comparison does not isolate the effect of class.</p>
 
 <p class="citation">Rafalow (2018), fieldwork and discussion.</p>
 
 ---
 
-## Writing assistance was normal before ChatGPT
+## Writing tools before ChatGPT
 
 <div class="aid-comparison"><div><small>Predictive assistance</small><strong>Gmail Smart Compose</strong><span>Suggests words or phrases while someone writes an email.</span></div><div><small>Generative assistance</small><strong>ChatGPT</strong><span>Can draft or revise an entire report from an instruction.</span></div></div>
 
-<p>At what point does assistance become something a writer is expected to disclose? The answer may depend on the task and the workplace, not only on the technology.</p>
+<p>When would a reader expect the writer to mention the tool? That expectation may differ between editing a sentence and asking a model to draft a report.</p>
 
 <p class="citation">Google (2018), <a href="https://blog.google/products-and-platforms/products/gmail/subject-write-emails-faster-smart-compose-gmail/">Smart Compose announcement</a>. Tool descriptions are illustrative; no claim about comparative stigma is made here.</p>
 
 ---
 
-## The same act may carry different workplace meanings
+## The class comparison we have not observed
 
-<div class="role-pair big"><div><strong>Director of strategy</strong><span>“She used the tool to work quickly.”</span></div><div><strong>Market analyst</strong><span>“He needed the tool to write the report.”</span></div></div>
+<div class="role-pair big"><div><strong>Working-class upbringing</strong><span>Does AI use suggest resourcefulness, or make a reader question Alex’s writing skill?</span></div><div><strong>Professional-class upbringing</strong><span>Does the same disclosure prompt the same judgment?</span></div></div>
 
-<p>These are possible interpretations, not observed reactions. Our proposed study asks whether readers actually make them when the report is held fixed.</p>
+<p>The two backgrounds are proposed experimental descriptions. No study in today’s readings estimates this comparison.</p>
 
 ---
 
@@ -206,21 +206,21 @@ format:
 
 ---
 
-## Study 11 held the report task in view
+## Study 11 separated prior knowledge from disclosure
 
-<div class="three-row"><div><strong>Evaluator</strong><span>Head of marketing considering a report from Alex Harper.</span></div><div><strong>Worker</strong><span>Market research analyst preparing a monthly competitor analysis.</span></div><div><strong>Two variations</strong><span>Prior knowledge of AI use, and whether AI assistance was disclosed with the report.</span></div></div>
+<div class="study-grid"><div class="study-grid-head">What the evaluator knew beforehand</div><div class="study-grid-head">What appeared with the report</div><div>Either told Alex used AI tools to summarize competitors, or given no such information</div><div>Either told the report used GrowthBar generative AI, or shown no disclosure</div></div>
 
-<p>Participants then rated their trust in the worker. The control did not state that Alex used no AI. This experiment did not vary the worker’s rank.</p>
+<p>Participants played the head of marketing and then rated trust in Alex, a market research analyst. The no-disclosure control did not say Alex used no AI. The study did not vary Alex’s class background.</p>
 
-<p class="citation">Schilke and Reimann (2025), Study 11, pp. 9–10 of the published article.</p>
+<p class="citation">Schilke and Reimann (2025), Study 11, p. 10. The published experiment used GrowthBar; our classroom report uses a different model.</p>
 
 ---
 
 ## Disclosure lowered trust in Study 11
 
-<div class="bar-chart two" role="img" aria-label="Mean trust: no AI disclosure 4.62, AI disclosure 4.10"><div><span>No AI disclosure</span><i style="--bar:77%"></i><b>4.62</b></div><div><span>AI disclosure</span><i style="--bar:68%"></i><b>4.10</b></div></div>
+<div class="bar-chart two" role="img" aria-label="Mean trust on a one-to-seven scale: no AI disclosure 4.62, AI disclosure 4.10"><div><span>No AI disclosure</span><i style="--bar:60.3%"></i><b>4.62</b></div><div><span>AI disclosure</span><i style="--bar:51.7%"></i><b>4.10</b></div><div class="chart-axis"><span>1</span><span>4</span><span>7</span></div></div>
 
-<p>The reported difference was statistically significant, <em>d</em> = 0.50. The authors link the trust effect to whether AI assistance was seen as a legitimate way to complete the work.</p>
+<p>Mean trust was 0.52 points lower with disclosure on a 1–7 scale; the reported standardized difference was <em>d</em> = 0.50. The authors connect the effect to whether AI assistance was seen as a legitimate way to do the work.</p>
 
 <p class="citation">Schilke and Reimann (2025), Study 11. Bars recreate reported mean trust ratings (4.62 and 4.10); not a reproduction of the published figure.</p>
 
@@ -234,44 +234,44 @@ format:
 
 ---
 
-## Trust and competence are separate outcomes
+## Ask readers about the person and the report
 
-<p class="lead">A reader might think a report is accurate and still distrust its author for using AI. Another might accept AI use but doubt that the worker could write without it.</p>
+<div class="judgment-list"><div><strong>Competence</strong><span>Could Alex produce a good report without this help?</span></div><div><strong>Trust</strong><span>Would you rely on Alex’s next report?</span></div><div><strong>Report quality</strong><span>Is the report itself accurate and useful?</span></div><div><strong>Acceptability</strong><span>Was AI editing acceptable for this task?</span></div></div>
 
-<p>Reif and Schilke–Reimann study related but different judgments. Neither tells us whether a senior and a junior worker are penalized differently for the same report.</p>
+<p>These are proposed survey questions, not items copied from either study. Reif examined judgments of the AI user; Schilke and Reimann examined trust after disclosure.</p>
 
 ---
 
-## Two predictions about status
+## Two predictions about class background
 
-<div class="hypotheses"><div><strong>Prediction A</strong><span>AI help is treated as strategic delegation for the senior worker but as evidence of weak skill for the junior worker.</span></div><div><strong>Prediction B</strong><span>The senior worker is penalized more because the job carries a stronger expectation of independent expertise.</span></div></div>
+<div class="hypotheses"><div><strong>Prediction A</strong><span>Readers penalize an AI-using worker from a working-class background more, interpreting the help as evidence of weak skill.</span></div><div><strong>Prediction B</strong><span>Readers penalize an AI-using worker from a professional-class background more, expecting independent expertise.</span></div></div>
 
-<p>Both are plausible. A study must test which interpretation readers actually use.</p>
+<p>Either pattern is possible. We need reader data before claiming a class difference in the AI-use penalty.</p>
 
 ---
 
 ## A proposed four-condition experiment
 
-| Report author | No reported AI use | Reported AI use |
+| Alex’s family background | No AI disclosure | AI use disclosed |
 |---|---|---|
-| **Senior executive** | A | B |
-| **Junior employee** | C | D |
+| **Working-class upbringing** | A | B |
+| **Professional-class upbringing** | C | D |
 
-<p>Randomly assign a reader to one description. Every reader sees the same report text. The “no reported AI use” version says nothing about AI; it does not claim the writer used none. Ask separately about competence, laziness, trust and whether assistance was acceptable.</p>
+<p>Randomly assign a reader to one profile. Alex’s job, degree, experience and report stay the same. The no-disclosure version says nothing about AI; it does not claim Alex used none. Ask separately about competence, trust, report quality and the acceptability of assistance.</p>
 
 ---
 
-## What the four conditions cannot tell us by themselves
+## Pretest the class-background profiles
 
-<p>“Senior” and “junior” mark organizational rank. They do not directly measure a worker’s social class. Different job duties may also change what readers expect from the report.</p>
+<div class="pretest-strip"><div><strong>What readers see</strong><span>The same job, credentials, experience and report, with one of two family-background descriptions</span></div><div><strong>What we must ask</strong><span>Do the descriptions change perceived class background? Do they also change assumptions about ability or effort before AI is mentioned?</span></div></div>
 
-<p>We would need to define the roles carefully, pretest what people infer from them, and collect judgments from actual readers. The classroom code only prepares materials for such a study.</p>
+<p>The profile cues bundle parental work and education. A pretest can reveal what readers infer from them. The classroom code prepares materials but collects no reader judgments.</p>
 
 ---
 
 ## Questions for discussion
 
-<ol class="task-list"><li>Which judgment is Reif measuring, and which is Schilke and Reimann measuring?</li><li>What does Foschi lead us to predict about the same report under different job titles?</li><li>How might Rafalow’s schools help us think about workplace norms for AI use?</li><li>What additional evidence would let us say something about class rather than job rank?</li></ol>
+<ol class="task-list"><li>Which judgment is Reif measuring, and which is Schilke and Reimann measuring?</li><li>Would Foschi lead you to expect the same AI-use penalty for both family backgrounds?</li><li>What did Rafalow’s teachers do that an experiment showing only finished work would miss?</li><li>How would you check that readers understood the profile cues as intended?</li></ol>
 
 ---
 
@@ -301,13 +301,44 @@ print(type(SOURCE_PARAGRAPH))
 ## Send the model an editing request
 
 ```python
+EDITING_INSTRUCTION = (
+    "Edit this short competitor report for clarity. Preserve every stated "
+    "fact and the uncertainty about customer switching. Do not infer a "
+    "market effect, invent data, or add a recommendation. Return only "
+    "the revised report."
+)
 separator = "\n\nOriginal report:\n"
 prompt = EDITING_INSTRUCTION + separator + SOURCE_PARAGRAPH
 messages = [{"role": "user", "content": prompt}]
-print(messages)
 ```
 
-<p><code>messages</code> is a list with one dictionary. The local and hosted versions show their calls separately and print the raw returned text.</p>
+<p><code>messages</code> is a list containing one dictionary. Its <code>content</code> is the complete instruction and report.</p>
+
+---
+
+## Make the call and inspect the return
+
+```python
+# Local route, as shown inside edit_paragraph(...)
+response = ollama.chat(
+    think=False,
+    model=OLLAMA_MODEL,
+    messages=messages,
+    options={"temperature": 0},
+)
+raw_text = response.message.content
+print("Raw return:", raw_text)
+```
+
+<p>With OpenRouter, the workbook uses <code>client.chat.send(...)</code> and retrieves <code>response.choices[0].message.content</code>. Both routes preserve the returned string before we judge it.</p>
+
+---
+
+## An example return to inspect
+
+<div class="report-page raw-return"><div class="report-heading">Instructor-written fallback for an outage</div><p>RivalCo launched an $18 monthly subscription in April. Our comparable $20 plan costs $2 more. RivalCo advertises a free trial. We do not yet have data on whether customers switched after the launch.</p></div>
+
+<p>This is the script’s fallback text, not a live model result. A live return may use different wording. Compare each return with the source before using it in the reader descriptions.</p>
 
 ---
 
@@ -321,20 +352,40 @@ print(messages)
 
 ## Make the four reader versions
 
+<div class="cue-setup"><div><strong>Same in all four</strong><span>Alex Harper is a market research analyst with a university degree and three years of experience. The revised report stays the same.</span></div><div><strong>Two background dictionaries</strong><span>Working-class upbringing; professional-class upbringing</span></div><div><strong>Two disclosure strings</strong><span><code>""</code> or the sentence saying Alex used ChatGPT to edit the report</span></div></div>
+
+---
+
+## Trace the nested loop
+
 ```python
 conditions = []
-for role_cue in ROLE_CUES:
-    for ai_use_label in AI_USE_LABELS:
+for background in CLASS_BACKGROUND_CUES:
+    for disclosure_line in DISCLOSURE_LINES:
+        reader_text = "\n\n".join(
+            part for part in [SHARED_PROFILE, background["text"],
+                              disclosure_line, REVISED_PARAGRAPH]
+            if part
+        )
         condition = {
             "condition_id": len(conditions) + 1,
-            "role_cue": role_cue,
-            "ai_use_label": ai_use_label,
+            "class_background": background["label"],
+            "ai_disclosed": bool(disclosure_line),
             "report_text": REVISED_PARAGRAPH,
+            "reader_text": reader_text,
         }
         conditions.append(condition)
 ```
 
-<p>First pass: senior executive, no reported AI use. Second pass: senior executive, reported AI use. The report text stays unchanged.</p>
+<p><code>reader_text</code> is the exact description a reader would see. The empty disclosure string is omitted; it does not claim Alex used no AI.</p>
+
+---
+
+## The first two passes
+
+<div class="loop-trace"><div><strong>Pass 1</strong><span>Working-class background</span><code>disclosure_line = ""</code><code>ai_disclosed = False</code><code>len(conditions) = 1</code></div><div><strong>Pass 2</strong><span>Same background; ChatGPT sentence included</span><code>ai_disclosed = True</code><code>len(conditions) = 2</code></div></div>
+
+<p>Passes 3 and 4 use the professional-class background, first without and then with disclosure. The report, job, degree and experience remain the same in every version.</p>
 
 ---
 
@@ -350,16 +401,16 @@ assert all(item["report_text"] == REVISED_PARAGRAPH
 
 ---
 
-## Week 11 coding task
+## In-class coding walkthrough
 
-<ol class="task-list"><li>Run the report edit and show the raw return.</li><li>Check the revision against the five stated facts and uncertainty.</li><li>Trace the first two passes through the nested loop.</li><li>Make the editing instruction more conservative and rerun.</li><li>Explain what human-reader data would be needed to test either status prediction.</li></ol>
+<ol class="task-list"><li>Run the report edit and inspect the raw return.</li><li>Check the revision against the five source points.</li><li>Trace the first two passes through the nested loop.</li><li>Inspect what each reader would see in all four conditions.</li><li>Discuss how to pretest the class-background cues and gather human judgments.</li></ol>
 
-<p>Submit a narrated screen recording. The local script, notebook and course-book Python page use the same report and conditions.</p>
+<p>The local script, notebook and course-book Python page use the same report and conditions. No Week 11 video is due during the cancelled-class week.</p>
 
 ---
 
-## What this lecture establishes
+## Return to Alex’s report
 
-<p>Experiments show that AI users can incur penalties in judgments of effort, competence and trust. Sociological work gives us reasons to ask who sets the standard for competent work and how the same practice is valued in different settings.</p>
+<div class="closing-report"><div class="report-page"><div class="report-heading">Same report and same job</div><p>RivalCo launched a monthly subscription in April at $18. Our comparable plan costs $20. RivalCo advertises a free trial. We do not yet have data on customer switching.</p></div><div class="role-pair"><div><strong>Working-class upbringing</strong><span>First-generation graduate; parents in hourly-paid work</span></div><div><strong>Professional-class upbringing</strong><span>Parents with degrees and professional jobs</span></div></div></div>
 
-<p>We have not shown that junior workers face a larger penalty. The proposed reader experiment is designed to test that possibility against the opposite prediction.</p>
+<p>Reif and Schilke and Reimann find penalties for AI use and disclosure in their settings. None of today’s studies tells us whether the penalty differs by family background. A reader experiment could test that question.</p>

@@ -19,6 +19,6 @@ Bourdieu (1977) and Lamont and Lareau (1988) supply the wider theory of institut
 
 ## Prepare for discussion
 
-Imagine the same monthly competitor report submitted by a senior director and a junior analyst. In each case the evaluator may or may not be told that ChatGPT edited it. Come prepared with one prediction about competence, one about trust, and a reason the two judgments might differ. Treat any claim about a class gradient as a hypothesis, not as a finding of the assigned papers.
+Imagine the same monthly competitor report submitted by Alex, a market research analyst with the same degree and experience in every version. A reader sees one of two family-background descriptions and may or may not see a statement that ChatGPT edited the report. Come prepared with one prediction about competence, one about trust, and a reason the two judgments might differ. The assigned papers do not establish a class gradient in the AI-use penalty.
 
 The coding task edits one fictional report and constructs the four reader descriptions. It collects no human ratings.

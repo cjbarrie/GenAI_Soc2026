@@ -462,7 +462,9 @@ def test_followup_notebook_executes_without_live_services(
         assert len(conditions) == 4
         assert [item["condition_id"] for item in conditions] == [1, 2, 3, 4]
         assert all(item["report_text"] == namespace["REVISED_PARAGRAPH"] for item in conditions)
-        assert len({(item["role_cue"], item["ai_use_label"]) for item in conditions}) == 4
+        assert len({(item["class_background"], item["ai_disclosed"]) for item in conditions}) == 4
+        assert all(item["reader_text"].startswith(namespace["SHARED_PROFILE"]) for item in conditions)
+        assert sum(item["ai_disclosed"] for item in conditions) == 2
         assert namespace["editing_record"]["raw_return"] == namespace["REVISED_PARAGRAPH"]
 
 

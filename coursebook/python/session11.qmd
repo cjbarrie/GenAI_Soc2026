@@ -1,13 +1,13 @@
 ---
 title: "Week 11 Python — One report, four reader descriptions"
-description: "Edit a fictional report and prepare a senior/junior by AI-disclosure experiment"
+description: "Edit a fictional report and prepare a class-background by AI-disclosure experiment"
 ---
 
 [Return to the Week 11 readings and slides](../weeks/session11.qmd).
 
 ## Python walkthrough: prepare four versions of one report
 
-**Research question:** Would readers judge the same report differently depending on the author’s rank and whether AI assistance is disclosed?
+**Research question:** Would readers judge the same report differently depending on the author’s family background and whether AI assistance is disclosed?
 
 We give a model one fictional competitor report and ask it to edit for clarity. We inspect the revision. Python then places the **same revised report** in four hypothetical descriptions. This program prepares experimental materials. It does not ask an LLM to rate the workers or measure any human response.
 
@@ -85,44 +85,59 @@ print(REVISED_PARAGRAPH)
 ## Make four descriptions with a nested loop
 
 ```python
-ROLE_CUES = [
-    "The report author is the senior director of strategy.",
-    "The report author is a junior market analyst.",
+SHARED_PROFILE = (
+    "Alex Harper is a market research analyst with a university degree "
+    "and three years of experience."
+)
+CLASS_BACKGROUND_CUES = [
+    {"label": "working-class upbringing",
+     "text": "Alex was the first in the family to attend university. "
+             "Both parents held hourly-paid jobs."},
+    {"label": "professional-class upbringing",
+     "text": "Both of Alex's parents had university degrees and worked "
+             "in professional jobs."},
 ]
-AI_USE_LABELS = [
-    "The description gives no information about AI writing assistance.",
-    "The author reports using ChatGPT to edit the report for clarity.",
+DISCLOSURE_LINES = [
+    "",
+    "Alex reports using ChatGPT to edit the wording of this report for clarity.",
 ]
 
 conditions = []
-for role_cue in ROLE_CUES:
-    for ai_use_label in AI_USE_LABELS:
+for background in CLASS_BACKGROUND_CUES:
+    for disclosure_line in DISCLOSURE_LINES:
+        reader_text = "\n\n".join(
+            part for part in [SHARED_PROFILE, background["text"], disclosure_line, REVISED_PARAGRAPH]
+            if part
+        )
         condition = {
             "condition_id": len(conditions) + 1,
-            "role_cue": role_cue,
-            "ai_use_label": ai_use_label,
+            "class_background": background["label"],
+            "background_cue": background["text"],
+            "ai_disclosed": bool(disclosure_line),
+            "disclosure_line": disclosure_line,
             "report_text": REVISED_PARAGRAPH,
+            "reader_text": reader_text,
         }
         conditions.append(condition)
 ```
 
-Each cue list contains two strings. `conditions` starts as an empty list. On the first pass, `role_cue` is the senior director and `ai_use_label` says no AI was used. The new dictionary gets ID `1`; `append()` adds it to the list, so `len(conditions)` becomes `1`. On the second pass, the role stays senior while the AI label changes. The junior role appears on passes 3 and 4.
+`CLASS_BACKGROUND_CUES` is a list of two dictionaries. `DISCLOSURE_LINES` is a list of two strings; the empty string means the reader sees no AI statement. `conditions` starts as an empty list. On the first pass, `background` is the working-class description and `disclosure_line` is empty. The resulting `reader_text` includes the shared job and experience, that background, and the same report. Its `ai_disclosed` value is `False`. `append()` makes `len(conditions)` equal `1`. On the second pass, the background stays the same, the disclosure line contains the ChatGPT statement, and `ai_disclosed` is `True`. The professional-class description appears on passes 3 and 4.
 
-| Condition | Author | Reported AI use | Report |
+| Condition | Background cue | AI disclosure | Report |
 |---|---|---|---|
-| 1 | Senior director | Not mentioned | Same revision |
-| 2 | Senior director | Yes | Same revision |
-| 3 | Junior analyst | Not mentioned | Same revision |
-| 4 | Junior analyst | Yes | Same revision |
+| 1 | Working-class upbringing | Not mentioned | Same revision |
+| 2 | Working-class upbringing | Yes | Same revision |
+| 3 | Professional-class upbringing | Not mentioned | Same revision |
+| 4 | Professional-class upbringing | Yes | Same revision |
 
-The assertions in the script check that four records exist, IDs are distinct, and every `report_text` is identical. The undisclosed version makes no claim that the writer used no AI; it simply says nothing about assistance. These checks establish that the *materials* match our design. They do not show whether readers would judge the senior or junior worker as more competent, lazy, trustworthy, or legitimate.
+The assertions in the script check that four records exist, IDs are distinct, every `report_text` is identical, and only two reader descriptions contain the ChatGPT statement. The undisclosed version says nothing about assistance. These checks establish that the *materials* match our design. They do not show how readers would judge Alex. The background cues require pretesting because parental education and work may trigger several inferences at once.
 
-## Take-home exercise
+## In-class walkthrough and optional practice
 
 1. Run the model edit using Ollama locally or OpenRouter in Colab. Show the raw return.
 2. Compare the revision with the five source points. Identify any new or altered claim.
-3. Run the nested loop. Explain `role_cue`, `ai_use_label`, and `len(conditions)` on its first two passes.
+3. Run the nested loop. Explain `background`, `disclosure_line`, `reader_text` and `len(conditions)` on its first two passes.
 4. Make the instruction **more conservative**, rerun the model call, and compare the two revisions while keeping the source fixed.
-5. Explain how human readers could be used to test the two competing status predictions. Be clear that organizational rank is not a direct measure of social class.
+5. Explain how you would pretest the two family-background descriptions and then collect human-reader judgments.
 
-Submit a narrated 6–8 minute screen recording using the [recording and submission instructions](../recording-and-submission.qmd) by **5:00 p.m. Eastern on the Tuesday before the next class**. Code elegance is not graded. State whether you used outside AI help to prepare or debug the exercise.
+**No Week 11 video submission is required. No work is assigned for the cancelled class on 25 November.**

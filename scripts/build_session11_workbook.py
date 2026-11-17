@@ -31,7 +31,7 @@ headings = [
     ("## Store one fictional report", "The report and editing instruction are strings. The report contains no confidential business information."),
     ("## Ask the model for one edit", "The function shows the complete message, calls the chosen route, prints the raw return and keeps a record of the call."),
     ("## Check the revision", "Read the source and revision together. Preserve all five points, including that customer switching is unknown."),
-    ("## Make the four conditions", "The outer loop selects one worker role. For each role, the inner loop selects each AI-use label. The same report goes into all four records."),
+    ("## Make the four conditions", "The outer loop selects one family-background description. For each background, the inner loop selects whether AI use is disclosed. The job and report stay the same."),
     ("## Inspect and check the materials", "The assertions verify the four-record structure and identical report text. Human readers would still be needed to measure evaluation."),
 ]
 
@@ -45,7 +45,7 @@ setup_cell["id"] = "colab-setup"
 
 notebook["cells"] = [
     nbf.v4.new_markdown_cell(
-        "# Week 11 — AI use and judgments of competence\n\n"
+        "# Week 11 — AI-assisted writing and social class\n\n"
         "**Research task:** Use an LLM to edit a fictional competitor report. "
         "Check the edit and use Python to prepare four conditions for a possible "
         "human-reader study.\n\n"
@@ -70,7 +70,9 @@ notebook["cells"].append(
         "## Your change and recording\n\nMake the editing instruction more conservative "
         "while keeping the source report fixed. Rerun and compare the raw revision. "
         "Then trace one complete pass through the outer and inner loops. Explain why "
-        "the four materials cannot tell us what human readers would think about either worker."
+        "the four materials cannot tell us what human readers would think about Alex. "
+        "This is optional practice. No Week 11 video is due, and no work is assigned "
+        "for the cancelled class on 25 November."
     )
 )
 
