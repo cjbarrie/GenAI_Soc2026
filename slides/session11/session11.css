@@ -18,6 +18,10 @@
 .source-split p { font-size: .95em; }
 .citation { font-size: .52em !important; color: #59534c; margin-top: 20px; max-width: 1130px; }
 .reveal .slides section img.passage { width: 1000px !important; height: auto !important; max-width: 1000px !important; max-height: none !important; object-fit: contain; margin: 22px auto 8px; display: block; }
+.reveal .slides section img.autonomization-passage { display: block; width: 1040px; max-width: 100%; height: auto; margin: 32px auto 26px; background: #fff; }
+.autonomization-reading { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 0 18px 8px; }
+.autonomization-reading p { font-size: .91em; line-height: 1.34; border-top: 5px solid #167d8d; padding-top: 16px; }
+.autonomization-reading p:nth-child(2) { border-color: #ab6f4d; }
 .reveal .slides section img.source-passage { width: 1020px; max-height: 360px; object-fit: contain; display: block; margin: 44px auto 20px; }
 .reveal .slides section img.rafalow-abstract { width: 980px; max-height: 400px; object-fit: contain; display: block; margin: 13px auto 17px; }
 .figure-explain { display: grid; grid-template-columns: 61% 1fr; gap: 27px; align-items: center; margin: 18px 0 14px; }

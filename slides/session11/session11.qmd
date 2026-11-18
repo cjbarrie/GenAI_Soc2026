@@ -54,6 +54,16 @@ format:
 
 ---
 
+## A model can write the sentences
+
+<img class="autonomization-passage" src="images/bourdieu_autonomization_p646.png" alt="Bourdieu's passage on grammatical sentence production and the social conditions for using language appropriately">
+
+<div class="autonomization-reading"><p>Bourdieu was criticizing the idea that producing grammatical sentences is enough to speak appropriately.</p><p>ChatGPT can supply Alex with sentences he did not write. Alex decides whether to use them in this report, and his manager may judge that decision.</p></div>
+
+<p class="citation">Bourdieu (1977), p. 646, “Expanded competence.”</p>
+
+---
+
 ## What the reader knows about Alex
 
 <div class="profile-sheet"><div><small>HELD FIXED</small><strong>Market research analyst</strong><span>Same degree · three years in the role · identical report</span></div><div><small>VARIED</small><strong>Family background</strong><span>First-generation graduate from an hourly-paid household, or graduate from a professional household</span></div><div><small>VARIED</small><strong>AI disclosure</strong><span>Alex either states that ChatGPT edited the wording or makes no statement about AI.</span></div></div>

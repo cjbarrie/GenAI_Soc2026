@@ -16,7 +16,7 @@ Does class background change how AI use is judged? Discuss both possible directi
 - **Foschi (2000):** The slide uses her numerical example of a 14/20 performance judged against standards of 12 and 17. Discuss both ordinary and reverse double standards.
 - **Rafalow (2018):** His fieldnotes follow teachers in three schools with different class composition, race and institutional settings. Focus on how teachers responded to students’ digital activity.
 - **Schilke and Reimann (2025):** Study 11’s trust means were 4.10 with AI disclosure and 4.62 without, on a 1–7 scale. It varied prior AI knowledge and disclosure accompanying the report; the disclosure named GrowthBar.
-- **Bourdieu / Lamont and Lareau:** Their work frames how evaluators assign value to writing and to the person producing it.
+- **Bourdieu / Lamont and Lareau:** On p. 646, Bourdieu argues that grammatical sentence production does not exhaust the competence needed to use language appropriately. ChatGPT can supply Alex's wording; use and evaluation of that wording remain situated. Lamont and Lareau frame which cultural signals evaluators recognize.
 
 ## Discussion prompts
 
