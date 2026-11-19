@@ -4,4 +4,4 @@
 
 The normal class period is reserved for one-on-one meetings with the instructor about the final research design. There is no lecture, collective reading discussion, coding walkthrough or weekly recording.
 
-Reserve one appointment using the [meeting booking page](https://calendar.app.google/9TH9w7WVhFzxpupy9). The confirmation will contain your individual video link. Submit the final research-design memo **by Tuesday 1 December 2026 at 11:59 p.m. Eastern**, regardless of your meeting time. Be ready to discuss the sociological contribution, evidence, role of the LLM, validation problem and presentation plan.
+Reserve one appointment using the [meeting booking page](https://calendar.app.google/9TH9w7WVhFzxpupy9). The confirmation will contain your individual video link. Submit the final research-design memo **by Tuesday 1 December 2026 at 11:59 p.m. Eastern**, regardless of your meeting time. [Submit it on NYU Brightspace](https://brightspace.nyu.edu/d2l/lms/dropbox/user/folder_submit_files.d2l?db=1272352&grpid=0&isprv=0&bp=0&ou=599622). Be ready to discuss the sociological contribution, evidence, role of the LLM, validation problem and presentation plan.

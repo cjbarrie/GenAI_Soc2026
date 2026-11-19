@@ -13,7 +13,7 @@ If none of the available times works for you, contact the instructor directly to
 
 ## Before we meet
 
-Submit the [final research-design memo](../assessment.qmd#final-research-design-memo) **by Tuesday 1 December 2026 at 11:59 p.m. Eastern**, regardless of your meeting time. Bring the memo and one concrete example of what your proposed LLM routine receives and returns.
+Submit the [final research-design memo](../assessment.qmd#final-research-design-memo) **by Tuesday 1 December 2026 at 11:59 p.m. Eastern**, regardless of your meeting time. [Upload the memo to NYU Brightspace](https://brightspace.nyu.edu/d2l/lms/dropbox/user/folder_submit_files.d2l?db=1272352&grpid=0&isprv=0&bp=0&ou=599622). Bring the memo and one concrete example of what your proposed LLM routine receives and returns.
 
 Come prepared to discuss:
 

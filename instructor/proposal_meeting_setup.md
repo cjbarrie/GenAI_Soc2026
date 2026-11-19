@@ -1,5 +1,7 @@
 # 2 December proposal meetings: booking setup
 
+Instructor grading view: https://brightspace.nyu.edu/d2l/lms/dropbox/admin/mark/folder_submissions_users.d2l?db=1272352&ou=599622. Student submission link, derived from the same assignment folder ID: https://brightspace.nyu.edu/d2l/lms/dropbox/user/folder_submit_files.d2l?db=1272352&grpid=0&isprv=0&bp=0&ou=599622. Confirm student access with a student preview account.
+
 The public booking URL is https://calendar.app.google/9TH9w7WVhFzxpupy9. The final research-design memo is due Tuesday 1 December 2026 at 11:59 p.m. Eastern. The scheduling service should send each student a separate calendar invitation and video link. Do not post individual meeting URLs on the public site.
 
 ## Current schedule and capacity
