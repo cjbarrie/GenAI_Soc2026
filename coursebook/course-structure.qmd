@@ -38,7 +38,7 @@ The normal 165-minute meeting has three clearly different parts:
 
 The exact timing can move slightly when discussion is especially productive, but the middle of the class is reserved for collective discussion and the final part is reserved for working through the code together.
 
-The normal weekly format ends after the 18 November meeting. There is no class or weekly task on 25 November. Students submit the final research-design memo before their individually scheduled meeting on 2 December. The final meeting on 9 December is reserved for presentations.
+The normal weekly format ends after the 18 November meeting. There is no class or weekly task on 25 November. The final research-design memo is due **Tuesday 1 December at 11:59 p.m. Eastern**; [individual meetings](weeks/session13.qmd) take place on 2 December. The final meeting on 9 December is reserved for presentations.
 
 The coding strand teaches Python through actual LLM routines. Week 1 introduces values, strings and the anatomy of a call. From Week 2, students send a prompt to a model through OpenRouter or a supported local runtime. Later weeks add message lists, structured outputs, parsing, generation parameters, loops and, only after those are familiar, small functions with explicit parameters. Cached responses remain available when a service is unavailable, but they are the contingency rather than the main route.
 

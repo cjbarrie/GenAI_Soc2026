@@ -73,7 +73,7 @@ Weeks 1–10 coding tasks receive completion marks and are submitted as narrated
 
 The midterm project proposal is released after Session 6 and is due at the end of Week 7: **Friday 23 October at 23:59 Eastern**. Submit it through the [Midterm project proposal page on NYU Brightspace](https://brightspace.nyu.edu/d2l/lms/dropbox/admin/folders_manage.d2l?ou=599622). In 1,200–1,500 words, students set out a sociological question, locate it in a focused body of literature, specify the evidence and design, explain the proposed role of an LLM, and give one worked input → operation → output → validation example. The proposal also identifies likely failures, ethical issues, the reproducibility record, and the next steps toward the final project. It is a formative stage of the final project, not a Python test or a commitment to complete a full empirical study.
 
-The final project has two assessed parts. The **final research-design memo (20%)** develops the midterm into a complete design and must be submitted before the student's individually scheduled meeting on 2 December. The **presentation (30%)** takes place on 9 December. A minimal input/output trace or proof of concept is expected where feasible; a completed empirical paper is not.
+The final project has two assessed parts. The **final research-design memo (20%)** develops the midterm into a complete design and is due **Tuesday 1 December 2026 at 11:59 p.m. Eastern**, regardless of the student’s meeting time on 2 December. The **presentation (30%)** takes place on 9 December. A minimal input/output trace or proof of concept is expected where feasible; a completed empirical paper is not.
 
 ## AI use: do not outsource your learning
 

@@ -2,4 +2,4 @@
 
 There is no assigned reading for this date.
 
-Students should complete the final research-design memo and prepare questions for the individual meeting on 2 December.
+There is no class or assigned reading on 25 November. The final research-design memo is due Tuesday 1 December 2026 at 11:59 p.m. Eastern. Students should prepare questions for their individual meeting on 2 December.

@@ -7,13 +7,13 @@ The scheduled class period is used for individual meetings with the instructor a
 
 ## Book your meeting
 
-Choose one appointment on **Wednesday 2 December** during the usual class period, **9:30 a.m.–12:15 p.m. Eastern**. The booking page will be linked here when the appointments open. Use your NYU email address. Your confirmation will contain the time and the individual video-meeting link; add it to your calendar.
+Choose one appointment on **Wednesday 2 December**: [book your individual meeting](https://calendar.app.google/9TH9w7WVhFzxpupy9). The available appointments are 30 minutes long, beginning between **9:30 and 11:30 a.m. Eastern**. Use your NYU email address. Your confirmation will contain the time and the individual video-meeting link; add it to your calendar.
 
 If none of the available times works for you, contact the instructor directly to arrange another time. Each meeting is one-to-one, so please use the link in your own confirmation rather than another student's meeting link.
 
 ## Before we meet
 
-Submit the [final research-design memo](../assessment.qmd#final-research-design-memo) **before your appointment begins**. Bring the memo and one concrete example of what your proposed LLM routine receives and returns.
+Submit the [final research-design memo](../assessment.qmd#final-research-design-memo) **by Tuesday 1 December 2026 at 11:59 p.m. Eastern**, regardless of your meeting time. Bring the memo and one concrete example of what your proposed LLM routine receives and returns.
 
 Come prepared to discuss:
 

@@ -1,15 +1,19 @@
 # 2 December proposal meetings: booking setup
 
-Use one appointment-schedule URL in the public course book. The scheduling service should send each student a separate calendar invitation and video link. Do not post individual meeting URLs on the public site.
+The public booking URL is https://calendar.app.google/9TH9w7WVhFzxpupy9. The final research-design memo is due Tuesday 1 December 2026 at 11:59 p.m. Eastern. The scheduling service should send each student a separate calendar invitation and video link. Do not post individual meeting URLs on the public site.
 
-## Recommended setup: NYU Google Calendar
+## Current schedule and capacity
+
+The booking page currently offers five 30-minute appointments on Wednesday 2 December, beginning at 9:30, 10:00, 10:30, 11:00 and 11:30 a.m. Eastern. If more than five students need meetings, add another availability window or shorten the appointments before directing everyone to book.
+
+## Google Calendar setup and checks
 
 1. On a computer, sign in to your NYU Google Calendar and select **Create → Appointment schedule**.
-2. Title it **Final research-design memo meeting**. Offer **15-minute appointments** on **Wednesday 2 December 2026, 9:30 a.m.–12:00 p.m. Eastern**. Ten students can book within that window; the final 15 minutes of class remain available if a meeting runs over. If enrollment exceeds ten, add another availability window.
+2. Check the existing **One-on-one meetings** schedule for **Wednesday 2 December 2026**. It currently offers 30-minute appointments from 9:30 a.m. to noon Eastern.
 3. Restrict availability to this date, check your calendar for conflicts, and set the booking window so students can reserve a slot before 2 December.
-4. Choose **Google Meet** as the location. Require a name and email address; ask for the student's project title only if useful. Add a description reminding them to submit the final memo before their appointment and bring an input–operation–output example.
+4. Choose **Google Meet** as the location. Require a name and email address; ask for the student's project title only if useful. Add a description reminding them that the final memo is due **Tuesday 1 December at 11:59 p.m. Eastern** and bring an input–operation–output example.
 5. Save. Under **Booking pages**, copy the link for this appointment schedule. Test it in a private browser window, confirm that the intended slots appear, and make one test reservation to check that the confirmation includes a video link. Cancel the test reservation.
-6. Add the booking URL to `coursebook/weeks/session13.qmd` in the **Book your meeting** section, replacing the sentence that says the link will be added. Render the course book and publish the update.
+6. Keep the booking URL in `coursebook/weeks/session13.qmd` current. Render the course book and publish any update.
 
 Google's current instructions: [create an appointment schedule](https://support.google.com/calendar/answer/10729749) and [copy its booking-page link](https://support.google.com/calendar/answer/10733297).
 
