@@ -5,7 +5,15 @@ description: "One-on-one meetings with the instructor"
 
 The scheduled class period is used for individual meetings with the instructor about the final research design. There is no lecture, collective reading discussion, coding walkthrough or weekly recording.
 
-Submit the final research-design memo before your scheduled meeting. Submission and scheduling details will be circulated to the class.
+## Book your meeting
+
+Choose one appointment on **Wednesday 2 December** during the usual class period, **9:30 a.m.–12:15 p.m. Eastern**. The booking page will be linked here when the appointments open. Use your NYU email address. Your confirmation will contain the time and the individual video-meeting link; add it to your calendar.
+
+If none of the available times works for you, contact the instructor directly to arrange another time. Each meeting is one-to-one, so please use the link in your own confirmation rather than another student's meeting link.
+
+## Before we meet
+
+Submit the [final research-design memo](../assessment.qmd#final-research-design-memo) **before your appointment begins**. Bring the memo and one concrete example of what your proposed LLM routine receives and returns.
 
 Come prepared to discuss:
 
@@ -16,4 +24,4 @@ Come prepared to discuss:
 - the most important validation problem;
 - what should be emphasized in the presentation.
 
-The meeting is developmental rather than separately graded. Scheduling details will be circulated to the class.
+The meeting is developmental rather than separately graded. There is no additional coding submission for this date.
