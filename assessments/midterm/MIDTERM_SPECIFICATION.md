@@ -4,7 +4,7 @@
 
 **Due:** end of Week 7, Friday October 23 at 23:59 Eastern.
 
-**Submit:** [NYU Brightspace — Midterm project proposal](https://brightspace.nyu.edu/d2l/lms/dropbox/admin/folders_manage.d2l?ou=599622).
+**Submit:** [NYU Brightspace course](https://brightspace.nyu.edu/d2l/home/599622) → **Assignments → Midterm project proposal**.
 
 **Length:** 1,200–1,500 words, plus references and a short appendix if needed.
 **Weight:** 20%.

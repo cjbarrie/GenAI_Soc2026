@@ -5,4 +5,4 @@ description: "No scheduled meeting"
 
 There is no class meeting on Wednesday 25 November 2026. There is no assigned reading, coding exercise or weekly recording for this date.
 
-Use the time to complete the final research-design memo, due **Tuesday 1 December at 11:59 p.m. Eastern**. [Submit it on NYU Brightspace](https://brightspace.nyu.edu/d2l/lms/dropbox/user/folder_submit_files.d2l?db=1272352&grpid=0&isprv=0&bp=0&ou=599622). Individual meetings take place on 2 December.
+Use the time to complete the final research-design memo, due **Tuesday 1 December at 11:59 p.m. Eastern**. Open the [course on NYU Brightspace](https://brightspace.nyu.edu/d2l/home/599622), choose **Assignments**, and submit the **final research-design memo**. Individual meetings take place on 2 December.
